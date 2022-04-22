@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/genInterfaceModel/src" modelPluginID="genInterfaceModel"
+    modelName="GenInterfaceModel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>../../SchemaDatabase/SGr/Generic/SGrGenDeviceFrame.xsd</foreignModel>
+  <genPackages prefix="V0" basePackage="ch.smartgridready.ns.s.gr" resource="XML"
+      disposableProviderFactory="true" ecorePackage="genInterfaceModel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genInterfaceModel.ecore#//ProfileTypeEnumType">
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Battery"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Compressor"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/DeviceInformation"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/DHWCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/DHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Dishwasher"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Dryer"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/ElectricalImmersionHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Fan"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/GasHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Generic"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HeatingBufferStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HeatingCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HeatingObject"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HeatingZone"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HeatPumpAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HeatSinkCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HeatSourceCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HeatSourceUnit"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HVACController"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/HVACRoom"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/InstantDHWHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Inverter"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/OilHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Pump"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/RefrigerantCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/SmartEnergyAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/SolarDHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/SolarThermalCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/SubMeterElectricity"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/TemperatureSensor"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Washer"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/BatterySystem"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/ElectricityGenerationSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/ElectricityStorageSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/GridConnectionPointOfPremises"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/Household"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/PVSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/EV"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/EVSE"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/ChargingOutlet"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/CEM"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/R43"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/R44"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/R45"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/R46"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/R47"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/R48"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/R49"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//ProfileTypeEnumType/R50"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genInterfaceModel.ecore#//SGrDeviceKindType">
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/Dishwasher"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/Dryer"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/EnvironmentSensor"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/Generic"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/HeatGenerationSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/HeatSinkSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/HeatStorageSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/HVACController"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/SubMeter"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/Washer"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/ElectricitySupplySystem"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/EnergyManagementSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/Inverter"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrDeviceKindType/ChargingStation"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genInterfaceModel.ecore#//SGrLanguageType">
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrLanguageType/de"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrLanguageType/en"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrLanguageType/fr"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrLanguageType/it"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genInterfaceModel.ecore#//SGrManufacturerIDType">
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrManufacturerIDType/ClemapAG"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrManufacturerIDType/IBT"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrManufacturerIDType/VirtualGlobalTrading"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrManufacturerIDType/manuf4"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrManufacturerIDType/manuf5"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrManufacturerIDType/manuf6"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genInterfaceModel.ecore#//SGrMROPresenceLevelIndicationType">
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrMROPresenceLevelIndicationType/M"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrMROPresenceLevelIndicationType/R"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrMROPresenceLevelIndicationType/O"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genInterfaceModel.ecore#//SGrNamelistKindOfType">
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrNamelistKindOfType/Device"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrNamelistKindOfType/FunctionalProfile"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrNamelistKindOfType/DataPoint"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrNamelistKindOfType/other"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genInterfaceModel.ecore#//SGrRWPType">
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrRWPType/R"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrRWPType/W"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrRWPType/RW"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrRWPType/RWP"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genInterfaceModel.ecore#//SGrTechnologyUsedListType">
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrTechnologyUsedListType/EEBUS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrTechnologyUsedListType/Modbus"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrTechnologyUsedListType/OCPP"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrTechnologyUsedListType/RESTfulJSON"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrTechnologyUsedListType/generic"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genInterfaceModel.ecore#//SGrUnits">
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/AMPERESQUAREMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/AMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/AMPERESPERMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/AMPERESPERSQUAREMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/BARS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/BTUS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/BTUSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/BTUSPERPOUND"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/BTUSPERPOUNDDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/CANDELAS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/CANDELASPERSQUAREMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/CENTIMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/CENTIMETERSOFWATER"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/CYCLESPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/CYCLESPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/DEGREESPHASE"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/FARADS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/FEET"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/FOOTCANDLES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/GRAMSOFWATERPERKILOGRAMDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/GRAMSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/GRAMSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/HECTOPASCALS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/HENRYS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/HERTZ"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/HORSEPOWER"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/INCHES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/INCHESOFWATER"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/JOULES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/JOULESPERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/JOULESPERKILOGRAMDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/JOULESPERKILOGRAMDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOBTUS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOBTUSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOGRAMS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOGRAMSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOGRAMSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOGRAMSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOHERTZ"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOHMS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOJOULES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOJOULESPERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOJOULESPERKILOGRAM"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOJOULESPERKILOGRAMDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOPASCALS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOVOLTAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOVOLTAMPERESREACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOVOLTS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOWATTHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/KILOWATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/LUMENS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/LUXES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGABTUS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGAHERTZ"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGAJOULES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGAJOULESPERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGAJOULESPERKILOGRAMDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGAVOLTAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGAVOLTAMPERESREACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGAVOLTS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGAWATTHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGAWATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MEGOHMS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/METERS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/METERSPERSECONDPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MILLIAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MILLIBARS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MILLIMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/ILLIMETERSOFMERCUR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MILLIOHMS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MILLIVOLTS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/MILLIWATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/NEWTON"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/OHMMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/OHMS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/PASCALS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/PERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/PERCENTRELATIVEHUMIDITY"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/POUNDSFORCEPERSQUAREINCH"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/POUNDSMASS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/POUNDSMASSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/POUNDSMASSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/POUNDSMASSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/POWERFACTOR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/SIEMENS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/SIEMENSPERMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/SQUARECENTIMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/SQUAREFEET"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/SQUAREINCHES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/SQUAREMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/TESLAS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/THERMS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/TONHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/TONS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/TONSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/TONSREFRIGERATION"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/VOLTAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/VOLTAMPERESREACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/VOLTS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/VOLTSPERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/VOLTSPERMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/WATTHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/WATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/ATTSPERSQUAREFOOT"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/WATTSPERSQUAREMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="genInterfaceModel.ecore#//SGrUnits/WEBERS"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//ProfileTypeEnumTypeObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrDeviceKindTypeObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrLanguageTypeObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrManufacturerIDTypeObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrMROPresenceLevelIndicationTypeObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrNamelistKindOfTypeObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrPrecsisionType"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrPrecsisionTypeObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrRWPTypeObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrSpecialQualityReqType"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrTechnologyUsedListTypeObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrTimeStampType"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//SGrUnitsObject"/>
+    <genDataTypes ecoreDataType="genInterfaceModel.ecore#//TextElementType"/>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//DocumentRoot/deviceProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//DocumentRoot/functionalProfiles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//DocumentRoot/genDeviceFrame"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/bOOLEAN"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/iNT8"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/iNT16"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/iNT32"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/iNT64"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/iNT8U"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/iNT16U"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/iNT32U"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/iNT64U"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/fLOAT32"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/fLOAT64"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/enum"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrBasicGenDataPointTypeType/timestamp"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrDataPointDescriptionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDataPointDescriptionType/basicDataType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDataPointDescriptionType/dpNameList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDataPointDescriptionType/dpAttrPrecision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDataPointDescriptionType/adAttrTimeStamp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDataPointDescriptionType/dpAttrSpecQualReq"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDataPointDescriptionType/dpLegibDesc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDataPointDescriptionType/datapointName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDataPointDescriptionType/MROVisibilityIndicator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDataPointDescriptionType/rWPDatadirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDataPointDescriptionType/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrDataPointsFrameType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDataPointsFrameType/dataPoint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDataPointsFrameType/dpListIndex"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrDeviceDescriptionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDeviceDescriptionType/deviceProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDeviceDescriptionType/fpListElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDeviceDescriptionType/deviceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDeviceDescriptionType/isLocalControl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDeviceDescriptionType/ManufacturerID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDeviceDescriptionType/manufacturerName"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrDeviceProfileType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDeviceProfileType/devNameList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDeviceProfileType/devLegibDesc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDeviceProfileType/technologyUsed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDeviceProfileType/deviceKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDeviceProfileType/serialNumber"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDeviceProfileType/softwareRevision"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrDeviceProfileType/hardwareRevision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrDeviceProfileType/brandName"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrInterfaceDescriptionType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrInterfaceDescriptionType/technologyUsed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrInterfaceDescriptionType/isLocalControl"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrLegibDocumentationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrLegibDocumentationType/textElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrLegibDocumentationType/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrLegibDocumentationType/uRI"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrNamelistType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrNamelistType/nameType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrNamelistType/sLV1Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrNamelistType/sWorkName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrNamelistType/sManufName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrNamelistType/sIEC61850Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrNamelistType/sSAREFName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrNamelistType/sEEBUSName"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrProfileDescriptionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrProfileDescriptionType/profileNumber"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrProfileDescriptionType/fpNameList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrProfileDescriptionType/fpAttrPrecision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrProfileDescriptionType/fpAttrSpecialQualitReq"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrProfileDescriptionType/fpLegibDesc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrProfileDescriptionType/mROVisibilityIndicator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrProfileDescriptionType/profileName"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrProfilenumberType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrProfilenumberType/ownerIdentification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrProfilenumberType/profileIdentification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrProfilenumberType/extensionlNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrProfilenumberType/sGrLevelOfOperation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrProfilenumberType/versionNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrProfilesFrameType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrProfilesFrameType/functionalProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genInterfaceModel.ecore#//SGrProfilesFrameType/dpListElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrProfilesFrameType/fpListIndex"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrScalingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrScalingType/multiplicator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrScalingType/scaling"/>
+    </genClasses>
+    <genClasses ecoreClass="genInterfaceModel.ecore#//SGrVersionNumberType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrVersionNumberType/primaryVersionNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrVersionNumberType/secondaryVersionNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genInterfaceModel.ecore#//SGrVersionNumberType/subReleaseVersionNumber"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

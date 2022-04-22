@@ -1,0 +1,957 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/CommHandler4Modbus/src-gen" creationIcons="false"
+    editDirectory="/CommHandler4Modbus.edit/src-gen" editorDirectory="/CommHandler4Modbus.editor/src-gen"
+    modelPluginID="CommHandler4Modbus" modelName="CommHandler4Modbus" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>commHandler4Modbus.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="CommHandler4Modbus" disposableProviderFactory="true" ecorePackage="commHandler4Modbus.ecore#/">
+    <genClasses ecoreClass="commHandler4Modbus.ecore#//SGrCEMCommunicator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference commHandler4Modbus.ecore#//SGrCEMCommunicator/commhandler4modbus"/>
+    </genClasses>
+    <genClasses ecoreClass="commHandler4Modbus.ecore#//CommHandler4Modbus">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference commHandler4Modbus.ecore#//CommHandler4Modbus/sgrcemcommunicator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference commHandler4Modbus.ecore#//CommHandler4Modbus/sgrmodbusdevicedescriptiontype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference commHandler4Modbus.ecore#//CommHandler4Modbus/trspservicemodbustype"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="V0" ecorePackage="../../emfEI4Modbus/model/emfEI4Modbus.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/INT8"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/INT16"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/INT32"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/INT64"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/INT8U"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/INT16U"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/INT32U"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/INT64U"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/FLOAT32"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/FLOAT64"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/Enum"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/Timestamp"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/dateTime"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/String"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedType/BOOLEAN"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_300"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_600"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_1200"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_2400"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_4800"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_5600"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_9600"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_14400"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_19200"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_38400"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_57600"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_115200"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_128000"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_230400"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateType/_256000"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EByteLenType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EByteLenType/_7"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EByteLenType/_8"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EParityType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EParityType/EVEN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EParityType/ODD"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EParityType/NONE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EStopBitLenType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EStopBitLenType/_0"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EStopBitLenType/_1"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EStopBitLenType/_15"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EStopBitLenType/_2"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/Primitives"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReadDiscreteInputs"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReadCoils"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/WriteSingleCoil"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/WriteMultipleCoils"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReadInputRegisters"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReadMultipleHoldingRegisters"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/WriteSingleHoldingRegister"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/WriteMultipleHoldingRegisters"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReadWriteMultipleRegisters"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/MaskWriteRegister"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReadFIFOQueue"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReadFileRecord"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/WriteFileRecord"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReadExceptionStatus"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/Diagnostic"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/GetComEventCounter"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/GetComEventLog"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReportSlaveID"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedType/ReadDeviceIdentification"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusInterfaceSelectionType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusInterfaceSelectionType/RTU"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusInterfaceSelectionType/TCPIP"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusInterfaceSelectionType/UDPIP"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusInterfaceSelectionType/RTUASCII"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusInterfaceSelectionType/TCPIPASCII"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusInterfaceSelectionType/UDPIPASCII"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Battery"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Compressor"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/DeviceInformation"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/DHWCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/DHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Dishwasher"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Dryer"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/ElectricalImmersionHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Fan"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/GasHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/NonSpecific"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HeatingBufferStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HeatingCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HeatingObject"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HeatingZone"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HeatPumpControl"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HeatSinkCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HeatSourceCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HeatSourceUnit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HVACController"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/HVACRoom"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/InstantDHWHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Inverter"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/OilHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Pump"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/RefrigerantCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/SmartEnergyAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/SolarDHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/SolarThermalCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/SubMeterElectricity"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/TemperatureSensor"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Washer"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/BatterySystem"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/ElectricityGenerationSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/ElectricityStorageSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/SGCP"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Household"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/PVSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/EV"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/EVSE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/ChargingOutlet"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/CEM"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Actuator"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Sensor"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/Controller"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/EnvCondition"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/FlexBuildingCampus"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/R48"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/R49"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumType/R50"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Battery"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Compressor"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/DeviceInformation"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/DHWCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/DHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Dishwasher"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Dryer"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/ElectricalImmersionHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Fan"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/GasHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Generic"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HeatingBufferStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HeatingCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HeatingObject"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HeatingZone"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HeatPumpAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HeatSinkCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HeatSourceCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HeatSourceUnit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HVACController"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/HVACRoom"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/InstantDHWHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Inverter"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/OilHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Pump"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/RefrigerantCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/SmartEnergyAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/SolarDHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/SolarThermalCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/SubMeterElectricity"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/TemperatureSensor"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Washer"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/BatterySystem"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/ElectricityGenerationSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/ElectricityStorageSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/SGCP"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/Household"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/PVSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/EV"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/EVSE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/ChargingStation"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindType/CEM"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv1Type">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv1Type/normal"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv1Type/EVULOCK"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv2Type">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv2Type/normal"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv2Type/intensivied"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv2Type/EVULOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv2Type/forced"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv1Type">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv1Type/EVNORMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv1Type/EVREDUCED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv2Type">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv2Type/EVNORMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv2Type/EVREDUCED"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv2Type/EVMINIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv2Type/EVNONEORFEEDIN"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLanguageType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLanguageType/de"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLanguageType/en"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLanguageType/fr"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLanguageType/it"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/thirdPartySrcInfo"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/ClemapAG"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/IBT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/VirtualGlobalTrading"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/SmartEnergyLink"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/Invisia"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/SolarManager"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/BELEVO"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/eCarUp"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/Electrojoule"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/Exnaton"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/meoENERGY"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/Robotron"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/topSolarisone"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/WAGO"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/Swistec"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/goZmart"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/m17"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/m18"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/m19"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDType/m20"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueSourceType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueSourceType/measuredValue"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueSourceType/calculatedValue"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueSourceType/empiricalValue"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueStateType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueStateType/normal"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueStateType/error"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueTendencyType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueTendencyType/rising"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueTendencyType/stable"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueTendencyType/falling"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMROPresenceLevelIndicationType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMROPresenceLevelIndicationType/M"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMROPresenceLevelIndicationType/R"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMROPresenceLevelIndicationType/O"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistKindOfType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistKindOfType/Device"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistKindOfType/FunctionalProfile"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistKindOfType/DataPoint"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistKindOfType/other"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrPowerSourceType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrPowerSourceType/unknown"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrPowerSourceType/mains1Phase"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrPowerSourceType/mains3Phase"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrPowerSourceType/battery"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrPowerSourceType/forced"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrRWPType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrRWPType/R"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrRWPType/W"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrRWPType/RW"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrRWPType/RWP"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPFeedInStateLv2Type">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPFeedInStateLv2Type/FINORMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPFeedInStateLv2Type/FIREDUCED"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPFeedInStateLv2Type/FILOCKED"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPFeedInStateLv2Type/FIMAX"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPLoadStateLv2Type">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPLoadStateLv2Type/LDNORMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPLoadStateLv2Type/LDREDUCED"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPLoadStateLv2Type/LDLOCKED"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPLoadStateLv2Type/LDMAX"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesType/ISTATUSOFF"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesType/ISTATUSSLEEPING"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesType/ISTATUSSTARTING"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesType/ISTATUSMPPT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesType/ISTATUSTHROTTLED"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesType/ISTATUSSHUTINGDOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesType/ISTATUSFAULT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesType/ISTATUSSTANDBY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTransportServicesUsedListType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTransportServicesUsedListType/EEBUS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTransportServicesUsedListType/Modbus"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTransportServicesUsedListType/OCPP"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTransportServicesUsedListType/RESTfulJSON"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTransportServicesUsedListType/Contacts"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTransportServicesUsedListType/WoT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTransportServicesUsedListType/generic"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/AMPERESQUAREMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/AMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/AMPERESPERMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/AMPERESPERSQUAREMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/BARS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/BTUS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/BTUSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/BTUSPERPOUND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/BTUSPERPOUNDDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CANDELAS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CANDELASPERSQUAREMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CENTIMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CENTIMETERSOFMERCURY"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CENTIMETERSOFWATER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CUBICFEET"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CUBICFEETPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CUBICFEETPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CUBICMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CUBICMETERSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CUBICMETERSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CUBICMETERSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY1"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY10"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY2"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY3"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY4"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY5"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY6"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY7"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY8"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CURRENCY9"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CYCLESPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/CYCLESPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DAYS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREEDAYSCELSIUS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREEDAYSFAHRENHEIT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESANGULAR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESCELSIUS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESCELSIUSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESCELSIUSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESFAHRENHEIT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESFAHRENHEITPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESFAHRENHEITPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESKELVINPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESKELVINPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DEGREESPHASE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DELTADEGREESFAHRENHEIT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/DELTADEGREESKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/FARADS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/FEET"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/FEETPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/FEETPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/FOOTCANDLES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/GIGAJOULES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/GRAMSOFWATERPERKILOGRAMDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/GRAMSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/GRAMSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/HECTOPASCALS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/HENRYS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/HERTZ"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/HORSEPOWER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/HOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/HUNDREDTHSSECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/IMPERIALGALLONS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/IMPERIALGALLONSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/INCHES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/INCHESOFMERCURY"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/INCHESOFWATER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/JOULESECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/JOULES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/JOULESPERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/JOULESPERKILOGRAMDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/JOULESPERKILOGRAMDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOBTUS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOBTUSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOGRAMS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOGRAMSPERCUBICMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOGRAMSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOGRAMSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOGRAMSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOHERTZ"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOOHMS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOJOULES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOJOULESPERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOJOULESPERKILOGRAM"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOJOULESPERKILOGRAMDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOMETERSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOPASCALS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOVOLTAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOVOLTAMPERESREACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOVOLTS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOWATTHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KILOWATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KWHOURSPERSQUAREFOOT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/KWHOURSPERSQUAREMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/LITERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/LITERSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/LITERSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/LITERSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/LUMENS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/LUXES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGABTUS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAHERTZ"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAJOULES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAJOULESPERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAJOULESPERKILOGRAMDRYAIR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAJOULESPERSQUAREFOOT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAJOULESPERSQUAREMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAVOLTAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAVOLTAMPERESREACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAVOLTS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAWATTHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGAWATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MEGOHMS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/METERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/METERSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/METERSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/METERSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/METERSPERSECONDPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILESPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLIAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLIBARS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLIMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLIMETERSOFMERCURY"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLIMETERSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLIMETERSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLIOHMS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLISECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLIVOLTS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MILLIWATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MINUTES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/MONTHS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/NEWTON"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/NEWTONMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/NEWTONSECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/NEWTONSPERMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/NOUNITS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/OHMMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/OHMS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PARTSPERBILLION"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PARTSPERMILLION"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PASCALS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PERCENT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PERCENTOBSCURATIONPERFOOT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PERCENTOBSCURATIONPERMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PERCENTPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PERCENTRELATIVEHUMIDITY"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/POUNDSFORCEPERSQUAREINCH"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/POUNDSMASS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/POUNDSMASSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/POUNDSMASSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/POUNDSMASSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/POWERFACTOR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/PSIPERDEGREEFAHRENHEIT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/RADIANS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/RADIANSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/REVOLUTIONSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/SECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/SIEMENS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/SIEMENSPERMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/SQUARECENTIMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/SQUAREFEET"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/SQUAREINCHES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/SQUAREMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/SQUAREMETERSPERNEWTON"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/TESLAS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/THERMS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/TONHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/TONS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/TONSPERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/TONSREFRIGERATION"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/USGALLONS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/USGALLONSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/VOLTAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/VOLTAMPERESREACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/VOLTS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/VOLTSPERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/VOLTSPERMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/WATTHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/WATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/WATTSPERMETERPERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/WATTSPERSQUAREFOOT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/WATTSPERSQUAREMETER"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/WATTSPERSQUAREMETERDEGREEKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/WEBERS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/WEEKS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/YEARS"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnits/NONE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ActiveEnergyAC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ReactiveEnergyAC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ApparentEnergyAC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ActivePowerAC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ReactivePowerAC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ApparentPowerAC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/VoltageAC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/CurrentAC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/PowerFactor"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/PhaseAngle"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/CurrentQuadrant"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/Frequency"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ActiveEnerBalanceAC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph14"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph15"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph16"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/EnergyDC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/PowerDC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/VoltageDC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/CurrentDC"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/SunspInvImmCtrl"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/SunspInvOpState"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/SunspInvModel"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph24"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph25"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph26"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph27"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph28"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph29"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/BiDirFlexMgmt"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/UniDirFlexLoadMgmt"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/UniDirFlexFeedInMgmt"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/Curtailment"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph33"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph34"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/FlexSysOpState"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph37"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph38"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph39"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/Monitoring"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/DynamicCtrl"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph42"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph43"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph44"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph45"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph46"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph47"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph48"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph49"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/RoomTemp"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/OutsideAirTemp"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/WaterTemp"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/DeviceTemp"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ProcessTemp"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph55"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph56"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph57"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph58"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph59"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/SGReadyStatesBwp"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/SGrStatesEVSE"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph62"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph63"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph64"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph65"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph66"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph67"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph68"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph69"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/elFlexTotal"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/elFlexHeating"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/elFlexCooling"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/elFlexVentilation"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph74"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph75"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph76"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph77"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph78"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumType/ph79"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumConversionFct">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumConversionFct/BigEndian"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumConversionFct/ChangeDWordOrder"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumConversionFct/ChangeWordOrder"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumConversionFct/ChangeByteOrder"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumConversionFct/ChangeBitOrder"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/IllegalFunction"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/IllegalAddress"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/IllegalDataValue"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/SlaveFailure"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/ACK"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/SlaveBusy"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/NACK"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/MemoryParityErr"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/GtwyPathErr"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeType/GtwyTargetErr"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumObjectType">
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumObjectType/Coil"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumObjectType/DiscreteInput"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumObjectType/InputRegister"/>
+      <genEnumLiterals ecoreEnumLiteral="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumObjectType/HoldRegister"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//BitmaskType"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DpSizeNrRegistersType"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DpSizeNrRegistersTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DptSelectedTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EBaudRateTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EByteLenTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EParityTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//EStopBitLenTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//IPV4N1Type"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//IPV4N2Type"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//IPV4N3Type"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//IPV4N4Type"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//MasterFunctionsSupportedTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusInterfaceSelectionTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//NumDPsType"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//NumDPsTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//NumFPsType"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//NumFPsTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ProfileTypeEnumTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceKindTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv1TypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGReadyStateLv2TypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv1TypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEVSEStateLv2TypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLanguageTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrManufacturerIDTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueSourceTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueStateTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMeasValueTendencyTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrMROPresenceLevelIndicationTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistKindOfTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrPowerSourceTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrPrecisionType"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrPrecisionTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrRWPTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPFeedInStateLv2TypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSGCPLoadStateLv2TypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSpecialQualityReqType"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSunspStateCodesTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTransportServicesUsedListTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrUnitsObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SubProfileTypeEnumTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TBitRank"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TBitRankObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumConversionFctObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumExceptionCodeTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TEnumObjectTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TextElementType"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TIPportNrType"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TIPportNrTypeObject"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TSlaveIDType"/>
+    <genDataTypes ecoreDataType="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TSlaveIDTypeObject"/>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ApiTreeType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ApiTreeType/isConnected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ApiTreeType/numFPs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ApiTreeType/numDPs"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ConnectionState">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ConnectionState/isConnected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ConnectionState/nextAttempt"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/baudRatesSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/byteLenSupported"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/deviceProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/functionalProfiles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/genDeviceFrame"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/modbusFunctionCodesSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/paritySupported"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/sGrModbusDataPointDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/sGrModbusInterfaceDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/sGrSerialInterfaceCapability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/stopBitLenSupported"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/sGrModbusDeviceFrame"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/apiTree"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DocumentRoot/trspServiceModbus"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DpAccessProtectionEnabledType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DpAccessProtectionEnabledType/modbusException"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//DpAccessProtectionEnabledType/isEnabled"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//IpADDRType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//IpADDRType/iPV4N1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//IpADDRType/iPV4N2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//IpADDRType/iPV4N3"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//IpADDRType/iPV4N4"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusJMESPathType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//ModbusJMESPathType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUDevInstanceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUDevInstanceType/deviceInstName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUDevInstanceType/slaveAddr"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUtrspSrvInstanceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUtrspSrvInstanceType/baudRate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUtrspSrvInstanceType/byteLen"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUtrspSrvInstanceType/parity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUtrspSrvInstanceType/stopBitLen"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUType/rTUtrspSrvInstance"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//RTUType/rTUDevInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/maxVal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/minVal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/specQualityRequirement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/precision"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/stabilityFallback"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/smoothTransition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/minSendDelta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/maxSendTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/maxReceiveTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/minSendTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/maxLatencyTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/timeStampLog"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/timeRange"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/valueState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/valueTendency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/valueSource"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/sampleRate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/curtailment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/minLoad"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/maxLockTimeMinutes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/minRunTimeMinutes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4GenericType/valueByTimeTableMinutes"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4ModbusType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4ModbusType/scalingByMulPwr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4ModbusType/stepByIncrement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4ModbusType/sunssf"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4ModbusType/pollLatencyMS"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrAttr4ModbusType/timeSyncBlockNotification"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/bOOLEAN"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/iNT8"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/iNT16"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/iNT32"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/iNT64"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/iNT8U"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/iNT16U"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/iNT32U"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/iNT64U"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/fLOAT32"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/fLOAT64"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/enum"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/timestamp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/string"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrBasicGenDataPointTypeType/dpTypeSelected"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointDescriptionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointDescriptionType/basicDataType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointDescriptionType/dpNameList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointDescriptionType/dpLegibDesc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointDescriptionType/datapointName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointDescriptionType/mROVisibilityIndicator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointDescriptionType/rWPDatadirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointDescriptionType/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointsFrameType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointsFrameType/dataPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDataPointsFrameType/dpAttr4Generic"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceDescriptionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceDescriptionType/deviceProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceDescriptionType/devAttr4Generic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceDescriptionType/fpListElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceDescriptionType/deviceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceDescriptionType/isLocalControl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceDescriptionType/manufacturerID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceDescriptionType/manufacturerName"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/devNameList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/devLegibDesc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/transportService"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/deviceKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/serialNumber"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/softwareRevision"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/hardwareRevision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/brandName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/powerSource"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/nominalPower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/manufSpecIdent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/manufacturerLabel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/remAuthorID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrDeviceProfileType/devLevelofOperation"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEnumListType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEnumListType/sGrEVSEStateLv2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEnumListType/sGrEVSEStateLv1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEnumListType/sGReadyStateLv2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEnumListType/sGrSGCPLoadStateLv2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrEnumListType/sGrSGCPFeedInStateLv2"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrInterfaceDescriptionType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrInterfaceDescriptionType/technologyUsed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrInterfaceDescriptionType/isLocalControl"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLegibDocumentationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLegibDocumentationType/textElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLegibDocumentationType/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrLegibDocumentationType/uRI"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusAttrFrameType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusAttrFrameType/genAttribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusAttrFrameType/modbusAttr"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointDescriptionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointDescriptionType/modbusDataType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointDescriptionType/modbusFirstRegisterReference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointDescriptionType/dpSizeNrRegisters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointDescriptionType/bitmask"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointDescriptionType/masterFunctionsSupported"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointDescriptionType/modbusJMESPath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointDescriptionType/dpAccessProtectionEnabled"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointsFrameType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointsFrameType/dataPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointsFrameType/modbusDataPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDataPointsFrameType/dpMbAttrReference"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDeviceDescriptionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDeviceDescriptionType/deviceProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDeviceDescriptionType/devMbAttrReference"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDeviceDescriptionType/modbusInterfaceDesc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDeviceDescriptionType/fpListElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDeviceDescriptionType/deviceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDeviceDescriptionType/isLocalControl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDeviceDescriptionType/manufacturerID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusDeviceDescriptionType/manufacturerName"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusInterfaceDescriptionType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusInterfaceDescriptionType/modbusInterfaceSelection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusInterfaceDescriptionType/trspSrvModbusTCPoutOfBox"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusInterfaceDescriptionType/trspSrvModbusRTUoutOfBox"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusInterfaceDescriptionType/firstRegisterAddressIsOne"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusInterfaceDescriptionType/conversionScheme"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusProfilesFrameType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusProfilesFrameType/functionalProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusProfilesFrameType/fpMbAttrReference"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrModbusProfilesFrameType/dpListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistType/nameType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistType/sLV1Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistType/sWorkName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistType/sManufName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistType/sIEC61850Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistType/sSAREFName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrNamelistType/sEEBUSName"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfileDescriptionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfileDescriptionType/profileNumber"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfileDescriptionType/fpNameList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfileDescriptionType/fpLegibDesc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfileDescriptionType/mROVisibilityIndicator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfileDescriptionType/profileName"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilenumberType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilenumberType/specsOwnerId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilenumberType/profileIdentification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilenumberType/subProfileIdent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilenumberType/sGrLevelOfOperation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilenumberType/versionNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilesFrameType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilesFrameType/functionalProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilesFrameType/fpAttr4Generic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrProfilesFrameType/dpListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrScalingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrScalingType/multiplicator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrScalingType/powerof10"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSerialInterfaceCapabilityType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSerialInterfaceCapabilityType/baudRatesSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSerialInterfaceCapabilityType/byteLenSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSerialInterfaceCapabilityType/paritySupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSerialInterfaceCapabilityType/stopBitLenSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSmoothTransitionType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSmoothTransitionType/winTms"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSmoothTransitionType/rvrtTms"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrSmoothTransitionType/rmpTms"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrStabilityFallbackType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrStabilityFallbackType/maxReceiveTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrStabilityFallbackType/initValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrStabilityFallbackType/fallbackValue"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTimeRangeType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTimeRangeType/startTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrTimeRangeType/endTime"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrVersionNumberType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrVersionNumberType/primaryVersionNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrVersionNumberType/secondaryVersionNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//SGrVersionNumberType/subReleaseVersionNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TCPDevInstanceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TCPDevInstanceType/devInstName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TCPDevInstanceType/devAddr"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TCPtrspSrvInstanceType"/>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TCPType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TCPType/tCPtrspSrvInstance"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TCPType/tCPDevInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TimeSyncBlockNotificationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TimeSyncBlockNotificationType/blockNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TimeSyncBlockNotificationType/timeoutMs"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPIPModbus">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPIPModbus/pORT"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPIPModbus/aDDRESS"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPIPModbus/slaveID"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPRTUModbus">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPRTUModbus/slaveAddr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPRTUModbus/baudRateSelected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPRTUModbus/byteLenSelected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPRTUModbus/paritySelected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPRTUModbus/stopBitLenSelected"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TPRTUModbus/serialInterfaceCapability"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TrspServiceModbusType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TrspServiceModbusType/rTU"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TrspServiceModbusType/tCP"/>
+    </genClasses>
+    <genClasses ecoreClass="../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TSGrModbusRegisterRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TSGrModbusRegisterRef/addr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TSGrModbusRegisterRef/bitRank"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../emfEI4Modbus/model/emfEI4Modbus.ecore#//TSGrModbusRegisterRef/registerType"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

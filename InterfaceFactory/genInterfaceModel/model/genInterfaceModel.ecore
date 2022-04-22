@@ -1,0 +1,1312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="v0" nsURI="http://www.smartgridready.ch/ns/SGr/V0/" nsPrefix="v0">
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value=""/>
+      <details key="kind" value="mixed"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mixed" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="elementWildcard"/>
+        <details key="name" value=":mixed"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="xMLNSPrefixMap" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry"
+        transient="true" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="xmlns:prefix"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="xSISchemaLocation" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry"
+        transient="true" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="xsi:schemaLocation"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deviceProfile" upperBound="-2"
+        eType="#//SGrDeviceDescriptionType" volatile="true" transient="true" derived="true"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="DeviceProfile"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionalProfiles" upperBound="-2"
+        eType="#//SGrProfilesFrameType" volatile="true" transient="true" derived="true"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="FunctionalProfiles"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genDeviceFrame" upperBound="-2"
+        eType="#//SGrDeviceDescriptionType" volatile="true" transient="true" derived="true"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="GenDeviceFrame"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ProfileTypeEnumType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ProfileTypeEnumType"/>
+    </eAnnotations>
+    <eLiterals name="Battery">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="1: Batterie"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Compressor" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="2: Kompressor"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="DeviceInformation" value="2">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="3: Geräteinformation"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="DHWCircuit" value="3">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="4: WarmWasserHeizung"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="DHWStorage" value="4">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="5: WarmWasserSpeicher"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Dishwasher" value="5">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 6: Geschirrspülmaschine&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Dryer" value="6">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="7: Trockner"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="ElectricalImmersionHeater" value="7">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="8: elTauchSieder"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Fan" value="8">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="9: Ventilator"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="GasHeatingAppliance" value="9">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="10: GasWärmeAnwendung"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Generic" value="10">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="11: Generisch"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HeatingBufferStorage" value="11">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 12: WaermeBufferSpeicher&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HeatingCircuit" value="12">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="13: Heizkreis"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HeatingObject" value="13">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="14: Heizungsobjekt"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HeatingZone" value="14">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="15: Heizzone"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HeatPumpAppliance" value="15">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 16: WärmePumpenAnwendung&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HeatSinkCircuit" value="16">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 17: KuehlKoerperSchaltung&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HeatSourceCircuit" value="17">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 18: WärmekörperSchaltung&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HeatSourceUnit" value="18">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="19: Wärmequelle"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HVACController" value="19">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="20: HLKController"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HVACRoom" value="20">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="21: HLKRaum"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="InstantDHWHeater" value="21">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 22: DurchflussWarmwasserHeizung&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Inverter" value="22">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 23: Wechselrichter / Wandler&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="OilHeatingAppliance" value="23">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 24: OelWaermeAnwendung&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Pump" value="24">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="25: Pumpe"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="RefrigerantCircuit" value="25">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 26: Kältemittelkreislauf&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SmartEnergyAppliance" value="26">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 27: SmartEnergyAppliance&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SolarDHWStorage" value="27">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 28: SolarWarmwasserSpeicher&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SolarThermalCircuit" value="28">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" SolarWarmwasserKreislauf&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SubMeterElectricity" value="29">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 30: SubMeter Elektrisch&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="TemperatureSensor" value="30">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="31: Temperatursensor"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Washer" value="31">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="32: Waschmaschine"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="BatterySystem" value="32">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="33: Batteriesystem"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="ElectricityGenerationSystem" value="33">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 34: Generator Elektrisch&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="ElectricityStorageSystem" value="34">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 35: ElektroSpeicher System&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="GridConnectionPointOfPremises" value="35">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 31: GridConnectionPoint Nachbarschaft&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Household" value="36">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="327: Haushalt"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="PVSystem" value="37">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="38: PV System"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="EV" value="38">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="39: Elektromobil"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="EVSE" value="39">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 40: Ladestationscontroller für Elektrofahrzeug&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="ChargingOutlet" value="40">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="41: Ladestation"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="CEM" value="41">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 42: Energiemanager für Endverbraucher&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="R43" value="42">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="43: Reserve"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="R44" value="43">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="44: Reserve"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="R45" value="44">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="45: Reserve"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="R46" value="45">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="46: Reserve"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="R47" value="46">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="47: Reserve"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="R48" value="47">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="48: Reserve"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="R49" value="48" literal="R49:">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="49: Reserve"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="R50" value="49">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="50: Reserve"/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="ProfileTypeEnumTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ProfileTypeEnumType:Object"/>
+      <details key="baseType" value="ProfileTypeEnumType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrBasicGenDataPointTypeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=" These are the basic generic&#xA;&#x9;&#x9;&#x9;&#x9;data types must remain high level definitions for to be supported.&#xA;&#x9;&#x9;&#x9;&#x9;The definition focuses on the programming languages used at the&#xA;&#x9;&#x9;&#x9;&#x9;level of the communicators. So far Java and Python.&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrBasicGenDataPointTypeType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bOOLEAN" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="BOOLEAN"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iNT8" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Byte"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="INT8"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iNT16" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Short"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="INT16"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iNT32" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Integer">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="INT32"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iNT64" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Long"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="INT64"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iNT8U" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedByte"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="INT8U"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iNT16U" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedShort"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="INT16U"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iNT32U" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedInt"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="INT32U"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iNT64U" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="INT64U"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fLOAT32" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="FLOAT32"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fLOAT64" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="FLOAT64"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enum" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedShort"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="Enum"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//DateTime">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="Timestamp"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrDataPointDescriptionType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=" This schema sheet serves the&#xA;&#x9;&#x9;&#x9;&#x9;generation of the data point for to define a single data point, its&#xA;&#x9;&#x9;&#x9;&#x9;type and links to potential attributes.&#xA;&#x9;&#x9;&#x9;&#xD;&#xA; Dieses Schema dient der&#xA;&#x9;&#x9;&#x9;&#x9;Erzeugung eines einzelnen Datenpunktes zur Definition des Datentyps&#xA;&#x9;&#x9;&#x9;&#x9;und der Verbindung mit möglichen Attributen.&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrDataPointDescriptionType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="basicDataType" lowerBound="1"
+        eType="#//SGrBasicGenDataPointTypeType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="basicDataType"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dpNameList" eType="#//SGrNamelistType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="dpNameList"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dpAttrPrecision" eType="#//SGrPrecsisionType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="dpAttrPrecision"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adAttrTimeStamp" eType="#//SGrTimeStampType">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="adAttrTimeStamp"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dpAttrSpecQualReq" eType="#//SGrSpecialQualityReqType">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="dpAttrSpecQualReq"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dpLegibDesc" upperBound="-1"
+        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" this is the public explanation of the feunctionlity&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;of this Datapoint&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="dpLegibDesc"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="datapointName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" Bezeichnung des Datenpunktes: «Schlagwort», welches&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;die Bedeutung identifiziert. Diese Bezeichnung gilt neben der&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Indexnummer als Definition für den SmartGridready Namespace für die&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;maschinenlesbaren Daten.&#xA;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="DatapointName"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="MROVisibilityIndicator"
+        eType="#//SGrMROPresenceLevelIndicationType" unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" MRO (Relevanz) Die Gewichtung der Variable bezüglich&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;des Nutzens M = muss (mandatory) Datenpunkt R = empfohlener&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;(recommended) Datenpunkt O = optionaler Datenpunkt&#xA;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="MROVisibilityIndicator"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rWPDatadirection" eType="#//SGrRWPType"
+        unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" RWP (Eigenschaft des Datenpunktes) bezeichnet die&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Datenrichtung und die Datenhaltung R = lesen aus Sicht des&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Profilnutzers W = schreiben aus Sicht der Profilnutzers P =&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;persistente Speicherung der Daten&#xA;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="RWPDatadirection"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//SGrUnits"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="unit"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrDataPointsFrameType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrDataPointsFrameType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataPoint" lowerBound="1"
+        eType="#//SGrDataPointDescriptionType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="dataPoint"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dpListIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedInt"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="dpListIndex"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrDeviceDescriptionType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=" Device Description&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;Geraet"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrDeviceDescriptionType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deviceProfile" lowerBound="1"
+        eType="#//SGrDeviceProfileType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="deviceProfile"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fpListElement" lowerBound="1"
+        upperBound="-1" eType="#//SGrProfilesFrameType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fpListElement"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deviceName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="DeviceName"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLocalControl" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="isLocalControl"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ManufacturerID" eType="#//SGrManufacturerIDType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="ManufacturerID"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="manufacturerName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="ManufacturerName"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrDeviceKindType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Device Kind is inherited from EEBUS, a growing list of&#xA;&#x9;&#x9;&#x9;&#x9;supported Devices&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrDeviceKindType"/>
+    </eAnnotations>
+    <eLiterals name="Dishwasher"/>
+    <eLiterals name="Dryer" value="1"/>
+    <eLiterals name="EnvironmentSensor" value="2"/>
+    <eLiterals name="Generic" value="3"/>
+    <eLiterals name="HeatGenerationSystem" value="4"/>
+    <eLiterals name="HeatSinkSystem" value="5"/>
+    <eLiterals name="HeatStorageSystem" value="6"/>
+    <eLiterals name="HVACController" value="7"/>
+    <eLiterals name="SubMeter" value="8"/>
+    <eLiterals name="Washer" value="9"/>
+    <eLiterals name="ElectricitySupplySystem" value="10"/>
+    <eLiterals name="EnergyManagementSystem" value="11"/>
+    <eLiterals name="Inverter" value="12"/>
+    <eLiterals name="ChargingStation" value="13"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrDeviceKindTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrDeviceKindType:Object"/>
+      <details key="baseType" value="SGrDeviceKindType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrDeviceProfileType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrDeviceProfileType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devNameList" eType="#//SGrNamelistType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="devNameList"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devLegibDesc" upperBound="4"
+        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" this is the published information related to this&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;device&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="devLegibDesc"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="technologyUsed" lowerBound="1"
+        eType="#//SGrTechnologyUsedListType" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="TechnologyUsed"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deviceKind" lowerBound="1"
+        eType="#//SGrDeviceKindType" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="deviceKind"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serialNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="serialNumber"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="softwareRevision" eType="#//SGrVersionNumberType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="softwareRevision"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hardwareRevision" eType="#//SGrVersionNumberType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hardwareRevision"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="brandName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="brandName"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrInterfaceDescriptionType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrInterfaceDescriptionType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="technologyUsed" lowerBound="1"
+        eType="#//SGrTechnologyUsedListType" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="technologyUsed"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLocalControl" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="IsLocalControl"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrLanguageType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="this is the identification of the language for&#xA;&#x9;&#x9;&#x9;&#x9;information to be published. So far en, de, fr and it is possible&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrLanguageType"/>
+    </eAnnotations>
+    <eLiterals name="de"/>
+    <eLiterals name="en" value="1"/>
+    <eLiterals name="fr" value="2"/>
+    <eLiterals name="it" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrLanguageTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrLanguageType:Object"/>
+      <details key="baseType" value="SGrLanguageType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrLegibDocumentationType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This element us used to extend the definitions with&#xA;&#x9;&#x9;&#x9;&#x9;legible text elemnts: a short understandbale explanation of the&#xA;&#x9;&#x9;&#x9;&#x9;items addressed. These elements are used for printed and published&#xA;&#x9;&#x9;&#x9;&#x9;information&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrLegibDocumentationType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textElement" lowerBound="1"
+        eType="#//TextElementType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="information to be published"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="TextElement"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1"
+        eType="#//SGrLanguageType" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="Language"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uRI" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnyURI">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="URI pintimh towards additional information&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="URI"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrManufacturerIDType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrManufacturerIDType"/>
+    </eAnnotations>
+    <eLiterals name="ClemapAG">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="1:manuf 1"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="IBT" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="2:manuf 2"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="VirtualGlobalTrading" value="2">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="3:manuf 3"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf4" value="3" literal="manuf_4">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="4:manuf 4"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf5" value="4" literal="manuf_5">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="5:manuf 5"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf6" value="5" literal="manuf_6">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="6:manuf 6"/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrManufacturerIDTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrManufacturerIDType:Object"/>
+      <details key="baseType" value="SGrManufacturerIDType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrMROPresenceLevelIndicationType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=" Names for the presence&#xA;&#x9;&#x9;&#x9;&#x9;indication of Elements listed in the tables are defined as follows&#xA;&#x9;&#x9;&#x9;&#x9;(using the EEBUS terminology): &quot;M&quot; mandatotory use (IEC:SHALL), &quot;R&quot;&#xA;&#x9;&#x9;&#x9;&#x9;recommended use (IEC:SHOULD) and &quot;O&quot; optional use (IEC:MAY)&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrMROPresenceLevelIndicationType"/>
+    </eAnnotations>
+    <eLiterals name="M"/>
+    <eLiterals name="R" value="1"/>
+    <eLiterals name="O" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrMROPresenceLevelIndicationTypeObject"
+      instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrMROPresenceLevelIndicationType:Object"/>
+      <details key="baseType" value="SGrMROPresenceLevelIndicationType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrNamelistKindOfType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="is used to define where this namiming is place in a&#xA;&#x9;&#x9;&#x9;&#x9;device-architecture hierarchy way&#xA;&#x9;&#x9;&#x9;&#x9;Device-->FunctionalProfile-->DataPoint"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrNamelistKindOfType"/>
+    </eAnnotations>
+    <eLiterals name="Device"/>
+    <eLiterals name="FunctionalProfile" value="1"/>
+    <eLiterals name="DataPoint" value="2"/>
+    <eLiterals name="other" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrNamelistKindOfTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrNamelistKindOfType:Object"/>
+      <details key="baseType" value="SGrNamelistKindOfType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrNamelistType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=" a list of relevant names lists&#xA;&#x9;&#x9;&#x9;&#x9;for to display names used in different standards like EEBUS,&#xA;&#x9;&#x9;&#x9;&#x9;IEC6850,, SAREF4ENER etc&#xA;&#x9;&#x9;&#x9;&#xD;&#xA; List der für ein Porfil&#xA;&#x9;&#x9;&#x9;&#x9;relevevanten Namen von benutzten Standards&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrNamelistType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameType" lowerBound="1"
+        eType="#//SGrNamelistKindOfType" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="nameType"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sLV1Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sLV1_Name"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sWorkName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sWork_Name"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sManufName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sManuf_Name"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sIEC61850Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sIEC_61850_Name"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sSAREFName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sSAREF_Name"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sEEBUSName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sEEBUS_Name"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrPrecsisionType" instanceClassName="double">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=" Precision defines the accuracy&#xA;&#x9;&#x9;&#x9;&#x9;of a data point either related to a measurement value, a simulation&#xA;&#x9;&#x9;&#x9;&#x9;result or of a setpoint value&#xA;&#x9;&#x9;&#x9;&#xD;&#xA; Der Parameter Präzision&#xA;&#x9;&#x9;&#x9;&#x9;definiert die Genauigkeit eines Messwertes, einer Simulation oder&#xA;&#x9;&#x9;&#x9;&#x9;einer Stellgrössenumsetzeng&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrPrecsisionType"/>
+      <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#double"/>
+      <details key="minInclusive" value="0.001"/>
+      <details key="maxInclusive" value="15"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrPrecsisionTypeObject" instanceClassName="java.lang.Double">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrPrecsisionType:Object"/>
+      <details key="baseType" value="SGrPrecsisionType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrProfileDescriptionType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=" Profile Element for to be used&#xA;&#x9;&#x9;&#x9;&#x9;for the generation of SGrGenericDevices and the Ecore modelling the&#xA;&#x9;&#x9;&#x9;&#x9;generation of the generic profile level interface class&#xA;&#x9;&#x9;&#x9;&#xD;&#xA; Profil Element zur Integration&#xA;&#x9;&#x9;&#x9;&#x9;in generische Gerätedefinitionen oder zur Erzeugung von&#xA;&#x9;&#x9;&#x9;&#x9;ecore-Modellierungen&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrProfileDescriptionType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="profileNumber" lowerBound="1"
+        eType="#//SGrProfilenumberType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ProfileNumber"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fpNameList" eType="#//SGrNamelistType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fpNameListe"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fpAttrPrecision" eType="#//SGrPrecsisionType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fpAttrPrecision"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fpAttrSpecialQualitReq"
+        eType="#//SGrSpecialQualityReqType">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fpAttrSpecialQualitReq"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fpLegibDesc" eType="#//SGrLegibDocumentationType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" this is the publisehd information related to this&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;functional profile&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fpLegibDesc"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mROVisibilityIndicator"
+        eType="#//SGrMROPresenceLevelIndicationType" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="MROVisibilityIndicator"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="profileName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="ProfileName"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrProfilenumberType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Specificatiopn of design source 0 means: specified by&#xA;&#x9;&#x9;&#x9;&#x9;SmartGridready, the Porfilenumber follows the SmargGirdready scheme&#xA;&#x9;&#x9;&#x9;&#x9;>0 means: specfied by manufacturer hhhh, the Profilenumber&#xA;&#x9;&#x9;&#x9;&#x9;followos a manufacturors scheme &#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrProfilenumberType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ownerIdentification" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="0 means &quot;This is a SmartGridready specification >&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;means &quot;designed and manufaturer hhhh&quot; &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="OwnerIdentification"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="profileIdentification"
+        lowerBound="1" eType="#//ProfileTypeEnumType" unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The Profile Identfication is the numbering system to&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;allow to build logical order of the profiles being defined&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ProfileIdentification"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionlNumber" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ExtensionlNumber"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sGrLevelOfOperation" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="SGrLevelOfOperation"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="versionNumber" lowerBound="1"
+        eType="#//SGrVersionNumberType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="VersionNumber"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrProfilesFrameType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrProfilesFrameType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionalProfile" lowerBound="1"
+        eType="#//SGrProfileDescriptionType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="functionalProfile"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dpListElement" lowerBound="1"
+        upperBound="-1" eType="#//SGrDataPointsFrameType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="dpList"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fpListIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedInt"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="fpListIndex"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrRWPType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=" Names for the data direction&#xA;&#x9;&#x9;&#x9;&#x9;indication. &quot;R&quot; read only data, &quot;W&quot; rite only data, &quot;RW&quot; readible&#xA;&#x9;&#x9;&#x9;&#x9;and writable data, &quot;RWP&quot; readible and writable data with persistent&#xA;&#x9;&#x9;&#x9;&#x9;storage&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrRWPType"/>
+    </eAnnotations>
+    <eLiterals name="R"/>
+    <eLiterals name="W" value="1"/>
+    <eLiterals name="RW" value="2"/>
+    <eLiterals name="RWP" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrRWPTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrRWPType:Object"/>
+      <details key="baseType" value="SGrRWPType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrScalingType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrScalingType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicator" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="multiplicator"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scaling" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="scaling"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrSpecialQualityReqType" instanceClassName="java.lang.String">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the special quality&#xA;&#x9;&#x9;&#x9;&#x9;requierement describes a test to be applied like a quality&#xA;&#x9;&#x9;&#x9;&#x9;certification for SmartMeters&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrSpecialQualityReqType"/>
+      <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#string"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrTechnologyUsedListType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrTechnologyUsedListType"/>
+    </eAnnotations>
+    <eLiterals name="EEBUS"/>
+    <eLiterals name="Modbus" value="1"/>
+    <eLiterals name="OCPP" value="2"/>
+    <eLiterals name="RESTfulJSON" value="3"/>
+    <eLiterals name="generic" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrTechnologyUsedListTypeObject"
+      instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrTechnologyUsedListType:Object"/>
+      <details key="baseType" value="SGrTechnologyUsedListType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrTimeStampType" instanceClassName="javax.xml.datatype.XMLGregorianCalendar">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Thus is the date Time Value as an attribute to either&#xA;&#x9;&#x9;&#x9;&#x9;a Functional Profile or a datapoint. It indicates that any value&#xA;&#x9;&#x9;&#x9;&#x9;generatioen must be paired with the time of either a measuement was&#xA;&#x9;&#x9;&#x9;&#x9;taken or where a higher softere level indicates when it got the&#xA;&#x9;&#x9;&#x9;&#x9;vakue&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrTimeStampType"/>
+      <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#dateTime"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrUnits">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrUnits"/>
+    </eAnnotations>
+    <eLiterals name="AMPERESQUAREMETERS" literal="AMPERE_SQUARE_METERS"/>
+    <eLiterals name="AMPERES" value="1"/>
+    <eLiterals name="AMPERESPERMETER" value="2" literal="AMPERES_PER_METER"/>
+    <eLiterals name="AMPERESPERSQUAREMETER" value="3" literal="AMPERES_PER_SQUARE_METER"/>
+    <eLiterals name="BARS" value="4"/>
+    <eLiterals name="BTUS" value="5"/>
+    <eLiterals name="BTUSPERHOUR" value="6" literal="BTUS_PER_HOUR"/>
+    <eLiterals name="BTUSPERPOUND" value="7" literal="BTUS_PER_POUND"/>
+    <eLiterals name="BTUSPERPOUNDDRYAIR" value="8" literal="BTUS_PER_POUND_DRY_AIR"/>
+    <eLiterals name="CANDELAS" value="9"/>
+    <eLiterals name="CANDELASPERSQUAREMETER" value="10" literal="CANDELAS_PER_SQUARE_METER"/>
+    <eLiterals name="CENTIMETERS" value="11"/>
+    <eLiterals name="CENTIMETERSOFWATER" value="12" literal="CENTIMETERS_OF_WATER"/>
+    <eLiterals name="CYCLESPERHOUR" value="13" literal="CYCLES_PER_HOUR"/>
+    <eLiterals name="CYCLESPERMINUTE" value="14" literal="CYCLES_PER_MINUTE"/>
+    <eLiterals name="DEGREESPHASE" value="15" literal="DEGREES_PHASE"/>
+    <eLiterals name="FARADS" value="16"/>
+    <eLiterals name="FEET" value="17"/>
+    <eLiterals name="FOOTCANDLES" value="18" literal="FOOT_CANDLES"/>
+    <eLiterals name="GRAMSOFWATERPERKILOGRAMDRYAIR" value="19" literal="GRAMS_OF_WATER_PER_KILOGRAM_DRY_AIR"/>
+    <eLiterals name="GRAMSPERMINUTE" value="20" literal="GRAMS_PER_MINUTE"/>
+    <eLiterals name="GRAMSPERSECOND" value="21" literal="GRAMS_PER_SECOND"/>
+    <eLiterals name="HECTOPASCALS" value="22"/>
+    <eLiterals name="HENRYS" value="23"/>
+    <eLiterals name="HERTZ" value="24"/>
+    <eLiterals name="HORSEPOWER" value="25"/>
+    <eLiterals name="INCHES" value="26"/>
+    <eLiterals name="INCHESOFWATER" value="27" literal="INCHES_OF_WATER"/>
+    <eLiterals name="JOULES" value="28"/>
+    <eLiterals name="JOULESPERDEGREEKELVIN" value="29" literal="JOULES_PER_DEGREE_KELVIN "/>
+    <eLiterals name="JOULESPERKILOGRAMDEGREEKELVIN" value="30" literal="JOULES_PER_KILOGRAM_DEGREE_KELVIN"/>
+    <eLiterals name="JOULESPERKILOGRAMDRYAIR" value="31" literal="JOULES_PER_KILOGRAM_DRY_AIR"/>
+    <eLiterals name="KILOBTUS" value="32" literal="KILO_BTUS"/>
+    <eLiterals name="KILOBTUSPERHOUR" value="33" literal="KILO_BTUS_PER_HOUR"/>
+    <eLiterals name="KILOGRAMS" value="34"/>
+    <eLiterals name="KILOGRAMSPERHOUR" value="35" literal="KILOGRAMS_PER_HOUR"/>
+    <eLiterals name="KILOGRAMSPERMINUTE" value="36" literal="KILOGRAMS_PER_MINUTE"/>
+    <eLiterals name="KILOGRAMSPERSECOND" value="37" literal="KILOGRAMS_PER_SECOND"/>
+    <eLiterals name="KILOHERTZ" value="38"/>
+    <eLiterals name="KILOHMS" value="39"/>
+    <eLiterals name="KILOJOULES" value="40"/>
+    <eLiterals name="KILOJOULESPERDEGREEKELVIN" value="41" literal="KILOJOULES_PER_DEGREE_KELVIN"/>
+    <eLiterals name="KILOJOULESPERKILOGRAM" value="42" literal="KILOJOULES_PER_KILOGRAM"/>
+    <eLiterals name="KILOJOULESPERKILOGRAMDRYAIR" value="43" literal="KILOJOULES_PER_KILOGRAM_DRY_AIR"/>
+    <eLiterals name="KILOPASCALS" value="44"/>
+    <eLiterals name="KILOVOLTAMPERES" value="45" literal="KILOVOLT_AMPERES"/>
+    <eLiterals name="KILOVOLTAMPERESREACTIVE" value="46" literal="KILOVOLT_AMPERES_REACTIVE"/>
+    <eLiterals name="KILOVOLTS" value="47"/>
+    <eLiterals name="KILOWATTHOURS" value="48" literal="KILOWATT_HOURS"/>
+    <eLiterals name="KILOWATTS" value="49"/>
+    <eLiterals name="LUMENS" value="50"/>
+    <eLiterals name="LUXES" value="51"/>
+    <eLiterals name="MEGABTUS" value="52" literal="MEGA_BTUS"/>
+    <eLiterals name="MEGAHERTZ" value="53"/>
+    <eLiterals name="MEGAJOULES" value="54"/>
+    <eLiterals name="MEGAJOULESPERDEGREEKELVIN" value="55" literal="MEGAJOULES_PER_DEGREE_KELVIN"/>
+    <eLiterals name="MEGAJOULESPERKILOGRAMDRYAIR" value="56" literal="MEGAJOULES_PER_KILOGRAM_DRY_AIR"/>
+    <eLiterals name="MEGAVOLTAMPERES" value="57" literal="MEGAVOLT_AMPERES"/>
+    <eLiterals name="MEGAVOLTAMPERESREACTIVE" value="58" literal="MEGAVOLT_AMPERES_REACTIVE"/>
+    <eLiterals name="MEGAVOLTS" value="59"/>
+    <eLiterals name="MEGAWATTHOURS" value="60" literal="MEGAWATT_HOURS"/>
+    <eLiterals name="MEGAWATTS" value="61"/>
+    <eLiterals name="MEGOHMS" value="62"/>
+    <eLiterals name="METERS" value="63"/>
+    <eLiterals name="METERSPERSECONDPERSECOND" value="64" literal="METERS_PER_SECOND_PER_SECOND"/>
+    <eLiterals name="MILLIAMPERES" value="65"/>
+    <eLiterals name="MILLIBARS" value="66" literal="MILLIBARS "/>
+    <eLiterals name="MILLIMETERS" value="67"/>
+    <eLiterals name="ILLIMETERSOFMERCUR" value="68" literal="ILLIMETERS_OF_MERCUR"/>
+    <eLiterals name="MILLIOHMS" value="69"/>
+    <eLiterals name="MILLIVOLTS" value="70"/>
+    <eLiterals name="MILLIWATTS" value="71"/>
+    <eLiterals name="NEWTON" value="72"/>
+    <eLiterals name="OHMMETERS" value="73" literal="OHM_METERS"/>
+    <eLiterals name="OHMS" value="74"/>
+    <eLiterals name="PASCALS" value="75"/>
+    <eLiterals name="PERHOUR" value="76" literal="PER_HOUR"/>
+    <eLiterals name="PERCENTRELATIVEHUMIDITY" value="77" literal="PERCENT_RELATIVE_HUMIDITY"/>
+    <eLiterals name="POUNDSFORCEPERSQUAREINCH" value="78" literal="POUNDS_FORCE_PER_SQUARE_INCH"/>
+    <eLiterals name="POUNDSMASS" value="79" literal="POUNDS_MASS"/>
+    <eLiterals name="POUNDSMASSPERHOUR" value="80" literal="POUNDS_MASS_PER_HOUR"/>
+    <eLiterals name="POUNDSMASSPERMINUTE" value="81" literal="POUNDS_MASS_PER_MINUTE"/>
+    <eLiterals name="POUNDSMASSPERSECOND" value="82" literal="POUNDS_MASS_PER_SECOND"/>
+    <eLiterals name="POWERFACTOR" value="83" literal="POWER_FACTOR"/>
+    <eLiterals name="SIEMENS" value="84"/>
+    <eLiterals name="SIEMENSPERMETER" value="85" literal="SIEMENS_PER_METER"/>
+    <eLiterals name="SQUARECENTIMETERS" value="86" literal="SQUARE_CENTIMETERS"/>
+    <eLiterals name="SQUAREFEET" value="87" literal="SQUARE_FEET"/>
+    <eLiterals name="SQUAREINCHES" value="88" literal="SQUARE_INCHES"/>
+    <eLiterals name="SQUAREMETERS" value="89" literal="SQUARE_METERS"/>
+    <eLiterals name="TESLAS" value="90"/>
+    <eLiterals name="THERMS" value="91"/>
+    <eLiterals name="TONHOURS" value="92" literal="TON_HOURS"/>
+    <eLiterals name="TONS" value="93"/>
+    <eLiterals name="TONSPERHOUR" value="94" literal="TONS_PER_HOUR"/>
+    <eLiterals name="TONSREFRIGERATION" value="95" literal="TONS_REFRIGERATION"/>
+    <eLiterals name="VOLTAMPERES" value="96" literal="VOLT_AMPERES"/>
+    <eLiterals name="VOLTAMPERESREACTIVE" value="97" literal="VOLT_AMPERES_REACTIVE"/>
+    <eLiterals name="VOLTS" value="98"/>
+    <eLiterals name="VOLTSPERDEGREEKELVIN" value="99" literal="VOLTS_PER_DEGREE_KELVIN"/>
+    <eLiterals name="VOLTSPERMETER" value="100" literal="VOLTS_PER_METER"/>
+    <eLiterals name="WATTHOURS" value="101" literal="WATT_HOURS"/>
+    <eLiterals name="WATTS" value="102" literal="WATTS "/>
+    <eLiterals name="ATTSPERSQUAREFOOT" value="103" literal="ATTS_PER_SQUARE_FOOT"/>
+    <eLiterals name="WATTSPERSQUAREMETER" value="104" literal="WATTS_PER_SQUARE_METER"/>
+    <eLiterals name="WEBERS" value="105"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrUnitsObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrUnits:Object"/>
+      <details key="baseType" value="SGrUnits"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrVersionNumberType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a two digit version mumber system. May be extended...&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrVersionNumberType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="primaryVersionNumber" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="primaryVersionNumber"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secondaryVersionNumber"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="secondaryVersionNumber"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subReleaseVersionNumber"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="subReleaseVersionNumber"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="TextElementType" instanceClassName="java.lang.String">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="TextElement_._type"/>
+      <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#string"/>
+      <details key="minLength" value="0"/>
+      <details key="maxLength" value="750"/>
+    </eAnnotations>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="commHandler4Modbus" nsURI="http://www.example.org/commHandler4Modbus"
+    nsPrefix="commHandler4Modbus">
+  <eClassifiers xsi:type="ecore:EClass" name="SGrCEMCommunicator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commhandler4modbus" lowerBound="1"
+        upperBound="-1" eType="#//CommHandler4Modbus" eOpposite="#//CommHandler4Modbus/sgrcemcommunicator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CommHandler4Modbus">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sgrcemcommunicator" lowerBound="1"
+        eType="#//SGrCEMCommunicator" eOpposite="#//SGrCEMCommunicator/commhandler4modbus"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sgrmodbusdevicedescriptiontype"
+        lowerBound="1" upperBound="-1" eType="ecore:EClass ../../emfEI4Modbus/model/v0.ecore#//SGrModbusDeviceDescriptionType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trspservicemodbustype"
+        upperBound="-1" eType="ecore:EClass ../../emfEI4Modbus/model/v0.ecore#//TrspServiceModbusType"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
