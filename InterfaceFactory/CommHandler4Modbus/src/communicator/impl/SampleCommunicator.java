@@ -8,7 +8,7 @@ import communicator.helper.DriverAPI4ModbusRTUMock;
 
 public class SampleCommunicator {
 	
-	private static final String XML_BASE_DIR = "/C:/dev/SmartGridReady_new/projects/InterfaceFactory/src/XMLInstances/SGr/"; 
+	private static final String XML_BASE_DIR = "../XMLInstances/SGr/"; 
 	
 	public static void main( String argv[] ) {				
 		
