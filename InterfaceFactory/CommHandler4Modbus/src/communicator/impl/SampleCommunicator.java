@@ -13,7 +13,7 @@ import communicator.helper.DriverAPI4ModbusRTUMock;
 
 public class SampleCommunicator {
 	
-	private static final String XML_BASE_DIR = "../XMLInstances/SGr/";
+	private static final String XML_BASE_DIR = "../XMLInstances/SGr/"; 
 	
 	public static void main( String argv[] ) {				
 		
@@ -43,6 +43,12 @@ public class SampleCommunicator {
 /*
 			 SGrModbusDevice sgcpMeterDev = new SGrModbusDevice(sgcpMeter, mbRTU, mbTCP );
 */			
+			
+			DriverAPI4Modbus mbRTU = new DriverAPI4ModbusRTUMock();
+			DriverAPI4Modbus mbTCP = new DriverAPI4ModbusTCP();	
+			
+			SGrModbusDevice sgcpDevice = new SGrModbusDevice(sgcpMeter, mbRTU, mbTCP );
+			
 			try {
 				
 				mbRTU.setUnitIdentifier((byte) 11);
