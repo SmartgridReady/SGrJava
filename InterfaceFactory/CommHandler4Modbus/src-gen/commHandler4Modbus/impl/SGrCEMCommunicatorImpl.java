@@ -78,7 +78,7 @@ public class SGrCEMCommunicatorImpl extends MinimalEObjectImpl.Container impleme
 //
 //		try {
 //
-//			final String XML_BASE_DIR = "/C:/dev/SmartGridReady_new/projects/InterfaceFactory/src/XMLInstances/SGr/";
+//			final String XML_BASE_DIR = "/C:/QuellCode/SGrJava/InterfaceFactory/src/XMLInstances/SGr/";
 //			
 //			
 //			EPackage.Registry.INSTANCE.put( ch.smartgridready.ns.s.gr.v0.V0Package.eNS_URI, ch.smartgridready.ns.s.gr.v0.V0Package.eINSTANCE);
