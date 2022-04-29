@@ -8,25 +8,15 @@ import ch.smartgridready.ns.s.gr.v0.SGrEnumListType;
 import ch.smartgridready.ns.s.gr.v0.V0Package;
 
 import java.math.BigInteger;
-
-import java.util.Collection;
-
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +26,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getBoolean <em>Boolean</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#isBoolean <em>Boolean</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getInt8 <em>Int8</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getInt16 <em>Int16</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getInt32 <em>Int32</em>}</li>
@@ -47,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getInt64U <em>Int64 U</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getFloat32 <em>Float32</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getFloat64 <em>Float64</em>}</li>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getTnum <em>Tnum</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getEnum <em>Enum</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getTimestamp <em>Timestamp</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getString <em>String</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getDpTypeSelected <em>Dp Type Selected</em>}</li>
@@ -57,144 +47,355 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Container implements SGrBasicGenDataPointTypeType {
 	/**
-	 * The cached value of the '{@link #getBoolean() <em>Boolean</em>}' attribute list.
+	 * The default value of the '{@link #isBoolean() <em>Boolean</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBoolean()
+	 * @see #isBoolean()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Boolean> boolean_;
+	protected static final boolean BOOLEAN_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getInt8() <em>Int8</em>}' attribute list.
+	 * The cached value of the '{@link #isBoolean() <em>Boolean</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBoolean()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean boolean_ = BOOLEAN_EDEFAULT;
+
+	/**
+	 * This is true if the Boolean attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean booleanESet;
+
+	/**
+	 * The default value of the '{@link #getInt8() <em>Int8</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInt8()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Byte> int8;
+	protected static final byte INT8_EDEFAULT = 0x00;
 
 	/**
-	 * The cached value of the '{@link #getInt16() <em>Int16</em>}' attribute list.
+	 * The cached value of the '{@link #getInt8() <em>Int8</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInt8()
+	 * @generated
+	 * @ordered
+	 */
+	protected byte int8 = INT8_EDEFAULT;
+
+	/**
+	 * This is true if the Int8 attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean int8ESet;
+
+	/**
+	 * The default value of the '{@link #getInt16() <em>Int16</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInt16()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Short> int16;
+	protected static final short INT16_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getInt32() <em>Int32</em>}' attribute list.
+	 * The cached value of the '{@link #getInt16() <em>Int16</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInt16()
+	 * @generated
+	 * @ordered
+	 */
+	protected short int16 = INT16_EDEFAULT;
+
+	/**
+	 * This is true if the Int16 attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean int16ESet;
+
+	/**
+	 * The default value of the '{@link #getInt32() <em>Int32</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInt32()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BigInteger> int32;
+	protected static final BigInteger INT32_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getInt64() <em>Int64</em>}' attribute list.
+	 * The cached value of the '{@link #getInt32() <em>Int32</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInt32()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigInteger int32 = INT32_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getInt64() <em>Int64</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInt64()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Long> int64;
+	protected static final long INT64_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getInt8U() <em>Int8 U</em>}' attribute list.
+	 * The cached value of the '{@link #getInt64() <em>Int64</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInt64()
+	 * @generated
+	 * @ordered
+	 */
+	protected long int64 = INT64_EDEFAULT;
+
+	/**
+	 * This is true if the Int64 attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean int64ESet;
+
+	/**
+	 * The default value of the '{@link #getInt8U() <em>Int8 U</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInt8U()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Short> int8U;
+	protected static final short INT8_U_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getInt16U() <em>Int16 U</em>}' attribute list.
+	 * The cached value of the '{@link #getInt8U() <em>Int8 U</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInt8U()
+	 * @generated
+	 * @ordered
+	 */
+	protected short int8U = INT8_U_EDEFAULT;
+
+	/**
+	 * This is true if the Int8 U attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean int8UESet;
+
+	/**
+	 * The default value of the '{@link #getInt16U() <em>Int16 U</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInt16U()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Integer> int16U;
+	protected static final int INT16_U_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getInt32U() <em>Int32 U</em>}' attribute list.
+	 * The cached value of the '{@link #getInt16U() <em>Int16 U</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInt16U()
+	 * @generated
+	 * @ordered
+	 */
+	protected int int16U = INT16_U_EDEFAULT;
+
+	/**
+	 * This is true if the Int16 U attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean int16UESet;
+
+	/**
+	 * The default value of the '{@link #getInt32U() <em>Int32 U</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInt32U()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Long> int32U;
+	protected static final long INT32_U_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getInt64U() <em>Int64 U</em>}' attribute list.
+	 * The cached value of the '{@link #getInt32U() <em>Int32 U</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInt32U()
+	 * @generated
+	 * @ordered
+	 */
+	protected long int32U = INT32_U_EDEFAULT;
+
+	/**
+	 * This is true if the Int32 U attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean int32UESet;
+
+	/**
+	 * The default value of the '{@link #getInt64U() <em>Int64 U</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInt64U()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BigInteger> int64U;
+	protected static final BigInteger INT64_U_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFloat32() <em>Float32</em>}' attribute list.
+	 * The cached value of the '{@link #getInt64U() <em>Int64 U</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInt64U()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigInteger int64U = INT64_U_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFloat32() <em>Float32</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFloat32()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Float> float32;
+	protected static final float FLOAT32_EDEFAULT = 0.0F;
 
 	/**
-	 * The cached value of the '{@link #getFloat64() <em>Float64</em>}' attribute list.
+	 * The cached value of the '{@link #getFloat32() <em>Float32</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFloat32()
+	 * @generated
+	 * @ordered
+	 */
+	protected float float32 = FLOAT32_EDEFAULT;
+
+	/**
+	 * This is true if the Float32 attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean float32ESet;
+
+	/**
+	 * The default value of the '{@link #getFloat64() <em>Float64</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFloat64()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> float64;
+	protected static final double FLOAT64_EDEFAULT = 0.0;
 
 	/**
-	 * The cached value of the '{@link #getTnum() <em>Tnum</em>}' containment reference list.
+	 * The cached value of the '{@link #getFloat64() <em>Float64</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTnum()
+	 * @see #getFloat64()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrEnumListType> tnum;
+	protected double float64 = FLOAT64_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute list.
+	 * This is true if the Float64 attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean float64ESet;
+
+	/**
+	 * The cached value of the '{@link #getEnum() <em>Enum</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEnum()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrEnumListType enum_;
+
+	/**
+	 * The default value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTimestamp()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<XMLGregorianCalendar> timestamp;
+	protected static final XMLGregorianCalendar TIMESTAMP_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getString() <em>String</em>}' attribute list.
+	 * The cached value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimestamp()
+	 * @generated
+	 * @ordered
+	 */
+	protected XMLGregorianCalendar timestamp = TIMESTAMP_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getString() <em>String</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getString()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> string;
+	protected static final String STRING_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getString() <em>String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getString()
+	 * @generated
+	 * @ordered
+	 */
+	protected String string = STRING_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDpTypeSelected() <em>Dp Type Selected</em>}' attribute.
@@ -250,10 +451,7 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<Boolean> getBoolean() {
-		if (boolean_ == null) {
-			boolean_ = new EDataTypeEList<Boolean>(Boolean.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN);
-		}
+	public boolean isBoolean() {
 		return boolean_;
 	}
 
@@ -263,10 +461,47 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<Byte> getInt8() {
-		if (int8 == null) {
-			int8 = new EDataTypeEList<Byte>(Byte.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8);
-		}
+	public void setBoolean(boolean newBoolean) {
+		boolean oldBoolean = boolean_;
+		boolean_ = newBoolean;
+		boolean oldBooleanESet = booleanESet;
+		booleanESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN, oldBoolean, boolean_, !oldBooleanESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetBoolean() {
+		boolean oldBoolean = boolean_;
+		boolean oldBooleanESet = booleanESet;
+		boolean_ = BOOLEAN_EDEFAULT;
+		booleanESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN, oldBoolean, BOOLEAN_EDEFAULT, oldBooleanESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetBoolean() {
+		return booleanESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public byte getInt8() {
 		return int8;
 	}
 
@@ -276,10 +511,47 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<Short> getInt16() {
-		if (int16 == null) {
-			int16 = new EDataTypeEList<Short>(Short.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16);
-		}
+	public void setInt8(byte newInt8) {
+		byte oldInt8 = int8;
+		int8 = newInt8;
+		boolean oldInt8ESet = int8ESet;
+		int8ESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8, oldInt8, int8, !oldInt8ESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetInt8() {
+		byte oldInt8 = int8;
+		boolean oldInt8ESet = int8ESet;
+		int8 = INT8_EDEFAULT;
+		int8ESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8, oldInt8, INT8_EDEFAULT, oldInt8ESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetInt8() {
+		return int8ESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public short getInt16() {
 		return int16;
 	}
 
@@ -289,10 +561,47 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<BigInteger> getInt32() {
-		if (int32 == null) {
-			int32 = new EDataTypeEList<BigInteger>(BigInteger.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32);
-		}
+	public void setInt16(short newInt16) {
+		short oldInt16 = int16;
+		int16 = newInt16;
+		boolean oldInt16ESet = int16ESet;
+		int16ESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16, oldInt16, int16, !oldInt16ESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetInt16() {
+		short oldInt16 = int16;
+		boolean oldInt16ESet = int16ESet;
+		int16 = INT16_EDEFAULT;
+		int16ESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16, oldInt16, INT16_EDEFAULT, oldInt16ESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetInt16() {
+		return int16ESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BigInteger getInt32() {
 		return int32;
 	}
 
@@ -302,10 +611,20 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<Long> getInt64() {
-		if (int64 == null) {
-			int64 = new EDataTypeEList<Long>(Long.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64);
-		}
+	public void setInt32(BigInteger newInt32) {
+		BigInteger oldInt32 = int32;
+		int32 = newInt32;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32, oldInt32, int32));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public long getInt64() {
 		return int64;
 	}
 
@@ -315,10 +634,47 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<Short> getInt8U() {
-		if (int8U == null) {
-			int8U = new EDataTypeEList<Short>(Short.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U);
-		}
+	public void setInt64(long newInt64) {
+		long oldInt64 = int64;
+		int64 = newInt64;
+		boolean oldInt64ESet = int64ESet;
+		int64ESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64, oldInt64, int64, !oldInt64ESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetInt64() {
+		long oldInt64 = int64;
+		boolean oldInt64ESet = int64ESet;
+		int64 = INT64_EDEFAULT;
+		int64ESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64, oldInt64, INT64_EDEFAULT, oldInt64ESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetInt64() {
+		return int64ESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public short getInt8U() {
 		return int8U;
 	}
 
@@ -328,10 +684,47 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<Integer> getInt16U() {
-		if (int16U == null) {
-			int16U = new EDataTypeEList<Integer>(Integer.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U);
-		}
+	public void setInt8U(short newInt8U) {
+		short oldInt8U = int8U;
+		int8U = newInt8U;
+		boolean oldInt8UESet = int8UESet;
+		int8UESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U, oldInt8U, int8U, !oldInt8UESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetInt8U() {
+		short oldInt8U = int8U;
+		boolean oldInt8UESet = int8UESet;
+		int8U = INT8_U_EDEFAULT;
+		int8UESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U, oldInt8U, INT8_U_EDEFAULT, oldInt8UESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetInt8U() {
+		return int8UESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getInt16U() {
 		return int16U;
 	}
 
@@ -341,10 +734,47 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<Long> getInt32U() {
-		if (int32U == null) {
-			int32U = new EDataTypeEList<Long>(Long.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U);
-		}
+	public void setInt16U(int newInt16U) {
+		int oldInt16U = int16U;
+		int16U = newInt16U;
+		boolean oldInt16UESet = int16UESet;
+		int16UESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U, oldInt16U, int16U, !oldInt16UESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetInt16U() {
+		int oldInt16U = int16U;
+		boolean oldInt16UESet = int16UESet;
+		int16U = INT16_U_EDEFAULT;
+		int16UESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U, oldInt16U, INT16_U_EDEFAULT, oldInt16UESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetInt16U() {
+		return int16UESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public long getInt32U() {
 		return int32U;
 	}
 
@@ -354,10 +784,47 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<BigInteger> getInt64U() {
-		if (int64U == null) {
-			int64U = new EDataTypeEList<BigInteger>(BigInteger.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U);
-		}
+	public void setInt32U(long newInt32U) {
+		long oldInt32U = int32U;
+		int32U = newInt32U;
+		boolean oldInt32UESet = int32UESet;
+		int32UESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U, oldInt32U, int32U, !oldInt32UESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetInt32U() {
+		long oldInt32U = int32U;
+		boolean oldInt32UESet = int32UESet;
+		int32U = INT32_U_EDEFAULT;
+		int32UESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U, oldInt32U, INT32_U_EDEFAULT, oldInt32UESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetInt32U() {
+		return int32UESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BigInteger getInt64U() {
 		return int64U;
 	}
 
@@ -367,10 +834,20 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<Float> getFloat32() {
-		if (float32 == null) {
-			float32 = new EDataTypeEList<Float>(Float.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32);
-		}
+	public void setInt64U(BigInteger newInt64U) {
+		BigInteger oldInt64U = int64U;
+		int64U = newInt64U;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U, oldInt64U, int64U));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public float getFloat32() {
 		return float32;
 	}
 
@@ -380,10 +857,47 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<Double> getFloat64() {
-		if (float64 == null) {
-			float64 = new EDataTypeEList<Double>(Double.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64);
-		}
+	public void setFloat32(float newFloat32) {
+		float oldFloat32 = float32;
+		float32 = newFloat32;
+		boolean oldFloat32ESet = float32ESet;
+		float32ESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32, oldFloat32, float32, !oldFloat32ESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetFloat32() {
+		float oldFloat32 = float32;
+		boolean oldFloat32ESet = float32ESet;
+		float32 = FLOAT32_EDEFAULT;
+		float32ESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32, oldFloat32, FLOAT32_EDEFAULT, oldFloat32ESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetFloat32() {
+		return float32ESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public double getFloat64() {
 		return float64;
 	}
 
@@ -393,11 +907,13 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<SGrEnumListType> getTnum() {
-		if (tnum == null) {
-			tnum = new EObjectContainmentEList<SGrEnumListType>(SGrEnumListType.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TNUM);
-		}
-		return tnum;
+	public void setFloat64(double newFloat64) {
+		double oldFloat64 = float64;
+		float64 = newFloat64;
+		boolean oldFloat64ESet = float64ESet;
+		float64ESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64, oldFloat64, float64, !oldFloat64ESet));
 	}
 
 	/**
@@ -406,10 +922,77 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<XMLGregorianCalendar> getTimestamp() {
-		if (timestamp == null) {
-			timestamp = new EDataTypeEList<XMLGregorianCalendar>(XMLGregorianCalendar.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP);
+	public void unsetFloat64() {
+		double oldFloat64 = float64;
+		boolean oldFloat64ESet = float64ESet;
+		float64 = FLOAT64_EDEFAULT;
+		float64ESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64, oldFloat64, FLOAT64_EDEFAULT, oldFloat64ESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetFloat64() {
+		return float64ESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrEnumListType getEnum() {
+		return enum_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEnum(SGrEnumListType newEnum, NotificationChain msgs) {
+		SGrEnumListType oldEnum = enum_;
+		enum_ = newEnum;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM, oldEnum, newEnum);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEnum(SGrEnumListType newEnum) {
+		if (newEnum != enum_) {
+			NotificationChain msgs = null;
+			if (enum_ != null)
+				msgs = ((InternalEObject)enum_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM, null, msgs);
+			if (newEnum != null)
+				msgs = ((InternalEObject)newEnum).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM, null, msgs);
+			msgs = basicSetEnum(newEnum, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM, newEnum, newEnum));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public XMLGregorianCalendar getTimestamp() {
 		return timestamp;
 	}
 
@@ -419,11 +1002,34 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<String> getString() {
-		if (string == null) {
-			string = new EDataTypeEList<String>(String.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING);
-		}
+	public void setTimestamp(XMLGregorianCalendar newTimestamp) {
+		XMLGregorianCalendar oldTimestamp = timestamp;
+		timestamp = newTimestamp;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP, oldTimestamp, timestamp));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getString() {
 		return string;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setString(String newString) {
+		String oldString = string;
+		string = newString;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING, oldString, string));
 	}
 
 	/**
@@ -484,8 +1090,8 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TNUM:
-				return ((InternalEList<?>)getTnum()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM:
+				return basicSetEnum(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -499,7 +1105,7 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
-				return getBoolean();
+				return isBoolean();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8:
 				return getInt8();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16:
@@ -520,8 +1126,8 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 				return getFloat32();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64:
 				return getFloat64();
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TNUM:
-				return getTnum();
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM:
+				return getEnum();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP:
 				return getTimestamp();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING:
@@ -542,60 +1148,46 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
-				getBoolean().clear();
-				getBoolean().addAll((Collection<? extends Boolean>)newValue);
+				setBoolean((Boolean)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8:
-				getInt8().clear();
-				getInt8().addAll((Collection<? extends Byte>)newValue);
+				setInt8((Byte)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16:
-				getInt16().clear();
-				getInt16().addAll((Collection<? extends Short>)newValue);
+				setInt16((Short)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32:
-				getInt32().clear();
-				getInt32().addAll((Collection<? extends BigInteger>)newValue);
+				setInt32((BigInteger)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64:
-				getInt64().clear();
-				getInt64().addAll((Collection<? extends Long>)newValue);
+				setInt64((Long)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U:
-				getInt8U().clear();
-				getInt8U().addAll((Collection<? extends Short>)newValue);
+				setInt8U((Short)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U:
-				getInt16U().clear();
-				getInt16U().addAll((Collection<? extends Integer>)newValue);
+				setInt16U((Integer)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U:
-				getInt32U().clear();
-				getInt32U().addAll((Collection<? extends Long>)newValue);
+				setInt32U((Long)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U:
-				getInt64U().clear();
-				getInt64U().addAll((Collection<? extends BigInteger>)newValue);
+				setInt64U((BigInteger)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32:
-				getFloat32().clear();
-				getFloat32().addAll((Collection<? extends Float>)newValue);
+				setFloat32((Float)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64:
-				getFloat64().clear();
-				getFloat64().addAll((Collection<? extends Double>)newValue);
+				setFloat64((Double)newValue);
 				return;
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TNUM:
-				getTnum().clear();
-				getTnum().addAll((Collection<? extends SGrEnumListType>)newValue);
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM:
+				setEnum((SGrEnumListType)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP:
-				getTimestamp().clear();
-				getTimestamp().addAll((Collection<? extends XMLGregorianCalendar>)newValue);
+				setTimestamp((XMLGregorianCalendar)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING:
-				getString().clear();
-				getString().addAll((Collection<? extends String>)newValue);
+				setString((String)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED:
 				setDpTypeSelected((DptSelectedType)newValue);
@@ -613,46 +1205,46 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
-				getBoolean().clear();
+				unsetBoolean();
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8:
-				getInt8().clear();
+				unsetInt8();
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16:
-				getInt16().clear();
+				unsetInt16();
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32:
-				getInt32().clear();
+				setInt32(INT32_EDEFAULT);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64:
-				getInt64().clear();
+				unsetInt64();
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U:
-				getInt8U().clear();
+				unsetInt8U();
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U:
-				getInt16U().clear();
+				unsetInt16U();
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U:
-				getInt32U().clear();
+				unsetInt32U();
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U:
-				getInt64U().clear();
+				setInt64U(INT64_U_EDEFAULT);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32:
-				getFloat32().clear();
+				unsetFloat32();
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64:
-				getFloat64().clear();
+				unsetFloat64();
 				return;
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TNUM:
-				getTnum().clear();
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM:
+				setEnum((SGrEnumListType)null);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP:
-				getTimestamp().clear();
+				setTimestamp(TIMESTAMP_EDEFAULT);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING:
-				getString().clear();
+				setString(STRING_EDEFAULT);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED:
 				unsetDpTypeSelected();
@@ -670,33 +1262,33 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
-				return boolean_ != null && !boolean_.isEmpty();
+				return isSetBoolean();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8:
-				return int8 != null && !int8.isEmpty();
+				return isSetInt8();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16:
-				return int16 != null && !int16.isEmpty();
+				return isSetInt16();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32:
-				return int32 != null && !int32.isEmpty();
+				return INT32_EDEFAULT == null ? int32 != null : !INT32_EDEFAULT.equals(int32);
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64:
-				return int64 != null && !int64.isEmpty();
+				return isSetInt64();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U:
-				return int8U != null && !int8U.isEmpty();
+				return isSetInt8U();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U:
-				return int16U != null && !int16U.isEmpty();
+				return isSetInt16U();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U:
-				return int32U != null && !int32U.isEmpty();
+				return isSetInt32U();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U:
-				return int64U != null && !int64U.isEmpty();
+				return INT64_U_EDEFAULT == null ? int64U != null : !INT64_U_EDEFAULT.equals(int64U);
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32:
-				return float32 != null && !float32.isEmpty();
+				return isSetFloat32();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64:
-				return float64 != null && !float64.isEmpty();
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TNUM:
-				return tnum != null && !tnum.isEmpty();
+				return isSetFloat64();
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM:
+				return enum_ != null;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP:
-				return timestamp != null && !timestamp.isEmpty();
+				return TIMESTAMP_EDEFAULT == null ? timestamp != null : !TIMESTAMP_EDEFAULT.equals(timestamp);
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING:
-				return string != null && !string.isEmpty();
+				return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED:
 				return isSetDpTypeSelected();
 		}
@@ -714,27 +1306,27 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (boolean: ");
-		result.append(boolean_);
+		if (booleanESet) result.append(boolean_); else result.append("<unset>");
 		result.append(", int8: ");
-		result.append(int8);
+		if (int8ESet) result.append(int8); else result.append("<unset>");
 		result.append(", int16: ");
-		result.append(int16);
+		if (int16ESet) result.append(int16); else result.append("<unset>");
 		result.append(", int32: ");
 		result.append(int32);
 		result.append(", int64: ");
-		result.append(int64);
+		if (int64ESet) result.append(int64); else result.append("<unset>");
 		result.append(", int8U: ");
-		result.append(int8U);
+		if (int8UESet) result.append(int8U); else result.append("<unset>");
 		result.append(", int16U: ");
-		result.append(int16U);
+		if (int16UESet) result.append(int16U); else result.append("<unset>");
 		result.append(", int32U: ");
-		result.append(int32U);
+		if (int32UESet) result.append(int32U); else result.append("<unset>");
 		result.append(", int64U: ");
 		result.append(int64U);
 		result.append(", float32: ");
-		result.append(float32);
+		if (float32ESet) result.append(float32); else result.append("<unset>");
 		result.append(", float64: ");
-		result.append(float64);
+		if (float64ESet) result.append(float64); else result.append("<unset>");
 		result.append(", timestamp: ");
 		result.append(timestamp);
 		result.append(", string: ");

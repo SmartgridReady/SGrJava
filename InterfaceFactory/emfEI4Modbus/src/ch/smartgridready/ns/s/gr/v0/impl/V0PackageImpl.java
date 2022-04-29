@@ -2285,7 +2285,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrBasicGenDataPointTypeType_Tnum() {
+	public EReference getSGrBasicGenDataPointTypeType_Enum() {
         return (EReference)getSGrBasicGenDataPointTypeType().getEStructuralFeatures().get(11);
 	}
 

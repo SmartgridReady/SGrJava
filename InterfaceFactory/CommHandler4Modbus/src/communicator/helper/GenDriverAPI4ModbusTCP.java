@@ -18,17 +18,14 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 It includes completely manually generated code. It is the Interface of the Modbus RTU inside the CommHandler and its purpose is to enable 3rd party programmers to
-use their own Modbus RTU drivers
+use their own Modbus TCP drivers
  */
 
 
 /**
- * <!-- begin-user-doc -->
-
- * <!-- end-user-doc -->
- * @generated NOT
- * 
- * 
+* <!-- begin-user-doc -->
+* <!-- end-user-doc -->
+* @generated NOT
 **/
 
 import java.io.IOException;
@@ -37,116 +34,93 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import de.re.easymodbus.exceptions.ModbusException;
-import jssc.SerialPort;
+//import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortTimeoutException;
-import  easymodbus.de.re.easymodbus.exceptions.*;
-import  easymodbus.de.re.easymodbus.modbusclient.*;
-import  easymodbus.de.re.easymodbus.datatypes.*;
 
-//import jssc.SerialPort;
+import easymodbus.de.re.easymodbus.exceptions.*;
+import easymodbus.de.re.easymodbus.modbusclient.*;
+import easymodbus.de.re.easymodbus.datatypes.*;
 
-public class genDriverAPI4ModbusRTU {
+/*   AUTHOR: IBT / Chris Broennimann for Verein SmartGridready
+ * This file hosts the interface from the CommHandler4Modbus implementation into any modbus driver linked to 
+ */
+
+public class GenDriverAPI4ModbusTCP implements GenDriverAPI4Modbus {
+
+
+	ModbusClient mbDevice = new ModbusClient();
 	
-	ModbusClient mbRTU = new ModbusClient();
-	
-	public boolean initTrspService(String sCOM)
+	public void initDevice(String sIP4Address, int iPort) throws UnknownHostException, IOException
 	{
-		int[] responseint;
 		
-	    try 
-	    {          
-	    	mbRTU.setSerialFlag(true);
-	    	mbRTU.setSerialPort(sCOM);
-	    	mbRTU.setBaudrate(19200);
-	    	mbRTU.setParity(Parity.Even);
-	    	mbRTU.setStopBits(StopBits.One);
-	    	// mbRTU.setLogFileName("easyModebusRTULogger.txt",true);   
-	    	// REMARK: to set datalogging active by setting the second parameter to true
-	    	mbRTU.Connect(sCOM);
-	    	mbRTU.setConnectionTimeout(1500);
-	         
-	    } 
-	   
-	    
-        catch (SerialPortException ex) 
-	    {
-            System.out.println(ex);
-            return false;
-        }
-        catch (Exception e)
-	    {
-          e.printStackTrace();
-          return false;
-         }
-        finally
-        {	
-        	 return true;
-        }
-	
-    }
-	
-    
-    public void setUnitIdentifier(short unitIdentifier) {
-	   mbRTU.setUnitIdentifier(unitIdentifier);
-    }
+		mbDevice.Connect(sIP4Address,iPort);
+	}
+
     public int[] ReadHoldingRegisters(int startingAddress, int quantity) throws de.re.easymodbus.exceptions.ModbusException,
     UnknownHostException, SocketException, IOException, SerialPortException, SerialPortTimeoutException
-    {
-    	return mbRTU.ReadHoldingRegisters(startingAddress,quantity);
+    {   int[] responseint;
+    	responseint = mbDevice.ReadHoldingRegisters(startingAddress,quantity);
+    	return  responseint ;
     }
-
+	
     public int[] ReadInputRegisters(int startingAddress, int quantity) throws de.re.easymodbus.exceptions.ModbusException,
     UnknownHostException, SocketException, IOException, SerialPortException, SerialPortTimeoutException
-    {
-    	return mbRTU.ReadInputRegisters(startingAddress,quantity);
+    {   int[] responseint;
+		responseint = mbDevice.ReadInputRegisters(startingAddress,quantity);
+    	return  responseint ;
     }
+    
 
     public boolean[] ReadDiscreteInputs(int startingAddress, int quantity) throws de.re.easymodbus.exceptions.ModbusException,
     UnknownHostException, SocketException, IOException, SerialPortException, SerialPortTimeoutException
     {   boolean[] responsebool;
-    responsebool = mbRTU.ReadDiscreteInputs(startingAddress,quantity);
+    responsebool = mbDevice.ReadDiscreteInputs(startingAddress,quantity);
     	return  responsebool ;
     }
 
     public boolean[] ReadCoils(int startingAddress, int quantity) throws de.re.easymodbus.exceptions.ModbusException,
     UnknownHostException, SocketException, IOException, SerialPortException, SerialPortTimeoutException
     {   boolean[] responseint;
-		responseint = mbRTU.ReadCoils(startingAddress,quantity);
+		responseint = mbDevice.ReadCoils(startingAddress,quantity);
     	return  responseint ;
     }
+	
+    /*
+		mbDevice.ReadWriteMultipleRegisters(startingAddress,quantity, writingAddress, responseint)
+	
+	*/
     
+    public void disconnect() throws UnknownHostException, IOException, SerialPortException, SerialPortTimeoutException
+    {
+    	mbDevice.Disconnect();
+    }
 
     public void  WriteMultipleCoils(int startingAdress, boolean[] values) throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException, SerialPortTimeoutException 
     {
-    	mbRTU.WriteMultipleCoils(startingAdress,values);  
+        mbDevice.WriteMultipleCoils(startingAdress,values);  
     }
     
     public void  WriteSingleCoil(int startingAdress, boolean value) throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException, SerialPortTimeoutException 
     {
-    	mbRTU.WriteSingleCoil(startingAdress, value);
+        mbDevice.WriteSingleCoil(startingAdress, value);
     }
 
      public void  WriteMultipleRegisters(int startingAdress, int[] values) throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException, SerialPortTimeoutException 
      {
-    	 mbRTU.WriteMultipleRegisters(startingAdress, values); 
+		 mbDevice.WriteMultipleRegisters(startingAdress, values); 
      }
      
      public void WriteSingleRegister(int startingAdress, int value) throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException, SerialPortTimeoutException
      {
-    	 mbRTU.WriteSingleRegister(startingAdress, value);   
+		mbDevice.WriteSingleRegister(startingAdress, value);   
      }
      
-    public void disconnect()
-    {
-   	  try
-   	  {
-      	 mbRTU.Disconnect();
-      }
-
-      catch (Exception e)
-	  {
-       e.printStackTrace();
-      }
-    }
+     /*
+     public void 
+		mbDevice.setConnectionTimeout(0);   ;
+		mbDevice.setLogFileName(null);   ;
+		boolean mbDevice.isConnected()   ;
+     */
+	
 }

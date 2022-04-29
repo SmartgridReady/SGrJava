@@ -4,7 +4,7 @@
     modelName="EmfEI4Modbus" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>../../SGrRootProj/InterfaceFactory/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
+  <foreignModel>../../SGrJava/InterfaceFactory/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
   <genPackages prefix="V0" basePackage="ch.smartgridready.ns.s.gr" resource="XML"
       disposableProviderFactory="true" loadInitialization="true" literalsInterface="false"
       ecorePackage="v0.ecore#/">
@@ -809,7 +809,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/int64U"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/float32"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/float64"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrBasicGenDataPointTypeType/tnum"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrBasicGenDataPointTypeType/enum"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/timestamp"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/string"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/dpTypeSelected"/>

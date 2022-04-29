@@ -1118,7 +1118,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE = 14;
 
 	/**
-	 * The feature id for the '<em><b>Boolean</b></em>' attribute list.
+	 * The feature id for the '<em><b>Boolean</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1127,7 +1127,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN = 0;
 
 	/**
-	 * The feature id for the '<em><b>Int8</b></em>' attribute list.
+	 * The feature id for the '<em><b>Int8</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1136,7 +1136,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8 = 1;
 
 	/**
-	 * The feature id for the '<em><b>Int16</b></em>' attribute list.
+	 * The feature id for the '<em><b>Int16</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1145,7 +1145,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16 = 2;
 
 	/**
-	 * The feature id for the '<em><b>Int32</b></em>' attribute list.
+	 * The feature id for the '<em><b>Int32</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1154,7 +1154,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32 = 3;
 
 	/**
-	 * The feature id for the '<em><b>Int64</b></em>' attribute list.
+	 * The feature id for the '<em><b>Int64</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1163,7 +1163,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64 = 4;
 
 	/**
-	 * The feature id for the '<em><b>Int8 U</b></em>' attribute list.
+	 * The feature id for the '<em><b>Int8 U</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1172,7 +1172,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U = 5;
 
 	/**
-	 * The feature id for the '<em><b>Int16 U</b></em>' attribute list.
+	 * The feature id for the '<em><b>Int16 U</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1181,7 +1181,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U = 6;
 
 	/**
-	 * The feature id for the '<em><b>Int32 U</b></em>' attribute list.
+	 * The feature id for the '<em><b>Int32 U</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1190,7 +1190,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U = 7;
 
 	/**
-	 * The feature id for the '<em><b>Int64 U</b></em>' attribute list.
+	 * The feature id for the '<em><b>Int64 U</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1199,7 +1199,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U = 8;
 
 	/**
-	 * The feature id for the '<em><b>Float32</b></em>' attribute list.
+	 * The feature id for the '<em><b>Float32</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1208,7 +1208,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32 = 9;
 
 	/**
-	 * The feature id for the '<em><b>Float64</b></em>' attribute list.
+	 * The feature id for the '<em><b>Float64</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1217,16 +1217,16 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64 = 10;
 
 	/**
-	 * The feature id for the '<em><b>Tnum</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Enum</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TNUM = 11;
+	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM = 11;
 
 	/**
-	 * The feature id for the '<em><b>Timestamp</b></em>' attribute list.
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1235,7 +1235,7 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP = 12;
 
 	/**
-	 * The feature id for the '<em><b>String</b></em>' attribute list.
+	 * The feature id for the '<em><b>String</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6052,21 +6052,21 @@ public interface V0Package extends EPackage {
 	EClass getSGrBasicGenDataPointTypeType();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getBoolean <em>Boolean</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#isBoolean <em>Boolean</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Boolean</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getBoolean()
+	 * @return the meta object for the attribute '<em>Boolean</em>'.
+	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#isBoolean()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
 	 */
 	EAttribute getSGrBasicGenDataPointTypeType_Boolean();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt8 <em>Int8</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt8 <em>Int8</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Int8</em>'.
+	 * @return the meta object for the attribute '<em>Int8</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt8()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6074,10 +6074,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Int8();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt16 <em>Int16</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt16 <em>Int16</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Int16</em>'.
+	 * @return the meta object for the attribute '<em>Int16</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt16()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6085,10 +6085,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Int16();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt32 <em>Int32</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt32 <em>Int32</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Int32</em>'.
+	 * @return the meta object for the attribute '<em>Int32</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt32()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6096,10 +6096,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Int32();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt64 <em>Int64</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt64 <em>Int64</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Int64</em>'.
+	 * @return the meta object for the attribute '<em>Int64</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt64()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6107,10 +6107,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Int64();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt8U <em>Int8 U</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt8U <em>Int8 U</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Int8 U</em>'.
+	 * @return the meta object for the attribute '<em>Int8 U</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt8U()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6118,10 +6118,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Int8U();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt16U <em>Int16 U</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt16U <em>Int16 U</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Int16 U</em>'.
+	 * @return the meta object for the attribute '<em>Int16 U</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt16U()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6129,10 +6129,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Int16U();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt32U <em>Int32 U</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt32U <em>Int32 U</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Int32 U</em>'.
+	 * @return the meta object for the attribute '<em>Int32 U</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt32U()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6140,10 +6140,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Int32U();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt64U <em>Int64 U</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt64U <em>Int64 U</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Int64 U</em>'.
+	 * @return the meta object for the attribute '<em>Int64 U</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getInt64U()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6151,10 +6151,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Int64U();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getFloat32 <em>Float32</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getFloat32 <em>Float32</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Float32</em>'.
+	 * @return the meta object for the attribute '<em>Float32</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getFloat32()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6162,10 +6162,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Float32();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getFloat64 <em>Float64</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getFloat64 <em>Float64</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Float64</em>'.
+	 * @return the meta object for the attribute '<em>Float64</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getFloat64()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6173,21 +6173,21 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Float64();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getTnum <em>Tnum</em>}'.
+	 * Returns the meta object for the containment reference '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getEnum <em>Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Tnum</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getTnum()
+	 * @return the meta object for the containment reference '<em>Enum</em>'.
+	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getEnum()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
 	 */
-	EReference getSGrBasicGenDataPointTypeType_Tnum();
+	EReference getSGrBasicGenDataPointTypeType_Enum();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getTimestamp <em>Timestamp</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getTimestamp <em>Timestamp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Timestamp</em>'.
+	 * @return the meta object for the attribute '<em>Timestamp</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getTimestamp()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
@@ -6195,10 +6195,10 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrBasicGenDataPointTypeType_Timestamp();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getString <em>String</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getString <em>String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>String</em>'.
+	 * @return the meta object for the attribute '<em>String</em>'.
 	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getString()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated

@@ -8,8 +8,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 
-import ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType;
-
 
 public class DeviceDescriptionLoader<C> {
 	
@@ -24,7 +22,7 @@ public class DeviceDescriptionLoader<C> {
 
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( )
     			.put("xml", new XMIResourceFactoryImpl() );
-			
+
 			AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(
 					getAdapterFactory(), 
 					new BasicCommandStack());

@@ -69,8 +69,8 @@
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:basicDataType>
-  				<sgr:tnum>
-  					<sgr:sgrSGCPLoadStateLv2>LD_NORMAL</sgr:sgrSGCPLoadStateLv2></sgr:tnum></sgr:basicDataType>
+  				<sgr:enum>
+  					<sgr:sgrSGCPLoadStateLv2>LD_NORMAL</sgr:sgrSGCPLoadStateLv2></sgr:enum></sgr:basicDataType>
   		</sgr:dataPoint>
   	</sgr:dpListElement>
 	</sgr:fpListElement>

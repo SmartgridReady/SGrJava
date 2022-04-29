@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <!-- begin-model-doc -->
  * Data Typde definition for a
- * 				Modbus Device Description as an EI (External Interace)
+ * 				Modbus Device Description as an EI (External Interface)
  * 			
  * Geraet
  * <!-- end-model-doc -->

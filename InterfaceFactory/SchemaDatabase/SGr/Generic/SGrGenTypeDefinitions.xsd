@@ -108,19 +108,19 @@
       <documentation/>
     </annotation>
     <choice>
-        <element maxOccurs="unbounded" minOccurs="0" name="boolean" type="boolean"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="int8" type="byte"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="int16" type="short"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="int32" type="integer"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="int64" type="long"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="int8U" type="unsignedByte"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="int16U" type="unsignedShort"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="int32U" type="unsignedInt"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="int64U" type="unsignedLong"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="float32" type="float"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="float64" type="double"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="tnum" type="sgr:SGrEnumListType"/>
-        <element maxOccurs="unbounded" minOccurs="0" name="timestamp" type="dateTime"/>
+        <element maxOccurs="1" minOccurs="0" name="boolean" type="boolean"/>
+        <element maxOccurs="1" minOccurs="0" name="int8" type="byte"/>
+        <element maxOccurs="1" minOccurs="0" name="int16" type="short"/>
+        <element maxOccurs="1" minOccurs="0" name="int32" type="integer"/>
+        <element maxOccurs="1" minOccurs="0" name="int64" type="long"/>
+        <element maxOccurs="1" minOccurs="0" name="int8U" type="unsignedByte"/>
+        <element maxOccurs="1" minOccurs="0" name="int16U" type="unsignedShort"/>
+        <element maxOccurs="1" minOccurs="0" name="int32U" type="unsignedInt"/>
+        <element maxOccurs="1" minOccurs="0" name="int64U" type="unsignedLong"/>
+        <element maxOccurs="1" minOccurs="0" name="float32" type="float"/>
+        <element maxOccurs="1" minOccurs="0" name="float64" type="double"/>
+        <element maxOccurs="1" minOccurs="0" name="enum" type="sgr:SGrEnumListType"/>
+        <element maxOccurs="1" minOccurs="0" name="timestamp" type="dateTime"/>
         <!-- weitere aus IEC61850 übertragbare Datentypen: <enumeration value="Dbpos"/> 
 					<enumeration value="Tcmd"/> <enumeration value="Quality"/> <enumeration value="VisString32"/> 
 					<enumeration value="VisString64"/> <enumeration value="VisString65"/> <enumeration 
@@ -131,7 +131,7 @@
 					value="TrgOps"/> <enumeration value="OptFlds"/> <enumeration value="SvOptFlds"/> 
 					<enumeration value="LogOptFlds"/> <enumeration value="EntryID"/> <enumeration 
 					value="Octet6"/> <enumeration value="Octet16"/> -->
-        <element maxOccurs="unbounded" minOccurs="0" name="string" type="string"/>
+        <element maxOccurs="1" minOccurs="0" name="string" type="string"/>
     </choice>
     <attribute name="dpTypeSelected" type="sgr:dptSelectedType"/>
   </complexType>

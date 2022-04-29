@@ -71,9 +71,9 @@
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:basicDataType>
-  				<sgr:tnum>
+  				<sgr:enum>
   					<sgr:sgrSGCPFeedInStateLv2>FI_NORMAL</sgr:sgrSGCPFeedInStateLv2>
-				</sgr:tnum>
+				</sgr:enum>
 			</sgr:basicDataType>
   		</sgr:dataPoint>
   	</sgr:dpListElement>

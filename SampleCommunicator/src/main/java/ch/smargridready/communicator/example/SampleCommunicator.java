@@ -10,7 +10,6 @@ import communicator.impl.SGrModbusDevice;
 
 public class SampleCommunicator {
 	
-	private static final String   XML_BASE_DIR = "../XMLInstances/SGr/";
 	private static final String XML_BASE_DIR = "../InterfaceFactory/XMLInstances/SGr/"; 
 	
 	public static void main( String argv[] ) {				

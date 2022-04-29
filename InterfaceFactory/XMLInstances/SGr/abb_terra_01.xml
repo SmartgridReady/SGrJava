@@ -278,9 +278,9 @@
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="EV-StatusCode" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
                 <sgr:basicDataType>
-                	<sgr:tnum>
+                	<sgr:enum>
                 		<sgr:sgrEVSEStateLv1>EV_NORMAL</sgr:sgrEVSEStateLv1>
-                	</sgr:tnum>
+                	</sgr:enum>
                 </sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
