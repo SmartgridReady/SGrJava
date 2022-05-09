@@ -1,63 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="v0" nsURI="http://www.smartgridready.ch/ns/SGr/V0/" nsPrefix="v0">
-  <eClassifiers xsi:type="ecore:EClass" name="ApiTreeType">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="apiTreeType"/>
-      <details key="kind" value="elementOnly"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="isConnected" lowerBound="1"
-        eType="#//ConnectionState" containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="isConnected"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numFPs" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="numFPs"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numDPs" unique="false"
-        lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="numDPs"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="BitmaskType" instanceClassName="byte[]">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="bitmaskType"/>
       <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#hexBinary"/>
     </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConnectionState">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="ConnectionState"/>
-      <details key="kind" value="elementOnly"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isConnected" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
-        unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="isConnected"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nextAttempt" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="nextAttempt"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContactAPIInterfaceDescType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -110,15 +58,6 @@
         <details key="name" value="xsi:schemaLocation"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="apiTree" upperBound="-2"
-        eType="#//ApiTreeType" volatile="true" transient="true" derived="true" containment="true"
-        resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="apiTree"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="baudRatesSupported" unique="false"
         upperBound="-2" eType="#//EBaudRateType" volatile="true" transient="true"
         derived="true">
@@ -169,6 +108,15 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="ModbusFunctionCodesSupported"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="netConnectionState" upperBound="-2"
+        eType="#//NetworkConnectionStateType" volatile="true" transient="true" derived="true"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="netConnectionState"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -311,32 +259,6 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="dpSizeNrRegisters_._type:Object"/>
       <details key="baseType" value="dpSizeNrRegisters_._type"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="DptSelectedType">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="dptSelectedType"/>
-    </eAnnotations>
-    <eLiterals name="INT8"/>
-    <eLiterals name="INT16" value="1"/>
-    <eLiterals name="INT32" value="2"/>
-    <eLiterals name="INT64" value="3"/>
-    <eLiterals name="INT8U" value="4"/>
-    <eLiterals name="INT16U" value="5"/>
-    <eLiterals name="INT32U" value="6"/>
-    <eLiterals name="INT64U" value="7"/>
-    <eLiterals name="FLOAT32" value="8"/>
-    <eLiterals name="FLOAT64" value="9"/>
-    <eLiterals name="Enum" value="10"/>
-    <eLiterals name="Timestamp" value="11"/>
-    <eLiterals name="dateTime" value="12"/>
-    <eLiterals name="String" value="13"/>
-    <eLiterals name="BOOLEAN" value="14"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="DptSelectedTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="dptSelectedType:Object"/>
-      <details key="baseType" value="dptSelectedType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EBaudRateType">
@@ -583,29 +505,26 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="NumDPsType" instanceClassName="int">
+  <eClassifiers xsi:type="ecore:EClass" name="NetworkConnectionStateType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="numDPsType"/>
-      <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#int"/>
+      <details key="name" value="networkConnectionStateType"/>
+      <details key="kind" value="elementOnly"/>
     </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="NumDPsTypeObject" instanceClassName="java.lang.Integer">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="numDPsType:Object"/>
-      <details key="baseType" value="numDPsType"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="NumFPsType" instanceClassName="int">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="numFPsType"/>
-      <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#int"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="NumFPsTypeObject" instanceClassName="java.lang.Integer">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="numFPsType:Object"/>
-      <details key="baseType" value="numFPsType"/>
-    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isConnected" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="isConnected"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nextAttempt" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="nextAttempt"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="PlaceHolder4futureExtensionsType"
       instanceClassName="java.lang.String">
@@ -1141,10 +1060,10 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//DateTime">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateTime" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//DateTime">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="timestamp"/>
+        <details key="name" value="dateTime"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1153,13 +1072,6 @@
         <details key="kind" value="element"/>
         <details key="name" value="string"/>
         <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dpTypeSelected" eType="#//DptSelectedType"
-        unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="attribute"/>
-        <details key="name" value="dpTypeSelected"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -1717,9 +1629,9 @@
     <eLiterals name="WAGO" value="14"/>
     <eLiterals name="Swistec" value="15"/>
     <eLiterals name="goZmart" value="16"/>
-    <eLiterals name="m17" value="17"/>
-    <eLiterals name="m18" value="18"/>
-    <eLiterals name="m19" value="19"/>
+    <eLiterals name="Hoval" value="17"/>
+    <eLiterals name="CTA" value="18"/>
+    <eLiterals name="Heliotherm" value="19"/>
     <eLiterals name="m20" value="20"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrManufacturerIDTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
@@ -1922,11 +1834,11 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="apitreetype" lowerBound="1"
-        eType="#//ApiTreeType" containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="networkConnectionState"
+        eType="#//NetworkConnectionStateType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="apitreetype"/>
+        <details key="name" value="networkConnectionState"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -3183,12 +3095,12 @@
     <eLiterals name="ph39" value="38"/>
     <eLiterals name="Monitoring" value="39"/>
     <eLiterals name="DynamicCtrl" value="40"/>
-    <eLiterals name="ph42" value="41"/>
-    <eLiterals name="ph43" value="42"/>
-    <eLiterals name="ph44" value="43"/>
-    <eLiterals name="ph45" value="44"/>
-    <eLiterals name="ph46" value="45"/>
-    <eLiterals name="ph47" value="46"/>
+    <eLiterals name="HeatPumpBase" value="41"/>
+    <eLiterals name="HeatCoolCtrl" value="42"/>
+    <eLiterals name="CompressorPwrCtrl" value="43"/>
+    <eLiterals name="DomHotWaterCtrl" value="44"/>
+    <eLiterals name="BufferStorageCtrl" value="45"/>
+    <eLiterals name="RoomTempCtrl" value="46"/>
     <eLiterals name="ph48" value="47"/>
     <eLiterals name="ph49" value="48"/>
     <eLiterals name="RoomTemp" value="49"/>

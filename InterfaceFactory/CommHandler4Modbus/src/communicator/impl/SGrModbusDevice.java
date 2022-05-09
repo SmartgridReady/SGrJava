@@ -22,13 +22,15 @@ import ch.smartgridready.ns.s.gr.v0.TEnumObjectType;
 import ch.smartgridready.ns.s.gr.v0.TSGrModbusRegisterRef;
 import ch.smartgridready.ns.s.gr.v0.V0Factory;
 import communicator.helper.GenDriverAPI4Modbus;
+import communicator.impl.ModbusHlpr;
 import de.re.easymodbus.exceptions.ModbusException;
 import easymodbus.de.re.easymodbus.exceptions.SerialPortException;
 import jssc.SerialPortTimeoutException;
 
+
 public class SGrModbusDevice {
 	
-	private final GenDriverAPI4Modbus mbDrvRTU;
+	private final GenDriverAPI4Modbus drv4Modbus;
 	
 	// private final GenDriverAPI4Modbus mbDrvTCP;
 	
@@ -39,8 +41,7 @@ public class SGrModbusDevice {
 			SGrModbusDeviceDescriptionType aDeviceDescription, 
 			GenDriverAPI4Modbus aRtuDriver) {
 		myDeviceDescription = aDeviceDescription;
-		mbDrvRTU = aRtuDriver;
-		// mbDrvTCP = aTcpDriver;
+		drv4Modbus = aRtuDriver;
 		
 	}
 	
@@ -52,7 +53,8 @@ public class SGrModbusDevice {
 	 * 
 	 **/ 			
 	public String getVal(String sProfileName, String sDataPointName) throws Exception {
-
+		
+	
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 		if (profile.isPresent()) {
 			
@@ -88,71 +90,77 @@ public class SGrModbusDevice {
 		
 		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
 
-		switch (dGenType.getDpTypeSelected().getValue()) {
-		case DptSelectedType.BOOLEAN_VALUE:
-			boolean bVal = getValByGDPType(aProfile, aDataPoint).isSetBoolean();
+		if (dGenType.isSetBoolean()) {
+			boolean bVal = getValByGDPType(aProfile, aDataPoint).isBoolean();
 			retval = String.format("%b", bVal);
-			break;
-		case DptSelectedType.ENUM_VALUE:
+		}
+		/*
+		else if (dGenType.eIsSet(enum) {
 			// TODO: apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
-			break;
-		case DptSelectedType.FLOAT32_VALUE:
+		}
+		*/
+		else if (dGenType.isSetFloat32()) {
 			float fVal = getValByGDPType(aProfile, aDataPoint).getFloat32();
 			retval = String.format("%10.3f", fVal);
-			break;
-		case DptSelectedType.FLOAT64_VALUE:
+		}
+		else if (dGenType.isSetFloat64()) {
 			double dVal = getValByGDPType(aProfile, aDataPoint).getFloat64();
 			retval = String.format("%10.3f", dVal);
-			break;
-		case DptSelectedType.INT16_VALUE:
+		}
+		else if (dGenType.isSetInt16()) {
 			short shVal = getValByGDPType(aProfile, aDataPoint).getInt16();
 			retval = String.format("%d", shVal);
-			break;
-		case DptSelectedType.INT16U_VALUE:
+		}
+		else if (dGenType.isSetInt16U()) {
 			int iVal = getValByGDPType(aProfile, aDataPoint).getInt16U();
 			retval = String.format("%d", iVal);
-			break;
-		case DptSelectedType.INT32_VALUE:
+		}
+		/* Todo: Support Int32 BigInteger
+		else if (dGenType.isSetInt32()) {
 			BigInteger bgVal = getValByGDPType(aProfile, aDataPoint).getInt32();
 			retval = String.format(bgVal.toString());
-			break;
-		case DptSelectedType.INT32U_VALUE:
+		}
+		else if (dGenType.isSetInt32U()) {
 			long lVal = getValByGDPType(aProfile, aDataPoint).getInt32U();
 			retval = String.format("%d", lVal);
-			break;
-		case DptSelectedType.INT64_VALUE:
-			lVal = getValByGDPType(aProfile, aDataPoint).getInt64();
-			break;
-		case DptSelectedType.INT64U_VALUE:
-			bgVal = getValByGDPType(aProfile, aDataPoint).getInt64U();
-			break;
-		case DptSelectedType.INT8_VALUE:
+		}
+		else if (dGenType.isSetInt64()) {
+			long lVal = getValByGDPType(aProfile, aDataPoint).getInt64();
+			retval = String.format("%d", lVal);
+		}
+		/*
+		else if (private void dGenType.isSetInt64U() {
+		{
+			// TODO: isSetInt64U  BigInteger  Funktion wurde vom Modeler nicht generiert  
+			BigInteger bgVal = getValByGDPType(aProfile, aDataPoint).getInt64U();
+			retval = String.format("%d", bgVal);
+		}
+		*/
+		else if (dGenType.isSetInt8()) {
 			byte btVal = getValByGDPType(aProfile, aDataPoint).getInt8();
 			retval = String.format("%d", btVal);
-			break;
-		case DptSelectedType.INT8U_VALUE:
-			shVal = getValByGDPType(aProfile, aDataPoint).getInt8U();
+		}
+		else if (dGenType.isSetInt8U()) {
+			short shVal = getValByGDPType(aProfile, aDataPoint).getInt8U();
 			retval = String.format("%d", shVal);
-			break;
-		case DptSelectedType.TIMESTAMP_VALUE:
-			// TODO: apply gregorian calendar library =>
-			// inDpTT.setTimestamp(TIMESTAMP_EDEFAULT);
-			retval = String.format("not yet supported%n");
-			break;
-		case DptSelectedType.DATE_TIME_VALUE:
+		}
+		/*
+		else if (dGenType.eIsSet() {
+			// TODO: apply String
+			retval = getValByGDPType(aProfile, aDataPoint).getString();
+		}
+		/*
+		else if (dGenType.eIsSet(dateTime) {
+			//
 			// TODO: apply gregorian calendar library
 			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
 			retval = String.format("not yet supported%n");
-			break;
-		case DptSelectedType.STRING_VALUE:
-			retval = getValByGDPType(aProfile, aDataPoint).getString();
-			break;
-		default:
-			break;
-		}
-
+		} */
+		
+		else 			retval = String.format("not yet supported%n");	
 		return retval;
 	}
+	
 	
 	
 	public SGrBasicGenDataPointTypeType getValByGDPType(
@@ -161,6 +169,39 @@ public class SGrModbusDevice {
 			throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
 			SerialPortTimeoutException, jssc.SerialPortException {
 		
+				return prv_getValByGDPType (aProfile,aDataPoint);
+	
+			}
+		
+	public SGrBasicGenDataPointTypeType getValByGDPType(
+					String sProfileName, 
+					String sDataPointName)
+					throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
+					SerialPortTimeoutException, jssc.SerialPortException 
+	{
+		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
+		
+		SGrBasicGenDataPointTypeType retval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType(); 
+		
+		if (profile.isPresent()) {
+				Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile( profile.get(), sDataPointName );
+			if ( dataPoint.isPresent() )
+			{			
+				retval = prv_getValByGDPType( profile.get(), dataPoint.get() );
+			}	
+		}
+		
+		return retval;
+	}
+			
+		
+	
+   private SGrBasicGenDataPointTypeType prv_getValByGDPType(
+		SGrModbusProfilesFrameType aProfile, 
+		SGrModbusDataPointsFrameType aDataPoint)
+		throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
+		SerialPortTimeoutException, jssc.SerialPortException {
+			
 		
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
 		
@@ -169,7 +210,6 @@ public class SGrModbusDevice {
 		boolean[] mbbitresp = new boolean[64];
 		int mul = 1;
 		int pwof10 = 0;
-		long tst = 1;
 		// Register return value calculation
 		long RegRes = 0;
 		double dVal = 0.0;
@@ -206,7 +246,7 @@ public class SGrModbusDevice {
 		BigInteger regad = MBRegRef.getAddr();
 		
 		// boolean bMBfirstRegOne = this.modbusInterfaceDesc.isFirstRegisterAddressIsOne();
-		boolean bMBfirstRegOne =modbusInterfaceDesc.isFirstRegisterAddressIsOne();
+		boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
 		
 		if (bMBfirstRegOne)
 			regad = regad.subtract(BigInteger.ONE);
@@ -218,43 +258,26 @@ public class SGrModbusDevice {
 
 		// TODO: catch SerialPortTimeoutException
 		// accessing physical interface
-		if (modbusInterfaceDesc.getModbusInterfaceSelection() == ModbusInterfaceSelectionType.RTU) {
+		//if (modbusInterfaceDesc.getModbusInterfaceSelection() == ModbusInterfaceSelectionType.RTU) {
 			if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER) {
-				mbregresp = mbDrvRTU.ReadHoldingRegisters(regad.intValue(), size);
+				mbregresp = drv4Modbus.ReadHoldingRegisters(regad.intValue(), size);
 				bGotRegisters = true;
 			} else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER) {
-				mbregresp = mbDrvRTU.ReadInputRegisters(regad.intValue(), size);
+				mbregresp = drv4Modbus.ReadInputRegisters(regad.intValue(), size);
 				bGotRegisters = true;
 			} else if (MBRegRef.getRegisterType() == TEnumObjectType.DISCRETE_INPUT) {
-				mbbitresp = mbDrvRTU.ReadDiscreteInputs(regad.intValue(), size);
+				mbbitresp = drv4Modbus.ReadDiscreteInputs(regad.intValue(), size);
 				bGotDiscrete = true;
 			} else if (MBRegRef.getRegisterType() == TEnumObjectType.COIL) {
-				mbbitresp = mbDrvRTU.ReadCoils(regad.intValue(), size);
+				mbbitresp = drv4Modbus.ReadCoils(regad.intValue(), size);
 				bGotDiscrete = true;
 			}
-		}
-		/*
-		} else if (modbusInterfaceDesc.getModbusInterfaceSelection() == ModbusInterfaceSelectionType.TCPIP) {
-			if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER) {
-				mbregresp = mbDrvTCP.ReadHoldingRegisters(regad.intValue(), size);
-				bGotRegisters = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER) {
-				mbregresp = mbDrvTCP.ReadInputRegisters(regad.intValue(), size);
-				bGotRegisters = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.DISCRETE_INPUT) {
-				mbbitresp = mbDrvTCP.ReadDiscreteInputs(regad.intValue(), size);
-				bGotDiscrete = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.COIL) {
-				mbbitresp = mbDrvTCP.ReadCoils(regad.intValue(), size);
-				bGotDiscrete = true;
-			}
-		}
-		*/
 
 		int[] singleResp = new int[2];
 		int[] doubleResp = new int[4];
 		if (bGotRegisters) {
 			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN))
+				// TODO: rethink Blocktransfer here
 				mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
 			for (int l = 0; l < size; l++) {
 				if (l == 0)
@@ -265,21 +288,21 @@ public class SGrModbusDevice {
 					RegRes = RegRes << 16;
 					RegRes = RegRes | (mbregresp[l] & 0x0000ffff);
 				}
-			    if (size > 2)
-			    {
-			    	// manage block transfers
-			    }
-			    else if (size == 2)
+				if (size == 2)
 			    {
 			    	singleResp[0] = mbregresp[0];
 			    	singleResp[1] = mbregresp[1];
-			    }
+			    } 
 			    else if (size == 4)
 			    {
 			    	doubleResp[0] = mbregresp[0];
 			    	doubleResp[1] = mbregresp[1];
 			    	doubleResp[2] = mbregresp[2];
 			    	doubleResp[3] = mbregresp[3];
+			    }
+			    else if (size > 2)
+			    {
+			    	// manage block transfers
 			    }
 			}
 		}
@@ -291,8 +314,9 @@ public class SGrModbusDevice {
 	    // generic type expected as API return type
 		// TODO: Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
-		switch (dGenType.getDpTypeSelected().getValue()) {
-		case DptSelectedType.BOOLEAN_VALUE:
+		
+
+		if (dGenType.isSetBoolean()) {
 			// TODO: add bus data
 			boolean bVal = false;
 			if (bGotRegisters) {
@@ -302,112 +326,114 @@ public class SGrModbusDevice {
 				bVal = mbbitresp[0];
 			}
 			RetVal.setBoolean(bVal);
-			break;
-		case DptSelectedType.ENUM_VALUE:
-			// TODO: apply SGrEnumListType family of enumerations inDpTT.setEnum(0);
-			RetVal.setEnum(null);
-			break;
-		case DptSelectedType.FLOAT32_VALUE:
+		}
+		else if (dGenType.isSetFloat32()) {
 			if (bGotRegisters) {
 
-				if ((dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT16_VALUE)
-						|| (dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT32_VALUE)
-						|| (dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT64_VALUE)) {
+				if ((dMBType.isSetInt16())
+						/* TODO: typesupport || (dMBType.isSetInt32())*/
+						|| (dMBType.isSetInt64() )) {
 					dVal = (double) RegRes;
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
 					fVal = (float) dVal;
-				} else if ((dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT16U_VALUE)
-						|| (dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT32U_VALUE)
-						|| (dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT64U_VALUE)) {
+				} else if ((dMBType.isSetInt16U())
+						|| (dMBType.isSetInt32U())
+						/* TODO: typesupport || || (dMBType.isSetInt64U())*/ ) {
 					dVal = (double) Math.abs(RegRes);
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
 					fVal = (float) dVal;
-				} else if (dMBType.getDpTypeSelected().getValue() == DptSelectedType.FLOAT32_VALUE) {
-					fVal = NonGen_ModbusHlpr.ConvRegistersToFloat(singleResp);
+				} else if (dMBType.isSetFloat32()) {
+					fVal = ModbusHlpr.ConvRegistersToFloat(singleResp);
+				} 
+			    else if (dMBType.isSetFloat64()) {
+			    	dVal = ModbusHlpr.ConvRegistersToDouble(singleResp);
+			    	fVal = (float) dVal;
 				}
-			} else if (dMBType.getDpTypeSelected().getValue() == DptSelectedType.FLOAT64_VALUE) {
-				dVal = NonGen_ModbusHlpr.ConvRegistersToDouble(singleResp);
-				fVal = (float) dVal;
-				;
 			}
 			RetVal.setFloat32(fVal);
-			break;
-		case DptSelectedType.FLOAT64_VALUE:
+		}
+		else if (dGenType.isSetFloat64()) {
 			if (bGotRegisters) {
-				if ((dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT16_VALUE)
-						|| (dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT32_VALUE)
-						|| (dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT64_VALUE)) {
+				if ((dMBType.isSetInt16())
+						/* TODO: typesupport || (dMBType.isSetInt32())*/
+						|| (dMBType.isSetInt64())) {
 					dVal = (double) RegRes;
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
 					RetVal.setFloat64(dVal);
-				} else if ((dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT16U_VALUE)
-						|| (dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT32U_VALUE)
-						|| (dMBType.getDpTypeSelected().getValue() == DptSelectedType.INT64U_VALUE)) {
+				} else if ((dMBType.isSetInt16U())
+						|| (dMBType.isSetInt32U())
+						/* TODO: typesupport|| (dMBType.isSetInt64U())*/) {
 					dVal = (double) Math.abs(RegRes);
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
 					RetVal.setFloat64(dVal);
-				} else if (dMBType.getDpTypeSelected().getValue() == DptSelectedType.FLOAT32_VALUE) {
+				} else if (dMBType.isSetFloat32()) {
 					fVal = (float) RegRes;
 					RetVal.setFloat64((double) fVal);
 				}
 			}
-			break;
-		case DptSelectedType.INT16_VALUE:
+		}
+		else if (dGenType.isSetInt16()) {
 			short shVal = (short) RegRes;
 			RetVal.setInt16(shVal);
-			break;
-		case DptSelectedType.INT16U_VALUE:
+		}
+		else if (dGenType.isSetInt16U()) {
 			int iVal = (int) Math.abs(RegRes);
 			RetVal.setInt16U(iVal);
-			break;
-		case DptSelectedType.INT32_VALUE:
-			BigInteger bgVal = BigInteger.valueOf(RegRes);
-			RetVal.setInt32(bgVal);
-			break;
-		case DptSelectedType.INT32U_VALUE:
+		}
+		else if (dGenType.isSetInt32U()) {
 			long lVal = (long) Math.abs(RegRes);
 			RetVal.setInt32U(lVal);
-			break;
-		case DptSelectedType.INT64_VALUE:
-			lVal = (long) RegRes;
+		}
+		else if (dGenType.isSetInt64()) {
+			long lVal = (long) RegRes;
 			RetVal.setInt64(lVal);
-			break;
-		case DptSelectedType.INT64U_VALUE:
-			// TODO: add bus data
-			bgVal = BigInteger.valueOf((long) Math.abs(RegRes));
-			RetVal.setInt64U(bgVal);
-			break;
-		case DptSelectedType.INT8_VALUE:
+		}
+		else if (dGenType.isSetInt8()) {
 			byte btVal = (byte) RegRes;
 			RetVal.setInt8(btVal);
-			break;
-		case DptSelectedType.INT8U_VALUE:
-			shVal = (byte) Math.abs(RegRes);
-			RetVal.setInt8U(shVal);
-			break;
-		case DptSelectedType.TIMESTAMP_VALUE:
-			// TODO: apply gregorian calendar library =>
-			// inDpTT.setTimestamp(TIMESTAMP_EDEFAULT);
-			RetVal.setTimestamp(null);
-			break;
-		case DptSelectedType.DATE_TIME_VALUE:
-			// TODO: apply gregorian calendar library
-			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-			RetVal.setTimestamp(null);
-			break;
-		case DptSelectedType.STRING_VALUE:		
-			// TODO: extend this to be able to read whole strings in Modbus block transfers
-			String str = new String();
-			char chr = (char) (RegRes & 0xff) ;
-			RetVal.setString(chr + "\0");
-			break;
-		default:
-			break;
 		}
+		else if (dGenType.isSetInt8U()) {
+			short shVal = (byte) Math.abs(RegRes);
+			RetVal.setInt8U(shVal);
+		}
+
+		/*
+		else if (dGenType.eIsSet(enum) {
+			// TODO: SGrBasicGenDataPointTypeType, apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
+			RetVal.setEnum(null);
+		}
+		*/
+		/* TODO: support int32 BigInteger
+		else if (dGenType.isSetInt32()) {
+			BigInteger bgVal = BigInteger.valueOf(RegRes);
+			RetVal.setInt32(bgVal);
+		}
+		*/
+		/* TODO: support int32 BigInteger
+		else if (dGenType.isSetInt64U() {
+		{
+			// TODO: SGrBasicGenDataPointTypeType, isSetInt64U  Funktion wurde vom Modeler nicht generiert  
+			// TODO: add bus data
+			BigInteger bgVal = BigInteger.valueOf((long) Math.abs(RegRes));
+			RetVal.setInt64U(bgVal);
+		} */
+		/*
+		 else if( dGenType.isSet())  dateTime
+		 // TODO: apply gregorian calendar library
+		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
+		// TODO: apply dGenType
+		 
+		 else if( dGenType.isSetString())
+		 
+				dGenType.setString(sValue);
+		 */
+		else
+		{ // error handling for missing instance
+		}		
 
 		// TODO: other Modbus functions, Block transfers, multiple coordinated transfers
 		// conversion schemes
@@ -421,6 +447,8 @@ public class SGrModbusDevice {
 		
 	}
 	
+
+
 	/*
 	private String sendViaTCP(int[] mbregresp, int pwof10, TSGrModbusRegisterRef MBRegRef, BigInteger regad, int size,
 			EList<TEnumConversionFct> MBconvScheme) throws Exception {
@@ -441,14 +469,14 @@ public class SGrModbusDevice {
 		String sres = String.format("%10.2f", fres);
 		return sres;
 	}
-	*/
+
 
 	private String sendViaRTU(int[] mbregresp, int pwof10, TSGrModbusRegisterRef MBRegRef, BigInteger regad, int size,
 			EList<TEnumConversionFct> MBconvScheme) throws Exception {
 		if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER)
-			mbregresp = mbDrvRTU.ReadHoldingRegisters(regad.intValue(), size);
+			mbregresp = drv4Modbus.ReadHoldingRegisters(regad.intValue(), size);
 		else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER)
-			mbregresp = mbDrvRTU.ReadInputRegisters(regad.intValue(), size);
+			mbregresp = drv4Modbus.ReadInputRegisters(regad.intValue(), size);
 		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 			mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
 		}
@@ -465,10 +493,11 @@ public class SGrModbusDevice {
 		String sres = String.format("%10.2f", fres);
 		return sres;
 	}	
-	
+		*/
 	
 	
 	private int[] ConvertStream(EList<TEnumConversionFct> mBconvScheme, int[] mbregresp, int size) {
+		// TODO: rethink Blocktransfer here
 
 		int n, c;
 		int[] mbregconv = new int[30];
@@ -518,8 +547,524 @@ public class SGrModbusDevice {
 	
 	
 	
+
+	public String setVal(String sProfileName, String sDataPointName, String sValue) throws Exception {
+		
+
+		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
+		if (profile.isPresent()) {
+			
+			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile( profile.get(), sDataPointName );
+			if ( dataPoint.isPresent() )
+			{			
+				 writeValue( profile.get(), dataPoint.get(), sValue );
+			}						
+		}	
+		return "Profile/access-point " + sProfileName + "/" + sDataPointName + " not found!";
+	}
 	
 
-	
+	private void writeValue( 
+			SGrModbusProfilesFrameType aProfile, 
+			SGrModbusDataPointsFrameType aDataPoint,
+			String sValue ) throws Exception {
+		
+		
+		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
+
+
+		if (dGenType.isSetBoolean()) {
+			boolean bVal = false;
+			if ((sValue == "true") || (sValue == "TRUE"))
+				bVal = true;
+				dGenType.setBoolean(bVal);
+		}
+		/*
+		else if (dGenType.eIsSet(enum) {
+			// TODO: SGrBasicGenDataPointTypeType, apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
+		}
+		*/
+		else if (dGenType.isSetFloat32()) {
+			float fVal; 
+			fVal = Float.parseFloat(sValue);
+			dGenType.setFloat32(fVal);
+			dGenType.setFloat32(fVal);
+		}
+		else if (dGenType.isSetFloat64()) {
+			double dVal;
+			dVal = Double.parseDouble(sValue);
+			dGenType.setFloat64(dVal);
+		}
+		else if (dGenType.isSetInt16()) {
+			short shVal;
+			shVal = Short.parseShort(sValue);
+			dGenType.setInt16(shVal);		
+		}
+		else if (dGenType.isSetInt16U()) {
+			int iVal;
+			iVal = Integer.parseInt(sValue);
+			dGenType.setInt16U(iVal);
+		}
+		/* TODO: support int32 BigInteger
+		else if (dGenType.isSetInt32()) {
+			BigInteger bgVal = new BigInteger(sValue);
+			dGenType.setInt32(bgVal);
+		}
+		*/
+		else if (dGenType.isSetInt32U()) {
+			long lVal = Long.parseLong(sValue);
+			dGenType.setInt32U(lVal);
+		}
+		else if (dGenType.isSetInt64()) {
+			long lVal = Long.parseLong(sValue);
+			dGenType.setInt64(lVal);
+		}
+		/* TODO: support int64U BigInteger
+		else if (dGenType.isSetInt64U() {
+		{
+			// TODO: SGrBasicGenDataPointTypeType, isSetInt64U  Funktion wurde vom Modeler nicht generiert  
+			BigInteger bgVal1 = new BigInteger(sValue);
+			dGenType.setInt64U(bgVal1);
+		}
+		*/
+		else if (dGenType.isSetInt8()) {
+			byte btVal;
+			btVal = Byte.parseByte(sValue);
+			dGenType.setInt8(btVal);
+		}
+		else if (dGenType.isSetInt8U()) {
+			Short shVal = Short.parseShort(sValue);
+			dGenType.setInt8U(shVal);
+		}
+		
+		/*
+		 else if( dGenType.isSet())  dateTime
+		 // TODO: apply gregorian calendar library
+		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
+		// TODO: apply dGenType
+		 
+		 else if( dGenType.isSetString())
+		 
+				dGenType.setString(sValue);
+		 */
+		else
+		{ // error handling
+		}		
+		setValByGDPType(aProfile, aDataPoint, dGenType) ;
+	}
+
+// generic class API using SGrBasicGenDataPointTypeType
+	public void setValByGDPType(
+		SGrModbusProfilesFrameType aProfile, 
+		SGrModbusDataPointsFrameType aDataPoint,
+ 		SGrBasicGenDataPointTypeType sgrValue)
+		throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
+		SerialPortTimeoutException, jssc.SerialPortException {
+		
+		prv_setValByGDPType(aProfile,aDataPoint,sgrValue);
+		
+	}
+
+public void  setValByGDPType(
+			String sProfileName, 
+			String sDataPointName,
+	 		SGrBasicGenDataPointTypeType sgrValue)
+	 				throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
+	 				SerialPortTimeoutException, jssc.SerialPortException {
+	Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
+		
+	if (profile.isPresent()) {
+			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile( profile.get(), sDataPointName );
+		if ( dataPoint.isPresent() )
+		{			
+			prv_setValByGDPType( profile.get(), dataPoint.get(), sgrValue );
+		}	
+	}
+
+}
+				
+			
+private void  prv_setValByGDPType (
+		SGrModbusProfilesFrameType aProfile, 
+		SGrModbusDataPointsFrameType aDataPoint,
+ 		SGrBasicGenDataPointTypeType sgrValue)
+		throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
+		SerialPortTimeoutException, jssc.SerialPortException 
+{
+
+		int[] mbregsnd = new int[120];
+		int res = 0, size = 0;
+		boolean[] mbbitsnd = new boolean[64];
+		boolean bRegisterCMDs = false, bDiscreteCMDs = false;
+		int mul = 1;
+		int powof10 = 0;
+		float fVal = (float) 0.0;
+		double dVal = 0.0;
+		BigInteger bgVal = BigInteger.ZERO;
+
+		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
+		
+		SGrBasicGenDataPointTypeType dGenType = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+		SGrBasicGenDataPointTypeType dMBType = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+		
+		
+		// Data format adaption
+		dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
+		dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
+		
+		//Data Direction ctrl
+		SGrRWPType dRWPType = aDataPoint.getDataPoint().get(0).getRwpDatadirection();
+		//Attributes  
+
+		//TODO: fehlende Instanz von attributen
+		// Attributes
+		// TODO: Workout instance of attributes, differentiate in between local XML
+		// datapoints & Modbus based datapoints
+		if (aDataPoint.getDpMbAttrReference().size() > 0) { // there are Modbus attributes available
+			if (aDataPoint.getDpMbAttrReference()
+					.get(0).getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
+			} else {
+				SGrScalingType attrScaling = aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0)
+						.getScalingByMulPwr();
+				mul = attrScaling.getMultiplicator();
+				powof10 = attrScaling.getPowerof10();
+			}
+		}
+
+		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
+		BigInteger regad = MBRegRef.getAddr();
+		
+		
+		boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
+		if (bMBfirstRegOne) {
+				regad = regad.subtract(BigInteger.ONE);
+		}
+		int bitRank = MBRegRef.getBitRank();
+		
+		TEnumObjectType MBregType = MBRegRef.getRegisterType();
+		int mbsize = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
+		EList<TEnumConversionFct> MBconvScheme = modbusInterfaceDesc.getConversionScheme();
+
+		// fill values & booleans, apply conversion scheme
+		if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER)
+			bRegisterCMDs = true;
+		if (MBRegRef.getRegisterType() == TEnumObjectType.COIL)
+			bDiscreteCMDs = true;
+
+		// generic type expected as API return type
+		//TODO:  Check why the data type "long" does not create a 64 bit signed integer for all Java virtual machines
+		//TODO: Block-Transfer handling
+		
+		if (dMBType.isSetBoolean()) {
+			//  TODO: add management for multiple booleans
+			//  TODO: check for potential I/O signal inversion mechanism
+			boolean bVal = false;
+			if (sgrValue.isBoolean())
+				bVal = true;
+			if (bRegisterCMDs) {
+				if (bVal)
+					mbregsnd[0] = 1;
+				else
+					mbregsnd[0] = 0;
+			} else if (bDiscreteCMDs)
+				mbbitsnd[0] = bVal;
+		}
+		/*
+		else if (dMBType.eIsSet(enum) {
+			// TODO: SGrBasicGenDataPointTypeType, apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
+		}
+		*/
+		else if (dMBType.isSetFloat32()) {
+			if (bRegisterCMDs) {
+				size = 2;
+				if (sgrValue.isSetInt8())
+					fVal = (float) sgrValue.getInt8();
+				if (sgrValue.isSetInt16())
+					fVal = (float) sgrValue.getInt16();
+				/* TODO: Support Int32  BigInteger
+				if (sgrValue.isSetInt32())
+					fVal = (float) sgrValue.getInt32().floatValue();
+					*/
+				if (sgrValue.isSetInt64())
+					fVal = (float) sgrValue.getInt64();
+				if (sgrValue.isSetInt8U())
+					fVal = (float) sgrValue.getInt8U();
+				if (sgrValue.isSetInt16U())
+					fVal = (float) sgrValue.getInt16U();
+				/* TODO: Support Int64U  BigInteger
+				if (sgrValue.isSetInt64U()))
+					fVal = (float) sgrValue.getInt64U().floatValue();
+				*/
+				if (sgrValue.isSetFloat32())
+					fVal = sgrValue.getFloat32();
+				if (sgrValue.isSetFloat64())
+					fVal = (float) sgrValue.getFloat64();						
+				mbregsnd = ModbusHlpr.ConvFloatToRegisters(fVal);
+			}
+
+		}
+		else if (dMBType.isSetFloat64()) {
+			if (bRegisterCMDs) {
+				size = 4;
+				if (sgrValue.isSetInt8())
+					dVal = (double) sgrValue.getInt8();
+				if (sgrValue.isSetInt16())
+					dVal = (double) sgrValue.getInt16();
+				/* TODO: Support Int32  BigInteger
+				if (sgrValue.isSetInt32))
+					dVal = (double) sgrValue.getInt32().doubleValue();
+					*/
+				if (sgrValue.isSetInt64())
+					dVal = (double) sgrValue.getInt64();
+				if (sgrValue.isSetFloat32())
+					dVal = (double) sgrValue.getFloat32();
+				if (sgrValue.isSetFloat64())
+					dVal = sgrValue.getFloat64();
+				if (sgrValue.isSetInt8U())
+					dVal = (double) sgrValue.getInt8U();
+				if (sgrValue.isSetInt16())
+					dVal = (double) sgrValue.getInt16U();
+				if (sgrValue.isSetInt32U())
+					dVal = (double) sgrValue.getInt32U();
+
+				/* TODO: Support Int64U  BigInteger	
+				if (sgrValue.isSetInt64U()))
+					dVal = (double) sgrValue.getInt64U().doubleValue();	
+					*/
+				mbregsnd = ModbusHlpr.ConvDoubleToRegisters(dVal);
+			}
+
+		}
+		else if (dMBType.isSetInt16()) {
+			if (bRegisterCMDs) {
+				size = 1;
+				dVal = getConvertedDouble(sgrValue, powof10, mul);
+				if ((dVal <= 32767.0) && (dVal >= -32678.0)) {
+					mbregsnd[0] = (short) dVal;
+				} else {
+					throw new IllegalArgumentException(
+							"INT16_VALUE out of range. Must be in -32678..32676 inclusive:" + dVal);
+				}
+					
+			}
+		
+		}
+		else if (dMBType.isSetInt16U()) {
+			if (bRegisterCMDs) {
+				size = 1;
+				dVal = getConvertedDouble(sgrValue, powof10, mul);
+				if ((dVal <= 65535.0) && (dVal >= 0.0)) {
+					mbregsnd[0] = (int) dVal;
+				} else {
+					throw new IllegalArgumentException(
+							"INT16U_VALUE out of range. Must be in 0..65565 inclusive:" + dVal);
+				}
+			}
+
+		}
+		else if (dMBType.isSetInt32U()) {
+			if (bRegisterCMDs) {
+				size = 1;
+				dVal = getConvertedDouble(sgrValue, powof10, mul);
+				if ((dVal <= 4294967295.0) && (dVal >= 0.0)) {
+					int i = (int) dVal;
+					mbregsnd[0] = (short) ((i >> 8) & 0xffff);
+					mbregsnd[1] = (short) (i & 0xffff);
+				} else {
+					throw new IllegalArgumentException(
+							"INT32U_VALUE out of range. Must be in 0..65565 inclusive:" + dVal);
+				}
+
+		}
+		else if (dMBType.isSetInt64()) {
+			if (bRegisterCMDs) {
+				size = 4;
+				dVal = getConvertedDouble(sgrValue, powof10, mul);
+
+				if ((dVal <= 9223372036854775807.0) && (dVal >= -9223372036854775808.0)) {
+					long l = (long) dVal;
+					mbregsnd[0] = (short) ((l >> 48) & 0xffff);
+					mbregsnd[1] = (short) ((l >> 32) & 0xffff);
+					mbregsnd[2] = (short) ((l >> 16) & 0xffff);
+					mbregsnd[3] = (short) (l & 0xffff);
+				} else {
+					throw new IllegalArgumentException(
+							"INT64_VALUE out of range. Must be in -9223372036854775808..9223372036854775807 inclusive:"
+									+ dVal);
+				}
+			}
+
+		}
+		else if (dMBType.isSetInt8()) {
+			if (bRegisterCMDs) {
+				size = 1;
+				dVal = getConvertedDouble(sgrValue, powof10, mul);
+				if ((dVal <= 127.0) && (dVal >= -128.0)) {
+					mbregsnd[0] = (short) dVal;
+				} else {
+					throw new IllegalArgumentException(
+							"INT8_VALUE out of range. Must be in -127..128 inclusive:" + dVal);
+				}
+			}
+
+		}
+		else if (dMBType.isSetInt8U()) {
+			if (bRegisterCMDs) {
+				size = 1;
+				dVal = getConvertedDouble(sgrValue, powof10, mul);
+				if ((dVal <= 255.0) && (dVal > 0.0)) {
+					mbregsnd[0] = (short) dVal;
+				} else {
+					throw new IllegalArgumentException(
+							"INT8U_VALUE out of range. Must be in 255..0 inclusive:" + dVal);
+				}
+			}
+
+		}
+			/* TODO:  support Int32  BigInteger 
+			else if (dMBType.isSetInt32()) {
+				if (bRegisterCMDs) {
+					size = 2;
+					dVal = getConvertedDouble(sgrValue, powof10, mul);
+					if ((dVal <= 2147483647.0) && (dVal >= 12147483648.0)) {
+						long l = (long) dVal;
+						mbregsnd[1] = (int) l & 0xffff;
+						mbregsnd[0] = (int) ((l >> 16) & 0xffff);
+					} else {
+						throw new IllegalArgumentException(
+								"INT32_VALUE out of range. Must be in 214748364..- 12147483648 inclusive:" + dVal);
+					}
+				}
+
+			} */
+			/*
+			else if (private void dMBType.isSetInt64U() {
+			{
+				// TODO: SGrBasicGenDataPointTypeType, isSetInt64U  Funktion wurde vom Modeler nicht generiert  
+				if (bRegisterCMDs) {
+					size = 4;
+					//WARNING: Java does only support unsigned 64bit Values -9223372036854775808..9223372036854775807 inclusive
+					//NOTE: as this is a sample code, we keep 2`65-1 as the refrenece value
+					dVal = getConvertedDouble(sgrValue, powof10, mul);
+
+					if ((dVal <= 18446744073709551615.0) && (dVal >= 0.0)) {
+						long l = (long) dVal;
+						mbregsnd[0] = (short) ((l >> 48) & 0xffff);
+						mbregsnd[1] = (short) ((l >> 32) & 0xffff);
+						mbregsnd[2] = (short) ((l >> 16) & 0xffff);
+						mbregsnd[3] = (short) (l & 0xffff);
+					} else {
+						throw new IllegalArgumentException(
+								"INT64U_VALUE out of range. Must be in -0...9223372036854775807 inclusive:" + dVal);
+					}
+
+			}
+			*/
+		/*
+		else if (dMBType.eIsSet(String) {
+			/* TODO: SGrBasicGenDataPointTypeType,  apply String 
+			if (bRegisterCMDs) {
+				String strVal = sgrValue.getString();
+				size = strVal.length();
+				for (int i = 1; i < size; i++)
+					mbregsnd[i] = (int) strVal.charAt(i);
+			}
+			 
+
+		} */
+		/*
+		else if (dMBType.eIsSet(dateTime )) {
+			/* TODO: apply gregorian calendar library => inDpTT.setTimestamp(TIMESTAMP_EDEFAULT);
+			 or better add simple Current Epoch Unix Timestamp
+			   The current epoch translates to
+				01/10/2022 @ 7:31am					(UTC)
+				2022-01-10T07:31:09+00:00		(ISO 8601)
+				Mon, 10 Jan 2022 07:31:09 	(+0000	RFC 822, 1036, 1123, 2822)
+				Monday, 10-Jan-22 07:31:09 	(UTC	RFC 2822)
+				2022-01-10T07:31:09+00:00		(RFC 3339) 
+		    //  TODO: mbregsnd setting
+		} */
+		
+		else 			
+		{  // TODO: Default behaviour
+		}	
+	}
+
+	if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
+		if (bRegisterCMDs) {
+			for (int l = 0; l < mbsize; l++) {
+				res = (res * 65536) + mbregsnd[l];
+				// TODO: rethink Blocktransfer here
+				mbregsnd = ConvertStream(MBconvScheme, mbregsnd, mbsize);
+			}
+		}
+		if (bDiscreteCMDs) 
+		{
+				 //  TODO: add management for multiple booleans
+		}
+	}
+
+			
+	// accessing physical interface
+	// TODO: move physical interface selection to proper layer selection AFTER doing all the adjustment stuff
+		try {
+			if (bRegisterCMDs) {
+				if (mbsize > 1)
+					drv4Modbus.WriteMultipleRegisters(regad.intValue(), mbregsnd);
+				else
+					drv4Modbus.WriteSingleRegister(regad.intValue(), mbregsnd[0]);
+				} else if (bDiscreteCMDs) {
+				if (mbsize > 1)
+					drv4Modbus.WriteMultipleCoils(regad.intValue(), mbbitsnd);
+				else
+					drv4Modbus.WriteSingleCoil(regad.intValue(), mbbitsnd[0]);
+				}
+
+			} catch (UnknownHostException e) {
+					System.out.println("Modbus : Host is unreachable");
+			} catch (SocketException e) {
+				System.out.println("Modbus: Socket connection problem");
+			} catch (ModbusException e) {
+				System.out.println("Modbus : general Modbus problem");
+			} catch (IOException e) {
+				System.out.println("Modbus : IO Exception");
+			} catch (SerialPortTimeoutException e) {
+				System.out.println("Modbus : Serial Port Timeout Exception");
+			}	
+}
+
+
+	double getConvertedDouble(SGrBasicGenDataPointTypeType dGenType, int powof10, int mul) {
+		double dVal = 0.0;
+
+		if (dGenType.isSetInt8())
+			dVal = (double) dGenType.getInt8();
+		if (dGenType.isSetInt16())
+			dVal = (double) dGenType.getInt16();
+		/* TODO: add support int32 BigInteger
+		if (dGenType.isSetInt32())
+			dVal = (double) dGenType.getInt32().doubleValue();
+		*/
+		if (dGenType.isSetInt64())
+			dVal = (double) dGenType.getInt64();
+		if (dGenType.isSetFloat32())
+			dVal = (double) dGenType.getFloat32();
+		if (dGenType.isSetFloat64())
+			dVal = dGenType.getFloat64();
+		if (dGenType.isSetInt8U())
+			dVal = (double) dGenType.getInt8U();
+		if (dGenType.isSetInt16U())
+			dVal = (double) dGenType.getInt16U();
+		if (dGenType.isSetInt32U())
+			dVal = (double) dGenType.getInt32U();
+		/* TODO: support int64U Biginteger
+		if (dGenType.isSetInt64U())
+			dVal = (double) dGenType.getInt64U().doubleValue();
+			*/
+		dVal = dVal / ((double) mul);
+		dVal = (dVal * Math.pow(10.0, -powof10));
+
+		return dVal;
+	}
 
 }

@@ -2,7 +2,7 @@
  */
 package ch.smartgridready.ns.s.gr.v0.impl;
 
-import ch.smartgridready.ns.s.gr.v0.ApiTreeType;
+import ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType;
 import ch.smartgridready.ns.s.gr.v0.SGrDeviceProfileType;
 import ch.smartgridready.ns.s.gr.v0.SGrManufacturerIDType;
 import ch.smartgridready.ns.s.gr.v0.SGrModbusAttrFrameType;
@@ -39,7 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getDevMbAttrReference <em>Dev Mb Attr Reference</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getModbusInterfaceDesc <em>Modbus Interface Desc</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getFpListElement <em>Fp List Element</em>}</li>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getApitreetype <em>Apitreetype</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getNetworkConnectionState <em>Network Connection State</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getDeviceName <em>Device Name</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrModbusDeviceDescriptionTypeImpl#isIsLocalControl <em>Is Local Control</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getManufacturerID <em>Manufacturer ID</em>}</li>
@@ -90,14 +90,14 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 	protected EList<SGrModbusProfilesFrameType> fpListElement;
 
 	/**
-	 * The cached value of the '{@link #getApitreetype() <em>Apitreetype</em>}' containment reference.
+	 * The cached value of the '{@link #getNetworkConnectionState() <em>Network Connection State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getApitreetype()
+	 * @see #getNetworkConnectionState()
 	 * @generated
 	 * @ordered
 	 */
-	protected ApiTreeType apitreetype;
+	protected NetworkConnectionStateType networkConnectionState;
 
 	/**
 	 * The default value of the '{@link #getDeviceName() <em>Device Name</em>}' attribute.
@@ -338,8 +338,8 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 */
 	@Override
-	public ApiTreeType getApitreetype() {
-		return apitreetype;
+	public NetworkConnectionStateType getNetworkConnectionState() {
+		return networkConnectionState;
 	}
 
 	/**
@@ -347,11 +347,11 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetApitreetype(ApiTreeType newApitreetype, NotificationChain msgs) {
-		ApiTreeType oldApitreetype = apitreetype;
-		apitreetype = newApitreetype;
+	public NotificationChain basicSetNetworkConnectionState(NetworkConnectionStateType newNetworkConnectionState, NotificationChain msgs) {
+		NetworkConnectionStateType oldNetworkConnectionState = networkConnectionState;
+		networkConnectionState = newNetworkConnectionState;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE, oldApitreetype, newApitreetype);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE, oldNetworkConnectionState, newNetworkConnectionState);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -363,18 +363,18 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 */
 	@Override
-	public void setApitreetype(ApiTreeType newApitreetype) {
-		if (newApitreetype != apitreetype) {
+	public void setNetworkConnectionState(NetworkConnectionStateType newNetworkConnectionState) {
+		if (newNetworkConnectionState != networkConnectionState) {
 			NotificationChain msgs = null;
-			if (apitreetype != null)
-				msgs = ((InternalEObject)apitreetype).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE, null, msgs);
-			if (newApitreetype != null)
-				msgs = ((InternalEObject)newApitreetype).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE, null, msgs);
-			msgs = basicSetApitreetype(newApitreetype, msgs);
+			if (networkConnectionState != null)
+				msgs = ((InternalEObject)networkConnectionState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE, null, msgs);
+			if (newNetworkConnectionState != null)
+				msgs = ((InternalEObject)newNetworkConnectionState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE, null, msgs);
+			msgs = basicSetNetworkConnectionState(newNetworkConnectionState, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE, newApitreetype, newApitreetype));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE, newNetworkConnectionState, newNetworkConnectionState));
 	}
 
 	/**
@@ -539,8 +539,8 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 				return basicSetModbusInterfaceDesc(null, msgs);
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
 				return ((InternalEList<?>)getFpListElement()).basicRemove(otherEnd, msgs);
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE:
-				return basicSetApitreetype(null, msgs);
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE:
+				return basicSetNetworkConnectionState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -561,8 +561,8 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 				return getModbusInterfaceDesc();
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
 				return getFpListElement();
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE:
-				return getApitreetype();
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE:
+				return getNetworkConnectionState();
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:
 				return getDeviceName();
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL:
@@ -598,8 +598,8 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 				getFpListElement().clear();
 				getFpListElement().addAll((Collection<? extends SGrModbusProfilesFrameType>)newValue);
 				return;
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE:
-				setApitreetype((ApiTreeType)newValue);
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE:
+				setNetworkConnectionState((NetworkConnectionStateType)newValue);
 				return;
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:
 				setDeviceName((String)newValue);
@@ -637,8 +637,8 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
 				getFpListElement().clear();
 				return;
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE:
-				setApitreetype((ApiTreeType)null);
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE:
+				setNetworkConnectionState((NetworkConnectionStateType)null);
 				return;
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:
 				setDeviceName(DEVICE_NAME_EDEFAULT);
@@ -672,8 +672,8 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 				return modbusInterfaceDesc != null;
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
 				return fpListElement != null && !fpListElement.isEmpty();
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE:
-				return apitreetype != null;
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE:
+				return networkConnectionState != null;
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:
 				return DEVICE_NAME_EDEFAULT == null ? deviceName != null : !DEVICE_NAME_EDEFAULT.equals(deviceName);
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL:

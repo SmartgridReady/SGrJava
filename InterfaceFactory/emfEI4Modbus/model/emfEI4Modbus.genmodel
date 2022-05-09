@@ -4,27 +4,10 @@
     modelName="EmfEI4Modbus" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>../../SGrJava/InterfaceFactory/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
+  <foreignModel>../../InterfaceFactory/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
   <genPackages prefix="V0" basePackage="ch.smartgridready.ns.s.gr" resource="XML"
       disposableProviderFactory="true" loadInitialization="true" literalsInterface="false"
       ecorePackage="v0.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//DptSelectedType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/INT8"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/INT16"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/INT32"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/INT64"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/INT8U"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/INT16U"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/INT32U"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/INT64U"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/FLOAT32"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/FLOAT64"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/Enum"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/Timestamp"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/dateTime"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/String"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DptSelectedType/BOOLEAN"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//EBaudRateType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//EBaudRateType/_300"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//EBaudRateType/_600"/>
@@ -227,9 +210,9 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/WAGO"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/Swistec"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/goZmart"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/m17"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/m18"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/m19"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/Hoval"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/CTA"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/Heliotherm"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrManufacturerIDType/m20"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrMeasValueSourceType">
@@ -564,12 +547,12 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph39"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/Monitoring"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/DynamicCtrl"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph42"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph43"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph44"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph45"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph46"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph47"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/HeatPumpBase"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/HeatCoolCtrl"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/CompressorPwrCtrl"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/DomHotWaterCtrl"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/BufferStorageCtrl"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/RoomTempCtrl"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph48"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph49"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/RoomTemp"/>
@@ -631,7 +614,6 @@
     <genDataTypes ecoreDataType="v0.ecore#//BitmaskType"/>
     <genDataTypes ecoreDataType="v0.ecore#//DpSizeNrRegistersType"/>
     <genDataTypes ecoreDataType="v0.ecore#//DpSizeNrRegistersTypeObject"/>
-    <genDataTypes ecoreDataType="v0.ecore#//DptSelectedTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//EBaudRateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//EByteLenTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//EParityTypeObject"/>
@@ -648,10 +630,6 @@
     <genDataTypes ecoreDataType="v0.ecore#//IpV4portNrTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//MasterFunctionsSupportedTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//ModbusInterfaceSelectionTypeObject"/>
-    <genDataTypes ecoreDataType="v0.ecore#//NumDPsType"/>
-    <genDataTypes ecoreDataType="v0.ecore#//NumDPsTypeObject"/>
-    <genDataTypes ecoreDataType="v0.ecore#//NumFPsType"/>
-    <genDataTypes ecoreDataType="v0.ecore#//NumFPsTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//PlaceHolder4futureExtensionsType"/>
     <genDataTypes ecoreDataType="v0.ecore#//PrelimStringDefType"/>
     <genDataTypes ecoreDataType="v0.ecore#//ProfileTypeEnumTypeObject"/>
@@ -696,15 +674,6 @@
     <genDataTypes ecoreDataType="v0.ecore#//TIPportNrTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//TSlaveIDType"/>
     <genDataTypes ecoreDataType="v0.ecore#//TSlaveIDTypeObject"/>
-    <genClasses ecoreClass="v0.ecore#//ApiTreeType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ApiTreeType/isConnected"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ApiTreeType/numFPs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ApiTreeType/numDPs"/>
-    </genClasses>
-    <genClasses ecoreClass="v0.ecore#//ConnectionState">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ConnectionState/isConnected"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ConnectionState/nextAttempt"/>
-    </genClasses>
     <genClasses ecoreClass="v0.ecore#//ContactAPIInterfaceDescType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ContactAPIInterfaceDescType/numContacts"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ContactAPIInterfaceDescType/contactStabilisationTimeMs"/>
@@ -713,13 +682,13 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/apiTree"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/baudRatesSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/byteLenSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/deviceProfile"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/functionalProfiles"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/genDeviceFrame"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/modbusFunctionCodesSupported"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/netConnectionState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/paritySupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrModbusDataPointDescription"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrModbusInterfaceDescription"/>
@@ -745,6 +714,10 @@
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//ModbusJMESPathType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusJMESPathType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//NetworkConnectionStateType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//NetworkConnectionStateType/isConnected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//NetworkConnectionStateType/nextAttempt"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//RestAPIJMESPathType1">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestAPIJMESPathType1/value"/>
@@ -810,9 +783,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/float32"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/float64"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrBasicGenDataPointTypeType/enum"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/timestamp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/dateTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/string"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/dpTypeSelected"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrContactAPIDeviceDescriptionType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrContactAPIDeviceDescriptionType/deviceProfile"/>
@@ -901,7 +873,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/devMbAttrReference"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/modbusInterfaceDesc"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/fpListElement"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/apitreetype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/networkConnectionState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDeviceDescriptionType/deviceName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDeviceDescriptionType/isLocalControl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDeviceDescriptionType/manufacturerID"/>

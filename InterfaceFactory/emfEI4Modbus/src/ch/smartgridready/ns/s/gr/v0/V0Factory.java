@@ -22,24 +22,6 @@ public interface V0Factory extends EFactory {
 	V0Factory eINSTANCE = ch.smartgridready.ns.s.gr.v0.impl.V0FactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Api Tree Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Api Tree Type</em>'.
-	 * @generated
-	 */
-	ApiTreeType createApiTreeType();
-
-	/**
-	 * Returns a new object of class '<em>Connection State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Connection State</em>'.
-	 * @generated
-	 */
-	ConnectionState createConnectionState();
-
-	/**
 	 * Returns a new object of class '<em>Contact API Interface Desc Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,6 +65,15 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	ModbusJMESPathType createModbusJMESPathType();
+
+	/**
+	 * Returns a new object of class '<em>Network Connection State Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Network Connection State Type</em>'.
+	 * @generated
+	 */
+	NetworkConnectionStateType createNetworkConnectionStateType();
 
 	/**
 	 * Returns a new object of class '<em>Rest APIJMES Path Type1</em>'.

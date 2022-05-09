@@ -240,45 +240,39 @@ public enum SGrManufacturerIDType implements Enumerator {
 	GO_ZMART(16, "goZmart", "goZmart"),
 
 	/**
-	 * The '<em><b>M17</b></em>' literal object.
+	 * The '<em><b>Hoval</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 17 :manuf 17
 	 * <!-- end-model-doc -->
-	 * @see #M17_VALUE
+	 * @see #HOVAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	M17(17, "m17", "m17"),
-
-	/**
-	 * The '<em><b>M18</b></em>' literal object.
+	HOVAL(17, "Hoval", "Hoval"), /**
+	 * The '<em><b>CTA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 18 :manuf 18
 	 * <!-- end-model-doc -->
-	 * @see #M18_VALUE
+	 * @see #CTA_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	M18(18, "m18", "m18"),
-
-	/**
-	 * The '<em><b>M19</b></em>' literal object.
+	CTA(18, "CTA", "CTA"), /**
+	 * The '<em><b>Heliotherm</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 19 :manuf 19
 	 * <!-- end-model-doc -->
-	 * @see #M19_VALUE
+	 * @see #HELIOTHERM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	M19(19, "m19", "m19"),
-
-	/**
+	HELIOTHERM(19, "Heliotherm", "Heliotherm"), /**
 	 * The '<em><b>M20</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -530,46 +524,46 @@ public enum SGrManufacturerIDType implements Enumerator {
 	public static final int GO_ZMART_VALUE = 16;
 
 	/**
-	 * The '<em><b>M17</b></em>' literal value.
+	 * The '<em><b>Hoval</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 17 :manuf 17
 	 * <!-- end-model-doc -->
-	 * @see #M17
-	 * @model name="m17"
+	 * @see #HOVAL
+	 * @model name="Hoval"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int M17_VALUE = 17;
+	public static final int HOVAL_VALUE = 17;
 
 	/**
-	 * The '<em><b>M18</b></em>' literal value.
+	 * The '<em><b>CTA</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 18 :manuf 18
 	 * <!-- end-model-doc -->
-	 * @see #M18
-	 * @model name="m18"
+	 * @see #CTA
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int M18_VALUE = 18;
+	public static final int CTA_VALUE = 18;
 
 	/**
-	 * The '<em><b>M19</b></em>' literal value.
+	 * The '<em><b>Heliotherm</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 19 :manuf 19
 	 * <!-- end-model-doc -->
-	 * @see #M19
-	 * @model name="m19"
+	 * @see #HELIOTHERM
+	 * @model name="Heliotherm"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int M19_VALUE = 19;
+	public static final int HELIOTHERM_VALUE = 19;
 
 	/**
 	 * The '<em><b>M20</b></em>' literal value.
@@ -610,9 +604,9 @@ public enum SGrManufacturerIDType implements Enumerator {
 			WAGO,
 			SWISTEC,
 			GO_ZMART,
-			M17,
-			M18,
-			M19,
+			HOVAL,
+			CTA,
+			HELIOTHERM,
 			M20,
 		};
 
@@ -687,9 +681,9 @@ public enum SGrManufacturerIDType implements Enumerator {
 			case WAGO_VALUE: return WAGO;
 			case SWISTEC_VALUE: return SWISTEC;
 			case GO_ZMART_VALUE: return GO_ZMART;
-			case M17_VALUE: return M17;
-			case M18_VALUE: return M18;
-			case M19_VALUE: return M19;
+			case HOVAL_VALUE: return HOVAL;
+			case CTA_VALUE: return CTA;
+			case HELIOTHERM_VALUE: return HELIOTHERM;
 			case M20_VALUE: return M20;
 		}
 		return null;

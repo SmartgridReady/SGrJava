@@ -552,84 +552,72 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	DYNAMIC_CTRL(40, "DynamicCtrl", "DynamicCtrl"),
 
 	/**
-	 * The '<em><b>Ph42</b></em>' literal object.
+	 * The '<em><b>Heat Pump Base</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 42:
 	 * <!-- end-model-doc -->
-	 * @see #PH42_VALUE
+	 * @see #HEAT_PUMP_BASE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PH42(41, "ph42", "ph42"),
-
-	/**
-	 * The '<em><b>Ph43</b></em>' literal object.
+	HEAT_PUMP_BASE(41, "HeatPumpBase", "HeatPumpBase"), /**
+	 * The '<em><b>Heat Cool Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 43:
 	 * <!-- end-model-doc -->
-	 * @see #PH43_VALUE
+	 * @see #HEAT_COOL_CTRL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PH43(42, "ph43", "ph43"),
-
-	/**
-	 * The '<em><b>Ph44</b></em>' literal object.
+	HEAT_COOL_CTRL(42, "HeatCoolCtrl", "HeatCoolCtrl"), /**
+	 * The '<em><b>Compressor Pwr Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 44:
 	 * <!-- end-model-doc -->
-	 * @see #PH44_VALUE
+	 * @see #COMPRESSOR_PWR_CTRL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PH44(43, "ph44", "ph44"),
-
-	/**
-	 * The '<em><b>Ph45</b></em>' literal object.
+	COMPRESSOR_PWR_CTRL(43, "CompressorPwrCtrl", "CompressorPwrCtrl"), /**
+	 * The '<em><b>Dom Hot Water Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 45:
 	 * <!-- end-model-doc -->
-	 * @see #PH45_VALUE
+	 * @see #DOM_HOT_WATER_CTRL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PH45(44, "ph45", "ph45"),
-
-	/**
-	 * The '<em><b>Ph46</b></em>' literal object.
+	DOM_HOT_WATER_CTRL(44, "DomHotWaterCtrl", "DomHotWaterCtrl"), /**
+	 * The '<em><b>Buffer Storage Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 46:
 	 * <!-- end-model-doc -->
-	 * @see #PH46_VALUE
+	 * @see #BUFFER_STORAGE_CTRL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PH46(45, "ph46", "ph46"),
-
-	/**
-	 * The '<em><b>Ph47</b></em>' literal object.
+	BUFFER_STORAGE_CTRL(45, "BufferStorageCtrl", "BufferStorageCtrl"), /**
+	 * The '<em><b>Room Temp Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 47:
 	 * <!-- end-model-doc -->
-	 * @see #PH47_VALUE
+	 * @see #ROOM_TEMP_CTRL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PH47(46, "ph47", "ph47"),
-
-	/**
+	ROOM_TEMP_CTRL(46, "RoomTempCtrl", "RoomTempCtrl"), /**
 	 * The '<em><b>Ph48</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1620,88 +1608,88 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	public static final int DYNAMIC_CTRL_VALUE = 40;
 
 	/**
-	 * The '<em><b>Ph42</b></em>' literal value.
+	 * The '<em><b>Heat Pump Base</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 42:
 	 * <!-- end-model-doc -->
-	 * @see #PH42
-	 * @model name="ph42"
+	 * @see #HEAT_PUMP_BASE
+	 * @model name="HeatPumpBase"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PH42_VALUE = 41;
+	public static final int HEAT_PUMP_BASE_VALUE = 41;
 
 	/**
-	 * The '<em><b>Ph43</b></em>' literal value.
+	 * The '<em><b>Heat Cool Ctrl</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 43:
 	 * <!-- end-model-doc -->
-	 * @see #PH43
-	 * @model name="ph43"
+	 * @see #HEAT_COOL_CTRL
+	 * @model name="HeatCoolCtrl"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PH43_VALUE = 42;
+	public static final int HEAT_COOL_CTRL_VALUE = 42;
 
 	/**
-	 * The '<em><b>Ph44</b></em>' literal value.
+	 * The '<em><b>Compressor Pwr Ctrl</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 44:
 	 * <!-- end-model-doc -->
-	 * @see #PH44
-	 * @model name="ph44"
+	 * @see #COMPRESSOR_PWR_CTRL
+	 * @model name="CompressorPwrCtrl"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PH44_VALUE = 43;
+	public static final int COMPRESSOR_PWR_CTRL_VALUE = 43;
 
 	/**
-	 * The '<em><b>Ph45</b></em>' literal value.
+	 * The '<em><b>Dom Hot Water Ctrl</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 45:
 	 * <!-- end-model-doc -->
-	 * @see #PH45
-	 * @model name="ph45"
+	 * @see #DOM_HOT_WATER_CTRL
+	 * @model name="DomHotWaterCtrl"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PH45_VALUE = 44;
+	public static final int DOM_HOT_WATER_CTRL_VALUE = 44;
 
 	/**
-	 * The '<em><b>Ph46</b></em>' literal value.
+	 * The '<em><b>Buffer Storage Ctrl</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 46:
 	 * <!-- end-model-doc -->
-	 * @see #PH46
-	 * @model name="ph46"
+	 * @see #BUFFER_STORAGE_CTRL
+	 * @model name="BufferStorageCtrl"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PH46_VALUE = 45;
+	public static final int BUFFER_STORAGE_CTRL_VALUE = 45;
 
 	/**
-	 * The '<em><b>Ph47</b></em>' literal value.
+	 * The '<em><b>Room Temp Ctrl</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 47:
 	 * <!-- end-model-doc -->
-	 * @see #PH47
-	 * @model name="ph47"
+	 * @see #ROOM_TEMP_CTRL
+	 * @model name="RoomTempCtrl"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PH47_VALUE = 46;
+	public static final int ROOM_TEMP_CTRL_VALUE = 46;
 
 	/**
 	 * The '<em><b>Ph48</b></em>' literal value.
@@ -2200,12 +2188,12 @@ public enum SubProfileTypeEnumType implements Enumerator {
 			PH39,
 			MONITORING,
 			DYNAMIC_CTRL,
-			PH42,
-			PH43,
-			PH44,
-			PH45,
-			PH46,
-			PH47,
+			HEAT_PUMP_BASE,
+			HEAT_COOL_CTRL,
+			COMPRESSOR_PWR_CTRL,
+			DOM_HOT_WATER_CTRL,
+			BUFFER_STORAGE_CTRL,
+			ROOM_TEMP_CTRL,
 			PH48,
 			PH49,
 			ROOM_TEMP,
@@ -2335,12 +2323,12 @@ public enum SubProfileTypeEnumType implements Enumerator {
 			case PH39_VALUE: return PH39;
 			case MONITORING_VALUE: return MONITORING;
 			case DYNAMIC_CTRL_VALUE: return DYNAMIC_CTRL;
-			case PH42_VALUE: return PH42;
-			case PH43_VALUE: return PH43;
-			case PH44_VALUE: return PH44;
-			case PH45_VALUE: return PH45;
-			case PH46_VALUE: return PH46;
-			case PH47_VALUE: return PH47;
+			case HEAT_PUMP_BASE_VALUE: return HEAT_PUMP_BASE;
+			case HEAT_COOL_CTRL_VALUE: return HEAT_COOL_CTRL;
+			case COMPRESSOR_PWR_CTRL_VALUE: return COMPRESSOR_PWR_CTRL;
+			case DOM_HOT_WATER_CTRL_VALUE: return DOM_HOT_WATER_CTRL;
+			case BUFFER_STORAGE_CTRL_VALUE: return BUFFER_STORAGE_CTRL;
+			case ROOM_TEMP_CTRL_VALUE: return ROOM_TEMP_CTRL;
 			case PH48_VALUE: return PH48;
 			case PH49_VALUE: return PH49;
 			case ROOM_TEMP_VALUE: return ROOM_TEMP;

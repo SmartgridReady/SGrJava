@@ -2,12 +2,12 @@
  */
 package ch.smartgridready.ns.s.gr.v0.impl;
 
-import ch.smartgridready.ns.s.gr.v0.ApiTreeType;
 import ch.smartgridready.ns.s.gr.v0.DocumentRoot;
 import ch.smartgridready.ns.s.gr.v0.EBaudRateType;
 import ch.smartgridready.ns.s.gr.v0.EByteLenType;
 import ch.smartgridready.ns.s.gr.v0.EParityType;
 import ch.smartgridready.ns.s.gr.v0.EStopBitLenType;
+import ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType;
 import ch.smartgridready.ns.s.gr.v0.SGrContactAPIDeviceDescriptionType;
 import ch.smartgridready.ns.s.gr.v0.SGrDeviceDescriptionType;
 import ch.smartgridready.ns.s.gr.v0.SGrDeviceProfileType;
@@ -48,13 +48,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getApiTree <em>Api Tree</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getBaudRatesSupported <em>Baud Rates Supported</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getByteLenSupported <em>Byte Len Supported</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getDeviceProfile <em>Device Profile</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getFunctionalProfiles <em>Functional Profiles</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getGenDeviceFrame <em>Gen Device Frame</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getModbusFunctionCodesSupported <em>Modbus Function Codes Supported</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getNetConnectionState <em>Net Connection State</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getParitySupported <em>Parity Supported</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getSGrModbusDataPointDescription <em>SGr Modbus Data Point Description</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.DocumentRootImpl#getSGrModbusInterfaceDescription <em>SGr Modbus Interface Description</em>}</li>
@@ -216,35 +216,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public ApiTreeType getApiTree() {
-		return (ApiTreeType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_ApiTree(), true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetApiTree(ApiTreeType newApiTree, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_ApiTree(), newApiTree, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setApiTree(ApiTreeType newApiTree) {
-		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_ApiTree(), newApiTree);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EBaudRateType getBaudRatesSupported() {
 		return (EBaudRateType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_BaudRatesSupported(), true);
 	}
@@ -384,6 +355,35 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	@Override
 	public void setModbusFunctionCodesSupported(String newModbusFunctionCodesSupported) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_ModbusFunctionCodesSupported(), newModbusFunctionCodesSupported);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NetworkConnectionStateType getNetConnectionState() {
+		return (NetworkConnectionStateType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_NetConnectionState(), true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetNetConnectionState(NetworkConnectionStateType newNetConnectionState, NotificationChain msgs) {
+		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_NetConnectionState(), newNetConnectionState, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setNetConnectionState(NetworkConnectionStateType newNetConnectionState) {
+		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_NetConnectionState(), newNetConnectionState);
 	}
 
 	/**
@@ -730,14 +730,14 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
 			case V0Package.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
 				return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-			case V0Package.DOCUMENT_ROOT__API_TREE:
-				return basicSetApiTree(null, msgs);
 			case V0Package.DOCUMENT_ROOT__DEVICE_PROFILE:
 				return basicSetDeviceProfile(null, msgs);
 			case V0Package.DOCUMENT_ROOT__FUNCTIONAL_PROFILES:
 				return basicSetFunctionalProfiles(null, msgs);
 			case V0Package.DOCUMENT_ROOT__GEN_DEVICE_FRAME:
 				return basicSetGenDeviceFrame(null, msgs);
+			case V0Package.DOCUMENT_ROOT__NET_CONNECTION_STATE:
+				return basicSetNetConnectionState(null, msgs);
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DATA_POINT_DESCRIPTION:
 				return basicSetSGrModbusDataPointDescription(null, msgs);
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_INTERFACE_DESCRIPTION:
@@ -779,8 +779,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 			case V0Package.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
 				if (coreType) return getXSISchemaLocation();
 				else return getXSISchemaLocation().map();
-			case V0Package.DOCUMENT_ROOT__API_TREE:
-				return getApiTree();
 			case V0Package.DOCUMENT_ROOT__BAUD_RATES_SUPPORTED:
 				return getBaudRatesSupported();
 			case V0Package.DOCUMENT_ROOT__BYTE_LEN_SUPPORTED:
@@ -793,6 +791,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				return getGenDeviceFrame();
 			case V0Package.DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED:
 				return getModbusFunctionCodesSupported();
+			case V0Package.DOCUMENT_ROOT__NET_CONNECTION_STATE:
+				return getNetConnectionState();
 			case V0Package.DOCUMENT_ROOT__PARITY_SUPPORTED:
 				return getParitySupported();
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DATA_POINT_DESCRIPTION:
@@ -838,9 +838,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 			case V0Package.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
 				((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
 				return;
-			case V0Package.DOCUMENT_ROOT__API_TREE:
-				setApiTree((ApiTreeType)newValue);
-				return;
 			case V0Package.DOCUMENT_ROOT__BAUD_RATES_SUPPORTED:
 				setBaudRatesSupported((EBaudRateType)newValue);
 				return;
@@ -858,6 +855,9 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				return;
 			case V0Package.DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED:
 				setModbusFunctionCodesSupported((String)newValue);
+				return;
+			case V0Package.DOCUMENT_ROOT__NET_CONNECTION_STATE:
+				setNetConnectionState((NetworkConnectionStateType)newValue);
 				return;
 			case V0Package.DOCUMENT_ROOT__PARITY_SUPPORTED:
 				setParitySupported((EParityType)newValue);
@@ -916,9 +916,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 			case V0Package.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
 				getXSISchemaLocation().clear();
 				return;
-			case V0Package.DOCUMENT_ROOT__API_TREE:
-				setApiTree((ApiTreeType)null);
-				return;
 			case V0Package.DOCUMENT_ROOT__BAUD_RATES_SUPPORTED:
 				setBaudRatesSupported(BAUD_RATES_SUPPORTED_EDEFAULT);
 				return;
@@ -936,6 +933,9 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				return;
 			case V0Package.DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED:
 				setModbusFunctionCodesSupported(MODBUS_FUNCTION_CODES_SUPPORTED_EDEFAULT);
+				return;
+			case V0Package.DOCUMENT_ROOT__NET_CONNECTION_STATE:
+				setNetConnectionState((NetworkConnectionStateType)null);
 				return;
 			case V0Package.DOCUMENT_ROOT__PARITY_SUPPORTED:
 				setParitySupported(PARITY_SUPPORTED_EDEFAULT);
@@ -991,8 +991,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
 			case V0Package.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
 				return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-			case V0Package.DOCUMENT_ROOT__API_TREE:
-				return getApiTree() != null;
 			case V0Package.DOCUMENT_ROOT__BAUD_RATES_SUPPORTED:
 				return getBaudRatesSupported() != BAUD_RATES_SUPPORTED_EDEFAULT;
 			case V0Package.DOCUMENT_ROOT__BYTE_LEN_SUPPORTED:
@@ -1005,6 +1003,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				return getGenDeviceFrame() != null;
 			case V0Package.DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED:
 				return MODBUS_FUNCTION_CODES_SUPPORTED_EDEFAULT == null ? getModbusFunctionCodesSupported() != null : !MODBUS_FUNCTION_CODES_SUPPORTED_EDEFAULT.equals(getModbusFunctionCodesSupported());
+			case V0Package.DOCUMENT_ROOT__NET_CONNECTION_STATE:
+				return getNetConnectionState() != null;
 			case V0Package.DOCUMENT_ROOT__PARITY_SUPPORTED:
 				return getParitySupported() != PARITY_SUPPORTED_EDEFAULT;
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DATA_POINT_DESCRIPTION:

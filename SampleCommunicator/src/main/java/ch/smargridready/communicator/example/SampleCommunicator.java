@@ -2,15 +2,15 @@ package ch.smargridready.communicator.example;
 
 
 import ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType;
-import commHandler4Modbus.DriverAPI4Modbus;
-import commHandler4Modbus.impl.DriverAPI4ModbusTCP;
 import communicator.helper.DeviceDescriptionLoader;
-import communicator.helper.DriverAPI4ModbusRTUMock;
+import communicator.helper.GenDriverAPI4Modbus;
+import communicator.helper.GenDriverAPI4ModbusRTUMock;
+import communicator.helper.GenDriverAPI4ModbusTCP;
 import communicator.impl.SGrModbusDevice;
 
 public class SampleCommunicator {
 	
-	private static final String XML_BASE_DIR = "../InterfaceFactory/XMLInstances/SGr/"; 
+	private static final String XML_BASE_DIR = "../InterfaceFactory/XMLInstances/ExtInterfaces/"; 
 	
 	public static void main( String argv[] ) {				
 		
@@ -19,10 +19,10 @@ public class SampleCommunicator {
 			DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
 			SGrModbusDeviceDescriptionType sgcpMeter = loader.load( XML_BASE_DIR, "betaModbusABBMeterV0.1.2.xml");
 			
-			DriverAPI4Modbus mbRTU = new DriverAPI4ModbusRTUMock();
-			DriverAPI4Modbus mbTCP = new DriverAPI4ModbusTCP();	
+			GenDriverAPI4Modbus mbRTU = new GenDriverAPI4ModbusRTUMock();
+			GenDriverAPI4Modbus mbTCP = new GenDriverAPI4ModbusTCP();	
 			
-			SGrModbusDevice sgcpDevice = new SGrModbusDevice(sgcpMeter, mbRTU, mbTCP );
+			SGrModbusDevice sgcpDevice = new SGrModbusDevice(sgcpMeter, mbRTU );
 			
 			try {
 				

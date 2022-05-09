@@ -44,30 +44,15 @@
       <element name="stopBitLen" type="sgr:eStopBitLenType"/>
     </sequence>
   </complexType>
-  <element name="apiTree" type="sgr:apiTreeType"/>
-  <simpleType name="numDPsType">
-    <restriction base="int"/>
-  </simpleType>
-  <simpleType name="numFPsType">
-    <restriction base="int"/>
-  </simpleType>
-  <complexType name="apiTreeType">
-    <sequence>
-      <element maxOccurs="1" minOccurs="1" name="isConnected" type="sgr:ConnectionState"/>
-      <element maxOccurs="1" minOccurs="1" name="numFPs" type="int"/>
-      <element maxOccurs="unbounded" minOccurs="1" name="numDPs" type="int"/>
-    </sequence>
-  </complexType>
-  <complexType name="ConnectionState">
+  <element name="netConnectionState" type="sgr:networkConnectionStateType"/>
+  <complexType name="networkConnectionStateType">
     <annotation>
       <documentation>This status shows, if a device is connected or not and when next connection attemption should be done.
- With an PV Inverter e.g., this may be at the next sunrise.</documentation>
+    Adressing a PV Inverter e.g., this may be at the next sunrise.</documentation>
     </annotation>
     <sequence>
-      <element maxOccurs="1" minOccurs="1" name="isConnected" type="boolean">
-  		</element>
-      <element maxOccurs="1" minOccurs="0" name="nextAttempt" type="time">
-  		</element>
+      <element maxOccurs="1" minOccurs="0" name="isConnected" type="boolean"/>
+      <element maxOccurs="1" minOccurs="0" name="nextAttempt" type="time"/>
     </sequence>
   </complexType>
 </schema>

@@ -552,35 +552,35 @@
           <documentation>41:</documentation>
         </annotation>
       </enumeration>
-      <enumeration value="ph42">
+      <enumeration value="HeatPumpBase">
+         <annotation>        
+          <documentation>42:</documentation>       
+        </annotation>     
+      </enumeration>
+      <enumeration value="HeatCoolCtrl">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>43:</documentation>
         </annotation>
       </enumeration>
-      <enumeration value="ph43">
+      <enumeration value="CompressorPwrCtrl">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>44:</documentation>
         </annotation>
       </enumeration>
-      <enumeration value="ph44">
+      <enumeration value="DomHotWaterCtrl">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>45:</documentation>
         </annotation>
       </enumeration>
-      <enumeration value="ph45">
-        <annotation>
-          <documentation>:</documentation>
-        </annotation>
+      <enumeration value="BufferStorageCtrl">
+         <annotation>
+           <documentation>46:</documentation>
+          </annotation>
       </enumeration>
-      <enumeration value="ph46">
-        <annotation>
-          <documentation>:</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="ph47">
-        <annotation>
-          <documentation>:</documentation>
-        </annotation>
+       <enumeration value="RoomTempCtrl">
+           <annotation>
+             <documentation>47:</documentation>
+         </annotation>       
       </enumeration>
       <enumeration value="ph48">
         <annotation>

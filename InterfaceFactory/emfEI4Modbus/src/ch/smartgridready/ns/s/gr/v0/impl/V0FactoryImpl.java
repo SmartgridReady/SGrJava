@@ -62,13 +62,12 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case V0Package.API_TREE_TYPE: return createApiTreeType();
-			case V0Package.CONNECTION_STATE: return createConnectionState();
 			case V0Package.CONTACT_API_INTERFACE_DESC_TYPE: return createContactAPIInterfaceDescType();
 			case V0Package.DOCUMENT_ROOT: return createDocumentRoot();
 			case V0Package.DP_ACCESS_PROTECTION_ENABLED_TYPE: return createDpAccessProtectionEnabledType();
 			case V0Package.IP_ADDR_TYPE: return createIpADDRType();
 			case V0Package.MODBUS_JMES_PATH_TYPE: return createModbusJMESPathType();
+			case V0Package.NETWORK_CONNECTION_STATE_TYPE: return createNetworkConnectionStateType();
 			case V0Package.REST_APIJMES_PATH_TYPE1: return createRestAPIJMESPathType1();
 			case V0Package.RTU_DEV_INSTANCE_TYPE: return createRTUDevInstanceType();
 			case V0Package.RT_UTRSP_SRV_INSTANCE_TYPE: return createRTUtrspSrvInstanceType();
@@ -134,8 +133,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case V0Package.DPT_SELECTED_TYPE:
-				return createDptSelectedTypeFromString(eDataType, initialValue);
 			case V0Package.EBAUD_RATE_TYPE:
 				return createEBaudRateTypeFromString(eDataType, initialValue);
 			case V0Package.EBYTE_LEN_TYPE:
@@ -208,8 +205,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createDpSizeNrRegistersTypeFromString(eDataType, initialValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE_OBJECT:
 				return createDpSizeNrRegistersTypeObjectFromString(eDataType, initialValue);
-			case V0Package.DPT_SELECTED_TYPE_OBJECT:
-				return createDptSelectedTypeObjectFromString(eDataType, initialValue);
 			case V0Package.EBAUD_RATE_TYPE_OBJECT:
 				return createEBaudRateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.EBYTE_LEN_TYPE_OBJECT:
@@ -242,14 +237,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createMasterFunctionsSupportedTypeObjectFromString(eDataType, initialValue);
 			case V0Package.MODBUS_INTERFACE_SELECTION_TYPE_OBJECT:
 				return createModbusInterfaceSelectionTypeObjectFromString(eDataType, initialValue);
-			case V0Package.NUM_DPS_TYPE:
-				return createNumDPsTypeFromString(eDataType, initialValue);
-			case V0Package.NUM_DPS_TYPE_OBJECT:
-				return createNumDPsTypeObjectFromString(eDataType, initialValue);
-			case V0Package.NUM_FPS_TYPE:
-				return createNumFPsTypeFromString(eDataType, initialValue);
-			case V0Package.NUM_FPS_TYPE_OBJECT:
-				return createNumFPsTypeObjectFromString(eDataType, initialValue);
 			case V0Package.PLACE_HOLDER4FUTURE_EXTENSIONS_TYPE:
 				return createPlaceHolder4futureExtensionsTypeFromString(eDataType, initialValue);
 			case V0Package.PRELIM_STRING_DEF_TYPE:
@@ -351,8 +338,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case V0Package.DPT_SELECTED_TYPE:
-				return convertDptSelectedTypeToString(eDataType, instanceValue);
 			case V0Package.EBAUD_RATE_TYPE:
 				return convertEBaudRateTypeToString(eDataType, instanceValue);
 			case V0Package.EBYTE_LEN_TYPE:
@@ -425,8 +410,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertDpSizeNrRegistersTypeToString(eDataType, instanceValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE_OBJECT:
 				return convertDpSizeNrRegistersTypeObjectToString(eDataType, instanceValue);
-			case V0Package.DPT_SELECTED_TYPE_OBJECT:
-				return convertDptSelectedTypeObjectToString(eDataType, instanceValue);
 			case V0Package.EBAUD_RATE_TYPE_OBJECT:
 				return convertEBaudRateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.EBYTE_LEN_TYPE_OBJECT:
@@ -459,14 +442,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertMasterFunctionsSupportedTypeObjectToString(eDataType, instanceValue);
 			case V0Package.MODBUS_INTERFACE_SELECTION_TYPE_OBJECT:
 				return convertModbusInterfaceSelectionTypeObjectToString(eDataType, instanceValue);
-			case V0Package.NUM_DPS_TYPE:
-				return convertNumDPsTypeToString(eDataType, instanceValue);
-			case V0Package.NUM_DPS_TYPE_OBJECT:
-				return convertNumDPsTypeObjectToString(eDataType, instanceValue);
-			case V0Package.NUM_FPS_TYPE:
-				return convertNumFPsTypeToString(eDataType, instanceValue);
-			case V0Package.NUM_FPS_TYPE_OBJECT:
-				return convertNumFPsTypeObjectToString(eDataType, instanceValue);
 			case V0Package.PLACE_HOLDER4FUTURE_EXTENSIONS_TYPE:
 				return convertPlaceHolder4futureExtensionsTypeToString(eDataType, instanceValue);
 			case V0Package.PRELIM_STRING_DEF_TYPE:
@@ -566,28 +541,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public ApiTreeType createApiTreeType() {
-		ApiTreeTypeImpl apiTreeType = new ApiTreeTypeImpl();
-		return apiTreeType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConnectionState createConnectionState() {
-		ConnectionStateImpl connectionState = new ConnectionStateImpl();
-		return connectionState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ContactAPIInterfaceDescType createContactAPIInterfaceDescType() {
 		ContactAPIInterfaceDescTypeImpl contactAPIInterfaceDescType = new ContactAPIInterfaceDescTypeImpl();
 		return contactAPIInterfaceDescType;
@@ -635,6 +588,17 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public ModbusJMESPathType createModbusJMESPathType() {
 		ModbusJMESPathTypeImpl modbusJMESPathType = new ModbusJMESPathTypeImpl();
 		return modbusJMESPathType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NetworkConnectionStateType createNetworkConnectionStateType() {
+		NetworkConnectionStateTypeImpl networkConnectionStateType = new NetworkConnectionStateTypeImpl();
+		return networkConnectionStateType;
 	}
 
 	/**
@@ -1207,26 +1171,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public TSGrModbusRegisterRef createTSGrModbusRegisterRef() {
 		TSGrModbusRegisterRefImpl tsGrModbusRegisterRef = new TSGrModbusRegisterRefImpl();
 		return tsGrModbusRegisterRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DptSelectedType createDptSelectedTypeFromString(EDataType eDataType, String initialValue) {
-		DptSelectedType result = DptSelectedType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertDptSelectedTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
@@ -1948,24 +1892,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DptSelectedType createDptSelectedTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createDptSelectedTypeFromString(V0Package.eINSTANCE.getDptSelectedType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertDptSelectedTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertDptSelectedTypeToString(V0Package.eINSTANCE.getDptSelectedType(), instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EBaudRateType createEBaudRateTypeObjectFromString(EDataType eDataType, String initialValue) {
 		return createEBaudRateTypeFromString(V0Package.eINSTANCE.getEBaudRateType(), initialValue);
 	}
@@ -2247,78 +2173,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertModbusInterfaceSelectionTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertModbusInterfaceSelectionTypeToString(V0Package.eINSTANCE.getModbusInterfaceSelectionType(), instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Integer createNumDPsTypeFromString(EDataType eDataType, String initialValue) {
-		return (Integer)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertNumDPsTypeToString(EDataType eDataType, Object instanceValue) {
-		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.INT, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Integer createNumDPsTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createNumDPsTypeFromString(V0Package.eINSTANCE.getNumDPsType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertNumDPsTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertNumDPsTypeToString(V0Package.eINSTANCE.getNumDPsType(), instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Integer createNumFPsTypeFromString(EDataType eDataType, String initialValue) {
-		return (Integer)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertNumFPsTypeToString(EDataType eDataType, Object instanceValue) {
-		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.INT, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Integer createNumFPsTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createNumFPsTypeFromString(V0Package.eINSTANCE.getNumFPsType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertNumFPsTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertNumFPsTypeToString(V0Package.eINSTANCE.getNumFPsType(), instanceValue);
 	}
 
 	/**

@@ -98,10 +98,6 @@ public class V0Validator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case V0Package.API_TREE_TYPE:
-				return validateApiTreeType((ApiTreeType)value, diagnostics, context);
-			case V0Package.CONNECTION_STATE:
-				return validateConnectionState((ConnectionState)value, diagnostics, context);
 			case V0Package.CONTACT_API_INTERFACE_DESC_TYPE:
 				return validateContactAPIInterfaceDescType((ContactAPIInterfaceDescType)value, diagnostics, context);
 			case V0Package.DOCUMENT_ROOT:
@@ -112,6 +108,8 @@ public class V0Validator extends EObjectValidator {
 				return validateIpADDRType((IpADDRType)value, diagnostics, context);
 			case V0Package.MODBUS_JMES_PATH_TYPE:
 				return validateModbusJMESPathType((ModbusJMESPathType)value, diagnostics, context);
+			case V0Package.NETWORK_CONNECTION_STATE_TYPE:
+				return validateNetworkConnectionStateType((NetworkConnectionStateType)value, diagnostics, context);
 			case V0Package.REST_APIJMES_PATH_TYPE1:
 				return validateRestAPIJMESPathType1((RestAPIJMESPathType1)value, diagnostics, context);
 			case V0Package.RTU_DEV_INSTANCE_TYPE:
@@ -216,8 +214,6 @@ public class V0Validator extends EObjectValidator {
 				return validateTrspServiceModbusType((TrspServiceModbusType)value, diagnostics, context);
 			case V0Package.TS_GR_MODBUS_REGISTER_REF:
 				return validateTSGrModbusRegisterRef((TSGrModbusRegisterRef)value, diagnostics, context);
-			case V0Package.DPT_SELECTED_TYPE:
-				return validateDptSelectedType((DptSelectedType)value, diagnostics, context);
 			case V0Package.EBAUD_RATE_TYPE:
 				return validateEBaudRateType((EBaudRateType)value, diagnostics, context);
 			case V0Package.EBYTE_LEN_TYPE:
@@ -290,8 +286,6 @@ public class V0Validator extends EObjectValidator {
 				return validateDpSizeNrRegistersType((Integer)value, diagnostics, context);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE_OBJECT:
 				return validateDpSizeNrRegistersTypeObject((Integer)value, diagnostics, context);
-			case V0Package.DPT_SELECTED_TYPE_OBJECT:
-				return validateDptSelectedTypeObject((DptSelectedType)value, diagnostics, context);
 			case V0Package.EBAUD_RATE_TYPE_OBJECT:
 				return validateEBaudRateTypeObject((EBaudRateType)value, diagnostics, context);
 			case V0Package.EBYTE_LEN_TYPE_OBJECT:
@@ -324,14 +318,6 @@ public class V0Validator extends EObjectValidator {
 				return validateMasterFunctionsSupportedTypeObject((MasterFunctionsSupportedType)value, diagnostics, context);
 			case V0Package.MODBUS_INTERFACE_SELECTION_TYPE_OBJECT:
 				return validateModbusInterfaceSelectionTypeObject((ModbusInterfaceSelectionType)value, diagnostics, context);
-			case V0Package.NUM_DPS_TYPE:
-				return validateNumDPsType((Integer)value, diagnostics, context);
-			case V0Package.NUM_DPS_TYPE_OBJECT:
-				return validateNumDPsTypeObject((Integer)value, diagnostics, context);
-			case V0Package.NUM_FPS_TYPE:
-				return validateNumFPsType((Integer)value, diagnostics, context);
-			case V0Package.NUM_FPS_TYPE_OBJECT:
-				return validateNumFPsTypeObject((Integer)value, diagnostics, context);
 			case V0Package.PLACE_HOLDER4FUTURE_EXTENSIONS_TYPE:
 				return validatePlaceHolder4futureExtensionsType((String)value, diagnostics, context);
 			case V0Package.PRELIM_STRING_DEF_TYPE:
@@ -430,24 +416,6 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateApiTreeType(ApiTreeType apiTreeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(apiTreeType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateConnectionState(ConnectionState connectionState, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(connectionState, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateContactAPIInterfaceDescType(ContactAPIInterfaceDescType contactAPIInterfaceDescType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(contactAPIInterfaceDescType, diagnostics, context);
 	}
@@ -486,6 +454,15 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateModbusJMESPathType(ModbusJMESPathType modbusJMESPathType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modbusJMESPathType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNetworkConnectionStateType(NetworkConnectionStateType networkConnectionStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(networkConnectionStateType, diagnostics, context);
 	}
 
 	/**
@@ -961,15 +938,6 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDptSelectedType(DptSelectedType dptSelectedType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateEBaudRateType(EBaudRateType eBaudRateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1286,15 +1254,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateDpSizeNrRegistersTypeObject(Integer dpSizeNrRegistersTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateDptSelectedTypeObject(DptSelectedType dptSelectedTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1795,42 +1754,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateModbusInterfaceSelectionTypeObject(ModbusInterfaceSelectionType modbusInterfaceSelectionTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateNumDPsType(int numDPsType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateNumDPsTypeObject(Integer numDPsTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateNumFPsType(int numFPsType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateNumFPsTypeObject(Integer numFPsTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

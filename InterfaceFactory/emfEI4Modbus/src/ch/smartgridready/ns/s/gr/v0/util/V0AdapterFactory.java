@@ -68,14 +68,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	protected V0Switch<Adapter> modelSwitch =
 		new V0Switch<Adapter>() {
 			@Override
-			public Adapter caseApiTreeType(ApiTreeType object) {
-				return createApiTreeTypeAdapter();
-			}
-			@Override
-			public Adapter caseConnectionState(ConnectionState object) {
-				return createConnectionStateAdapter();
-			}
-			@Override
 			public Adapter caseContactAPIInterfaceDescType(ContactAPIInterfaceDescType object) {
 				return createContactAPIInterfaceDescTypeAdapter();
 			}
@@ -94,6 +86,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseModbusJMESPathType(ModbusJMESPathType object) {
 				return createModbusJMESPathTypeAdapter();
+			}
+			@Override
+			public Adapter caseNetworkConnectionStateType(NetworkConnectionStateType object) {
+				return createNetworkConnectionStateTypeAdapter();
 			}
 			@Override
 			public Adapter caseRestAPIJMESPathType1(RestAPIJMESPathType1 object) {
@@ -324,34 +320,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ch.smartgridready.ns.s.gr.v0.ApiTreeType <em>Api Tree Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ch.smartgridready.ns.s.gr.v0.ApiTreeType
-	 * @generated
-	 */
-	public Adapter createApiTreeTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ch.smartgridready.ns.s.gr.v0.ConnectionState <em>Connection State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ch.smartgridready.ns.s.gr.v0.ConnectionState
-	 * @generated
-	 */
-	public Adapter createConnectionStateAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link ch.smartgridready.ns.s.gr.v0.ContactAPIInterfaceDescType <em>Contact API Interface Desc Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -418,6 +386,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModbusJMESPathTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType <em>Network Connection State Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType
+	 * @generated
+	 */
+	public Adapter createNetworkConnectionStateTypeAdapter() {
 		return null;
 	}
 

@@ -31,7 +31,7 @@
       </element>
       <element maxOccurs="1" minOccurs="1" name="modbusInterfaceDesc" type="sgr:SGrModbusInterfaceDescriptionType"/>
       <element maxOccurs="unbounded" minOccurs="1" name="fpListElement" type="sgr:SGrModbusProfilesFrameType"/>
-      <element name="apitreetype" type="sgr:apiTreeType"/>
+      <element name="networkConnectionState" type="sgr:networkConnectionStateType" maxOccurs="1" minOccurs="0"/>
     </sequence>
     <attribute name="deviceName" type="string">
       <annotation>

@@ -166,7 +166,15 @@ public enum DptSelectedType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BOOLEAN(14, "BOOLEAN", "BOOLEAN");
+	BOOLEAN(14, "BOOLEAN", "BOOLEAN"), /**
+	 * The '<em><b>TYPEUNDEF</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TYPEUNDEF_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TYPEUNDEF(15, "TYPEUNDEF", "TYPE_UNDEF");
 
 	/**
 	 * The '<em><b>INT8</b></em>' literal value.
@@ -334,6 +342,17 @@ public enum DptSelectedType implements Enumerator {
 	public static final int BOOLEAN_VALUE = 14;
 
 	/**
+	 * The '<em><b>TYPEUNDEF</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TYPEUNDEF
+	 * @model literal="TYPE_UNDEF"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TYPEUNDEF_VALUE = 15;
+
+	/**
 	 * An array of all the '<em><b>Dpt Selected Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -356,6 +375,7 @@ public enum DptSelectedType implements Enumerator {
 			DATE_TIME,
 			STRING,
 			BOOLEAN,
+			TYPEUNDEF,
 		};
 
 	/**
@@ -427,6 +447,7 @@ public enum DptSelectedType implements Enumerator {
 			case DATE_TIME_VALUE: return DATE_TIME;
 			case STRING_VALUE: return STRING;
 			case BOOLEAN_VALUE: return BOOLEAN;
+			case TYPEUNDEF_VALUE: return TYPEUNDEF;
 		}
 		return null;
 	}

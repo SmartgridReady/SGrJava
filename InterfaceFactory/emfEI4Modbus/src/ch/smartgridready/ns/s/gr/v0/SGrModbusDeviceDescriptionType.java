@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getDevMbAttrReference <em>Dev Mb Attr Reference</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getModbusInterfaceDesc <em>Modbus Interface Desc</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getFpListElement <em>Fp List Element</em>}</li>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getApitreetype <em>Apitreetype</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getNetworkConnectionState <em>Network Connection State</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getDeviceName <em>Device Name</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getManufacturerID <em>Manufacturer ID</em>}</li>
@@ -117,27 +117,27 @@ public interface SGrModbusDeviceDescriptionType extends EObject {
 	EList<SGrModbusProfilesFrameType> getFpListElement();
 
 	/**
-	 * Returns the value of the '<em><b>Apitreetype</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Network Connection State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Apitreetype</em>' containment reference.
-	 * @see #setApitreetype(ApiTreeType)
-	 * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrModbusDeviceDescriptionType_Apitreetype()
-	 * @model containment="true" required="true"
-	 *        extendedMetaData="kind='element' name='apitreetype' namespace='##targetNamespace'"
+	 * @return the value of the '<em>Network Connection State</em>' containment reference.
+	 * @see #setNetworkConnectionState(NetworkConnectionStateType)
+	 * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrModbusDeviceDescriptionType_NetworkConnectionState()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='networkConnectionState' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	ApiTreeType getApitreetype();
+	NetworkConnectionStateType getNetworkConnectionState();
 
 	/**
-	 * Sets the value of the '{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getApitreetype <em>Apitreetype</em>}' containment reference.
+	 * Sets the value of the '{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getNetworkConnectionState <em>Network Connection State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Apitreetype</em>' containment reference.
-	 * @see #getApitreetype()
+	 * @param value the new value of the '<em>Network Connection State</em>' containment reference.
+	 * @see #getNetworkConnectionState()
 	 * @generated
 	 */
-	void setApitreetype(ApiTreeType value);
+	void setNetworkConnectionState(NetworkConnectionStateType value);
 
 	/**
 	 * Returns the value of the '<em><b>Device Name</b></em>' attribute.

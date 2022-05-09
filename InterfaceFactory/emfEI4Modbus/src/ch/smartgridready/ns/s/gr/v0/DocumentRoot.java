@@ -20,13 +20,13 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getApiTree <em>Api Tree</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getBaudRatesSupported <em>Baud Rates Supported</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getByteLenSupported <em>Byte Len Supported</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getDeviceProfile <em>Device Profile</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getFunctionalProfiles <em>Functional Profiles</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getGenDeviceFrame <em>Gen Device Frame</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getModbusFunctionCodesSupported <em>Modbus Function Codes Supported</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getNetConnectionState <em>Net Connection State</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getParitySupported <em>Parity Supported</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getSGrModbusDataPointDescription <em>SGr Modbus Data Point Description</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getSGrModbusInterfaceDescription <em>SGr Modbus Interface Description</em>}</li>
@@ -86,29 +86,6 @@ public interface DocumentRoot extends EObject {
 	 * @generated
 	 */
 	EMap<String, String> getXSISchemaLocation();
-
-	/**
-	 * Returns the value of the '<em><b>Api Tree</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Api Tree</em>' containment reference.
-	 * @see #setApiTree(ApiTreeType)
-	 * @see ch.smartgridready.ns.s.gr.v0.V0Package#getDocumentRoot_ApiTree()
-	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='apiTree' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	ApiTreeType getApiTree();
-
-	/**
-	 * Sets the value of the '{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getApiTree <em>Api Tree</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Api Tree</em>' containment reference.
-	 * @see #getApiTree()
-	 * @generated
-	 */
-	void setApiTree(ApiTreeType value);
 
 	/**
 	 * Returns the value of the '<em><b>Baud Rates Supported</b></em>' attribute.
@@ -263,6 +240,29 @@ public interface DocumentRoot extends EObject {
 	 * @generated
 	 */
 	void setModbusFunctionCodesSupported(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Net Connection State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Net Connection State</em>' containment reference.
+	 * @see #setNetConnectionState(NetworkConnectionStateType)
+	 * @see ch.smartgridready.ns.s.gr.v0.V0Package#getDocumentRoot_NetConnectionState()
+	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+	 *        extendedMetaData="kind='element' name='netConnectionState' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	NetworkConnectionStateType getNetConnectionState();
+
+	/**
+	 * Sets the value of the '{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getNetConnectionState <em>Net Connection State</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Net Connection State</em>' containment reference.
+	 * @see #getNetConnectionState()
+	 * @generated
+	 */
+	void setNetConnectionState(NetworkConnectionStateType value);
 
 	/**
 	 * Returns the value of the '<em><b>Parity Supported</b></em>' attribute.

@@ -2,7 +2,6 @@
  */
 package ch.smartgridready.ns.s.gr.v0.impl;
 
-import ch.smartgridready.ns.s.gr.v0.DptSelectedType;
 import ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType;
 import ch.smartgridready.ns.s.gr.v0.SGrEnumListType;
 import ch.smartgridready.ns.s.gr.v0.V0Package;
@@ -38,9 +37,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getFloat32 <em>Float32</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getFloat64 <em>Float64</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getEnum <em>Enum</em>}</li>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getTimestamp <em>Timestamp</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getDateTime <em>Date Time</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getString <em>String</em>}</li>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getDpTypeSelected <em>Dp Type Selected</em>}</li>
  * </ul>
  *
  * @generated
@@ -358,24 +356,24 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	protected SGrEnumListType enum_;
 
 	/**
-	 * The default value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute.
+	 * The default value of the '{@link #getDateTime() <em>Date Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTimestamp()
+	 * @see #getDateTime()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final XMLGregorianCalendar TIMESTAMP_EDEFAULT = null;
+	protected static final XMLGregorianCalendar DATE_TIME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute.
+	 * The cached value of the '{@link #getDateTime() <em>Date Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTimestamp()
+	 * @see #getDateTime()
 	 * @generated
 	 * @ordered
 	 */
-	protected XMLGregorianCalendar timestamp = TIMESTAMP_EDEFAULT;
+	protected XMLGregorianCalendar dateTime = DATE_TIME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getString() <em>String</em>}' attribute.
@@ -396,35 +394,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @ordered
 	 */
 	protected String string = STRING_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDpTypeSelected() <em>Dp Type Selected</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDpTypeSelected()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final DptSelectedType DP_TYPE_SELECTED_EDEFAULT = DptSelectedType.INT8;
-
-	/**
-	 * The cached value of the '{@link #getDpTypeSelected() <em>Dp Type Selected</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDpTypeSelected()
-	 * @generated
-	 * @ordered
-	 */
-	protected DptSelectedType dpTypeSelected = DP_TYPE_SELECTED_EDEFAULT;
-
-	/**
-	 * This is true if the Dp Type Selected attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean dpTypeSelectedESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -992,8 +961,8 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public XMLGregorianCalendar getTimestamp() {
-		return timestamp;
+	public XMLGregorianCalendar getDateTime() {
+		return dateTime;
 	}
 
 	/**
@@ -1002,11 +971,11 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public void setTimestamp(XMLGregorianCalendar newTimestamp) {
-		XMLGregorianCalendar oldTimestamp = timestamp;
-		timestamp = newTimestamp;
+	public void setDateTime(XMLGregorianCalendar newDateTime) {
+		XMLGregorianCalendar oldDateTime = dateTime;
+		dateTime = newDateTime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP, oldTimestamp, timestamp));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DATE_TIME, oldDateTime, dateTime));
 	}
 
 	/**
@@ -1030,56 +999,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 		string = newString;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING, oldString, string));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DptSelectedType getDpTypeSelected() {
-		return dpTypeSelected;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDpTypeSelected(DptSelectedType newDpTypeSelected) {
-		DptSelectedType oldDpTypeSelected = dpTypeSelected;
-		dpTypeSelected = newDpTypeSelected == null ? DP_TYPE_SELECTED_EDEFAULT : newDpTypeSelected;
-		boolean oldDpTypeSelectedESet = dpTypeSelectedESet;
-		dpTypeSelectedESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED, oldDpTypeSelected, dpTypeSelected, !oldDpTypeSelectedESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetDpTypeSelected() {
-		DptSelectedType oldDpTypeSelected = dpTypeSelected;
-		boolean oldDpTypeSelectedESet = dpTypeSelectedESet;
-		dpTypeSelected = DP_TYPE_SELECTED_EDEFAULT;
-		dpTypeSelectedESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED, oldDpTypeSelected, DP_TYPE_SELECTED_EDEFAULT, oldDpTypeSelectedESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetDpTypeSelected() {
-		return dpTypeSelectedESet;
 	}
 
 	/**
@@ -1128,12 +1047,10 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 				return getFloat64();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM:
 				return getEnum();
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP:
-				return getTimestamp();
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DATE_TIME:
+				return getDateTime();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING:
 				return getString();
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED:
-				return getDpTypeSelected();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1183,14 +1100,11 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM:
 				setEnum((SGrEnumListType)newValue);
 				return;
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP:
-				setTimestamp((XMLGregorianCalendar)newValue);
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DATE_TIME:
+				setDateTime((XMLGregorianCalendar)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING:
 				setString((String)newValue);
-				return;
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED:
-				setDpTypeSelected((DptSelectedType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1240,14 +1154,11 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM:
 				setEnum((SGrEnumListType)null);
 				return;
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP:
-				setTimestamp(TIMESTAMP_EDEFAULT);
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DATE_TIME:
+				setDateTime(DATE_TIME_EDEFAULT);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING:
 				setString(STRING_EDEFAULT);
-				return;
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED:
-				unsetDpTypeSelected();
 				return;
 		}
 		super.eUnset(featureID);
@@ -1285,12 +1196,10 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 				return isSetFloat64();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM:
 				return enum_ != null;
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP:
-				return TIMESTAMP_EDEFAULT == null ? timestamp != null : !TIMESTAMP_EDEFAULT.equals(timestamp);
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DATE_TIME:
+				return DATE_TIME_EDEFAULT == null ? dateTime != null : !DATE_TIME_EDEFAULT.equals(dateTime);
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING:
 				return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED:
-				return isSetDpTypeSelected();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1327,12 +1236,10 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 		if (float32ESet) result.append(float32); else result.append("<unset>");
 		result.append(", float64: ");
 		if (float64ESet) result.append(float64); else result.append("<unset>");
-		result.append(", timestamp: ");
-		result.append(timestamp);
+		result.append(", dateTime: ");
+		result.append(dateTime);
 		result.append(", string: ");
 		result.append(string);
-		result.append(", dpTypeSelected: ");
-		if (dpTypeSelectedESet) result.append(dpTypeSelected); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

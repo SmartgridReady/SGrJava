@@ -59,107 +59,6 @@ public interface V0Package extends EPackage {
 	V0Package eINSTANCE = ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.impl.ApiTreeTypeImpl <em>Api Tree Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.ApiTreeTypeImpl
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getApiTreeType()
-	 * @generated
-	 */
-	int API_TREE_TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Is Connected</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int API_TREE_TYPE__IS_CONNECTED = 0;
-
-	/**
-	 * The feature id for the '<em><b>Num FPs</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int API_TREE_TYPE__NUM_FPS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Num DPs</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int API_TREE_TYPE__NUM_DPS = 2;
-
-	/**
-	 * The number of structural features of the '<em>Api Tree Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int API_TREE_TYPE_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Api Tree Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int API_TREE_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.impl.ConnectionStateImpl <em>Connection State</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.ConnectionStateImpl
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getConnectionState()
-	 * @generated
-	 */
-	int CONNECTION_STATE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Is Connected</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_STATE__IS_CONNECTED = 0;
-
-	/**
-	 * The feature id for the '<em><b>Next Attempt</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_STATE__NEXT_ATTEMPT = 1;
-
-	/**
-	 * The number of structural features of the '<em>Connection State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_STATE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Connection State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_STATE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.impl.ContactAPIInterfaceDescTypeImpl <em>Contact API Interface Desc Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -167,7 +66,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getContactAPIInterfaceDescType()
 	 * @generated
 	 */
-	int CONTACT_API_INTERFACE_DESC_TYPE = 2;
+	int CONTACT_API_INTERFACE_DESC_TYPE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Num Contacts</b></em>' attribute.
@@ -213,7 +112,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getDocumentRoot()
 	 * @generated
 	 */
-	int DOCUMENT_ROOT = 3;
+	int DOCUMENT_ROOT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -243,22 +142,13 @@ public interface V0Package extends EPackage {
 	int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Api Tree</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT_ROOT__API_TREE = 3;
-
-	/**
 	 * The feature id for the '<em><b>Baud Rates Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__BAUD_RATES_SUPPORTED = 4;
+	int DOCUMENT_ROOT__BAUD_RATES_SUPPORTED = 3;
 
 	/**
 	 * The feature id for the '<em><b>Byte Len Supported</b></em>' attribute.
@@ -267,7 +157,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__BYTE_LEN_SUPPORTED = 5;
+	int DOCUMENT_ROOT__BYTE_LEN_SUPPORTED = 4;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -276,7 +166,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__DEVICE_PROFILE = 6;
+	int DOCUMENT_ROOT__DEVICE_PROFILE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Functional Profiles</b></em>' containment reference.
@@ -285,7 +175,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__FUNCTIONAL_PROFILES = 7;
+	int DOCUMENT_ROOT__FUNCTIONAL_PROFILES = 6;
 
 	/**
 	 * The feature id for the '<em><b>Gen Device Frame</b></em>' containment reference.
@@ -294,7 +184,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__GEN_DEVICE_FRAME = 8;
+	int DOCUMENT_ROOT__GEN_DEVICE_FRAME = 7;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Function Codes Supported</b></em>' attribute.
@@ -303,7 +193,16 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED = 9;
+	int DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED = 8;
+
+	/**
+	 * The feature id for the '<em><b>Net Connection State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT_ROOT__NET_CONNECTION_STATE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Parity Supported</b></em>' attribute.
@@ -439,7 +338,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getDpAccessProtectionEnabledType()
 	 * @generated
 	 */
-	int DP_ACCESS_PROTECTION_ENABLED_TYPE = 4;
+	int DP_ACCESS_PROTECTION_ENABLED_TYPE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Exception</b></em>' attribute.
@@ -485,7 +384,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpADDRType()
 	 * @generated
 	 */
-	int IP_ADDR_TYPE = 5;
+	int IP_ADDR_TYPE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Ip V4n1</b></em>' attribute.
@@ -549,7 +448,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getModbusJMESPathType()
 	 * @generated
 	 */
-	int MODBUS_JMES_PATH_TYPE = 6;
+	int MODBUS_JMES_PATH_TYPE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -579,6 +478,52 @@ public interface V0Package extends EPackage {
 	int MODBUS_JMES_PATH_TYPE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.impl.NetworkConnectionStateTypeImpl <em>Network Connection State Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ch.smartgridready.ns.s.gr.v0.impl.NetworkConnectionStateTypeImpl
+	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getNetworkConnectionStateType()
+	 * @generated
+	 */
+	int NETWORK_CONNECTION_STATE_TYPE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Is Connected</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_CONNECTION_STATE_TYPE__IS_CONNECTED = 0;
+
+	/**
+	 * The feature id for the '<em><b>Next Attempt</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_CONNECTION_STATE_TYPE__NEXT_ATTEMPT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Network Connection State Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_CONNECTION_STATE_TYPE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Network Connection State Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_CONNECTION_STATE_TYPE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.impl.RestAPIJMESPathType1Impl <em>Rest APIJMES Path Type1</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -586,7 +531,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getRestAPIJMESPathType1()
 	 * @generated
 	 */
-	int REST_APIJMES_PATH_TYPE1 = 7;
+	int REST_APIJMES_PATH_TYPE1 = 6;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -623,7 +568,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getRTUDevInstanceType()
 	 * @generated
 	 */
-	int RTU_DEV_INSTANCE_TYPE = 8;
+	int RTU_DEV_INSTANCE_TYPE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Device Inst Name</b></em>' attribute.
@@ -669,7 +614,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getRTUtrspSrvInstanceType()
 	 * @generated
 	 */
-	int RT_UTRSP_SRV_INSTANCE_TYPE = 9;
+	int RT_UTRSP_SRV_INSTANCE_TYPE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Baud Rate</b></em>' attribute.
@@ -733,7 +678,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getRTUType()
 	 * @generated
 	 */
-	int RTU_TYPE = 10;
+	int RTU_TYPE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Rtu Trsp Srv Instance</b></em>' containment reference.
@@ -779,7 +724,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrAttr4GenericType()
 	 * @generated
 	 */
-	int SGR_ATTR4_GENERIC_TYPE = 11;
+	int SGR_ATTR4_GENERIC_TYPE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Max Val</b></em>' attribute.
@@ -1005,7 +950,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrAttr4ModbusType()
 	 * @generated
 	 */
-	int SGR_ATTR4_MODBUS_TYPE = 12;
+	int SGR_ATTR4_MODBUS_TYPE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Scaling By Mul Pwr</b></em>' containment reference.
@@ -1078,7 +1023,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrAttr4RestAPIType()
 	 * @generated
 	 */
-	int SGR_ATTR4_REST_API_TYPE = 13;
+	int SGR_ATTR4_REST_API_TYPE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Place Holder4future Extensions</b></em>' attribute.
@@ -1115,7 +1060,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrBasicGenDataPointTypeType()
 	 * @generated
 	 */
-	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE = 14;
+	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Boolean</b></em>' attribute.
@@ -1226,13 +1171,13 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM = 11;
 
 	/**
-	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * The feature id for the '<em><b>Date Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__TIMESTAMP = 12;
+	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DATE_TIME = 12;
 
 	/**
 	 * The feature id for the '<em><b>String</b></em>' attribute.
@@ -1244,22 +1189,13 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING = 13;
 
 	/**
-	 * The feature id for the '<em><b>Dp Type Selected</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DP_TYPE_SELECTED = 14;
-
-	/**
 	 * The number of structural features of the '<em>SGr Basic Gen Data Point Type Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE_FEATURE_COUNT = 15;
+	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE_FEATURE_COUNT = 14;
 
 	/**
 	 * The number of operations of the '<em>SGr Basic Gen Data Point Type Type</em>' class.
@@ -1278,7 +1214,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrContactAPIDeviceDescriptionType()
 	 * @generated
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE = 15;
+	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -1378,7 +1314,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrDataPointDescriptionType()
 	 * @generated
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE = 16;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Basic Data Type</b></em>' containment reference.
@@ -1469,7 +1405,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrDataPointsFrameType()
 	 * @generated
 	 */
-	int SGR_DATA_POINTS_FRAME_TYPE = 17;
+	int SGR_DATA_POINTS_FRAME_TYPE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Data Point</b></em>' containment reference.
@@ -1515,7 +1451,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrDeviceDescriptionType()
 	 * @generated
 	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE = 18;
+	int SGR_DEVICE_DESCRIPTION_TYPE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -1606,7 +1542,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrDeviceProfileType()
 	 * @generated
 	 */
-	int SGR_DEVICE_PROFILE_TYPE = 19;
+	int SGR_DEVICE_PROFILE_TYPE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Dev Name List</b></em>' containment reference.
@@ -1760,7 +1696,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrEnumListType()
 	 * @generated
 	 */
-	int SGR_ENUM_LIST_TYPE = 20;
+	int SGR_ENUM_LIST_TYPE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Sgr EVSE State Lv2</b></em>' attribute.
@@ -1833,7 +1769,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrInterfaceDescriptionType()
 	 * @generated
 	 */
-	int SGR_INTERFACE_DESCRIPTION_TYPE = 21;
+	int SGR_INTERFACE_DESCRIPTION_TYPE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Technology Used</b></em>' attribute.
@@ -1879,7 +1815,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrLegibDocumentationType()
 	 * @generated
 	 */
-	int SGR_LEGIB_DOCUMENTATION_TYPE = 22;
+	int SGR_LEGIB_DOCUMENTATION_TYPE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Text Element</b></em>' attribute.
@@ -1934,7 +1870,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrModbusAttrFrameType()
 	 * @generated
 	 */
-	int SGR_MODBUS_ATTR_FRAME_TYPE = 23;
+	int SGR_MODBUS_ATTR_FRAME_TYPE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
@@ -1980,7 +1916,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrModbusDataPointDescriptionType()
 	 * @generated
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE = 24;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Data Type</b></em>' containment reference.
@@ -2071,7 +2007,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrModbusDataPointsFrameType()
 	 * @generated
 	 */
-	int SGR_MODBUS_DATA_POINTS_FRAME_TYPE = 25;
+	int SGR_MODBUS_DATA_POINTS_FRAME_TYPE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Data Point</b></em>' containment reference list.
@@ -2126,7 +2062,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrModbusDeviceDescriptionType()
 	 * @generated
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE = 26;
+	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -2165,13 +2101,13 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Apitreetype</b></em>' containment reference.
+	 * The feature id for the '<em><b>Network Connection State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__APITREETYPE = 4;
+	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Device Name</b></em>' attribute.
@@ -2235,7 +2171,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrModbusInterfaceDescriptionType()
 	 * @generated
 	 */
-	int SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE = 27;
+	int SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Interface Selection</b></em>' attribute.
@@ -2308,7 +2244,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrModbusProfilesFrameType()
 	 * @generated
 	 */
-	int SGR_MODBUS_PROFILES_FRAME_TYPE = 28;
+	int SGR_MODBUS_PROFILES_FRAME_TYPE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
@@ -2363,7 +2299,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrNamelistType()
 	 * @generated
 	 */
-	int SGR_NAMELIST_TYPE = 29;
+	int SGR_NAMELIST_TYPE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name Type</b></em>' attribute.
@@ -2454,7 +2390,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrProfileDescriptionType()
 	 * @generated
 	 */
-	int SGR_PROFILE_DESCRIPTION_TYPE = 30;
+	int SGR_PROFILE_DESCRIPTION_TYPE = 29;
 
 	/**
 	 * The feature id for the '<em><b>Profile Number</b></em>' containment reference.
@@ -2527,7 +2463,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrProfilenumberType()
 	 * @generated
 	 */
-	int SGR_PROFILENUMBER_TYPE = 31;
+	int SGR_PROFILENUMBER_TYPE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Specs Owner Id</b></em>' attribute.
@@ -2600,7 +2536,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrProfilesFrameType()
 	 * @generated
 	 */
-	int SGR_PROFILES_FRAME_TYPE = 32;
+	int SGR_PROFILES_FRAME_TYPE = 31;
 
 	/**
 	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
@@ -2655,7 +2591,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIAttrFrameType()
 	 * @generated
 	 */
-	int SGR_REST_API_ATTR_FRAME_TYPE = 33;
+	int SGR_REST_API_ATTR_FRAME_TYPE = 32;
 
 	/**
 	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
@@ -2701,7 +2637,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGRrestAPIBearerType()
 	 * @generated
 	 */
-	int SG_RREST_API_BEARER_TYPE = 34;
+	int SG_RREST_API_BEARER_TYPE = 33;
 
 	/**
 	 * The feature id for the '<em><b>Rest API End Point</b></em>' attribute.
@@ -2747,7 +2683,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIDataPointDescriptionType()
 	 * @generated
 	 */
-	int SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE = 35;
+	int SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE = 34;
 
 	/**
 	 * The feature id for the '<em><b>Rest API End Point</b></em>' attribute.
@@ -2802,7 +2738,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIDataPointsFrameType()
 	 * @generated
 	 */
-	int SGR_REST_API_DATA_POINTS_FRAME_TYPE = 36;
+	int SGR_REST_API_DATA_POINTS_FRAME_TYPE = 35;
 
 	/**
 	 * The feature id for the '<em><b>Data Point</b></em>' containment reference list.
@@ -2857,7 +2793,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRESTAPIDeviceDescriptionType()
 	 * @generated
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE = 37;
+	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE = 36;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -2957,7 +2893,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIInterfaceDescriptionType()
 	 * @generated
 	 */
-	int SGR_REST_API_INTERFACE_DESCRIPTION_TYPE = 38;
+	int SGR_REST_API_INTERFACE_DESCRIPTION_TYPE = 37;
 
 	/**
 	 * The feature id for the '<em><b>Rest API Interface Selection</b></em>' attribute.
@@ -3048,7 +2984,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIProfilesFrameType()
 	 * @generated
 	 */
-	int SGR_REST_API_PROFILES_FRAME_TYPE = 39;
+	int SGR_REST_API_PROFILES_FRAME_TYPE = 38;
 
 	/**
 	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
@@ -3103,7 +3039,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestBasicType()
 	 * @generated
 	 */
-	int SGR_REST_BASIC_TYPE = 40;
+	int SGR_REST_BASIC_TYPE = 39;
 
 	/**
 	 * The feature id for the '<em><b>Rest Basic Username</b></em>' attribute.
@@ -3149,7 +3085,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestDataPointsFrameType()
 	 * @generated
 	 */
-	int SGR_REST_DATA_POINTS_FRAME_TYPE = 41;
+	int SGR_REST_DATA_POINTS_FRAME_TYPE = 40;
 
 	/**
 	 * The feature id for the '<em><b>Data Point</b></em>' containment reference list.
@@ -3204,7 +3140,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestProfilesFrameType()
 	 * @generated
 	 */
-	int SGR_REST_PROFILES_FRAME_TYPE = 42;
+	int SGR_REST_PROFILES_FRAME_TYPE = 41;
 
 	/**
 	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
@@ -3259,7 +3195,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrScalingType()
 	 * @generated
 	 */
-	int SGR_SCALING_TYPE = 43;
+	int SGR_SCALING_TYPE = 42;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicator</b></em>' attribute.
@@ -3305,7 +3241,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrSerialInterfaceCapabilityType()
 	 * @generated
 	 */
-	int SGR_SERIAL_INTERFACE_CAPABILITY_TYPE = 44;
+	int SGR_SERIAL_INTERFACE_CAPABILITY_TYPE = 43;
 
 	/**
 	 * The feature id for the '<em><b>Baud Rates Supported</b></em>' attribute list.
@@ -3369,7 +3305,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrSmoothTransitionType()
 	 * @generated
 	 */
-	int SGR_SMOOTH_TRANSITION_TYPE = 45;
+	int SGR_SMOOTH_TRANSITION_TYPE = 44;
 
 	/**
 	 * The feature id for the '<em><b>Win Tms</b></em>' attribute.
@@ -3424,7 +3360,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrStabilityFallbackType()
 	 * @generated
 	 */
-	int SGR_STABILITY_FALLBACK_TYPE = 46;
+	int SGR_STABILITY_FALLBACK_TYPE = 45;
 
 	/**
 	 * The feature id for the '<em><b>Max Receive Time</b></em>' attribute.
@@ -3479,7 +3415,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrTimeRangeType()
 	 * @generated
 	 */
-	int SGR_TIME_RANGE_TYPE = 47;
+	int SGR_TIME_RANGE_TYPE = 46;
 
 	/**
 	 * The feature id for the '<em><b>Start Time</b></em>' attribute.
@@ -3525,7 +3461,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrVersionNumberType()
 	 * @generated
 	 */
-	int SGR_VERSION_NUMBER_TYPE = 48;
+	int SGR_VERSION_NUMBER_TYPE = 47;
 
 	/**
 	 * The feature id for the '<em><b>Primary Version Number</b></em>' attribute.
@@ -3580,7 +3516,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTCPDevInstanceType()
 	 * @generated
 	 */
-	int TCP_DEV_INSTANCE_TYPE = 49;
+	int TCP_DEV_INSTANCE_TYPE = 48;
 
 	/**
 	 * The feature id for the '<em><b>Dev Inst Name</b></em>' attribute.
@@ -3626,7 +3562,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTCPtrspSrvInstanceType()
 	 * @generated
 	 */
-	int TC_PTRSP_SRV_INSTANCE_TYPE = 50;
+	int TC_PTRSP_SRV_INSTANCE_TYPE = 49;
 
 	/**
 	 * The number of structural features of the '<em>TC Ptrsp Srv Instance Type</em>' class.
@@ -3654,7 +3590,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTCPType()
 	 * @generated
 	 */
-	int TCP_TYPE = 51;
+	int TCP_TYPE = 50;
 
 	/**
 	 * The feature id for the '<em><b>Tcp Trsp Srv Instance</b></em>' containment reference.
@@ -3700,7 +3636,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTimeSyncBlockNotificationType()
 	 * @generated
 	 */
-	int TIME_SYNC_BLOCK_NOTIFICATION_TYPE = 52;
+	int TIME_SYNC_BLOCK_NOTIFICATION_TYPE = 51;
 
 	/**
 	 * The feature id for the '<em><b>Block Number</b></em>' attribute.
@@ -3746,7 +3682,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTPIPModbus()
 	 * @generated
 	 */
-	int TPIP_MODBUS = 53;
+	int TPIP_MODBUS = 52;
 
 	/**
 	 * The feature id for the '<em><b>Port</b></em>' attribute.
@@ -3801,7 +3737,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTPipV4genAddrType()
 	 * @generated
 	 */
-	int TPIP_V4GEN_ADDR_TYPE = 54;
+	int TPIP_V4GEN_ADDR_TYPE = 53;
 
 	/**
 	 * The feature id for the '<em><b>Ip V4port Nr</b></em>' attribute.
@@ -3874,7 +3810,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTPipV6genAddrType()
 	 * @generated
 	 */
-	int TPIP_V6GEN_ADDR_TYPE = 55;
+	int TPIP_V6GEN_ADDR_TYPE = 54;
 
 	/**
 	 * The feature id for the '<em><b>Prelim String Def</b></em>' attribute.
@@ -3911,7 +3847,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTPRTUModbus()
 	 * @generated
 	 */
-	int TPRTU_MODBUS = 56;
+	int TPRTU_MODBUS = 55;
 
 	/**
 	 * The feature id for the '<em><b>Slave Addr</b></em>' attribute.
@@ -3993,7 +3929,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTrspServiceModbusType()
 	 * @generated
 	 */
-	int TRSP_SERVICE_MODBUS_TYPE = 57;
+	int TRSP_SERVICE_MODBUS_TYPE = 56;
 
 	/**
 	 * The feature id for the '<em><b>Rtu</b></em>' containment reference.
@@ -4039,7 +3975,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTSGrModbusRegisterRef()
 	 * @generated
 	 */
-	int TS_GR_MODBUS_REGISTER_REF = 58;
+	int TS_GR_MODBUS_REGISTER_REF = 57;
 
 	/**
 	 * The feature id for the '<em><b>Addr</b></em>' attribute.
@@ -4087,16 +4023,6 @@ public interface V0Package extends EPackage {
 	int TS_GR_MODBUS_REGISTER_REF_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.DptSelectedType <em>Dpt Selected Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ch.smartgridready.ns.s.gr.v0.DptSelectedType
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getDptSelectedType()
-	 * @generated
-	 */
-	int DPT_SELECTED_TYPE = 59;
-
-	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.EBaudRateType <em>EBaud Rate Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4104,7 +4030,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getEBaudRateType()
 	 * @generated
 	 */
-	int EBAUD_RATE_TYPE = 60;
+	int EBAUD_RATE_TYPE = 58;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.EByteLenType <em>EByte Len Type</em>}' enum.
@@ -4114,7 +4040,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getEByteLenType()
 	 * @generated
 	 */
-	int EBYTE_LEN_TYPE = 61;
+	int EBYTE_LEN_TYPE = 59;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.EParityType <em>EParity Type</em>}' enum.
@@ -4124,7 +4050,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getEParityType()
 	 * @generated
 	 */
-	int EPARITY_TYPE = 62;
+	int EPARITY_TYPE = 60;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.EStopBitLenType <em>EStop Bit Len Type</em>}' enum.
@@ -4134,7 +4060,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getEStopBitLenType()
 	 * @generated
 	 */
-	int ESTOP_BIT_LEN_TYPE = 63;
+	int ESTOP_BIT_LEN_TYPE = 61;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.MasterFunctionsSupportedType <em>Master Functions Supported Type</em>}' enum.
@@ -4144,7 +4070,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getMasterFunctionsSupportedType()
 	 * @generated
 	 */
-	int MASTER_FUNCTIONS_SUPPORTED_TYPE = 64;
+	int MASTER_FUNCTIONS_SUPPORTED_TYPE = 62;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.ModbusInterfaceSelectionType <em>Modbus Interface Selection Type</em>}' enum.
@@ -4154,7 +4080,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getModbusInterfaceSelectionType()
 	 * @generated
 	 */
-	int MODBUS_INTERFACE_SELECTION_TYPE = 65;
+	int MODBUS_INTERFACE_SELECTION_TYPE = 63;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.ProfileTypeEnumType <em>Profile Type Enum Type</em>}' enum.
@@ -4164,7 +4090,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getProfileTypeEnumType()
 	 * @generated
 	 */
-	int PROFILE_TYPE_ENUM_TYPE = 66;
+	int PROFILE_TYPE_ENUM_TYPE = 64;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrDeviceKindType <em>SGr Device Kind Type</em>}' enum.
@@ -4174,7 +4100,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrDeviceKindType()
 	 * @generated
 	 */
-	int SGR_DEVICE_KIND_TYPE = 67;
+	int SGR_DEVICE_KIND_TYPE = 65;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGReadyStateLv1Type <em>SG Ready State Lv1 Type</em>}' enum.
@@ -4184,7 +4110,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGReadyStateLv1Type()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV1_TYPE = 68;
+	int SG_READY_STATE_LV1_TYPE = 66;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGReadyStateLv2Type <em>SG Ready State Lv2 Type</em>}' enum.
@@ -4194,7 +4120,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGReadyStateLv2Type()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV2_TYPE = 69;
+	int SG_READY_STATE_LV2_TYPE = 67;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrEVSEStateLv1Type <em>SGr EVSE State Lv1 Type</em>}' enum.
@@ -4204,7 +4130,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrEVSEStateLv1Type()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV1_TYPE = 70;
+	int SGR_EVSE_STATE_LV1_TYPE = 68;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrEVSEStateLv2Type <em>SGr EVSE State Lv2 Type</em>}' enum.
@@ -4214,7 +4140,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrEVSEStateLv2Type()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV2_TYPE = 71;
+	int SGR_EVSE_STATE_LV2_TYPE = 69;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrLanguageType <em>SGr Language Type</em>}' enum.
@@ -4224,7 +4150,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrLanguageType()
 	 * @generated
 	 */
-	int SGR_LANGUAGE_TYPE = 72;
+	int SGR_LANGUAGE_TYPE = 70;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrManufacturerIDType <em>SGr Manufacturer ID Type</em>}' enum.
@@ -4234,7 +4160,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrManufacturerIDType()
 	 * @generated
 	 */
-	int SGR_MANUFACTURER_ID_TYPE = 73;
+	int SGR_MANUFACTURER_ID_TYPE = 71;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrMeasValueSourceType <em>SGr Meas Value Source Type</em>}' enum.
@@ -4244,7 +4170,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrMeasValueSourceType()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_SOURCE_TYPE = 74;
+	int SGR_MEAS_VALUE_SOURCE_TYPE = 72;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrMeasValueStateType <em>SGr Meas Value State Type</em>}' enum.
@@ -4254,7 +4180,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrMeasValueStateType()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_STATE_TYPE = 75;
+	int SGR_MEAS_VALUE_STATE_TYPE = 73;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrMeasValueTendencyType <em>SGr Meas Value Tendency Type</em>}' enum.
@@ -4264,7 +4190,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrMeasValueTendencyType()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_TENDENCY_TYPE = 76;
+	int SGR_MEAS_VALUE_TENDENCY_TYPE = 74;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrMROPresenceLevelIndicationType <em>SGr MRO Presence Level Indication Type</em>}' enum.
@@ -4274,7 +4200,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrMROPresenceLevelIndicationType()
 	 * @generated
 	 */
-	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE = 77;
+	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE = 75;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrNamelistKindOfType <em>SGr Namelist Kind Of Type</em>}' enum.
@@ -4284,7 +4210,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrNamelistKindOfType()
 	 * @generated
 	 */
-	int SGR_NAMELIST_KIND_OF_TYPE = 78;
+	int SGR_NAMELIST_KIND_OF_TYPE = 76;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrPowerSourceType <em>SGr Power Source Type</em>}' enum.
@@ -4294,7 +4220,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrPowerSourceType()
 	 * @generated
 	 */
-	int SGR_POWER_SOURCE_TYPE = 79;
+	int SGR_POWER_SOURCE_TYPE = 77;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrRestAPIAuthenticationEnumMethodType <em>SGr Rest API Authentication Enum Method Type</em>}' enum.
@@ -4304,7 +4230,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIAuthenticationEnumMethodType()
 	 * @generated
 	 */
-	int SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE = 80;
+	int SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE = 78;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrRestAPIdataTypeType <em>SGr Rest AP Idata Type Type</em>}' enum.
@@ -4314,7 +4240,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIdataTypeType()
 	 * @generated
 	 */
-	int SGR_REST_AP_IDATA_TYPE_TYPE = 81;
+	int SGR_REST_AP_IDATA_TYPE_TYPE = 79;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrRestAPIInterfaceSelectiontype <em>SGr Rest API Interface Selectiontype</em>}' enum.
@@ -4324,7 +4250,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIInterfaceSelectiontype()
 	 * @generated
 	 */
-	int SGR_REST_API_INTERFACE_SELECTIONTYPE = 82;
+	int SGR_REST_API_INTERFACE_SELECTIONTYPE = 80;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrRWPType <em>SGr RWP Type</em>}' enum.
@@ -4334,7 +4260,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRWPType()
 	 * @generated
 	 */
-	int SGR_RWP_TYPE = 83;
+	int SGR_RWP_TYPE = 81;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrSGCPFeedInStateLv2Type <em>SGr SGCP Feed In State Lv2 Type</em>}' enum.
@@ -4344,7 +4270,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrSGCPFeedInStateLv2Type()
 	 * @generated
 	 */
-	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE = 84;
+	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE = 82;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrSGCPLoadStateLv2Type <em>SGr SGCP Load State Lv2 Type</em>}' enum.
@@ -4354,7 +4280,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrSGCPLoadStateLv2Type()
 	 * @generated
 	 */
-	int SGR_SGCP_LOAD_STATE_LV2_TYPE = 85;
+	int SGR_SGCP_LOAD_STATE_LV2_TYPE = 83;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrSunspStateCodesType <em>SGr Sunsp State Codes Type</em>}' enum.
@@ -4364,7 +4290,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrSunspStateCodesType()
 	 * @generated
 	 */
-	int SGR_SUNSP_STATE_CODES_TYPE = 86;
+	int SGR_SUNSP_STATE_CODES_TYPE = 84;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrTransportServicesUsedListType <em>SGr Transport Services Used List Type</em>}' enum.
@@ -4374,7 +4300,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrTransportServicesUsedListType()
 	 * @generated
 	 */
-	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE = 87;
+	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE = 85;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SGrUnits <em>SGr Units</em>}' enum.
@@ -4384,7 +4310,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrUnits()
 	 * @generated
 	 */
-	int SGR_UNITS = 88;
+	int SGR_UNITS = 86;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.SubProfileTypeEnumType <em>Sub Profile Type Enum Type</em>}' enum.
@@ -4394,7 +4320,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSubProfileTypeEnumType()
 	 * @generated
 	 */
-	int SUB_PROFILE_TYPE_ENUM_TYPE = 89;
+	int SUB_PROFILE_TYPE_ENUM_TYPE = 87;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.TEnumConversionFct <em>TEnum Conversion Fct</em>}' enum.
@@ -4404,7 +4330,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTEnumConversionFct()
 	 * @generated
 	 */
-	int TENUM_CONVERSION_FCT = 90;
+	int TENUM_CONVERSION_FCT = 88;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.TEnumExceptionCodeType <em>TEnum Exception Code Type</em>}' enum.
@@ -4414,7 +4340,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTEnumExceptionCodeType()
 	 * @generated
 	 */
-	int TENUM_EXCEPTION_CODE_TYPE = 91;
+	int TENUM_EXCEPTION_CODE_TYPE = 89;
 
 	/**
 	 * The meta object id for the '{@link ch.smartgridready.ns.s.gr.v0.TEnumObjectType <em>TEnum Object Type</em>}' enum.
@@ -4424,7 +4350,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTEnumObjectType()
 	 * @generated
 	 */
-	int TENUM_OBJECT_TYPE = 92;
+	int TENUM_OBJECT_TYPE = 90;
 
 	/**
 	 * The meta object id for the '<em>Bitmask Type</em>' data type.
@@ -4433,7 +4359,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getBitmaskType()
 	 * @generated
 	 */
-	int BITMASK_TYPE = 93;
+	int BITMASK_TYPE = 91;
 
 	/**
 	 * The meta object id for the '<em>Dp Size Nr Registers Type</em>' data type.
@@ -4442,7 +4368,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getDpSizeNrRegistersType()
 	 * @generated
 	 */
-	int DP_SIZE_NR_REGISTERS_TYPE = 94;
+	int DP_SIZE_NR_REGISTERS_TYPE = 92;
 
 	/**
 	 * The meta object id for the '<em>Dp Size Nr Registers Type Object</em>' data type.
@@ -4452,17 +4378,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getDpSizeNrRegistersTypeObject()
 	 * @generated
 	 */
-	int DP_SIZE_NR_REGISTERS_TYPE_OBJECT = 95;
-
-	/**
-	 * The meta object id for the '<em>Dpt Selected Type Object</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ch.smartgridready.ns.s.gr.v0.DptSelectedType
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getDptSelectedTypeObject()
-	 * @generated
-	 */
-	int DPT_SELECTED_TYPE_OBJECT = 96;
+	int DP_SIZE_NR_REGISTERS_TYPE_OBJECT = 93;
 
 	/**
 	 * The meta object id for the '<em>EBaud Rate Type Object</em>' data type.
@@ -4472,7 +4388,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getEBaudRateTypeObject()
 	 * @generated
 	 */
-	int EBAUD_RATE_TYPE_OBJECT = 97;
+	int EBAUD_RATE_TYPE_OBJECT = 94;
 
 	/**
 	 * The meta object id for the '<em>EByte Len Type Object</em>' data type.
@@ -4482,7 +4398,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getEByteLenTypeObject()
 	 * @generated
 	 */
-	int EBYTE_LEN_TYPE_OBJECT = 98;
+	int EBYTE_LEN_TYPE_OBJECT = 95;
 
 	/**
 	 * The meta object id for the '<em>EParity Type Object</em>' data type.
@@ -4492,7 +4408,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getEParityTypeObject()
 	 * @generated
 	 */
-	int EPARITY_TYPE_OBJECT = 99;
+	int EPARITY_TYPE_OBJECT = 96;
 
 	/**
 	 * The meta object id for the '<em>EStop Bit Len Type Object</em>' data type.
@@ -4502,7 +4418,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getEStopBitLenTypeObject()
 	 * @generated
 	 */
-	int ESTOP_BIT_LEN_TYPE_OBJECT = 100;
+	int ESTOP_BIT_LEN_TYPE_OBJECT = 97;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n1 Type</em>' data type.
@@ -4512,7 +4428,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4n1Type()
 	 * @generated
 	 */
-	int IP_V4N1_TYPE = 101;
+	int IP_V4N1_TYPE = 98;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n1 Type1</em>' data type.
@@ -4522,7 +4438,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4n1Type1()
 	 * @generated
 	 */
-	int IP_V4N1_TYPE1 = 102;
+	int IP_V4N1_TYPE1 = 99;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n2 Type</em>' data type.
@@ -4532,7 +4448,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4n2Type()
 	 * @generated
 	 */
-	int IP_V4N2_TYPE = 103;
+	int IP_V4N2_TYPE = 100;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n2 Type1</em>' data type.
@@ -4542,7 +4458,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4n2Type1()
 	 * @generated
 	 */
-	int IP_V4N2_TYPE1 = 104;
+	int IP_V4N2_TYPE1 = 101;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n3 Type</em>' data type.
@@ -4552,7 +4468,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4n3Type()
 	 * @generated
 	 */
-	int IP_V4N3_TYPE = 105;
+	int IP_V4N3_TYPE = 102;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n3 Type1</em>' data type.
@@ -4562,7 +4478,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4n3Type1()
 	 * @generated
 	 */
-	int IP_V4N3_TYPE1 = 106;
+	int IP_V4N3_TYPE1 = 103;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n4 Type</em>' data type.
@@ -4572,7 +4488,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4n4Type()
 	 * @generated
 	 */
-	int IP_V4N4_TYPE = 107;
+	int IP_V4N4_TYPE = 104;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n4 Type1</em>' data type.
@@ -4582,7 +4498,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4n4Type1()
 	 * @generated
 	 */
-	int IP_V4N4_TYPE1 = 108;
+	int IP_V4N4_TYPE1 = 105;
 
 	/**
 	 * The meta object id for the '<em>Ip V4port Nr Type</em>' data type.
@@ -4591,7 +4507,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4portNrType()
 	 * @generated
 	 */
-	int IP_V4PORT_NR_TYPE = 109;
+	int IP_V4PORT_NR_TYPE = 106;
 
 	/**
 	 * The meta object id for the '<em>Ip V4port Nr Type Object</em>' data type.
@@ -4601,7 +4517,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getIpV4portNrTypeObject()
 	 * @generated
 	 */
-	int IP_V4PORT_NR_TYPE_OBJECT = 110;
+	int IP_V4PORT_NR_TYPE_OBJECT = 107;
 
 	/**
 	 * The meta object id for the '<em>Master Functions Supported Type Object</em>' data type.
@@ -4611,7 +4527,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getMasterFunctionsSupportedTypeObject()
 	 * @generated
 	 */
-	int MASTER_FUNCTIONS_SUPPORTED_TYPE_OBJECT = 111;
+	int MASTER_FUNCTIONS_SUPPORTED_TYPE_OBJECT = 108;
 
 	/**
 	 * The meta object id for the '<em>Modbus Interface Selection Type Object</em>' data type.
@@ -4621,45 +4537,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getModbusInterfaceSelectionTypeObject()
 	 * @generated
 	 */
-	int MODBUS_INTERFACE_SELECTION_TYPE_OBJECT = 112;
-
-	/**
-	 * The meta object id for the '<em>Num DPs Type</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getNumDPsType()
-	 * @generated
-	 */
-	int NUM_DPS_TYPE = 113;
-
-	/**
-	 * The meta object id for the '<em>Num DPs Type Object</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see java.lang.Integer
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getNumDPsTypeObject()
-	 * @generated
-	 */
-	int NUM_DPS_TYPE_OBJECT = 114;
-
-	/**
-	 * The meta object id for the '<em>Num FPs Type</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getNumFPsType()
-	 * @generated
-	 */
-	int NUM_FPS_TYPE = 115;
-
-	/**
-	 * The meta object id for the '<em>Num FPs Type Object</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see java.lang.Integer
-	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getNumFPsTypeObject()
-	 * @generated
-	 */
-	int NUM_FPS_TYPE_OBJECT = 116;
+	int MODBUS_INTERFACE_SELECTION_TYPE_OBJECT = 109;
 
 	/**
 	 * The meta object id for the '<em>Place Holder4future Extensions Type</em>' data type.
@@ -4669,7 +4547,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getPlaceHolder4futureExtensionsType()
 	 * @generated
 	 */
-	int PLACE_HOLDER4FUTURE_EXTENSIONS_TYPE = 117;
+	int PLACE_HOLDER4FUTURE_EXTENSIONS_TYPE = 110;
 
 	/**
 	 * The meta object id for the '<em>Prelim String Def Type</em>' data type.
@@ -4679,7 +4557,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getPrelimStringDefType()
 	 * @generated
 	 */
-	int PRELIM_STRING_DEF_TYPE = 118;
+	int PRELIM_STRING_DEF_TYPE = 111;
 
 	/**
 	 * The meta object id for the '<em>Profile Type Enum Type Object</em>' data type.
@@ -4689,7 +4567,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getProfileTypeEnumTypeObject()
 	 * @generated
 	 */
-	int PROFILE_TYPE_ENUM_TYPE_OBJECT = 119;
+	int PROFILE_TYPE_ENUM_TYPE_OBJECT = 112;
 
 	/**
 	 * The meta object id for the '<em>Rest API End Point Type</em>' data type.
@@ -4699,7 +4577,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getRestAPIEndPointType()
 	 * @generated
 	 */
-	int REST_API_END_POINT_TYPE = 120;
+	int REST_API_END_POINT_TYPE = 113;
 
 	/**
 	 * The meta object id for the '<em>Rest API End Point Type1</em>' data type.
@@ -4709,7 +4587,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getRestAPIEndPointType1()
 	 * @generated
 	 */
-	int REST_API_END_POINT_TYPE1 = 121;
+	int REST_API_END_POINT_TYPE1 = 114;
 
 	/**
 	 * The meta object id for the '<em>Rest APIJMES Path Type</em>' data type.
@@ -4719,7 +4597,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getRestAPIJMESPathType()
 	 * @generated
 	 */
-	int REST_APIJMES_PATH_TYPE = 122;
+	int REST_APIJMES_PATH_TYPE = 115;
 
 	/**
 	 * The meta object id for the '<em>Rest Basic Password Type</em>' data type.
@@ -4729,7 +4607,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getRestBasicPasswordType()
 	 * @generated
 	 */
-	int REST_BASIC_PASSWORD_TYPE = 123;
+	int REST_BASIC_PASSWORD_TYPE = 116;
 
 	/**
 	 * The meta object id for the '<em>Rest Basic Username Type</em>' data type.
@@ -4739,7 +4617,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getRestBasicUsernameType()
 	 * @generated
 	 */
-	int REST_BASIC_USERNAME_TYPE = 124;
+	int REST_BASIC_USERNAME_TYPE = 117;
 
 	/**
 	 * The meta object id for the '<em>SGr Device Kind Type Object</em>' data type.
@@ -4749,7 +4627,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrDeviceKindTypeObject()
 	 * @generated
 	 */
-	int SGR_DEVICE_KIND_TYPE_OBJECT = 125;
+	int SGR_DEVICE_KIND_TYPE_OBJECT = 118;
 
 	/**
 	 * The meta object id for the '<em>SG Ready State Lv1 Type Object</em>' data type.
@@ -4759,7 +4637,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGReadyStateLv1TypeObject()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV1_TYPE_OBJECT = 126;
+	int SG_READY_STATE_LV1_TYPE_OBJECT = 119;
 
 	/**
 	 * The meta object id for the '<em>SG Ready State Lv2 Type Object</em>' data type.
@@ -4769,7 +4647,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGReadyStateLv2TypeObject()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV2_TYPE_OBJECT = 127;
+	int SG_READY_STATE_LV2_TYPE_OBJECT = 120;
 
 	/**
 	 * The meta object id for the '<em>SGr EVSE State Lv1 Type Object</em>' data type.
@@ -4779,7 +4657,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrEVSEStateLv1TypeObject()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV1_TYPE_OBJECT = 128;
+	int SGR_EVSE_STATE_LV1_TYPE_OBJECT = 121;
 
 	/**
 	 * The meta object id for the '<em>SGr EVSE State Lv2 Type Object</em>' data type.
@@ -4789,7 +4667,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrEVSEStateLv2TypeObject()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV2_TYPE_OBJECT = 129;
+	int SGR_EVSE_STATE_LV2_TYPE_OBJECT = 122;
 
 	/**
 	 * The meta object id for the '<em>SGr Language Type Object</em>' data type.
@@ -4799,7 +4677,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrLanguageTypeObject()
 	 * @generated
 	 */
-	int SGR_LANGUAGE_TYPE_OBJECT = 130;
+	int SGR_LANGUAGE_TYPE_OBJECT = 123;
 
 	/**
 	 * The meta object id for the '<em>SGr Manufacturer ID Type Object</em>' data type.
@@ -4809,7 +4687,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrManufacturerIDTypeObject()
 	 * @generated
 	 */
-	int SGR_MANUFACTURER_ID_TYPE_OBJECT = 131;
+	int SGR_MANUFACTURER_ID_TYPE_OBJECT = 124;
 
 	/**
 	 * The meta object id for the '<em>SGr Meas Value Source Type Object</em>' data type.
@@ -4819,7 +4697,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrMeasValueSourceTypeObject()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_SOURCE_TYPE_OBJECT = 132;
+	int SGR_MEAS_VALUE_SOURCE_TYPE_OBJECT = 125;
 
 	/**
 	 * The meta object id for the '<em>SGr Meas Value State Type Object</em>' data type.
@@ -4829,7 +4707,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrMeasValueStateTypeObject()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_STATE_TYPE_OBJECT = 133;
+	int SGR_MEAS_VALUE_STATE_TYPE_OBJECT = 126;
 
 	/**
 	 * The meta object id for the '<em>SGr Meas Value Tendency Type Object</em>' data type.
@@ -4839,7 +4717,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrMeasValueTendencyTypeObject()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT = 134;
+	int SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT = 127;
 
 	/**
 	 * The meta object id for the '<em>SGr MRO Presence Level Indication Type Object</em>' data type.
@@ -4849,7 +4727,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrMROPresenceLevelIndicationTypeObject()
 	 * @generated
 	 */
-	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT = 135;
+	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT = 128;
 
 	/**
 	 * The meta object id for the '<em>SGr Namelist Kind Of Type Object</em>' data type.
@@ -4859,7 +4737,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrNamelistKindOfTypeObject()
 	 * @generated
 	 */
-	int SGR_NAMELIST_KIND_OF_TYPE_OBJECT = 136;
+	int SGR_NAMELIST_KIND_OF_TYPE_OBJECT = 129;
 
 	/**
 	 * The meta object id for the '<em>SGr Power Source Type Object</em>' data type.
@@ -4869,7 +4747,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrPowerSourceTypeObject()
 	 * @generated
 	 */
-	int SGR_POWER_SOURCE_TYPE_OBJECT = 137;
+	int SGR_POWER_SOURCE_TYPE_OBJECT = 130;
 
 	/**
 	 * The meta object id for the '<em>SGr Precision Type</em>' data type.
@@ -4878,7 +4756,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrPrecisionType()
 	 * @generated
 	 */
-	int SGR_PRECISION_TYPE = 138;
+	int SGR_PRECISION_TYPE = 131;
 
 	/**
 	 * The meta object id for the '<em>SGr Precision Type Object</em>' data type.
@@ -4888,7 +4766,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrPrecisionTypeObject()
 	 * @generated
 	 */
-	int SGR_PRECISION_TYPE_OBJECT = 139;
+	int SGR_PRECISION_TYPE_OBJECT = 132;
 
 	/**
 	 * The meta object id for the '<em>SGr Rest API Authentication Enum Method Type Object</em>' data type.
@@ -4898,7 +4776,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIAuthenticationEnumMethodTypeObject()
 	 * @generated
 	 */
-	int SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE_OBJECT = 140;
+	int SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE_OBJECT = 133;
 
 	/**
 	 * The meta object id for the '<em>SGr Rest AP Idata Type Type Object</em>' data type.
@@ -4908,7 +4786,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIdataTypeTypeObject()
 	 * @generated
 	 */
-	int SGR_REST_AP_IDATA_TYPE_TYPE_OBJECT = 141;
+	int SGR_REST_AP_IDATA_TYPE_TYPE_OBJECT = 134;
 
 	/**
 	 * The meta object id for the '<em>SGr Rest API Interface Selectiontype Object</em>' data type.
@@ -4918,7 +4796,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRestAPIInterfaceSelectiontypeObject()
 	 * @generated
 	 */
-	int SGR_REST_API_INTERFACE_SELECTIONTYPE_OBJECT = 142;
+	int SGR_REST_API_INTERFACE_SELECTIONTYPE_OBJECT = 135;
 
 	/**
 	 * The meta object id for the '<em>SGr RWP Type Object</em>' data type.
@@ -4928,7 +4806,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrRWPTypeObject()
 	 * @generated
 	 */
-	int SGR_RWP_TYPE_OBJECT = 143;
+	int SGR_RWP_TYPE_OBJECT = 136;
 
 	/**
 	 * The meta object id for the '<em>SGr SGCP Feed In State Lv2 Type Object</em>' data type.
@@ -4938,7 +4816,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrSGCPFeedInStateLv2TypeObject()
 	 * @generated
 	 */
-	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE_OBJECT = 144;
+	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE_OBJECT = 137;
 
 	/**
 	 * The meta object id for the '<em>SGr SGCP Load State Lv2 Type Object</em>' data type.
@@ -4948,7 +4826,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrSGCPLoadStateLv2TypeObject()
 	 * @generated
 	 */
-	int SGR_SGCP_LOAD_STATE_LV2_TYPE_OBJECT = 145;
+	int SGR_SGCP_LOAD_STATE_LV2_TYPE_OBJECT = 138;
 
 	/**
 	 * The meta object id for the '<em>SGr Special Quality Req Type</em>' data type.
@@ -4958,7 +4836,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrSpecialQualityReqType()
 	 * @generated
 	 */
-	int SGR_SPECIAL_QUALITY_REQ_TYPE = 146;
+	int SGR_SPECIAL_QUALITY_REQ_TYPE = 139;
 
 	/**
 	 * The meta object id for the '<em>SGr Sunsp State Codes Type Object</em>' data type.
@@ -4968,7 +4846,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrSunspStateCodesTypeObject()
 	 * @generated
 	 */
-	int SGR_SUNSP_STATE_CODES_TYPE_OBJECT = 147;
+	int SGR_SUNSP_STATE_CODES_TYPE_OBJECT = 140;
 
 	/**
 	 * The meta object id for the '<em>SGr Transport Services Used List Type Object</em>' data type.
@@ -4978,7 +4856,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrTransportServicesUsedListTypeObject()
 	 * @generated
 	 */
-	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE_OBJECT = 148;
+	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE_OBJECT = 141;
 
 	/**
 	 * The meta object id for the '<em>SGr Units Object</em>' data type.
@@ -4988,7 +4866,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSGrUnitsObject()
 	 * @generated
 	 */
-	int SGR_UNITS_OBJECT = 149;
+	int SGR_UNITS_OBJECT = 142;
 
 	/**
 	 * The meta object id for the '<em>Sub Profile Type Enum Type Object</em>' data type.
@@ -4998,7 +4876,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getSubProfileTypeEnumTypeObject()
 	 * @generated
 	 */
-	int SUB_PROFILE_TYPE_ENUM_TYPE_OBJECT = 150;
+	int SUB_PROFILE_TYPE_ENUM_TYPE_OBJECT = 143;
 
 	/**
 	 * The meta object id for the '<em>TBit Rank</em>' data type.
@@ -5007,7 +4885,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTBitRank()
 	 * @generated
 	 */
-	int TBIT_RANK = 151;
+	int TBIT_RANK = 144;
 
 	/**
 	 * The meta object id for the '<em>TBit Rank Object</em>' data type.
@@ -5017,7 +4895,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTBitRankObject()
 	 * @generated
 	 */
-	int TBIT_RANK_OBJECT = 152;
+	int TBIT_RANK_OBJECT = 145;
 
 	/**
 	 * The meta object id for the '<em>TEnum Conversion Fct Object</em>' data type.
@@ -5027,7 +4905,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTEnumConversionFctObject()
 	 * @generated
 	 */
-	int TENUM_CONVERSION_FCT_OBJECT = 153;
+	int TENUM_CONVERSION_FCT_OBJECT = 146;
 
 	/**
 	 * The meta object id for the '<em>TEnum Exception Code Type Object</em>' data type.
@@ -5037,7 +4915,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTEnumExceptionCodeTypeObject()
 	 * @generated
 	 */
-	int TENUM_EXCEPTION_CODE_TYPE_OBJECT = 154;
+	int TENUM_EXCEPTION_CODE_TYPE_OBJECT = 147;
 
 	/**
 	 * The meta object id for the '<em>TEnum Object Type Object</em>' data type.
@@ -5047,7 +4925,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTEnumObjectTypeObject()
 	 * @generated
 	 */
-	int TENUM_OBJECT_TYPE_OBJECT = 155;
+	int TENUM_OBJECT_TYPE_OBJECT = 148;
 
 	/**
 	 * The meta object id for the '<em>Text Element Type</em>' data type.
@@ -5057,7 +4935,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTextElementType()
 	 * @generated
 	 */
-	int TEXT_ELEMENT_TYPE = 156;
+	int TEXT_ELEMENT_TYPE = 149;
 
 	/**
 	 * The meta object id for the '<em>TI Pport Nr Type</em>' data type.
@@ -5066,7 +4944,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTIPportNrType()
 	 * @generated
 	 */
-	int TI_PPORT_NR_TYPE = 157;
+	int TI_PPORT_NR_TYPE = 150;
 
 	/**
 	 * The meta object id for the '<em>TI Pport Nr Type Object</em>' data type.
@@ -5076,7 +4954,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTIPportNrTypeObject()
 	 * @generated
 	 */
-	int TI_PPORT_NR_TYPE_OBJECT = 158;
+	int TI_PPORT_NR_TYPE_OBJECT = 151;
 
 	/**
 	 * The meta object id for the '<em>TSlave ID Type</em>' data type.
@@ -5085,7 +4963,7 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTSlaveIDType()
 	 * @generated
 	 */
-	int TSLAVE_ID_TYPE = 159;
+	int TSLAVE_ID_TYPE = 152;
 
 	/**
 	 * The meta object id for the '<em>TSlave ID Type Object</em>' data type.
@@ -5095,83 +4973,8 @@ public interface V0Package extends EPackage {
 	 * @see ch.smartgridready.ns.s.gr.v0.impl.V0PackageImpl#getTSlaveIDTypeObject()
 	 * @generated
 	 */
-	int TSLAVE_ID_TYPE_OBJECT = 160;
+	int TSLAVE_ID_TYPE_OBJECT = 153;
 
-
-	/**
-	 * Returns the meta object for class '{@link ch.smartgridready.ns.s.gr.v0.ApiTreeType <em>Api Tree Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Api Tree Type</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.ApiTreeType
-	 * @generated
-	 */
-	EClass getApiTreeType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link ch.smartgridready.ns.s.gr.v0.ApiTreeType#getIsConnected <em>Is Connected</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Is Connected</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.ApiTreeType#getIsConnected()
-	 * @see #getApiTreeType()
-	 * @generated
-	 */
-	EReference getApiTreeType_IsConnected();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.ApiTreeType#getNumFPs <em>Num FPs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Num FPs</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.ApiTreeType#getNumFPs()
-	 * @see #getApiTreeType()
-	 * @generated
-	 */
-	EAttribute getApiTreeType_NumFPs();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link ch.smartgridready.ns.s.gr.v0.ApiTreeType#getNumDPs <em>Num DPs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Num DPs</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.ApiTreeType#getNumDPs()
-	 * @see #getApiTreeType()
-	 * @generated
-	 */
-	EAttribute getApiTreeType_NumDPs();
-
-	/**
-	 * Returns the meta object for class '{@link ch.smartgridready.ns.s.gr.v0.ConnectionState <em>Connection State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Connection State</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.ConnectionState
-	 * @generated
-	 */
-	EClass getConnectionState();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.ConnectionState#isIsConnected <em>Is Connected</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Connected</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.ConnectionState#isIsConnected()
-	 * @see #getConnectionState()
-	 * @generated
-	 */
-	EAttribute getConnectionState_IsConnected();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.ConnectionState#getNextAttempt <em>Next Attempt</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Next Attempt</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.ConnectionState#getNextAttempt()
-	 * @see #getConnectionState()
-	 * @generated
-	 */
-	EAttribute getConnectionState_NextAttempt();
 
 	/**
 	 * Returns the meta object for class '{@link ch.smartgridready.ns.s.gr.v0.ContactAPIInterfaceDescType <em>Contact API Interface Desc Type</em>}'.
@@ -5249,17 +5052,6 @@ public interface V0Package extends EPackage {
 	EReference getDocumentRoot_XSISchemaLocation();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getApiTree <em>Api Tree</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Api Tree</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.DocumentRoot#getApiTree()
-	 * @see #getDocumentRoot()
-	 * @generated
-	 */
-	EReference getDocumentRoot_ApiTree();
-
-	/**
 	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getBaudRatesSupported <em>Baud Rates Supported</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5324,6 +5116,17 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDocumentRoot_ModbusFunctionCodesSupported();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getNetConnectionState <em>Net Connection State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Net Connection State</em>'.
+	 * @see ch.smartgridready.ns.s.gr.v0.DocumentRoot#getNetConnectionState()
+	 * @see #getDocumentRoot()
+	 * @generated
+	 */
+	EReference getDocumentRoot_NetConnectionState();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.DocumentRoot#getParitySupported <em>Parity Supported</em>}'.
@@ -5563,6 +5366,38 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModbusJMESPathType_Value();
+
+	/**
+	 * Returns the meta object for class '{@link ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType <em>Network Connection State Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Network Connection State Type</em>'.
+	 * @see ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType
+	 * @generated
+	 */
+	EClass getNetworkConnectionStateType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType#isIsConnected <em>Is Connected</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Connected</em>'.
+	 * @see ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType#isIsConnected()
+	 * @see #getNetworkConnectionStateType()
+	 * @generated
+	 */
+	EAttribute getNetworkConnectionStateType_IsConnected();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType#getNextAttempt <em>Next Attempt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Next Attempt</em>'.
+	 * @see ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType#getNextAttempt()
+	 * @see #getNetworkConnectionStateType()
+	 * @generated
+	 */
+	EAttribute getNetworkConnectionStateType_NextAttempt();
 
 	/**
 	 * Returns the meta object for class '{@link ch.smartgridready.ns.s.gr.v0.RestAPIJMESPathType1 <em>Rest APIJMES Path Type1</em>}'.
@@ -6184,15 +6019,15 @@ public interface V0Package extends EPackage {
 	EReference getSGrBasicGenDataPointTypeType_Enum();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getTimestamp <em>Timestamp</em>}'.
+	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDateTime <em>Date Time</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Timestamp</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getTimestamp()
+	 * @return the meta object for the attribute '<em>Date Time</em>'.
+	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDateTime()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
 	 */
-	EAttribute getSGrBasicGenDataPointTypeType_Timestamp();
+	EAttribute getSGrBasicGenDataPointTypeType_DateTime();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getString <em>String</em>}'.
@@ -6204,17 +6039,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSGrBasicGenDataPointTypeType_String();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDpTypeSelected <em>Dp Type Selected</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Dp Type Selected</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDpTypeSelected()
-	 * @see #getSGrBasicGenDataPointTypeType()
-	 * @generated
-	 */
-	EAttribute getSGrBasicGenDataPointTypeType_DpTypeSelected();
 
 	/**
 	 * Returns the meta object for class '{@link ch.smartgridready.ns.s.gr.v0.SGrContactAPIDeviceDescriptionType <em>SGr Contact API Device Description Type</em>}'.
@@ -7041,15 +6865,15 @@ public interface V0Package extends EPackage {
 	EReference getSGrModbusDeviceDescriptionType_FpListElement();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getApitreetype <em>Apitreetype</em>}'.
+	 * Returns the meta object for the containment reference '{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getNetworkConnectionState <em>Network Connection State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Apitreetype</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getApitreetype()
+	 * @return the meta object for the containment reference '<em>Network Connection State</em>'.
+	 * @see ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getNetworkConnectionState()
 	 * @see #getSGrModbusDeviceDescriptionType()
 	 * @generated
 	 */
-	EReference getSGrModbusDeviceDescriptionType_Apitreetype();
+	EReference getSGrModbusDeviceDescriptionType_NetworkConnectionState();
 
 	/**
 	 * Returns the meta object for the attribute '{@link ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType#getDeviceName <em>Device Name</em>}'.
@@ -8593,16 +8417,6 @@ public interface V0Package extends EPackage {
 	EAttribute getTSGrModbusRegisterRef_RegisterType();
 
 	/**
-	 * Returns the meta object for enum '{@link ch.smartgridready.ns.s.gr.v0.DptSelectedType <em>Dpt Selected Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Dpt Selected Type</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.DptSelectedType
-	 * @generated
-	 */
-	EEnum getDptSelectedType();
-
-	/**
 	 * Returns the meta object for enum '{@link ch.smartgridready.ns.s.gr.v0.EBaudRateType <em>EBaud Rate Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8967,18 +8781,6 @@ public interface V0Package extends EPackage {
 	EDataType getDpSizeNrRegistersTypeObject();
 
 	/**
-	 * Returns the meta object for data type '{@link ch.smartgridready.ns.s.gr.v0.DptSelectedType <em>Dpt Selected Type Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Dpt Selected Type Object</em>'.
-	 * @see ch.smartgridready.ns.s.gr.v0.DptSelectedType
-	 * @model instanceClass="ch.smartgridready.ns.s.gr.v0.DptSelectedType"
-	 *        extendedMetaData="name='dptSelectedType:Object' baseType='dptSelectedType'"
-	 * @generated
-	 */
-	EDataType getDptSelectedTypeObject();
-
-	/**
 	 * Returns the meta object for data type '{@link ch.smartgridready.ns.s.gr.v0.EBaudRateType <em>EBaud Rate Type Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9168,52 +8970,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EDataType getModbusInterfaceSelectionTypeObject();
-
-	/**
-	 * Returns the meta object for data type '<em>Num DPs Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Num DPs Type</em>'.
-	 * @model instanceClass="int"
-	 *        extendedMetaData="name='numDPsType' baseType='http://www.eclipse.org/emf/2003/XMLType#int'"
-	 * @generated
-	 */
-	EDataType getNumDPsType();
-
-	/**
-	 * Returns the meta object for data type '{@link java.lang.Integer <em>Num DPs Type Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Num DPs Type Object</em>'.
-	 * @see java.lang.Integer
-	 * @model instanceClass="java.lang.Integer"
-	 *        extendedMetaData="name='numDPsType:Object' baseType='numDPsType'"
-	 * @generated
-	 */
-	EDataType getNumDPsTypeObject();
-
-	/**
-	 * Returns the meta object for data type '<em>Num FPs Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Num FPs Type</em>'.
-	 * @model instanceClass="int"
-	 *        extendedMetaData="name='numFPsType' baseType='http://www.eclipse.org/emf/2003/XMLType#int'"
-	 * @generated
-	 */
-	EDataType getNumFPsType();
-
-	/**
-	 * Returns the meta object for data type '{@link java.lang.Integer <em>Num FPs Type Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Num FPs Type Object</em>'.
-	 * @see java.lang.Integer
-	 * @model instanceClass="java.lang.Integer"
-	 *        extendedMetaData="name='numFPsType:Object' baseType='numFPsType'"
-	 * @generated
-	 */
-	EDataType getNumFPsTypeObject();
 
 	/**
 	 * Returns the meta object for data type '{@link java.lang.String <em>Place Holder4future Extensions Type</em>}'.

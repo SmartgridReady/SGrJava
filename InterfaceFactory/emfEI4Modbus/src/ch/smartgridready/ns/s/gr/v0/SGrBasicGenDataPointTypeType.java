@@ -38,9 +38,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getFloat32 <em>Float32</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getFloat64 <em>Float64</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getEnum <em>Enum</em>}</li>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getTimestamp <em>Timestamp</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDateTime <em>Date Time</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getString <em>String</em>}</li>
- *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDpTypeSelected <em>Dp Type Selected</em>}</li>
  * </ul>
  *
  * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrBasicGenDataPointTypeType()
@@ -568,27 +567,27 @@ public interface SGrBasicGenDataPointTypeType extends EObject {
 	void setEnum(SGrEnumListType value);
 
 	/**
-	 * Returns the value of the '<em><b>Timestamp</b></em>' attribute.
+	 * Returns the value of the '<em><b>Date Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Timestamp</em>' attribute.
-	 * @see #setTimestamp(XMLGregorianCalendar)
-	 * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrBasicGenDataPointTypeType_Timestamp()
+	 * @return the value of the '<em>Date Time</em>' attribute.
+	 * @see #setDateTime(XMLGregorianCalendar)
+	 * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrBasicGenDataPointTypeType_DateTime()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.DateTime"
-	 *        extendedMetaData="kind='element' name='timestamp' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='dateTime' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	XMLGregorianCalendar getTimestamp();
+	XMLGregorianCalendar getDateTime();
 
 	/**
-	 * Sets the value of the '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getTimestamp <em>Timestamp</em>}' attribute.
+	 * Sets the value of the '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDateTime <em>Date Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Timestamp</em>' attribute.
-	 * @see #getTimestamp()
+	 * @param value the new value of the '<em>Date Time</em>' attribute.
+	 * @see #getDateTime()
 	 * @generated
 	 */
-	void setTimestamp(XMLGregorianCalendar value);
+	void setDateTime(XMLGregorianCalendar value);
 
 	/**
 	 * Returns the value of the '<em><b>String</b></em>' attribute.
@@ -612,58 +611,5 @@ public interface SGrBasicGenDataPointTypeType extends EObject {
 	 * @generated
 	 */
 	void setString(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Dp Type Selected</b></em>' attribute.
-	 * The literals are from the enumeration {@link ch.smartgridready.ns.s.gr.v0.DptSelectedType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dp Type Selected</em>' attribute.
-	 * @see ch.smartgridready.ns.s.gr.v0.DptSelectedType
-	 * @see #isSetDpTypeSelected()
-	 * @see #unsetDpTypeSelected()
-	 * @see #setDpTypeSelected(DptSelectedType)
-	 * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrBasicGenDataPointTypeType_DpTypeSelected()
-	 * @model unsettable="true"
-	 *        extendedMetaData="kind='attribute' name='dpTypeSelected'"
-	 * @generated
-	 */
-	DptSelectedType getDpTypeSelected();
-
-	/**
-	 * Sets the value of the '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDpTypeSelected <em>Dp Type Selected</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dp Type Selected</em>' attribute.
-	 * @see ch.smartgridready.ns.s.gr.v0.DptSelectedType
-	 * @see #isSetDpTypeSelected()
-	 * @see #unsetDpTypeSelected()
-	 * @see #getDpTypeSelected()
-	 * @generated
-	 */
-	void setDpTypeSelected(DptSelectedType value);
-
-	/**
-	 * Unsets the value of the '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDpTypeSelected <em>Dp Type Selected</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetDpTypeSelected()
-	 * @see #getDpTypeSelected()
-	 * @see #setDpTypeSelected(DptSelectedType)
-	 * @generated
-	 */
-	void unsetDpTypeSelected();
-
-	/**
-	 * Returns whether the value of the '{@link ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType#getDpTypeSelected <em>Dp Type Selected</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Dp Type Selected</em>' attribute is set.
-	 * @see #unsetDpTypeSelected()
-	 * @see #getDpTypeSelected()
-	 * @see #setDpTypeSelected(DptSelectedType)
-	 * @generated
-	 */
-	boolean isSetDpTypeSelected();
 
 } // SGrBasicGenDataPointTypeType

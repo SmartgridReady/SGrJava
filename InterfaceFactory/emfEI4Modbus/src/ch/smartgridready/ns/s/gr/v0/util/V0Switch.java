@@ -66,18 +66,6 @@ public class V0Switch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case V0Package.API_TREE_TYPE: {
-				ApiTreeType apiTreeType = (ApiTreeType)theEObject;
-				T result = caseApiTreeType(apiTreeType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case V0Package.CONNECTION_STATE: {
-				ConnectionState connectionState = (ConnectionState)theEObject;
-				T result = caseConnectionState(connectionState);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case V0Package.CONTACT_API_INTERFACE_DESC_TYPE: {
 				ContactAPIInterfaceDescType contactAPIInterfaceDescType = (ContactAPIInterfaceDescType)theEObject;
 				T result = caseContactAPIInterfaceDescType(contactAPIInterfaceDescType);
@@ -105,6 +93,12 @@ public class V0Switch<T> extends Switch<T> {
 			case V0Package.MODBUS_JMES_PATH_TYPE: {
 				ModbusJMESPathType modbusJMESPathType = (ModbusJMESPathType)theEObject;
 				T result = caseModbusJMESPathType(modbusJMESPathType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.NETWORK_CONNECTION_STATE_TYPE: {
+				NetworkConnectionStateType networkConnectionStateType = (NetworkConnectionStateType)theEObject;
+				T result = caseNetworkConnectionStateType(networkConnectionStateType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -425,36 +419,6 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Api Tree Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Api Tree Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseApiTreeType(ApiTreeType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Connection State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Connection State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConnectionState(ConnectionState object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Contact API Interface Desc Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -526,6 +490,21 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModbusJMESPathType(ModbusJMESPathType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Network Connection State Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Network Connection State Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNetworkConnectionStateType(NetworkConnectionStateType object) {
 		return null;
 	}
 
