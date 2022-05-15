@@ -64,10 +64,13 @@
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="hiTemp" mroVisibilityIndicator="M" rwpDatadirection="R" unit="DEGREES_PHASE">
-        <sgr:basicDataType dpTypeSelected="FLOAT32"/>
+        <sgr:basicDataType>
+        	<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType dpTypeSelected="INT32"/>
+        <sgr:modbusDataType>
+    		<sgr:int32>0</sgr:int32>
+    	</sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="823" bitRank="0" registerType="InputRegister"/>
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -88,11 +91,13 @@
     	<sgr:dataPoint datapointName="lowTemp"
     		mroVisibilityIndicator="M" rwpDatadirection="R"
     		unit="DEGREES_PHASE">
-    		<sgr:basicDataType dpTypeSelected="FLOAT32">
+    		<sgr:basicDataType>
+    			<sgr:float32>0.0</sgr:float32>
     		</sgr:basicDataType>
     	</sgr:dataPoint>
     	<sgr:modbusDataPoint>
-    		<sgr:modbusDataType dpTypeSelected="INT32">
+    		<sgr:modbusDataType>
+    			<sgr:int32>0</sgr:int32>
     		</sgr:modbusDataType>
     		<sgr:modbusFirstRegisterReference 	addr="825" bitRank="0" registerType="InputRegister"/>
     		<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -114,11 +119,14 @@
     	<sgr:dataPoint datapointName="diffTemp"
     		mroVisibilityIndicator="M" rwpDatadirection="R"
     		unit="DEGREES_PHASE">
-    		<sgr:basicDataType dpTypeSelected="FLOAT32">
+    		<sgr:basicDataType>
+    			<sgr:float32>0.0</sgr:float32>
     		</sgr:basicDataType>
     	</sgr:dataPoint>
     	<sgr:modbusDataPoint>
-    		<sgr:modbusDataType dpTypeSelected="INT32"></sgr:modbusDataType>
+    		<sgr:modbusDataType>
+    			<sgr:int32>0</sgr:int32>
+    		</sgr:modbusDataType>    		
     		<sgr:modbusFirstRegisterReference 	addr="827" bitRank="0" registerType="InputRegister"/>
     		<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
     		<sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -159,10 +167,14 @@
   		<sgr:dataPoint datapointName="actPower"
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="KILOWATTS">
-  			<sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+  			<sgr:basicDataType>
+    			<sgr:float32>0.0</sgr:float32>
+    		</sgr:basicDataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType dpTypeSelected="INT32U"></sgr:modbusDataType>
+  			<sgr:modbusDataType>
+    			<sgr:int32U>0</sgr:int32U>
+    		</sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference 	addr="803" bitRank="0" registerType="InputRegister"/>
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
   			<sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -183,10 +195,14 @@
   		<sgr:dataPoint datapointName="actFlow"
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="PER_HOUR">
-  			<sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+  			<sgr:basicDataType>
+    			<sgr:float32>0.0</sgr:float32>
+    		</sgr:basicDataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType dpTypeSelected="INT32U"></sgr:modbusDataType>
+  			<sgr:modbusDataType>
+    			<sgr:int32U>0</sgr:int32U>
+    		</sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference 	addr="813" bitRank="0" registerType="InputRegister" />
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
   			<sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>

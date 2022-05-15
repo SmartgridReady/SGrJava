@@ -30,9 +30,11 @@
   		<sgr:dataPoint datapointName="SGCP_FeedInStateLv2"
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
-  			<sgr:basicDataType dpTypeSelected="enum">
+  			<sgr:basicDataType>
   				<sgr:enum>
-  					<sgr:sgrSGCPLoadStateLv2>LD_NORMAL</sgr:sgrSGCPLoadStateLv2></sgr:enum></sgr:basicDataType>
+  					<sgr:sgrSGCPLoadStateLv2>LD_NORMAL</sgr:sgrSGCPLoadStateLv2>
+  					</sgr:enum>
+  			</sgr:basicDataType>
   		</sgr:dataPoint>
   	</sgr:dpListElement>
 </sgr:functionalProfiles>

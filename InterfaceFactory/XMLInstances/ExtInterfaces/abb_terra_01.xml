@@ -49,10 +49,12 @@
         </sgr:functionalProfile>
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="VoltageACL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
-                <sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+                <sgr:basicDataType>
+                	<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
-                <sgr:modbusDataType dpTypeSelected="INT32"></sgr:modbusDataType>
+                <sgr:modbusDataType>
+                	<sgr:int32>0</sgr:int32></sgr:modbusDataType>
                 <sgr:modbusFirstRegisterReference addr="16406" bitRank="0" registerType="InputRegister"></sgr:modbusFirstRegisterReference>
                 <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
                 <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -71,10 +73,12 @@
         </sgr:dpListElement>
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="VoltageACL2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
-                <sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+                <sgr:basicDataType>
+                	<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
-                <sgr:modbusDataType dpTypeSelected="INT32"></sgr:modbusDataType>
+                <sgr:modbusDataType>
+                	<sgr:int32>0</sgr:int32></sgr:modbusDataType>
                 <sgr:modbusFirstRegisterReference addr="16408" bitRank="0" registerType="InputRegister"></sgr:modbusFirstRegisterReference>
                 <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
                 <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -93,10 +97,12 @@
         </sgr:dpListElement>
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="VoltageACL3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
-                <sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+                <sgr:basicDataType>
+                	<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
-                <sgr:modbusDataType dpTypeSelected="INT32"></sgr:modbusDataType>
+                <sgr:modbusDataType>
+                	<sgr:int32>0</sgr:int32></sgr:modbusDataType>
                 <sgr:modbusFirstRegisterReference addr="16410" bitRank="0" registerType="InputRegister"></sgr:modbusFirstRegisterReference>
                 <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
                 <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -133,10 +139,12 @@
         </sgr:functionalProfile>
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="CurrentACL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERES">
-                <sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+                <sgr:basicDataType>
+                	<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
-                <sgr:modbusDataType dpTypeSelected="INT32U"></sgr:modbusDataType>
+                <sgr:modbusDataType>
+                	<sgr:int32U>0</sgr:int32U></sgr:modbusDataType>
                 <sgr:modbusFirstRegisterReference addr="16400" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
                 <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
                 <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -155,10 +163,12 @@
         </sgr:dpListElement>
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="CurrentACL2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERES">
-                <sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+                <sgr:basicDataType>
+                	<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
-                <sgr:modbusDataType dpTypeSelected="INT32U"></sgr:modbusDataType>
+                <sgr:modbusDataType>
+                	<sgr:int32U>0</sgr:int32U></sgr:modbusDataType>
                 <sgr:modbusFirstRegisterReference addr="16402" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
                 <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
                 <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -177,10 +187,12 @@
         </sgr:dpListElement>
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="CurrentACL3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERES">
-                <sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+                <sgr:basicDataType>
+                	<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
-                <sgr:modbusDataType dpTypeSelected="INT32U"></sgr:modbusDataType>
+                <sgr:modbusDataType>
+                	<sgr:int32U>0</sgr:int32U></sgr:modbusDataType>
                 <sgr:modbusFirstRegisterReference addr="16404" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
                 <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
                 <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -216,10 +228,12 @@
         </sgr:functionalProfile>
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="ChargingCurrentLimitRead" mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERES">
-                <sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+                <sgr:basicDataType>
+                	<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
-                <sgr:modbusDataType dpTypeSelected="INT32U"></sgr:modbusDataType>
+                <sgr:modbusDataType>
+                	<sgr:int32U>0</sgr:int32U></sgr:modbusDataType>
                 <sgr:modbusFirstRegisterReference addr="16398" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
                 <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
                 <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -238,10 +252,12 @@
         </sgr:dpListElement>
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="ChargingCurrentLimitWrite" mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERES">
-                <sgr:basicDataType dpTypeSelected="FLOAT32"></sgr:basicDataType>
+                <sgr:basicDataType>
+                	<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
-                <sgr:modbusDataType dpTypeSelected="INT32U"></sgr:modbusDataType>
+                <sgr:modbusDataType>
+                	<sgr:int32U>0</sgr:int32U></sgr:modbusDataType>
                 <sgr:modbusFirstRegisterReference addr="16640" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
                 <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
                 <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -277,10 +293,15 @@
         </sgr:functionalProfile>
         <sgr:dpListElement>
             <sgr:dataPoint datapointName="EV-StatusCode" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
-                <sgr:basicDataType dpTypeSelected="Enum"></sgr:basicDataType>
+                <sgr:basicDataType>
+                	<sgr:enum>
+                		<sgr:sgrEVState>EV_STANDBY</sgr:sgrEVState>
+                	</sgr:enum>
+                </sgr:basicDataType>
             </sgr:dataPoint>
             <sgr:modbusDataPoint>
-                <sgr:modbusDataType dpTypeSelected="INT32U"></sgr:modbusDataType>
+                <sgr:modbusDataType>
+                	<sgr:int32U>0</sgr:int32U></sgr:modbusDataType>
                 <sgr:modbusFirstRegisterReference addr="16396" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
                 <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
                 <sgr:bitmask>00000F00</sgr:bitmask>

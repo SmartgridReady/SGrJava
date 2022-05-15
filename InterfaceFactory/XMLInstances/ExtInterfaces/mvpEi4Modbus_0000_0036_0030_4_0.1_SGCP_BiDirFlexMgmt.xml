@@ -28,7 +28,7 @@
 		<sgr:brandName>gibt es einen Markennamen?</sgr:brandName>
 		<sgr:powerSource>unknown</sgr:powerSource>
 		<sgr:nominalPower>Referenzleistung in kW</sgr:nominalPower>
-		<sgr:manufSpecIdent>gibt es einen herstellersoezifischen Identifikation z.B. Gerätetypnummer)</sgr:manufSpecIdent>
+		<sgr:manufSpecIdent>gibt es eine herstellersoezifischen Identifikation z.B. Gerätetypnummer)</sgr:manufSpecIdent>
 		<sgr:manufacturerLabel>gibt es ein Label fuer eine Systemlösung</sgr:manufacturerLabel>
 		<sgr:remAuthorID>Ersteller dieses Templates: SGr/cb</sgr:remAuthorID>
 		<sgr:devLevelofOperation>4</sgr:devLevelofOperation>
@@ -108,7 +108,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActivePowerActivation"
 				mroVisibilityIndicator="M" rwpDatadirection="W" unit="NONE">
-				<sgr:basicDataType dpTypeSelected="BOOLEAN">
+				<sgr:basicDataType>
 					<sgr:boolean>false</sgr:boolean>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -120,7 +120,9 @@
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT16" />
+				<sgr:modbusDataType>
+					<sgr:int16>0</sgr:int16>
+				</sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -147,7 +149,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ReadinessState"
 				mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
-				<sgr:basicDataType dpTypeSelected="BOOLEAN">
+				<sgr:basicDataType>
 					<sgr:boolean>false</sgr:boolean>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -157,7 +159,8 @@
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT16" />
+				<sgr:modbusDataType>
+					<sgr:int16>0</sgr:int16></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -184,7 +187,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="RunState"
 				mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
-				<sgr:basicDataType dpTypeSelected="BOOLEAN">
+				<sgr:basicDataType>
 					<sgr:boolean>false</sgr:boolean>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -194,7 +197,8 @@
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT16" />
+				<sgr:modbusDataType>
+					<sgr:int16>0</sgr:int16></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -221,7 +225,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActualActivePower"
 				mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOWATTS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -232,7 +236,9 @@
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType>
+					<sgr:float32>0.0</sgr:float32>
+				</sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>

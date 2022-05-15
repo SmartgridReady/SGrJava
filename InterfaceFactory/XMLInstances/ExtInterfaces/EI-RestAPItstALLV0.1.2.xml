@@ -158,8 +158,10 @@
       </sgr:restAPIAttr>
     </sgr:fpRestAPIAttrReference>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="" mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERE_SQUARE_METERS">
-        <sgr:basicDataType dpTypeSelected="INT8"/>
+      <sgr:dataPoint datapointName="MyDataPointName" mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERE_SQUARE_METERS">
+        <sgr:basicDataType>
+        	<sgr:int8>0</sgr:int8>
+        </sgr:basicDataType>
         <sgr:dpNameList>
           <sgr:nameType>Device</sgr:nameType>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>

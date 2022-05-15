@@ -708,6 +708,7 @@ Hoval Wärmepumpen mit TopTronic(r) E in Kombination mit dem HovalConnect Modbus
 			<sgr:dataPoint datapointName="HeatCoolCtrlOpModeCmd"
 				mroVisibilityIndicator="M" rwpDatadirection="RW" unit="NONE">
 				<sgr:basicDataType>
+				<sgr:int16>0</sgr:int16>
 				</sgr:basicDataType>
 				<sgr:dpNameList>
 					<sgr:nameType>DataPoint</sgr:nameType>
@@ -739,6 +740,7 @@ Hoval Wärmepumpen mit TopTronic(r) E in Kombination mit dem HovalConnect Modbus
 			<sgr:dataPoint datapointName="HeatCoolOpState"
 				mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
 				<sgr:basicDataType>
+				<sgr:int16>0</sgr:int16>
 				</sgr:basicDataType>
 				<sgr:dpNameList>
 					<sgr:nameType>DataPoint</sgr:nameType>

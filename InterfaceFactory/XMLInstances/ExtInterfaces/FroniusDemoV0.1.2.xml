@@ -43,10 +43,10 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="CurrentACL1"
 				mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERES">
-				<sgr:basicDataType dpTypeSelected="FLOAT32" />
+				<sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32U" />
+				<sgr:modbusDataType><sgr:int32U>0</sgr:int32U></sgr:modbusDataType>				
 				<sgr:modbusFirstRegisterReference
 					registerType="HoldRegister" addr="40072" bitRank="0" />
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -61,10 +61,10 @@
 		</sgr:dpListElement>
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="CurrentACL2"	mroVisibilityIndicator="M" unit="AMPERES" rwpDatadirection="R">
-				<sgr:basicDataType dpTypeSelected="FLOAT32" />
+				<sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference addr="40073"	bitRank="0" registerType="HoldRegister" ></sgr:modbusFirstRegisterReference>
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
 				<sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -78,10 +78,10 @@
 		</sgr:dpListElement>
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="CurrentACL3" mroVisibilityIndicator="M" unit="AMPERES" rwpDatadirection="R"> 	
-			<sgr:basicDataType dpTypeSelected="FLOAT32" />
+			<sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference addr="40074"
 					registerType="HoldRegister" bitRank="0" />
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>

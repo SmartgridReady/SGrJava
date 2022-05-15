@@ -20,7 +20,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActivePowerACtot"
 				rwpDatadirection="R" unit="KILOWATTS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32" />
+				<sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
 			</sgr:dataPoint>
 				<sgr:dpAttr4Generic>
 					<sgr:valueSource>measuredValue</sgr:valueSource>
@@ -30,7 +30,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActivePowerACL1"
 				rwpDatadirection="R" unit="KILOWATTS" mroVisibilityIndicator="M">
-				<sgr:basicDataType dpTypeSelected="FLOAT32" />
+				<sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
 			</sgr:dataPoint>
 				<sgr:dpAttr4Generic>
 					<sgr:valueSource>measuredValue</sgr:valueSource>
@@ -40,7 +40,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActivePowerACL2"
 				rwpDatadirection="R" unit="KILOWATTS" mroVisibilityIndicator="R">
-				<sgr:basicDataType dpTypeSelected="FLOAT32" />
+				<sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
 			</sgr:dataPoint>
 				<sgr:dpAttr4Generic>
 					<sgr:valueSource>measuredValue</sgr:valueSource>
@@ -51,7 +51,7 @@
 <sgr:dataPoint mroVisibilityIndicator="R"
 				datapointName="ActivePowerACL3" rwpDatadirection="R"
 				unit="KILOWATTS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32" />
+				<sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
 			</sgr:dataPoint>
 				<sgr:dpAttr4Generic>
 					<sgr:valueSource>measuredValue</sgr:valueSource>

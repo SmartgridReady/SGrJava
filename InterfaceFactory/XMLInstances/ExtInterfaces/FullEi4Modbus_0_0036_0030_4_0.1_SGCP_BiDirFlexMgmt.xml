@@ -115,7 +115,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActivePowerActivation"
 				mroVisibilityIndicator="M" rwpDatadirection="W" unit="NONE">
-				<sgr:basicDataType dpTypeSelected="BOOLEAN">
+				<sgr:basicDataType>
 					<sgr:boolean>false</sgr:boolean>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -127,7 +127,7 @@
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT16" />
+				<sgr:modbusDataType><sgr:int16>0</sgr:int16></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -160,7 +160,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ReactivePowerActivation"
 				mroVisibilityIndicator="O" rwpDatadirection="W" unit="NONE">
-				<sgr:basicDataType dpTypeSelected="BOOLEAN">
+				<sgr:basicDataType>
 					<sgr:boolean>false</sgr:boolean>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -174,7 +174,7 @@ Die Leistungsanpassung wird über eine definierte Rampe zurückgenommen (RmpTms)
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT16" />
+				<sgr:modbusDataType><sgr:int16>0</sgr:int16></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -207,7 +207,7 @@ Die Leistungsanpassung wird über eine definierte Rampe zurückgenommen (RmpTms)
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="SetDeltaActivePower"
 				mroVisibilityIndicator="O" rwpDatadirection="W" unit="KILOWATTS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -218,7 +218,7 @@ Active power request: Angestrebte Veränderung des aktuellen Energieflusses (+/-
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -246,7 +246,7 @@ Active power request: Angestrebte Veränderung des aktuellen Energieflusses (+/-
 			<sgr:dataPoint datapointName="SetDeltaReactivePower"
 				mroVisibilityIndicator="O" rwpDatadirection="W"
 				unit="KILOVOLT_AMPERES">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -257,7 +257,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -284,7 +284,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ReadinessState"
 				mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
-				<sgr:basicDataType dpTypeSelected="BOOLEAN">
+				<sgr:basicDataType>
 					<sgr:boolean>false</sgr:boolean>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -294,7 +294,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT16" />
+				<sgr:modbusDataType><sgr:int16>0</sgr:int16></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -321,7 +321,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="RunState"
 				mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
-				<sgr:basicDataType dpTypeSelected="BOOLEAN">
+				<sgr:basicDataType>
 					<sgr:boolean>false</sgr:boolean>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -331,7 +331,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT16" />
+				<sgr:modbusDataType><sgr:int16>0</sgr:int16></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -358,7 +358,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActualActivePower"
 				mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOWATTS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -369,7 +369,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -399,7 +399,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActualReactivePower"
 				mroVisibilityIndicator="O" rwpDatadirection="R" unit="KILOWATTS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -410,7 +410,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -441,7 +441,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 			<sgr:dataPoint datapointName="MaxReactivePower"
 				mroVisibilityIndicator="O" rwpDatadirection="R"
 				unit="KILOVOLT_AMPERES_REACTIVE">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -451,7 +451,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -478,12 +478,12 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="MinActivePower"
 				mroVisibilityIndicator="O" rwpDatadirection="R" unit="KILOWATTS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -511,7 +511,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 			<sgr:dataPoint datapointName="MinReactivePower"
 				mroVisibilityIndicator="O" rwpDatadirection="R"
 				unit="KILOVOLT_AMPERES_REACTIVE">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -521,7 +521,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -549,7 +549,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 			<sgr:dataPoint datapointName="ActualFillLevel"
 				mroVisibilityIndicator="O" rwpDatadirection="R"
 				unit="KILOWATT_HOURS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -559,7 +559,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -590,7 +590,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 			<sgr:dataPoint datapointName="MinAllowedFillLevel"
 				mroVisibilityIndicator="O" rwpDatadirection="RWP"
 				unit="KILOWATT_HOURS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -600,7 +600,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -628,7 +628,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 			<sgr:dataPoint datapointName="MaxAllowedFillLevel"
 				mroVisibilityIndicator="O" rwpDatadirection="R"
 				unit="KILOWATT_HOURS">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 				</sgr:basicDataType>
 				<sgr:dpLegibDesc>
@@ -638,7 +638,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -665,7 +665,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName=" aValCharge"
 				mroVisibilityIndicator="O" rwpDatadirection="R" unit="PERCENT">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 					<sgr:float32>0.0</sgr:float32>
 					<sgr:float32>0.0</sgr:float32>
@@ -684,7 +684,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>20</sgr:dpSizeNrRegisters>
@@ -713,7 +713,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="aValDischarge"
 				mroVisibilityIndicator="O" rwpDatadirection="R" unit="PERCENT">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32>
 					<sgr:float32>0.0</sgr:float32>
 					<sgr:float32>0.0</sgr:float32>
@@ -732,7 +732,7 @@ Reactive power request: Angestrebte Veränderung des aktuellen Energieflusses (+
 				</sgr:dpLegibDesc>
 			</sgr:dataPoint>
 			<sgr:modbusDataPoint>
-				<sgr:modbusDataType dpTypeSelected="INT32" />
+				<sgr:modbusDataType><sgr:int32>0</sgr:int32></sgr:modbusDataType>
 				<sgr:modbusFirstRegisterReference
 					addr="0" bitRank="0" registerType="HoldRegister" />
 				<sgr:dpSizeNrRegisters>20</sgr:dpSizeNrRegisters>

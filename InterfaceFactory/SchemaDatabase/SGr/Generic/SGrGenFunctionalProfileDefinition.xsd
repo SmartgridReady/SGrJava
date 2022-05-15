@@ -412,19 +412,19 @@
           <documentation>13:</documentation>
         </annotation>
       </enumeration>
-      <enumeration value="ph14">
+      <enumeration value="ReactiveEnerBalanceAC">
         <annotation>
           <documentation>14:</documentation>
         </annotation>
       </enumeration>
-      <enumeration value="ph15">
+      <enumeration value="CurrentDirection">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>15:</documentation>
         </annotation>
       </enumeration>
-      <enumeration value="ph16">
+      <enumeration value="PowerQuadrant">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>16:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="EnergyDC">
@@ -464,32 +464,32 @@
       </enumeration>
       <enumeration value="ph24">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>24:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph25">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>25:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph26">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>26:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph27">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>27:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph28">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>28:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph29">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>29:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="BiDirFlexMgmt">
@@ -529,17 +529,17 @@
       </enumeration>
       <enumeration value="ph37">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>37:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph38">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>38:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph39">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>39:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="Monitoring">
@@ -584,12 +584,12 @@
       </enumeration>
       <enumeration value="ph48">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>48:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph49">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>49:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="RoomTemp">
@@ -619,27 +619,27 @@
       </enumeration>
       <enumeration value="ph55">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>55:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph56">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>56:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph57">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>57:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph58">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>58:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph59">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>59:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="SG-ReadyStates_bwp">
@@ -654,42 +654,42 @@
       </enumeration>
       <enumeration value="ph62">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>62:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph63">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>63:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph64">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>64:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph65">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>65:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph66">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>66:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph67">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>67:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph68">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>68:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph69">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>69:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="elFlexTotal">
@@ -714,32 +714,32 @@
       </enumeration>
       <enumeration value="ph74">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>74:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph75">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>75:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph76">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>76:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph77">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>66:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph78">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>78:</documentation>
         </annotation>
       </enumeration>
       <enumeration value="ph79">
         <annotation>
-          <documentation>:</documentation>
+          <documentation>79:</documentation>
         </annotation>
       </enumeration>
     </restriction>

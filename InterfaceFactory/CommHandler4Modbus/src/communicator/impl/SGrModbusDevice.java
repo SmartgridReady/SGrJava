@@ -115,8 +115,7 @@ public class SGrModbusDevice {
 			int iVal = getValByGDPType(aProfile, aDataPoint).getInt16U();
 			retval = String.format("%d", iVal);
 		}
-		/* Todo: Support Int32 BigInteger
-		else if (dGenType.isSetInt32()) {
+		else if (dGenType.getInt32()!=null) {
 			BigInteger bgVal = getValByGDPType(aProfile, aDataPoint).getInt32();
 			retval = String.format(bgVal.toString());
 		}
@@ -128,14 +127,10 @@ public class SGrModbusDevice {
 			long lVal = getValByGDPType(aProfile, aDataPoint).getInt64();
 			retval = String.format("%d", lVal);
 		}
-		/*
-		else if (private void dGenType.isSetInt64U() {
-		{
-			// TODO: isSetInt64U  BigInteger  Funktion wurde vom Modeler nicht generiert  
+		else if (dGenType.getInt64U()!=null) {
 			BigInteger bgVal = getValByGDPType(aProfile, aDataPoint).getInt64U();
 			retval = String.format("%d", bgVal);
 		}
-		*/
 		else if (dGenType.isSetInt8()) {
 			byte btVal = getValByGDPType(aProfile, aDataPoint).getInt8();
 			retval = String.format("%d", btVal);
@@ -144,20 +139,17 @@ public class SGrModbusDevice {
 			short shVal = getValByGDPType(aProfile, aDataPoint).getInt8U();
 			retval = String.format("%d", shVal);
 		}
-		/*
-		else if (dGenType.eIsSet() {
-			// TODO: apply String
+		else if (dGenType.getString()!=null) {
 			retval = getValByGDPType(aProfile, aDataPoint).getString();
 		}
-		/*
-		else if (dGenType.eIsSet(dateTime) {
+		else if (dGenType.getDateTime()!=null) {
 			//
 			// TODO: apply gregorian calendar library
 			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
 			retval = String.format("not yet supported%n");
-		} */
-		
-		else 			retval = String.format("not yet supported%n");	
+		} 		
+		else 
+			retval = String.format("data type not yet supported%n");	
 		return retval;
 	}
 	
@@ -331,7 +323,7 @@ public class SGrModbusDevice {
 			if (bGotRegisters) {
 
 				if ((dMBType.isSetInt16())
-						/* TODO: typesupport || (dMBType.isSetInt32())*/
+						|| (dMBType.getInt32()!=null)
 						|| (dMBType.isSetInt64() )) {
 					dVal = (double) RegRes;
 					dVal = (dVal * Math.pow(10.0, pwof10));
@@ -339,7 +331,7 @@ public class SGrModbusDevice {
 					fVal = (float) dVal;
 				} else if ((dMBType.isSetInt16U())
 						|| (dMBType.isSetInt32U())
-						/* TODO: typesupport || || (dMBType.isSetInt64U())*/ ) {
+						|| (dMBType.getInt64U()!=null)) {
 					dVal = (double) Math.abs(RegRes);
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
@@ -357,7 +349,7 @@ public class SGrModbusDevice {
 		else if (dGenType.isSetFloat64()) {
 			if (bGotRegisters) {
 				if ((dMBType.isSetInt16())
-						/* TODO: typesupport || (dMBType.isSetInt32())*/
+						|| (dMBType.getInt32()!=null)
 						|| (dMBType.isSetInt64())) {
 					dVal = (double) RegRes;
 					dVal = (dVal * Math.pow(10.0, pwof10));
@@ -365,7 +357,7 @@ public class SGrModbusDevice {
 					RetVal.setFloat64(dVal);
 				} else if ((dMBType.isSetInt16U())
 						|| (dMBType.isSetInt32U())
-						/* TODO: typesupport|| (dMBType.isSetInt64U())*/) {
+						|| (dMBType.getInt64U()!=null)) {
 					dVal = (double) Math.abs(RegRes);
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
@@ -400,37 +392,28 @@ public class SGrModbusDevice {
 			short shVal = (byte) Math.abs(RegRes);
 			RetVal.setInt8U(shVal);
 		}
-
-		/*
-		else if (dGenType.eIsSet(enum) {
+		else if (dGenType.getEnum()!=null) {
 			// TODO: SGrBasicGenDataPointTypeType, apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
 			RetVal.setEnum(null);
 		}
-		*/
-		/* TODO: support int32 BigInteger
-		else if (dGenType.isSetInt32()) {
+		else if (dGenType.getInt32()!=null) {
 			BigInteger bgVal = BigInteger.valueOf(RegRes);
 			RetVal.setInt32(bgVal);
 		}
-		*/
-		/* TODO: support int32 BigInteger
-		else if (dGenType.isSetInt64U() {
-		{
-			// TODO: SGrBasicGenDataPointTypeType, isSetInt64U  Funktion wurde vom Modeler nicht generiert  
-			// TODO: add bus data
+		else if (dGenType.getInt64U()!=null) {
 			BigInteger bgVal = BigInteger.valueOf((long) Math.abs(RegRes));
 			RetVal.setInt64U(bgVal);
-		} */
-		/*
-		 else if( dGenType.isSet())  dateTime
+		}
+		 else if(dGenType.getDateTime()!=null) {
 		 // TODO: apply gregorian calendar library
 		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
 		// TODO: apply dGenType
-		 
-		 else if( dGenType.isSetString())
-		 
+		 }
+		 else if( dGenType.getString()!=null) {
+			 // TODO:parameter conversion
+			    String sValue= String.format("TODO:parameter conversion");
 				dGenType.setString(sValue);
-		 */
+		 }
 		else
 		{ // error handling for missing instance
 		}		
@@ -605,12 +588,10 @@ public class SGrModbusDevice {
 			iVal = Integer.parseInt(sValue);
 			dGenType.setInt16U(iVal);
 		}
-		/* TODO: support int32 BigInteger
-		else if (dGenType.isSetInt32()) {
+		else if (dGenType.getInt32()!=null) {
 			BigInteger bgVal = new BigInteger(sValue);
 			dGenType.setInt32(bgVal);
 		}
-		*/
 		else if (dGenType.isSetInt32U()) {
 			long lVal = Long.parseLong(sValue);
 			dGenType.setInt32U(lVal);
@@ -619,14 +600,11 @@ public class SGrModbusDevice {
 			long lVal = Long.parseLong(sValue);
 			dGenType.setInt64(lVal);
 		}
-		/* TODO: support int64U BigInteger
-		else if (dGenType.isSetInt64U() {
-		{
+		else if (dGenType.getInt64U()!=null) {
 			// TODO: SGrBasicGenDataPointTypeType, isSetInt64U  Funktion wurde vom Modeler nicht generiert  
 			BigInteger bgVal1 = new BigInteger(sValue);
 			dGenType.setInt64U(bgVal1);
 		}
-		*/
 		else if (dGenType.isSetInt8()) {
 			byte btVal;
 			btVal = Byte.parseByte(sValue);
@@ -636,17 +614,16 @@ public class SGrModbusDevice {
 			Short shVal = Short.parseShort(sValue);
 			dGenType.setInt8U(shVal);
 		}
-		
-		/*
-		 else if( dGenType.isSet())  dateTime
+		else if( dGenType.getDateTime()!=null) {
 		 // TODO: apply gregorian calendar library
 		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
 		// TODO: apply dGenType
-		 
-		 else if( dGenType.isSetString())
-		 
-				dGenType.setString(sValue);
-		 */
+		}
+		 else if( dGenType.getString()!=null) {
+			 // TODO:parameter conversion
+			 sValue= String.format("TODO:parameter conversion");
+			dGenType.setString(sValue);
+		 }
 		else
 		{ // error handling
 		}		
@@ -769,11 +746,9 @@ private void  prv_setValByGDPType (
 			} else if (bDiscreteCMDs)
 				mbbitsnd[0] = bVal;
 		}
-		/*
-		else if (dMBType.eIsSet(enum) {
+		else if (dMBType.getEnum()!=null) {
 			// TODO: SGrBasicGenDataPointTypeType, apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
 		}
-		*/
 		else if (dMBType.isSetFloat32()) {
 			if (bRegisterCMDs) {
 				size = 2;
@@ -781,20 +756,16 @@ private void  prv_setValByGDPType (
 					fVal = (float) sgrValue.getInt8();
 				if (sgrValue.isSetInt16())
 					fVal = (float) sgrValue.getInt16();
-				/* TODO: Support Int32  BigInteger
-				if (sgrValue.isSetInt32())
+				if (sgrValue.getInt32()!=null)
 					fVal = (float) sgrValue.getInt32().floatValue();
-					*/
 				if (sgrValue.isSetInt64())
 					fVal = (float) sgrValue.getInt64();
 				if (sgrValue.isSetInt8U())
 					fVal = (float) sgrValue.getInt8U();
 				if (sgrValue.isSetInt16U())
 					fVal = (float) sgrValue.getInt16U();
-				/* TODO: Support Int64U  BigInteger
-				if (sgrValue.isSetInt64U()))
+				if (sgrValue.getInt64U()!=null)
 					fVal = (float) sgrValue.getInt64U().floatValue();
-				*/
 				if (sgrValue.isSetFloat32())
 					fVal = sgrValue.getFloat32();
 				if (sgrValue.isSetFloat64())
@@ -810,10 +781,8 @@ private void  prv_setValByGDPType (
 					dVal = (double) sgrValue.getInt8();
 				if (sgrValue.isSetInt16())
 					dVal = (double) sgrValue.getInt16();
-				/* TODO: Support Int32  BigInteger
-				if (sgrValue.isSetInt32))
+				if (sgrValue.getInt32()!=null)
 					dVal = (double) sgrValue.getInt32().doubleValue();
-					*/
 				if (sgrValue.isSetInt64())
 					dVal = (double) sgrValue.getInt64();
 				if (sgrValue.isSetFloat32())
@@ -827,10 +796,9 @@ private void  prv_setValByGDPType (
 				if (sgrValue.isSetInt32U())
 					dVal = (double) sgrValue.getInt32U();
 
-				/* TODO: Support Int64U  BigInteger	
-				if (sgrValue.isSetInt64U()))
+				if (sgrValue.getInt64U()!=null)
 					dVal = (double) sgrValue.getInt64U().doubleValue();	
-					*/
+
 				mbregsnd = ModbusHlpr.ConvDoubleToRegisters(dVal);
 			}
 
@@ -921,8 +889,8 @@ private void  prv_setValByGDPType (
 			}
 
 		}
-			/* TODO:  support Int32  BigInteger 
-			else if (dMBType.isSetInt32()) {
+			
+			else if (dMBType.getInt32()!=null)  {
 				if (bRegisterCMDs) {
 					size = 2;
 					dVal = getConvertedDouble(sgrValue, powof10, mul);
@@ -936,11 +904,8 @@ private void  prv_setValByGDPType (
 					}
 				}
 
-			} */
-			/*
-			else if (private void dMBType.isSetInt64U() {
-			{
-				// TODO: SGrBasicGenDataPointTypeType, isSetInt64U  Funktion wurde vom Modeler nicht generiert  
+			} 
+			else if (dMBType.getInt64U()!=null) {
 				if (bRegisterCMDs) {
 					size = 4;
 					//WARNING: Java does only support unsigned 64bit Values -9223372036854775808..9223372036854775807 inclusive
@@ -958,22 +923,18 @@ private void  prv_setValByGDPType (
 								"INT64U_VALUE out of range. Must be in -0...9223372036854775807 inclusive:" + dVal);
 					}
 
-			}
-			*/
-		/*
-		else if (dMBType.eIsSet(String) {
-			/* TODO: SGrBasicGenDataPointTypeType,  apply String 
-			if (bRegisterCMDs) {
+				}
+			}	
+			else if (dMBType.getString()!=null) {
+				if (bRegisterCMDs) {
 				String strVal = sgrValue.getString();
 				size = strVal.length();
 				for (int i = 1; i < size; i++)
 					mbregsnd[i] = (int) strVal.charAt(i);
 			}
-			 
 
-		} */
-		/*
-		else if (dMBType.eIsSet(dateTime )) {
+		} 
+		else if (dMBType.getDateTime()!=null) {
 			/* TODO: apply gregorian calendar library => inDpTT.setTimestamp(TIMESTAMP_EDEFAULT);
 			 or better add simple Current Epoch Unix Timestamp
 			   The current epoch translates to
@@ -982,8 +943,8 @@ private void  prv_setValByGDPType (
 				Mon, 10 Jan 2022 07:31:09 	(+0000	RFC 822, 1036, 1123, 2822)
 				Monday, 10-Jan-22 07:31:09 	(UTC	RFC 2822)
 				2022-01-10T07:31:09+00:00		(RFC 3339) 
-		    //  TODO: mbregsnd setting
-		} */
+		    //  TODO: mbregsnd setting  */
+		} 
 		
 		else 			
 		{  // TODO: Default behaviour
@@ -1041,10 +1002,8 @@ private void  prv_setValByGDPType (
 			dVal = (double) dGenType.getInt8();
 		if (dGenType.isSetInt16())
 			dVal = (double) dGenType.getInt16();
-		/* TODO: add support int32 BigInteger
-		if (dGenType.isSetInt32())
+		if (dGenType.getInt32()!=null)
 			dVal = (double) dGenType.getInt32().doubleValue();
-		*/
 		if (dGenType.isSetInt64())
 			dVal = (double) dGenType.getInt64();
 		if (dGenType.isSetFloat32())
@@ -1057,10 +1016,8 @@ private void  prv_setValByGDPType (
 			dVal = (double) dGenType.getInt16U();
 		if (dGenType.isSetInt32U())
 			dVal = (double) dGenType.getInt32U();
-		/* TODO: support int64U Biginteger
-		if (dGenType.isSetInt64U())
+		if (dGenType.getInt64U()!=null)
 			dVal = (double) dGenType.getInt64U().doubleValue();
-			*/
 		dVal = dVal / ((double) mul);
 		dVal = (dVal * Math.pow(10.0, -powof10));
 

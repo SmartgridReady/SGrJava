@@ -24,9 +24,11 @@
   		<sgr:dataPoint datapointName="EVSE_StateLv1"
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
-  			<sgr:basicDataType dpTypeSelected="enum">
+  			<sgr:basicDataType>
   				<sgr:enum>
-  					<sgr:sgrEVSEStateLv1>EV_NORMAL</sgr:sgrEVSEStateLv1></sgr:enum></sgr:basicDataType>
+  					<sgr:sgrEVSEStateLv1>EV_NORMAL</sgr:sgrEVSEStateLv1>
+  				</sgr:enum>
+  			</sgr:basicDataType>
   		</sgr:dataPoint>
   	</sgr:dpListElement>
 </sgr:functionalProfiles>

@@ -21,7 +21,7 @@
 			<sgr:dataPoint datapointName="SunspecID"
 				mroVisibilityIndicator="M" rwpDatadirection="R"
 				unit="AMPERE_SQUARE_METERS">
-				<sgr:basicDataType dpTypeSelected="INT16U">
+				<sgr:basicDataType>
 					<sgr:int16U>0</sgr:int16U>
 				</sgr:basicDataType>
 				<sgr:dpNameList>
@@ -33,7 +33,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="InvModelBlockLen" mroVisibilityIndicator="M"
 				rwpDatadirection="R" unit="AMPERE_SQUARE_METERS">
-				<sgr:basicDataType dpTypeSelected="INT16U">
+				<sgr:basicDataType>
 					<sgr:int16U>0</sgr:int16U></sgr:basicDataType>
 				<sgr:dpNameList>
 					<sgr:nameType>DataPoint</sgr:nameType>
@@ -44,7 +44,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="CurrentACtot" mroVisibilityIndicator="M"
 				rwpDatadirection="R" unit="AMPERES">
-				<sgr:basicDataType dpTypeSelected="FLOAT32">
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
 				<sgr:dpNameList>
 					<sgr:nameType>DataPoint</sgr:nameType>
@@ -55,7 +55,7 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="CurrentACL1"
 				mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERES">
-				<sgr:basicDataType dpTypeSelected="FLOAT32" >
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
 				<sgr:dpNameList>
 					<sgr:nameType>DataPoint</sgr:nameType>
@@ -65,7 +65,7 @@
 		</sgr:dpListElement>
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="CurrentACL2"	mroVisibilityIndicator="M" unit="AMPERES" rwpDatadirection="R">
-				<sgr:basicDataType dpTypeSelected="FLOAT32" >
+				<sgr:basicDataType>
 					<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
 					<sgr:dpNameList>
 					<sgr:nameType>DataPoint</sgr:nameType>
@@ -75,7 +75,7 @@
 		</sgr:dpListElement>
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="CurrentACL3" mroVisibilityIndicator="M" unit="AMPERES" rwpDatadirection="R"> 	
-				<sgr:basicDataType dpTypeSelected="FLOAT32" >
+				<sgr:basicDataType>
  					<sgr:float32>0.0</sgr:float32>
  				</sgr:basicDataType>
  				<sgr:dpNameList>
