@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+C:\dev\SmartGridReady_new\projects\InterfaceFactory\src\emfEI4Modbus\.metadata\.plugins\org.eclipse.jdt.core
-1493191126.index
-4210761053.index
