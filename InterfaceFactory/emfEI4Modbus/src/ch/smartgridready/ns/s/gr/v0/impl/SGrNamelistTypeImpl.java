@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrNamelistTypeImpl#getSIEC61850Name <em>SIEC61850 Name</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrNamelistTypeImpl#getSSAREFName <em>SSAREF Name</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrNamelistTypeImpl#getSEEBUSName <em>SEEBUS Name</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrNamelistTypeImpl#getSHPbwpName <em>SH Pbwp Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -181,6 +182,26 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected String sEEBUSName = SEEBUS_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSHPbwpName() <em>SH Pbwp Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSHPbwpName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SH_PBWP_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSHPbwpName() <em>SH Pbwp Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSHPbwpName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String sHPbwpName = SH_PBWP_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -395,6 +416,29 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public String getSHPbwpName() {
+		return sHPbwpName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSHPbwpName(String newSHPbwpName) {
+		String oldSHPbwpName = sHPbwpName;
+		sHPbwpName = newSHPbwpName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME, oldSHPbwpName, sHPbwpName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case V0Package.SGR_NAMELIST_TYPE__NAME_TYPE:
@@ -411,6 +455,8 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 				return getSSAREFName();
 			case V0Package.SGR_NAMELIST_TYPE__SEEBUS_NAME:
 				return getSEEBUSName();
+			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
+				return getSHPbwpName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -443,6 +489,9 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case V0Package.SGR_NAMELIST_TYPE__SEEBUS_NAME:
 				setSEEBUSName((String)newValue);
+				return;
+			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
+				setSHPbwpName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -477,6 +526,9 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_NAMELIST_TYPE__SEEBUS_NAME:
 				setSEEBUSName(SEEBUS_NAME_EDEFAULT);
 				return;
+			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
+				setSHPbwpName(SH_PBWP_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -503,6 +555,8 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 				return SSAREF_NAME_EDEFAULT == null ? sSAREFName != null : !SSAREF_NAME_EDEFAULT.equals(sSAREFName);
 			case V0Package.SGR_NAMELIST_TYPE__SEEBUS_NAME:
 				return SEEBUS_NAME_EDEFAULT == null ? sEEBUSName != null : !SEEBUS_NAME_EDEFAULT.equals(sEEBUSName);
+			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
+				return SH_PBWP_NAME_EDEFAULT == null ? sHPbwpName != null : !SH_PBWP_NAME_EDEFAULT.equals(sHPbwpName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -531,6 +585,8 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 		result.append(sSAREFName);
 		result.append(", sEEBUSName: ");
 		result.append(sEEBUSName);
+		result.append(", sHPbwpName: ");
+		result.append(sHPbwpName);
 		result.append(')');
 		return result.toString();
 	}

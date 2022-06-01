@@ -3,6 +3,7 @@
 package ch.smartgridready.ns.s.gr.v0.impl;
 
 import ch.smartgridready.ns.s.gr.v0.SGrAttr4GenericType;
+import ch.smartgridready.ns.s.gr.v0.SGrFlexAssistanceType;
 import ch.smartgridready.ns.s.gr.v0.SGrMeasValueSourceType;
 import ch.smartgridready.ns.s.gr.v0.SGrMeasValueStateType;
 import ch.smartgridready.ns.s.gr.v0.SGrMeasValueTendencyType;
@@ -54,6 +55,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrAttr4GenericTypeImpl#getMaxLockTimeMinutes <em>Max Lock Time Minutes</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrAttr4GenericTypeImpl#getMinRunTimeMinutes <em>Min Run Time Minutes</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrAttr4GenericTypeImpl#getValueByTimeTableMinutes <em>Value By Time Table Minutes</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.impl.SGrAttr4GenericTypeImpl#getFlexAssistance <em>Flex Assistance</em>}</li>
  * </ul>
  *
  * @generated
@@ -585,6 +587,16 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected boolean valueByTimeTableMinutesESet;
+
+	/**
+	 * The cached value of the '{@link #getFlexAssistance() <em>Flex Assistance</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFlexAssistance()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrFlexAssistanceType flexAssistance;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1534,6 +1546,51 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
+	public SGrFlexAssistanceType getFlexAssistance() {
+		return flexAssistance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFlexAssistance(SGrFlexAssistanceType newFlexAssistance, NotificationChain msgs) {
+		SGrFlexAssistanceType oldFlexAssistance = flexAssistance;
+		flexAssistance = newFlexAssistance;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE, oldFlexAssistance, newFlexAssistance);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFlexAssistance(SGrFlexAssistanceType newFlexAssistance) {
+		if (newFlexAssistance != flexAssistance) {
+			NotificationChain msgs = null;
+			if (flexAssistance != null)
+				msgs = ((InternalEObject)flexAssistance).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE, null, msgs);
+			if (newFlexAssistance != null)
+				msgs = ((InternalEObject)newFlexAssistance).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE, null, msgs);
+			msgs = basicSetFlexAssistance(newFlexAssistance, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE, newFlexAssistance, newFlexAssistance));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__STABILITY_FALLBACK:
@@ -1542,6 +1599,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return basicSetSmoothTransition(null, msgs);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
 				return basicSetTimeRange(null, msgs);
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
+				return basicSetFlexAssistance(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1598,6 +1657,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return getMinRunTimeMinutes();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_BY_TIME_TABLE_MINUTES:
 				return getValueByTimeTableMinutes();
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
+				return getFlexAssistance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1675,6 +1736,9 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_BY_TIME_TABLE_MINUTES:
 				setValueByTimeTableMinutes((Float)newValue);
+				return;
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
+				setFlexAssistance((SGrFlexAssistanceType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1754,6 +1818,9 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_BY_TIME_TABLE_MINUTES:
 				unsetValueByTimeTableMinutes();
 				return;
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
+				setFlexAssistance((SGrFlexAssistanceType)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1810,6 +1877,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return isSetMinRunTimeMinutes();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_BY_TIME_TABLE_MINUTES:
 				return isSetValueByTimeTableMinutes();
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
+				return flexAssistance != null;
 		}
 		return super.eIsSet(featureID);
 	}

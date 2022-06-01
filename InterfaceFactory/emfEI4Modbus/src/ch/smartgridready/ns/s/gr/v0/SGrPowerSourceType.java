@@ -14,9 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- *  E0004: Power Source of a Device (inherited from
- * 				EEBUS) unknown, mains1Phase, mains3Phase, battery, dc
- * 			
+ * E0004
  * <!-- end-model-doc -->
  * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrPowerSourceType()
  * @model extendedMetaData="name='SGrPowerSourceType'"
@@ -64,14 +62,14 @@ public enum SGrPowerSourceType implements Enumerator {
 	BATTERY(3, "battery", "battery"),
 
 	/**
-	 * The '<em><b>Forced</b></em>' literal object.
+	 * The '<em><b>Dc</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FORCED_VALUE
+	 * @see #DC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FORCED(4, "forced", "forced");
+	DC(4, "dc", "dc");
 
 	/**
 	 * The '<em><b>Unknown</b></em>' literal value.
@@ -118,15 +116,15 @@ public enum SGrPowerSourceType implements Enumerator {
 	public static final int BATTERY_VALUE = 3;
 
 	/**
-	 * The '<em><b>Forced</b></em>' literal value.
+	 * The '<em><b>Dc</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FORCED
-	 * @model name="forced"
+	 * @see #DC
+	 * @model name="dc"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FORCED_VALUE = 4;
+	public static final int DC_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>SGr Power Source Type</b></em>' enumerators.
@@ -140,7 +138,7 @@ public enum SGrPowerSourceType implements Enumerator {
 			MAINS1_PHASE,
 			MAINS3_PHASE,
 			BATTERY,
-			FORCED,
+			DC,
 		};
 
 	/**
@@ -201,7 +199,7 @@ public enum SGrPowerSourceType implements Enumerator {
 			case MAINS1_PHASE_VALUE: return MAINS1_PHASE;
 			case MAINS3_PHASE_VALUE: return MAINS3_PHASE;
 			case BATTERY_VALUE: return BATTERY;
-			case FORCED_VALUE: return FORCED;
+			case DC_VALUE: return DC;
 		}
 		return null;
 	}

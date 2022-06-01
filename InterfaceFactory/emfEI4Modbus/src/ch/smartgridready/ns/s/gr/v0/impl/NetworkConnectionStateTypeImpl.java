@@ -6,8 +6,11 @@ import ch.smartgridready.ns.s.gr.v0.NetworkConnectionStateType;
 import ch.smartgridready.ns.s.gr.v0.V0Package;
 
 import javax.xml.datatype.XMLGregorianCalendar;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -35,6 +38,7 @@ public class NetworkConnectionStateTypeImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected static final boolean IS_CONNECTED_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isIsConnected() <em>Is Connected</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,6 +57,7 @@ public class NetworkConnectionStateTypeImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected boolean isConnectedESet;
+
 	/**
 	 * The default value of the '{@link #getNextAttempt() <em>Next Attempt</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,6 +67,7 @@ public class NetworkConnectionStateTypeImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected static final XMLGregorianCalendar NEXT_ATTEMPT_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getNextAttempt() <em>Next Attempt</em>}' attribute.
 	 * <!-- begin-user-doc -->

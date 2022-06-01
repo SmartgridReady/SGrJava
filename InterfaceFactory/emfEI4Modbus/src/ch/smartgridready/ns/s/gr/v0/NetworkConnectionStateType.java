@@ -3,6 +3,7 @@
 package ch.smartgridready.ns.s.gr.v0;
 
 import javax.xml.datatype.XMLGregorianCalendar;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**

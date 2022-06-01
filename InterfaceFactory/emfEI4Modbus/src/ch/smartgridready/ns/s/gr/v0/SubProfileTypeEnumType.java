@@ -188,43 +188,43 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	ACTIVE_ENER_BALANCE_AC(12, "ActiveEnerBalanceAC", "ActiveEnerBalanceAC"),
 
 	/**
-	 * The '<em><b>Ph14</b></em>' literal object.
+	 * The '<em><b>Reactive Ener Balance AC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 14:
 	 * <!-- end-model-doc -->
-	 * @see #PH14_VALUE
+	 * @see #REACTIVE_ENER_BALANCE_AC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PH14(13, "ph14", "ph14"),
+	REACTIVE_ENER_BALANCE_AC(13, "ReactiveEnerBalanceAC", "ReactiveEnerBalanceAC"),
 
 	/**
-	 * The '<em><b>Ph15</b></em>' literal object.
+	 * The '<em><b>Current Direction</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 15:
 	 * <!-- end-model-doc -->
-	 * @see #PH15_VALUE
+	 * @see #CURRENT_DIRECTION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PH15(14, "ph15", "ph15"),
+	CURRENT_DIRECTION(14, "CurrentDirection", "CurrentDirection"),
 
 	/**
-	 * The '<em><b>Ph16</b></em>' literal object.
+	 * The '<em><b>Power Quadrant</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 16:
 	 * <!-- end-model-doc -->
-	 * @see #PH16_VALUE
+	 * @see #POWER_QUADRANT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PH16(15, "ph16", "ph16"),
+	POWER_QUADRANT(15, "PowerQuadrant", "PowerQuadrant"),
 
 	/**
 	 * The '<em><b>Energy DC</b></em>' literal object.
@@ -322,7 +322,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 24:
 	 * <!-- end-model-doc -->
 	 * @see #PH24_VALUE
 	 * @generated
@@ -335,7 +335,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 25:
 	 * <!-- end-model-doc -->
 	 * @see #PH25_VALUE
 	 * @generated
@@ -348,7 +348,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 26:
 	 * <!-- end-model-doc -->
 	 * @see #PH26_VALUE
 	 * @generated
@@ -361,7 +361,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 27:
 	 * <!-- end-model-doc -->
 	 * @see #PH27_VALUE
 	 * @generated
@@ -374,7 +374,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 28:
 	 * <!-- end-model-doc -->
 	 * @see #PH28_VALUE
 	 * @generated
@@ -387,7 +387,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 29:
 	 * <!-- end-model-doc -->
 	 * @see #PH29_VALUE
 	 * @generated
@@ -491,7 +491,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 37:
 	 * <!-- end-model-doc -->
 	 * @see #PH37_VALUE
 	 * @generated
@@ -504,7 +504,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 38:
 	 * <!-- end-model-doc -->
 	 * @see #PH38_VALUE
 	 * @generated
@@ -517,7 +517,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 39:
 	 * <!-- end-model-doc -->
 	 * @see #PH39_VALUE
 	 * @generated
@@ -562,7 +562,9 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HEAT_PUMP_BASE(41, "HeatPumpBase", "HeatPumpBase"), /**
+	HEAT_PUMP_BASE(41, "HeatPumpBase", "HeatPumpBase"),
+
+	/**
 	 * The '<em><b>Heat Cool Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -573,7 +575,9 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HEAT_COOL_CTRL(42, "HeatCoolCtrl", "HeatCoolCtrl"), /**
+	HEAT_COOL_CTRL(42, "HeatCoolCtrl", "HeatCoolCtrl"),
+
+	/**
 	 * The '<em><b>Compressor Pwr Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -584,7 +588,9 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPRESSOR_PWR_CTRL(43, "CompressorPwrCtrl", "CompressorPwrCtrl"), /**
+	COMPRESSOR_PWR_CTRL(43, "CompressorPwrCtrl", "CompressorPwrCtrl"),
+
+	/**
 	 * The '<em><b>Dom Hot Water Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -595,7 +601,9 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOM_HOT_WATER_CTRL(44, "DomHotWaterCtrl", "DomHotWaterCtrl"), /**
+	DOM_HOT_WATER_CTRL(44, "DomHotWaterCtrl", "DomHotWaterCtrl"),
+
+	/**
 	 * The '<em><b>Buffer Storage Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -606,7 +614,9 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BUFFER_STORAGE_CTRL(45, "BufferStorageCtrl", "BufferStorageCtrl"), /**
+	BUFFER_STORAGE_CTRL(45, "BufferStorageCtrl", "BufferStorageCtrl"),
+
+	/**
 	 * The '<em><b>Room Temp Ctrl</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -617,12 +627,14 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ROOM_TEMP_CTRL(46, "RoomTempCtrl", "RoomTempCtrl"), /**
+	ROOM_TEMP_CTRL(46, "RoomTempCtrl", "RoomTempCtrl"),
+
+	/**
 	 * The '<em><b>Ph48</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 48:
 	 * <!-- end-model-doc -->
 	 * @see #PH48_VALUE
 	 * @generated
@@ -635,7 +647,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 49:
 	 * <!-- end-model-doc -->
 	 * @see #PH49_VALUE
 	 * @generated
@@ -713,7 +725,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 55:
 	 * <!-- end-model-doc -->
 	 * @see #PH55_VALUE
 	 * @generated
@@ -726,7 +738,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 56:
 	 * <!-- end-model-doc -->
 	 * @see #PH56_VALUE
 	 * @generated
@@ -739,7 +751,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 57:
 	 * <!-- end-model-doc -->
 	 * @see #PH57_VALUE
 	 * @generated
@@ -752,7 +764,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 58:
 	 * <!-- end-model-doc -->
 	 * @see #PH58_VALUE
 	 * @generated
@@ -765,7 +777,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 59:
 	 * <!-- end-model-doc -->
 	 * @see #PH59_VALUE
 	 * @generated
@@ -804,7 +816,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 62:
 	 * <!-- end-model-doc -->
 	 * @see #PH62_VALUE
 	 * @generated
@@ -817,7 +829,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 63:
 	 * <!-- end-model-doc -->
 	 * @see #PH63_VALUE
 	 * @generated
@@ -830,7 +842,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 64:
 	 * <!-- end-model-doc -->
 	 * @see #PH64_VALUE
 	 * @generated
@@ -843,7 +855,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 65:
 	 * <!-- end-model-doc -->
 	 * @see #PH65_VALUE
 	 * @generated
@@ -856,7 +868,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 66:
 	 * <!-- end-model-doc -->
 	 * @see #PH66_VALUE
 	 * @generated
@@ -869,7 +881,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 67:
 	 * <!-- end-model-doc -->
 	 * @see #PH67_VALUE
 	 * @generated
@@ -882,7 +894,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 68:
 	 * <!-- end-model-doc -->
 	 * @see #PH68_VALUE
 	 * @generated
@@ -895,7 +907,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 69:
 	 * <!-- end-model-doc -->
 	 * @see #PH69_VALUE
 	 * @generated
@@ -960,7 +972,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 74:
 	 * <!-- end-model-doc -->
 	 * @see #PH74_VALUE
 	 * @generated
@@ -973,7 +985,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 75:
 	 * <!-- end-model-doc -->
 	 * @see #PH75_VALUE
 	 * @generated
@@ -986,7 +998,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 76:
 	 * <!-- end-model-doc -->
 	 * @see #PH76_VALUE
 	 * @generated
@@ -999,7 +1011,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 66:
 	 * <!-- end-model-doc -->
 	 * @see #PH77_VALUE
 	 * @generated
@@ -1012,7 +1024,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 78:
 	 * <!-- end-model-doc -->
 	 * @see #PH78_VALUE
 	 * @generated
@@ -1025,7 +1037,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 79:
 	 * <!-- end-model-doc -->
 	 * @see #PH79_VALUE
 	 * @generated
@@ -1216,46 +1228,46 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	public static final int ACTIVE_ENER_BALANCE_AC_VALUE = 12;
 
 	/**
-	 * The '<em><b>Ph14</b></em>' literal value.
+	 * The '<em><b>Reactive Ener Balance AC</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 14:
 	 * <!-- end-model-doc -->
-	 * @see #PH14
-	 * @model name="ph14"
+	 * @see #REACTIVE_ENER_BALANCE_AC
+	 * @model name="ReactiveEnerBalanceAC"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PH14_VALUE = 13;
+	public static final int REACTIVE_ENER_BALANCE_AC_VALUE = 13;
 
 	/**
-	 * The '<em><b>Ph15</b></em>' literal value.
+	 * The '<em><b>Current Direction</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 15:
 	 * <!-- end-model-doc -->
-	 * @see #PH15
-	 * @model name="ph15"
+	 * @see #CURRENT_DIRECTION
+	 * @model name="CurrentDirection"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PH15_VALUE = 14;
+	public static final int CURRENT_DIRECTION_VALUE = 14;
 
 	/**
-	 * The '<em><b>Ph16</b></em>' literal value.
+	 * The '<em><b>Power Quadrant</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 16:
 	 * <!-- end-model-doc -->
-	 * @see #PH16
-	 * @model name="ph16"
+	 * @see #POWER_QUADRANT
+	 * @model name="PowerQuadrant"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PH16_VALUE = 15;
+	public static final int POWER_QUADRANT_VALUE = 15;
 
 	/**
 	 * The '<em><b>Energy DC</b></em>' literal value.
@@ -1360,7 +1372,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 24:
 	 * <!-- end-model-doc -->
 	 * @see #PH24
 	 * @model name="ph24"
@@ -1374,7 +1386,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 25:
 	 * <!-- end-model-doc -->
 	 * @see #PH25
 	 * @model name="ph25"
@@ -1388,7 +1400,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 26:
 	 * <!-- end-model-doc -->
 	 * @see #PH26
 	 * @model name="ph26"
@@ -1402,7 +1414,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 27:
 	 * <!-- end-model-doc -->
 	 * @see #PH27
 	 * @model name="ph27"
@@ -1416,7 +1428,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 28:
 	 * <!-- end-model-doc -->
 	 * @see #PH28
 	 * @model name="ph28"
@@ -1430,7 +1442,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 29:
 	 * <!-- end-model-doc -->
 	 * @see #PH29
 	 * @model name="ph29"
@@ -1542,7 +1554,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 37:
 	 * <!-- end-model-doc -->
 	 * @see #PH37
 	 * @model name="ph37"
@@ -1556,7 +1568,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 38:
 	 * <!-- end-model-doc -->
 	 * @see #PH38
 	 * @model name="ph38"
@@ -1570,7 +1582,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 39:
 	 * <!-- end-model-doc -->
 	 * @see #PH39
 	 * @model name="ph39"
@@ -1696,7 +1708,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 48:
 	 * <!-- end-model-doc -->
 	 * @see #PH48
 	 * @model name="ph48"
@@ -1710,7 +1722,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 49:
 	 * <!-- end-model-doc -->
 	 * @see #PH49
 	 * @model name="ph49"
@@ -1794,7 +1806,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 55:
 	 * <!-- end-model-doc -->
 	 * @see #PH55
 	 * @model name="ph55"
@@ -1808,7 +1820,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 56:
 	 * <!-- end-model-doc -->
 	 * @see #PH56
 	 * @model name="ph56"
@@ -1822,7 +1834,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 57:
 	 * <!-- end-model-doc -->
 	 * @see #PH57
 	 * @model name="ph57"
@@ -1836,7 +1848,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 58:
 	 * <!-- end-model-doc -->
 	 * @see #PH58
 	 * @model name="ph58"
@@ -1850,7 +1862,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 59:
 	 * <!-- end-model-doc -->
 	 * @see #PH59
 	 * @model name="ph59"
@@ -1892,7 +1904,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 62:
 	 * <!-- end-model-doc -->
 	 * @see #PH62
 	 * @model name="ph62"
@@ -1906,7 +1918,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 63:
 	 * <!-- end-model-doc -->
 	 * @see #PH63
 	 * @model name="ph63"
@@ -1920,7 +1932,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 64:
 	 * <!-- end-model-doc -->
 	 * @see #PH64
 	 * @model name="ph64"
@@ -1934,7 +1946,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 65:
 	 * <!-- end-model-doc -->
 	 * @see #PH65
 	 * @model name="ph65"
@@ -1948,7 +1960,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 66:
 	 * <!-- end-model-doc -->
 	 * @see #PH66
 	 * @model name="ph66"
@@ -1962,7 +1974,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 67:
 	 * <!-- end-model-doc -->
 	 * @see #PH67
 	 * @model name="ph67"
@@ -1976,7 +1988,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 68:
 	 * <!-- end-model-doc -->
 	 * @see #PH68
 	 * @model name="ph68"
@@ -1990,7 +2002,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 69:
 	 * <!-- end-model-doc -->
 	 * @see #PH69
 	 * @model name="ph69"
@@ -2060,7 +2072,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 74:
 	 * <!-- end-model-doc -->
 	 * @see #PH74
 	 * @model name="ph74"
@@ -2074,7 +2086,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 75:
 	 * <!-- end-model-doc -->
 	 * @see #PH75
 	 * @model name="ph75"
@@ -2088,7 +2100,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 76:
 	 * <!-- end-model-doc -->
 	 * @see #PH76
 	 * @model name="ph76"
@@ -2102,7 +2114,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 66:
 	 * <!-- end-model-doc -->
 	 * @see #PH77
 	 * @model name="ph77"
@@ -2116,7 +2128,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 78:
 	 * <!-- end-model-doc -->
 	 * @see #PH78
 	 * @model name="ph78"
@@ -2130,7 +2142,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * :
+	 * 79:
 	 * <!-- end-model-doc -->
 	 * @see #PH79
 	 * @model name="ph79"
@@ -2160,9 +2172,9 @@ public enum SubProfileTypeEnumType implements Enumerator {
 			CURRENT_QUADRANT,
 			FREQUENCY,
 			ACTIVE_ENER_BALANCE_AC,
-			PH14,
-			PH15,
-			PH16,
+			REACTIVE_ENER_BALANCE_AC,
+			CURRENT_DIRECTION,
+			POWER_QUADRANT,
 			ENERGY_DC,
 			POWER_DC,
 			VOLTAGE_DC,
@@ -2295,9 +2307,9 @@ public enum SubProfileTypeEnumType implements Enumerator {
 			case CURRENT_QUADRANT_VALUE: return CURRENT_QUADRANT;
 			case FREQUENCY_VALUE: return FREQUENCY;
 			case ACTIVE_ENER_BALANCE_AC_VALUE: return ACTIVE_ENER_BALANCE_AC;
-			case PH14_VALUE: return PH14;
-			case PH15_VALUE: return PH15;
-			case PH16_VALUE: return PH16;
+			case REACTIVE_ENER_BALANCE_AC_VALUE: return REACTIVE_ENER_BALANCE_AC;
+			case CURRENT_DIRECTION_VALUE: return CURRENT_DIRECTION;
+			case POWER_QUADRANT_VALUE: return POWER_QUADRANT;
 			case ENERGY_DC_VALUE: return ENERGY_DC;
 			case POWER_DC_VALUE: return POWER_DC;
 			case VOLTAGE_DC_VALUE: return VOLTAGE_DC;

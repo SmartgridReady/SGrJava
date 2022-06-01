@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- edited with Eclipse Modeling Tools - 2020-10 by Christoph Broennimann 
-	(IBT Ing. Buero Broennimann Thun) --><!-- Copyright (c) Verein SmartGridready, Switzerland Version 0.1.2 2021-5-21 
-	All Rights Reserved. Source: https://www.SmartGridready.ch/ --><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sgr="http://www.smartgridready.ch/ns/SGr/V0/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.smartgridready.ch/ns/SGr/V0/" version="0.1.2">
+	(IBT Ing. Buero Broennimann Thun) --><!-- Copyright (c) Verein SmartGridready, Switzerland Version 0.2.1 2022-5-25 
+	All Rights Reserved. Source: https://www.SmartGridready.ch/ --><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sgr="http://www.smartgridready.ch/ns/SGr/V0/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.smartgridready.ch/ns/SGr/V0/" version="0.2.1">
   <include schemaLocation="SGrManufacturerList.xsd"/>
   <complexType name="SGrInterfaceDescriptionType">
     <sequence>
@@ -86,18 +86,4 @@
     </sequence>
   </complexType>
   <element name="DeviceProfile" type="sgr:SGrDeviceProfileType"/>
-  <simpleType name="SGrPowerSourceType">
-    <annotation>
-      <documentation> E0004: Power Source of a Device (inherited from
-				EEBUS) unknown, mains1Phase, mains3Phase, battery, dc
-			</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="unknown"/>
-      <enumeration value="mains1Phase"/>
-      <enumeration value="mains3Phase"/>
-      <enumeration value="battery"/>
-      <enumeration value="forced"/>
-    </restriction>
-  </simpleType>
 </schema>
