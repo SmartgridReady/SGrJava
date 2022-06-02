@@ -25,118 +25,118 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum SGReadyStateLv2Type implements Enumerator {
 	/**
-	 * The '<em><b>Normal</b></em>' literal object.
+	 * The '<em><b>HPNORMAL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Normal operation, optimized according to customer
+	 * Normal operation, optimized according to customer
 	 * 						requirements
 	 * 					
 	 * <!-- end-model-doc -->
-	 * @see #NORMAL_VALUE
+	 * @see #HPNORMAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NORMAL(0, "normal", "normal"),
+	HPNORMAL(0, "HPNORMAL", "HP_NORMAL"),
 
 	/**
-	 * The '<em><b>Intensivied</b></em>' literal object.
+	 * The '<em><b>HPINTENSIVIED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Increased operation
 	 * <!-- end-model-doc -->
-	 * @see #INTENSIVIED_VALUE
+	 * @see #HPINTENSIVIED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INTENSIVIED(1, "intensivied", "intensivied"),
+	HPINTENSIVIED(1, "HPINTENSIVIED", "HP_INTENSIVIED"),
 
 	/**
-	 * The '<em><b>EVULOCK</b></em>' literal object.
+	 * The '<em><b>HPLOCKED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 *  Locked operation for a maximum of 2 hours
 	 * 					
 	 * <!-- end-model-doc -->
-	 * @see #EVULOCK_VALUE
+	 * @see #HPLOCKED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EVULOCK(2, "EVULOCK", "EVU_LOCK"),
+	HPLOCKED(2, "HPLOCKED", "HP_LOCKED"),
 
 	/**
-	 * The '<em><b>Forced</b></em>' literal object.
+	 * The '<em><b>HPFORCED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Start command
 	 * <!-- end-model-doc -->
-	 * @see #FORCED_VALUE
+	 * @see #HPFORCED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FORCED(3, "forced", "forced");
+	HPFORCED(3, "HPFORCED", "HP_FORCED");
 
 	/**
-	 * The '<em><b>Normal</b></em>' literal value.
+	 * The '<em><b>HPNORMAL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Normal operation, optimized according to customer
+	 * Normal operation, optimized according to customer
 	 * 						requirements
 	 * 					
 	 * <!-- end-model-doc -->
-	 * @see #NORMAL
-	 * @model name="normal"
+	 * @see #HPNORMAL
+	 * @model literal="HP_NORMAL"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NORMAL_VALUE = 0;
+	public static final int HPNORMAL_VALUE = 0;
 
 	/**
-	 * The '<em><b>Intensivied</b></em>' literal value.
+	 * The '<em><b>HPINTENSIVIED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Increased operation
 	 * <!-- end-model-doc -->
-	 * @see #INTENSIVIED
-	 * @model name="intensivied"
+	 * @see #HPINTENSIVIED
+	 * @model literal="HP_INTENSIVIED"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INTENSIVIED_VALUE = 1;
+	public static final int HPINTENSIVIED_VALUE = 1;
 
 	/**
-	 * The '<em><b>EVULOCK</b></em>' literal value.
+	 * The '<em><b>HPLOCKED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 *  Locked operation for a maximum of 2 hours
 	 * 					
 	 * <!-- end-model-doc -->
-	 * @see #EVULOCK
-	 * @model literal="EVU_LOCK"
+	 * @see #HPLOCKED
+	 * @model literal="HP_LOCKED"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EVULOCK_VALUE = 2;
+	public static final int HPLOCKED_VALUE = 2;
 
 	/**
-	 * The '<em><b>Forced</b></em>' literal value.
+	 * The '<em><b>HPFORCED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Start command
 	 * <!-- end-model-doc -->
-	 * @see #FORCED
-	 * @model name="forced"
+	 * @see #HPFORCED
+	 * @model literal="HP_FORCED"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FORCED_VALUE = 3;
+	public static final int HPFORCED_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>SG Ready State Lv2 Type</b></em>' enumerators.
@@ -146,10 +146,10 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	 */
 	private static final SGReadyStateLv2Type[] VALUES_ARRAY =
 		new SGReadyStateLv2Type[] {
-			NORMAL,
-			INTENSIVIED,
-			EVULOCK,
-			FORCED,
+			HPNORMAL,
+			HPINTENSIVIED,
+			HPLOCKED,
+			HPFORCED,
 		};
 
 	/**
@@ -206,10 +206,10 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	 */
 	public static SGReadyStateLv2Type get(int value) {
 		switch (value) {
-			case NORMAL_VALUE: return NORMAL;
-			case INTENSIVIED_VALUE: return INTENSIVIED;
-			case EVULOCK_VALUE: return EVULOCK;
-			case FORCED_VALUE: return FORCED;
+			case HPNORMAL_VALUE: return HPNORMAL;
+			case HPINTENSIVIED_VALUE: return HPINTENSIVIED;
+			case HPLOCKED_VALUE: return HPLOCKED;
+			case HPFORCED_VALUE: return HPFORCED;
 		}
 		return null;
 	}

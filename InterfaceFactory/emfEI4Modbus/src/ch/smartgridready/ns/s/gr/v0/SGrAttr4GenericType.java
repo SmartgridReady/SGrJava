@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrAttr4GenericType#getMaxLockTimeMinutes <em>Max Lock Time Minutes</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrAttr4GenericType#getMinRunTimeMinutes <em>Min Run Time Minutes</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrAttr4GenericType#getValueByTimeTableMinutes <em>Value By Time Table Minutes</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrAttr4GenericType#getFlexAssistance <em>Flex Assistance</em>}</li>
  * </ul>
  *
  * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrAttr4GenericType()
@@ -1000,5 +1001,34 @@ public interface SGrAttr4GenericType extends EObject {
 	 * @generated
 	 */
 	boolean isSetValueByTimeTableMinutes();
+
+	/**
+	 * Returns the value of the '<em><b>Flex Assistance</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 *  Systems with more than One communicator need a definition of the priority of the commands / demands for a flexibility
+	 *           requirement.
+	 *           This element defines the kind of a such a command (servicable for net (DSO), energy or system (TNO)) and its priority (SHALL / SHOULD / MAY)
+	 * 		 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Flex Assistance</em>' containment reference.
+	 * @see #setFlexAssistance(SGrFlexAssistanceType)
+	 * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrAttr4GenericType_FlexAssistance()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='flexAssistance' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrFlexAssistanceType getFlexAssistance();
+
+	/**
+	 * Sets the value of the '{@link ch.smartgridready.ns.s.gr.v0.SGrAttr4GenericType#getFlexAssistance <em>Flex Assistance</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Flex Assistance</em>' containment reference.
+	 * @see #getFlexAssistance()
+	 * @generated
+	 */
+	void setFlexAssistance(SGrFlexAssistanceType value);
 
 } // SGrAttr4GenericType

@@ -250,7 +250,9 @@ public enum SGrManufacturerIDType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HOVAL(17, "Hoval", "Hoval"), /**
+	HOVAL(17, "Hoval", "Hoval"),
+
+	/**
 	 * The '<em><b>CTA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -261,7 +263,9 @@ public enum SGrManufacturerIDType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CTA(18, "CTA", "CTA"), /**
+	CTA(18, "CTA", "CTA"),
+
+	/**
 	 * The '<em><b>Heliotherm</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -272,7 +276,9 @@ public enum SGrManufacturerIDType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HELIOTHERM(19, "Heliotherm", "Heliotherm"), /**
+	HELIOTHERM(19, "Heliotherm", "Heliotherm"),
+
+	/**
 	 * The '<em><b>M20</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

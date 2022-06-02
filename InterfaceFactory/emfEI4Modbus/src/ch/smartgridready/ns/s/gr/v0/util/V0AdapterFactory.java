@@ -148,6 +148,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrEnumListTypeAdapter();
 			}
 			@Override
+			public Adapter caseSGrFlexAssistanceType(SGrFlexAssistanceType object) {
+				return createSGrFlexAssistanceTypeAdapter();
+			}
+			@Override
 			public Adapter caseSGrInterfaceDescriptionType(SGrInterfaceDescriptionType object) {
 				return createSGrInterfaceDescriptionTypeAdapter();
 			}
@@ -596,6 +600,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSGrEnumListTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ch.smartgridready.ns.s.gr.v0.SGrFlexAssistanceType <em>SGr Flex Assistance Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ch.smartgridready.ns.s.gr.v0.SGrFlexAssistanceType
+	 * @generated
+	 */
+	public Adapter createSGrFlexAssistanceTypeAdapter() {
 		return null;
 	}
 

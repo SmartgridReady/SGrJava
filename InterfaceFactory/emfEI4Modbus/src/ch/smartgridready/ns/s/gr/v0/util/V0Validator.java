@@ -138,6 +138,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrDeviceProfileType((SGrDeviceProfileType)value, diagnostics, context);
 			case V0Package.SGR_ENUM_LIST_TYPE:
 				return validateSGrEnumListType((SGrEnumListType)value, diagnostics, context);
+			case V0Package.SGR_FLEX_ASSISTANCE_TYPE:
+				return validateSGrFlexAssistanceType((SGrFlexAssistanceType)value, diagnostics, context);
 			case V0Package.SGR_INTERFACE_DESCRIPTION_TYPE:
 				return validateSGrInterfaceDescriptionType((SGrInterfaceDescriptionType)value, diagnostics, context);
 			case V0Package.SGR_LEGIB_DOCUMENTATION_TYPE:
@@ -238,6 +240,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrEVSEStateLv1Type((SGrEVSEStateLv1Type)value, diagnostics, context);
 			case V0Package.SGR_EVSE_STATE_LV2_TYPE:
 				return validateSGrEVSEStateLv2Type((SGrEVSEStateLv2Type)value, diagnostics, context);
+			case V0Package.SGR_EV_STATE_TYPE:
+				return validateSGrEVStateType((SGrEVStateType)value, diagnostics, context);
 			case V0Package.SGR_LANGUAGE_TYPE:
 				return validateSGrLanguageType((SGrLanguageType)value, diagnostics, context);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE:
@@ -252,6 +256,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrMROPresenceLevelIndicationType((SGrMROPresenceLevelIndicationType)value, diagnostics, context);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE:
 				return validateSGrNamelistKindOfType((SGrNamelistKindOfType)value, diagnostics, context);
+			case V0Package.SGR_OBLIG_LVL_TYPE:
+				return validateSGrObligLvlType((SGrObligLvlType)value, diagnostics, context);
 			case V0Package.SGR_POWER_SOURCE_TYPE:
 				return validateSGrPowerSourceType((SGrPowerSourceType)value, diagnostics, context);
 			case V0Package.SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE:
@@ -266,6 +272,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrSGCPFeedInStateLv2Type((SGrSGCPFeedInStateLv2Type)value, diagnostics, context);
 			case V0Package.SGR_SGCP_LOAD_STATE_LV2_TYPE:
 				return validateSGrSGCPLoadStateLv2Type((SGrSGCPLoadStateLv2Type)value, diagnostics, context);
+			case V0Package.SGR_SGCP_SERVICE_TYPE:
+				return validateSGrSGCPServiceType((SGrSGCPServiceType)value, diagnostics, context);
 			case V0Package.SGR_SUNSP_STATE_CODES_TYPE:
 				return validateSGrSunspStateCodesType((SGrSunspStateCodesType)value, diagnostics, context);
 			case V0Package.SGR_TRANSPORT_SERVICES_USED_LIST_TYPE:
@@ -344,6 +352,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrEVSEStateLv1TypeObject((SGrEVSEStateLv1Type)value, diagnostics, context);
 			case V0Package.SGR_EVSE_STATE_LV2_TYPE_OBJECT:
 				return validateSGrEVSEStateLv2TypeObject((SGrEVSEStateLv2Type)value, diagnostics, context);
+			case V0Package.SGR_EV_STATE_TYPE_OBJECT:
+				return validateSGrEVStateTypeObject((SGrEVStateType)value, diagnostics, context);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
 				return validateSGrLanguageTypeObject((SGrLanguageType)value, diagnostics, context);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE_OBJECT:
@@ -358,6 +368,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrMROPresenceLevelIndicationTypeObject((SGrMROPresenceLevelIndicationType)value, diagnostics, context);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE_OBJECT:
 				return validateSGrNamelistKindOfTypeObject((SGrNamelistKindOfType)value, diagnostics, context);
+			case V0Package.SGR_OBLIG_LVL_TYPE_OBJECT:
+				return validateSGrObligLvlTypeObject((SGrObligLvlType)value, diagnostics, context);
 			case V0Package.SGR_POWER_SOURCE_TYPE_OBJECT:
 				return validateSGrPowerSourceTypeObject((SGrPowerSourceType)value, diagnostics, context);
 			case V0Package.SGR_PRECISION_TYPE:
@@ -376,6 +388,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrSGCPFeedInStateLv2TypeObject((SGrSGCPFeedInStateLv2Type)value, diagnostics, context);
 			case V0Package.SGR_SGCP_LOAD_STATE_LV2_TYPE_OBJECT:
 				return validateSGrSGCPLoadStateLv2TypeObject((SGrSGCPLoadStateLv2Type)value, diagnostics, context);
+			case V0Package.SGR_SGCP_SERVICE_TYPE_OBJECT:
+				return validateSGrSGCPServiceTypeObject((SGrSGCPServiceType)value, diagnostics, context);
 			case V0Package.SGR_SPECIAL_QUALITY_REQ_TYPE:
 				return validateSGrSpecialQualityReqType((String)value, diagnostics, context);
 			case V0Package.SGR_SUNSP_STATE_CODES_TYPE_OBJECT:
@@ -589,6 +603,15 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateSGrEnumListType(SGrEnumListType sGrEnumListType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrEnumListType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrFlexAssistanceType(SGrFlexAssistanceType sGrFlexAssistanceType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrFlexAssistanceType, diagnostics, context);
 	}
 
 	/**
@@ -1046,6 +1069,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSGrEVStateType(SGrEVStateType sGrEVStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSGrLanguageType(SGrLanguageType sGrLanguageType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1109,6 +1141,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSGrObligLvlType(SGrObligLvlType sGrObligLvlType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSGrPowerSourceType(SGrPowerSourceType sGrPowerSourceType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1164,6 +1205,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrSGCPLoadStateLv2Type(SGrSGCPLoadStateLv2Type sGrSGCPLoadStateLv2Type, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrSGCPServiceType(SGrSGCPServiceType sGrSGCPServiceType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1879,6 +1929,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSGrEVStateTypeObject(SGrEVStateType sGrEVStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSGrLanguageTypeObject(SGrLanguageType sGrLanguageTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1934,6 +1993,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrNamelistKindOfTypeObject(SGrNamelistKindOfType sGrNamelistKindOfTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrObligLvlTypeObject(SGrObligLvlType sGrObligLvlTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2061,6 +2129,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrSGCPLoadStateLv2TypeObject(SGrSGCPLoadStateLv2Type sGrSGCPLoadStateLv2TypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrSGCPServiceTypeObject(SGrSGCPServiceType sGrSGCPServiceTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

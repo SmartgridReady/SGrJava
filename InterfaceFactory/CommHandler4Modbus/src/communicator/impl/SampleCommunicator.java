@@ -1,9 +1,12 @@
 package communicator.impl;
 
-import ch.smartgridready.ns.s.gr.v0.DptSelectedType;
 import ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType;
+import ch.smartgridready.ns.s.gr.v0.SGrEVStateType;
+import ch.smartgridready.ns.s.gr.v0.SGrEnumListType;
 import ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType;
 import ch.smartgridready.ns.s.gr.v0.V0Factory;
+import ch.smartgridready.ns.s.gr.v0.impl.SGrEnumListTypeImpl;
+import ch.smartgridready.ns.s.gr.v0.impl.V0FactoryImpl;
 import communicator.helper.DeviceDescriptionLoader;
 import communicator.helper.GenDriverAPI4Modbus;
 import communicator.helper.GenDriverAPI4ModbusRTU;
@@ -28,6 +31,23 @@ public class SampleCommunicator {
 			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
 			mbRTU.initTrspService("COM9");			
 			SGrModbusDevice sgcpMeterDevice = new SGrModbusDevice(sgcpMeterDecription, mbRTU);	
+			
+			
+			// ******************  GARO & ENUM Test  ************************************ //
+			SGrModbusDeviceDescriptionType wbGaroDescription = loader.load( XML_BASE_DIR, "EI4ModbusGaroEVSE_V0.1.2.xml");
+			GenDriverAPI4ModbusTCP mbWbGaro = new GenDriverAPI4ModbusTCP();	
+			SGrModbusDevice wbGaroDevice = new SGrModbusDevice(wbGaroDescription, mbWbGaro);
+			mbWbGaro.initDevice("192.168.1.182",502);		
+			 
+
+			SGrEnumListType oEnumList = V0Factory.eINSTANCE.createSGrEnumListType();
+			oEnumList.setSgrEVState(SGrEVStateType.EVSTANDBY);
+			 
+			oEnumList = wbGaroDevice.getValByGDPType("SmartEV", "EV-StatusCode").getEnum();
+			SGrEVStateType sgrEVState = oEnumList.getSgrEVState();
+			 
+			System.out.printf("%n*****************  %nGaroWallbox EV-StatusCode:  " + oEnumList.getSgrEVState() + " %n*****************%n ");
+			 
 			
 			// **************************   Start GA Testing   **********************************
 							
@@ -69,7 +89,7 @@ public class SampleCommunicator {
 				   sVal3 = sgcpMeterDevice.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
 				   System.out.printf("ABBMeter ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + " %n");	
 				
-				for (runtimeCnt = 0;runtimeCnt<100;runtimeCnt++)
+				for (runtimeCnt = 0;runtimeCnt<500;runtimeCnt++)
 				{
 				   // loop data
 
@@ -87,9 +107,33 @@ public class SampleCommunicator {
 
 				System.out.printf(" ReadinessState / RunState / ActualActivePower: " + sVal1 + ", "
 						+ sVal2 + sVal3 + " %n");
+				 Thread.sleep(500);
+				 oEnumList = wbGaroDevice.getValByGDPType("SmartEV", "EV-StatusCode").getEnum();
+				 if (oEnumList != null)
+				 {
+					 fVal1 = wbGaroDevice.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+					 fVal2 = wbGaroDevice.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+					 fVal3 = wbGaroDevice.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+					 sgrEVState = oEnumList.getSgrEVState();				 
+					 System.out.printf("%nGaroWallbox:%n");
+					 System.out.printf("  EV-StatusCode, CurrentAC[A] L1/L2/L3:  " + oEnumList.getSgrEVState() + "  I[1]=" + fVal1 + "  I[2]="  + fVal2 + "  I[3]="  + fVal3 + " %n");		 
 
-				
+					 fVal1 = wbGaroDevice.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
+					 fVal2 = wbGaroDevice.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getFloat32();
+					 fVal3 = wbGaroDevice.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
+					 System.out.printf("  PowerAC[kW] L1/L2/L3:     P[1]=" + fVal1 + "  P[2]="  + fVal2 + "  P[3]="  + fVal3 + " %n");	
+					 
+					 fVal1 = wbGaroDevice.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
+					 fVal2 = wbGaroDevice.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat32();
+					 fVal3 = wbGaroDevice.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
+					 System.out.printf("  EnergyAC[kWh] L1/L2/L3:   W[1]=" + fVal1 + "  W[2]="  + fVal2 + "  W[3]="  + fVal3 + " %n");	
+					
+					 sVal1 = wbGaroDevice.getVal("SmartEV", "isSmartEV15188");
+					 sVal2 = wbGaroDevice.getVal("SmartEV", "EVCCID");
+					 System.out.printf("  SmartEV support (ISO/IEC 1588):" + sVal1 + "    EVCCID=" + sVal2 + " %n");	
+				 }
 				Thread.sleep(1500);
+				/*
 				System.out.println();
 				System.out.println("HeatPumpHoval");
 				//Thread.sleep(5000);
@@ -215,9 +259,9 @@ public class SampleCommunicator {
 				fVal3 = sgrHeatPumpHovalDev.getValByGDPType("Monitoring", "RuntimeCompressor").getFloat32();
 				long lVal = sgrHeatPumpHovalDev.getValByGDPType("Monitoring", "NrOfStartupsCompressor").getInt32U();
 				System.out.printf("  Monitoring ThermalEnergyHeat, ThermalEnergyCool, RuntimeCompressor, NrOfStartupsCompressor  : " + fVal1 + " kWh,  " + fVal2 + " kWh,  " + fVal3 + " h,  " + lVal+"  times%n");  
-				System.out.println();*/
+				System.out.println();
 				
-				 Thread.sleep(3000);
+				 Thread.sleep(3000); */
 			}
 
 		}

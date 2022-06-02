@@ -1258,6 +1258,17 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flexAssistance" eType="#//SGrFlexAssistanceType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" Systems with more than One communicator need a definition of the priority of the commands / demands for a flexibility&#xA;          requirement.&#xA;          This element defines the kind of a such a command (servicable for net (DSO), energy or system (TNO)) and its priority (SHALL / SHOULD / MAY)&#xA;&#x9;&#x9; "/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="flexAssistance"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrAttr4ModbusType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1894,17 +1905,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGReadyStateLv1Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="E0006 SG-Ready states according the German heatpump&#xA;&#x9;&#x9;&#x9;&#x9;association bwp normal, intensivied, EVU_LOCK, forced&#xA;&#x9;&#x9;&#x9;&#x9;https://www.waermepumpe.de/normen-technik/sg-ready/&#xA;&#x9;&#x9;&#x9;"/>
+      <details key="documentation" value="E0006 simple heat pump blocking&#xA;&#x9;&#x9;&#x9;&#x9;association bwp normal,EVU_LOCK&#xA;&#x9;&#x9;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGReadyStateLv1Type"/>
     </eAnnotations>
-    <eLiterals name="normal">
+    <eLiterals name="HPNORMAL" literal="HP_NORMAL">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Normal operation, optimized according to customer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;requirements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="EVULOCK" value="1" literal="EVU_LOCK">
+    <eLiterals name="HPLOCK" value="1" literal="HP_LOCK">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Locked operation for a maximum of 2 hours&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
@@ -1923,22 +1934,22 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGReadyStateLv2Type"/>
     </eAnnotations>
-    <eLiterals name="normal">
+    <eLiterals name="HPNORMAL" literal="HP_NORMAL">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" Normal operation, optimized according to customer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;requirements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="Normal operation, optimized according to customer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;requirements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="intensivied" value="1">
+    <eLiterals name="HPINTENSIVIED" value="1" literal="HP_INTENSIVIED">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Increased operation"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="EVULOCK" value="2" literal="EVU_LOCK">
+    <eLiterals name="HPLOCKED" value="2" literal="HP_LOCKED">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Locked operation for a maximum of 2 hours&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="forced" value="3">
+    <eLiterals name="HPFORCED" value="3" literal="HP_FORCED">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Start command"/>
       </eAnnotations>
@@ -1955,19 +1966,35 @@
       <details key="name" value="SGrEnumListType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrEVSEStateLv2" eType="#//SGrEVSEStateLv2Type"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrMeasValueState" eType="#//SGrMeasValueStateType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="sgrEVSEStateLv2"/>
+        <details key="name" value="sgrMeasValueState"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrEVSEStateLv1" eType="#//SGrEVSEStateLv2Type"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrMeasValueTendency" eType="#//SGrMeasValueTendencyType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="sgrEVSEStateLv1"/>
+        <details key="name" value="sgrMeasValueTendency"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrMeasValueSource" eType="#//SGrMeasValueSourceType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrMeasValueSource"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrPowerSource" eType="#//SGrPowerSourceType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrPowerSource"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1976,6 +2003,38 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="sgreadyStateLv2"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgreadyStateLv1" eType="#//SGReadyStateLv1Type"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgreadyStateLv1"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrSunspStateCodes" eType="#//SGrSunspStateCodesType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrSunspStateCodes"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrEVSEStateLv2" eType="#//SGrEVSEStateLv2Type"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrEVSEStateLv2"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrEVSEStateLv1" eType="#//SGrEVSEStateLv1Type"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrEVSEStateLv1"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1992,6 +2051,30 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="sgrSGCPFeedInStateLv2"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrEVState" eType="#//SGrEVStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrEVState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrSGCPService" eType="#//SGrSGCPServiceType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrSGCPService"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrObligLvl" eType="#//SGrObligLvlType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrObligLvl"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -2029,6 +2112,49 @@
       <details key="name" value="SGrEVSEStateLv2Type:Object"/>
       <details key="baseType" value="SGrEVSEStateLv2Type"/>
     </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrEVStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="E0012 IEC EVSE_61851_State  for Wallbox&#xA;      A: standby, &#xA;      B: vehicle detected, &#xA;      C: ready (charging), &#xA;      D: with ventilation, &#xA;      E: no power (shut off), &#xA;      F: error&#xA;&#x9; "/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrEVStateType"/>
+    </eAnnotations>
+    <eLiterals name="EVSTATEUNDEF" literal="EV_STATE_UNDEF"/>
+    <eLiterals name="EVSTANDBY" value="1" literal="EV_STANDBY"/>
+    <eLiterals name="EVDETECTED" value="2" literal="EV_DETECTED"/>
+    <eLiterals name="EVREADY4CHARGING" value="3" literal="EV_READY4CHARGING"/>
+    <eLiterals name="EVWITHFAN" value="4" literal="EV_WITHFAN"/>
+    <eLiterals name="EVSHUTOFF" value="5" literal="EV_SHUTOFF"/>
+    <eLiterals name="EVERROR" value="6" literal="EV_ERROR"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrEVStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrEVStateType:Object"/>
+      <details key="baseType" value="SGrEVStateType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrFlexAssistanceType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrFlexAssistanceType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assists" lowerBound="1"
+        eType="#//SGrSGCPServiceType" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="assists"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="obligedTo" lowerBound="1"
+        eType="#//SGrObligLvlType" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="obliged_to"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrInterfaceDescriptionType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -2691,7 +2817,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sEEBUSName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="EEBUS for termonoligy place to add the EEBUS&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;abreviations if an overlap exists&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="EEBUS for terminology place to add the EEBUS&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;abreviations if an overlap exists&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -2699,10 +2825,37 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sHPbwpName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="bwp (German Heat Pump Association) for terminology place to add the bwp&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;naming for HVAC if an overlap exists&#xA;&#x9;&#x9;  "/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sHPbwpName"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrObligLvlType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="E0014:  Obligation level of a reaction / function.&#xA;      SHALL:  action is required&#xA;      SHOULD: action is strongly recommended&#xA;      MAY: action is permitted&#xA;    "/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrObligLvlType"/>
+    </eAnnotations>
+    <eLiterals name="OLSHALL" literal="OL_SHALL"/>
+    <eLiterals name="OLSHOULD" value="1" literal="OL_SHOULD"/>
+    <eLiterals name="OLMAY" value="2" literal="OL_MAY"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrObligLvlTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrObligLvlType:Object"/>
+      <details key="baseType" value="SGrObligLvlType"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrPowerSourceType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value=" E0004: Power Source of a Device (inherited from&#xA;&#x9;&#x9;&#x9;&#x9;EEBUS) unknown, mains1Phase, mains3Phase, battery, dc&#xA;&#x9;&#x9;&#x9;"/>
+      <details key="documentation" value="E0004"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrPowerSourceType"/>
@@ -2711,7 +2864,7 @@
     <eLiterals name="mains1Phase" value="1"/>
     <eLiterals name="mains3Phase" value="2"/>
     <eLiterals name="battery" value="3"/>
-    <eLiterals name="forced" value="4"/>
+    <eLiterals name="dc" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrPowerSourceTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -3434,6 +3587,23 @@
       <details key="baseType" value="SGrSGCPLoadStateLv2Type"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrSGCPServiceType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="E0013: Assistance type of a reaction / function. This Attribute indicates the type of Flexibility Entity of the operation &#xA;      NET  servicable: Operation for the benefit of a distribution network operator (DSO) &#xA;      SYS  servicable: Operation of the total system operators (TSO) &#xA;      ENER servicable: Operation for energy optimization&#xA;    "/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrSGCPServiceType"/>
+    </eAnnotations>
+    <eLiterals name="ATNetServicable" literal="AT_NetServicable"/>
+    <eLiterals name="ATSysServicable" value="1" literal="AT_SysServicable"/>
+    <eLiterals name="ATEnerServicable" value="2" literal="AT_EnerServicable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrSGCPServiceTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrSGCPServiceType:Object"/>
+      <details key="baseType" value="SGrSGCPServiceType"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrSmoothTransitionType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The time behavior of a transition from a power&#xA;&#x9;&#x9;&#x9;&#x9;adjustment (positive as well as negative) can be determined by&#xA;&#x9;&#x9;&#x9;&#x9;several time values, so that this starts with a random time delay,&#xA;&#x9;&#x9;&#x9;&#x9;changes via a ramp and an expiry time with return to the initial&#xA;&#x9;&#x9;&#x9;&#x9;value.&#xA;&#x9;&#x9;&#x9;"/>
@@ -3900,19 +4070,19 @@
         <details key="documentation" value="13:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph14" value="13">
+    <eLiterals name="ReactiveEnerBalanceAC" value="13">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="14:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph15" value="14">
+    <eLiterals name="CurrentDirection" value="14">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="15:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph16" value="15">
+    <eLiterals name="PowerQuadrant" value="15">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="16:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="EnergyDC" value="16">
@@ -3952,32 +4122,32 @@
     </eLiterals>
     <eLiterals name="ph24" value="23">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="24:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph25" value="24">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="25:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph26" value="25">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="26:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph27" value="26">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="27:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph28" value="27">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="28:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph29" value="28">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="29:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="BiDirFlexMgmt" value="29">
@@ -4017,17 +4187,17 @@
     </eLiterals>
     <eLiterals name="ph37" value="36">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="37:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph38" value="37">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="38:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph39" value="38">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="39:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="Monitoring" value="39">
@@ -4072,12 +4242,12 @@
     </eLiterals>
     <eLiterals name="ph48" value="47">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="48:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph49" value="48">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="49:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="RoomTemp" value="49">
@@ -4107,27 +4277,27 @@
     </eLiterals>
     <eLiterals name="ph55" value="54">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="55:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph56" value="55">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="56:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph57" value="56">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="57:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph58" value="57">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="58:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph59" value="58">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="59:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="SGReadyStatesBwp" value="59" literal="SG-ReadyStates_bwp">
@@ -4142,42 +4312,42 @@
     </eLiterals>
     <eLiterals name="ph62" value="61">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="62:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph63" value="62">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="63:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph64" value="63">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="64:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph65" value="64">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="65:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph66" value="65">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="66:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph67" value="66">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="67:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph68" value="67">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="68:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph69" value="68">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="69:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="elFlexTotal" value="69">
@@ -4202,32 +4372,32 @@
     </eLiterals>
     <eLiterals name="ph74" value="73">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="74:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph75" value="74">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="75:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph76" value="75">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="76:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph77" value="76">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="66:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph78" value="77">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="78:"/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="ph79" value="78">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=":"/>
+        <details key="documentation" value="79:"/>
       </eAnnotations>
     </eLiterals>
   </eClassifiers>

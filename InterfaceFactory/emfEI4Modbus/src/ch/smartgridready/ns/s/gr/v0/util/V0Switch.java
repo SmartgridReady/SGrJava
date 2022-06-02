@@ -186,6 +186,12 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case V0Package.SGR_FLEX_ASSISTANCE_TYPE: {
+				SGrFlexAssistanceType sGrFlexAssistanceType = (SGrFlexAssistanceType)theEObject;
+				T result = caseSGrFlexAssistanceType(sGrFlexAssistanceType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case V0Package.SGR_INTERFACE_DESCRIPTION_TYPE: {
 				SGrInterfaceDescriptionType sGrInterfaceDescriptionType = (SGrInterfaceDescriptionType)theEObject;
 				T result = caseSGrInterfaceDescriptionType(sGrInterfaceDescriptionType);
@@ -715,6 +721,21 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSGrEnumListType(SGrEnumListType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Flex Assistance Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Flex Assistance Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrFlexAssistanceType(SGrFlexAssistanceType object) {
 		return null;
 	}
 

@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrNamelistType#getSIEC61850Name <em>SIEC61850 Name</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrNamelistType#getSSAREFName <em>SSAREF Name</em>}</li>
  *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrNamelistType#getSEEBUSName <em>SEEBUS Name</em>}</li>
+ *   <li>{@link ch.smartgridready.ns.s.gr.v0.SGrNamelistType#getSHPbwpName <em>SH Pbwp Name</em>}</li>
  * </ul>
  *
  * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrNamelistType()
@@ -243,7 +244,7 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * EEBUS for termonoligy place to add the EEBUS
+	 * EEBUS for terminology place to add the EEBUS
 	 * 						abreviations if an overlap exists
 	 * 					
 	 * <!-- end-model-doc -->
@@ -265,5 +266,33 @@ public interface SGrNamelistType extends EObject {
 	 * @generated
 	 */
 	void setSEEBUSName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>SH Pbwp Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * bwp (German Heat Pump Association) for terminology place to add the bwp
+	 * 						naming for HVAC if an overlap exists
+	 * 		  
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>SH Pbwp Name</em>' attribute.
+	 * @see #setSHPbwpName(String)
+	 * @see ch.smartgridready.ns.s.gr.v0.V0Package#getSGrNamelistType_SHPbwpName()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+	 *        extendedMetaData="kind='element' name='sHPbwpName' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	String getSHPbwpName();
+
+	/**
+	 * Sets the value of the '{@link ch.smartgridready.ns.s.gr.v0.SGrNamelistType#getSHPbwpName <em>SH Pbwp Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>SH Pbwp Name</em>' attribute.
+	 * @see #getSHPbwpName()
+	 * @generated
+	 */
+	void setSHPbwpName(String value);
 
 } // SGrNamelistType

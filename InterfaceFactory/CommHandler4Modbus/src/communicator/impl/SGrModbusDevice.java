@@ -8,15 +8,29 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 
-import ch.smartgridready.ns.s.gr.v0.DptSelectedType;
 import ch.smartgridready.ns.s.gr.v0.ModbusInterfaceSelectionType;
+import ch.smartgridready.ns.s.gr.v0.SGReadyStateLv1Type;
+import ch.smartgridready.ns.s.gr.v0.SGReadyStateLv2Type;
 import ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType;
+import ch.smartgridready.ns.s.gr.v0.SGrEVSEStateLv1Type;  
+import ch.smartgridready.ns.s.gr.v0.SGrEVSEStateLv2Type;
+import ch.smartgridready.ns.s.gr.v0.SGrSGCPLoadStateLv2Type;
+import ch.smartgridready.ns.s.gr.v0.SGrSGCPServiceType;
+import ch.smartgridready.ns.s.gr.v0.SGrEVStateType;
+import ch.smartgridready.ns.s.gr.v0.SGrEnumListType;
+import ch.smartgridready.ns.s.gr.v0.SGrMeasValueSourceType;
+import ch.smartgridready.ns.s.gr.v0.SGrMeasValueStateType;
+import ch.smartgridready.ns.s.gr.v0.SGrMeasValueTendencyType;
 import ch.smartgridready.ns.s.gr.v0.SGrModbusDataPointsFrameType;
 import ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType;
 import ch.smartgridready.ns.s.gr.v0.SGrModbusInterfaceDescriptionType;
 import ch.smartgridready.ns.s.gr.v0.SGrModbusProfilesFrameType;
+import ch.smartgridready.ns.s.gr.v0.SGrObligLvlType;
+import ch.smartgridready.ns.s.gr.v0.SGrPowerSourceType;
 import ch.smartgridready.ns.s.gr.v0.SGrRWPType;
+import ch.smartgridready.ns.s.gr.v0.SGrSGCPFeedInStateLv2Type;
 import ch.smartgridready.ns.s.gr.v0.SGrScalingType;
+import ch.smartgridready.ns.s.gr.v0.SGrSunspStateCodesType;
 import ch.smartgridready.ns.s.gr.v0.TEnumConversionFct;
 import ch.smartgridready.ns.s.gr.v0.TEnumObjectType;
 import ch.smartgridready.ns.s.gr.v0.TSGrModbusRegisterRef;
@@ -94,11 +108,13 @@ public class SGrModbusDevice {
 			boolean bVal = getValByGDPType(aProfile, aDataPoint).isBoolean();
 			retval = String.format("%b", bVal);
 		}
-		/*
-		else if (dGenType.eIsSet(enum) {
-			// TODO: apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
+		else if (dGenType.getEnum()!=null) {
+			SGrEnumListType oVal = dGenType.getEnum();
+			if (oVal.isSetSgrEVState())
+			{
+				// HIRR String version of returned stet
+			}
 		}
-		*/
 		else if (dGenType.isSetFloat32()) {
 			float fVal = getValByGDPType(aProfile, aDataPoint).getFloat32();
 			retval = String.format("%10.3f", fVal);
@@ -146,10 +162,10 @@ public class SGrModbusDevice {
 			//
 			// TODO: apply gregorian calendar library
 			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-			retval = String.format("not yet supported%n");
+			retval = String.format("readValue DateTime: not yet supported%n");
 		} 		
 		else 
-			retval = String.format("data type not yet supported%n");	
+			retval = String.format("readValue else: data type not yet supported%n");	
 		return retval;
 	}
 	
@@ -393,11 +409,11 @@ public class SGrModbusDevice {
 			RetVal.setInt8U(shVal);
 		}
 		else if (dGenType.getEnum()!=null) {
-			// TODO: SGrBasicGenDataPointTypeType, apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
-			RetVal.setEnum(null);
+			SGrEnumListType tt = RegRes2EnumConversion(RegRes, dGenType.getEnum());  
+			RetVal.setEnum(tt);    
 		}
 		else if (dGenType.getInt32()!=null) {
-			BigInteger bgVal = BigInteger.valueOf(RegRes);
+			BigInteger bgVal = BigInteger.valueOf(RegRes);  
 			RetVal.setInt32(bgVal);
 		}
 		else if (dGenType.getInt64U()!=null) {
@@ -410,9 +426,8 @@ public class SGrModbusDevice {
 		// TODO: apply dGenType
 		 }
 		 else if( dGenType.getString()!=null) {
-			 // TODO:parameter conversion
-			    String sValue= String.format("TODO:parameter conversion");
-				dGenType.setString(sValue);
+			    String sValue= ModbusHlpr.ConvRegistersToString(mbregresp, 0, size);
+			    RetVal.setString(sValue);
 		 }
 		else
 		{ // error handling for missing instance
@@ -431,54 +446,6 @@ public class SGrModbusDevice {
 	}
 	
 
-
-	/*
-	private String sendViaTCP(int[] mbregresp, int pwof10, TSGrModbusRegisterRef MBRegRef, BigInteger regad, int size,
-			EList<TEnumConversionFct> MBconvScheme) throws Exception {
-		//mbregresp = mbDrvTCP.ReadHoldingRegisters(regad.intValue(), size);
-		if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER)
-			mbregresp = mbDrvTCP.ReadHoldingRegisters(regad.intValue(), size);
-		else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER)
-			// TODO: add driver API declaration mbregresp = mbDrvTCP.ReadInputRegisters(regad.intValue(), size);
-			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
-				mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
-			}
-		int res = 0;
-		for (int l = 0; l < size; l++) {
-			res = (res * 65536) + mbregresp[l];
-		}
-		double fres = res;
-		fres = fres * Math.pow(10.0, pwof10);
-		String sres = String.format("%10.2f", fres);
-		return sres;
-	}
-
-
-	private String sendViaRTU(int[] mbregresp, int pwof10, TSGrModbusRegisterRef MBRegRef, BigInteger regad, int size,
-			EList<TEnumConversionFct> MBconvScheme) throws Exception {
-		if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER)
-			mbregresp = drv4Modbus.ReadHoldingRegisters(regad.intValue(), size);
-		else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER)
-			mbregresp = drv4Modbus.ReadInputRegisters(regad.intValue(), size);
-		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
-			mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
-		}
-		int res = 0;
-		for (int l = 0; l < size; l++) {
-			res = (res * 65536) + mbregresp[l];
-		}
-		// TODO: other Modbus functions, Block transfers, multiple coordinated transfers
-		// conversion schemes
-		// attribute management
-		//int res = mbregresp[size - 2] * 65536 + mbregresp[size- 1];
-		double fres = res;
-		fres = fres * Math.pow(10.0, pwof10);
-		String sres = String.format("%10.2f", fres);
-		return sres;
-	}	
-		*/
-	
-	
 	private int[] ConvertStream(EList<TEnumConversionFct> mBconvScheme, int[] mbregresp, int size) {
 		// TODO: rethink Blocktransfer here
 
@@ -1022,6 +989,72 @@ private void  prv_setValByGDPType (
 		dVal = (dVal * Math.pow(10.0, -powof10));
 
 		return dVal;
+	}
+	
+	
+	SGrEnumListType RegRes2EnumConversion(long RegRes, SGrEnumListType oGenVal)
+	{ 
+		SGrEnumListType rval =  V0Factory.eINSTANCE.createSGrEnumListType();
+		
+		// TODO: extend this list manually for EACH  enumeration being added ti the system
+		if (oGenVal.isSetSgrMeasValueState())
+		{  //E0001
+			rval.setSgrMeasValueState(SGrMeasValueStateType.get((int)RegRes));
+		}	
+		else if (oGenVal.isSetSgrMeasValueTendency())
+		{   //E0002
+			rval.setSgrMeasValueTendency(SGrMeasValueTendencyType.get((int)RegRes));
+		}		
+		else if (oGenVal.isSetSgrMeasValueSource())
+		{   //E0003
+			rval.setSgrMeasValueSource(SGrMeasValueSourceType.get((int)RegRes));
+		}		
+		else if (oGenVal.isSetSgrPowerSource())
+		{  //E0004
+			rval.setSgrPowerSource(SGrPowerSourceType.get((int)RegRes));
+		}						
+		else if (oGenVal.isSetSgreadyStateLv2())
+		{   //E0005
+			rval.setSgreadyStateLv2(SGReadyStateLv2Type.get((int)RegRes));
+		}		
+		else if (oGenVal.isSetSgreadyStateLv1())
+		{   //E0006
+			rval.setSgreadyStateLv1(SGReadyStateLv1Type.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrSunspStateCodes())
+		{//E0007
+			rval.setSgrSunspStateCodes(SGrSunspStateCodesType.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrEVSEStateLv2())
+		{   //E0008
+			rval.setSgrEVSEStateLv2(SGrEVSEStateLv2Type.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrEVSEStateLv1())
+		{   //E0009
+			rval.setSgrEVSEStateLv1(SGrEVSEStateLv1Type.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrSGCPLoadStateLv2() )
+		{  //E0010
+			rval.setSgrSGCPLoadStateLv2(SGrSGCPLoadStateLv2Type.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrSGCPFeedInStateLv2())
+		{   //E0011
+			rval.setSgrSGCPFeedInStateLv2(SGrSGCPFeedInStateLv2Type.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrEVState())
+		{ //E0012
+			rval.setSgrEVState(SGrEVStateType.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrSGCPService())
+		{ //E0013
+			rval.setSgrSGCPService(SGrSGCPServiceType.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrObligLvl())
+		{ //E0014
+			rval.setSgrObligLvl(SGrObligLvlType.get((int)RegRes));
+		}
+		
+		return rval;
 	}
 
 }

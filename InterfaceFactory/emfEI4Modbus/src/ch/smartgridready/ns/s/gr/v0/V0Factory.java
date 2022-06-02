@@ -202,6 +202,15 @@ public interface V0Factory extends EFactory {
 	SGrEnumListType createSGrEnumListType();
 
 	/**
+	 * Returns a new object of class '<em>SGr Flex Assistance Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Flex Assistance Type</em>'.
+	 * @generated
+	 */
+	SGrFlexAssistanceType createSGrFlexAssistanceType();
+
+	/**
 	 * Returns a new object of class '<em>SGr Interface Description Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

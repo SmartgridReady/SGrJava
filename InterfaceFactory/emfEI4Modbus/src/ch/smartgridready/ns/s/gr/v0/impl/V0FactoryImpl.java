@@ -82,6 +82,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE: return createSGrDeviceDescriptionType();
 			case V0Package.SGR_DEVICE_PROFILE_TYPE: return createSGrDeviceProfileType();
 			case V0Package.SGR_ENUM_LIST_TYPE: return createSGrEnumListType();
+			case V0Package.SGR_FLEX_ASSISTANCE_TYPE: return createSGrFlexAssistanceType();
 			case V0Package.SGR_INTERFACE_DESCRIPTION_TYPE: return createSGrInterfaceDescriptionType();
 			case V0Package.SGR_LEGIB_DOCUMENTATION_TYPE: return createSGrLegibDocumentationType();
 			case V0Package.SGR_MODBUS_ATTR_FRAME_TYPE: return createSGrModbusAttrFrameType();
@@ -157,6 +158,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrEVSEStateLv1TypeFromString(eDataType, initialValue);
 			case V0Package.SGR_EVSE_STATE_LV2_TYPE:
 				return createSGrEVSEStateLv2TypeFromString(eDataType, initialValue);
+			case V0Package.SGR_EV_STATE_TYPE:
+				return createSGrEVStateTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_LANGUAGE_TYPE:
 				return createSGrLanguageTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE:
@@ -171,6 +174,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrMROPresenceLevelIndicationTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE:
 				return createSGrNamelistKindOfTypeFromString(eDataType, initialValue);
+			case V0Package.SGR_OBLIG_LVL_TYPE:
+				return createSGrObligLvlTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_POWER_SOURCE_TYPE:
 				return createSGrPowerSourceTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE:
@@ -185,6 +190,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrSGCPFeedInStateLv2TypeFromString(eDataType, initialValue);
 			case V0Package.SGR_SGCP_LOAD_STATE_LV2_TYPE:
 				return createSGrSGCPLoadStateLv2TypeFromString(eDataType, initialValue);
+			case V0Package.SGR_SGCP_SERVICE_TYPE:
+				return createSGrSGCPServiceTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_SUNSP_STATE_CODES_TYPE:
 				return createSGrSunspStateCodesTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_TRANSPORT_SERVICES_USED_LIST_TYPE:
@@ -263,6 +270,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrEVSEStateLv1TypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_EVSE_STATE_LV2_TYPE_OBJECT:
 				return createSGrEVSEStateLv2TypeObjectFromString(eDataType, initialValue);
+			case V0Package.SGR_EV_STATE_TYPE_OBJECT:
+				return createSGrEVStateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
 				return createSGrLanguageTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE_OBJECT:
@@ -277,6 +286,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrMROPresenceLevelIndicationTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE_OBJECT:
 				return createSGrNamelistKindOfTypeObjectFromString(eDataType, initialValue);
+			case V0Package.SGR_OBLIG_LVL_TYPE_OBJECT:
+				return createSGrObligLvlTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_POWER_SOURCE_TYPE_OBJECT:
 				return createSGrPowerSourceTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_PRECISION_TYPE:
@@ -295,6 +306,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrSGCPFeedInStateLv2TypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_SGCP_LOAD_STATE_LV2_TYPE_OBJECT:
 				return createSGrSGCPLoadStateLv2TypeObjectFromString(eDataType, initialValue);
+			case V0Package.SGR_SGCP_SERVICE_TYPE_OBJECT:
+				return createSGrSGCPServiceTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_SPECIAL_QUALITY_REQ_TYPE:
 				return createSGrSpecialQualityReqTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_SUNSP_STATE_CODES_TYPE_OBJECT:
@@ -362,6 +375,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrEVSEStateLv1TypeToString(eDataType, instanceValue);
 			case V0Package.SGR_EVSE_STATE_LV2_TYPE:
 				return convertSGrEVSEStateLv2TypeToString(eDataType, instanceValue);
+			case V0Package.SGR_EV_STATE_TYPE:
+				return convertSGrEVStateTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_LANGUAGE_TYPE:
 				return convertSGrLanguageTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE:
@@ -376,6 +391,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrMROPresenceLevelIndicationTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE:
 				return convertSGrNamelistKindOfTypeToString(eDataType, instanceValue);
+			case V0Package.SGR_OBLIG_LVL_TYPE:
+				return convertSGrObligLvlTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_POWER_SOURCE_TYPE:
 				return convertSGrPowerSourceTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE:
@@ -390,6 +407,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrSGCPFeedInStateLv2TypeToString(eDataType, instanceValue);
 			case V0Package.SGR_SGCP_LOAD_STATE_LV2_TYPE:
 				return convertSGrSGCPLoadStateLv2TypeToString(eDataType, instanceValue);
+			case V0Package.SGR_SGCP_SERVICE_TYPE:
+				return convertSGrSGCPServiceTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_SUNSP_STATE_CODES_TYPE:
 				return convertSGrSunspStateCodesTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_TRANSPORT_SERVICES_USED_LIST_TYPE:
@@ -468,6 +487,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrEVSEStateLv1TypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_EVSE_STATE_LV2_TYPE_OBJECT:
 				return convertSGrEVSEStateLv2TypeObjectToString(eDataType, instanceValue);
+			case V0Package.SGR_EV_STATE_TYPE_OBJECT:
+				return convertSGrEVStateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
 				return convertSGrLanguageTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE_OBJECT:
@@ -482,6 +503,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrMROPresenceLevelIndicationTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE_OBJECT:
 				return convertSGrNamelistKindOfTypeObjectToString(eDataType, instanceValue);
+			case V0Package.SGR_OBLIG_LVL_TYPE_OBJECT:
+				return convertSGrObligLvlTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_POWER_SOURCE_TYPE_OBJECT:
 				return convertSGrPowerSourceTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_PRECISION_TYPE:
@@ -500,6 +523,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrSGCPFeedInStateLv2TypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_SGCP_LOAD_STATE_LV2_TYPE_OBJECT:
 				return convertSGrSGCPLoadStateLv2TypeObjectToString(eDataType, instanceValue);
+			case V0Package.SGR_SGCP_SERVICE_TYPE_OBJECT:
+				return convertSGrSGCPServiceTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_SPECIAL_QUALITY_REQ_TYPE:
 				return convertSGrSpecialQualityReqTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_SUNSP_STATE_CODES_TYPE_OBJECT:
@@ -753,6 +778,17 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public SGrEnumListType createSGrEnumListType() {
 		SGrEnumListTypeImpl sGrEnumListType = new SGrEnumListTypeImpl();
 		return sGrEnumListType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrFlexAssistanceType createSGrFlexAssistanceType() {
+		SGrFlexAssistanceTypeImpl sGrFlexAssistanceType = new SGrFlexAssistanceTypeImpl();
+		return sGrFlexAssistanceType;
 	}
 
 	/**
@@ -1418,6 +1454,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SGrEVStateType createSGrEVStateTypeFromString(EDataType eDataType, String initialValue) {
+		SGrEVStateType result = SGrEVStateType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrEVStateTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SGrLanguageType createSGrLanguageTypeFromString(EDataType eDataType, String initialValue) {
 		SGrLanguageType result = SGrLanguageType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -1558,6 +1614,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SGrObligLvlType createSGrObligLvlTypeFromString(EDataType eDataType, String initialValue) {
+		SGrObligLvlType result = SGrObligLvlType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrObligLvlTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SGrPowerSourceType createSGrPowerSourceTypeFromString(EDataType eDataType, String initialValue) {
 		SGrPowerSourceType result = SGrPowerSourceType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -1690,6 +1766,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertSGrSGCPLoadStateLv2TypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrSGCPServiceType createSGrSGCPServiceTypeFromString(EDataType eDataType, String initialValue) {
+		SGrSGCPServiceType result = SGrSGCPServiceType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrSGCPServiceTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2414,6 +2510,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SGrEVStateType createSGrEVStateTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrEVStateTypeFromString(V0Package.eINSTANCE.getSGrEVStateType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrEVStateTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrEVStateTypeToString(V0Package.eINSTANCE.getSGrEVStateType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SGrLanguageType createSGrLanguageTypeObjectFromString(EDataType eDataType, String initialValue) {
 		return createSGrLanguageTypeFromString(V0Package.eINSTANCE.getSGrLanguageType(), initialValue);
 	}
@@ -2533,6 +2647,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrNamelistKindOfTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrNamelistKindOfTypeToString(V0Package.eINSTANCE.getSGrNamelistKindOfType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrObligLvlType createSGrObligLvlTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrObligLvlTypeFromString(V0Package.eINSTANCE.getSGrObligLvlType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrObligLvlTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrObligLvlTypeToString(V0Package.eINSTANCE.getSGrObligLvlType(), instanceValue);
 	}
 
 	/**
@@ -2695,6 +2827,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrSGCPLoadStateLv2TypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrSGCPLoadStateLv2TypeToString(V0Package.eINSTANCE.getSGrSGCPLoadStateLv2Type(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrSGCPServiceType createSGrSGCPServiceTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrSGCPServiceTypeFromString(V0Package.eINSTANCE.getSGrSGCPServiceType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrSGCPServiceTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrSGCPServiceTypeToString(V0Package.eINSTANCE.getSGrSGCPServiceType(), instanceValue);
 	}
 
 	/**
