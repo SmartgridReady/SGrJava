@@ -40,7 +40,7 @@ public interface V0Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.smartgridready.ch/ns/SGr/V0/";
+	String eNS_URI = "http://www.smartgridready.ch/sgr/ns/V0/";
 
 	/**
 	 * The package namespace name.
