@@ -18,15 +18,15 @@
       <!-- @generated commHandler4Modbus1 -->
       <package
             uri="http://www.smartgridready.ch/sgr/ns/V0/"
-            class="v0.V0Package"
-            genModel="model/commHandler4Modbus1.genmodel"/>
+            class="ch.smartgridready.sgr.ns.v0.V0Package"
+            genModel="model/commHandler4Modbus.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <!-- @generated commHandler4Modbus1 -->
       <parser
             type="v0"
-            class="v0.util.V0ResourceFactoryImpl"/>
+            class="ch.smartgridready.sgr.ns.v0.util.V0ResourceFactoryImpl"/>
    </extension>
 
 
