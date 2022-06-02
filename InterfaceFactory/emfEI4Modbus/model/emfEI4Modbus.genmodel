@@ -4,7 +4,7 @@
     modelName="EmfEI4Modbus" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>../../InterfaceFactory/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
+  <foreignModel>../../SGrSpecification/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
   <genPackages prefix="V0" basePackage="ch.smartgridready.ns.s.gr" resource="XML"
       disposableProviderFactory="true" loadInitialization="true" literalsInterface="false"
       ecorePackage="v0.ecore#/">

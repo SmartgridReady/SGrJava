@@ -9,8 +9,12 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java'
-    id 'java-library'
     id 'maven-publish'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8      
 }
 
 repositories {
@@ -20,6 +24,5 @@ repositories {
 }
 
 apply plugin: 'java'
-apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 

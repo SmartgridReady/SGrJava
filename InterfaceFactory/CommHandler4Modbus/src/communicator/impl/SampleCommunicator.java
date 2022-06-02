@@ -17,7 +17,7 @@ import communicator.impl.SGrModbusDevice;
 
 public class SampleCommunicator {
 	
-	private static final String XML_BASE_DIR = "../XMLInstances/ExtInterfaces/"; 
+	private static final String XML_BASE_DIR = "../../../../SGrSpecification/XMLInstances/ExtInterfaces/"; 
 	
 	public static void main( String argv[] ) {				
 		

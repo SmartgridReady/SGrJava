@@ -38,15 +38,3 @@ dependencies {
 jar {
 	from sourceSets.main.allSource
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'ch.smartgridready'
-            artifactId = 'ei4modbus'
-            version = '1.0'
-
-            from components.java
-        }
-    }
-}

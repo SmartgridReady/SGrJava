@@ -22,7 +22,7 @@ apply plugin: 'java'
 apply plugin: 'maven-publish'
 
 
- sourceSets {
+sourceSets {
         main.java.srcDirs = ['src', 'src-gen' ]
         main.resources.srcDirs = ['src', 'src-gen' ] 
         test.java.srcDirs = ['test']               
@@ -33,9 +33,15 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8      
 }
 
+configurations {
+	extraLibs.extendsFrom implementation
+}
+
 dependencies {
+	implementation project(':InterfaceFactory:emfEI4Modbus')
+	
 		
-	implementation group: 'ch.smartgridready', name: 'ei4modbus', version: '1.0'
+//	implementation group: 'ch.smartgridready', name: 'ei4modbus', version: '1.0'
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.ecore', version: '2.24.0'
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.ecore.xmi', version: '2.16.0'	
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.common', version: '2.24.0'
@@ -48,14 +54,16 @@ dependencies {
 	testImplementation group: 'org.yaml', name: 'snakeyaml', version: '1.27'
 }
 
- task fatJar(type: Jar) {
-    exclude('**/ECLIPSE_.SF', '**/ECLIPSE_.DSA', '**/ECLIPSE_.RSA')             
-  	duplicatesStrategy = 'include' 	
-    group = 'build'
-    description = 'Assembles jar including all dependent libraries'
-    archiveBaseName = "${rootProject.name}"
-    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
+jar {
+
+	from sourceSets.main.allSource
+
+	duplicatesStrategy='exclude'
+	exclude('**/ECLIPSE_.SF', '**/ECLIPSE_.DSA', '**/ECLIPSE_.RSA')
+
+    from {
+            configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 tasks."compileJava".dependsOn ':InterfaceFactory:emfEI4Modbus:publishToMavenLocal'
