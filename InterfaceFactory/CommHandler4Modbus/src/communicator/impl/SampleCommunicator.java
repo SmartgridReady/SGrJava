@@ -1,23 +1,16 @@
 package communicator.impl;
 
-import ch.smartgridready.ns.s.gr.v0.SGrBasicGenDataPointTypeType;
-import ch.smartgridready.ns.s.gr.v0.SGrEVStateType;
-import ch.smartgridready.ns.s.gr.v0.SGrEnumListType;
-import ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType;
-import ch.smartgridready.ns.s.gr.v0.V0Factory;
-import ch.smartgridready.ns.s.gr.v0.impl.SGrEnumListTypeImpl;
-import ch.smartgridready.ns.s.gr.v0.impl.V0FactoryImpl;
+import ch.smartgridready.sgr.ns.v0.SGrEVStateType;
+import ch.smartgridready.sgr.ns.v0.SGrEnumListType;
+import ch.smartgridready.sgr.ns.v0.SGrModbusDeviceDescriptionType;
+import ch.smartgridready.sgr.ns.v0.V0Factory;
 import communicator.helper.DeviceDescriptionLoader;
-import communicator.helper.GenDriverAPI4Modbus;
 import communicator.helper.GenDriverAPI4ModbusRTU;
-//simulated Interface
-import communicator.helper.GenDriverAPI4ModbusRTUMock;
 import communicator.helper.GenDriverAPI4ModbusTCP;
-import communicator.impl.SGrModbusDevice;
 
 public class SampleCommunicator {
 	
-	private static final String XML_BASE_DIR = "../../../../SGrSpecification/XMLInstances/ExtInterfaces/"; 
+	private static final String XML_BASE_DIR = "../../../SGrSpecification/XMLInstances/ExtInterfaces/"; 
 	
 	public static void main( String argv[] ) {				
 		

@@ -82,7 +82,7 @@ public class CommHandler4ModbusPackageImpl extends EPackageImpl implements CommH
 		isInited = true;
 
 		// Initialize simple dependencies
-		ch.smartgridready.ns.s.gr.v0.V0Package.eINSTANCE.eClass();
+		ch.smartgridready.sgr.ns.v0.V0Package.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theCommHandler4ModbusPackage.createPackageContents();
@@ -213,7 +213,7 @@ public class CommHandler4ModbusPackageImpl extends EPackageImpl implements CommH
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ch.smartgridready.ns.s.gr.v0.V0Package theV0Package = (ch.smartgridready.ns.s.gr.v0.V0Package)EPackage.Registry.INSTANCE.getEPackage(ch.smartgridready.ns.s.gr.v0.V0Package.eNS_URI);
+		ch.smartgridready.sgr.ns.v0.V0Package theV0Package = (ch.smartgridready.sgr.ns.v0.V0Package)EPackage.Registry.INSTANCE.getEPackage(ch.smartgridready.sgr.ns.v0.V0Package.eNS_URI);
 
 		// Create type parameters
 

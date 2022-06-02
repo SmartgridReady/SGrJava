@@ -2,8 +2,8 @@
  */
 package commHandler4Modbus.impl;
 
-import ch.smartgridready.ns.s.gr.v0.SGrModbusDeviceDescriptionType;
-import ch.smartgridready.ns.s.gr.v0.TrspServiceModbusType;
+import ch.smartgridready.sgr.ns.v0.SGrModbusDeviceDescriptionType;
+import ch.smartgridready.sgr.ns.v0.TrspServiceModbusType;
 
 import commHandler4Modbus.CommHandler4Modbus;
 import commHandler4Modbus.CommHandler4ModbusPackage;
