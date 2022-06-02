@@ -9,7 +9,7 @@
       <!-- @generated emfEI4Modbus -->
       <package
             uri="http://www.smartgridready.ch/sgr/ns/V0/"
-            class="ch.smartgridready.ns.s.gr.v0.V0Package"
+            class="ch.smartgridready.sgr.ns.v0.V0Package"
             genModel="model/emfEI4Modbus.genmodel"/>
    </extension>
 
@@ -17,6 +17,6 @@
       <!-- @generated emfEI4Modbus -->
       <parser
             type="v0"
-            class="ch.smartgridready.ns.s.gr.v0.util.V0ResourceFactoryImpl"/>
+            class="ch.smartgridready.sgr.ns.v0.util.V0ResourceFactoryImpl"/>
    </extension>
 </plugin>
