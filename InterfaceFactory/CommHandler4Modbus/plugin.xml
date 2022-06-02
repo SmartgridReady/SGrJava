@@ -17,7 +17,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated commHandler4Modbus1 -->
       <package
-            uri="http://www.smartgridready.ch/ns/SGr/V0/"
+            uri="http://www.smartgridready.ch/sgr/ns/V0/"
             class="v0.V0Package"
             genModel="model/commHandler4Modbus1.genmodel"/>
    </extension>

@@ -2,9 +2,9 @@
 <sgr:SGrRestAPIDeviceFrame
 	deviceName="CLEMAP Energy Monitor" isLocalControl="true"
 	manufacturerID="ClemapAG" manufacturerName="CLEMAP"
-	xmlns:sgr="http://www.smartgridready.ch/ns/SGr/V0/"
+	xmlns:sgr="http://www.smartgridready.ch/sgr/ns/V0/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.smartgridready.ch/ns/SGr/V0/ ../../SchemaDatabase/SGr/EI-RestAPI/SGrRestAPI_EIDeviceFrame.xsd ">
+	xsi:schemaLocation="http://www.smartgridready.ch/sgr/ns/V0/ ../../SchemaDatabase/SGr/EI-RestAPI/SGrRestAPI_EIDeviceFrame.xsd ">
 	<sgr:deviceProfile>
 		<sgr:transportService>RESTfulJSON</sgr:transportService>
 		<sgr:deviceKind>SubMeterElectricity</sgr:deviceKind>
