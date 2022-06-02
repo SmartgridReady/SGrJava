@@ -1,8 +1,5 @@
-deviceDescFolder: ..\XMLInstances\SGr\
+deviceDescFolder: ..\..\..\SGrSpecification\XMLInstances\ExtInterfaces\
 descriptions:
- - 
-  file: abb_terra_01.xml 
-  type: modbus
  -
    file: betaModbusABBMeterV0.1.2.xml
    type: modbus
@@ -44,15 +41,6 @@ descriptions:
   type: modbus
  -
   file: FullEi4Modbus_0_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml
-  type: modbus
- - 
-  file: GaroEVSEDemoV0.1.2.xml
-  type: modbus
- -
-  file: GenEI_testAllV0.1.2.xml
-  type: generic
- -
-  file: mvpEi4Modbus_0_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml
   type: modbus
  -
   file: SontexSupercal5V0.1.2.xml
