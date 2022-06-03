@@ -10,7 +10,7 @@ import communicator.helper.GenDriverAPI4ModbusTCP;
 
 public class SampleCommunicator {
 	
-	private static final String XML_BASE_DIR = "../../../SGrSpecification/XMLInstances/ExtInterfaces/"; 
+	private static final String XML_BASE_DIR = "../../../SGrSpecifications/XMLInstances/ExtInterfaces/"; 
 	
 	public static void main( String argv[] ) {				
 		
@@ -121,9 +121,9 @@ public class SampleCommunicator {
 					 fVal3 = wbGaroDevice.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
 					 System.out.printf("  EnergyAC[kWh] L1/L2/L3:   W[1]=" + fVal1 + "  W[2]="  + fVal2 + "  W[3]="  + fVal3 + " %n");	
 					
-					 sVal1 = wbGaroDevice.getVal("SmartEV", "isSmartEV15188");
+					 sVal1 = wbGaroDevice.getVal("SmartEV", "isSmartEV15118");
 					 sVal2 = wbGaroDevice.getVal("SmartEV", "EVCCID");
-					 System.out.printf("  SmartEV support (ISO/IEC 1588):" + sVal1 + "    EVCCID=" + sVal2 + " %n");	
+					 System.out.printf("  SmartEV support (ISO/IEC 15118):" + sVal1 + "    EVCCID=" + sVal2 + " %n");	
 				 }
 				Thread.sleep(1500);
 				/*
