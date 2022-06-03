@@ -10,12 +10,6 @@ descriptions:
   file: CLEMAP_EIdeviceEnergyMonitorV0.1.2.xml
   type: rest
  -
-  file: CLEMAP_EnergyMonitorV0.xml
-  type: rest
- -
-  file: CLEMAP_EnergyMonitorV0.xml
-  type: rest
- -
   file: eCarupPICO_4061_1.xml
   type: contact
  -
@@ -28,14 +22,8 @@ descriptions:
   file: EI4_UniDirFlexLoad_3631Lv2.xml
   type: contact
  -
-  file: EI4Modbus_testAllV0.1.2.xml
-  type: modbus
- -
   file: EI4ModbusFroniusSymoV0.1.2.xml
   type: contact
- -
-  file: EI-RestAPItstALLV0.1.2.xml
-  type: rest
  -
   file: FroniusDemoV0.1.2.xml
   type: modbus
@@ -44,7 +32,4 @@ descriptions:
   type: modbus
  -
   file: SontexSupercal5V0.1.2.xml
-  type: modbus
- -
-  file: VGT_Ei4Modbus_0_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml
   type: modbus
