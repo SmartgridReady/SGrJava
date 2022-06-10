@@ -36,7 +36,7 @@ import ch.smartgridready.sgr.ns.v0.TSGrModbusRegisterRef;
 import ch.smartgridready.sgr.ns.v0.V0Factory;
 import communicator.helper.GenDriverAPI4Modbus;
 import de.re.easymodbus.exceptions.ModbusException;
-import easymodbus.de.re.easymodbus.exceptions.SerialPortException;
+import de.re.easymodbus.exceptions.SerialPortException;
 import jssc.SerialPortTimeoutException;
 
 

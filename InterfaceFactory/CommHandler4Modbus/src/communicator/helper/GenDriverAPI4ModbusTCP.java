@@ -29,18 +29,14 @@ use their own Modbus TCP drivers
 **/
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import de.re.easymodbus.exceptions.ModbusException;
+import de.re.easymodbus.modbusclient.ModbusClient;
 //import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortTimeoutException;
-
-import easymodbus.de.re.easymodbus.exceptions.*;
-import easymodbus.de.re.easymodbus.modbusclient.*;
-import easymodbus.de.re.easymodbus.datatypes.*;
 
 /*   AUTHOR: IBT / Chris Broennimann for Verein SmartGridready
  * This file hosts the interface from the CommHandler4Modbus implementation into any modbus driver linked to 

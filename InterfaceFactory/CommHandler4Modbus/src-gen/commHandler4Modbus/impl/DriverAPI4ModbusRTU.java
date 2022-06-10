@@ -15,9 +15,9 @@ import java.net.UnknownHostException;
 
 import communicator.helper.GenDriverAPI4Modbus;
 import de.re.easymodbus.exceptions.ModbusException;
-import easymodbus.de.re.easymodbus.datatypes.Parity;
-import easymodbus.de.re.easymodbus.datatypes.StopBits;
-import easymodbus.de.re.easymodbus.modbusclient.ModbusClient;
+import de.re.easymodbus.datatypes.Parity;
+import de.re.easymodbus.datatypes.StopBits;
+import de.re.easymodbus.modbusclient.ModbusClient;
 import jssc.SerialPortException;
 import jssc.SerialPortTimeoutException;
 

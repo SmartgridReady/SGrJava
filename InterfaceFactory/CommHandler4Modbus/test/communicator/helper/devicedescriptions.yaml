@@ -1,4 +1,4 @@
-deviceDescFolder: ..\..\..\SGrSpecification\XMLInstances\ExtInterfaces\
+deviceDescFolder: ..\..\..\SGrSpecifications\XMLInstances\ExtInterfaces\
 descriptions:
  -
    file: betaModbusABBMeterV0.1.2.xml

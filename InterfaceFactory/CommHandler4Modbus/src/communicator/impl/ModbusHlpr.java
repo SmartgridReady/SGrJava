@@ -2,7 +2,7 @@ package communicator.impl;
 
 import java.nio.ByteBuffer;
 
-import easymodbus.de.re.easymodbus.datatypes.RegisterOrder;
+import de.re.easymodbus.datatypes.RegisterOrder;
 
 public class ModbusHlpr {
 

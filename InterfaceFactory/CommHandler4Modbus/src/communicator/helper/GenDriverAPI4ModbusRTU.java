@@ -32,17 +32,15 @@ use their own Modbus RTU drivers
 **/
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import de.re.easymodbus.datatypes.Parity;
+import de.re.easymodbus.datatypes.StopBits;
 import de.re.easymodbus.exceptions.ModbusException;
-import jssc.SerialPort;
+import de.re.easymodbus.modbusclient.ModbusClient;
 import jssc.SerialPortException;
 import jssc.SerialPortTimeoutException;
-import  easymodbus.de.re.easymodbus.exceptions.*;
-import  easymodbus.de.re.easymodbus.modbusclient.*;
-import  easymodbus.de.re.easymodbus.datatypes.*;
 
 //import jssc.SerialPort;
 

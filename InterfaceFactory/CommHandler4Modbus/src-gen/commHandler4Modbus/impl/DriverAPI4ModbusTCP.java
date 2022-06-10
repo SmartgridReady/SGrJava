@@ -7,19 +7,15 @@ package commHandler4Modbus.impl;
 **/
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import communicator.helper.GenDriverAPI4Modbus;
 import de.re.easymodbus.exceptions.ModbusException;
+import de.re.easymodbus.modbusclient.ModbusClient;
 //import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortTimeoutException;
-
-import easymodbus.de.re.easymodbus.exceptions.*;
-import easymodbus.de.re.easymodbus.modbusclient.*;
-import easymodbus.de.re.easymodbus.datatypes.*;
 
 
 
@@ -93,8 +89,5 @@ public class DriverAPI4ModbusTCP implements GenDriverAPI4Modbus {
 			ModbusException, IOException, SerialPortException, SerialPortTimeoutException {
 		// TODO Auto-generated method stub
 		
-	}
-
-    
-	
+	}    
 }
