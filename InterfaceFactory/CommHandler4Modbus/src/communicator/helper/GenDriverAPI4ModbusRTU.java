@@ -40,9 +40,9 @@ import de.re.easymodbus.exceptions.ModbusException;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortTimeoutException;
-import  easymodbus.de.re.easymodbus.exceptions.*;
 import  easymodbus.de.re.easymodbus.modbusclient.*;
 import  easymodbus.de.re.easymodbus.datatypes.*;
+import  easymodbus.de.re.easymodbus.exceptions.*;
 
 //import jssc.SerialPort;
 
