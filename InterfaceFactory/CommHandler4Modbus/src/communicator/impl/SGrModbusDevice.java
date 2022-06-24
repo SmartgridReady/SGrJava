@@ -54,7 +54,6 @@ import ch.smartgridready.sgr.ns.v0.TSGrModbusRegisterRef;
 import ch.smartgridready.sgr.ns.v0.V0Factory;
 import communicator.helper.GenDriverAPI4Modbus;
 import de.re.easymodbus.exceptions.ModbusException;
-import de.re.easymodbus.exceptions.SerialPortException;
 import jssc.SerialPortTimeoutException;
 
 
@@ -618,8 +617,8 @@ public class SGrModbusDevice {
 		SGrModbusProfilesFrameType aProfile, 
 		SGrModbusDataPointsFrameType aDataPoint,
  		SGrBasicGenDataPointTypeType sgrValue)
-		throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
-		SerialPortTimeoutException, jssc.SerialPortException {
+		throws UnknownHostException, SocketException, ModbusException, IOException, jssc.SerialPortException,
+		SerialPortTimeoutException {
 		
 		prv_setValByGDPType(aProfile,aDataPoint,sgrValue);
 		
@@ -629,8 +628,8 @@ public void  setValByGDPType(
 			String sProfileName, 
 			String sDataPointName,
 	 		SGrBasicGenDataPointTypeType sgrValue)
-	 				throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
-	 				SerialPortTimeoutException, jssc.SerialPortException {
+	 				throws UnknownHostException, SocketException, ModbusException, IOException, jssc.SerialPortException,
+	 				SerialPortTimeoutException {
 	Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 		
 	if (profile.isPresent()) {
@@ -648,8 +647,8 @@ private void  prv_setValByGDPType (
 		SGrModbusProfilesFrameType aProfile, 
 		SGrModbusDataPointsFrameType aDataPoint,
  		SGrBasicGenDataPointTypeType sgrValue)
-		throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
-		SerialPortTimeoutException, jssc.SerialPortException 
+		throws UnknownHostException, SocketException, ModbusException, IOException, jssc.SerialPortException,
+		SerialPortTimeoutException
 {
 
 		int[] mbregsnd = new int[120];
