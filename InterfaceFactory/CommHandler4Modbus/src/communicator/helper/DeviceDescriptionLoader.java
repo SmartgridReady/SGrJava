@@ -36,7 +36,7 @@ public class DeviceDescriptionLoader<C> {
 		
 		try {
 									
-			EPackage.Registry.INSTANCE.put( ch.smartgridready.sgr.ns.v0.V0Package.eNS_URI, ch.smartgridready.sgr.ns.v0.V0Package.eINSTANCE);
+			EPackage.Registry.INSTANCE.put( com.smartgridready.ns.v0.V0Package.eNS_URI, com.smartgridready.ns.v0.V0Package.eINSTANCE);
 			
 
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( )

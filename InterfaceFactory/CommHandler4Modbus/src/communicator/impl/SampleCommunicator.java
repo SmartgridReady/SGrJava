@@ -19,11 +19,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
  */
 
-import ch.smartgridready.sgr.ns.v0.SGrBasicGenDataPointTypeType;
-import ch.smartgridready.sgr.ns.v0.SGrEVStateType;
-import ch.smartgridready.sgr.ns.v0.SGrEnumListType;
-import ch.smartgridready.sgr.ns.v0.SGrModbusDeviceDescriptionType;
-import ch.smartgridready.sgr.ns.v0.V0Factory;
+import com.smartgridready.ns.v0.*;
+import com.smartgridready.ns.v0.SGrEVStateType;
+import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
+import com.smartgridready.ns.v0.V0Factory;
 import communicator.helper.DeviceDescriptionLoader;
 import communicator.helper.GenDriverAPI4ModbusRTU;
 import communicator.helper.GenDriverAPI4ModbusTCP;
@@ -41,14 +41,14 @@ public class SampleCommunicator {
 			
 			// ABB Meter and Wallbox to be moved towards test section
 		
-			SGrModbusDeviceDescriptionType sgcpMeterDecription = loader.load( XML_BASE_DIR, "betaModbusABBMeterV0.1.2.xml");
+			SGrModbusDeviceDescriptionType sgcpMeterDecription = loader.load( XML_BASE_DIR, "betaModbusABBMeterV0.2.1.xml");
 			
 		    //GenDriverAPI4Modbus mbRTUMock = new GenDriverAPI4ModbusRTUMock(); // Simulation API	
 			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
 			mbRTU.initTrspService("COM9");			
 			SGrModbusDevice sgcpMeterDevice = new SGrModbusDevice(sgcpMeterDecription, mbRTU);	
 			
-				   mbRTU.setUnitIdentifier((byte) 11);
+			mbRTU.setUnitIdentifier((byte) 11);
 				
 			
 			// ******************  GARO & ENUM Test  ************************************ //
@@ -68,7 +68,7 @@ public class SampleCommunicator {
 			System.out.println(
 					"------------------->  CREATING INSTANCE OF DEVICE sgrBiDirFlexMgmtVGT  <-------------------");
 			
-			SGrModbusDeviceDescriptionType SGrBiDirFlexMgmtVGTDescription = loader.load( XML_BASE_DIR,"VGT_Ei4Modbus_0000_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml");
+			SGrModbusDeviceDescriptionType SGrBiDirFlexMgmtVGTDescription = loader.load( XML_BASE_DIR,"SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml");
 			GenDriverAPI4ModbusTCP mbBiDirFlexMgmtVGT = new GenDriverAPI4ModbusTCP();
 			SGrModbusDevice sgcpBiDirFlexMgmtVGTDev = new SGrModbusDevice(SGrBiDirFlexMgmtVGTDescription, mbBiDirFlexMgmtVGT);	
 			
@@ -95,7 +95,7 @@ public class SampleCommunicator {
 			System.out.println();
 			//TODO: add Exception for device present flag "IsConnected" from IBT/cb code
 			mbPVInverter.initDevice("192.168.1.181",502);
-			
+		
 			
 						
 			try {
@@ -161,7 +161,7 @@ public class SampleCommunicator {
 					 sVal2 = wbGaroDevice.getVal("SmartEV", "EVCCID");
 					 System.out.printf("  SmartEV support (ISO/IEC 15118):" + sVal1 + ",    EVCCID = " + sVal2 + " %n");
 					 
-/*
+
 					 System.out.printf("%nFroniusSymo:%n");
 					 Thread.sleep(500);
 					 sVal1 = sgrPVInverterDev.getVal("SunspInvModel", "SunspecID");
@@ -173,7 +173,7 @@ public class SampleCommunicator {
 					 sVal2 = sgrPVInverterDev.getVal("SunspInvModel", "CurrentACL2");
 					 sVal3 = sgrPVInverterDev.getVal("SunspInvModel", "CurrentACL3");
 					 System.out.printf("  SunspInvModel CurrentAC [A]:          " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");		
-*/								
+								
 				 }
 				
 				
@@ -286,11 +286,11 @@ public class SampleCommunicator {
 				System.out.printf("  HeatCoolCtrl_3:    HeatCoolCtrlOpModeCmd = " + iVal1 +" ,  HeatCoolOpState: "  + iVal2 + " FlowWaterTemp = " + fVal1 + " °C,  FlowWaterTempStpt = " + fVal2 + " °C,  BackFlowWaterTemp = " + fVal3 + " °C %n");  
 				System.out.println();
 				
-				fVal1 = sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitoring", "ThermalEnergyHeat").getFloat32();
-				fVal2 = sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitoring", "ThermalEnergyCool").getFloat32();
-				fVal3 = sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitoring", "RuntimeCompressor").getFloat32();
-				long lVal = sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitoring", "NrOfStartupsCompressor").getInt32U();
-				System.out.printf("  Monitoring ThermalEnergyHeat, ThermalEnergyCool, RuntimeCompressor, NrOfStartupsCompressor  : " + fVal1 + " kWh,  " + fVal2 + " kWh,  " + fVal3 + " h,  " + lVal+"  times%n");  
+				fVal1 = sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat").getFloat32();
+				fVal2 = sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitor", "ThermalEnergyCool").getFloat32();
+				fVal3 = sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitor", "RuntimeCompressor").getFloat32();
+				long lVal = sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitor", "NrOfStartupsCompressor").getInt32U();
+				System.out.printf("  EnergyMonitor ThermalEnergyHeat, ThermalEnergyCool, RuntimeCompressor, NrOfStartupsCompressor  : " + fVal1 + " kWh,  " + fVal2 + " kWh,  " + fVal3 + " h,  " + lVal+"  times%n");  
 				System.out.println(); 
 				
 				Thread.sleep(5500); */
