@@ -271,6 +271,17 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrObligLvlType/OLSHOULD"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrObligLvlType/OLMAY"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrOCPPStateType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrOCPPStateType/Available"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrOCPPStateType/Charging"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrOCPPStateType/Preparing"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrOCPPStateType/Finishing"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrOCPPStateType/Reserved"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrOCPPStateType/Unavailable"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrOCPPStateType/Faulted"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrOCPPStateType/SuspendedEVSE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrOCPPStateType/SuspendedEV"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrPowerSourceType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrPowerSourceType/unknown"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrPowerSourceType/mains1Phase"/>
@@ -689,6 +700,7 @@
     <genDataTypes ecoreDataType="v0.ecore#//SGrMROPresenceLevelIndicationTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrNamelistKindOfTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrObligLvlTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//SGrOCPPStateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrPowerSourceTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrPrecisionType"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrPrecisionTypeObject"/>
@@ -890,6 +902,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrEVState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrSGCPService"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrObligLvl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrOCPPState"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrFlexAssistanceType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrFlexAssistanceType/assists"/>

@@ -40,6 +40,7 @@ import com.smartgridready.ns.v0.SGrModbusDataPointsFrameType;
 import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusProfilesFrameType;
+import com.smartgridready.ns.v0.SGrOCPPStateType;
 import com.smartgridready.ns.v0.SGrObligLvlType;
 import com.smartgridready.ns.v0.SGrPowerSourceType;
 import com.smartgridready.ns.v0.SGrRWPType;
@@ -1067,6 +1068,11 @@ private void  prv_setValByGDPType (
 		else if (oGenVal.isSetSgrObligLvl())
 		{ //E0014
 			rval.setSgrObligLvl(SGrObligLvlType.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrOCPPState())
+		{
+			// E0015
+			rval.setSgrOCPPState(SGrOCPPStateType.get((int)RegRes));
 		}
 		
 		return rval;

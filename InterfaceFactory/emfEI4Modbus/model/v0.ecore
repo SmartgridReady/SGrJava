@@ -2078,6 +2078,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrOCPPState" eType="#//SGrOCPPStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrOCPPState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrEVSEStateLv1Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2941,6 +2949,29 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrObligLvlType:Object"/>
       <details key="baseType" value="SGrObligLvlType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrOCPPStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="E0015:&#xA;&#x9;Available (0): &#xA;&#x9;  When a Connector becomes available for a new&#xA;&#x9;  user (Operative)&#xA;&#x9;  &#xA;&#x9;Charging (1): &#xA;&#x9;  When the contactor of a Connector closes,&#xA;&#x9;  allowing the vehicle to charge&#xA;&#x9;(Operative)&#xA;&#xA;&#x9;Preparing(not yet observed ?): &#xA;&#x9;  When a Connector becomes no longer available&#xA;&#x9;  for a new user but no charging session is active.&#xA;&#x9;  Typically a Connector is occupied when a user&#xA;&#x9;  presents a tag, inserts a cable or a vehicle&#xA;&#x9;  occupies the parking bay&#xA;&#x9;  (Operative)&#xA;&#xA;&#x9;Finishing(not yet observed ?): &#xA;&#x9;  When a charging session has stopped at a&#xA;&#x9;  Connector, but the Connector is not yet available&#xA;&#x9;  for a new user, e.g. the cable has not been&#xA;&#x9;  removed or the vehicle has not left the parking&#xA;&#x9;  bay&#xA;&#x9;  (Operative)&#xA;&#xA;&#x9;Reserved(not yet observed ?): &#xA;&#x9;  When a Connector becomes reserved as a result of&#xA;&#x9;  a Reserve Now command&#xA;&#x9;  (Operative)&#xA;&#x9;&#xA;&#x9;Unavailable(not yet observed ?): &#xA;&#x9;  When a Connector becomes unavailable as the&#xA;&#x9;  result of a Change Availability command or an&#xA;&#x9;  event upon which the Charge Point transitions to&#xA;&#x9;  unavailable at its discretion. Upon receipt of a&#xA;&#x9;  Change Availability command, the status MAY&#xA;&#x9;  change immediately or the change MAY be&#xA;&#x9;  scheduled. When scheduled, the Status&#xA;&#x9;  Notification shall be send when the availability&#xA;&#x9;  change becomes effective&#xA;&#x9;  (Inoperative)&#xA;&#xA;&#x9;Faulted(not yet observed ?): &#xA;&#x9;  When a Charge Point or connector has reported&#xA;&#x9;  an error and is not available for energy delivery .&#xA;&#x9;  (Inoperative).&#xA;&#x9;&#xA;&#x9;SuspendedEVSE (7): &#xA;&#x9;  When the contactor of a Connector opens upon&#xA;&#x9;  request of the EVSE, e.g. due to a smart charging&#xA;&#x9;  restriction or as the result of&#xA;&#x9;  StartTransaction.conf indicating that charging is&#xA;&#x9;  not allowed&#xA;&#x9;  (Operative)&#xA;&#xA;&#x9;SuspendedEV(8): &#xA;&#x9;  When the EVSE is ready to deliver energy but&#xA;&#x9;  contactor is open, e.g. the EV is not ready.&#xA;&#x9;  (Operative)&#xA;&#x9;&#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrOCPPStateType"/>
+    </eAnnotations>
+    <eLiterals name="Available"/>
+    <eLiterals name="Charging" value="1"/>
+    <eLiterals name="Preparing" value="2"/>
+    <eLiterals name="Finishing" value="3"/>
+    <eLiterals name="Reserved" value="4"/>
+    <eLiterals name="Unavailable" value="5"/>
+    <eLiterals name="Faulted" value="6"/>
+    <eLiterals name="SuspendedEVSE" value="7"/>
+    <eLiterals name="SuspendedEV" value="8"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrOCPPStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrOCPPStateType:Object"/>
+      <details key="baseType" value="SGrOCPPStateType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrPowerSourceType">
