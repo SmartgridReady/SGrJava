@@ -31,6 +31,8 @@ public interface GenDriverAPI4Modbus {
 	
 	public default void setUnitIdentifier( short ident ) {};
 	
+	public default boolean initTrspService(String sCOM) {return false; };
+	
     public int[] ReadInputRegisters(int startingAddress, int quantity) throws de.re.easymodbus.exceptions.ModbusException,    
     UnknownHostException, SocketException, IOException, SerialPortException, SerialPortTimeoutException;        
     

@@ -27,8 +27,6 @@ import jssc.SerialPortException;
 import jssc.SerialPortTimeoutException;
 
 public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
-
-	
 	
 	@Override
 	public int[] ReadInputRegisters(int startingAddress, int quantity) throws ModbusException, UnknownHostException,
@@ -86,5 +84,10 @@ public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 			ModbusException, IOException, SerialPortException, SerialPortTimeoutException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean initTrspService(String sCOM) {
+		return true;
 	}	
 }
