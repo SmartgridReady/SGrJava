@@ -59,7 +59,7 @@ public interface CommHandler4Modbus extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<ch.smartgridready.sgr.ns.v0.SGrModbusDeviceDescriptionType> getSgrmodbusdevicedescriptiontype();
+	EList<com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType> getSgrmodbusdevicedescriptiontype();
 
 	/**
 	 * Returns the value of the '<em><b>Trspservicemodbustype</b></em>' containment reference list.
@@ -71,6 +71,6 @@ public interface CommHandler4Modbus extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ch.smartgridready.sgr.ns.v0.TrspServiceModbusType> getTrspservicemodbustype();
+	EList<com.smartgridready.ns.v0.TrspServiceModbusType> getTrspservicemodbustype();
 
 } // CommHandler4Modbus

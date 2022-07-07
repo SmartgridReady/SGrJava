@@ -4,9 +4,9 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 
-import ch.smartgridready.sgr.ns.v0.SGrContactAPIDeviceDescriptionType;
-import ch.smartgridready.sgr.ns.v0.SGrModbusDeviceDescriptionType;
-import ch.smartgridready.sgr.ns.v0.SGrRESTAPIDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType;
 import utils.ConfigurationLoader;
 import utils.TestConfiguration;
 

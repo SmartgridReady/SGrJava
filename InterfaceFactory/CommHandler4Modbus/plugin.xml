@@ -17,8 +17,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated commHandler4Modbus1 -->
       <package
-            uri="http://www.smartgridready.ch/sgr/ns/V0/"
-            class="ch.smartgridready.sgr.ns.v0.V0Package"
+            uri="http://www.smartgridready.com/ns/V0/"
+            class="com.smartgridready.ns.v0.V0Package"
             genModel="model/commHandler4Modbus.genmodel"/>
    </extension>
 
@@ -26,7 +26,7 @@
       <!-- @generated commHandler4Modbus1 -->
       <parser
             type="v0"
-            class="ch.smartgridready.sgr.ns.v0.util.V0ResourceFactoryImpl"/>
+            class="com.smartgridready.ns.v0.util.V0ResourceFactoryImpl"/>
    </extension>
 
 

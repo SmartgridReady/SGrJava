@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="v0" nsURI="http://www.smartgridready.ch/sgr/ns/V0/" nsPrefix="v0">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="v0" nsURI="http://www.smartgridready.com/ns/V0/" nsPrefix="v0">
   <eClassifiers xsi:type="ecore:EDataType" name="BitmaskType" instanceClassName="byte[]">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="bitmaskType"/>
@@ -2078,6 +2078,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrOCPPState" eType="#//SGrOCPPStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrOCPPState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrEVSEStateLv1Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2247,7 +2255,7 @@
         <details key="documentation" value="0:manuf 0"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ClemapAG" value="1">
+    <eLiterals name="SmartEnerygLink" value="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="1:manuf 1"/>
       </eAnnotations>
@@ -2257,17 +2265,17 @@
         <details key="documentation" value="2:manuf 2"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="VirtualGlobalTrading" value="3">
+    <eLiterals name="eCarUp" value="3">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="3:manuf 3"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="SmartEnergyLink" value="4">
+    <eLiterals name="Alfen" value="4">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="4:manuf 4"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="Invisia" value="5">
+    <eLiterals name="Garo" value="5">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="5:manuf 5"/>
       </eAnnotations>
@@ -2282,12 +2290,12 @@
         <details key="documentation" value="7:manuf 7"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="eCarUp" value="8">
+    <eLiterals name="Webasco" value="8">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="8 :manuf 8"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="Electrojoule" value="9">
+    <eLiterals name="BESS" value="9">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="9: manuf 9"/>
       </eAnnotations>
@@ -2307,7 +2315,7 @@
         <details key="documentation" value="12: manuf 12"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="topSolarisone" value="13">
+    <eLiterals name="Hoval" value="13">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="13 :manuf 13"/>
       </eAnnotations>
@@ -2317,34 +2325,124 @@
         <details key="documentation" value="14 :manuf 14"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="Swistec" value="15">
+    <eLiterals name="StiebelEltron" value="15" literal="Stiebel-Eltron">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="m15 :manuf 15"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="goZmart" value="16">
+    <eLiterals name="ABB" value="16">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="16 :manuf 16"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="Hoval" value="17">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="17 :manuf 17"/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="CTA" value="18">
+    <eLiterals name="ClemapAG" value="18">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="18 :manuf 18"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="Heliotherm" value="19">
+    <eLiterals name="VirtualGlobalTrading" value="19">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="19 :manuf 19"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="m20" value="20">
+    <eLiterals name="Heliotherm" value="20">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="20 :manuf 20"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Fronius" value="21">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="21 :manuf 21"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="easy" value="22">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="22 :manuf 22"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="EVTec" value="23">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="23 :manuf 23"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="OPTIMATIK" value="24">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="24 :manuf 24"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Bender" value="25">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="25 :manuf 25"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf26" value="26" literal="manuf_26">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="26 :manuf 26"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf27" value="27" literal="manuf_27">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="27 :manuf 27"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf28" value="28" literal="manuf_28">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="28 :manuf 28"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf29" value="29" literal="manuf_29">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="29 :manuf 29"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf30" value="30" literal="manuf_30">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="30 :manuf 30"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf31" value="31" literal="manuf_31">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="31 :manuf 31"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf32" value="32" literal="manuf_32">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="32 :manuf 32"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="CTA" value="33">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="33 :manuf 33"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="LehmannAG" value="34">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="34 :manuf 34"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="ElectrojoulePlutinsus" value="35" literal="Electrojoule_Plutinsus">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="35 :manuf 35"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf36" value="36" literal="manuf_36">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="36 :manuf 36"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf37" value="37" literal="manuf_37">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="37 :manuf 37"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="Swistec" value="38">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="38 :manuf 38"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="manuf39" value="39" literal="manuf_39">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="39 :manuf 39"/>
       </eAnnotations>
     </eLiterals>
   </eClassifiers>
@@ -2851,6 +2949,29 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrObligLvlType:Object"/>
       <details key="baseType" value="SGrObligLvlType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrOCPPStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="E0015:&#xA;&#x9;Available (0): &#xA;&#x9;  When a Connector becomes available for a new&#xA;&#x9;  user (Operative)&#xA;&#x9;  &#xA;&#x9;Charging (1): &#xA;&#x9;  When the contactor of a Connector closes,&#xA;&#x9;  allowing the vehicle to charge&#xA;&#x9;(Operative)&#xA;&#xA;&#x9;Preparing(not yet observed ?): &#xA;&#x9;  When a Connector becomes no longer available&#xA;&#x9;  for a new user but no charging session is active.&#xA;&#x9;  Typically a Connector is occupied when a user&#xA;&#x9;  presents a tag, inserts a cable or a vehicle&#xA;&#x9;  occupies the parking bay&#xA;&#x9;  (Operative)&#xA;&#xA;&#x9;Finishing(not yet observed ?): &#xA;&#x9;  When a charging session has stopped at a&#xA;&#x9;  Connector, but the Connector is not yet available&#xA;&#x9;  for a new user, e.g. the cable has not been&#xA;&#x9;  removed or the vehicle has not left the parking&#xA;&#x9;  bay&#xA;&#x9;  (Operative)&#xA;&#xA;&#x9;Reserved(not yet observed ?): &#xA;&#x9;  When a Connector becomes reserved as a result of&#xA;&#x9;  a Reserve Now command&#xA;&#x9;  (Operative)&#xA;&#x9;&#xA;&#x9;Unavailable(not yet observed ?): &#xA;&#x9;  When a Connector becomes unavailable as the&#xA;&#x9;  result of a Change Availability command or an&#xA;&#x9;  event upon which the Charge Point transitions to&#xA;&#x9;  unavailable at its discretion. Upon receipt of a&#xA;&#x9;  Change Availability command, the status MAY&#xA;&#x9;  change immediately or the change MAY be&#xA;&#x9;  scheduled. When scheduled, the Status&#xA;&#x9;  Notification shall be send when the availability&#xA;&#x9;  change becomes effective&#xA;&#x9;  (Inoperative)&#xA;&#xA;&#x9;Faulted(not yet observed ?): &#xA;&#x9;  When a Charge Point or connector has reported&#xA;&#x9;  an error and is not available for energy delivery .&#xA;&#x9;  (Inoperative).&#xA;&#x9;&#xA;&#x9;SuspendedEVSE (7): &#xA;&#x9;  When the contactor of a Connector opens upon&#xA;&#x9;  request of the EVSE, e.g. due to a smart charging&#xA;&#x9;  restriction or as the result of&#xA;&#x9;  StartTransaction.conf indicating that charging is&#xA;&#x9;  not allowed&#xA;&#x9;  (Operative)&#xA;&#xA;&#x9;SuspendedEV(8): &#xA;&#x9;  When the EVSE is ready to deliver energy but&#xA;&#x9;  contactor is open, e.g. the EV is not ready.&#xA;&#x9;  (Operative)&#xA;&#x9;&#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrOCPPStateType"/>
+    </eAnnotations>
+    <eLiterals name="Available"/>
+    <eLiterals name="Charging" value="1"/>
+    <eLiterals name="Preparing" value="2"/>
+    <eLiterals name="Finishing" value="3"/>
+    <eLiterals name="Reserved" value="4"/>
+    <eLiterals name="Unavailable" value="5"/>
+    <eLiterals name="Faulted" value="6"/>
+    <eLiterals name="SuspendedEVSE" value="7"/>
+    <eLiterals name="SuspendedEV" value="8"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrOCPPStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrOCPPStateType:Object"/>
+      <details key="baseType" value="SGrOCPPStateType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrPowerSourceType">
@@ -4005,397 +4126,402 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SubProfileTypeEnumType"/>
     </eAnnotations>
-    <eLiterals name="ActiveEnergyAC">
+    <eLiterals name="UNDEF">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="0: not yet defined"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="ActiveEnergyAC" value="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="1: WirkEnergie"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ReactiveEnergyAC" value="1">
+    <eLiterals name="ReactiveEnergyAC" value="2">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="2:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ApparentEnergyAC" value="2">
+    <eLiterals name="ApparentEnergyAC" value="3">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="3:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ActivePowerAC" value="3">
+    <eLiterals name="ActivePowerAC" value="4">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="4:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ReactivePowerAC" value="4">
+    <eLiterals name="ReactivePowerAC" value="5">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="5:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ApparentPowerAC" value="5">
+    <eLiterals name="ApparentPowerAC" value="6">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="6:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="VoltageAC" value="6">
+    <eLiterals name="VoltageAC" value="7">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="7:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="CurrentAC" value="7">
+    <eLiterals name="CurrentAC" value="8">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="8:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="PowerFactor" value="8">
+    <eLiterals name="PowerFactor" value="9">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="9:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="PhaseAngle" value="9">
+    <eLiterals name="PhaseAngle" value="10">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="10:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="CurrentQuadrant" value="10">
+    <eLiterals name="CurrentQuadrant" value="11">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="11:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="Frequency" value="11">
+    <eLiterals name="Frequency" value="12">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="12:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ActiveEnerBalanceAC" value="12">
+    <eLiterals name="ActiveEnerBalanceAC" value="13">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="13:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ReactiveEnerBalanceAC" value="13">
+    <eLiterals name="ReactiveEnerBalanceAC" value="14">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="14:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="CurrentDirection" value="14">
+    <eLiterals name="CurrentDirection" value="15">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="15:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="PowerQuadrant" value="15">
+    <eLiterals name="PowerQuadrant" value="16">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="16:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="EnergyDC" value="16">
+    <eLiterals name="EnergyDC" value="17">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="17:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="PowerDC" value="17">
+    <eLiterals name="PowerDC" value="18">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="1:8"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="VoltageDC" value="18">
+    <eLiterals name="VoltageDC" value="19">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" 19"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="CurrentDC" value="19">
+    <eLiterals name="CurrentDC" value="20">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="20:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="SunspInvImmCtrl" value="20">
+    <eLiterals name="SunspInvImmCtrl" value="21">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="21:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="SunspInvOpState" value="21">
+    <eLiterals name="SunspInvOpState" value="22">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="22:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="SunspInvModel" value="22">
+    <eLiterals name="SunspInvModel" value="23">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="23:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph24" value="23">
+    <eLiterals name="ph24" value="24">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="24:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph25" value="24">
+    <eLiterals name="ph25" value="25">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="25:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph26" value="25">
+    <eLiterals name="ph26" value="26">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="26:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph27" value="26">
+    <eLiterals name="ph27" value="27">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="27:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph28" value="27">
+    <eLiterals name="ph28" value="28">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="28:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph29" value="28">
+    <eLiterals name="ph29" value="29">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="29:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="BiDirFlexMgmt" value="29">
+    <eLiterals name="BiDirFlexMgmt" value="30">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="30:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="UniDirFlexLoadMgmt" value="30">
+    <eLiterals name="UniDirFlexLoadMgmt" value="31">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="31:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="UniDirFlexFeedInMgmt" value="31">
+    <eLiterals name="UniDirFlexFeedInMgmt" value="32">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="32:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="Curtailment" value="32">
+    <eLiterals name="Curtailment" value="33">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="33:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph33" value="33">
+    <eLiterals name="ph34" value="34">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="34:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph34" value="34">
+    <eLiterals name="ph35" value="35">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="35:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="FlexSysOpState" value="35">
+    <eLiterals name="ph36" value="36">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="36:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph37" value="36">
+    <eLiterals name="ph37" value="37">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="37:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph38" value="37">
+    <eLiterals name="ph38" value="38">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="38:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph39" value="38">
+    <eLiterals name="PowerMonitor" value="39">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="39:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="Monitoring" value="39">
+    <eLiterals name="EnergyMonitor" value="40">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="40:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="DynamicCtrl" value="40">
+    <eLiterals name="DynamicCtrl" value="41">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="41:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="HeatPumpBase" value="41">
+    <eLiterals name="HeatPumpBase" value="42">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="42:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="HeatCoolCtrl" value="42">
+    <eLiterals name="HeatCoolCtrl" value="43">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="43:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="CompressorPwrCtrl" value="43">
+    <eLiterals name="PowerCtrl" value="44">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="44:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="DomHotWaterCtrl" value="44">
+    <eLiterals name="DomHotWaterCtrl" value="45">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="45:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="BufferStorageCtrl" value="45">
+    <eLiterals name="BufferStorageCtrl" value="46">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="46:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="RoomTempCtrl" value="46">
+    <eLiterals name="RoomTempCtrl" value="47">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="47:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph48" value="47">
+    <eLiterals name="ph48" value="48">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="48:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph49" value="48">
+    <eLiterals name="ph49" value="49">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="49:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="RoomTemp" value="49">
+    <eLiterals name="RoomTemp" value="50">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="50:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="OutsideAirTemp" value="50">
+    <eLiterals name="OutsideAirTemp" value="51">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="51:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="WaterTemp" value="51">
+    <eLiterals name="WaterTemp" value="52">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="52:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="DeviceTemp" value="52">
+    <eLiterals name="DeviceTemp" value="53">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="53:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ProcessTemp" value="53">
+    <eLiterals name="ProcessTemp" value="54">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="54:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph55" value="54">
+    <eLiterals name="ph55" value="55">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="55:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph56" value="55">
+    <eLiterals name="ph56" value="56">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="56:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph57" value="56">
+    <eLiterals name="ph57" value="57">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="57:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph58" value="57">
+    <eLiterals name="ph58" value="58">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="58:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph59" value="58">
+    <eLiterals name="ph59" value="59">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="59:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="SGReadyStatesBwp" value="59" literal="SG-ReadyStates_bwp">
+    <eLiterals name="SGReadyStatesBwp" value="60" literal="SG-ReadyStates_bwp">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="60:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="SGrStatesEVSE" value="60" literal="SGrStates_EVSE">
+    <eLiterals name="SGrStatesEVSE" value="61" literal="SGrStates_EVSE">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="61:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph62" value="61">
+    <eLiterals name="EEGCurtailment" value="62">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="62:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph63" value="62">
+    <eLiterals name="ph63" value="63">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="63:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph64" value="63">
+    <eLiterals name="ph64" value="64">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="64:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph65" value="64">
+    <eLiterals name="ph65" value="65">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="65:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph66" value="65">
+    <eLiterals name="ph66" value="66">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="66:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph67" value="66">
+    <eLiterals name="ph67" value="67">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="67:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph68" value="67">
+    <eLiterals name="ph68" value="68">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="68:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph69" value="68">
+    <eLiterals name="ph69" value="69">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="69:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="elFlexTotal" value="69">
+    <eLiterals name="BiDirCharging" value="70">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="70:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="elFlexHeating" value="70">
+    <eLiterals name="EVSEState" value="71">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="71:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="elFlexCooling" value="71">
+    <eLiterals name="EVState" value="72">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="72:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="elFlexVentilation" value="72">
+    <eLiterals name="ph73" value="73">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="73:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph74" value="73">
+    <eLiterals name="ph74" value="74">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="74:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph75" value="74">
+    <eLiterals name="ph75" value="75">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="75:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph76" value="75">
+    <eLiterals name="ph76" value="76">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="76:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph77" value="76">
+    <eLiterals name="ph77" value="77">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="66:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph78" value="77">
+    <eLiterals name="ph78" value="78">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="78:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ph79" value="78">
+    <eLiterals name="ph79" value="79">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="79:"/>
       </eAnnotations>
