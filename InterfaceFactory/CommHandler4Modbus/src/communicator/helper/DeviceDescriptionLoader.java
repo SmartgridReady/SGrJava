@@ -32,6 +32,7 @@ public class DeviceDescriptionLoader<C> {
 	
 	private static ComposedAdapterFactory composedAdapterFactory;		
 	
+	@SuppressWarnings("unchecked")
 	public C load( String aBaseDir, String aDescriptionFile ) {	
 		
 		try {
@@ -50,10 +51,8 @@ public class DeviceDescriptionLoader<C> {
 			domain.getResourceSet().setPackageRegistry( EPackage.Registry.INSTANCE );			
 			Resource resource = domain.createResource( aBaseDir + aDescriptionFile );
 			resource.load(null);
-			
-			C sgrDeviceDescription = (C) resource.getAllContents().next();
-			
-			return sgrDeviceDescription;
+							
+			return (C) resource.getAllContents().next();
 			
 		} catch ( Exception e ) {
 			System.out.println( "Error loading XML: " + e);

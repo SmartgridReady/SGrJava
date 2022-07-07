@@ -1,27 +1,5 @@
 package communicator.impl;
-/**
-*Copyright(c) 2022 Verein SmartGridready Switzerland
-* @generated NOT
-* 
-This Open Source Software is BSD 3 clause licensed:
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in 
-   the documentation and/or other materials provided with the distribution.
-3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from 
-   this software without specific prior written permission.
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
-THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
-WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
-OF THE POSSIBILITY OF SUCH DAMAGE.
-
- */
-import java.io.IOException;
 import java.math.BigInteger;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
@@ -52,18 +30,15 @@ import com.smartgridready.ns.v0.TEnumConversionFct;
 import com.smartgridready.ns.v0.TEnumObjectType;
 import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
 import com.smartgridready.ns.v0.V0Factory;
-import communicator.helper.GenDriverAPI4Modbus;
-import de.re.easymodbus.exceptions.ModbusException;
-import de.re.easymodbus.exceptions.SerialPortException;
-import jssc.SerialPortTimeoutException;
+
+import communicator.common.runtime.GenDriverAPI4Modbus;
+import communicator.common.runtime.GenDriverException;
+import communicator.helper.ModbusHlpr;
 
 
 public class SGrModbusDevice {
 	
-	private final GenDriverAPI4Modbus drv4Modbus;
-	
-	// private final GenDriverAPI4Modbus mbDrvTCP;
-	
+	private final GenDriverAPI4Modbus drv4Modbus;		
 	
 	private final SGrModbusDeviceDescriptionType myDeviceDescription;
 	
@@ -82,7 +57,7 @@ public class SGrModbusDevice {
 	 * <!-- end-user-doc -->
 	 * 
 	 **/ 			
-	public String getVal(String sProfileName, String sDataPointName) throws Exception {
+	public String getVal(String sProfileName, String sDataPointName) throws GenDriverException {
 		
 	
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
@@ -114,7 +89,7 @@ public class SGrModbusDevice {
 	
 	private String readValue( 
 			SGrModbusProfilesFrameType aProfile, 
-			SGrModbusDataPointsFrameType aDataPoint ) throws Exception {
+			SGrModbusDataPointsFrameType aDataPoint ) throws GenDriverException {
 		
 		String retval = "-";
 		
@@ -190,8 +165,7 @@ public class SGrModbusDevice {
 	public SGrBasicGenDataPointTypeType getValByGDPType(
 			SGrModbusProfilesFrameType aProfile, 
 			SGrModbusDataPointsFrameType aDataPoint)
-			throws UnknownHostException, SocketException, ModbusException, IOException, 
-			SerialPortTimeoutException, jssc.SerialPortException {
+			throws GenDriverException {
 		
 				return prv_getValByGDPType (aProfile,aDataPoint);
 	
@@ -200,8 +174,7 @@ public class SGrModbusDevice {
 	public SGrBasicGenDataPointTypeType getValByGDPType(
 					String sProfileName, 
 					String sDataPointName)
-					throws UnknownHostException, SocketException, ModbusException, IOException, 
-					SerialPortTimeoutException, jssc.SerialPortException 
+					throws GenDriverException 
 	{
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 		
@@ -223,8 +196,7 @@ public class SGrModbusDevice {
    private SGrBasicGenDataPointTypeType prv_getValByGDPType(
 		SGrModbusProfilesFrameType aProfile, 
 		SGrModbusDataPointsFrameType aDataPoint)
-		throws UnknownHostException, SocketException, ModbusException, IOException, 
-		SerialPortTimeoutException, jssc.SerialPortException {
+		throws GenDriverException {
 			
 		
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
@@ -514,7 +486,7 @@ public class SGrModbusDevice {
 	
 	
 
-	public String setVal(String sProfileName, String sDataPointName, String sValue) throws Exception {
+	public String setVal(String sProfileName, String sDataPointName, String sValue) throws GenDriverException {
 		
 
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
@@ -533,7 +505,7 @@ public class SGrModbusDevice {
 	private void writeValue( 
 			SGrModbusProfilesFrameType aProfile, 
 			SGrModbusDataPointsFrameType aDataPoint,
-			String sValue ) throws Exception {
+			String sValue ) throws GenDriverException {
 		
 		
 		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
@@ -618,8 +590,7 @@ public class SGrModbusDevice {
 		SGrModbusProfilesFrameType aProfile, 
 		SGrModbusDataPointsFrameType aDataPoint,
  		SGrBasicGenDataPointTypeType sgrValue)
-		throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
-		SerialPortTimeoutException, jssc.SerialPortException {
+		throws GenDriverException {
 		
 		prv_setValByGDPType(aProfile,aDataPoint,sgrValue);
 		
@@ -629,8 +600,7 @@ public void  setValByGDPType(
 			String sProfileName, 
 			String sDataPointName,
 	 		SGrBasicGenDataPointTypeType sgrValue)
-	 				throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
-	 				SerialPortTimeoutException, jssc.SerialPortException {
+	 				throws GenDriverException {
 	Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 		
 	if (profile.isPresent()) {
@@ -648,8 +618,7 @@ private void  prv_setValByGDPType (
 		SGrModbusProfilesFrameType aProfile, 
 		SGrModbusDataPointsFrameType aDataPoint,
  		SGrBasicGenDataPointTypeType sgrValue)
-		throws UnknownHostException, SocketException, ModbusException, IOException, SerialPortException,
-		SerialPortTimeoutException, jssc.SerialPortException 
+		throws GenDriverException
 {
 
 		int[] mbregsnd = new int[120];
@@ -964,16 +933,9 @@ private void  prv_setValByGDPType (
 					drv4Modbus.WriteSingleCoil(regad.intValue(), mbbitsnd[0]);
 				}
 
-			} catch (UnknownHostException e) {
-					System.out.println("Modbus : Host is unreachable");
-			} catch (SocketException e) {
-				System.out.println("Modbus: Socket connection problem");
-			} catch (ModbusException e) {
-				System.out.println("Modbus : general Modbus problem");
-			} catch (IOException e) {
-				System.out.println("Modbus : IO Exception");
-			} catch (SerialPortTimeoutException e) {
-				System.out.println("Modbus : Serial Port Timeout Exception");
+		} catch (GenDriverException e) {
+			String causeMessage = e.getCause() != null ? " cause: " + e.getCause().getMessage() : ""; 
+			System.out.println("Write to modbus failed. " + e.getMessage() + causeMessage );
 			}	
 }
 
@@ -1069,7 +1031,6 @@ private void  prv_setValByGDPType (
 		{ //E0014
 			rval.setSgrObligLvl(SGrObligLvlType.get((int)RegRes));
 		}
-		
 		return rval;
 	}
 

@@ -1,4 +1,4 @@
-package communicator.impl;
+package communicator.helper;
 /**
 *Copyright(c) 2022 Verein SmartGridready Switzerland
 * @generated NOT

@@ -18,76 +18,49 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
  */
-import java.io.IOException;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-
-import de.re.easymodbus.exceptions.ModbusException;
-import jssc.SerialPortException;
-import jssc.SerialPortTimeoutException;
+import communicator.common.runtime.GenDriverAPI4Modbus;
+import communicator.common.runtime.GenDriverException;
 
 public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 	
 	@Override
-	public int[] ReadInputRegisters(int startingAddress, int quantity) throws ModbusException, UnknownHostException,
-			SocketException, IOException, SerialPortException, SerialPortTimeoutException {		
+	public int[] ReadInputRegisters(int startingAddress, int quantity) throws GenDriverException {		
 		return new int[] { 0x00, 0xBB, 0xCC, 0xDD };
 	}
 
 	@Override
-	public int[] ReadHoldingRegisters(int startingAddress, int quantity) throws ModbusException, UnknownHostException,
-			SocketException, IOException, SerialPortException, SerialPortTimeoutException {
+	public int[] ReadHoldingRegisters(int startingAddress, int quantity) throws GenDriverException {
 		return new int[] { 0x00, 0x22, 0x33, 0x44 };
 	}
 
 	@Override
-	public void disconnect() throws UnknownHostException, IOException, SerialPortException, SerialPortTimeoutException {		
+	public void disconnect() throws GenDriverException {		
 	}
 
 	@Override
-	public boolean[] ReadDiscreteInputs(int startingAddress, int quantity) throws ModbusException, UnknownHostException,
-			SocketException, IOException, SerialPortException, SerialPortTimeoutException {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean[] ReadDiscreteInputs(int startingAddress, int quantity) throws GenDriverException {
+		throw new UnsupportedOperationException("mocking not implemented yet");
 	}
 
 	@Override
-	public boolean[] ReadCoils(int startingAddress, int quantity) throws ModbusException, UnknownHostException,
-			SocketException, IOException, SerialPortException, SerialPortTimeoutException {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean[] ReadCoils(int startingAddress, int quantity) throws GenDriverException {
+		throw new UnsupportedOperationException("mocking not implemented yet");
 	}
 
 	@Override
-	public void WriteMultipleCoils(int startingAdress, boolean[] values) throws UnknownHostException, SocketException,
-			ModbusException, IOException, SerialPortException, SerialPortTimeoutException {
-		// TODO Auto-generated method stub
-		
+	public void WriteMultipleCoils(int startingAdress, boolean[] values) throws GenDriverException {
+	}
+	
+
+	@Override
+	public void WriteSingleCoil(int startingAdress, boolean value) throws GenDriverException {		
 	}
 
 	@Override
-	public void WriteSingleCoil(int startingAdress, boolean value) throws UnknownHostException, SocketException,
-			ModbusException, IOException, SerialPortException, SerialPortTimeoutException {
-		// TODO Auto-generated method stub
-		
+	public void WriteMultipleRegisters(int startingAdress, int[] values) throws GenDriverException {
 	}
 
 	@Override
-	public void WriteMultipleRegisters(int startingAdress, int[] values) throws UnknownHostException, SocketException,
-			ModbusException, IOException, SerialPortException, SerialPortTimeoutException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void WriteSingleRegister(int startingAdress, int value) throws UnknownHostException, SocketException,
-			ModbusException, IOException, SerialPortException, SerialPortTimeoutException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean initTrspService(String sCOM) {
-		return true;
+	public void WriteSingleRegister(int startingAdress, int value) throws GenDriverException {		
 	}	
 }
