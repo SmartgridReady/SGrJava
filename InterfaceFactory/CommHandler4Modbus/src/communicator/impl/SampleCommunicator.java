@@ -19,14 +19,15 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
  */
 
-import com.smartgridready.ns.v0.*;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrOCPPStateType;
 import com.smartgridready.ns.v0.V0Factory;
+
 import communicator.helper.DeviceDescriptionLoader;
-import communicator.helper.GenDriverAPI4ModbusRTU;
-import communicator.helper.GenDriverAPI4ModbusTCP;
+import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
+
 
 public class SampleCommunicator {
 	
@@ -50,7 +51,7 @@ public class SampleCommunicator {
 			
 			
 				
-			
+			*/
 			// ******************  GARO & ENUM Test  ************************************ //
 			SGrModbusDeviceDescriptionType wbGaroDescription = loader.load( XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
 			GenDriverAPI4ModbusTCP mbWbGaro = new GenDriverAPI4ModbusTCP();	
