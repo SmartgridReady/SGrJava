@@ -40,7 +40,7 @@ public class SampleCommunicator {
 		
 			
 			// temporary section for time safing purpose:  to be moved towards test section
-			/*		
+					
 			SGrModbusDeviceDescriptionType sgcpMeterDecription = loader.load( XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
 			
 		    //GenDriverAPI4Modbus mbRTUMock = new GenDriverAPI4ModbusRTUMock(); // Simulation API	
@@ -50,7 +50,7 @@ public class SampleCommunicator {
 			
 			
 				
-			*/
+			
 			// ******************  GARO & ENUM Test  ************************************ //
 			SGrModbusDeviceDescriptionType wbGaroDescription = loader.load( XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
 			GenDriverAPI4ModbusTCP mbWbGaro = new GenDriverAPI4ModbusTCP();	
@@ -127,13 +127,13 @@ public class SampleCommunicator {
 				{
 				   // loop data
 
-/*				System.out.printf("%nABBMeter:%n");
+  				  System.out.printf("%nABBMeter:%n");
  				  mbRTU.setUnitIdentifier((byte) 11);
 				  sVal1 = sgcpMeterDevice.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
 				  sVal2 = sgcpMeterDevice.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
 				  sVal3 = sgcpMeterDevice.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
 				  System.out.printf(" ABBMeter ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + " %n");	
-					   
+				  /*					   
 				  System.out.println();
 				  System.out.println("VGT SGCP");
 
