@@ -90,9 +90,10 @@ public interface SGrProfileDescriptionType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  this is the published information related to this
-	 * 						functional profile
-	 * 					
+	 * 
+	 *     				this is the published information related to this
+	 *     				functional profile
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Fp Legib Desc</em>' containment reference list.
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfileDescriptionType_FpLegibDesc()

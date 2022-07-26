@@ -3129,6 +3129,16 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
+	public EReference getSGrModbusDataPointDescriptionType_DpPrgDescr() {
+        return (EReference)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSGrModbusDataPointsFrameType() {
 		if (sGrModbusDataPointsFrameTypeEClass == null) {
 			sGrModbusDataPointsFrameTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(81);

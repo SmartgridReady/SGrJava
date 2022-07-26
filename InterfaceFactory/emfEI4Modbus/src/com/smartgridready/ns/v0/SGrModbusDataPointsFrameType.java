@@ -51,10 +51,12 @@ public interface SGrModbusDataPointsFrameType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * ModbusAttrFrameTypes contain two branches of
-	 * 						SmartGridready attributes: Modbus related and Generic
-	 * 						fpMbAttrRefernce values are valid for a single datapoint
-	 * 					
+	 * 
+	 *     				ModbusAttrFrameTypes contain two branches of
+	 *     				SmartGridready attributes: Modbus related and
+	 *     				Generic fpMbAttrRefernce values are valid for a
+	 *     				single datapoint
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Modbus Data Point</em>' containment reference list.
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointsFrameType_ModbusDataPoint()

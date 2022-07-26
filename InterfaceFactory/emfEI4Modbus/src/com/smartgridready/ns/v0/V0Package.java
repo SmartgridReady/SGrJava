@@ -2127,13 +2127,22 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_ACCESS_PROTECTION_ENABLED = 6;
 
 	/**
+	 * The feature id for the '<em><b>Dp Prg Descr</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESCR = 7;
+
+	/**
 	 * The number of structural features of the '<em>SGr Modbus Data Point Description Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE_FEATURE_COUNT = 7;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>SGr Modbus Data Point Description Type</em>' class.
@@ -7153,6 +7162,17 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EReference getSGrModbusDataPointDescriptionType_DpAccessProtectionEnabled();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpPrgDescr <em>Dp Prg Descr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dp Prg Descr</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpPrgDescr()
+	 * @see #getSGrModbusDataPointDescriptionType()
+	 * @generated
+	 */
+	EReference getSGrModbusDataPointDescriptionType_DpPrgDescr();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType <em>SGr Modbus Data Points Frame Type</em>}'.

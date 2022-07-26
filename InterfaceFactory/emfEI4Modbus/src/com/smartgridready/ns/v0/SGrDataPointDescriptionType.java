@@ -92,9 +92,10 @@ public interface SGrDataPointDescriptionType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  this is the public explanation of the feunctionlity
-	 * 						of this Datapoint
-	 * 					
+	 * 
+	 *     				this is the public explanation of the functionlity
+	 *     				of this Datapoint
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Dp Legib Desc</em>' containment reference list.
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_DpLegibDesc()

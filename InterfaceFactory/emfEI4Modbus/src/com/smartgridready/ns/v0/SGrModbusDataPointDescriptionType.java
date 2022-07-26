@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getMasterFunctionsSupported <em>Master Functions Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusJMESPath <em>Modbus JMES Path</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpAccessProtectionEnabled <em>Dp Access Protection Enabled</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpPrgDescr <em>Dp Prg Descr</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType()
@@ -130,9 +131,10 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Hexadecimal bitmask for mask to elmininta non used
-	 * 						bit frames
-	 * 					
+	 * 
+	 *     				Hexadecimal bitmask for mask to elmininta non used
+	 *     				bit frames
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Bitmask</em>' attribute.
 	 * @see #setBitmask(byte[])
@@ -160,20 +162,25 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Available function/command codes for Master /
-	 * 						Clients The various reading, writing and other operations are
-	 * 						categorized as follows. The most "primitive" reads and writes are
-	 * 						A number of sources use alternative terminology, for example Force
-	 * 						Single Coil where the standard uses Write Single Coil.[11]
-	 * 						Prominent entities within a Modbus slave are: ReadDiscreteInputs
-	 * 						(code: 2) ReadCoils (code: 1) WriteSingleCoil (code: 5)
-	 * 						WriteMultipleCoils (code:15) ReadInputRegisters (code:4)
-	 * 						ReadMultipleHoldingRegisters (code:3) WriteSingleHoldingRegister
-	 * 						(code:6) WriteMultipleHoldingRegisters (code:16) the enum
-	 * 						"Primitives" means, that the current register Type supports Single
-	 * 						Trasnactions If dpSizeNrRegistarts is >1, also the multiple
-	 * 						access functions must be supported 
-	 * 					
+	 * 
+	 *     				Available function/command codes for Master /
+	 *     				Clients The various reading, writing and other
+	 *     				operations are categorized as follows. The most
+	 *     				"primitive" reads and writes are A number of sources
+	 *     				use alternative terminology, for example Force
+	 *     				Single Coil where the standard uses Write Single
+	 *     				Coil.[11] Prominent entities within a Modbus slave
+	 *     				are: ReadDiscreteInputs (code: 2) ReadCoils (code:
+	 *     				1) WriteSingleCoil (code: 5) WriteMultipleCoils
+	 *     				(code:15) ReadInputRegisters (code:4)
+	 *     				ReadMultipleHoldingRegisters (code:3)
+	 *     				WriteSingleHoldingRegister (code:6)
+	 *     				WriteMultipleHoldingRegisters (code:16) the enum
+	 *     				"Primitives" means, that the current register Type
+	 *     				supports Single Trasnactions If dpSizeNrRegistarts
+	 *     				is >1, also the multiple access functions must be
+	 *     				supported
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Master Functions Supported</em>' attribute list.
 	 * @see com.smartgridready.ns.v0.MasterFunctionsSupportedType
@@ -222,5 +229,18 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	 * @generated
 	 */
 	EList<DpAccessProtectionEnabledType> getDpAccessProtectionEnabled();
+
+	/**
+	 * Returns the value of the '<em><b>Dp Prg Descr</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrLegibDocumentationType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dp Prg Descr</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_DpPrgDescr()
+	 * @model containment="true" upper="4"
+	 *        extendedMetaData="kind='element' name='dpPrgDescr' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SGrLegibDocumentationType> getDpPrgDescr();
 
 } // SGrModbusDataPointDescriptionType

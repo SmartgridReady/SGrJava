@@ -39,16 +39,22 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	MODBUS(1, "Modbus", "Modbus"),
 
 	/**
-	 * The '<em><b>OCPP</b></em>' literal object.
+	 * The '<em><b>OCPP16</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OCPP_VALUE
+	 * @see #OCPP16_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	OCPP(2, "OCPP", "OCPP"),
-
-	/**
+	OCPP16(2, "OCPP16", "OCPP1.6"), /**
+	 * The '<em><b>OCPP201</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #OCPP201_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	OCPP201(3, "OCPP201", "OCPP2.01"), /**
 	 * The '<em><b>RES Tful JSON</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,7 +62,7 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RES_TFUL_JSON(3, "RESTfulJSON", "RESTfulJSON"),
+	RES_TFUL_JSON(4, "RESTfulJSON", "RESTfulJSON"),
 
 	/**
 	 * The '<em><b>Contacts</b></em>' literal object.
@@ -66,7 +72,7 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTACTS(4, "Contacts", "Contacts"),
+	CONTACTS(5, "Contacts", "Contacts"),
 
 	/**
 	 * The '<em><b>Wo T</b></em>' literal object.
@@ -76,9 +82,17 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WO_T(5, "WoT", "WoT"),
+	WO_T(6, "WoT", "WoT"),
 
 	/**
+	 * The '<em><b>Proprietary</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PROPRIETARY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	PROPRIETARY(7, "proprietary", "proprietary"), /**
 	 * The '<em><b>Generic</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,7 +100,7 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GENERIC(6, "generic", "generic");
+	GENERIC(8, "generic", "generic");
 
 	/**
 	 * The '<em><b>EEBUS</b></em>' literal value.
@@ -111,15 +125,26 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	public static final int MODBUS_VALUE = 1;
 
 	/**
-	 * The '<em><b>OCPP</b></em>' literal value.
+	 * The '<em><b>OCPP16</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OCPP
-	 * @model
+	 * @see #OCPP16
+	 * @model literal="OCPP1.6"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OCPP_VALUE = 2;
+	public static final int OCPP16_VALUE = 2;
+
+	/**
+	 * The '<em><b>OCPP201</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #OCPP201
+	 * @model literal="OCPP2.01"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCPP201_VALUE = 3;
 
 	/**
 	 * The '<em><b>RES Tful JSON</b></em>' literal value.
@@ -130,7 +155,7 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RES_TFUL_JSON_VALUE = 3;
+	public static final int RES_TFUL_JSON_VALUE = 4;
 
 	/**
 	 * The '<em><b>Contacts</b></em>' literal value.
@@ -141,7 +166,7 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTACTS_VALUE = 4;
+	public static final int CONTACTS_VALUE = 5;
 
 	/**
 	 * The '<em><b>Wo T</b></em>' literal value.
@@ -152,7 +177,18 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WO_T_VALUE = 5;
+	public static final int WO_T_VALUE = 6;
+
+	/**
+	 * The '<em><b>Proprietary</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PROPRIETARY
+	 * @model name="proprietary"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROPRIETARY_VALUE = 7;
 
 	/**
 	 * The '<em><b>Generic</b></em>' literal value.
@@ -163,7 +199,7 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GENERIC_VALUE = 6;
+	public static final int GENERIC_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>SGr Transport Services Used List Type</b></em>' enumerators.
@@ -175,10 +211,12 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 		new SGrTransportServicesUsedListType[] {
 			EEBUS,
 			MODBUS,
-			OCPP,
+			OCPP16,
+			OCPP201,
 			RES_TFUL_JSON,
 			CONTACTS,
 			WO_T,
+			PROPRIETARY,
 			GENERIC,
 		};
 
@@ -238,10 +276,12 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 		switch (value) {
 			case EEBUS_VALUE: return EEBUS;
 			case MODBUS_VALUE: return MODBUS;
-			case OCPP_VALUE: return OCPP;
+			case OCPP16_VALUE: return OCPP16;
+			case OCPP201_VALUE: return OCPP201;
 			case RES_TFUL_JSON_VALUE: return RES_TFUL_JSON;
 			case CONTACTS_VALUE: return CONTACTS;
 			case WO_T_VALUE: return WO_T;
+			case PROPRIETARY_VALUE: return PROPRIETARY;
 			case GENERIC_VALUE: return GENERIC;
 		}
 		return null;

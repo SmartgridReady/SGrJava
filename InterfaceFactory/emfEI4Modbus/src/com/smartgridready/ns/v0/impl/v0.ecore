@@ -1910,6 +1910,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dpPrgDescr" upperBound="4"
+        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="dpPrgDescr"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrModbusDataPointsFrameType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -3003,11 +3011,13 @@
     </eAnnotations>
     <eLiterals name="EEBUS"/>
     <eLiterals name="Modbus" value="1"/>
-    <eLiterals name="OCPP" value="2"/>
-    <eLiterals name="RESTfulJSON" value="3"/>
-    <eLiterals name="Contacts" value="4"/>
-    <eLiterals name="WoT" value="5"/>
-    <eLiterals name="generic" value="6"/>
+    <eLiterals name="OCPP16" value="2" literal="OCPP1.6"/>
+    <eLiterals name="OCPP201" value="3" literal="OCPP2.01"/>
+    <eLiterals name="RESTfulJSON" value="4"/>
+    <eLiterals name="Contacts" value="5"/>
+    <eLiterals name="WoT" value="6"/>
+    <eLiterals name="proprietary" value="7"/>
+    <eLiterals name="generic" value="8"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrTransportServicesUsedListTypeObject"
       instanceClassName="org.eclipse.emf.common.util.Enumerator">

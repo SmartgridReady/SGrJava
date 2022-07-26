@@ -54,10 +54,12 @@ public interface SGrModbusProfilesFrameType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * ModbusAttrFrameTypes contain two branches of
-	 * 						SmartGridready attributes: Modbus related and Generic
-	 * 						fpMbAttrRefernce values are valid for a whole functional profile
-	 * 					
+	 * 
+	 *     				ModbusAttrFrameTypes contain two branches of
+	 *     				SmartGridready attributes: Modbus related and
+	 *     				Generic fpMbAttrRefernce values are valid for a
+	 *     				whole functional profile
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Fp Mb Attr Reference</em>' containment reference list.
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusProfilesFrameType_FpMbAttrReference()

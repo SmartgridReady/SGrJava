@@ -1574,7 +1574,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dpLegibDesc" upperBound="4"
         eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" this is the public explanation of the feunctionlity&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;of this Datapoint&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;this is the public explanation of the functionlity&#xA;    &#x9;&#x9;&#x9;&#x9;of this Datapoint&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -2555,7 +2555,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bitmask" eType="#//BitmaskType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" Hexadecimal bitmask for mask to elmininta non used&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;bit frames&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;Hexadecimal bitmask for mask to elmininta non used&#xA;    &#x9;&#x9;&#x9;&#x9;bit frames&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -2566,7 +2566,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="masterFunctionsSupported"
         unique="false" lowerBound="1" upperBound="-1" eType="#//MasterFunctionsSupportedType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" Available function/command codes for Master /&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Clients The various reading, writing and other operations are&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;categorized as follows. The most &quot;primitive&quot; reads and writes are&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;A number of sources use alternative terminology, for example Force&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Single Coil where the standard uses Write Single Coil.[11]&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Prominent entities within a Modbus slave are: ReadDiscreteInputs&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(code: 2) ReadCoils (code: 1) WriteSingleCoil (code: 5)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;WriteMultipleCoils (code:15) ReadInputRegisters (code:4)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;ReadMultipleHoldingRegisters (code:3) WriteSingleHoldingRegister&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(code:6) WriteMultipleHoldingRegisters (code:16) the enum&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;Primitives&quot; means, that the current register Type supports Single&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Trasnactions If dpSizeNrRegistarts is >1, also the multiple&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;access functions must be supported &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;Available function/command codes for Master /&#xA;    &#x9;&#x9;&#x9;&#x9;Clients The various reading, writing and other&#xA;    &#x9;&#x9;&#x9;&#x9;operations are categorized as follows. The most&#xA;    &#x9;&#x9;&#x9;&#x9;&quot;primitive&quot; reads and writes are A number of sources&#xA;    &#x9;&#x9;&#x9;&#x9;use alternative terminology, for example Force&#xA;    &#x9;&#x9;&#x9;&#x9;Single Coil where the standard uses Write Single&#xA;    &#x9;&#x9;&#x9;&#x9;Coil.[11] Prominent entities within a Modbus slave&#xA;    &#x9;&#x9;&#x9;&#x9;are: ReadDiscreteInputs (code: 2) ReadCoils (code:&#xA;    &#x9;&#x9;&#x9;&#x9;1) WriteSingleCoil (code: 5) WriteMultipleCoils&#xA;    &#x9;&#x9;&#x9;&#x9;(code:15) ReadInputRegisters (code:4)&#xA;    &#x9;&#x9;&#x9;&#x9;ReadMultipleHoldingRegisters (code:3)&#xA;    &#x9;&#x9;&#x9;&#x9;WriteSingleHoldingRegister (code:6)&#xA;    &#x9;&#x9;&#x9;&#x9;WriteMultipleHoldingRegisters (code:16) the enum&#xA;    &#x9;&#x9;&#x9;&#x9;&quot;Primitives&quot; means, that the current register Type&#xA;    &#x9;&#x9;&#x9;&#x9;supports Single Trasnactions If dpSizeNrRegistarts&#xA;    &#x9;&#x9;&#x9;&#x9;is >1, also the multiple access functions must be&#xA;    &#x9;&#x9;&#x9;&#x9;supported&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -2594,6 +2594,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dpPrgDescr" upperBound="4"
+        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="dpPrgDescr"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrModbusDataPointsFrameType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2616,7 +2624,7 @@
         upperBound="-1" eType="#//SGrModbusDataPointDescriptionType" containment="true"
         resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="ModbusAttrFrameTypes contain two branches of&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SmartGridready attributes: Modbus related and Generic&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;fpMbAttrRefernce values are valid for a single datapoint&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;ModbusAttrFrameTypes contain two branches of&#xA;    &#x9;&#x9;&#x9;&#x9;SmartGridready attributes: Modbus related and&#xA;    &#x9;&#x9;&#x9;&#x9;Generic fpMbAttrRefernce values are valid for a&#xA;    &#x9;&#x9;&#x9;&#x9;single datapoint&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -2786,7 +2794,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="fpMbAttrReference" upperBound="-1"
         eType="#//SGrModbusAttrFrameType" containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="ModbusAttrFrameTypes contain two branches of&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SmartGridready attributes: Modbus related and Generic&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;fpMbAttrRefernce values are valid for a whole functional profile&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;ModbusAttrFrameTypes contain two branches of&#xA;    &#x9;&#x9;&#x9;&#x9;SmartGridready attributes: Modbus related and&#xA;    &#x9;&#x9;&#x9;&#x9;Generic fpMbAttrRefernce values are valid for a&#xA;    &#x9;&#x9;&#x9;&#x9;whole functional profile&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -3037,7 +3045,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="fpLegibDesc" upperBound="4"
         eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" this is the published information related to this&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;functional profile&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;this is the published information related to this&#xA;    &#x9;&#x9;&#x9;&#x9;functional profile&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -3871,11 +3879,13 @@
     </eAnnotations>
     <eLiterals name="EEBUS"/>
     <eLiterals name="Modbus" value="1"/>
-    <eLiterals name="OCPP" value="2"/>
-    <eLiterals name="RESTfulJSON" value="3"/>
-    <eLiterals name="Contacts" value="4"/>
-    <eLiterals name="WoT" value="5"/>
-    <eLiterals name="generic" value="6"/>
+    <eLiterals name="OCPP16" value="2" literal="OCPP1.6"/>
+    <eLiterals name="OCPP201" value="3" literal="OCPP2.01"/>
+    <eLiterals name="RESTfulJSON" value="4"/>
+    <eLiterals name="Contacts" value="5"/>
+    <eLiterals name="WoT" value="6"/>
+    <eLiterals name="proprietary" value="7"/>
+    <eLiterals name="generic" value="8"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrTransportServicesUsedListTypeObject"
       instanceClassName="org.eclipse.emf.common.util.Enumerator">

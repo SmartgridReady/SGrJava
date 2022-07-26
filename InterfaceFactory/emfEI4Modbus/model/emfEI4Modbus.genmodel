@@ -352,10 +352,12 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrTransportServicesUsedListType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/EEBUS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/Modbus"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/OCPP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/OCPP16"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/OCPP201"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/RESTfulJSON"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/Contacts"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/WoT"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/proprietary"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrTransportServicesUsedListType/generic"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrUnits">
@@ -929,6 +931,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDataPointDescriptionType/masterFunctionsSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointDescriptionType/modbusJMESPath"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointDescriptionType/dpAccessProtectionEnabled"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointDescriptionType/dpPrgDescr"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrModbusDataPointsFrameType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointsFrameType/dataPoint"/>
