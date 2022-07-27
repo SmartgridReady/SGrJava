@@ -1,0 +1,618 @@
+/**
+*Copyright(c) 2022 Verein SmartGridready Switzerland
+* @generated NOT
+* 
+This Open Source Software is BSD 3 clause licensed:
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in 
+   the documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from 
+   this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+OF THE POSSIBILITY OF SUCH DAMAGE.
+
+author: IBT/cb
+
+ */
+
+package communicator.impl;
+
+import com.smartgridready.ns.v0.SGrEVStateType;
+import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrOCPPStateType;
+import com.smartgridready.ns.v0.V0Factory;
+
+import communicator.common.runtime.GenDriverAPI4Modbus;
+import communicator.helper.DeviceDescriptionLoader;
+import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
+import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
+
+public class IBTlabLoopTester {
+	
+	private static final String XML_BASE_DIR = "../../../SGrSpecifications/XMLInstances/ExtInterfaces/"; 
+	
+	// we need static definitions for performance reason
+	//------------------------------------------------------
+	
+	// Modbus RTU devices
+	private static SGrModbusDevice devWagoMeter = null;
+	private static SGrModbusDevice devABBMeter = null;
+	// we need a single driver instance for RTU and separate these by device addres
+	private static GenDriverAPI4ModbusRTU mbRTU = null;
+	
+	// Modbus TCP devices
+	private static SGrModbusDevice devVGT_SGCP = null;
+	private static SGrModbusDevice devGaroWallbox = null;
+	private static SGrModbusDevice devFroniusSymo = null;
+	
+	// test loop parameters
+	private static int runtimeCnt = 0;
+	// Exception Counters
+	private static int devWagoMeterExceptions = 0;
+	private static int devABBMeterExcpetions = 0;
+	private static int devVGT_SGCPExceptions = 0;
+	private static int devGaroWallboxExceptions = 0;
+	private static int devFroniusSymoExceptions = 0;
+	// device selection
+	private static boolean  devWagoMeterTestIsOn = true; 
+	private static boolean  devABBMeterTestIsOn = true; 
+	private static boolean  devVGT_SGCPTestIsOn = true; 
+	private static boolean  devFroniusSymoTestIsOn = true; 
+	private static boolean  devGaroWallboxTestIsOn = true; 
+	
+	public static void main( String argv[] ) {	
+		
+
+		
+		try {
+			
+			DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+		
+			mbRTU = new GenDriverAPI4ModbusRTU();
+			mbRTU.initTrspService("COM9");			
+			
+			if (devWagoMeterTestIsOn) initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
+			if (devABBMeterTestIsOn) initABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
+			if (devVGT_SGCPTestIsOn)  initVGT_SGCP (XML_BASE_DIR,"SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml");
+			if (devGaroWallboxTestIsOn) initGaroWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
+			if (devFroniusSymoTestIsOn) initFroniusSymo(XML_BASE_DIR,"SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml");
+
+			
+		
+			// ******************  GARO & ENUM Test  ************************************ //
+		 
+
+			SGrEnumListType oEnumList = V0Factory.eINSTANCE.createSGrEnumListType();
+			oEnumList.setSgrEVState(SGrEVStateType.EVSTANDBY);
+			 
+		
+			
+			// **************************   Start GA Testing   **********************************						
+   
+		
+			
+						
+			try {
+				  
+				/*  String sVal1, sVal2, sVal3, sVal4;
+				   float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0, fVal5 = (float) 0.0;
+				   int iVal1 = 0, iVal2 = 0, iVal3 = 0, iVal4 = 0, iVal5 = 0;
+				   long lVal1 = 0, lVal2 = 0, lVal3 = 0, lVal4 = 0, lVal5 = 0; 
+				   String hmVal1 = "-", hmVal2 = "-", hmVal3 = "-", hmVal4 = "-";
+				   int hmTime = 4000, hmStep = 0;
+				   float  fHovalSchlepp = (float) 0.0; */
+			       //enum oEnumList = wbGaroDevice.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
+				   SGrEVStateType sgrEVState = oEnumList.getSgrEVState();
+				   SGrOCPPStateType sgrOCPPState = oEnumList.getSgrOCPPState();
+					
+				// wbGaroDevice.setVal("Curtailment", "HemsCurrentLimit", "8.0");
+				   
+				for (runtimeCnt = 0;runtimeCnt<5000;runtimeCnt++)
+				{
+				   // loop data & test reporting
+					System.out.printf("%n--------> LOOP=" +	runtimeCnt + "  Exceptions:");		
+					if (devWagoMeterTestIsOn)   System.out.printf(" WagoMeter=" + devWagoMeterExceptions);
+					if (devABBMeterTestIsOn)    System.out.printf(", ABBMeter=" +  devABBMeterExcpetions);
+					if (devVGT_SGCPTestIsOn)    System.out.printf(", VGT_SCP=" +  devVGT_SGCPExceptions);
+				    if (devGaroWallboxTestIsOn) System.out.printf(",  GaroWallbox=" + devGaroWallboxExceptions);
+					if (devFroniusSymoTestIsOn) System.out.printf(", FroniusSymo=" + devFroniusSymoExceptions + "  <--------%n");
+
+					//Next loop 
+					if (devWagoMeterTestIsOn)   tstWagoMeter();
+					if (devABBMeterTestIsOn)    tstABBMeter();					
+					if (devVGT_SGCPTestIsOn)    tstVGT_SGCP(); 
+				    if (devGaroWallboxTestIsOn) tstGaroWallbox();
+					if (devFroniusSymoTestIsOn) tstFroniusSymo();
+				    
+				//enum oEnumList = wbGaroDevice.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
+
+						
+
+
+				Thread.sleep(10);
+			}
+
+		}
+		catch ( Exception e)
+		{
+				System.out.println( "Error reading value from device. " + e);
+				e.printStackTrace();
+		}
+	 }
+	 catch ( Exception e )
+	 {
+			System.out.println( "Error loading device description. " + e);
+	 }									
+  }
+	
+   // -----------------------------------------------------------------------------------------------------------------------------	
+   // WAGO Meter testing
+   // -----------------------------------------------------------------------------------------------------------------------------	
+	static void initWagoMeter(String aBaseDir, String aDescriptionFile ) {				
+		
+		try {	
+			
+			DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+			SGrModbusDeviceDescriptionType tstMeter = loader.load(aBaseDir,aDescriptionFile);	
+			devWagoMeter =  new SGrModbusDevice(tstMeter, mbRTU );
+
+			
+		}
+		
+		catch ( Exception e )
+		{
+			System.out.println( "Error loading device description. " + e);
+		}		
+	}
+	
+	static void tstWagoMeter()
+	{
+		float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0;
+		String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
+		
+			try {							
+				mbRTU.setUnitIdentifier((byte) 7);
+			    System.out.println();
+				System.out.println("Testing WAGO Meter");
+				Thread.sleep(25);
+				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32(); 
+				Thread.sleep(10);            
+				fVal2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL2").getFloat32();
+				Thread.sleep(10);
+				fVal3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL3").getFloat32();
+				Thread.sleep(10);
+				fVal4 = devWagoMeter.getValByGDPType("Frequency", "Frequency").getFloat32();
+				System.out.printf("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
+						+ fVal3 + ",  " + fVal4 + " %n");
+				Thread.sleep(10);
+				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getFloat32();
+				Thread.sleep(10);
+				fVal2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getFloat32();
+				Thread.sleep(10);
+				fVal3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getFloat32();
+				System.out.printf("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
+						+ fVal3 + " %n");
+				Thread.sleep(10);
+				fVal1 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+				Thread.sleep(10);
+				fVal2 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+				Thread.sleep(10);
+				fVal3 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+				System.out.printf("  CurrentAC L1/2/3 [V]:              " + fVal1 + ",  " + fVal2 + ",  "
+						+ fVal3 + " %n");
+				Thread.sleep(10);
+				fVal1 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactor").getFloat32();
+				Thread.sleep(10);
+				fVal2 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getFloat32();
+				Thread.sleep(10);
+				fVal3 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getFloat32();
+				Thread.sleep(10);
+				fVal4 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getFloat32();
+				System.out.printf("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
+						+ fVal3 + ",  " + fVal4 + " %n");
+				Thread.sleep(10); 
+				sVal1 = devWagoMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot");
+				Thread.sleep(10);
+				sVal2 = devWagoMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL1");
+				Thread.sleep(10);
+				sVal3 = devWagoMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL2");
+				Thread.sleep(10);
+				sVal4 = devWagoMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL3");
+				System.out.printf("  ActiveEnergyAC [kWh]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3
+						+ ",  " + sVal4 + " %n");
+				Thread.sleep(10);
+				sVal1 = devWagoMeter.getVal("ActivePowerAC", "ActivePowerACtot");
+				Thread.sleep(10);
+				sVal2 = devWagoMeter.getVal("ActivePowerAC", "ActivePowerACL1");
+				Thread.sleep(10);
+				sVal3 = devWagoMeter.getVal("ActivePowerAC", "ActivePowerACL2");
+				Thread.sleep(10);
+				sVal4 = devWagoMeter.getVal("ActivePowerAC", "ActivePowerACL3");
+				System.out.printf("  ActivePowerAC [kW]:           " + sVal1 + ", " + sVal2 + ",  " + sVal3
+						+ ",  " + sVal4 + " %n");
+				Thread.sleep(10);
+				sVal1 = devWagoMeter.getVal("ReactivePowerAC", "ReactivePowerACtot");
+				Thread.sleep(10);
+				sVal2 = devWagoMeter.getVal("ReactivePowerAC", "ReactivePowerACL1");
+				Thread.sleep(10);
+				sVal3 = devWagoMeter.getVal("ReactivePowerAC", "ReactivePowerACL2");
+				Thread.sleep(10);
+				sVal4 = devWagoMeter.getVal("ReactivePowerAC", "ReactivePowerACL3");
+				System.out.printf("  ReactivePowerAC [kvar]:       " + sVal1 + ", " + sVal2 + ",  " + sVal3
+						+ ",  " + sVal4 + " %n");
+				Thread.sleep(10);
+				sVal1 = devWagoMeter.getVal("ApparentPowerAC", "ApparentPowerACtot");
+				Thread.sleep(10);
+				sVal2 = devWagoMeter.getVal("ApparentPowerAC", "ApparentPowerACL1");
+				Thread.sleep(10);
+				sVal3 = devWagoMeter.getVal("ApparentPowerAC", "ApparentPowerACL2");
+				Thread.sleep(10);
+				sVal4 = devWagoMeter.getVal("ApparentPowerAC", "ApparentPowerACL3");
+				System.out.printf("  ApparentPowerAC [kva]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
+						+ ",  " + sVal4 + " %n");
+				Thread.sleep(10);
+				sVal1 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
+				Thread.sleep(10);
+				sVal2 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
+				Thread.sleep(10);
+				sVal3 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
+				System.out.printf("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");
+
+				Thread.sleep(10);
+				sVal1 = devWagoMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC");
+				Thread.sleep(10);
+				sVal2 = devWagoMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC");
+				Thread.sleep(10);
+				sVal3 = devWagoMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC");
+				System.out.printf("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + " %n");
+				
+				Thread.sleep(10);
+				sVal1 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACtot");
+				Thread.sleep(10);
+				sVal2 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACL1");
+				Thread.sleep(10);
+				sVal3 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACL2");
+				Thread.sleep(10);
+				sVal4 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACL3");
+				System.out.printf("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
+						+ ",  " + sVal4 + " %n");
+
+				Thread.sleep(10);
+				sVal1 = devWagoMeter.getVal("CurrentDirection", "CurrentDirL1");
+				Thread.sleep(10);
+				sVal2 = devWagoMeter.getVal("CurrentDirection", "CurrentDirL2");
+				Thread.sleep(10);
+				sVal3 = devWagoMeter.getVal("CurrentDirection", "CurrentDirL3");
+				System.out.printf("  CurrentDirection  L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ",  " + sVal3
+						+  " %n"); 
+
+			}
+			catch ( Exception e)
+			{
+				devWagoMeterExceptions++;
+				System.out.println( "Error reading value from device devWagoMeter. " + e);
+				e.printStackTrace();
+			}
+		}
+	
+	
+	
+
+	   // -----------------------------------------------------------------------------------------------------------------------------	
+	   // Device ABBMeter Testing
+	   // -----------------------------------------------------------------------------------------------------------------------------	
+		static void initABBMeter(String aBaseDir, String aDescriptionFile ) {				
+			
+			try {	
+				
+				DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+				SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				devABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
+				
+			}
+			
+			catch ( Exception e )
+			{
+				System.out.println( "Error loading device description. " + e);
+			}		
+		}
+		
+		static void tstABBMeter()
+		{
+			float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0;
+			String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
+			
+				try {
+	 				  mbRTU.setUnitIdentifier((byte) 11);	
+	  				  System.out.printf("%nABBMeter:%n");
+					  Thread.sleep(50);
+					  sVal1 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
+					  Thread.sleep(10);
+					  sVal2 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
+					  Thread.sleep(10);
+					  sVal3 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
+					  Thread.sleep(10);
+					  System.out.printf(" ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + " %n");	
+	 
+					  sVal1 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACtot");
+					  Thread.sleep(10);
+					  sVal2 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL1");
+					  Thread.sleep(10);
+					  sVal3 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL2");
+					  Thread.sleep(10);
+					  sVal4 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL3");
+					  Thread.sleep(10);
+					  System.out.printf(" ActivePowerAC [KW]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + " %n");	
+	 	
+					  sVal1 = devABBMeter.getVal("CurrentAC", "CurrentACL1");
+					  Thread.sleep(10);
+					  sVal2 = devABBMeter.getVal("CurrentAC", "CurrentACL2");
+					  Thread.sleep(10);
+					  sVal3 = devABBMeter.getVal("CurrentAC", "CurrentACL3");
+					  Thread.sleep(10);
+					  sVal4 = devABBMeter.getVal("CurrentAC", "CurrentACN");
+					  Thread.sleep(10);
+					  System.out.printf(" CurrentAC [A]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + " %n");	
+		
+					
+				}
+				catch ( Exception e)
+				{
+					devABBMeterExcpetions++;
+					System.out.println( "Error reading value from device. " + e);
+					e.printStackTrace();
+				}
+			}
+		
+		
+		
+	    
+		   // -----------------------------------------------------------------------------------------------------------------------------	
+		   // Device  VGT SGCP Testing
+		   // -----------------------------------------------------------------------------------------------------------------------------	
+			static void initVGT_SGCP(String aBaseDir, String aDescriptionFile ) {				
+				
+				try {	
+					
+					DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+					SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+
+					GenDriverAPI4ModbusTCP mbVGT_SGCP= new GenDriverAPI4ModbusTCP();
+					devVGT_SGCP = new SGrModbusDevice(tstDesc, mbVGT_SGCP);	
+
+					mbVGT_SGCP.initDevice("192.168.1.50",502);
+					
+				}
+				
+				catch ( Exception e )
+				{
+					System.out.println( "Error loading device description. " + e);
+				}		
+			}
+			
+			static void tstVGT_SGCP()
+			{
+				float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0;
+				String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
+				
+					try {	
+					    System.out.println();
+						System.out.println("Testing devVGT_SGCP");
+						Thread.sleep(25);
+
+						  sVal1 = devVGT_SGCP.getVal("BiDirFlexMgmt", "ReadinessState");
+						  sVal2 = devVGT_SGCP.getVal("BiDirFlexMgmt", "RunState");
+						  sVal3 = devVGT_SGCP.getVal("BiDirFlexMgmt", "ActualActivePower");
+						  if ((runtimeCnt & 1) == 0)
+							  devVGT_SGCP.setVal("BiDirFlexMgmt", "ActivePowerActivation", "false");
+						  else
+							  devVGT_SGCP.setVal("BiDirFlexMgmt", "ActivePowerActivation", "true");
+
+						System.out.printf(" ReadinessState / RunState / ActualActivePower: " + sVal1 + ", "
+								+ sVal2 + sVal3 + " %n");
+						
+					}
+					catch ( Exception e)
+					{
+						devVGT_SGCPExceptions++;
+						System.out.println( "Error reading value from device  devVGT_SGCP" + e);
+						e.printStackTrace();
+					}
+				}
+		
+		
+			
+		    
+			   // -----------------------------------------------------------------------------------------------------------------------------	
+			   // GARO Wallbox Test
+			   // -----------------------------------------------------------------------------------------------------------------------------	
+				static void initGaroWallbox(String aBaseDir, String aDescriptionFile ) {				
+					
+					try {	
+						
+						DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+						SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+
+						GenDriverAPI4ModbusTCP mbWbGaro= new GenDriverAPI4ModbusTCP();
+						devGaroWallbox = new SGrModbusDevice(tstDesc, mbWbGaro);							
+						mbWbGaro.initDevice("192.168.1.182",502);	
+						
+					}
+					
+					catch ( Exception e )
+					{
+						System.out.println( "Error loading device description. " + e);
+					}		
+				}
+				
+				static void tstGaroWallbox()
+				{
+					float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
+					String  sVal1 = "0.0", sVal2 = "0.0";
+					int     iVal1  = 0;
+					
+						try {	
+							 System.out.printf("%nGaroWallbox:%n");
+							 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+							 fVal2 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+							 fVal3 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+							// sgrEVState = oEnumList.getSgrEVState();
+							// System.out.printf("  EV-StatusCode: " + sgrEVState+ " %n");
+							 
+							 //oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+							// sgrOCPPState = oEnumList.getSgrOCPPState();
+							// System.out.printf("  OCPP-StatusCode: " + sgrOCPPState + " %n");
+							 System.out.printf("  CurrentAC[A]   I[L1] = " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + " %n");		 
+
+							 fVal1 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
+							 fVal2 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getFloat32();
+							 fVal3 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
+							 System.out.printf("  PowerAC[kW]:   P[1L] = " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + " %n");	
+								 
+							 fVal1 = devGaroWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
+							 fVal2 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat32();
+							 fVal3 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
+							 System.out.printf("  EnergyAC[kWh] L1/L2/L3:   W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + " %n");	
+								
+							 sVal1 = devGaroWallbox.getVal("EVState", "isSmartEV15118");
+							 sVal2 = devGaroWallbox.getVal("EVState", "EVCCID");
+							 System.out.printf("  EVState support (ISO/IEC 15118):" + sVal1 + ",    EVCCID = " + sVal2 + " %n");
+							 
+							 fVal1 = devGaroWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat32();
+							 fVal2 = devGaroWallbox.getValByGDPType("Curtailment", "HemsCurrentLimit").getFloat32();
+							 fVal3 = devGaroWallbox.getValByGDPType("Curtailment", "HWCurrentLimit").getFloat32();
+							 iVal1 = devGaroWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
+							 System.out.printf("  Curtailment:   SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +" %n");
+							 
+							
+						}
+						catch ( Exception e)
+						{
+							devGaroWallboxExceptions++;
+							System.out.println( "Error reading value from device. " + e);
+							e.printStackTrace();
+						}
+					}
+			
+				
+			    
+				   // -----------------------------------------------------------------------------------------------------------------------------	
+				   // Fronius Symo test 
+				   // -----------------------------------------------------------------------------------------------------------------------------	
+					static void initFroniusSymo(String aBaseDir, String aDescriptionFile ) {				
+						
+						try {	
+							
+							DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+							SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+							GenDriverAPI4ModbusTCP mbPVFroniusSymo = new GenDriverAPI4ModbusTCP();
+							devFroniusSymo = new SGrModbusDevice(tstDesc, mbPVFroniusSymo);
+							mbPVFroniusSymo.initDevice("192.168.1.181",502);
+						}
+						
+						catch ( Exception e )
+						{
+							System.out.println( "Error loading device description. " + e);
+						}		
+					}
+					
+					static void tstFroniusSymo()
+					{
+						float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0;
+						String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
+						
+							try {	
+								 System.out.printf("%nTesting FroniusSymo:%n");
+								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "SunspecID");
+								 Thread.sleep(25);
+								 sVal2 = devFroniusSymo.getVal("SunspInvModel", "InvModelBlockLen");
+								 Thread.sleep(25);
+								 sVal3 = devFroniusSymo.getVal("SunspInvModel", "CurrentACtot");
+								 Thread.sleep(25);
+								 System.out.printf("  SunspInvModel, SspID.len CurrACtot[A]:  " + sVal1 + ",     " + sVal2 + ",  "	+ sVal3 + " %n");
+								 Thread.sleep(25);
+								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "CurrentACL1");
+								 Thread.sleep(25);
+								 sVal2 = devFroniusSymo.getVal("SunspInvModel", "CurrentACL2");
+								 Thread.sleep(25);
+								 sVal3 = devFroniusSymo.getVal("SunspInvModel", "CurrentACL3");
+								 Thread.sleep(25);
+								 System.out.printf("  SunspInvModel CurrentAC [A]:          " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");			
+											
+								
+							}
+							catch ( Exception e)
+							{
+								devFroniusSymoExceptions++;
+								System.out.println( "Error reading value from device. " + e);
+								e.printStackTrace();
+							}
+						}
+				
+				
+		
+       // USED TO COPY / PASTE ADDITIONAL TEST DEVICES
+	   // -----------------------------------------------------------------------------------------------------------------------------	
+	   // Device testing frame
+	   // -----------------------------------------------------------------------------------------------------------------------------	
+		static void initEmptyDevFrame(String aBaseDir, String aDescriptionFile ) {				
+			
+			try {	
+				
+				DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+				SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				
+				// replace device specific for RTU
+				//add devXXXX =  new SGrModbusDevice(tstDesc, mbRTU );
+				
+				// // replace device specific for TCP  (easymodus uses Driver instance per device						
+				// GenDriverAPI4ModbusTCP mbXXXXX= new GenDriverAPI4ModbusTCP();
+				// devGaroWallbox = new SGrModbusDevice(tstDesc, mbWmbXXXXX);							
+				// mbXXXXX.initDevice("192.168.1.182",502);
+				
+			}
+			
+			catch ( Exception e )
+			{
+				System.out.println( "Error loading device description. " + e);
+			}		
+		}
+		
+		static void tstEmptyDevFrame()
+		{
+			float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0;
+			String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
+			
+				try {	
+					// if RTU is used, set address here
+					// mbRTU.setUnitIdentifier((byte) 7);
+				    System.out.println();
+					System.out.println("Testing   xxxxx");
+					Thread.sleep(25);
+					
+					// Add test getters and setters for binary interface
+					//fVal1 = devWagoMeter.getValByGDPType("FpName", "DpName").getFloat32(); 
+					//Thread.sleep(10);   
+
+
+					// Add test getters and setters for String interfaces
+					//sVal1 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
+					//Thread.sleep(10);
+					
+				}
+				catch ( Exception e)
+				{
+					System.out.println( "Error reading value from device. " + e);
+					e.printStackTrace();
+					// add Exception counter here
+				}
+			}
+	
+	}
+	
