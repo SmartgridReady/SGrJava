@@ -8,6 +8,7 @@ import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
 import com.smartgridready.ns.v0.SGrMeasValueStateType;
 import com.smartgridready.ns.v0.SGrMeasValueTendencyType;
@@ -50,6 +51,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrSGCPService <em>Sgr SGCP Service</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrObligLvl <em>Sgr Oblig Lvl</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrOCPPState <em>Sgr OCPP State</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrHPOpMode <em>Sgr HP Op Mode</em>}</li>
  * </ul>
  *
  * @generated
@@ -489,6 +491,35 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected boolean sgrOCPPStateESet;
+
+	/**
+	 * The default value of the '{@link #getSgrHPOpMode() <em>Sgr HP Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSgrHPOpMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SGrHPOpModeType SGR_HP_OP_MODE_EDEFAULT = SGrHPOpModeType.WPEMERGOP;
+
+	/**
+	 * The cached value of the '{@link #getSgrHPOpMode() <em>Sgr HP Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSgrHPOpMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrHPOpModeType sgrHPOpMode = SGR_HP_OP_MODE_EDEFAULT;
+
+	/**
+	 * This is true if the Sgr HP Op Mode attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sgrHPOpModeESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1265,6 +1296,56 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public SGrHPOpModeType getSgrHPOpMode() {
+		return sgrHPOpMode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSgrHPOpMode(SGrHPOpModeType newSgrHPOpMode) {
+		SGrHPOpModeType oldSgrHPOpMode = sgrHPOpMode;
+		sgrHPOpMode = newSgrHPOpMode == null ? SGR_HP_OP_MODE_EDEFAULT : newSgrHPOpMode;
+		boolean oldSgrHPOpModeESet = sgrHPOpModeESet;
+		sgrHPOpModeESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE, oldSgrHPOpMode, sgrHPOpMode, !oldSgrHPOpModeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetSgrHPOpMode() {
+		SGrHPOpModeType oldSgrHPOpMode = sgrHPOpMode;
+		boolean oldSgrHPOpModeESet = sgrHPOpModeESet;
+		sgrHPOpMode = SGR_HP_OP_MODE_EDEFAULT;
+		sgrHPOpModeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE, oldSgrHPOpMode, SGR_HP_OP_MODE_EDEFAULT, oldSgrHPOpModeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetSgrHPOpMode() {
+		return sgrHPOpModeESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_STATE:
@@ -1297,6 +1378,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return getSgrObligLvl();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_OCPP_STATE:
 				return getSgrOCPPState();
+			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE:
+				return getSgrHPOpMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1353,6 +1436,9 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_OCPP_STATE:
 				setSgrOCPPState((SGrOCPPStateType)newValue);
+				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE:
+				setSgrHPOpMode((SGrHPOpModeType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1411,6 +1497,9 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_OCPP_STATE:
 				unsetSgrOCPPState();
 				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE:
+				unsetSgrHPOpMode();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1453,6 +1542,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return isSetSgrObligLvl();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_OCPP_STATE:
 				return isSetSgrOCPPState();
+			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE:
+				return isSetSgrHPOpMode();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1497,6 +1588,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 		if (sgrObligLvlESet) result.append(sgrObligLvl); else result.append("<unset>");
 		result.append(", sgrOCPPState: ");
 		if (sgrOCPPStateESet) result.append(sgrOCPPState); else result.append("<unset>");
+		result.append(", sgrHPOpMode: ");
+		if (sgrHPOpModeESet) result.append(sgrHPOpMode); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

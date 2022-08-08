@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceProfileType#getManufacturerLabel <em>Manufacturer Label</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceProfileType#getRemAuthorID <em>Rem Author ID</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceProfileType#getDevLevelofOperation <em>Dev Levelof Operation</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDeviceProfileType#getDevPrgDesc <em>Dev Prg Desc</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceProfileType()
@@ -70,9 +71,10 @@ public interface SGrDeviceProfileType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  this is the published information related to this
-	 * 						device
-	 * 					
+	 * 
+	 *     				this is the published information related to this
+	 *     				device
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Dev Legib Desc</em>' containment reference list.
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceProfileType_DevLegibDesc()
@@ -344,8 +346,9 @@ public interface SGrDeviceProfileType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * nominal Power of the device (installation)
-	 * 					
+	 * 
+	 *     				nominal Power of the device (installation)
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nominal Power</em>' attribute.
 	 * @see #setNominalPower(String)
@@ -423,9 +426,10 @@ public interface SGrDeviceProfileType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * author of this sheet may add remarks / non disclamer
-	 * 						statements
-	 * 					
+	 * 
+	 *     				author of this sheet may add remarks / non disclamer
+	 *     				statements
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Rem Author ID</em>' attribute.
 	 * @see #setRemAuthorID(String)
@@ -451,9 +455,10 @@ public interface SGrDeviceProfileType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  defines the SGr Label Leve 1...6 of the highest
-	 * 						level functional profile of this device
-	 * 					
+	 * 
+	 *     				defines the SGr Label Leve 1...6 of the highest
+	 *     				level functional profile of this device
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Dev Levelof Operation</em>' attribute.
 	 * @see #isSetDevLevelofOperation()
@@ -500,5 +505,18 @@ public interface SGrDeviceProfileType extends EObject {
 	 * @generated
 	 */
 	boolean isSetDevLevelofOperation();
+
+	/**
+	 * Returns the value of the '<em><b>Dev Prg Desc</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrLegibDocumentationType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dev Prg Desc</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceProfileType_DevPrgDesc()
+	 * @model containment="true" upper="4"
+	 *        extendedMetaData="kind='element' name='devPrgDesc' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SGrLegibDocumentationType> getDevPrgDesc();
 
 } // SGrDeviceProfileType

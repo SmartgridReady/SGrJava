@@ -2,11 +2,9 @@
  */
 package com.smartgridready.ns.v0.impl;
 
-import com.smartgridready.ns.v0.DpAccessProtectionEnabledType;
 import com.smartgridready.ns.v0.MasterFunctionsSupportedType;
 import com.smartgridready.ns.v0.ModbusJMESPathType;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
-import com.smartgridready.ns.v0.SGrLegibDocumentationType;
 import com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType;
 import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
 import com.smartgridready.ns.v0.V0Package;
@@ -25,8 +23,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,8 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getBitmask <em>Bitmask</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getMasterFunctionsSupported <em>Master Functions Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getModbusJMESPath <em>Modbus JMES Path</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getDpAccessProtectionEnabled <em>Dp Access Protection Enabled</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getDpPrgDescr <em>Dp Prg Descr</em>}</li>
  * </ul>
  *
  * @generated
@@ -137,26 +131,6 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @ordered
 	 */
 	protected ModbusJMESPathType modbusJMESPath;
-
-	/**
-	 * The cached value of the '{@link #getDpAccessProtectionEnabled() <em>Dp Access Protection Enabled</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDpAccessProtectionEnabled()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DpAccessProtectionEnabledType> dpAccessProtectionEnabled;
-
-	/**
-	 * The cached value of the '{@link #getDpPrgDescr() <em>Dp Prg Descr</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDpPrgDescr()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<SGrLegibDocumentationType> dpPrgDescr;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -404,32 +378,6 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 */
 	@Override
-	public EList<DpAccessProtectionEnabledType> getDpAccessProtectionEnabled() {
-		if (dpAccessProtectionEnabled == null) {
-			dpAccessProtectionEnabled = new EObjectContainmentEList<DpAccessProtectionEnabledType>(DpAccessProtectionEnabledType.class, this, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_ACCESS_PROTECTION_ENABLED);
-		}
-		return dpAccessProtectionEnabled;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<SGrLegibDocumentationType> getDpPrgDescr() {
-		if (dpPrgDescr == null) {
-			dpPrgDescr = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESCR);
-		}
-		return dpPrgDescr;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
@@ -438,10 +386,6 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 				return basicSetModbusFirstRegisterReference(null, msgs);
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_JMES_PATH:
 				return basicSetModbusJMESPath(null, msgs);
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_ACCESS_PROTECTION_ENABLED:
-				return ((InternalEList<?>)getDpAccessProtectionEnabled()).basicRemove(otherEnd, msgs);
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESCR:
-				return ((InternalEList<?>)getDpPrgDescr()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -466,10 +410,6 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 				return getMasterFunctionsSupported();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_JMES_PATH:
 				return getModbusJMESPath();
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_ACCESS_PROTECTION_ENABLED:
-				return getDpAccessProtectionEnabled();
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESCR:
-				return getDpPrgDescr();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -502,14 +442,6 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_JMES_PATH:
 				setModbusJMESPath((ModbusJMESPathType)newValue);
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_ACCESS_PROTECTION_ENABLED:
-				getDpAccessProtectionEnabled().clear();
-				getDpAccessProtectionEnabled().addAll((Collection<? extends DpAccessProtectionEnabledType>)newValue);
-				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESCR:
-				getDpPrgDescr().clear();
-				getDpPrgDescr().addAll((Collection<? extends SGrLegibDocumentationType>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -540,12 +472,6 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_JMES_PATH:
 				setModbusJMESPath((ModbusJMESPathType)null);
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_ACCESS_PROTECTION_ENABLED:
-				getDpAccessProtectionEnabled().clear();
-				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESCR:
-				getDpPrgDescr().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -570,10 +496,6 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 				return masterFunctionsSupported != null && !masterFunctionsSupported.isEmpty();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_JMES_PATH:
 				return modbusJMESPath != null;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_ACCESS_PROTECTION_ENABLED:
-				return dpAccessProtectionEnabled != null && !dpAccessProtectionEnabled.isEmpty();
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESCR:
-				return dpPrgDescr != null && !dpPrgDescr.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

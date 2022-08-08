@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getProfileNumber <em>Profile Number</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getFpNameList <em>Fp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getFpLegibDesc <em>Fp Legib Desc</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getFpPrgDesc <em>Fp Prg Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getMroVisibilityIndicator <em>Mro Visibility Indicator</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getProfileName <em>Profile Name</em>}</li>
  * </ul>
@@ -72,6 +73,16 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected EList<SGrLegibDocumentationType> fpLegibDesc;
+
+	/**
+	 * The cached value of the '{@link #getFpPrgDesc() <em>Fp Prg Desc</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFpPrgDesc()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrLegibDocumentationType> fpPrgDesc;
 
 	/**
 	 * The default value of the '{@link #getMroVisibilityIndicator() <em>Mro Visibility Indicator</em>}' attribute.
@@ -250,6 +261,19 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
+	public EList<SGrLegibDocumentationType> getFpPrgDesc() {
+		if (fpPrgDesc == null) {
+			fpPrgDesc = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC);
+		}
+		return fpPrgDesc;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SGrMROPresenceLevelIndicationType getMroVisibilityIndicator() {
 		return mroVisibilityIndicator;
 	}
@@ -331,6 +355,8 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 				return basicSetFpNameList(null, msgs);
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_LEGIB_DESC:
 				return ((InternalEList<?>)getFpLegibDesc()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC:
+				return ((InternalEList<?>)getFpPrgDesc()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -349,6 +375,8 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 				return getFpNameList();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_LEGIB_DESC:
 				return getFpLegibDesc();
+			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC:
+				return getFpPrgDesc();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:
 				return getMroVisibilityIndicator();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__PROFILE_NAME:
@@ -375,6 +403,10 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_LEGIB_DESC:
 				getFpLegibDesc().clear();
 				getFpLegibDesc().addAll((Collection<? extends SGrLegibDocumentationType>)newValue);
+				return;
+			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC:
+				getFpPrgDesc().clear();
+				getFpPrgDesc().addAll((Collection<? extends SGrLegibDocumentationType>)newValue);
 				return;
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:
 				setMroVisibilityIndicator((SGrMROPresenceLevelIndicationType)newValue);
@@ -403,6 +435,9 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_LEGIB_DESC:
 				getFpLegibDesc().clear();
 				return;
+			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC:
+				getFpPrgDesc().clear();
+				return;
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:
 				unsetMroVisibilityIndicator();
 				return;
@@ -427,6 +462,8 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 				return fpNameList != null;
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_LEGIB_DESC:
 				return fpLegibDesc != null && !fpLegibDesc.isEmpty();
+			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC:
+				return fpPrgDesc != null && !fpPrgDesc.isEmpty();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:
 				return isSetMroVisibilityIndicator();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__PROFILE_NAME:

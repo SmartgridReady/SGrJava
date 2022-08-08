@@ -51,6 +51,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceProfileTypeImpl#getManufacturerLabel <em>Manufacturer Label</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceProfileTypeImpl#getRemAuthorID <em>Rem Author ID</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceProfileTypeImpl#getDevLevelofOperation <em>Dev Levelof Operation</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceProfileTypeImpl#getDevPrgDesc <em>Dev Prg Desc</em>}</li>
  * </ul>
  *
  * @generated
@@ -331,6 +332,16 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected boolean devLevelofOperationESet;
+
+	/**
+	 * The cached value of the '{@link #getDevPrgDesc() <em>Dev Prg Desc</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDevPrgDesc()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrLegibDocumentationType> devPrgDesc;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -843,6 +854,19 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
+	public EList<SGrLegibDocumentationType> getDevPrgDesc() {
+		if (devPrgDesc == null) {
+			devPrgDesc = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_PRG_DESC);
+		}
+		return devPrgDesc;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_NAME_LIST:
@@ -853,6 +877,8 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 				return basicSetSoftwareRevision(null, msgs);
 			case V0Package.SGR_DEVICE_PROFILE_TYPE__HARDWARE_REVISION:
 				return basicSetHardwareRevision(null, msgs);
+			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_PRG_DESC:
+				return ((InternalEList<?>)getDevPrgDesc()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -893,6 +919,8 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 				return getRemAuthorID();
 			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_LEVELOF_OPERATION:
 				return getDevLevelofOperation();
+			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_PRG_DESC:
+				return getDevPrgDesc();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -949,6 +977,10 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_LEVELOF_OPERATION:
 				setDevLevelofOperation((Integer)newValue);
 				return;
+			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_PRG_DESC:
+				getDevPrgDesc().clear();
+				getDevPrgDesc().addAll((Collection<? extends SGrLegibDocumentationType>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1003,6 +1035,9 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_LEVELOF_OPERATION:
 				unsetDevLevelofOperation();
 				return;
+			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_PRG_DESC:
+				getDevPrgDesc().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1043,6 +1078,8 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 				return REM_AUTHOR_ID_EDEFAULT == null ? remAuthorID != null : !REM_AUTHOR_ID_EDEFAULT.equals(remAuthorID);
 			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_LEVELOF_OPERATION:
 				return isSetDevLevelofOperation();
+			case V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_PRG_DESC:
+				return devPrgDesc != null && !devPrgDesc.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

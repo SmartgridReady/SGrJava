@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getProfileNumber <em>Profile Number</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getFpNameList <em>Fp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getFpLegibDesc <em>Fp Legib Desc</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getFpPrgDesc <em>Fp Prg Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getMroVisibilityIndicator <em>Mro Visibility Indicator</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getProfileName <em>Profile Name</em>}</li>
  * </ul>
@@ -102,6 +103,19 @@ public interface SGrProfileDescriptionType extends EObject {
 	 * @generated
 	 */
 	EList<SGrLegibDocumentationType> getFpLegibDesc();
+
+	/**
+	 * Returns the value of the '<em><b>Fp Prg Desc</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrLegibDocumentationType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fp Prg Desc</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfileDescriptionType_FpPrgDesc()
+	 * @model containment="true" upper="4"
+	 *        extendedMetaData="kind='element' name='fpPrgDesc' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SGrLegibDocumentationType> getFpPrgDesc();
 
 	/**
 	 * Returns the value of the '<em><b>Mro Visibility Indicator</b></em>' attribute.

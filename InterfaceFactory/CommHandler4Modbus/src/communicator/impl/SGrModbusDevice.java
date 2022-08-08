@@ -32,6 +32,7 @@ import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
 import com.smartgridready.ns.v0.SGrMeasValueStateType;
 import com.smartgridready.ns.v0.SGrMeasValueTendencyType;
@@ -124,9 +125,10 @@ public class SGrModbusDevice {
 		else if (dGenType.getEnum()!=null) {
 			SGrEnumListType oVal = dGenType.getEnum();
 			if (oVal.isSetSgrEVState())
-			{
-				// HIRR String version of returned stet
-			}
+			{   
+				SGrEnumListType en = getValByGDPType(aProfile, aDataPoint).getEnum();
+				retval =  Enum2StringConversion(en);
+			}  
 		}
 		else if (dGenType.isSetFloat32()) {
 			float fVal = getValByGDPType(aProfile, aDataPoint).getFloat32();
@@ -721,7 +723,8 @@ private void  prv_setValByGDPType (
 				mbbitsnd[0] = bVal;
 		}
 		else if (dMBType.getEnum()!=null) {
-			// TODO: SGrBasicGenDataPointTypeType, apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
+				size = 1;
+				mbregsnd[0] =  Enum2RegResConversion(sgrValue.getEnum());  
 		}
 		else if (dMBType.isSetFloat32()) {
 			if (bRegisterCMDs) {
@@ -992,11 +995,166 @@ private void  prv_setValByGDPType (
 	}
 	
 	
+	//==================================================  code to be maintained frequently ==============================================
+	// Manually adopted enumeration handling: needs 3 enrties for each enumerated type
+	// convert from enumeration into Modbus RegRes number 
+	int Enum2RegResConversion(SGrEnumListType oGenVal)
+	{  // TODO(ongoing): extend this list manually for EACH  enumeration being added to the system
+		int retval = 0;
+
+		if (oGenVal.isSetSgrMeasValueState())
+		{  //E0001
+			retval =  oGenVal.getSgrMeasValueState().getValue(); 
+		}	
+		else if (oGenVal.isSetSgrMeasValueTendency())
+		{   //E0002
+			retval =  oGenVal.getSgrMeasValueTendency().getValue();
+		}		
+		else if (oGenVal.isSetSgrMeasValueSource())
+		{   //E0003
+			retval =  oGenVal.getSgrMeasValueSource().getValue();
+		}		
+		else if (oGenVal.isSetSgrPowerSource())
+		{  //E0004
+			retval =  oGenVal.getSgrPowerSource().getValue();
+		}						
+		else if (oGenVal.isSetSgreadyStateLv2())
+		{   //E0005
+			retval =  oGenVal.getSgreadyStateLv2().getValue();
+		}		
+		else if (oGenVal.isSetSgreadyStateLv1())
+		{   //E0006
+			retval =  oGenVal.getSgreadyStateLv1().getValue();
+		}
+		else if (oGenVal.isSetSgrSunspStateCodes())
+		{//E0007
+			retval =  oGenVal.getSgrSunspStateCodes().getValue();
+		}
+		else if (oGenVal.isSetSgrEVSEStateLv2())
+		{   //E0008
+			retval =  oGenVal.getSgrEVSEStateLv2().getValue();
+		}
+		else if (oGenVal.isSetSgrEVSEStateLv1())
+		{   //E0009
+			retval =  oGenVal.getSgrEVSEStateLv1().getValue();
+		}
+		else if (oGenVal.isSetSgrSGCPLoadStateLv2() )
+		{  //E0010
+			retval =  oGenVal.getSgrSGCPLoadStateLv2().getValue();
+		}
+		else if (oGenVal.isSetSgrSGCPFeedInStateLv2())
+		{   //E0011
+			retval =  oGenVal.getSgrSGCPFeedInStateLv2().getValue();
+		}
+		else if (oGenVal.isSetSgrEVState())
+		{ //E0012
+			retval =  oGenVal.getSgrEVState().getValue();
+		}
+		else if (oGenVal.isSetSgrSGCPService())
+		{ //E0013
+			retval =  oGenVal.getSgrSGCPService().getValue();
+		}
+		else if (oGenVal.isSetSgrObligLvl())
+		{ //E0014
+			retval =  oGenVal.getSgrObligLvl().getValue();
+		}
+		else if (oGenVal.isSetSgrOCPPState())
+		{
+			// E0015
+			retval =  oGenVal.getSgrOCPPState().getValue();
+		}
+		else if (oGenVal.isSetSgrHPOpMode())
+		{
+			// E0016
+			retval =  oGenVal.getSgrHPOpMode().getValue();
+		}
+		
+		return retval;
+	}
+	
+	// convert enumeration into string 
+	 String Enum2StringConversion(SGrEnumListType oGenVal)
+	 {
+            String rval = "-";
+			
+			// TODO(ongoing): extend this list manually for EACH  enumeration being added to the system
+			if (oGenVal.isSetSgrMeasValueState())
+			{  //E0001
+				rval = oGenVal.getSgrMeasValueState().toString();             
+			}	
+			else if (oGenVal.isSetSgrMeasValueTendency())
+			{   //E0002
+				rval = oGenVal.getSgrMeasValueTendency().toString(); 
+			}		
+			else if (oGenVal.isSetSgrMeasValueSource())
+			{   //E0003
+				rval = oGenVal.getSgrMeasValueSource().toString(); 
+			}		
+			else if (oGenVal.isSetSgrPowerSource())
+			{  //E0004
+				rval = oGenVal.getSgrPowerSource().toString(); 
+			}						
+			else if (oGenVal.isSetSgreadyStateLv2())
+			{   //E0005
+				rval = oGenVal.getSgreadyStateLv2().toString(); 
+			}		
+			else if (oGenVal.isSetSgreadyStateLv1())
+			{   //E0006
+				rval = oGenVal.getSgreadyStateLv1().toString(); 
+			}
+			else if (oGenVal.isSetSgrSunspStateCodes())
+			{//E0007
+				rval = oGenVal.getSgrSunspStateCodes().toString(); 
+			}
+			else if (oGenVal.isSetSgrEVSEStateLv2())
+			{   //E0008
+				rval = oGenVal.getSgrEVSEStateLv2().toString(); 
+			}
+			else if (oGenVal.isSetSgrEVSEStateLv1())
+			{   //E0009
+				rval = oGenVal.getSgrEVSEStateLv1().toString(); 
+			}
+			else if (oGenVal.isSetSgrSGCPLoadStateLv2() )
+			{  //E0010
+				rval = oGenVal.getSgrSGCPLoadStateLv2().toString(); 
+			}
+			else if (oGenVal.isSetSgrSGCPFeedInStateLv2())
+			{   //E0011
+				rval = oGenVal.getSgrSGCPFeedInStateLv2().toString(); 
+			}
+			else if (oGenVal.isSetSgrEVState())
+			{ //E0012
+				rval = oGenVal.getSgrEVState().toString(); 
+			}
+			else if (oGenVal.isSetSgrSGCPService())
+			{ //E0013
+				rval = oGenVal.getSgrSGCPService().toString(); 
+			}
+			else if (oGenVal.isSetSgrObligLvl())
+			{ //E0014
+				rval = oGenVal.getSgrObligLvl().toString(); 
+			}
+			else if (oGenVal.isSetSgrOCPPState())
+			{
+				// E0015
+				rval = oGenVal.getSgrOCPPState().toString(); 
+			}
+			else if (oGenVal.isSetSgrHPOpMode())
+			{
+				// E0016
+				rval = oGenVal.getSgrHPOpMode().toString(); 
+			}
+			
+			return rval;
+	 }
+	 
+	 
+	// convert RegRes from Modbus into enumeration 
 	SGrEnumListType RegRes2EnumConversion(long RegRes, SGrEnumListType oGenVal)
 	{ 
 		SGrEnumListType rval =  V0Factory.eINSTANCE.createSGrEnumListType();
 		
-		// TODO: extend this list manually for EACH  enumeration being added ti the system
+		// TODO(ongoing): extend this list manually for EACH  enumeration being added to the system
 		if (oGenVal.isSetSgrMeasValueState())
 		{  //E0001
 			rval.setSgrMeasValueState(SGrMeasValueStateType.get((int)RegRes));
@@ -1057,6 +1215,11 @@ private void  prv_setValByGDPType (
 		{
 			// E0015
 			rval.setSgrOCPPState(SGrOCPPStateType.get((int)RegRes));
+		}
+		else if (oGenVal.isSetSgrHPOpMode())
+		{
+			// E0016
+			rval.setSgrHPOpMode(SGrHPOpModeType.get((int)RegRes));
 		}
 		
 		return rval;

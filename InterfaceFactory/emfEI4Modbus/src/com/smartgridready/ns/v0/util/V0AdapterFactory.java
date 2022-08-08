@@ -76,10 +76,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createDocumentRootAdapter();
 			}
 			@Override
-			public Adapter caseDpAccessProtectionEnabledType(DpAccessProtectionEnabledType object) {
-				return createDpAccessProtectionEnabledTypeAdapter();
-			}
-			@Override
 			public Adapter caseIpADDRType(IpADDRType object) {
 				return createIpADDRTypeAdapter();
 			}
@@ -106,6 +102,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseRTUType(RTUType object) {
 				return createRTUTypeAdapter();
+			}
+			@Override
+			public Adapter caseSGrAccessProtectionEnabledType(SGrAccessProtectionEnabledType object) {
+				return createSGrAccessProtectionEnabledTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrAttr4GenericType(SGrAttr4GenericType object) {
@@ -352,20 +352,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.DpAccessProtectionEnabledType <em>Dp Access Protection Enabled Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.DpAccessProtectionEnabledType
-	 * @generated
-	 */
-	public Adapter createDpAccessProtectionEnabledTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.IpADDRType <em>Ip ADDR Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -460,6 +446,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRTUTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrAccessProtectionEnabledType <em>SGr Access Protection Enabled Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrAccessProtectionEnabledType
+	 * @generated
+	 */
+	public Adapter createSGrAccessProtectionEnabledTypeAdapter() {
 		return null;
 	}
 

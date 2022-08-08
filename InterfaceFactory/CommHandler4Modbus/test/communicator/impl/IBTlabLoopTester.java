@@ -17,6 +17,8 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 author: IBT/cb
+The purpose of this class is to offer a test environment with all existing decives at the IBT lab in order to allow communication tests under long term  
+and significant traffic load conditions 
 
  */
 
@@ -66,6 +68,9 @@ public class IBTlabLoopTester {
 	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
 	
+	// shell for enumerations
+	private static SGrEnumListType oEnumList = null;
+	
 	public static void main( String argv[] ) {	
 		
 
@@ -73,7 +78,8 @@ public class IBTlabLoopTester {
 		try {
 			
 			DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
-		
+		  
+			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
 			mbRTU.initTrspService("COM9");			
 			
@@ -83,65 +89,40 @@ public class IBTlabLoopTester {
 			if (devGaroWallboxTestIsOn) initGaroWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
 			if (devFroniusSymoTestIsOn) initFroniusSymo(XML_BASE_DIR,"SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml");
 
-			
-		
-			// ******************  GARO & ENUM Test  ************************************ //
-		 
-
-			SGrEnumListType oEnumList = V0Factory.eINSTANCE.createSGrEnumListType();
-			oEnumList.setSgrEVState(SGrEVStateType.EVSTANDBY);
-			 
+ 
 		
 			
-			// **************************   Start GA Testing   **********************************						
-   
-		
-			
-						
+			// **************************   Start device Testing   **********************************						
+   			
 			try {
-				  
-				/*  String sVal1, sVal2, sVal3, sVal4;
-				   float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0, fVal5 = (float) 0.0;
-				   int iVal1 = 0, iVal2 = 0, iVal3 = 0, iVal4 = 0, iVal5 = 0;
-				   long lVal1 = 0, lVal2 = 0, lVal3 = 0, lVal4 = 0, lVal5 = 0; 
-				   String hmVal1 = "-", hmVal2 = "-", hmVal3 = "-", hmVal4 = "-";
-				   int hmTime = 4000, hmStep = 0;
-				   float  fHovalSchlepp = (float) 0.0; */
-			       //enum oEnumList = wbGaroDevice.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
-				   SGrEVStateType sgrEVState = oEnumList.getSgrEVState();
-				   SGrOCPPStateType sgrOCPPState = oEnumList.getSgrOCPPState();
-					
-				// wbGaroDevice.setVal("Curtailment", "HemsCurrentLimit", "8.0");
-				   
-				for (runtimeCnt = 0;runtimeCnt<5000;runtimeCnt++)
+				  				   
+				for (runtimeCnt = 0;runtimeCnt<30000;runtimeCnt++)
 				{
+					
 				   // loop data & test reporting
-					System.out.printf("%n--------> LOOP=" +	runtimeCnt + "  Exceptions:");		
-					if (devWagoMeterTestIsOn)   System.out.printf(" WagoMeter=" + devWagoMeterExceptions);
-					if (devABBMeterTestIsOn)    System.out.printf(", ABBMeter=" +  devABBMeterExcpetions);
-					if (devVGT_SGCPTestIsOn)    System.out.printf(", VGT_SCP=" +  devVGT_SGCPExceptions);
-				    if (devGaroWallboxTestIsOn) System.out.printf(",  GaroWallbox=" + devGaroWallboxExceptions);
-					if (devFroniusSymoTestIsOn) System.out.printf(", FroniusSymo=" + devFroniusSymoExceptions + "  <--------%n");
+				   //Thread.sleep(500);  // show last block for ccc  milliseconds
+					
+					System.out.printf("%n------> LOOP=" +	runtimeCnt + "  Exceptions:");		
+					if (devWagoMeterTestIsOn)   System.out.printf(" WagoMeter=" + devWagoMeterExceptions + ",");
+					if (devABBMeterTestIsOn)    System.out.printf(" ABBMeter=" +  devABBMeterExcpetions+ ",");
+					if (devVGT_SGCPTestIsOn)    System.out.printf(" VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
+				    if (devGaroWallboxTestIsOn) System.out.printf(" GaroWallbox=" + devGaroWallboxExceptions+ ",");
+					if (devFroniusSymoTestIsOn) System.out.printf(" FroniusSymo=" + devFroniusSymoExceptions + ",");
+					System.out.println(" <------");
 
 					//Next loop 
 					if (devWagoMeterTestIsOn)   tstWagoMeter();
 					if (devABBMeterTestIsOn)    tstABBMeter();					
 					if (devVGT_SGCPTestIsOn)    tstVGT_SGCP(); 
 				    if (devGaroWallboxTestIsOn) tstGaroWallbox();
-					if (devFroniusSymoTestIsOn) tstFroniusSymo();
-				    
-				//enum oEnumList = wbGaroDevice.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
+					if (devFroniusSymoTestIsOn) tstFroniusSymo();	
 
-						
-
-
-				Thread.sleep(10);
 			}
 
 		}
 		catch ( Exception e)
 		{
-				System.out.println( "Error reading value from device. " + e);
+				System.out.println( "Error reading value from device " + e);
 				e.printStackTrace();
 		}
 	 }
@@ -167,7 +148,7 @@ public class IBTlabLoopTester {
 		
 		catch ( Exception e )
 		{
-			System.out.println( "Error loading device description. " + e);
+			System.out.println( "Error loading device description devWagoMeter:" + e);
 		}		
 	}
 	
@@ -181,9 +162,9 @@ public class IBTlabLoopTester {
 			    System.out.println();
 				System.out.println("Testing WAGO Meter");
 				Thread.sleep(25);
-				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32(); 
+				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
 				Thread.sleep(10);            
-				fVal2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL2").getFloat32();
+				fVal2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL2").getFloat32(); 
 				Thread.sleep(10);
 				fVal3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL3").getFloat32();
 				Thread.sleep(10);
@@ -296,7 +277,7 @@ public class IBTlabLoopTester {
 			catch ( Exception e)
 			{
 				devWagoMeterExceptions++;
-				System.out.println( "Error reading value from device devWagoMeter. " + e);
+				System.out.println( "Error reading value from device devWagoMeter:" + e);
 				e.printStackTrace();
 			}
 		}
@@ -365,7 +346,7 @@ public class IBTlabLoopTester {
 				catch ( Exception e)
 				{
 					devABBMeterExcpetions++;
-					System.out.println( "Error reading value from device. " + e);
+					System.out.println( "Error reading value from device devABBMeter:" +  e);
 					e.printStackTrace();
 				}
 			}
@@ -383,6 +364,7 @@ public class IBTlabLoopTester {
 					DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
 					SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 
+					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 					GenDriverAPI4ModbusTCP mbVGT_SGCP= new GenDriverAPI4ModbusTCP();
 					devVGT_SGCP = new SGrModbusDevice(tstDesc, mbVGT_SGCP);	
 
@@ -392,7 +374,7 @@ public class IBTlabLoopTester {
 				
 				catch ( Exception e )
 				{
-					System.out.println( "Error loading device description. " + e);
+					System.out.println( "Error loading device description mbVGT_SGCP: " + e);
 				}		
 			}
 			
@@ -421,7 +403,7 @@ public class IBTlabLoopTester {
 					catch ( Exception e)
 					{
 						devVGT_SGCPExceptions++;
-						System.out.println( "Error reading value from device  devVGT_SGCP" + e);
+						System.out.println( "Error reading value from device devVGT_SGCP :" + e);
 						e.printStackTrace();
 					}
 				}
@@ -438,7 +420,8 @@ public class IBTlabLoopTester {
 						
 						DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
 						SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
-
+						
+						// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 						GenDriverAPI4ModbusTCP mbWbGaro= new GenDriverAPI4ModbusTCP();
 						devGaroWallbox = new SGrModbusDevice(tstDesc, mbWbGaro);							
 						mbWbGaro.initDevice("192.168.1.182",502);	
@@ -451,43 +434,73 @@ public class IBTlabLoopTester {
 					}		
 				}
 				
+				
 				static void tstGaroWallbox()
 				{
 					float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
 					String  sVal1 = "0.0", sVal2 = "0.0";
+					SGrEVStateType sgrEVState = null;
+					SGrOCPPStateType sgrOCPPState = null;
 					int     iVal1  = 0;
+					float CurtailCurrent;
+					
 					
 						try {	
+							
+							 if ((runtimeCnt%60)== 0)
+							 {
+								 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
+								 devGaroWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
+							 }
+							
 							 System.out.printf("%nGaroWallbox:%n");
 							 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+							 Thread.sleep(20);
 							 fVal2 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+							 Thread.sleep(20);
 							 fVal3 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
-							// sgrEVState = oEnumList.getSgrEVState();
-							// System.out.printf("  EV-StatusCode: " + sgrEVState+ " %n");
+							 Thread.sleep(20);
+							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+							 Thread.sleep(20);
+							 sgrEVState = oEnumList.getSgrEVState();
+							 System.out.printf("  EV-StatusCode: " + sgrEVState+ " %n");
 							 
-							 //oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
-							// sgrOCPPState = oEnumList.getSgrOCPPState();
-							// System.out.printf("  OCPP-StatusCode: " + sgrOCPPState + " %n");
+							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+							 Thread.sleep(20);
+							 sgrOCPPState = oEnumList.getSgrOCPPState();
+							 System.out.printf("  OCPP-StatusCode: " + sgrOCPPState + " %n");
 							 System.out.printf("  CurrentAC[A]   I[L1] = " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + " %n");		 
 
 							 fVal1 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
+							 Thread.sleep(20);
 							 fVal2 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getFloat32();
+							 Thread.sleep(20);
 							 fVal3 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
+							 Thread.sleep(20);
 							 System.out.printf("  PowerAC[kW]:   P[1L] = " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + " %n");	
 								 
 							 fVal1 = devGaroWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
+							 Thread.sleep(20);
 							 fVal2 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat32();
+							 Thread.sleep(20);
 							 fVal3 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
+							 Thread.sleep(20);
 							 System.out.printf("  EnergyAC[kWh] L1/L2/L3:   W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + " %n");	
 								
 							 sVal1 = devGaroWallbox.getVal("EVState", "isSmartEV15118");
-							 sVal2 = devGaroWallbox.getVal("EVState", "EVCCID");
+							 Thread.sleep(20);
+							 //??? sVal2 = devGaroWallbox.getVal("EVState", "EVCCID");
+							 Thread.sleep(20);
 							 System.out.printf("  EVState support (ISO/IEC 15118):" + sVal1 + ",    EVCCID = " + sVal2 + " %n");
 							 
 							 fVal1 = devGaroWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat32();
+							 Thread.sleep(20);
 							 fVal2 = devGaroWallbox.getValByGDPType("Curtailment", "HemsCurrentLimit").getFloat32();
+							 Thread.sleep(20);
 							 fVal3 = devGaroWallbox.getValByGDPType("Curtailment", "HWCurrentLimit").getFloat32();
+							 Thread.sleep(20);
 							 iVal1 = devGaroWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
+							 Thread.sleep(20);
 							 System.out.printf("  Curtailment:   SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +" %n");
 							 
 							
@@ -495,7 +508,7 @@ public class IBTlabLoopTester {
 						catch ( Exception e)
 						{
 							devGaroWallboxExceptions++;
-							System.out.println( "Error reading value from device. " + e);
+							System.out.println( "Error reading value from device devGaroWallbox:" + e);
 							e.printStackTrace();
 						}
 					}
@@ -511,6 +524,8 @@ public class IBTlabLoopTester {
 							
 							DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
 							SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+							
+							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 							GenDriverAPI4ModbusTCP mbPVFroniusSymo = new GenDriverAPI4ModbusTCP();
 							devFroniusSymo = new SGrModbusDevice(tstDesc, mbPVFroniusSymo);
 							mbPVFroniusSymo.initDevice("192.168.1.181",502);
@@ -550,7 +565,7 @@ public class IBTlabLoopTester {
 							catch ( Exception e)
 							{
 								devFroniusSymoExceptions++;
-								System.out.println( "Error reading value from device. " + e);
+								System.out.println( "Error reading value from device: "+ devFroniusSymo.getClass().getName() + e);
 								e.printStackTrace();
 							}
 						}
@@ -571,9 +586,9 @@ public class IBTlabLoopTester {
 				// replace device specific for RTU
 				//add devXXXX =  new SGrModbusDevice(tstDesc, mbRTU );
 				
-				// // replace device specific for TCP  (easymodus uses Driver instance per device						
+				// // replace device specific for TCP  (easymodus uses Driver instance per device)						
 				// GenDriverAPI4ModbusTCP mbXXXXX= new GenDriverAPI4ModbusTCP();
-				// devGaroWallbox = new SGrModbusDevice(tstDesc, mbWmbXXXXX);							
+				// devXXXXX = new SGrModbusDevice(tstDesc, mbWmbXXXXX);							
 				// mbXXXXX.initDevice("192.168.1.182",502);
 				
 			}
@@ -608,7 +623,7 @@ public class IBTlabLoopTester {
 				}
 				catch ( Exception e)
 				{
-					System.out.println( "Error reading value from device. " + e);
+					System.out.println( "Error reading value from device: "+ devFroniusSymo.getClass().getName() + e);
 					e.printStackTrace();
 					// add Exception counter here
 				}

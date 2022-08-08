@@ -1,5 +1,3 @@
-package communicator.impl;
-
 /**
 *Copyright(c) 2022 Verein SmartGridready Switzerland
 * @generated NOT
@@ -18,7 +16,12 @@ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR B
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
+author: IBT/cb
+The purpose of this class is to offer a test environment for a Sunspec device operation related to its specific & interoperability behaviour 
  */
+
+package communicator.impl;
+
 
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
@@ -26,10 +29,10 @@ import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
 import com.smartgridready.ns.v0.SGrOCPPStateType;
 import com.smartgridready.ns.v0.V0Factory;
 
+import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
-
 public class SunspecTester {
 
 }

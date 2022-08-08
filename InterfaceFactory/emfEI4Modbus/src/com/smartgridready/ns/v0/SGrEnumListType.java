@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrSGCPService <em>Sgr SGCP Service</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrObligLvl <em>Sgr Oblig Lvl</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrOCPPState <em>Sgr OCPP State</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHPOpMode <em>Sgr HP Op Mode</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType()
@@ -829,5 +830,58 @@ public interface SGrEnumListType extends EObject {
 	 * @generated
 	 */
 	boolean isSetSgrOCPPState();
+
+	/**
+	 * Returns the value of the '<em><b>Sgr HP Op Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrHPOpModeType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sgr HP Op Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHPOpModeType
+	 * @see #isSetSgrHPOpMode()
+	 * @see #unsetSgrHPOpMode()
+	 * @see #setSgrHPOpMode(SGrHPOpModeType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_SgrHPOpMode()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='sgrHPOpMode' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrHPOpModeType getSgrHPOpMode();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHPOpMode <em>Sgr HP Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sgr HP Op Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHPOpModeType
+	 * @see #isSetSgrHPOpMode()
+	 * @see #unsetSgrHPOpMode()
+	 * @see #getSgrHPOpMode()
+	 * @generated
+	 */
+	void setSgrHPOpMode(SGrHPOpModeType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHPOpMode <em>Sgr HP Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSgrHPOpMode()
+	 * @see #getSgrHPOpMode()
+	 * @see #setSgrHPOpMode(SGrHPOpModeType)
+	 * @generated
+	 */
+	void unsetSgrHPOpMode();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHPOpMode <em>Sgr HP Op Mode</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Sgr HP Op Mode</em>' attribute is set.
+	 * @see #unsetSgrHPOpMode()
+	 * @see #getSgrHPOpMode()
+	 * @see #setSgrHPOpMode(SGrHPOpModeType)
+	 * @generated
+	 */
+	boolean isSetSgrHPOpMode();
 
 } // SGrEnumListType

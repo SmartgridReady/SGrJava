@@ -40,15 +40,6 @@ public interface V0Factory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
-	 * Returns a new object of class '<em>Dp Access Protection Enabled Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Dp Access Protection Enabled Type</em>'.
-	 * @generated
-	 */
-	DpAccessProtectionEnabledType createDpAccessProtectionEnabledType();
-
-	/**
 	 * Returns a new object of class '<em>Ip ADDR Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,6 +101,15 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	RTUType createRTUType();
+
+	/**
+	 * Returns a new object of class '<em>SGr Access Protection Enabled Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Access Protection Enabled Type</em>'.
+	 * @generated
+	 */
+	SGrAccessProtectionEnabledType createSGrAccessProtectionEnabledType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Attr4 Generic Type</em>'.

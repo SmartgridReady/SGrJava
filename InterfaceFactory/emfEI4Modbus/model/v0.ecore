@@ -243,30 +243,6 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DpAccessProtectionEnabledType">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Modbus datapoints may be protected by execptions. If&#xA;&#x9;&#x9;&#x9;&#x9;this is the case, a datapoint may be selected as true with a range&#xA;&#x9;&#x9;&#x9;&#x9;of supported exceptions. A NOT listed exception means no XY&#xA;&#x9;&#x9;&#x9;&#x9;exception&#xA;&#x9;&#x9;&#x9;"/>
-    </eAnnotations>
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="dpAccessProtectionEnabledType"/>
-      <details key="kind" value="elementOnly"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modbusException" lowerBound="1"
-        eType="#//TEnumExceptionCodeType" unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="modbusException"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEnabled" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
-        unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="attribute"/>
-        <details key="name" value="isEnabled"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="DpSizeNrRegistersType" instanceClassName="int">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="dpSizeNrRegisters_._type"/>
@@ -1031,6 +1007,30 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SGrAccessProtectionEnabledType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Modbus datapoints may be protected by execptions. If&#xA;&#x9;&#x9;&#x9;&#x9;this is the case, a datapoint may be selected as true with a range&#xA;&#x9;&#x9;&#x9;&#x9;of supported exceptions. A NOT listed exception means no XY&#xA;&#x9;&#x9;&#x9;&#x9;exception&#xA;&#x9;&#x9;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrAccessProtectionEnabledType"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modbusException" unique="false"
+        lowerBound="1" upperBound="-1" eType="#//TEnumExceptionCodeType">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="modbusException"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEnabled" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="isEnabled"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrAttr4GenericType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="these attributes are defined for the generic interface&#xA;&#x9;&#x9;&#x9;&#x9;for the application programmer. An attribute can be aligned to&#xA;&#x9;&#x9;&#x9;&#x9;either a device, a functional Profile or a datapoint&#xA;&#x9;&#x9;&#x9;"/>
@@ -1281,7 +1281,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="scalingByMulPwr" eType="#//SGrScalingType"
         containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="generic value = dataPoint * m * 10^p"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;generic value = dataPoint * m * 10^p&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1303,7 +1303,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sunssf" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedInt"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="a Sunpec specific attribute (scalefactor p -10 ...&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;+10) generic value = dataPoint * 10^p note: Sunspec uses sunssf&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;usually as Modbus Register with dynamic values check attribute&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;timeAlignedNotification&quot;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;a Sunpec specific attribute (scalefactor p -10 ...&#xA;    &#x9;&#x9;&#x9;&#x9;+10) generic value = dataPoint * 10^p note: Sunspec&#xA;    &#x9;&#x9;&#x9;&#x9;uses sunssf usually as Modbus Register with dynamic&#xA;    &#x9;&#x9;&#x9;&#x9;values check attribute &quot;timeAlignedNotification&quot;&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1314,7 +1314,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pollLatencyMS" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedInt"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="the time for a master slave communication cycle in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;ms&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;the time for a master slave communication cycle in&#xA;    &#x9;&#x9;&#x9;&#x9;ms&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1325,11 +1325,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="timeSyncBlockNotification"
         eType="#//TimeSyncBlockNotificationType" containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="a transaction number for a sequence of Regsisteres&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(usually transmitted by Blocktransfers) to be transferred together&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;a transaction number for a sequence of Regsisteres&#xA;    &#x9;&#x9;&#x9;&#x9;(usually transmitted by Blocktransfers) to be&#xA;    &#x9;&#x9;&#x9;&#x9;transferred together&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="timeSyncBlockNotification"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accessProtection" eType="#//SGrAccessProtectionEnabledType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="accessProtection"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1582,6 +1590,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dpPrgDesc" upperBound="4"
+        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="dpPrgDesc"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="datapointName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Bezeichnung des Datenpunktes: «Schlagwort», welches&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;die Bedeutung identifiziert. Diese Bezeichnung gilt neben der&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Indexnummer als Definition für den SmartGridready Namespace für die&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;maschinenlesbaren Daten.&#xA;&#x9;&#x9;&#x9;&#x9;"/>
@@ -1783,7 +1799,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="devLegibDesc" upperBound="4"
         eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" this is the published information related to this&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;device&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;this is the published information related to this&#xA;    &#x9;&#x9;&#x9;&#x9;device&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1853,7 +1869,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nominalPower" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="nominal Power of the device (installation)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;nominal Power of the device (installation)&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1883,7 +1899,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="remAuthorID" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="author of this sheet may add remarks / non disclamer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;statements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;author of this sheet may add remarks / non disclamer&#xA;    &#x9;&#x9;&#x9;&#x9;statements&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1894,11 +1910,19 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="devLevelofOperation" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" defines the SGr Label Leve 1...6 of the highest&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;level functional profile of this device&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;defines the SGr Label Leve 1...6 of the highest&#xA;    &#x9;&#x9;&#x9;&#x9;level functional profile of this device&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="devLevelofOperation"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devPrgDesc" upperBound="4"
+        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="devPrgDesc"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -2086,6 +2110,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHPOpMode" eType="#//SGrHPOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrHPOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrEVSEStateLv1Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2163,6 +2195,26 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrHPOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="E0016:&#xA;     Basic operation type of a heat pump&#xA;     Bereitschaft, Programm, Komfort, Eco, Warmwasser, Notbetrieb     &#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrHPOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="WPEMERGOP" literal="WP_EMERG_OP"/>
+    <eLiterals name="WPREADY" value="1" literal="WP_READY"/>
+    <eLiterals name="WPPROGOP" value="2" literal="WP_PROG_OP"/>
+    <eLiterals name="WPCOMFORTOP" value="3" literal="WP_COMFORT_OP"/>
+    <eLiterals name="WPECOOP" value="4" literal="WP_ECO_OP"/>
+    <eLiterals name="WPDOMWATEROP" value="5" literal="WP_DOM_WATER_OP"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrHPOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrHPOpModeType:Object"/>
+      <details key="baseType" value="SGrHPOpModeType"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrInterfaceDescriptionType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -2555,7 +2607,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bitmask" eType="#//BitmaskType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;Hexadecimal bitmask for mask to elmininta non used&#xA;    &#x9;&#x9;&#x9;&#x9;bit frames&#xA;    &#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;Hexadecimal bitmask for mask to elmininate non used&#xA;    &#x9;&#x9;&#x9;&#x9;bit frames&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -2582,23 +2634,6 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="modbusJMESPath"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dpAccessProtectionEnabled"
-        upperBound="-1" eType="#//DpAccessProtectionEnabledType" containment="true"
-        resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="dpAccessProtectionEnabled"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dpPrgDescr" upperBound="4"
-        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="dpPrgDescr"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -3050,6 +3085,14 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="fpLegibDesc"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fpPrgDesc" upperBound="4"
+        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fpPrgDesc"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
