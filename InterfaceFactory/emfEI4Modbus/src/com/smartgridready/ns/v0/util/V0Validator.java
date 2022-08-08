@@ -102,8 +102,6 @@ public class V0Validator extends EObjectValidator {
 				return validateContactAPIInterfaceDescType((ContactAPIInterfaceDescType)value, diagnostics, context);
 			case V0Package.DOCUMENT_ROOT:
 				return validateDocumentRoot((DocumentRoot)value, diagnostics, context);
-			case V0Package.DP_ACCESS_PROTECTION_ENABLED_TYPE:
-				return validateDpAccessProtectionEnabledType((DpAccessProtectionEnabledType)value, diagnostics, context);
 			case V0Package.IP_ADDR_TYPE:
 				return validateIpADDRType((IpADDRType)value, diagnostics, context);
 			case V0Package.MODBUS_JMES_PATH_TYPE:
@@ -118,6 +116,8 @@ public class V0Validator extends EObjectValidator {
 				return validateRTUtrspSrvInstanceType((RTUtrspSrvInstanceType)value, diagnostics, context);
 			case V0Package.RTU_TYPE:
 				return validateRTUType((RTUType)value, diagnostics, context);
+			case V0Package.SGR_ACCESS_PROTECTION_ENABLED_TYPE:
+				return validateSGrAccessProtectionEnabledType((SGrAccessProtectionEnabledType)value, diagnostics, context);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE:
 				return validateSGrAttr4GenericType((SGrAttr4GenericType)value, diagnostics, context);
 			case V0Package.SGR_ATTR4_MODBUS_TYPE:
@@ -242,6 +242,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrEVSEStateLv2Type((SGrEVSEStateLv2Type)value, diagnostics, context);
 			case V0Package.SGR_EV_STATE_TYPE:
 				return validateSGrEVStateType((SGrEVStateType)value, diagnostics, context);
+			case V0Package.SGR_HP_OP_MODE_TYPE:
+				return validateSGrHPOpModeType((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_LANGUAGE_TYPE:
 				return validateSGrLanguageType((SGrLanguageType)value, diagnostics, context);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE:
@@ -356,6 +358,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrEVSEStateLv2TypeObject((SGrEVSEStateLv2Type)value, diagnostics, context);
 			case V0Package.SGR_EV_STATE_TYPE_OBJECT:
 				return validateSGrEVStateTypeObject((SGrEVStateType)value, diagnostics, context);
+			case V0Package.SGR_HP_OP_MODE_TYPE_OBJECT:
+				return validateSGrHPOpModeTypeObject((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
 				return validateSGrLanguageTypeObject((SGrLanguageType)value, diagnostics, context);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE_OBJECT:
@@ -452,15 +456,6 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDpAccessProtectionEnabledType(DpAccessProtectionEnabledType dpAccessProtectionEnabledType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(dpAccessProtectionEnabledType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateIpADDRType(IpADDRType ipADDRType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(ipADDRType, diagnostics, context);
 	}
@@ -517,6 +512,15 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateRTUType(RTUType rtuType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(rtuType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrAccessProtectionEnabledType(SGrAccessProtectionEnabledType sGrAccessProtectionEnabledType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrAccessProtectionEnabledType, diagnostics, context);
 	}
 
 	/**
@@ -1074,6 +1078,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrEVStateType(SGrEVStateType sGrEVStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHPOpModeType(SGrHPOpModeType sGrHPOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1943,6 +1956,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrEVStateTypeObject(SGrEVStateType sGrEVStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHPOpModeTypeObject(SGrHPOpModeType sGrHPOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

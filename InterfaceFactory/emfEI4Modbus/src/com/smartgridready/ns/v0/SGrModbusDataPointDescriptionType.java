@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getBitmask <em>Bitmask</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getMasterFunctionsSupported <em>Master Functions Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusJMESPath <em>Modbus JMES Path</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpAccessProtectionEnabled <em>Dp Access Protection Enabled</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpPrgDescr <em>Dp Prg Descr</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType()
@@ -132,7 +130,7 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 
-	 *     				Hexadecimal bitmask for mask to elmininta non used
+	 *     				Hexadecimal bitmask for mask to elmininate non used
 	 *     				bit frames
 	 *     			
 	 * <!-- end-model-doc -->
@@ -216,31 +214,5 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	 * @generated
 	 */
 	void setModbusJMESPath(ModbusJMESPathType value);
-
-	/**
-	 * Returns the value of the '<em><b>Dp Access Protection Enabled</b></em>' containment reference list.
-	 * The list contents are of type {@link com.smartgridready.ns.v0.DpAccessProtectionEnabledType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dp Access Protection Enabled</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_DpAccessProtectionEnabled()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='dpAccessProtectionEnabled' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	EList<DpAccessProtectionEnabledType> getDpAccessProtectionEnabled();
-
-	/**
-	 * Returns the value of the '<em><b>Dp Prg Descr</b></em>' containment reference list.
-	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrLegibDocumentationType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dp Prg Descr</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_DpPrgDescr()
-	 * @model containment="true" upper="4"
-	 *        extendedMetaData="kind='element' name='dpPrgDescr' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	EList<SGrLegibDocumentationType> getDpPrgDescr();
 
 } // SGrModbusDataPointDescriptionType

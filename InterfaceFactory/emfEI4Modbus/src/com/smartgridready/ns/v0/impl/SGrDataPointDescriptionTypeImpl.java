@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getBasicDataType <em>Basic Data Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpNameList <em>Dp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpLegibDesc <em>Dp Legib Desc</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpPrgDesc <em>Dp Prg Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDatapointName <em>Datapoint Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getMroVisibilityIndicator <em>Mro Visibility Indicator</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getRwpDatadirection <em>Rwp Datadirection</em>}</li>
@@ -76,6 +77,16 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * @ordered
 	 */
 	protected EList<SGrLegibDocumentationType> dpLegibDesc;
+
+	/**
+	 * The cached value of the '{@link #getDpPrgDesc() <em>Dp Prg Desc</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDpPrgDesc()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrLegibDocumentationType> dpPrgDesc;
 
 	/**
 	 * The default value of the '{@link #getDatapointName() <em>Datapoint Name</em>}' attribute.
@@ -312,6 +323,19 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
+	public EList<SGrLegibDocumentationType> getDpPrgDesc() {
+		if (dpPrgDesc == null) {
+			dpPrgDesc = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESC);
+		}
+		return dpPrgDesc;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String getDatapointName() {
 		return datapointName;
 	}
@@ -493,6 +517,8 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 				return basicSetDpNameList(null, msgs);
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
 				return ((InternalEList<?>)getDpLegibDesc()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESC:
+				return ((InternalEList<?>)getDpPrgDesc()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -511,6 +537,8 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 				return getDpNameList();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
 				return getDpLegibDesc();
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESC:
+				return getDpPrgDesc();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DATAPOINT_NAME:
 				return getDatapointName();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:
@@ -541,6 +569,10 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
 				getDpLegibDesc().clear();
 				getDpLegibDesc().addAll((Collection<? extends SGrLegibDocumentationType>)newValue);
+				return;
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESC:
+				getDpPrgDesc().clear();
+				getDpPrgDesc().addAll((Collection<? extends SGrLegibDocumentationType>)newValue);
 				return;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DATAPOINT_NAME:
 				setDatapointName((String)newValue);
@@ -575,6 +607,9 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
 				getDpLegibDesc().clear();
 				return;
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESC:
+				getDpPrgDesc().clear();
+				return;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DATAPOINT_NAME:
 				setDatapointName(DATAPOINT_NAME_EDEFAULT);
 				return;
@@ -605,6 +640,8 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 				return dpNameList != null;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
 				return dpLegibDesc != null && !dpLegibDesc.isEmpty();
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESC:
+				return dpPrgDesc != null && !dpPrgDesc.isEmpty();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DATAPOINT_NAME:
 				return DATAPOINT_NAME_EDEFAULT == null ? datapointName != null : !DATAPOINT_NAME_EDEFAULT.equals(datapointName);
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:

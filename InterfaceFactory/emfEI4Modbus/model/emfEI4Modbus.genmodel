@@ -194,6 +194,14 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrEVStateType/EVSHUTOFF"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrEVStateType/EVERROR"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrHPOpModeType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpModeType/WPEMERGOP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpModeType/WPREADY"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpModeType/WPPROGOP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpModeType/WPCOMFORTOP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpModeType/WPECOOP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpModeType/WPDOMWATEROP"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrLanguageType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrLanguageType/de"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrLanguageType/en"/>
@@ -694,6 +702,7 @@
     <genDataTypes ecoreDataType="v0.ecore#//SGrEVSEStateLv1TypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrEVSEStateLv2TypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrEVStateTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//SGrHPOpModeTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrLanguageTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrManufacturerIDTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueSourceTypeObject"/>
@@ -756,10 +765,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/stopBitLenSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/trspServiceModbus"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//DpAccessProtectionEnabledType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DpAccessProtectionEnabledType/modbusException"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DpAccessProtectionEnabledType/isEnabled"/>
-    </genClasses>
     <genClasses ecoreClass="v0.ecore#//IpADDRType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//IpADDRType/ipV4n1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//IpADDRType/ipV4n2"/>
@@ -789,6 +794,10 @@
     <genClasses ecoreClass="v0.ecore#//RTUType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RTUType/rtuTrspSrvInstance"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RTUType/rtuDevInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrAccessProtectionEnabledType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAccessProtectionEnabledType/modbusException"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAccessProtectionEnabledType/isEnabled"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrAttr4GenericType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxVal"/>
@@ -821,6 +830,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4ModbusType/sunssf"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4ModbusType/pollLatencyMS"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4ModbusType/timeSyncBlockNotification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4ModbusType/accessProtection"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrAttr4RestAPIType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4RestAPIType/placeHolder4futureExtensions"/>
@@ -855,6 +865,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/basicDataType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/dpNameList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/dpLegibDesc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/dpPrgDesc"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDataPointDescriptionType/datapointName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDataPointDescriptionType/mroVisibilityIndicator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDataPointDescriptionType/rwpDatadirection"/>
@@ -888,6 +899,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceProfileType/manufacturerLabel"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceProfileType/remAuthorID"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceProfileType/devLevelofOperation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceProfileType/devPrgDesc"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrEnumListType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrMeasValueState"/>
@@ -905,6 +917,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrSGCPService"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrObligLvl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrOCPPState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrHPOpMode"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrFlexAssistanceType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrFlexAssistanceType/assists"/>
@@ -930,8 +943,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDataPointDescriptionType/bitmask"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDataPointDescriptionType/masterFunctionsSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointDescriptionType/modbusJMESPath"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointDescriptionType/dpAccessProtectionEnabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointDescriptionType/dpPrgDescr"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrModbusDataPointsFrameType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointsFrameType/dataPoint"/>
@@ -975,6 +986,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfileDescriptionType/profileNumber"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfileDescriptionType/fpNameList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfileDescriptionType/fpLegibDesc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfileDescriptionType/fpPrgDesc"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrProfileDescriptionType/mroVisibilityIndicator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrProfileDescriptionType/profileName"/>
     </genClasses>

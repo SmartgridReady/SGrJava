@@ -78,12 +78,6 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.DP_ACCESS_PROTECTION_ENABLED_TYPE: {
-				DpAccessProtectionEnabledType dpAccessProtectionEnabledType = (DpAccessProtectionEnabledType)theEObject;
-				T result = caseDpAccessProtectionEnabledType(dpAccessProtectionEnabledType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case V0Package.IP_ADDR_TYPE: {
 				IpADDRType ipADDRType = (IpADDRType)theEObject;
 				T result = caseIpADDRType(ipADDRType);
@@ -123,6 +117,12 @@ public class V0Switch<T> extends Switch<T> {
 			case V0Package.RTU_TYPE: {
 				RTUType rtuType = (RTUType)theEObject;
 				T result = caseRTUType(rtuType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.SGR_ACCESS_PROTECTION_ENABLED_TYPE: {
+				SGrAccessProtectionEnabledType sGrAccessProtectionEnabledType = (SGrAccessProtectionEnabledType)theEObject;
+				T result = caseSGrAccessProtectionEnabledType(sGrAccessProtectionEnabledType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -455,21 +455,6 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dp Access Protection Enabled Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dp Access Protection Enabled Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDpAccessProtectionEnabledType(DpAccessProtectionEnabledType object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ip ADDR Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -571,6 +556,21 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRTUType(RTUType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Access Protection Enabled Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Access Protection Enabled Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrAccessProtectionEnabledType(SGrAccessProtectionEnabledType object) {
 		return null;
 	}
 

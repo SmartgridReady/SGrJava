@@ -7,14 +7,6 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated commHandler4Modbus -->
-      <package
-            uri="http://www.example.org/commHandler4Modbus"
-            class="commHandler4Modbus.CommHandler4ModbusPackage"
-            genModel="model/commHandler4Modbus.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated commHandler4Modbus1 -->
       <package
             uri="http://www.smartgridready.com/ns/V0/"

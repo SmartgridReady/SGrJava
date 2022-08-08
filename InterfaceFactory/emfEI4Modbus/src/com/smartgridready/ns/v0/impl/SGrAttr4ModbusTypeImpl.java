@@ -2,6 +2,7 @@
  */
 package com.smartgridready.ns.v0.impl;
 
+import com.smartgridready.ns.v0.SGrAccessProtectionEnabledType;
 import com.smartgridready.ns.v0.SGrAttr4ModbusType;
 import com.smartgridready.ns.v0.SGrScalingType;
 import com.smartgridready.ns.v0.TimeSyncBlockNotificationType;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getSunssf <em>Sunssf</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getPollLatencyMS <em>Poll Latency MS</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getAccessProtection <em>Access Protection</em>}</li>
  * </ul>
  *
  * @generated
@@ -140,6 +142,16 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected TimeSyncBlockNotificationType timeSyncBlockNotification;
+
+	/**
+	 * The cached value of the '{@link #getAccessProtection() <em>Access Protection</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAccessProtection()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrAccessProtectionEnabledType accessProtection;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -406,12 +418,59 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
+	public SGrAccessProtectionEnabledType getAccessProtection() {
+		return accessProtection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAccessProtection(SGrAccessProtectionEnabledType newAccessProtection, NotificationChain msgs) {
+		SGrAccessProtectionEnabledType oldAccessProtection = accessProtection;
+		accessProtection = newAccessProtection;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION, oldAccessProtection, newAccessProtection);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAccessProtection(SGrAccessProtectionEnabledType newAccessProtection) {
+		if (newAccessProtection != accessProtection) {
+			NotificationChain msgs = null;
+			if (accessProtection != null)
+				msgs = ((InternalEObject)accessProtection).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION, null, msgs);
+			if (newAccessProtection != null)
+				msgs = ((InternalEObject)newAccessProtection).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION, null, msgs);
+			msgs = basicSetAccessProtection(newAccessProtection, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION, newAccessProtection, newAccessProtection));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__SCALING_BY_MUL_PWR:
 				return basicSetScalingByMulPwr(null, msgs);
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
 				return basicSetTimeSyncBlockNotification(null, msgs);
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
+				return basicSetAccessProtection(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -434,6 +493,8 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return getPollLatencyMS();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
 				return getTimeSyncBlockNotification();
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
+				return getAccessProtection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -460,6 +521,9 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
 				setTimeSyncBlockNotification((TimeSyncBlockNotificationType)newValue);
+				return;
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
+				setAccessProtection((SGrAccessProtectionEnabledType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -488,6 +552,9 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
 				setTimeSyncBlockNotification((TimeSyncBlockNotificationType)null);
 				return;
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
+				setAccessProtection((SGrAccessProtectionEnabledType)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -510,6 +577,8 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return isSetPollLatencyMS();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
 				return timeSyncBlockNotification != null;
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
+				return accessProtection != null;
 		}
 		return super.eIsSet(featureID);
 	}

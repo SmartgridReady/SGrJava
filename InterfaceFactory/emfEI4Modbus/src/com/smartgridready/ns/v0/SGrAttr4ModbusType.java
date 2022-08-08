@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getSunssf <em>Sunssf</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getPollLatencyMS <em>Poll Latency MS</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getAccessProtection <em>Access Protection</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType()
@@ -36,7 +37,9 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * generic value = dataPoint * m * 10^p
+	 * 
+	 *     				generic value = dataPoint * m * 10^p
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Scaling By Mul Pwr</em>' containment reference.
 	 * @see #setScalingByMulPwr(SGrScalingType)
@@ -115,11 +118,12 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * a Sunpec specific attribute (scalefactor p -10 ...
-	 * 						+10) generic value = dataPoint * 10^p note: Sunspec uses sunssf
-	 * 						usually as Modbus Register with dynamic values check attribute
-	 * 						"timeAlignedNotification"
-	 * 					
+	 * 
+	 *     				a Sunpec specific attribute (scalefactor p -10 ...
+	 *     				+10) generic value = dataPoint * 10^p note: Sunspec
+	 *     				uses sunssf usually as Modbus Register with dynamic
+	 *     				values check attribute "timeAlignedNotification"
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Sunssf</em>' attribute.
 	 * @see #isSetSunssf()
@@ -172,9 +176,10 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * the time for a master slave communication cycle in
-	 * 						ms
-	 * 					
+	 * 
+	 *     				the time for a master slave communication cycle in
+	 *     				ms
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Poll Latency MS</em>' attribute.
 	 * @see #isSetPollLatencyMS()
@@ -227,9 +232,11 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * a transaction number for a sequence of Regsisteres
-	 * 						(usually transmitted by Blocktransfers) to be transferred together
-	 * 					
+	 * 
+	 *     				a transaction number for a sequence of Regsisteres
+	 *     				(usually transmitted by Blocktransfers) to be
+	 *     				transferred together
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Time Sync Block Notification</em>' containment reference.
 	 * @see #setTimeSyncBlockNotification(TimeSyncBlockNotificationType)
@@ -249,5 +256,28 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * @generated
 	 */
 	void setTimeSyncBlockNotification(TimeSyncBlockNotificationType value);
+
+	/**
+	 * Returns the value of the '<em><b>Access Protection</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Access Protection</em>' containment reference.
+	 * @see #setAccessProtection(SGrAccessProtectionEnabledType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType_AccessProtection()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='accessProtection' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrAccessProtectionEnabledType getAccessProtection();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getAccessProtection <em>Access Protection</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Access Protection</em>' containment reference.
+	 * @see #getAccessProtection()
+	 * @generated
+	 */
+	void setAccessProtection(SGrAccessProtectionEnabledType value);
 
 } // SGrAttr4ModbusType

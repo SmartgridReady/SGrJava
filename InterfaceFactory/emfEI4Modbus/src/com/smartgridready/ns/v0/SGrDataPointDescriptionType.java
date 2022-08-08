@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicDataType <em>Basic Data Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpNameList <em>Dp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpLegibDesc <em>Dp Legib Desc</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpPrgDesc <em>Dp Prg Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDatapointName <em>Datapoint Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getMroVisibilityIndicator <em>Mro Visibility Indicator</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getRwpDatadirection <em>Rwp Datadirection</em>}</li>
@@ -104,6 +105,19 @@ public interface SGrDataPointDescriptionType extends EObject {
 	 * @generated
 	 */
 	EList<SGrLegibDocumentationType> getDpLegibDesc();
+
+	/**
+	 * Returns the value of the '<em><b>Dp Prg Desc</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrLegibDocumentationType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dp Prg Desc</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_DpPrgDesc()
+	 * @model containment="true" upper="4"
+	 *        extendedMetaData="kind='element' name='dpPrgDesc' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SGrLegibDocumentationType> getDpPrgDesc();
 
 	/**
 	 * Returns the value of the '<em><b>Datapoint Name</b></em>' attribute.

@@ -46,7 +46,9 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OCPP16(2, "OCPP16", "OCPP1.6"), /**
+	OCPP16(2, "OCPP16", "OCPP1.6"),
+
+	/**
 	 * The '<em><b>OCPP201</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,7 +56,9 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OCPP201(3, "OCPP201", "OCPP2.01"), /**
+	OCPP201(3, "OCPP201", "OCPP2.01"),
+
+	/**
 	 * The '<em><b>RES Tful JSON</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,7 +96,9 @@ public enum SGrTransportServicesUsedListType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROPRIETARY(7, "proprietary", "proprietary"), /**
+	PROPRIETARY(7, "proprietary", "proprietary"),
+
+	/**
 	 * The '<em><b>Generic</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
