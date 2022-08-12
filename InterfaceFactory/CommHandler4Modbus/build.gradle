@@ -40,6 +40,7 @@ configurations {
 dependencies {
 	implementation project(':InterfaceFactory:emfEI4Modbus')
     
+    implementation group: 'ch.smartgridready', name: 'sgr-driver-api', version: '0.2.1'
     implementation group: 'ch.smartgridready', name: 'easymodbus', version: '0.2.1'		
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.ecore', version: '2.24.0'
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.ecore.xmi', version: '2.16.0'	
@@ -52,37 +53,19 @@ dependencies {
 	testImplementation group: 'org.yaml', name: 'snakeyaml', version: '1.27'
 }
 
-jar.dependsOn 'commonRuntimeJar'
 jar {
-
+  
 	from sourceSets.main.allSource
 
 	duplicatesStrategy='exclude'
-	exclude('**/ECLIPSE_.SF', '**/ECLIPSE_.DSA', '**/ECLIPSE_.RSA')
+	exclude('**/ECLIPSE_.SF', '**/ECLIPSE_.DSA', '**/ECLIPSE_.RSA')	
 
     from {
-		configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}
-
-task commonRuntimeJar (type: Jar) {
-    from sourceSets.main.allSource
-    duplicatesStrategy='exclude'
-    include 'communicator/common/runtime/*'
-    archiveName 'sgr-common-runtime.jar'
-}
-
-
-tasks."compileJava".dependsOn ':InterfaceFactory:emfEI4Modbus:publishToMavenLocal'
-
-publishing {
-    publications {
-        impl(MavenPublication) {
-            groupId = 'ch.smartgridready'
-            artifactId = 'commhandler4modbus'
-            version = '0.2.1'
-
-            from components.java
+		// configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+		configurations.extraLibs.collect {
+		   if(it.name.matches("emfEI4Modbus(.*).jar")) {
+                zipTree(it)
+           } 
         }
     }
 }
@@ -90,3 +73,31 @@ publishing {
 
 
 
+tasks."compileJava".dependsOn ':InterfaceFactory:emfEI4Modbus:publishToMavenLocal'
+
+publishing {
+
+    repositories {
+        maven {
+            name = "Github"
+            url = uri("https://maven.pkg.github.com/SmartgridReady/SGrJavaPackages")
+            credentials {
+                username = findProperty("github.username")
+                password = findProperty("github.token")
+            }
+        }
+    }
+
+    publications {
+        impl(MavenPublication) {
+            groupId = 'ch.smartgridready'
+            artifactId = 'commhandler4modbus'
+            version = '0.2.1'
+
+            from components.java
+            pom {
+                url.set("https://github.com/SmartgridReady/SGrJavaPackages.git")
+            }
+        }
+    }
+}
