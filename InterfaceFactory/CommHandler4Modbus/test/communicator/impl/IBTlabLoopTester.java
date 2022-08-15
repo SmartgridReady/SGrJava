@@ -24,6 +24,9 @@ and significant traffic load conditions
 
 package communicator.impl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
@@ -55,6 +58,8 @@ public class IBTlabLoopTester {
 	
 	// test loop parameters
 	private static int runtimeCnt = 0;
+	private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    
 	// Exception Counters
 	private static int devWagoMeterExceptions = 0;
 	private static int devABBMeterExcpetions = 0;
@@ -62,9 +67,9 @@ public class IBTlabLoopTester {
 	private static int devGaroWallboxExceptions = 0;
 	private static int devFroniusSymoExceptions = 0;
 	// device selection
-	private static boolean  devWagoMeterTestIsOn = true; 
-	private static boolean  devABBMeterTestIsOn = true; 
-	private static boolean  devVGT_SGCPTestIsOn = true; 
+	private static boolean  devWagoMeterTestIsOn = false; 
+	private static boolean  devABBMeterTestIsOn = false; 
+	private static boolean  devVGT_SGCPTestIsOn = false; 
 	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
 	
@@ -77,17 +82,28 @@ public class IBTlabLoopTester {
 		
 		try {
 			
-			DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+			//DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
 			mbRTU.initTrspService("COM9");			
 			
-			if (devWagoMeterTestIsOn) initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
-			if (devABBMeterTestIsOn) initABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
-			if (devVGT_SGCPTestIsOn)  initVGT_SGCP (XML_BASE_DIR,"SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml");
-			if (devGaroWallboxTestIsOn) initGaroWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
-			if (devFroniusSymoTestIsOn) initFroniusSymo(XML_BASE_DIR,"SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml");
+			if (devWagoMeterTestIsOn) {
+				System.out.printf("%n-init devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ "%n");
+				initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
+			}
+			if (devABBMeterTestIsOn)  {
+				System.out.printf("%n-init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ "%n");initABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
+			}
+			if (devVGT_SGCPTestIsOn)   {
+				System.out.printf("%n-init devVGT_SGCPTest @:" + dtf.format(LocalDateTime.now())+ "%n");initVGT_SGCP (XML_BASE_DIR,"SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml");
+			}
+			if (devGaroWallboxTestIsOn) {
+				System.out.printf("%n-init devGaroWallboxTest @:" + dtf.format(LocalDateTime.now())+ "%n"); initGaroWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
+			}
+			if (devFroniusSymoTestIsOn) {
+				System.out.printf("%n-init FroniusSymoTest @:" + dtf.format(LocalDateTime.now()) + "%n"); initFroniusSymo(XML_BASE_DIR,"SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml");
+			}
 
  
 		
@@ -101,8 +117,8 @@ public class IBTlabLoopTester {
 					
 				   // loop data & test reporting
 				   //Thread.sleep(500);  // show last block for ccc  milliseconds
-					
-					System.out.printf("%n------> LOOP=" +	runtimeCnt + "  Exceptions:");		
+			        System.out.printf("%n" + dtf.format(LocalDateTime.now()));			        
+					System.out.printf("  ------> LOOP=" +	runtimeCnt + "  Exceptions:");		
 					if (devWagoMeterTestIsOn)   System.out.printf(" WagoMeter=" + devWagoMeterExceptions + ",");
 					if (devABBMeterTestIsOn)    System.out.printf(" ABBMeter=" +  devABBMeterExcpetions+ ",");
 					if (devVGT_SGCPTestIsOn)    System.out.printf(" VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
@@ -446,14 +462,13 @@ public class IBTlabLoopTester {
 					
 					
 						try {	
-							
+							 System.out.printf("%nGaroWallbox:%n");							
 							 if ((runtimeCnt%60)== 0)
 							 {
 								 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
 								 devGaroWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
+								 System.out.printf("  Setting HemsCurrentLimit to : " + CurtailCurrent + " %n");
 							 }
-							
-							 System.out.printf("%nGaroWallbox:%n");
 							 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
 							 Thread.sleep(20);
 							 fVal2 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();

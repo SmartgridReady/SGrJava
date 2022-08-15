@@ -325,7 +325,7 @@ public class HeatPumpTester {
 				  // testing setters: one setting for a test run only recommended
 				  // read the device manual carefully before testing any setpoint
 				// control by HPOpMode enum
-				 oEnumList.setSgrHPOpMode(SGrHPOpModeType.WPPROGOP);
+				oEnumList.setSgrHPOpMode(SGrHPOpModeType.WPPROGOP);
 				SGrBasicGenDataPointTypeType  hpval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 				//hpval.setEnum(oEnumList);
 				//devStiebelISG.setValByGDPType("HeatPumpBase", "HPOpModeCmd", hpval);	
@@ -377,8 +377,13 @@ public class HeatPumpTester {
 				bVal3=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON").isBoolean();                             
 				System.out.printf("  SGReady-bwp:      SGReadyState=" + oEnumList.getSgreadyStateLv2().getLiteral() + ",  SGReadyEnabled=" + bVal1 + ",  SGReadyInp1isON=" + bVal2 + ",  SGReadyInp2isON=" + bVal3 + "%n");
 
-				fVal1=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat").getFloat32();
+				iVal1=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat_kWh").getInt16U();
+				iVal2=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat_MWh").getInt16U();
+				fVal2 = ((float) iVal1) * (float) 0.001;
+				fVal2 +=  (float) iVal2;
 				fVal3=devStiebelISG.getValByGDPType("EnergyMonitor", "RuntimeCompressor").getFloat32();
+				
+				
 //             TBC: launches illegal address, no other start data found
 // 				lVal=devStiebelISG.getValByGDPType("EnergyMonitor", "NrOfStartupsCompressor").getInt16U();
 
