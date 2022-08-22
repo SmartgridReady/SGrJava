@@ -67,9 +67,9 @@ public class IBTlabLoopTester {
 	private static int devGaroWallboxExceptions = 0;
 	private static int devFroniusSymoExceptions = 0;
 	// device selection
-	private static boolean  devWagoMeterTestIsOn = false; 
-	private static boolean  devABBMeterTestIsOn = false; 
-	private static boolean  devVGT_SGCPTestIsOn = false; 
+	private static boolean  devWagoMeterTestIsOn = true; 
+	private static boolean  devABBMeterTestIsOn = true; 
+	private static boolean  devVGT_SGCPTestIsOn = true; 
 	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
 	
@@ -103,6 +103,7 @@ public class IBTlabLoopTester {
 			}
 			if (devFroniusSymoTestIsOn) {
 				System.out.printf("%n-init FroniusSymoTest @:" + dtf.format(LocalDateTime.now()) + "%n"); initFroniusSymo(XML_BASE_DIR,"SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml");
+				
 			}
 
  
@@ -116,7 +117,7 @@ public class IBTlabLoopTester {
 				{
 					
 				   // loop data & test reporting
-				   //Thread.sleep(500);  // show last block for ccc  milliseconds
+				   Thread.sleep(2000);  // show last block for ccc  milliseconds
 			        System.out.printf("%n" + dtf.format(LocalDateTime.now()));			        
 					System.out.printf("  ------> LOOP=" +	runtimeCnt + "  Exceptions:");		
 					if (devWagoMeterTestIsOn)   System.out.printf(" WagoMeter=" + devWagoMeterExceptions + ",");
@@ -470,52 +471,52 @@ public class IBTlabLoopTester {
 								 System.out.printf("  Setting HemsCurrentLimit to : " + CurtailCurrent + " %n");
 							 }
 							 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 fVal2 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 sgrEVState = oEnumList.getSgrEVState();
 							 System.out.printf("  EV-StatusCode: " + sgrEVState+ " %n");
 							 
 							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 sgrOCPPState = oEnumList.getSgrOCPPState();
 							 System.out.printf("  OCPP-StatusCode: " + sgrOCPPState + " %n");
 							 System.out.printf("  CurrentAC[A]   I[L1] = " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + " %n");		 
 
 							 fVal1 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 fVal2 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 System.out.printf("  PowerAC[kW]:   P[1L] = " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + " %n");	
 								 
 							 fVal1 = devGaroWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 fVal2 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 System.out.printf("  EnergyAC[kWh] L1/L2/L3:   W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + " %n");	
 								
 							 sVal1 = devGaroWallbox.getVal("EVState", "isSmartEV15118");
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 //??? sVal2 = devGaroWallbox.getVal("EVState", "EVCCID");
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 System.out.printf("  EVState support (ISO/IEC 15118):" + sVal1 + ",    EVCCID = " + sVal2 + " %n");
 							 
 							 fVal1 = devGaroWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 fVal2 = devGaroWallbox.getValByGDPType("Curtailment", "HemsCurrentLimit").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("Curtailment", "HWCurrentLimit").getFloat32();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 iVal1 = devGaroWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
-							 Thread.sleep(20);
+							 Thread.sleep(200);
 							 System.out.printf("  Curtailment:   SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +" %n");
 							 
 							

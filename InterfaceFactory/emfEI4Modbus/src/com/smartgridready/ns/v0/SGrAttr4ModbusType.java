@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getPollLatencyMS <em>Poll Latency MS</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getAccessProtection <em>Access Protection</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getLayer6Deviation <em>Layer6 Deviation</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType()
@@ -177,8 +178,7 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 
-	 *     				the time for a master slave communication cycle in
-	 *     				ms
+	 *     				the time for a master slave communication cycle in ms
 	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Poll Latency MS</em>' attribute.
@@ -279,5 +279,58 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * @generated
 	 */
 	void setAccessProtection(SGrAccessProtectionEnabledType value);
+
+	/**
+	 * Returns the value of the '<em><b>Layer6 Deviation</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrModbusLayer6DeviationType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Layer6 Deviation</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrModbusLayer6DeviationType
+	 * @see #isSetLayer6Deviation()
+	 * @see #unsetLayer6Deviation()
+	 * @see #setLayer6Deviation(SGrModbusLayer6DeviationType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType_Layer6Deviation()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='layer6Deviation' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrModbusLayer6DeviationType getLayer6Deviation();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getLayer6Deviation <em>Layer6 Deviation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Layer6 Deviation</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrModbusLayer6DeviationType
+	 * @see #isSetLayer6Deviation()
+	 * @see #unsetLayer6Deviation()
+	 * @see #getLayer6Deviation()
+	 * @generated
+	 */
+	void setLayer6Deviation(SGrModbusLayer6DeviationType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getLayer6Deviation <em>Layer6 Deviation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLayer6Deviation()
+	 * @see #getLayer6Deviation()
+	 * @see #setLayer6Deviation(SGrModbusLayer6DeviationType)
+	 * @generated
+	 */
+	void unsetLayer6Deviation();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getLayer6Deviation <em>Layer6 Deviation</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Layer6 Deviation</em>' attribute is set.
+	 * @see #unsetLayer6Deviation()
+	 * @see #getLayer6Deviation()
+	 * @see #setLayer6Deviation(SGrModbusLayer6DeviationType)
+	 * @generated
+	 */
+	boolean isSetLayer6Deviation();
 
 } // SGrAttr4ModbusType

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusDataType <em>Modbus Data Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusArrayDataType <em>Modbus Array Data Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusFirstRegisterReference <em>Modbus First Register Reference</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpSizeNrRegisters <em>Dp Size Nr Registers</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getBitmask <em>Bitmask</em>}</li>
@@ -35,7 +36,7 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	 * @return the value of the '<em>Modbus Data Type</em>' containment reference.
 	 * @see #setModbusDataType(SGrBasicGenDataPointTypeType)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_ModbusDataType()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 *        extendedMetaData="kind='element' name='modbusDataType' namespace='##targetNamespace'"
 	 * @generated
 	 */
@@ -50,6 +51,29 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	 * @generated
 	 */
 	void setModbusDataType(SGrBasicGenDataPointTypeType value);
+
+	/**
+	 * Returns the value of the '<em><b>Modbus Array Data Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Modbus Array Data Type</em>' containment reference.
+	 * @see #setModbusArrayDataType(SGrBasicGenArrayDPTypeType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_ModbusArrayDataType()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='modbusArrayDataType' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrBasicGenArrayDPTypeType getModbusArrayDataType();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusArrayDataType <em>Modbus Array Data Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Modbus Array Data Type</em>' containment reference.
+	 * @see #getModbusArrayDataType()
+	 * @generated
+	 */
+	void setModbusArrayDataType(SGrBasicGenArrayDPTypeType value);
 
 	/**
 	 * Returns the value of the '<em><b>Modbus First Register Reference</b></em>' containment reference.

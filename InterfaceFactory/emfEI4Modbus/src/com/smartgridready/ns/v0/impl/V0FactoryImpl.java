@@ -75,6 +75,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_ATTR4_GENERIC_TYPE: return createSGrAttr4GenericType();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE: return createSGrAttr4ModbusType();
 			case V0Package.SGR_ATTR4_REST_API_TYPE: return createSGrAttr4RestAPIType();
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE: return createSGrBasicGenArrayDPTypeType();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE: return createSGrBasicGenDataPointTypeType();
 			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE: return createSGrContactAPIDeviceDescriptionType();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE: return createSGrDataPointDescriptionType();
@@ -172,6 +173,10 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrMeasValueStateTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE:
 				return createSGrMeasValueTendencyTypeFromString(eDataType, initialValue);
+			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
+				return createSGrModbusLayer6DeviationTypeFromString(eDataType, initialValue);
+			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE:
+				return createSGrModbusReg2BoolArrayTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE:
 				return createSGrMROPresenceLevelIndicationTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE:
@@ -288,6 +293,10 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrMeasValueStateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT:
 				return createSGrMeasValueTendencyTypeObjectFromString(eDataType, initialValue);
+			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
+				return createSGrModbusLayer6DeviationTypeObjectFromString(eDataType, initialValue);
+			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT:
+				return createSGrModbusReg2BoolArrayTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT:
 				return createSGrMROPresenceLevelIndicationTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE_OBJECT:
@@ -397,6 +406,10 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrMeasValueStateTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE:
 				return convertSGrMeasValueTendencyTypeToString(eDataType, instanceValue);
+			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
+				return convertSGrModbusLayer6DeviationTypeToString(eDataType, instanceValue);
+			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE:
+				return convertSGrModbusReg2BoolArrayTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE:
 				return convertSGrMROPresenceLevelIndicationTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE:
@@ -513,6 +526,10 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrMeasValueStateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT:
 				return convertSGrMeasValueTendencyTypeObjectToString(eDataType, instanceValue);
+			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
+				return convertSGrModbusLayer6DeviationTypeObjectToString(eDataType, instanceValue);
+			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT:
+				return convertSGrModbusReg2BoolArrayTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT:
 				return convertSGrMROPresenceLevelIndicationTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE_OBJECT:
@@ -717,6 +734,17 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public SGrAttr4RestAPIType createSGrAttr4RestAPIType() {
 		SGrAttr4RestAPITypeImpl sGrAttr4RestAPIType = new SGrAttr4RestAPITypeImpl();
 		return sGrAttr4RestAPIType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrBasicGenArrayDPTypeType createSGrBasicGenArrayDPTypeType() {
+		SGrBasicGenArrayDPTypeTypeImpl sGrBasicGenArrayDPTypeType = new SGrBasicGenArrayDPTypeTypeImpl();
+		return sGrBasicGenArrayDPTypeType;
 	}
 
 	/**
@@ -1602,6 +1630,46 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertSGrMeasValueTendencyTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrModbusLayer6DeviationType createSGrModbusLayer6DeviationTypeFromString(EDataType eDataType, String initialValue) {
+		SGrModbusLayer6DeviationType result = SGrModbusLayer6DeviationType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrModbusLayer6DeviationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrModbusReg2BoolArrayType createSGrModbusReg2BoolArrayTypeFromString(EDataType eDataType, String initialValue) {
+		SGrModbusReg2BoolArrayType result = SGrModbusReg2BoolArrayType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrModbusReg2BoolArrayTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2685,6 +2753,42 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrMeasValueTendencyTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrMeasValueTendencyTypeToString(V0Package.eINSTANCE.getSGrMeasValueTendencyType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrModbusLayer6DeviationType createSGrModbusLayer6DeviationTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrModbusLayer6DeviationTypeFromString(V0Package.eINSTANCE.getSGrModbusLayer6DeviationType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrModbusLayer6DeviationTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrModbusLayer6DeviationTypeToString(V0Package.eINSTANCE.getSGrModbusLayer6DeviationType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrModbusReg2BoolArrayType createSGrModbusReg2BoolArrayTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrModbusReg2BoolArrayTypeFromString(V0Package.eINSTANCE.getSGrModbusReg2BoolArrayType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrModbusReg2BoolArrayTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrModbusReg2BoolArrayTypeToString(V0Package.eINSTANCE.getSGrModbusReg2BoolArrayType(), instanceValue);
 	}
 
 	/**

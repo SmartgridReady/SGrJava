@@ -2,6 +2,7 @@
  */
 package com.smartgridready.ns.v0.impl;
 
+import com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrLegibDocumentationType;
@@ -36,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getBasicDataType <em>Basic Data Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getBasicArrayDataType <em>Basic Array Data Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpNameList <em>Dp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpLegibDesc <em>Dp Legib Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpPrgDesc <em>Dp Prg Desc</em>}</li>
@@ -57,6 +59,16 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * @ordered
 	 */
 	protected SGrBasicGenDataPointTypeType basicDataType;
+
+	/**
+	 * The cached value of the '{@link #getBasicArrayDataType() <em>Basic Array Data Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBasicArrayDataType()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrBasicGenArrayDPTypeType basicArrayDataType;
 
 	/**
 	 * The cached value of the '{@link #getDpNameList() <em>Dp Name List</em>}' containment reference.
@@ -257,6 +269,51 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE, newBasicDataType, newBasicDataType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrBasicGenArrayDPTypeType getBasicArrayDataType() {
+		return basicArrayDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBasicArrayDataType(SGrBasicGenArrayDPTypeType newBasicArrayDataType, NotificationChain msgs) {
+		SGrBasicGenArrayDPTypeType oldBasicArrayDataType = basicArrayDataType;
+		basicArrayDataType = newBasicArrayDataType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE, oldBasicArrayDataType, newBasicArrayDataType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBasicArrayDataType(SGrBasicGenArrayDPTypeType newBasicArrayDataType) {
+		if (newBasicArrayDataType != basicArrayDataType) {
+			NotificationChain msgs = null;
+			if (basicArrayDataType != null)
+				msgs = ((InternalEObject)basicArrayDataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE, null, msgs);
+			if (newBasicArrayDataType != null)
+				msgs = ((InternalEObject)newBasicArrayDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE, null, msgs);
+			msgs = basicSetBasicArrayDataType(newBasicArrayDataType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE, newBasicArrayDataType, newBasicArrayDataType));
 	}
 
 	/**
@@ -513,6 +570,8 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				return basicSetBasicDataType(null, msgs);
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
+				return basicSetBasicArrayDataType(null, msgs);
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				return basicSetDpNameList(null, msgs);
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
@@ -533,6 +592,8 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				return getBasicDataType();
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
+				return getBasicArrayDataType();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				return getDpNameList();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
@@ -562,6 +623,9 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				setBasicDataType((SGrBasicGenDataPointTypeType)newValue);
+				return;
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
+				setBasicArrayDataType((SGrBasicGenArrayDPTypeType)newValue);
 				return;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				setDpNameList((SGrNamelistType)newValue);
@@ -601,6 +665,9 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				setBasicDataType((SGrBasicGenDataPointTypeType)null);
 				return;
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
+				setBasicArrayDataType((SGrBasicGenArrayDPTypeType)null);
+				return;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				setDpNameList((SGrNamelistType)null);
 				return;
@@ -636,6 +703,8 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				return basicDataType != null;
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
+				return basicArrayDataType != null;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				return dpNameList != null;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicDataType <em>Basic Data Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicArrayDataType <em>Basic Array Data Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpNameList <em>Dp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpLegibDesc <em>Dp Legib Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpPrgDesc <em>Dp Prg Desc</em>}</li>
@@ -48,7 +49,7 @@ public interface SGrDataPointDescriptionType extends EObject {
 	 * @return the value of the '<em>Basic Data Type</em>' containment reference.
 	 * @see #setBasicDataType(SGrBasicGenDataPointTypeType)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_BasicDataType()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 *        extendedMetaData="kind='element' name='basicDataType' namespace='##targetNamespace'"
 	 * @generated
 	 */
@@ -63,6 +64,29 @@ public interface SGrDataPointDescriptionType extends EObject {
 	 * @generated
 	 */
 	void setBasicDataType(SGrBasicGenDataPointTypeType value);
+
+	/**
+	 * Returns the value of the '<em><b>Basic Array Data Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Basic Array Data Type</em>' containment reference.
+	 * @see #setBasicArrayDataType(SGrBasicGenArrayDPTypeType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_BasicArrayDataType()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='basicArrayDataType' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrBasicGenArrayDPTypeType getBasicArrayDataType();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicArrayDataType <em>Basic Array Data Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Basic Array Data Type</em>' containment reference.
+	 * @see #getBasicArrayDataType()
+	 * @generated
+	 */
+	void setBasicArrayDataType(SGrBasicGenArrayDPTypeType value);
 
 	/**
 	 * Returns the value of the '<em><b>Dp Name List</b></em>' containment reference.

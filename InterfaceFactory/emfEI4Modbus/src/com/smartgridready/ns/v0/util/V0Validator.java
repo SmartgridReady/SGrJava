@@ -124,6 +124,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrAttr4ModbusType((SGrAttr4ModbusType)value, diagnostics, context);
 			case V0Package.SGR_ATTR4_REST_API_TYPE:
 				return validateSGrAttr4RestAPIType((SGrAttr4RestAPIType)value, diagnostics, context);
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE:
+				return validateSGrBasicGenArrayDPTypeType((SGrBasicGenArrayDPTypeType)value, diagnostics, context);
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE:
 				return validateSGrBasicGenDataPointTypeType((SGrBasicGenDataPointTypeType)value, diagnostics, context);
 			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE:
@@ -254,6 +256,10 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrMeasValueStateType((SGrMeasValueStateType)value, diagnostics, context);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE:
 				return validateSGrMeasValueTendencyType((SGrMeasValueTendencyType)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
+				return validateSGrModbusLayer6DeviationType((SGrModbusLayer6DeviationType)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE:
+				return validateSGrModbusReg2BoolArrayType((SGrModbusReg2BoolArrayType)value, diagnostics, context);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE:
 				return validateSGrMROPresenceLevelIndicationType((SGrMROPresenceLevelIndicationType)value, diagnostics, context);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE:
@@ -370,6 +376,10 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrMeasValueStateTypeObject((SGrMeasValueStateType)value, diagnostics, context);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT:
 				return validateSGrMeasValueTendencyTypeObject((SGrMeasValueTendencyType)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
+				return validateSGrModbusLayer6DeviationTypeObject((SGrModbusLayer6DeviationType)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT:
+				return validateSGrModbusReg2BoolArrayTypeObject((SGrModbusReg2BoolArrayType)value, diagnostics, context);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT:
 				return validateSGrMROPresenceLevelIndicationTypeObject((SGrMROPresenceLevelIndicationType)value, diagnostics, context);
 			case V0Package.SGR_NAMELIST_KIND_OF_TYPE_OBJECT:
@@ -548,6 +558,15 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateSGrAttr4RestAPIType(SGrAttr4RestAPIType sGrAttr4RestAPIType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrAttr4RestAPIType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrBasicGenArrayDPTypeType(SGrBasicGenArrayDPTypeType sGrBasicGenArrayDPTypeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrBasicGenArrayDPTypeType, diagnostics, context);
 	}
 
 	/**
@@ -1132,6 +1151,24 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrMeasValueTendencyType(SGrMeasValueTendencyType sGrMeasValueTendencyType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrModbusLayer6DeviationType(SGrModbusLayer6DeviationType sGrModbusLayer6DeviationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrModbusReg2BoolArrayType(SGrModbusReg2BoolArrayType sGrModbusReg2BoolArrayType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2010,6 +2047,24 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrMeasValueTendencyTypeObject(SGrMeasValueTendencyType sGrMeasValueTendencyTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrModbusLayer6DeviationTypeObject(SGrModbusLayer6DeviationType sGrModbusLayer6DeviationTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrModbusReg2BoolArrayTypeObject(SGrModbusReg2BoolArrayType sGrModbusReg2BoolArrayTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

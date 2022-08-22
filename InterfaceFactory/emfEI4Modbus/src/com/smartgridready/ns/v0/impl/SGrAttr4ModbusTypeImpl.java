@@ -4,6 +4,7 @@ package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.SGrAccessProtectionEnabledType;
 import com.smartgridready.ns.v0.SGrAttr4ModbusType;
+import com.smartgridready.ns.v0.SGrModbusLayer6DeviationType;
 import com.smartgridready.ns.v0.SGrScalingType;
 import com.smartgridready.ns.v0.TimeSyncBlockNotificationType;
 import com.smartgridready.ns.v0.V0Package;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getPollLatencyMS <em>Poll Latency MS</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getAccessProtection <em>Access Protection</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getLayer6Deviation <em>Layer6 Deviation</em>}</li>
  * </ul>
  *
  * @generated
@@ -152,6 +154,35 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected SGrAccessProtectionEnabledType accessProtection;
+
+	/**
+	 * The default value of the '{@link #getLayer6Deviation() <em>Layer6 Deviation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLayer6Deviation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SGrModbusLayer6DeviationType LAYER6_DEVIATION_EDEFAULT = SGrModbusLayer6DeviationType._2REG_BASE1000_L2H;
+
+	/**
+	 * The cached value of the '{@link #getLayer6Deviation() <em>Layer6 Deviation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLayer6Deviation()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrModbusLayer6DeviationType layer6Deviation = LAYER6_DEVIATION_EDEFAULT;
+
+	/**
+	 * This is true if the Layer6 Deviation attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean layer6DeviationESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -463,6 +494,56 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
+	public SGrModbusLayer6DeviationType getLayer6Deviation() {
+		return layer6Deviation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLayer6Deviation(SGrModbusLayer6DeviationType newLayer6Deviation) {
+		SGrModbusLayer6DeviationType oldLayer6Deviation = layer6Deviation;
+		layer6Deviation = newLayer6Deviation == null ? LAYER6_DEVIATION_EDEFAULT : newLayer6Deviation;
+		boolean oldLayer6DeviationESet = layer6DeviationESet;
+		layer6DeviationESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION, oldLayer6Deviation, layer6Deviation, !oldLayer6DeviationESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetLayer6Deviation() {
+		SGrModbusLayer6DeviationType oldLayer6Deviation = layer6Deviation;
+		boolean oldLayer6DeviationESet = layer6DeviationESet;
+		layer6Deviation = LAYER6_DEVIATION_EDEFAULT;
+		layer6DeviationESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION, oldLayer6Deviation, LAYER6_DEVIATION_EDEFAULT, oldLayer6DeviationESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetLayer6Deviation() {
+		return layer6DeviationESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__SCALING_BY_MUL_PWR:
@@ -495,6 +576,8 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return getTimeSyncBlockNotification();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
 				return getAccessProtection();
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION:
+				return getLayer6Deviation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -524,6 +607,9 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
 				setAccessProtection((SGrAccessProtectionEnabledType)newValue);
+				return;
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION:
+				setLayer6Deviation((SGrModbusLayer6DeviationType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -555,6 +641,9 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
 				setAccessProtection((SGrAccessProtectionEnabledType)null);
 				return;
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION:
+				unsetLayer6Deviation();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -579,6 +668,8 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return timeSyncBlockNotification != null;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
 				return accessProtection != null;
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION:
+				return isSetLayer6Deviation();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -599,6 +690,8 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 		if (sunssfESet) result.append(sunssf); else result.append("<unset>");
 		result.append(", pollLatencyMS: ");
 		if (pollLatencyMSESet) result.append(pollLatencyMS); else result.append("<unset>");
+		result.append(", layer6Deviation: ");
+		if (layer6DeviationESet) result.append(layer6Deviation); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

@@ -20,6 +20,7 @@ check for "EI-Modbus" and "Generic" directories in our Namespace http://www.smar
 
 */
 package communicator.impl;
+
 import java.math.BigInteger;
 import java.util.Optional;
 
@@ -39,6 +40,7 @@ import com.smartgridready.ns.v0.SGrMeasValueTendencyType;
 import com.smartgridready.ns.v0.SGrModbusDataPointsFrameType;
 import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType;
+import com.smartgridready.ns.v0.SGrModbusLayer6DeviationType;
 import com.smartgridready.ns.v0.SGrModbusProfilesFrameType;
 import com.smartgridready.ns.v0.SGrOCPPStateType;
 import com.smartgridready.ns.v0.SGrObligLvlType;
@@ -58,166 +60,132 @@ import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import communicator.helper.ModbusHlpr;
 
-
 public class SGrModbusDevice {
-	
-	private final GenDriverAPI4Modbus drv4Modbus;		
-	
+
+	private final GenDriverAPI4Modbus drv4Modbus;
+
 	private final SGrModbusDeviceDescriptionType myDeviceDescription;
-	
-	public SGrModbusDevice( 
-			SGrModbusDeviceDescriptionType aDeviceDescription, 
-			GenDriverAPI4Modbus aRtuDriver) {
+
+	public SGrModbusDevice(SGrModbusDeviceDescriptionType aDeviceDescription, GenDriverAPI4Modbus aRtuDriver) {
 		myDeviceDescription = aDeviceDescription;
 		drv4Modbus = aRtuDriver;
-		
+
 	}
-	
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * this function reads registers from a Modbus device and converts it into the SmartGridready generic layer format
-	 * sample code edited by Chris Broennnimann
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> this function reads registers from a Modbus device
+	 * and converts it into the SmartGridready generic layer format sample code
+	 * edited by Chris Broennnimann <!-- end-user-doc -->
 	 * 
-	 **/ 			
+	 **/
 	public String getVal(String sProfileName, String sDataPointName) throws GenDriverException {
-		
-	
+
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 		if (profile.isPresent()) {
-			
-			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile( profile.get(), sDataPointName );
-			if ( dataPoint.isPresent() )
-			{			
-				return readValue( profile.get(), dataPoint.get() );
-			}						
-		}	
+
+			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
+			if (dataPoint.isPresent()) {
+				return readValue(profile.get(), dataPoint.get());
+			}
+		}
 		return "Profile/access-point " + sProfileName + "/" + sDataPointName + " not found!";
 	}
-		
 
-	private Optional<SGrModbusProfilesFrameType> findProfile( String aProfileName )
-	{
-		return myDeviceDescription.getFpListElement().stream()
-				.filter( modbusProfileFrame -> modbusProfileFrame.getFunctionalProfile().getProfileName().equals(aProfileName) )
+	private Optional<SGrModbusProfilesFrameType> findProfile(String aProfileName) {
+		return myDeviceDescription.getFpListElement().stream().filter(
+				modbusProfileFrame -> modbusProfileFrame.getFunctionalProfile().getProfileName().equals(aProfileName))
 				.findFirst();
 	}
-	
-	private Optional<SGrModbusDataPointsFrameType> findDataPointForProfile( SGrModbusProfilesFrameType aProfile, String aDataPointName )
-	{
+
+	private Optional<SGrModbusDataPointsFrameType> findDataPointForProfile(SGrModbusProfilesFrameType aProfile,
+			String aDataPointName) {
 		return aProfile.getDpListElement().stream()
-				.filter( datapoint -> datapoint.getDataPoint().get(0).getDatapointName().equals( aDataPointName) )
+				.filter(datapoint -> datapoint.getDataPoint().get(0).getDatapointName().equals(aDataPointName))
 				.findFirst();
 	}
-	
-	private String readValue( 
-			SGrModbusProfilesFrameType aProfile, 
-			SGrModbusDataPointsFrameType aDataPoint ) throws GenDriverException {
-		
+
+	private String readValue(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint)
+			throws GenDriverException {
+
 		String retval = "-";
-		
+
 		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
 
 		if (dGenType.isSetBoolean()) {
 			boolean bVal = getValByGDPType(aProfile, aDataPoint).isBoolean();
 			retval = String.format("%b", bVal);
-		}
-		else if (dGenType.getEnum()!=null) {
+		} else if (dGenType.getEnum() != null) {
 			SGrEnumListType oVal = dGenType.getEnum();
-			if (oVal.isSetSgrEVState())
-			{   
+			if (oVal.isSetSgrEVState()) {
 				SGrEnumListType en = getValByGDPType(aProfile, aDataPoint).getEnum();
-				retval =  Enum2StringConversion(en);
-			}  
-		}
-		else if (dGenType.isSetFloat32()) {
+				retval = Enum2StringConversion(en);
+			}
+		} else if (dGenType.isSetFloat32()) {
 			float fVal = getValByGDPType(aProfile, aDataPoint).getFloat32();
 			retval = String.format("%10.3f", fVal);
-		}
-		else if (dGenType.isSetFloat64()) {
+		} else if (dGenType.isSetFloat64()) {
 			double dVal = getValByGDPType(aProfile, aDataPoint).getFloat64();
 			retval = String.format("%10.3f", dVal);
-		}
-		else if (dGenType.isSetInt16()) {
+		} else if (dGenType.isSetInt16()) {
 			short shVal = getValByGDPType(aProfile, aDataPoint).getInt16();
 			retval = String.format("%d", shVal);
-		}
-		else if (dGenType.isSetInt16U()) {
+		} else if (dGenType.isSetInt16U()) {
 			int iVal = getValByGDPType(aProfile, aDataPoint).getInt16U();
 			retval = String.format("%d", iVal);
-		}
-		else if (dGenType.getInt32()!=null) {
+		} else if (dGenType.getInt32() != null) {
 			BigInteger bgVal = getValByGDPType(aProfile, aDataPoint).getInt32();
 			retval = String.format(bgVal.toString());
-		}
-		else if (dGenType.isSetInt32U()) {
+		} else if (dGenType.isSetInt32U()) {
 			long lVal = getValByGDPType(aProfile, aDataPoint).getInt32U();
 			retval = String.format("%d", lVal);
-		}
-		else if (dGenType.isSetInt64()) {
+		} else if (dGenType.isSetInt64()) {
 			long lVal = getValByGDPType(aProfile, aDataPoint).getInt64();
 			retval = String.format("%d", lVal);
-		}
-		else if (dGenType.getInt64U()!=null) {
+		} else if (dGenType.getInt64U() != null) {
 			BigInteger bgVal = getValByGDPType(aProfile, aDataPoint).getInt64U();
 			retval = String.format("%d", bgVal);
-		}
-		else if (dGenType.isSetInt8()) {
+		} else if (dGenType.isSetInt8()) {
 			byte btVal = getValByGDPType(aProfile, aDataPoint).getInt8();
 			retval = String.format("%d", btVal);
-		}
-		else if (dGenType.isSetInt8U()) {
+		} else if (dGenType.isSetInt8U()) {
 			short shVal = getValByGDPType(aProfile, aDataPoint).getInt8U();
 			retval = String.format("%d", shVal);
-		}
-		else if (dGenType.getString()!=null) {
+		} else if (dGenType.getString() != null) {
 			retval = getValByGDPType(aProfile, aDataPoint).getString();
-		}
-		else if (dGenType.getDateTime()!=null) {
+		} else if (dGenType.getDateTime() != null) {
 			//
 			// TODO: apply gregorian calendar library
 			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
 			retval = String.format("readValue DateTime: not yet supported%n");
-		} 		
-		else 
-			retval = String.format("readValue else: data type not yet supported%n");	
+		} else
+			retval = String.format("readValue else: data type not yet supported%n");
 		return retval;
 	}
-	
-	
-	
-	public SGrBasicGenDataPointTypeType getValByGDPType(
-			SGrModbusProfilesFrameType aProfile, 
-			SGrModbusDataPointsFrameType aDataPoint)
+
+	public SGrBasicGenDataPointTypeType getValByGDPType(SGrModbusProfilesFrameType aProfile,
+			SGrModbusDataPointsFrameType aDataPoint) throws GenDriverException {
+
+		return prv_getValByGDPType(aProfile, aDataPoint);
+
+	}
+
+	public SGrBasicGenDataPointTypeType getValByGDPType(String sProfileName, String sDataPointName)
 			throws GenDriverException {
-		
-				return prv_getValByGDPType (aProfile,aDataPoint);
-	
-			}
-		
-	public SGrBasicGenDataPointTypeType getValByGDPType(
-					String sProfileName, 
-					String sDataPointName)
-					throws GenDriverException 
-	{
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
-		
-		SGrBasicGenDataPointTypeType retval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType(); 
-		
+
+		SGrBasicGenDataPointTypeType retval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+
 		if (profile.isPresent()) {
-				Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile( profile.get(), sDataPointName );
-			if ( dataPoint.isPresent() )
-			{			
-				retval = prv_getValByGDPType( profile.get(), dataPoint.get() );
-			}	
+			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
+			if (dataPoint.isPresent()) {
+				retval = prv_getValByGDPType(profile.get(), dataPoint.get());
+			}
 		}
-		
+
 		return retval;
 	}
-			
-		
-	
-   private SGrBasicGenDataPointTypeType prv_getValByGDPType(
+
+	private SGrBasicGenDataPointTypeType prv_getValByGDPType(
 		SGrModbusProfilesFrameType aProfile, 
 		SGrModbusDataPointsFrameType aDataPoint)
 		throws GenDriverException {
@@ -228,7 +196,7 @@ public class SGrModbusDevice {
 		boolean bGotRegisters = false, bGotDiscrete = false;
 		int[] mbregresp = new int[120];
 		boolean[] mbbitresp = new boolean[64];
-		int mul = 1;
+		int mul = 1, l6dev = -1;
 		int pwof10 = 0;
 		// Register return value calculation
 		long RegRes = 0;
@@ -249,8 +217,9 @@ public class SGrModbusDevice {
 		// Attributes
 		// TODO: Workout instance of attributes, differentiate in between local XML
 		// datapoints & Modbus based datapoints
-		if (aDataPoint.getDpMbAttrReference()
-				.size() > 0) { // there are Modbus attributes available
+		if (aDataPoint.getDpMbAttrReference().size() > 0) 
+		{ // there are Modbus attributes available
+			
 			if (aDataPoint.getDpMbAttrReference()
 					.get(0).getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
 			} else {
@@ -259,6 +228,8 @@ public class SGrModbusDevice {
 				mul = attrScaling.getMultiplicator();
 				pwof10 = attrScaling.getPowerof10();
 			}
+			if (aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0).isSetLayer6Deviation()   )
+		       	l6dev = aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0).getLayer6Deviation().getValue();
 		}
 		
 			
@@ -299,15 +270,20 @@ public class SGrModbusDevice {
 			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN))
 				// TODO: rethink Blocktransfer here
 				mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
-			for (int l = 0; l < size; l++) {
-				if (l == 0)
-					RegRes = mbregresp[l];
+			// do we have Layer 6 deviations ?
+	        if (l6dev >= 0  )   mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
+
+	        for (int u = 0; u < size; u++) {
+	        	
+	        	
+				if (u == 0)
+					RegRes = mbregresp[u];
 				else {
-					// RegRes = (RegRes * 65536) & 0xffff0000;
-					// RegRes = RegRes * 65536;
 					RegRes = RegRes << 16;
-					RegRes = RegRes | (mbregresp[l] & 0x0000ffff);
+					RegRes = RegRes | (mbregresp[u] & 0x0000ffff);
 				}
+				// TODO: finalize this. Is it really needed?
+				
 				if (size == 2)
 			    {
 			    	singleResp[0] = mbregresp[0];
@@ -322,8 +298,10 @@ public class SGrModbusDevice {
 			    }
 			    else if (size > 2)
 			    {
-			    	// manage block transfers
+			    	
 			    }
+			    
+				//TODO: manage block transfers if timeSyncBlockNotification is set
 			}
 		}
 		
@@ -335,7 +313,7 @@ public class SGrModbusDevice {
 		// TODO: Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
 		
-
+        	
 		if (dGenType.isSetBoolean()) {
 			// TODO: add bus data
 			boolean bVal = false;
@@ -457,6 +435,37 @@ public class SGrModbusDevice {
 		
 	}
 	
+	
+	//private int[] manageLayer6deviation( EList<SGrModbusLayer6DeviationType> mBlayer6Scheme, int[] mbregresp, int size) {
+	private int[] manageLayer6deviation(int mBlayer6Scheme, int[] mbregresp, int size) {
+		
+		int[] mbregconv = new int[10];
+		
+		//switch(aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0).getLayer6Deviation().getLiteral()  )
+		switch (mBlayer6Scheme)
+    	{
+    		case SGrModbusLayer6DeviationType._2REG_BASE1000_H2L_VALUE:
+    			if (size == 2)
+    			{
+    				long lv =  ((long) mbregresp[0]) *1000;
+    				lv = lv + (long) mbregresp[1];
+    				mbregconv[1] =  (int) (lv & 0xffff);	
+    				mbregconv[0] =  (int) ((lv>>16) & 0xffff);				
+    			}
+    			break;
+    		case SGrModbusLayer6DeviationType._2REG_BASE1000_L2H_VALUE:
+    			if (size == 2)
+    			{
+    				long lv =  ((long) mbregresp[1]) *1000;
+    				lv = lv + (long) mbregresp[0];
+    				mbregconv[1] =  (int) (lv & 0xffff);	
+    				mbregconv[0] =  (int) ((lv>>16) & 0xffff);				
+    			}
+    			break;
+    	}
+	  
+		return mbregconv;
+	}
 
 	private int[] ConvertStream(EList<TEnumConversionFct> mBconvScheme, int[] mbregresp, int size) {
 		// TODO: rethink Blocktransfer here
@@ -506,144 +515,109 @@ public class SGrModbusDevice {
 		}
 		return mbregconv;
 	}
-	
-	
-	
 
 	public String setVal(String sProfileName, String sDataPointName, String sValue) throws GenDriverException {
-		
 
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 		if (profile.isPresent()) {
-			
-			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile( profile.get(), sDataPointName );
-			if ( dataPoint.isPresent() )
-			{			
-				 writeValue( profile.get(), dataPoint.get(), sValue );
-			}						
-		}	
+
+			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
+			if (dataPoint.isPresent()) {
+				writeValue(profile.get(), dataPoint.get(), sValue);
+			}
+		}
 		return "Profile/access-point " + sProfileName + "/" + sDataPointName + " not found!";
 	}
-	
 
-	private void writeValue( 
-			SGrModbusProfilesFrameType aProfile, 
-			SGrModbusDataPointsFrameType aDataPoint,
-			String sValue ) throws GenDriverException {
-		
-		
+	private void writeValue(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint, String sValue)
+			throws GenDriverException {
+
 		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
-
 
 		if (dGenType.isSetBoolean()) {
 			boolean bVal = false;
 			if ((sValue == "true") || (sValue == "TRUE"))
 				bVal = true;
-				dGenType.setBoolean(bVal);
+			dGenType.setBoolean(bVal);
 		}
 		/*
-		else if (dGenType.eIsSet(enum) {
-			// TODO: SGrBasicGenDataPointTypeType, apply SGrEnumListType family of enumerationss inDpTT.setEnum(0);
-		}
-		*/
+		 * else if (dGenType.eIsSet(enum) { // TODO: SGrBasicGenDataPointTypeType, apply
+		 * SGrEnumListType family of enumerationss inDpTT.setEnum(0); }
+		 */
 		else if (dGenType.isSetFloat32()) {
-			float fVal; 
+			float fVal;
 			fVal = Float.parseFloat(sValue);
 			dGenType.setFloat32(fVal);
 			dGenType.setFloat32(fVal);
-		}
-		else if (dGenType.isSetFloat64()) {
+		} else if (dGenType.isSetFloat64()) {
 			double dVal;
 			dVal = Double.parseDouble(sValue);
 			dGenType.setFloat64(dVal);
-		}
-		else if (dGenType.isSetInt16()) {
+		} else if (dGenType.isSetInt16()) {
 			short shVal;
 			shVal = Short.parseShort(sValue);
-			dGenType.setInt16(shVal);		
-		}
-		else if (dGenType.isSetInt16U()) {
+			dGenType.setInt16(shVal);
+		} else if (dGenType.isSetInt16U()) {
 			int iVal;
 			iVal = Integer.parseInt(sValue);
 			dGenType.setInt16U(iVal);
-		}
-		else if (dGenType.getInt32()!=null) {
+		} else if (dGenType.getInt32() != null) {
 			BigInteger bgVal = new BigInteger(sValue);
 			dGenType.setInt32(bgVal);
-		}
-		else if (dGenType.isSetInt32U()) {
+		} else if (dGenType.isSetInt32U()) {
 			long lVal = Long.parseLong(sValue);
 			dGenType.setInt32U(lVal);
-		}
-		else if (dGenType.isSetInt64()) {
+		} else if (dGenType.isSetInt64()) {
 			long lVal = Long.parseLong(sValue);
 			dGenType.setInt64(lVal);
-		}
-		else if (dGenType.getInt64U()!=null) {
-			// TODO: SGrBasicGenDataPointTypeType, isSetInt64U  Funktion wurde vom Modeler nicht generiert  
+		} else if (dGenType.getInt64U() != null) {
+			// TODO: SGrBasicGenDataPointTypeType, isSetInt64U Funktion wurde vom Modeler
+			// nicht generiert
 			BigInteger bgVal1 = new BigInteger(sValue);
 			dGenType.setInt64U(bgVal1);
-		}
-		else if (dGenType.isSetInt8()) {
+		} else if (dGenType.isSetInt8()) {
 			byte btVal;
 			btVal = Byte.parseByte(sValue);
 			dGenType.setInt8(btVal);
-		}
-		else if (dGenType.isSetInt8U()) {
+		} else if (dGenType.isSetInt8U()) {
 			Short shVal = Short.parseShort(sValue);
 			dGenType.setInt8U(shVal);
-		}
-		else if( dGenType.getDateTime()!=null) {
-		 // TODO: apply gregorian calendar library
-		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-		// TODO: apply dGenType
-		}
-		 else if( dGenType.getString()!=null) {
-			 // TODO:parameter conversion
-			 sValue= String.format("TODO:parameter conversion");
+		} else if (dGenType.getDateTime() != null) {
+			// TODO: apply gregorian calendar library
+			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
+			// TODO: apply dGenType
+		} else if (dGenType.getString() != null) {
+			// TODO:parameter conversion
+			sValue = String.format("TODO:parameter conversion");
 			dGenType.setString(sValue);
-		 }
-		else
-		{ // error handling
-		}		
-		setValByGDPType(aProfile, aDataPoint, dGenType) ;
+		} else { // error handling
+		}
+		setValByGDPType(aProfile, aDataPoint, dGenType);
 	}
 
 // generic class API using SGrBasicGenDataPointTypeType
-	public void setValByGDPType(
-		SGrModbusProfilesFrameType aProfile, 
-		SGrModbusDataPointsFrameType aDataPoint,
- 		SGrBasicGenDataPointTypeType sgrValue)
-		throws GenDriverException {
-		
-		prv_setValByGDPType(aProfile,aDataPoint,sgrValue);
-		
+	public void setValByGDPType(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint,
+			SGrBasicGenDataPointTypeType sgrValue) throws GenDriverException {
+
+		prv_setValByGDPType(aProfile, aDataPoint, sgrValue);
+
 	}
 
-public void  setValByGDPType(
-			String sProfileName, 
-			String sDataPointName,
-	 		SGrBasicGenDataPointTypeType sgrValue)
-	 				throws GenDriverException {
-	Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
-		
-	if (profile.isPresent()) {
-			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile( profile.get(), sDataPointName );
-		if ( dataPoint.isPresent() )
-		{			
-			prv_setValByGDPType( profile.get(), dataPoint.get(), sgrValue );
-		}	
+	public void setValByGDPType(String sProfileName, String sDataPointName, SGrBasicGenDataPointTypeType sgrValue)
+			throws GenDriverException {
+		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
+
+		if (profile.isPresent()) {
+			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
+			if (dataPoint.isPresent()) {
+				prv_setValByGDPType(profile.get(), dataPoint.get(), sgrValue);
+			}
+		}
+
 	}
 
-}
-				
-			
-private void  prv_setValByGDPType (
-		SGrModbusProfilesFrameType aProfile, 
-		SGrModbusDataPointsFrameType aDataPoint,
- 		SGrBasicGenDataPointTypeType sgrValue)
-		throws GenDriverException
-{
+	private void prv_setValByGDPType(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint,
+			SGrBasicGenDataPointTypeType sgrValue) throws GenDriverException {
 
 		int[] mbregsnd = new int[120];
 		int res = 0, size = 0;
@@ -656,26 +630,24 @@ private void  prv_setValByGDPType (
 		BigInteger bgVal = BigInteger.ZERO;
 
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
-		
+
 		SGrBasicGenDataPointTypeType dGenType = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 		SGrBasicGenDataPointTypeType dMBType = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-		
-		
+
 		// Data format adaption
 		dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
 		dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
-		
-		//Data Direction ctrl
-		SGrRWPType dRWPType = aDataPoint.getDataPoint().get(0).getRwpDatadirection();
-		//Attributes  
 
-		//TODO: fehlende Instanz von attributen
+		// Data Direction ctrl
+		SGrRWPType dRWPType = aDataPoint.getDataPoint().get(0).getRwpDatadirection();
+		// Attributes
+
+		// TODO: fehlende Instanz von attributen
 		// Attributes
 		// TODO: Workout instance of attributes, differentiate in between local XML
 		// datapoints & Modbus based datapoints
 		if (aDataPoint.getDpMbAttrReference().size() > 0) { // there are Modbus attributes available
-			if (aDataPoint.getDpMbAttrReference()
-					.get(0).getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
+			if (aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
 			} else {
 				SGrScalingType attrScaling = aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0)
 						.getScalingByMulPwr();
@@ -686,14 +658,13 @@ private void  prv_setValByGDPType (
 
 		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 		BigInteger regad = MBRegRef.getAddr();
-		
-		
+
 		boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
 		if (bMBfirstRegOne) {
-				regad = regad.subtract(BigInteger.ONE);
+			regad = regad.subtract(BigInteger.ONE);
 		}
 		int bitRank = MBRegRef.getBitRank();
-		
+
 		TEnumObjectType MBregType = MBRegRef.getRegisterType();
 		int mbsize = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
 		EList<TEnumConversionFct> MBconvScheme = modbusInterfaceDesc.getConversionScheme();
@@ -705,12 +676,13 @@ private void  prv_setValByGDPType (
 			bDiscreteCMDs = true;
 
 		// generic type expected as API return type
-		//TODO:  Check why the data type "long" does not create a 64 bit signed integer for all Java virtual machines
-		//TODO: Block-Transfer handling
-		
+		// TODO: Check why the data type "long" does not create a 64 bit signed integer
+		// for all Java virtual machines
+		// TODO: Block-Transfer handling
+
 		if (dMBType.isSetBoolean()) {
-			//  TODO: add management for multiple booleans
-			//  TODO: check for potential I/O signal inversion mechanism
+			// TODO: add management for multiple booleans
+			// TODO: check for potential I/O signal inversion mechanism
 			boolean bVal = false;
 			if (sgrValue.isBoolean())
 				bVal = true;
@@ -721,19 +693,17 @@ private void  prv_setValByGDPType (
 					mbregsnd[0] = 0;
 			} else if (bDiscreteCMDs)
 				mbbitsnd[0] = bVal;
-		}
-		else if (dMBType.getEnum()!=null) {
-				size = 1;
-				mbregsnd[0] =  Enum2RegResConversion(sgrValue.getEnum());  
-		}
-		else if (dMBType.isSetFloat32()) {
+		} else if (dMBType.getEnum() != null) {
+			size = 1;
+			mbregsnd[0] = Enum2RegResConversion(sgrValue.getEnum());
+		} else if (dMBType.isSetFloat32()) {
 			if (bRegisterCMDs) {
 				size = 2;
 				if (sgrValue.isSetInt8())
 					fVal = (float) sgrValue.getInt8();
 				if (sgrValue.isSetInt16())
 					fVal = (float) sgrValue.getInt16();
-				if (sgrValue.getInt32()!=null)
+				if (sgrValue.getInt32() != null)
 					fVal = (float) sgrValue.getInt32().floatValue();
 				if (sgrValue.isSetInt64())
 					fVal = (float) sgrValue.getInt64();
@@ -741,24 +711,23 @@ private void  prv_setValByGDPType (
 					fVal = (float) sgrValue.getInt8U();
 				if (sgrValue.isSetInt16U())
 					fVal = (float) sgrValue.getInt16U();
-				if (sgrValue.getInt64U()!=null)
+				if (sgrValue.getInt64U() != null)
 					fVal = (float) sgrValue.getInt64U().floatValue();
 				if (sgrValue.isSetFloat32())
 					fVal = sgrValue.getFloat32();
 				if (sgrValue.isSetFloat64())
-					fVal = (float) sgrValue.getFloat64();						
+					fVal = (float) sgrValue.getFloat64();
 				mbregsnd = ModbusHlpr.ConvFloatToRegisters(fVal);
 			}
 
-		}
-		else if (dMBType.isSetFloat64()) {
+		} else if (dMBType.isSetFloat64()) {
 			if (bRegisterCMDs) {
 				size = 4;
 				if (sgrValue.isSetInt8())
 					dVal = (double) sgrValue.getInt8();
 				if (sgrValue.isSetInt16())
 					dVal = (double) sgrValue.getInt16();
-				if (sgrValue.getInt32()!=null)
+				if (sgrValue.getInt32() != null)
 					dVal = (double) sgrValue.getInt32().doubleValue();
 				if (sgrValue.isSetInt64())
 					dVal = (double) sgrValue.getInt64();
@@ -773,14 +742,13 @@ private void  prv_setValByGDPType (
 				if (sgrValue.isSetInt32U())
 					dVal = (double) sgrValue.getInt32U();
 
-				if (sgrValue.getInt64U()!=null)
-					dVal = (double) sgrValue.getInt64U().doubleValue();	
+				if (sgrValue.getInt64U() != null)
+					dVal = (double) sgrValue.getInt64U().doubleValue();
 
 				mbregsnd = ModbusHlpr.ConvDoubleToRegisters(dVal);
 			}
 
-		}
-		else if (dMBType.isSetInt16()) {
+		} else if (dMBType.isSetInt16()) {
 			if (bRegisterCMDs) {
 				size = 1;
 				dVal = getConvertedDouble(sgrValue, powof10, mul);
@@ -790,11 +758,10 @@ private void  prv_setValByGDPType (
 					throw new IllegalArgumentException(
 							"INT16_VALUE out of range. Must be in -32678..32676 inclusive:" + dVal);
 				}
-					
+
 			}
-		
-		}
-		else if (dMBType.isSetInt16U()) {
+
+		} else if (dMBType.isSetInt16U()) {
 			if (bRegisterCMDs) {
 				size = 1;
 				dVal = getConvertedDouble(sgrValue, powof10, mul);
@@ -806,8 +773,7 @@ private void  prv_setValByGDPType (
 				}
 			}
 
-		}
-		else if (dMBType.isSetInt32U()) {
+		} else if (dMBType.isSetInt32U()) {
 			if (bRegisterCMDs) {
 				size = 1;
 				dVal = getConvertedDouble(sgrValue, powof10, mul);
@@ -820,54 +786,51 @@ private void  prv_setValByGDPType (
 							"INT32U_VALUE out of range. Must be in 0..65565 inclusive:" + dVal);
 				}
 
-		}
-		else if (dMBType.isSetInt64()) {
-			if (bRegisterCMDs) {
-				size = 4;
-				dVal = getConvertedDouble(sgrValue, powof10, mul);
+			} else if (dMBType.isSetInt64()) {
+				if (bRegisterCMDs) {
+					size = 4;
+					dVal = getConvertedDouble(sgrValue, powof10, mul);
 
-				if ((dVal <= 9223372036854775807.0) && (dVal >= -9223372036854775808.0)) {
-					long l = (long) dVal;
-					mbregsnd[0] = (short) ((l >> 48) & 0xffff);
-					mbregsnd[1] = (short) ((l >> 32) & 0xffff);
-					mbregsnd[2] = (short) ((l >> 16) & 0xffff);
-					mbregsnd[3] = (short) (l & 0xffff);
-				} else {
-					throw new IllegalArgumentException(
-							"INT64_VALUE out of range. Must be in -9223372036854775808..9223372036854775807 inclusive:"
-									+ dVal);
+					if ((dVal <= 9223372036854775807.0) && (dVal >= -9223372036854775808.0)) {
+						long l = (long) dVal;
+						mbregsnd[0] = (short) ((l >> 48) & 0xffff);
+						mbregsnd[1] = (short) ((l >> 32) & 0xffff);
+						mbregsnd[2] = (short) ((l >> 16) & 0xffff);
+						mbregsnd[3] = (short) (l & 0xffff);
+					} else {
+						throw new IllegalArgumentException(
+								"INT64_VALUE out of range. Must be in -9223372036854775808..9223372036854775807 inclusive:"
+										+ dVal);
+					}
 				}
+
+			} else if (dMBType.isSetInt8()) {
+				if (bRegisterCMDs) {
+					size = 1;
+					dVal = getConvertedDouble(sgrValue, powof10, mul);
+					if ((dVal <= 127.0) && (dVal >= -128.0)) {
+						mbregsnd[0] = (short) dVal;
+					} else {
+						throw new IllegalArgumentException(
+								"INT8_VALUE out of range. Must be in -127..128 inclusive:" + dVal);
+					}
+				}
+
+			} else if (dMBType.isSetInt8U()) {
+				if (bRegisterCMDs) {
+					size = 1;
+					dVal = getConvertedDouble(sgrValue, powof10, mul);
+					if ((dVal <= 255.0) && (dVal > 0.0)) {
+						mbregsnd[0] = (short) dVal;
+					} else {
+						throw new IllegalArgumentException(
+								"INT8U_VALUE out of range. Must be in 255..0 inclusive:" + dVal);
+					}
+				}
+
 			}
 
-		}
-		else if (dMBType.isSetInt8()) {
-			if (bRegisterCMDs) {
-				size = 1;
-				dVal = getConvertedDouble(sgrValue, powof10, mul);
-				if ((dVal <= 127.0) && (dVal >= -128.0)) {
-					mbregsnd[0] = (short) dVal;
-				} else {
-					throw new IllegalArgumentException(
-							"INT8_VALUE out of range. Must be in -127..128 inclusive:" + dVal);
-				}
-			}
-
-		}
-		else if (dMBType.isSetInt8U()) {
-			if (bRegisterCMDs) {
-				size = 1;
-				dVal = getConvertedDouble(sgrValue, powof10, mul);
-				if ((dVal <= 255.0) && (dVal > 0.0)) {
-					mbregsnd[0] = (short) dVal;
-				} else {
-					throw new IllegalArgumentException(
-							"INT8U_VALUE out of range. Must be in 255..0 inclusive:" + dVal);
-				}
-			}
-
-		}
-			
-			else if (dMBType.getInt32()!=null)  {
+			else if (dMBType.getInt32() != null) {
 				if (bRegisterCMDs) {
 					size = 2;
 					dVal = getConvertedDouble(sgrValue, powof10, mul);
@@ -881,12 +844,12 @@ private void  prv_setValByGDPType (
 					}
 				}
 
-			} 
-			else if (dMBType.getInt64U()!=null) {
+			} else if (dMBType.getInt64U() != null) {
 				if (bRegisterCMDs) {
 					size = 4;
-					//WARNING: Java does only support unsigned 64bit Values -9223372036854775808..9223372036854775807 inclusive
-					//NOTE: as this is a sample code, we keep 2`65-1 as the refrenece value
+					// WARNING: Java does only support unsigned 64bit Values
+					// -9223372036854775808..9223372036854775807 inclusive
+					// NOTE: as this is a sample code, we keep 2`65-1 as the refrenece value
 					dVal = getConvertedDouble(sgrValue, powof10, mul);
 
 					if ((dVal <= 18446744073709551615.0) && (dVal >= 0.0)) {
@@ -901,69 +864,63 @@ private void  prv_setValByGDPType (
 					}
 
 				}
-			}	
-			else if (dMBType.getString()!=null) {
+			} else if (dMBType.getString() != null) {
 				if (bRegisterCMDs) {
-				String strVal = sgrValue.getString();
-				size = strVal.length();
-				for (int i = 1; i < size; i++)
-					mbregsnd[i] = (int) strVal.charAt(i);
+					String strVal = sgrValue.getString();
+					size = strVal.length();
+					for (int i = 1; i < size; i++)
+						mbregsnd[i] = (int) strVal.charAt(i);
+				}
+
+			} else if (dMBType.getDateTime() != null) {
+				/*
+				 * TODO: apply gregorian calendar library =>
+				 * inDpTT.setTimestamp(TIMESTAMP_EDEFAULT); or better add simple Current Epoch
+				 * Unix Timestamp The current epoch translates to 01/10/2022 @ 7:31am (UTC)
+				 * 2022-01-10T07:31:09+00:00 (ISO 8601) Mon, 10 Jan 2022 07:31:09 (+0000 RFC
+				 * 822, 1036, 1123, 2822) Monday, 10-Jan-22 07:31:09 (UTC RFC 2822)
+				 * 2022-01-10T07:31:09+00:00 (RFC 3339) // TODO: mbregsnd setting
+				 */
 			}
 
-		} 
-		else if (dMBType.getDateTime()!=null) {
-			/* TODO: apply gregorian calendar library => inDpTT.setTimestamp(TIMESTAMP_EDEFAULT);
-			 or better add simple Current Epoch Unix Timestamp
-			   The current epoch translates to
-				01/10/2022 @ 7:31am					(UTC)
-				2022-01-10T07:31:09+00:00		(ISO 8601)
-				Mon, 10 Jan 2022 07:31:09 	(+0000	RFC 822, 1036, 1123, 2822)
-				Monday, 10-Jan-22 07:31:09 	(UTC	RFC 2822)
-				2022-01-10T07:31:09+00:00		(RFC 3339) 
-		    //  TODO: mbregsnd setting  */
-		} 
-		
-		else 			
-		{  // TODO: Default behaviour
-		}	
-	}
-
-	if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
-		if (bRegisterCMDs) {
-			for (int l = 0; l < mbsize; l++) {
-				res = (res * 65536) + mbregsnd[l];
-				// TODO: rethink Blocktransfer here
-				mbregsnd = ConvertStream(MBconvScheme, mbregsnd, mbsize);
+			else { // TODO: Default behaviour
 			}
 		}
-		if (bDiscreteCMDs) 
-		{
-				 //  TODO: add management for multiple booleans
-		}
-	}
 
-			
-	// accessing physical interface
-	// TODO: move physical interface selection to proper layer selection AFTER doing all the adjustment stuff
+		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
+			if (bRegisterCMDs) {
+				for (int l = 0; l < mbsize; l++) {
+					res = (res * 65536) + mbregsnd[l];
+					// TODO: rethink Blocktransfer here
+					mbregsnd = ConvertStream(MBconvScheme, mbregsnd, mbsize);
+				}
+			}
+			if (bDiscreteCMDs) {
+				// TODO: add management for multiple booleans
+			}
+		}
+
+		// accessing physical interface
+		// TODO: move physical interface selection to proper layer selection AFTER doing
+		// all the adjustment stuff
 		try {
 			if (bRegisterCMDs) {
 				if (mbsize > 1)
 					drv4Modbus.WriteMultipleRegisters(regad.intValue(), mbregsnd);
 				else
 					drv4Modbus.WriteSingleRegister(regad.intValue(), mbregsnd[0]);
-				} else if (bDiscreteCMDs) {
+			} else if (bDiscreteCMDs) {
 				if (mbsize > 1)
 					drv4Modbus.WriteMultipleCoils(regad.intValue(), mbbitsnd);
 				else
 					drv4Modbus.WriteSingleCoil(regad.intValue(), mbbitsnd[0]);
-				}
+			}
 
 		} catch (GenDriverException e) {
-			String causeMessage = e.getCause() != null ? " cause: " + e.getCause().getMessage() : ""; 
-			System.out.println("Write to modbus failed. " + e.getMessage() + causeMessage );
-			}	
-}
-
+			String causeMessage = e.getCause() != null ? " cause: " + e.getCause().getMessage() : "";
+			System.out.println("Write to modbus failed. " + e.getMessage() + causeMessage);
+		}
+	}
 
 	double getConvertedDouble(SGrBasicGenDataPointTypeType dGenType, int powof10, int mul) {
 		double dVal = 0.0;
@@ -972,7 +929,7 @@ private void  prv_setValByGDPType (
 			dVal = (double) dGenType.getInt8();
 		if (dGenType.isSetInt16())
 			dVal = (double) dGenType.getInt16();
-		if (dGenType.getInt32()!=null)
+		if (dGenType.getInt32() != null)
 			dVal = (double) dGenType.getInt32().doubleValue();
 		if (dGenType.isSetInt64())
 			dVal = (double) dGenType.getInt64();
@@ -986,242 +943,149 @@ private void  prv_setValByGDPType (
 			dVal = (double) dGenType.getInt16U();
 		if (dGenType.isSetInt32U())
 			dVal = (double) dGenType.getInt32U();
-		if (dGenType.getInt64U()!=null)
+		if (dGenType.getInt64U() != null)
 			dVal = (double) dGenType.getInt64U().doubleValue();
 		dVal = dVal / ((double) mul);
 		dVal = (dVal * Math.pow(10.0, -powof10));
 
 		return dVal;
 	}
-	
-	
-	//==================================================  code to be maintained frequently ==============================================
-	// Manually adopted enumeration handling: needs 3 enrties for each enumerated type
-	// convert from enumeration into Modbus RegRes number 
-	int Enum2RegResConversion(SGrEnumListType oGenVal)
-	{  // TODO(ongoing): extend this list manually for EACH  enumeration being added to the system
+
+	// ================================================== code to be maintained
+	// frequently ==============================================
+	// Manually adopted enumeration handling: needs 3 enrties for each enumerated
+	// type
+	// convert from enumeration into Modbus RegRes number
+	int Enum2RegResConversion(SGrEnumListType oGenVal) { // TODO(ongoing): extend this list manually for EACH
+															// enumeration being added to the system
 		int retval = 0;
 
-		if (oGenVal.isSetSgrMeasValueState())
-		{  //E0001
-			retval =  oGenVal.getSgrMeasValueState().getValue(); 
-		}	
-		else if (oGenVal.isSetSgrMeasValueTendency())
-		{   //E0002
-			retval =  oGenVal.getSgrMeasValueTendency().getValue();
-		}		
-		else if (oGenVal.isSetSgrMeasValueSource())
-		{   //E0003
-			retval =  oGenVal.getSgrMeasValueSource().getValue();
-		}		
-		else if (oGenVal.isSetSgrPowerSource())
-		{  //E0004
-			retval =  oGenVal.getSgrPowerSource().getValue();
-		}						
-		else if (oGenVal.isSetSgreadyStateLv2())
-		{   //E0005
-			retval =  oGenVal.getSgreadyStateLv2().getValue();
-		}		
-		else if (oGenVal.isSetSgreadyStateLv1())
-		{   //E0006
-			retval =  oGenVal.getSgreadyStateLv1().getValue();
-		}
-		else if (oGenVal.isSetSgrSunspStateCodes())
-		{//E0007
-			retval =  oGenVal.getSgrSunspStateCodes().getValue();
-		}
-		else if (oGenVal.isSetSgrEVSEStateLv2())
-		{   //E0008
-			retval =  oGenVal.getSgrEVSEStateLv2().getValue();
-		}
-		else if (oGenVal.isSetSgrEVSEStateLv1())
-		{   //E0009
-			retval =  oGenVal.getSgrEVSEStateLv1().getValue();
-		}
-		else if (oGenVal.isSetSgrSGCPLoadStateLv2() )
-		{  //E0010
-			retval =  oGenVal.getSgrSGCPLoadStateLv2().getValue();
-		}
-		else if (oGenVal.isSetSgrSGCPFeedInStateLv2())
-		{   //E0011
-			retval =  oGenVal.getSgrSGCPFeedInStateLv2().getValue();
-		}
-		else if (oGenVal.isSetSgrEVState())
-		{ //E0012
-			retval =  oGenVal.getSgrEVState().getValue();
-		}
-		else if (oGenVal.isSetSgrSGCPService())
-		{ //E0013
-			retval =  oGenVal.getSgrSGCPService().getValue();
-		}
-		else if (oGenVal.isSetSgrObligLvl())
-		{ //E0014
-			retval =  oGenVal.getSgrObligLvl().getValue();
-		}
-		else if (oGenVal.isSetSgrOCPPState())
-		{
+		if (oGenVal.isSetSgrMeasValueState()) { // E0001
+			retval = oGenVal.getSgrMeasValueState().getValue();
+		} else if (oGenVal.isSetSgrMeasValueTendency()) { // E0002
+			retval = oGenVal.getSgrMeasValueTendency().getValue();
+		} else if (oGenVal.isSetSgrMeasValueSource()) { // E0003
+			retval = oGenVal.getSgrMeasValueSource().getValue();
+		} else if (oGenVal.isSetSgrPowerSource()) { // E0004
+			retval = oGenVal.getSgrPowerSource().getValue();
+		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0005
+			retval = oGenVal.getSgreadyStateLv2().getValue();
+		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0006
+			retval = oGenVal.getSgreadyStateLv1().getValue();
+		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0007
+			retval = oGenVal.getSgrSunspStateCodes().getValue();
+		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0008
+			retval = oGenVal.getSgrEVSEStateLv2().getValue();
+		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0009
+			retval = oGenVal.getSgrEVSEStateLv1().getValue();
+		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0010
+			retval = oGenVal.getSgrSGCPLoadStateLv2().getValue();
+		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0011
+			retval = oGenVal.getSgrSGCPFeedInStateLv2().getValue();
+		} else if (oGenVal.isSetSgrEVState()) { // E0012
+			retval = oGenVal.getSgrEVState().getValue();
+		} else if (oGenVal.isSetSgrSGCPService()) { // E0013
+			retval = oGenVal.getSgrSGCPService().getValue();
+		} else if (oGenVal.isSetSgrObligLvl()) { // E0014
+			retval = oGenVal.getSgrObligLvl().getValue();
+		} else if (oGenVal.isSetSgrOCPPState()) {
 			// E0015
-			retval =  oGenVal.getSgrOCPPState().getValue();
-		}
-		else if (oGenVal.isSetSgrHPOpMode())
-		{
+			retval = oGenVal.getSgrOCPPState().getValue();
+		} else if (oGenVal.isSetSgrHPOpMode()) {
 			// E0016
-			retval =  oGenVal.getSgrHPOpMode().getValue();
+			retval = oGenVal.getSgrHPOpMode().getValue();
 		}
-		
+
 		return retval;
 	}
-	
-	// convert enumeration into string 
-	 String Enum2StringConversion(SGrEnumListType oGenVal)
-	 {
-            String rval = "-";
-			
-			// TODO(ongoing): extend this list manually for EACH  enumeration being added to the system
-			if (oGenVal.isSetSgrMeasValueState())
-			{  //E0001
-				rval = oGenVal.getSgrMeasValueState().toString();             
-			}	
-			else if (oGenVal.isSetSgrMeasValueTendency())
-			{   //E0002
-				rval = oGenVal.getSgrMeasValueTendency().toString(); 
-			}		
-			else if (oGenVal.isSetSgrMeasValueSource())
-			{   //E0003
-				rval = oGenVal.getSgrMeasValueSource().toString(); 
-			}		
-			else if (oGenVal.isSetSgrPowerSource())
-			{  //E0004
-				rval = oGenVal.getSgrPowerSource().toString(); 
-			}						
-			else if (oGenVal.isSetSgreadyStateLv2())
-			{   //E0005
-				rval = oGenVal.getSgreadyStateLv2().toString(); 
-			}		
-			else if (oGenVal.isSetSgreadyStateLv1())
-			{   //E0006
-				rval = oGenVal.getSgreadyStateLv1().toString(); 
-			}
-			else if (oGenVal.isSetSgrSunspStateCodes())
-			{//E0007
-				rval = oGenVal.getSgrSunspStateCodes().toString(); 
-			}
-			else if (oGenVal.isSetSgrEVSEStateLv2())
-			{   //E0008
-				rval = oGenVal.getSgrEVSEStateLv2().toString(); 
-			}
-			else if (oGenVal.isSetSgrEVSEStateLv1())
-			{   //E0009
-				rval = oGenVal.getSgrEVSEStateLv1().toString(); 
-			}
-			else if (oGenVal.isSetSgrSGCPLoadStateLv2() )
-			{  //E0010
-				rval = oGenVal.getSgrSGCPLoadStateLv2().toString(); 
-			}
-			else if (oGenVal.isSetSgrSGCPFeedInStateLv2())
-			{   //E0011
-				rval = oGenVal.getSgrSGCPFeedInStateLv2().toString(); 
-			}
-			else if (oGenVal.isSetSgrEVState())
-			{ //E0012
-				rval = oGenVal.getSgrEVState().toString(); 
-			}
-			else if (oGenVal.isSetSgrSGCPService())
-			{ //E0013
-				rval = oGenVal.getSgrSGCPService().toString(); 
-			}
-			else if (oGenVal.isSetSgrObligLvl())
-			{ //E0014
-				rval = oGenVal.getSgrObligLvl().toString(); 
-			}
-			else if (oGenVal.isSetSgrOCPPState())
-			{
-				// E0015
-				rval = oGenVal.getSgrOCPPState().toString(); 
-			}
-			else if (oGenVal.isSetSgrHPOpMode())
-			{
-				// E0016
-				rval = oGenVal.getSgrHPOpMode().toString(); 
-			}
-			
-			return rval;
-	 }
-	 
-	 
-	// convert RegRes from Modbus into enumeration 
-	SGrEnumListType RegRes2EnumConversion(long RegRes, SGrEnumListType oGenVal)
-	{ 
-		SGrEnumListType rval =  V0Factory.eINSTANCE.createSGrEnumListType();
-		
-		// TODO(ongoing): extend this list manually for EACH  enumeration being added to the system
-		if (oGenVal.isSetSgrMeasValueState())
-		{  //E0001
-			rval.setSgrMeasValueState(SGrMeasValueStateType.get((int)RegRes));
-		}	
-		else if (oGenVal.isSetSgrMeasValueTendency())
-		{   //E0002
-			rval.setSgrMeasValueTendency(SGrMeasValueTendencyType.get((int)RegRes));
-		}		
-		else if (oGenVal.isSetSgrMeasValueSource())
-		{   //E0003
-			rval.setSgrMeasValueSource(SGrMeasValueSourceType.get((int)RegRes));
-		}		
-		else if (oGenVal.isSetSgrPowerSource())
-		{  //E0004
-			rval.setSgrPowerSource(SGrPowerSourceType.get((int)RegRes));
-		}						
-		else if (oGenVal.isSetSgreadyStateLv2())
-		{   //E0005
-			rval.setSgreadyStateLv2(SGReadyStateLv2Type.get((int)RegRes));
-		}		
-		else if (oGenVal.isSetSgreadyStateLv1())
-		{   //E0006
-			rval.setSgreadyStateLv1(SGReadyStateLv1Type.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrSunspStateCodes())
-		{//E0007
-			rval.setSgrSunspStateCodes(SGrSunspStateCodesType.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrEVSEStateLv2())
-		{   //E0008
-			rval.setSgrEVSEStateLv2(SGrEVSEStateLv2Type.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrEVSEStateLv1())
-		{   //E0009
-			rval.setSgrEVSEStateLv1(SGrEVSEStateLv1Type.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrSGCPLoadStateLv2() )
-		{  //E0010
-			rval.setSgrSGCPLoadStateLv2(SGrSGCPLoadStateLv2Type.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrSGCPFeedInStateLv2())
-		{   //E0011
-			rval.setSgrSGCPFeedInStateLv2(SGrSGCPFeedInStateLv2Type.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrEVState())
-		{ //E0012
-			rval.setSgrEVState(SGrEVStateType.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrSGCPService())
-		{ //E0013
-			rval.setSgrSGCPService(SGrSGCPServiceType.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrObligLvl())
-		{ //E0014
-			rval.setSgrObligLvl(SGrObligLvlType.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrOCPPState())
-		{
+
+	// convert enumeration into string
+	String Enum2StringConversion(SGrEnumListType oGenVal) {
+		String rval = "-";
+
+		// TODO(ongoing): extend this list manually for EACH enumeration being added to
+		// the system
+		if (oGenVal.isSetSgrMeasValueState()) { // E0001
+			rval = oGenVal.getSgrMeasValueState().toString();
+		} else if (oGenVal.isSetSgrMeasValueTendency()) { // E0002
+			rval = oGenVal.getSgrMeasValueTendency().toString();
+		} else if (oGenVal.isSetSgrMeasValueSource()) { // E0003
+			rval = oGenVal.getSgrMeasValueSource().toString();
+		} else if (oGenVal.isSetSgrPowerSource()) { // E0004
+			rval = oGenVal.getSgrPowerSource().toString();
+		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0005
+			rval = oGenVal.getSgreadyStateLv2().toString();
+		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0006
+			rval = oGenVal.getSgreadyStateLv1().toString();
+		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0007
+			rval = oGenVal.getSgrSunspStateCodes().toString();
+		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0008
+			rval = oGenVal.getSgrEVSEStateLv2().toString();
+		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0009
+			rval = oGenVal.getSgrEVSEStateLv1().toString();
+		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0010
+			rval = oGenVal.getSgrSGCPLoadStateLv2().toString();
+		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0011
+			rval = oGenVal.getSgrSGCPFeedInStateLv2().toString();
+		} else if (oGenVal.isSetSgrEVState()) { // E0012
+			rval = oGenVal.getSgrEVState().toString();
+		} else if (oGenVal.isSetSgrSGCPService()) { // E0013
+			rval = oGenVal.getSgrSGCPService().toString();
+		} else if (oGenVal.isSetSgrObligLvl()) { // E0014
+			rval = oGenVal.getSgrObligLvl().toString();
+		} else if (oGenVal.isSetSgrOCPPState()) {
 			// E0015
-			rval.setSgrOCPPState(SGrOCPPStateType.get((int)RegRes));
-		}
-		else if (oGenVal.isSetSgrHPOpMode())
-		{
+			rval = oGenVal.getSgrOCPPState().toString();
+		} else if (oGenVal.isSetSgrHPOpMode()) {
 			// E0016
-			rval.setSgrHPOpMode(SGrHPOpModeType.get((int)RegRes));
+			rval = oGenVal.getSgrHPOpMode().toString();
 		}
-		
+
+		return rval;
+	}
+
+	// convert RegRes from Modbus into enumeration
+	SGrEnumListType RegRes2EnumConversion(long RegRes, SGrEnumListType oGenVal) {
+		SGrEnumListType rval = V0Factory.eINSTANCE.createSGrEnumListType();
+
+		// TODO(ongoing): extend this list manually for EACH enumeration being added to
+		// the system
+		if (oGenVal.isSetSgrMeasValueState()) { // E0001
+			rval.setSgrMeasValueState(SGrMeasValueStateType.get((int) RegRes));
+		} else if (oGenVal.isSetSgrMeasValueTendency()) { // E0002
+			rval.setSgrMeasValueTendency(SGrMeasValueTendencyType.get((int) RegRes));
+		} else if (oGenVal.isSetSgrMeasValueSource()) { // E0003
+			rval.setSgrMeasValueSource(SGrMeasValueSourceType.get((int) RegRes));
+		} else if (oGenVal.isSetSgrPowerSource()) { // E0004
+			rval.setSgrPowerSource(SGrPowerSourceType.get((int) RegRes));
+		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0005
+			rval.setSgreadyStateLv2(SGReadyStateLv2Type.get((int) RegRes));
+		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0006
+			rval.setSgreadyStateLv1(SGReadyStateLv1Type.get((int) RegRes));
+		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0007
+			rval.setSgrSunspStateCodes(SGrSunspStateCodesType.get((int) RegRes));
+		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0008
+			rval.setSgrEVSEStateLv2(SGrEVSEStateLv2Type.get((int) RegRes));
+		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0009
+			rval.setSgrEVSEStateLv1(SGrEVSEStateLv1Type.get((int) RegRes));
+		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0010
+			rval.setSgrSGCPLoadStateLv2(SGrSGCPLoadStateLv2Type.get((int) RegRes));
+		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0011
+			rval.setSgrSGCPFeedInStateLv2(SGrSGCPFeedInStateLv2Type.get((int) RegRes));
+		} else if (oGenVal.isSetSgrEVState()) { // E0012
+			rval.setSgrEVState(SGrEVStateType.get((int) RegRes));
+		} else if (oGenVal.isSetSgrSGCPService()) { // E0013
+			rval.setSgrSGCPService(SGrSGCPServiceType.get((int) RegRes));
+		} else if (oGenVal.isSetSgrObligLvl()) { // E0014
+			rval.setSgrObligLvl(SGrObligLvlType.get((int) RegRes));
+		} else if (oGenVal.isSetSgrOCPPState()) {
+			// E0015
+			rval.setSgrOCPPState(SGrOCPPStateType.get((int) RegRes));
+		} else if (oGenVal.isSetSgrHPOpMode()) {
+			// E0016
+			rval.setSgrHPOpMode(SGrHPOpModeType.get((int) RegRes));
+		}
+
 		return rval;
 	}
 

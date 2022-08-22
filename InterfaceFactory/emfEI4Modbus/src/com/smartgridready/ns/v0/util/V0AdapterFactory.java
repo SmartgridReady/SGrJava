@@ -120,6 +120,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrAttr4RestAPITypeAdapter();
 			}
 			@Override
+			public Adapter caseSGrBasicGenArrayDPTypeType(SGrBasicGenArrayDPTypeType object) {
+				return createSGrBasicGenArrayDPTypeTypeAdapter();
+			}
+			@Override
 			public Adapter caseSGrBasicGenDataPointTypeType(SGrBasicGenDataPointTypeType object) {
 				return createSGrBasicGenDataPointTypeTypeAdapter();
 			}
@@ -502,6 +506,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSGrAttr4RestAPITypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType <em>SGr Basic Gen Array DP Type Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType
+	 * @generated
+	 */
+	public Adapter createSGrBasicGenArrayDPTypeTypeAdapter() {
 		return null;
 	}
 

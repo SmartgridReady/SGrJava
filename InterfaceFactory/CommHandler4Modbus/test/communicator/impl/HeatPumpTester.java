@@ -307,6 +307,7 @@ public class HeatPumpTester {
 		static void tstStiebelISG()
 		{
 			float fVal1=(float) 0.0, fVal2=(float) 0.0, fVal3=(float) 0.0, fVal4=(float) 0.0, fVal5=(float) 0.0;
+			double dVal1 = 0.0, dVal2 = 0.0;
 			int  iVal1=0, iVal2=0, iVal3=0, iVal4=0;
 			long lVal=0;
 			boolean bVal1=false,bVal2=false,bVal3=false;
@@ -377,17 +378,15 @@ public class HeatPumpTester {
 				bVal3=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON").isBoolean();                             
 				System.out.printf("  SGReady-bwp:      SGReadyState=" + oEnumList.getSgreadyStateLv2().getLiteral() + ",  SGReadyEnabled=" + bVal1 + ",  SGReadyInp1isON=" + bVal2 + ",  SGReadyInp2isON=" + bVal3 + "%n");
 
-				iVal1=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat_kWh").getInt16U();
-				iVal2=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat_MWh").getInt16U();
-				fVal2 = ((float) iVal1) * (float) 0.001;
-				fVal2 +=  (float) iVal2;
+				dVal1=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat").getFloat64();
+				dVal2=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyDomHotWater").getFloat64();
 				fVal3=devStiebelISG.getValByGDPType("EnergyMonitor", "RuntimeCompressor").getFloat32();
 				
 				
-//             TBC: launches illegal address, no other start data found
+//             TBC: launches illegal address @31 , no other start data found
 // 				lVal=devStiebelISG.getValByGDPType("EnergyMonitor", "NrOfStartupsCompressor").getInt16U();
 
-				System.out.printf("  EnergyMonitor ThermalEnergyHeat="+ fVal1 + " MWh,  RuntimeCompressor=" + fVal3 + " h,  NrOfStartupsCompressor="  + lVal+" times%n");  
+				System.out.printf("  EnergyMonitor ThermalEnergyHeat="+ dVal1 + " MWh,  ThermalEnergyDomHotWater="+ dVal2 + " MWh,RuntimeCompressor=" + fVal3 + " h,  NrOfStartupsCompressor="  + lVal+" times%n");  
 				System.out.println(); 
 				
 				
