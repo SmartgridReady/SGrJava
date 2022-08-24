@@ -56,6 +56,8 @@ import com.smartgridready.ns.v0.V0Factory;
 
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
+import communicator.common.runtime.GenDriverModbusException;
+import communicator.common.runtime.GenDriverSocketException;
 import communicator.helper.ModbusHlpr;
 
 
@@ -78,9 +80,11 @@ public class SGrModbusDevice {
 	 * this function reads registers from a Modbus device and converts it into the SmartGridready generic layer format
 	 * sample code edited by Chris Broennnimann
 	 * <!-- end-user-doc -->
+	 * @throws GenDriverModbusException 
+	 * @throws GenDriverSocketException 
 	 * 
 	 **/ 			
-	public String getVal(String sProfileName, String sDataPointName) throws GenDriverException {
+	public String getVal(String sProfileName, String sDataPointName) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		
 	
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
@@ -112,7 +116,7 @@ public class SGrModbusDevice {
 	
 	private String readValue( 
 			SGrModbusProfilesFrameType aProfile, 
-			SGrModbusDataPointsFrameType aDataPoint ) throws GenDriverException {
+			SGrModbusDataPointsFrameType aDataPoint ) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		
 		String retval = "-";
 		
@@ -189,7 +193,7 @@ public class SGrModbusDevice {
 	public SGrBasicGenDataPointTypeType getValByGDPType(
 			SGrModbusProfilesFrameType aProfile, 
 			SGrModbusDataPointsFrameType aDataPoint)
-			throws GenDriverException {
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		
 				return prv_getValByGDPType (aProfile,aDataPoint);
 	
@@ -198,7 +202,7 @@ public class SGrModbusDevice {
 	public SGrBasicGenDataPointTypeType getValByGDPType(
 					String sProfileName, 
 					String sDataPointName)
-					throws GenDriverException 
+					throws GenDriverException, GenDriverSocketException, GenDriverModbusException 
 	{
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 		
@@ -220,7 +224,7 @@ public class SGrModbusDevice {
    private SGrBasicGenDataPointTypeType prv_getValByGDPType(
 		SGrModbusProfilesFrameType aProfile, 
 		SGrModbusDataPointsFrameType aDataPoint)
-		throws GenDriverException {
+		throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 			
 		
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
@@ -958,7 +962,7 @@ private void  prv_setValByGDPType (
 					drv4Modbus.WriteSingleCoil(regad.intValue(), mbbitsnd[0]);
 				}
 
-		} catch (GenDriverException e) {
+		} catch (GenDriverException | GenDriverSocketException | GenDriverModbusException e) {
 			String causeMessage = e.getCause() != null ? " cause: " + e.getCause().getMessage() : ""; 
 			System.out.println("Write to modbus failed. " + e.getMessage() + causeMessage );
 			}	
