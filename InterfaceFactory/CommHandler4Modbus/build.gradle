@@ -58,7 +58,10 @@ jar {
 	from sourceSets.main.allSource
 
 	duplicatesStrategy='exclude'
-	exclude('**/ECLIPSE_.SF', '**/ECLIPSE_.DSA', '**/ECLIPSE_.RSA')	
+	exclude('**/ECLIPSE_.SF', '**/ECLIPSE_.DSA', '**/ECLIPSE_.RSA')
+	
+	// Remove this after project cleanup
+	exclude('*.lnk', '.project')
 
     from {
 		// configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
