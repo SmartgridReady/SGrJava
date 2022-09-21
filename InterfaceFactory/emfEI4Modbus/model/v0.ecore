@@ -2727,6 +2727,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genAttribute" upperBound="-1"
         eType="#//SGrAttr4GenericType" containment="true" resolveProxies="false">
+<<<<<<< HEAD
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="genAttribute"/>
@@ -2737,6 +2738,18 @@
         eType="#//SGrAttr4ModbusType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
+=======
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="genAttribute"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modbusAttr" upperBound="-1"
+        eType="#//SGrAttr4ModbusType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+>>>>>>> 5b41a36 (Rebase on top of master.)
         <details key="name" value="modbusAttr"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
@@ -3785,6 +3798,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genAttribute" upperBound="-1"
         eType="#//SGrAttr4GenericType" containment="true" resolveProxies="false">
+<<<<<<< HEAD
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="genAttribute"/>
@@ -3795,6 +3809,18 @@
         eType="#//SGrAttr4RestAPIType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
+=======
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="genAttribute"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restAPIAttr" upperBound="-1"
+        eType="#//SGrAttr4RestAPIType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+>>>>>>> 5b41a36 (Rebase on top of master.)
         <details key="name" value="restAPIAttr"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
