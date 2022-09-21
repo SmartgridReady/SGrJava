@@ -70,7 +70,7 @@ public class IBTlabLoopTester {
 	private static boolean  devWagoMeterTestIsOn = true; 
 	private static boolean  devABBMeterTestIsOn = true; 
 	private static boolean  devVGT_SGCPTestIsOn = true; 
-	private static boolean  devFroniusSymoTestIsOn = true; 
+	private static boolean  devFroniusSymoTestIsOn = false; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
 	
 	// shell for enumerations
