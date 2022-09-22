@@ -28,7 +28,7 @@ Commhandler4Modbus is the realization of the commmunication-handler for modbus R
 
 
 ### emfEI4Modbus
-emfEI4Modbus provides the XML description as Java classes. It the classes can be generated from the XML-Schema that provides the model of the device descriptions in XML. The Eclips EMF tools are used to generate the generate Java classes. For details see [Generate emfEI4Modbus classes](#generate-emfei4modbus-classes-afte-xml-schema-updates).
+emfEI4Modbus provides the Java-XML binding of XML device descriptions. The classes can be generated from an XML-Schema that provides the model for the device descriptions. Eclipse EMF (Eclipse Modeling Framework) tools are then used to generate the generate Java classes. For details see [Generate emfEI4Modbus classes](#generate-emfei4modbus-classes-afte-xml-schema-updates).
 
 
 ## Build and publish for development
