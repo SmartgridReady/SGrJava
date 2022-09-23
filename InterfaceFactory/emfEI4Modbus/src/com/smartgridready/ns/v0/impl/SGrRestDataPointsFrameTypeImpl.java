@@ -2,8 +2,9 @@
  */
 package com.smartgridready.ns.v0.impl;
 
+import com.smartgridready.ns.v0.SGrAttr4GenericType;
+import com.smartgridready.ns.v0.SGrAttr4RestAPIType;
 import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
-import com.smartgridready.ns.v0.SGrRestAPIAttrFrameType;
 import com.smartgridready.ns.v0.SGrRestAPIDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrRestDataPointsFrameType;
 import com.smartgridready.ns.v0.V0Package;
@@ -32,7 +33,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrRestDataPointsFrameTypeImpl#getDataPoint <em>Data Point</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrRestDataPointsFrameTypeImpl#getRestDataPoint <em>Rest Data Point</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrRestDataPointsFrameTypeImpl#getDpRestAPIAttrReference <em>Dp Rest API Attr Reference</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrRestDataPointsFrameTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrRestDataPointsFrameTypeImpl#getRestAPIAttr <em>Rest API Attr</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,14 +61,24 @@ public class SGrRestDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container
 	protected EList<SGrRestAPIDataPointDescriptionType> restDataPoint;
 
 	/**
-	 * The cached value of the '{@link #getDpRestAPIAttrReference() <em>Dp Rest API Attr Reference</em>}' containment reference list.
+	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDpRestAPIAttrReference()
+	 * @see #getGenAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrRestAPIAttrFrameType> dpRestAPIAttrReference;
+	protected EList<SGrAttr4GenericType> genAttribute;
+
+	/**
+	 * The cached value of the '{@link #getRestAPIAttr() <em>Rest API Attr</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRestAPIAttr()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrAttr4RestAPIType> restAPIAttr;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,11 +131,24 @@ public class SGrRestDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public EList<SGrRestAPIAttrFrameType> getDpRestAPIAttrReference() {
-		if (dpRestAPIAttrReference == null) {
-			dpRestAPIAttrReference = new EObjectContainmentEList<SGrRestAPIAttrFrameType>(SGrRestAPIAttrFrameType.class, this, V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__DP_REST_API_ATTR_REFERENCE);
+	public EList<SGrAttr4GenericType> getGenAttribute() {
+		if (genAttribute == null) {
+			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE);
 		}
-		return dpRestAPIAttrReference;
+		return genAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<SGrAttr4RestAPIType> getRestAPIAttr() {
+		if (restAPIAttr == null) {
+			restAPIAttr = new EObjectContainmentEList<SGrAttr4RestAPIType>(SGrAttr4RestAPIType.class, this, V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_API_ATTR);
+		}
+		return restAPIAttr;
 	}
 
 	/**
@@ -138,8 +163,10 @@ public class SGrRestDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container
 				return ((InternalEList<?>)getDataPoint()).basicRemove(otherEnd, msgs);
 			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_DATA_POINT:
 				return ((InternalEList<?>)getRestDataPoint()).basicRemove(otherEnd, msgs);
-			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__DP_REST_API_ATTR_REFERENCE:
-				return ((InternalEList<?>)getDpRestAPIAttrReference()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_API_ATTR:
+				return ((InternalEList<?>)getRestAPIAttr()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -156,8 +183,10 @@ public class SGrRestDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container
 				return getDataPoint();
 			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_DATA_POINT:
 				return getRestDataPoint();
-			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__DP_REST_API_ATTR_REFERENCE:
-				return getDpRestAPIAttrReference();
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				return getGenAttribute();
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_API_ATTR:
+				return getRestAPIAttr();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,9 +208,13 @@ public class SGrRestDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container
 				getRestDataPoint().clear();
 				getRestDataPoint().addAll((Collection<? extends SGrRestAPIDataPointDescriptionType>)newValue);
 				return;
-			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__DP_REST_API_ATTR_REFERENCE:
-				getDpRestAPIAttrReference().clear();
-				getDpRestAPIAttrReference().addAll((Collection<? extends SGrRestAPIAttrFrameType>)newValue);
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
+				return;
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_API_ATTR:
+				getRestAPIAttr().clear();
+				getRestAPIAttr().addAll((Collection<? extends SGrAttr4RestAPIType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,8 +234,11 @@ public class SGrRestDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container
 			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_DATA_POINT:
 				getRestDataPoint().clear();
 				return;
-			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__DP_REST_API_ATTR_REFERENCE:
-				getDpRestAPIAttrReference().clear();
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				return;
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_API_ATTR:
+				getRestAPIAttr().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -220,8 +256,10 @@ public class SGrRestDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container
 				return dataPoint != null && !dataPoint.isEmpty();
 			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_DATA_POINT:
 				return restDataPoint != null && !restDataPoint.isEmpty();
-			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__DP_REST_API_ATTR_REFERENCE:
-				return dpRestAPIAttrReference != null && !dpRestAPIAttrReference.isEmpty();
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				return genAttribute != null && !genAttribute.isEmpty();
+			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE__REST_API_ATTR:
+				return restAPIAttr != null && !restAPIAttr.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

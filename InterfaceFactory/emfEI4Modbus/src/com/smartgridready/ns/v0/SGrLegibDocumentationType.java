@@ -124,7 +124,7 @@ public interface SGrLegibDocumentationType extends EObject {
 	 * @return the value of the '<em>Uri</em>' attribute.
 	 * @see #setUri(String)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrLegibDocumentationType_Uri()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI" required="true"
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
 	 *        extendedMetaData="kind='element' name='uri' namespace='##targetNamespace'"
 	 * @generated
 	 */

@@ -2,10 +2,11 @@
  */
 package com.smartgridready.ns.v0.impl;
 
+import com.smartgridready.ns.v0.SGrAttr4GenericType;
+import com.smartgridready.ns.v0.SGrAttr4RestAPIType;
 import com.smartgridready.ns.v0.SGrDeviceProfileType;
 import com.smartgridready.ns.v0.SGrManufacturerIDType;
 import com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType;
-import com.smartgridready.ns.v0.SGrRestAPIAttrFrameType;
 import com.smartgridready.ns.v0.SGrRestAPIInterfaceDescriptionType;
 import com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType;
 import com.smartgridready.ns.v0.V0Package;
@@ -35,7 +36,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrRESTAPIDeviceDescriptionTypeImpl#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrRESTAPIDeviceDescriptionTypeImpl#getDevRestAPIAttrReference <em>Dev Rest API Attr Reference</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrRESTAPIDeviceDescriptionTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrRESTAPIDeviceDescriptionTypeImpl#getRestAPIAttr <em>Rest API Attr</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrRESTAPIDeviceDescriptionTypeImpl#getRestAPIInterfaceDesc <em>Rest API Interface Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrRESTAPIDeviceDescriptionTypeImpl#getFpListElement <em>Fp List Element</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrRESTAPIDeviceDescriptionTypeImpl#getDeviceName <em>Device Name</em>}</li>
@@ -58,14 +60,24 @@ public class SGrRESTAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Cont
 	protected SGrDeviceProfileType deviceProfile;
 
 	/**
-	 * The cached value of the '{@link #getDevRestAPIAttrReference() <em>Dev Rest API Attr Reference</em>}' containment reference list.
+	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDevRestAPIAttrReference()
+	 * @see #getGenAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrRestAPIAttrFrameType> devRestAPIAttrReference;
+	protected EList<SGrAttr4GenericType> genAttribute;
+
+	/**
+	 * The cached value of the '{@link #getRestAPIAttr() <em>Rest API Attr</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRestAPIAttr()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrAttr4RestAPIType> restAPIAttr;
 
 	/**
 	 * The cached value of the '{@link #getRestAPIInterfaceDesc() <em>Rest API Interface Desc</em>}' containment reference.
@@ -255,11 +267,24 @@ public class SGrRESTAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Cont
 	 * @generated
 	 */
 	@Override
-	public EList<SGrRestAPIAttrFrameType> getDevRestAPIAttrReference() {
-		if (devRestAPIAttrReference == null) {
-			devRestAPIAttrReference = new EObjectContainmentEList<SGrRestAPIAttrFrameType>(SGrRestAPIAttrFrameType.class, this, V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEV_REST_API_ATTR_REFERENCE);
+	public EList<SGrAttr4GenericType> getGenAttribute() {
+		if (genAttribute == null) {
+			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE);
 		}
-		return devRestAPIAttrReference;
+		return genAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<SGrAttr4RestAPIType> getRestAPIAttr() {
+		if (restAPIAttr == null) {
+			restAPIAttr = new EObjectContainmentEList<SGrAttr4RestAPIType>(SGrAttr4RestAPIType.class, this, V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_ATTR);
+		}
+		return restAPIAttr;
 	}
 
 	/**
@@ -476,8 +501,10 @@ public class SGrRESTAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Cont
 		switch (featureID) {
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				return basicSetDeviceProfile(null, msgs);
-			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEV_REST_API_ATTR_REFERENCE:
-				return ((InternalEList<?>)getDevRestAPIAttrReference()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_ATTR:
+				return ((InternalEList<?>)getRestAPIAttr()).basicRemove(otherEnd, msgs);
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_INTERFACE_DESC:
 				return basicSetRestAPIInterfaceDesc(null, msgs);
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
@@ -496,8 +523,10 @@ public class SGrRESTAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Cont
 		switch (featureID) {
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				return getDeviceProfile();
-			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEV_REST_API_ATTR_REFERENCE:
-				return getDevRestAPIAttrReference();
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				return getGenAttribute();
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_ATTR:
+				return getRestAPIAttr();
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_INTERFACE_DESC:
 				return getRestAPIInterfaceDesc();
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
@@ -526,9 +555,13 @@ public class SGrRESTAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Cont
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)newValue);
 				return;
-			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEV_REST_API_ATTR_REFERENCE:
-				getDevRestAPIAttrReference().clear();
-				getDevRestAPIAttrReference().addAll((Collection<? extends SGrRestAPIAttrFrameType>)newValue);
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
+				return;
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_ATTR:
+				getRestAPIAttr().clear();
+				getRestAPIAttr().addAll((Collection<? extends SGrAttr4RestAPIType>)newValue);
 				return;
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_INTERFACE_DESC:
 				setRestAPIInterfaceDesc((SGrRestAPIInterfaceDescriptionType)newValue);
@@ -564,8 +597,11 @@ public class SGrRESTAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Cont
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)null);
 				return;
-			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEV_REST_API_ATTR_REFERENCE:
-				getDevRestAPIAttrReference().clear();
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				return;
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_ATTR:
+				getRestAPIAttr().clear();
 				return;
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_INTERFACE_DESC:
 				setRestAPIInterfaceDesc((SGrRestAPIInterfaceDescriptionType)null);
@@ -599,8 +635,10 @@ public class SGrRESTAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Cont
 		switch (featureID) {
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				return deviceProfile != null;
-			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEV_REST_API_ATTR_REFERENCE:
-				return devRestAPIAttrReference != null && !devRestAPIAttrReference.isEmpty();
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				return genAttribute != null && !genAttribute.isEmpty();
+			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_ATTR:
+				return restAPIAttr != null && !restAPIAttr.isEmpty();
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_INTERFACE_DESC:
 				return restAPIInterfaceDesc != null;
 			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:

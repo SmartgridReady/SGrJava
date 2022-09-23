@@ -217,19 +217,17 @@ public class SGrModbusDevice {
 		// Attributes
 		// TODO: Workout instance of attributes, differentiate in between local XML
 		// datapoints & Modbus based datapoints
-		if (aDataPoint.getDpMbAttrReference().size() > 0) 
+		if (aDataPoint.getModbusAttr().size() > 0) 
 		{ // there are Modbus attributes available
 			
-			if (aDataPoint.getDpMbAttrReference()
-					.get(0).getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
+			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
 			} else {
-				SGrScalingType attrScaling = aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0)
-						.getScalingByMulPwr();
+				SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0).getScalingByMulPwr();
 				mul = attrScaling.getMultiplicator();
 				pwof10 = attrScaling.getPowerof10();
 			}
-			if (aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0).isSetLayer6Deviation()   )
-		       	l6dev = aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0).getLayer6Deviation().getValue();
+			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
+		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
 		}
 		
 			
@@ -646,10 +644,10 @@ public class SGrModbusDevice {
 		// Attributes
 		// TODO: Workout instance of attributes, differentiate in between local XML
 		// datapoints & Modbus based datapoints
-		if (aDataPoint.getDpMbAttrReference().size() > 0) { // there are Modbus attributes available
-			if (aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
+		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available
+			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
 			} else {
-				SGrScalingType attrScaling = aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0)
+				SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0)
 						.getScalingByMulPwr();
 				mul = attrScaling.getMultiplicator();
 				powof10 = attrScaling.getPowerof10();

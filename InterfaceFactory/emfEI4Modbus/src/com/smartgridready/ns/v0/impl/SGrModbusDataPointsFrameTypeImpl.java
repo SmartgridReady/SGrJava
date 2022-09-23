@@ -2,8 +2,9 @@
  */
 package com.smartgridready.ns.v0.impl;
 
+import com.smartgridready.ns.v0.SGrAttr4GenericType;
+import com.smartgridready.ns.v0.SGrAttr4ModbusType;
 import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
-import com.smartgridready.ns.v0.SGrModbusAttrFrameType;
 import com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusDataPointsFrameType;
 import com.smartgridready.ns.v0.V0Package;
@@ -32,7 +33,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointsFrameTypeImpl#getDataPoint <em>Data Point</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointsFrameTypeImpl#getModbusDataPoint <em>Modbus Data Point</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointsFrameTypeImpl#getDpMbAttrReference <em>Dp Mb Attr Reference</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointsFrameTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointsFrameTypeImpl#getModbusAttr <em>Modbus Attr</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,14 +61,24 @@ public class SGrModbusDataPointsFrameTypeImpl extends MinimalEObjectImpl.Contain
 	protected EList<SGrModbusDataPointDescriptionType> modbusDataPoint;
 
 	/**
-	 * The cached value of the '{@link #getDpMbAttrReference() <em>Dp Mb Attr Reference</em>}' containment reference list.
+	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDpMbAttrReference()
+	 * @see #getGenAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrModbusAttrFrameType> dpMbAttrReference;
+	protected EList<SGrAttr4GenericType> genAttribute;
+
+	/**
+	 * The cached value of the '{@link #getModbusAttr() <em>Modbus Attr</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModbusAttr()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrAttr4ModbusType> modbusAttr;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,11 +131,24 @@ public class SGrModbusDataPointsFrameTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public EList<SGrModbusAttrFrameType> getDpMbAttrReference() {
-		if (dpMbAttrReference == null) {
-			dpMbAttrReference = new EObjectContainmentEList<SGrModbusAttrFrameType>(SGrModbusAttrFrameType.class, this, V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__DP_MB_ATTR_REFERENCE);
+	public EList<SGrAttr4GenericType> getGenAttribute() {
+		if (genAttribute == null) {
+			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE);
 		}
-		return dpMbAttrReference;
+		return genAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<SGrAttr4ModbusType> getModbusAttr() {
+		if (modbusAttr == null) {
+			modbusAttr = new EObjectContainmentEList<SGrAttr4ModbusType>(SGrAttr4ModbusType.class, this, V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_ATTR);
+		}
+		return modbusAttr;
 	}
 
 	/**
@@ -138,8 +163,10 @@ public class SGrModbusDataPointsFrameTypeImpl extends MinimalEObjectImpl.Contain
 				return ((InternalEList<?>)getDataPoint()).basicRemove(otherEnd, msgs);
 			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_DATA_POINT:
 				return ((InternalEList<?>)getModbusDataPoint()).basicRemove(otherEnd, msgs);
-			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__DP_MB_ATTR_REFERENCE:
-				return ((InternalEList<?>)getDpMbAttrReference()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_ATTR:
+				return ((InternalEList<?>)getModbusAttr()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -156,8 +183,10 @@ public class SGrModbusDataPointsFrameTypeImpl extends MinimalEObjectImpl.Contain
 				return getDataPoint();
 			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_DATA_POINT:
 				return getModbusDataPoint();
-			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__DP_MB_ATTR_REFERENCE:
-				return getDpMbAttrReference();
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				return getGenAttribute();
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_ATTR:
+				return getModbusAttr();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,9 +208,13 @@ public class SGrModbusDataPointsFrameTypeImpl extends MinimalEObjectImpl.Contain
 				getModbusDataPoint().clear();
 				getModbusDataPoint().addAll((Collection<? extends SGrModbusDataPointDescriptionType>)newValue);
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__DP_MB_ATTR_REFERENCE:
-				getDpMbAttrReference().clear();
-				getDpMbAttrReference().addAll((Collection<? extends SGrModbusAttrFrameType>)newValue);
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
+				return;
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_ATTR:
+				getModbusAttr().clear();
+				getModbusAttr().addAll((Collection<? extends SGrAttr4ModbusType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,8 +234,11 @@ public class SGrModbusDataPointsFrameTypeImpl extends MinimalEObjectImpl.Contain
 			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_DATA_POINT:
 				getModbusDataPoint().clear();
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__DP_MB_ATTR_REFERENCE:
-				getDpMbAttrReference().clear();
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				return;
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_ATTR:
+				getModbusAttr().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -220,8 +256,10 @@ public class SGrModbusDataPointsFrameTypeImpl extends MinimalEObjectImpl.Contain
 				return dataPoint != null && !dataPoint.isEmpty();
 			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_DATA_POINT:
 				return modbusDataPoint != null && !modbusDataPoint.isEmpty();
-			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__DP_MB_ATTR_REFERENCE:
-				return dpMbAttrReference != null && !dpMbAttrReference.isEmpty();
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				return genAttribute != null && !genAttribute.isEmpty();
+			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_ATTR:
+				return modbusAttr != null && !modbusAttr.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

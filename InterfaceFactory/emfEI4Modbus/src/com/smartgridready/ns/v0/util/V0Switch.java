@@ -156,6 +156,12 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case V0Package.SGR_CHANGE_LOG: {
+				SGrChangeLog sGrChangeLog = (SGrChangeLog)theEObject;
+				T result = caseSGrChangeLog(sGrChangeLog);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE: {
 				SGrContactAPIDeviceDescriptionType sGrContactAPIDeviceDescriptionType = (SGrContactAPIDeviceDescriptionType)theEObject;
 				T result = caseSGrContactAPIDeviceDescriptionType(sGrContactAPIDeviceDescriptionType);
@@ -207,12 +213,6 @@ public class V0Switch<T> extends Switch<T> {
 			case V0Package.SGR_LEGIB_DOCUMENTATION_TYPE: {
 				SGrLegibDocumentationType sGrLegibDocumentationType = (SGrLegibDocumentationType)theEObject;
 				T result = caseSGrLegibDocumentationType(sGrLegibDocumentationType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case V0Package.SGR_MODBUS_ATTR_FRAME_TYPE: {
-				SGrModbusAttrFrameType sGrModbusAttrFrameType = (SGrModbusAttrFrameType)theEObject;
-				T result = caseSGrModbusAttrFrameType(sGrModbusAttrFrameType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -270,9 +270,9 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_REST_API_ATTR_FRAME_TYPE: {
-				SGrRestAPIAttrFrameType sGrRestAPIAttrFrameType = (SGrRestAPIAttrFrameType)theEObject;
-				T result = caseSGrRestAPIAttrFrameType(sGrRestAPIAttrFrameType);
+			case V0Package.SGR_RELEASE_NOTES: {
+				SGrReleaseNotes sGrReleaseNotes = (SGrReleaseNotes)theEObject;
+				T result = caseSGrReleaseNotes(sGrReleaseNotes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -656,6 +656,21 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Change Log</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Change Log</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrChangeLog(SGrChangeLog object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>SGr Contact API Device Description Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -787,21 +802,6 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSGrLegibDocumentationType(SGrLegibDocumentationType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Modbus Attr Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Modbus Attr Frame Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrModbusAttrFrameType(SGrModbusAttrFrameType object) {
 		return null;
 	}
 
@@ -941,17 +941,17 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Rest API Attr Frame Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Release Notes</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Rest API Attr Frame Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Release Notes</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSGrRestAPIAttrFrameType(SGrRestAPIAttrFrameType object) {
+	public T caseSGrReleaseNotes(SGrReleaseNotes object) {
 		return null;
 	}
 

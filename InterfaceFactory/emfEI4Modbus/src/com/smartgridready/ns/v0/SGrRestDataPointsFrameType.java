@@ -24,7 +24,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getDataPoint <em>Data Point</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getRestDataPoint <em>Rest Data Point</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getDpRestAPIAttrReference <em>Dp Rest API Attr Reference</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getRestAPIAttr <em>Rest API Attr</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrRestDataPointsFrameType()
@@ -50,12 +51,6 @@ public interface SGrRestDataPointsFrameType extends EObject {
 	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrRestAPIDataPointDescriptionType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  RestAPIAttrFrameTypes contain two branches of
-	 * 						SmartGridready attributes: Rest related and Generic
-	 * 						fpReatAPIAttrRefernce values are valid for a single datapoint
-	 * 					
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Rest Data Point</em>' containment reference list.
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrRestDataPointsFrameType_RestDataPoint()
 	 * @model containment="true" required="true"
@@ -65,16 +60,29 @@ public interface SGrRestDataPointsFrameType extends EObject {
 	EList<SGrRestAPIDataPointDescriptionType> getRestDataPoint();
 
 	/**
-	 * Returns the value of the '<em><b>Dp Rest API Attr Reference</b></em>' containment reference list.
-	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrRestAPIAttrFrameType}.
+	 * Returns the value of the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4GenericType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dp Rest API Attr Reference</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrRestDataPointsFrameType_DpRestAPIAttrReference()
+	 * @return the value of the '<em>Gen Attribute</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrRestDataPointsFrameType_GenAttribute()
 	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='dpRestAPIAttrReference' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='genAttribute' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	EList<SGrRestAPIAttrFrameType> getDpRestAPIAttrReference();
+	EList<SGrAttr4GenericType> getGenAttribute();
+
+	/**
+	 * Returns the value of the '<em><b>Rest API Attr</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4RestAPIType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Rest API Attr</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrRestDataPointsFrameType_RestAPIAttr()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='restAPIAttr' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SGrAttr4RestAPIType> getRestAPIAttr();
 
 } // SGrRestDataPointsFrameType

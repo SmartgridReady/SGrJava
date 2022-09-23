@@ -3,9 +3,10 @@
 package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.NetworkConnectionStateType;
+import com.smartgridready.ns.v0.SGrAttr4GenericType;
+import com.smartgridready.ns.v0.SGrAttr4ModbusType;
 import com.smartgridready.ns.v0.SGrDeviceProfileType;
 import com.smartgridready.ns.v0.SGrManufacturerIDType;
-import com.smartgridready.ns.v0.SGrModbusAttrFrameType;
 import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusProfilesFrameType;
@@ -36,7 +37,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getDevMbAttrReference <em>Dev Mb Attr Reference</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getModbusAttr <em>Modbus Attr</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getModbusInterfaceDesc <em>Modbus Interface Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getFpListElement <em>Fp List Element</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceDescriptionTypeImpl#getNetworkConnectionState <em>Network Connection State</em>}</li>
@@ -60,14 +62,24 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 	protected SGrDeviceProfileType deviceProfile;
 
 	/**
-	 * The cached value of the '{@link #getDevMbAttrReference() <em>Dev Mb Attr Reference</em>}' containment reference list.
+	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDevMbAttrReference()
+	 * @see #getGenAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrModbusAttrFrameType> devMbAttrReference;
+	protected EList<SGrAttr4GenericType> genAttribute;
+
+	/**
+	 * The cached value of the '{@link #getModbusAttr() <em>Modbus Attr</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModbusAttr()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrAttr4ModbusType> modbusAttr;
 
 	/**
 	 * The cached value of the '{@link #getModbusInterfaceDesc() <em>Modbus Interface Desc</em>}' containment reference.
@@ -267,11 +279,24 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 	 * @generated
 	 */
 	@Override
-	public EList<SGrModbusAttrFrameType> getDevMbAttrReference() {
-		if (devMbAttrReference == null) {
-			devMbAttrReference = new EObjectContainmentEList<SGrModbusAttrFrameType>(SGrModbusAttrFrameType.class, this, V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEV_MB_ATTR_REFERENCE);
+	public EList<SGrAttr4GenericType> getGenAttribute() {
+		if (genAttribute == null) {
+			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE);
 		}
-		return devMbAttrReference;
+		return genAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<SGrAttr4ModbusType> getModbusAttr() {
+		if (modbusAttr == null) {
+			modbusAttr = new EObjectContainmentEList<SGrAttr4ModbusType>(SGrAttr4ModbusType.class, this, V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_ATTR);
+		}
+		return modbusAttr;
 	}
 
 	/**
@@ -533,8 +558,10 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				return basicSetDeviceProfile(null, msgs);
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEV_MB_ATTR_REFERENCE:
-				return ((InternalEList<?>)getDevMbAttrReference()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_ATTR:
+				return ((InternalEList<?>)getModbusAttr()).basicRemove(otherEnd, msgs);
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_INTERFACE_DESC:
 				return basicSetModbusInterfaceDesc(null, msgs);
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
@@ -555,8 +582,10 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				return getDeviceProfile();
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEV_MB_ATTR_REFERENCE:
-				return getDevMbAttrReference();
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				return getGenAttribute();
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_ATTR:
+				return getModbusAttr();
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_INTERFACE_DESC:
 				return getModbusInterfaceDesc();
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
@@ -587,9 +616,13 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)newValue);
 				return;
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEV_MB_ATTR_REFERENCE:
-				getDevMbAttrReference().clear();
-				getDevMbAttrReference().addAll((Collection<? extends SGrModbusAttrFrameType>)newValue);
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
+				return;
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_ATTR:
+				getModbusAttr().clear();
+				getModbusAttr().addAll((Collection<? extends SGrAttr4ModbusType>)newValue);
 				return;
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_INTERFACE_DESC:
 				setModbusInterfaceDesc((SGrModbusInterfaceDescriptionType)newValue);
@@ -628,8 +661,11 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)null);
 				return;
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEV_MB_ATTR_REFERENCE:
-				getDevMbAttrReference().clear();
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				return;
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_ATTR:
+				getModbusAttr().clear();
 				return;
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_INTERFACE_DESC:
 				setModbusInterfaceDesc((SGrModbusInterfaceDescriptionType)null);
@@ -666,8 +702,10 @@ public class SGrModbusDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Conta
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				return deviceProfile != null;
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEV_MB_ATTR_REFERENCE:
-				return devMbAttrReference != null && !devMbAttrReference.isEmpty();
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				return genAttribute != null && !genAttribute.isEmpty();
+			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_ATTR:
+				return modbusAttr != null && !modbusAttr.isEmpty();
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_INTERFACE_DESC:
 				return modbusInterfaceDesc != null;
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:

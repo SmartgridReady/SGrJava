@@ -1561,9 +1561,6 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genAttribute" upperBound="-1"
         eType="#//SGrAttr4GenericType" containment="true" resolveProxies="false">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" ContactsAPI_AttrFrameTypes contains only the&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;generic branch of SGr attributes&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="genAttribute"/>
@@ -3780,9 +3777,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="restDataPoint" lowerBound="1"
         upperBound="-1" eType="#//SGrRestAPIDataPointDescriptionType" containment="true"
         resolveProxies="false">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" RestAPIAttrFrameTypes contain two branches of&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SmartGridready attributes: Rest related and Generic&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;fpReatAPIAttrRefernce values are valid for a single datapoint&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="RestDataPoint"/>

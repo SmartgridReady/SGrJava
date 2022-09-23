@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceDescriptionTypeImpl#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceDescriptionTypeImpl#getDevAttr4Generic <em>Dev Attr4 Generic</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceDescriptionTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceDescriptionTypeImpl#getFpListElement <em>Fp List Element</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceDescriptionTypeImpl#getDeviceName <em>Device Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceDescriptionTypeImpl#isIsLocalControl <em>Is Local Control</em>}</li>
@@ -56,14 +56,14 @@ public class SGrDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Container i
 	protected SGrDeviceProfileType deviceProfile;
 
 	/**
-	 * The cached value of the '{@link #getDevAttr4Generic() <em>Dev Attr4 Generic</em>}' containment reference list.
+	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDevAttr4Generic()
+	 * @see #getGenAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrAttr4GenericType> devAttr4Generic;
+	protected EList<SGrAttr4GenericType> genAttribute;
 
 	/**
 	 * The cached value of the '{@link #getFpListElement() <em>Fp List Element</em>}' containment reference list.
@@ -243,11 +243,11 @@ public class SGrDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
-	public EList<SGrAttr4GenericType> getDevAttr4Generic() {
-		if (devAttr4Generic == null) {
-			devAttr4Generic = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEV_ATTR4_GENERIC);
+	public EList<SGrAttr4GenericType> getGenAttribute() {
+		if (genAttribute == null) {
+			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE);
 		}
-		return devAttr4Generic;
+		return genAttribute;
 	}
 
 	/**
@@ -419,8 +419,8 @@ public class SGrDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Container i
 		switch (featureID) {
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				return basicSetDeviceProfile(null, msgs);
-			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEV_ATTR4_GENERIC:
-				return ((InternalEList<?>)getDevAttr4Generic()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
 				return ((InternalEList<?>)getFpListElement()).basicRemove(otherEnd, msgs);
 		}
@@ -437,8 +437,8 @@ public class SGrDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Container i
 		switch (featureID) {
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				return getDeviceProfile();
-			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEV_ATTR4_GENERIC:
-				return getDevAttr4Generic();
+			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				return getGenAttribute();
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
 				return getFpListElement();
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:
@@ -465,9 +465,9 @@ public class SGrDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Container i
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)newValue);
 				return;
-			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEV_ATTR4_GENERIC:
-				getDevAttr4Generic().clear();
-				getDevAttr4Generic().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
+			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
 				return;
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
 				getFpListElement().clear();
@@ -500,8 +500,8 @@ public class SGrDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Container i
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)null);
 				return;
-			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEV_ATTR4_GENERIC:
-				getDevAttr4Generic().clear();
+			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
 				return;
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
 				getFpListElement().clear();
@@ -532,8 +532,8 @@ public class SGrDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Container i
 		switch (featureID) {
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
 				return deviceProfile != null;
-			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEV_ATTR4_GENERIC:
-				return devAttr4Generic != null && !devAttr4Generic.isEmpty();
+			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+				return genAttribute != null && !genAttribute.isEmpty();
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
 				return fpListElement != null && !fpListElement.isEmpty();
 			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:

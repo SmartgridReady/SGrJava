@@ -23,7 +23,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getDevRestAPIAttrReference <em>Dev Rest API Attr Reference</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getRestAPIAttr <em>Rest API Attr</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getRestAPIInterfaceDesc <em>Rest API Interface Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getFpListElement <em>Fp List Element</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getDeviceName <em>Device Name</em>}</li>
@@ -61,23 +62,30 @@ public interface SGrRESTAPIDeviceDescriptionType extends EObject {
 	void setDeviceProfile(SGrDeviceProfileType value);
 
 	/**
-	 * Returns the value of the '<em><b>Dev Rest API Attr Reference</b></em>' containment reference list.
-	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrRestAPIAttrFrameType}.
+	 * Returns the value of the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4GenericType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  RestAPIAttrFrameTypes contain two branches of
-	 * 						SmartGridready attributes: REST related and Generic
-	 * 						devAttrReference values are valid for a whole device
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Dev Rest API Attr Reference</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrRESTAPIDeviceDescriptionType_DevRestAPIAttrReference()
+	 * @return the value of the '<em>Gen Attribute</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrRESTAPIDeviceDescriptionType_GenAttribute()
 	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='devRestAPIAttrReference' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='genAttribute' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	EList<SGrRestAPIAttrFrameType> getDevRestAPIAttrReference();
+	EList<SGrAttr4GenericType> getGenAttribute();
+
+	/**
+	 * Returns the value of the '<em><b>Rest API Attr</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4RestAPIType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Rest API Attr</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrRESTAPIDeviceDescriptionType_RestAPIAttr()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='restAPIAttr' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SGrAttr4RestAPIType> getRestAPIAttr();
 
 	/**
 	 * Returns the value of the '<em><b>Rest API Interface Desc</b></em>' containment reference.

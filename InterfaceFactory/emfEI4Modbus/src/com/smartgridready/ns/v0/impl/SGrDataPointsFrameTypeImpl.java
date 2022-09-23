@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointsFrameTypeImpl#getDataPoint <em>Data Point</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointsFrameTypeImpl#getDpAttr4Generic <em>Dp Attr4 Generic</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointsFrameTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,14 +49,14 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	protected SGrDataPointDescriptionType dataPoint;
 
 	/**
-	 * The cached value of the '{@link #getDpAttr4Generic() <em>Dp Attr4 Generic</em>}' containment reference list.
+	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDpAttr4Generic()
+	 * @see #getGenAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrAttr4GenericType> dpAttr4Generic;
+	protected EList<SGrAttr4GenericType> genAttribute;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,11 +128,11 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@Override
-	public EList<SGrAttr4GenericType> getDpAttr4Generic() {
-		if (dpAttr4Generic == null) {
-			dpAttr4Generic = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_DATA_POINTS_FRAME_TYPE__DP_ATTR4_GENERIC);
+	public EList<SGrAttr4GenericType> getGenAttribute() {
+		if (genAttribute == null) {
+			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE);
 		}
-		return dpAttr4Generic;
+		return genAttribute;
 	}
 
 	/**
@@ -145,8 +145,8 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
 				return basicSetDataPoint(null, msgs);
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DP_ATTR4_GENERIC:
-				return ((InternalEList<?>)getDpAttr4Generic()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -161,8 +161,8 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
 				return getDataPoint();
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DP_ATTR4_GENERIC:
-				return getDpAttr4Generic();
+			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				return getGenAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,9 +179,9 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
 				setDataPoint((SGrDataPointDescriptionType)newValue);
 				return;
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DP_ATTR4_GENERIC:
-				getDpAttr4Generic().clear();
-				getDpAttr4Generic().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
+			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -198,8 +198,8 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
 				setDataPoint((SGrDataPointDescriptionType)null);
 				return;
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DP_ATTR4_GENERIC:
-				getDpAttr4Generic().clear();
+			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -215,8 +215,8 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
 				return dataPoint != null;
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DP_ATTR4_GENERIC:
-				return dpAttr4Generic != null && !dpAttr4Generic.isEmpty();
+			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+				return genAttribute != null && !genAttribute.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

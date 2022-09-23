@@ -157,6 +157,15 @@ public interface V0Factory extends EFactory {
 	SGrBasicGenDataPointTypeType createSGrBasicGenDataPointTypeType();
 
 	/**
+	 * Returns a new object of class '<em>SGr Change Log</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Change Log</em>'.
+	 * @generated
+	 */
+	SGrChangeLog createSGrChangeLog();
+
+	/**
 	 * Returns a new object of class '<em>SGr Contact API Device Description Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -236,15 +245,6 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	SGrLegibDocumentationType createSGrLegibDocumentationType();
-
-	/**
-	 * Returns a new object of class '<em>SGr Modbus Attr Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Modbus Attr Frame Type</em>'.
-	 * @generated
-	 */
-	SGrModbusAttrFrameType createSGrModbusAttrFrameType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Modbus Data Point Description Type</em>'.
@@ -328,13 +328,13 @@ public interface V0Factory extends EFactory {
 	SGrProfilesFrameType createSGrProfilesFrameType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Rest API Attr Frame Type</em>'.
+	 * Returns a new object of class '<em>SGr Release Notes</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Rest API Attr Frame Type</em>'.
+	 * @return a new object of class '<em>SGr Release Notes</em>'.
 	 * @generated
 	 */
-	SGrRestAPIAttrFrameType createSGrRestAPIAttrFrameType();
+	SGrReleaseNotes createSGrReleaseNotes();
 
 	/**
 	 * Returns a new object of class '<em>SG Rrest API Bearer Type</em>'.

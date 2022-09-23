@@ -77,6 +77,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_ATTR4_REST_API_TYPE: return createSGrAttr4RestAPIType();
 			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE: return createSGrBasicGenArrayDPTypeType();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE: return createSGrBasicGenDataPointTypeType();
+			case V0Package.SGR_CHANGE_LOG: return createSGrChangeLog();
 			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE: return createSGrContactAPIDeviceDescriptionType();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE: return createSGrDataPointDescriptionType();
 			case V0Package.SGR_DATA_POINTS_FRAME_TYPE: return createSGrDataPointsFrameType();
@@ -86,7 +87,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_FLEX_ASSISTANCE_TYPE: return createSGrFlexAssistanceType();
 			case V0Package.SGR_INTERFACE_DESCRIPTION_TYPE: return createSGrInterfaceDescriptionType();
 			case V0Package.SGR_LEGIB_DOCUMENTATION_TYPE: return createSGrLegibDocumentationType();
-			case V0Package.SGR_MODBUS_ATTR_FRAME_TYPE: return createSGrModbusAttrFrameType();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE: return createSGrModbusDataPointDescriptionType();
 			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE: return createSGrModbusDataPointsFrameType();
 			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE: return createSGrModbusDeviceDescriptionType();
@@ -96,7 +96,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE: return createSGrProfileDescriptionType();
 			case V0Package.SGR_PROFILENUMBER_TYPE: return createSGrProfilenumberType();
 			case V0Package.SGR_PROFILES_FRAME_TYPE: return createSGrProfilesFrameType();
-			case V0Package.SGR_REST_API_ATTR_FRAME_TYPE: return createSGrRestAPIAttrFrameType();
+			case V0Package.SGR_RELEASE_NOTES: return createSGrReleaseNotes();
 			case V0Package.SG_RREST_API_BEARER_TYPE: return createSGRrestAPIBearerType();
 			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE: return createSGrRestAPIDataPointDescriptionType();
 			case V0Package.SGR_REST_API_DATA_POINTS_FRAME_TYPE: return createSGrRestAPIDataPointsFrameType();
@@ -187,6 +187,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrOCPPStateTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_POWER_SOURCE_TYPE:
 				return createSGrPowerSourceTypeFromString(eDataType, initialValue);
+			case V0Package.SGR_RELEASE_STATE:
+				return createSGrReleaseStateFromString(eDataType, initialValue);
 			case V0Package.SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE:
 				return createSGrRestAPIAuthenticationEnumMethodTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_REST_AP_IDATA_TYPE_TYPE:
@@ -311,6 +313,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrPrecisionTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_PRECISION_TYPE_OBJECT:
 				return createSGrPrecisionTypeObjectFromString(eDataType, initialValue);
+			case V0Package.SGR_RELEASE_STATE_OBJECT:
+				return createSGrReleaseStateObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE_OBJECT:
 				return createSGrRestAPIAuthenticationEnumMethodTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_REST_AP_IDATA_TYPE_TYPE_OBJECT:
@@ -420,6 +424,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrOCPPStateTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_POWER_SOURCE_TYPE:
 				return convertSGrPowerSourceTypeToString(eDataType, instanceValue);
+			case V0Package.SGR_RELEASE_STATE:
+				return convertSGrReleaseStateToString(eDataType, instanceValue);
 			case V0Package.SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE:
 				return convertSGrRestAPIAuthenticationEnumMethodTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_REST_AP_IDATA_TYPE_TYPE:
@@ -544,6 +550,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrPrecisionTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_PRECISION_TYPE_OBJECT:
 				return convertSGrPrecisionTypeObjectToString(eDataType, instanceValue);
+			case V0Package.SGR_RELEASE_STATE_OBJECT:
+				return convertSGrReleaseStateObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE_OBJECT:
 				return convertSGrRestAPIAuthenticationEnumMethodTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_REST_AP_IDATA_TYPE_TYPE_OBJECT:
@@ -764,6 +772,17 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
+	public SGrChangeLog createSGrChangeLog() {
+		SGrChangeLogImpl sGrChangeLog = new SGrChangeLogImpl();
+		return sGrChangeLog;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SGrContactAPIDeviceDescriptionType createSGrContactAPIDeviceDescriptionType() {
 		SGrContactAPIDeviceDescriptionTypeImpl sGrContactAPIDeviceDescriptionType = new SGrContactAPIDeviceDescriptionTypeImpl();
 		return sGrContactAPIDeviceDescriptionType;
@@ -855,17 +874,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public SGrLegibDocumentationType createSGrLegibDocumentationType() {
 		SGrLegibDocumentationTypeImpl sGrLegibDocumentationType = new SGrLegibDocumentationTypeImpl();
 		return sGrLegibDocumentationType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrModbusAttrFrameType createSGrModbusAttrFrameType() {
-		SGrModbusAttrFrameTypeImpl sGrModbusAttrFrameType = new SGrModbusAttrFrameTypeImpl();
-		return sGrModbusAttrFrameType;
 	}
 
 	/**
@@ -973,9 +981,9 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrRestAPIAttrFrameType createSGrRestAPIAttrFrameType() {
-		SGrRestAPIAttrFrameTypeImpl sGrRestAPIAttrFrameType = new SGrRestAPIAttrFrameTypeImpl();
-		return sGrRestAPIAttrFrameType;
+	public SGrReleaseNotes createSGrReleaseNotes() {
+		SGrReleaseNotesImpl sGrReleaseNotes = new SGrReleaseNotesImpl();
+		return sGrReleaseNotes;
 	}
 
 	/**
@@ -1770,6 +1778,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertSGrPowerSourceTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrReleaseState createSGrReleaseStateFromString(EDataType eDataType, String initialValue) {
+		SGrReleaseState result = SGrReleaseState.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrReleaseStateToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2915,6 +2943,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrPrecisionTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrPrecisionTypeToString(V0Package.eINSTANCE.getSGrPrecisionType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrReleaseState createSGrReleaseStateObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrReleaseStateFromString(V0Package.eINSTANCE.getSGrReleaseState(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrReleaseStateObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrReleaseStateToString(V0Package.eINSTANCE.getSGrReleaseState(), instanceValue);
 	}
 
 	/**

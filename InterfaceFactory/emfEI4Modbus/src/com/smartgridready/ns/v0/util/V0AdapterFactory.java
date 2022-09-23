@@ -128,6 +128,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrBasicGenDataPointTypeTypeAdapter();
 			}
 			@Override
+			public Adapter caseSGrChangeLog(SGrChangeLog object) {
+				return createSGrChangeLogAdapter();
+			}
+			@Override
 			public Adapter caseSGrContactAPIDeviceDescriptionType(SGrContactAPIDeviceDescriptionType object) {
 				return createSGrContactAPIDeviceDescriptionTypeAdapter();
 			}
@@ -162,10 +166,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseSGrLegibDocumentationType(SGrLegibDocumentationType object) {
 				return createSGrLegibDocumentationTypeAdapter();
-			}
-			@Override
-			public Adapter caseSGrModbusAttrFrameType(SGrModbusAttrFrameType object) {
-				return createSGrModbusAttrFrameTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrModbusDataPointDescriptionType(SGrModbusDataPointDescriptionType object) {
@@ -204,8 +204,8 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrProfilesFrameTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrRestAPIAttrFrameType(SGrRestAPIAttrFrameType object) {
-				return createSGrRestAPIAttrFrameTypeAdapter();
+			public Adapter caseSGrReleaseNotes(SGrReleaseNotes object) {
+				return createSGrReleaseNotesAdapter();
 			}
 			@Override
 			public Adapter caseSGRrestAPIBearerType(SGRrestAPIBearerType object) {
@@ -538,6 +538,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrChangeLog <em>SGr Change Log</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrChangeLog
+	 * @generated
+	 */
+	public Adapter createSGrChangeLogAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType <em>SGr Contact API Device Description Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -660,20 +674,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSGrLegibDocumentationTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusAttrFrameType <em>SGr Modbus Attr Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrModbusAttrFrameType
-	 * @generated
-	 */
-	public Adapter createSGrModbusAttrFrameTypeAdapter() {
 		return null;
 	}
 
@@ -804,16 +804,16 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRestAPIAttrFrameType <em>SGr Rest API Attr Frame Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrReleaseNotes <em>SGr Release Notes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIAttrFrameType
+	 * @see com.smartgridready.ns.v0.SGrReleaseNotes
 	 * @generated
 	 */
-	public Adapter createSGrRestAPIAttrFrameTypeAdapter() {
+	public Adapter createSGrReleaseNotesAdapter() {
 		return null;
 	}
 

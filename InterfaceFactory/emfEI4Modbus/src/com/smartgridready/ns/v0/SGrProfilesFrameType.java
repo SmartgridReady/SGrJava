@@ -20,8 +20,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getReleaseNotes <em>Release Notes</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getFunctionalProfile <em>Functional Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getFpAttr4Generic <em>Fp Attr4 Generic</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getGenAttribute <em>Gen Attribute</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getDpListElement <em>Dp List Element</em>}</li>
  * </ul>
  *
@@ -30,6 +31,29 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface SGrProfilesFrameType extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Release Notes</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Release Notes</em>' containment reference.
+	 * @see #setReleaseNotes(SGrReleaseNotes)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfilesFrameType_ReleaseNotes()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='releaseNotes' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrReleaseNotes getReleaseNotes();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getReleaseNotes <em>Release Notes</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Release Notes</em>' containment reference.
+	 * @see #getReleaseNotes()
+	 * @generated
+	 */
+	void setReleaseNotes(SGrReleaseNotes value);
+
 	/**
 	 * Returns the value of the '<em><b>Functional Profile</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -54,17 +78,17 @@ public interface SGrProfilesFrameType extends EObject {
 	void setFunctionalProfile(SGrProfileDescriptionType value);
 
 	/**
-	 * Returns the value of the '<em><b>Fp Attr4 Generic</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Gen Attribute</b></em>' containment reference list.
 	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4GenericType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Fp Attr4 Generic</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfilesFrameType_FpAttr4Generic()
+	 * @return the value of the '<em>Gen Attribute</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfilesFrameType_GenAttribute()
 	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='fpAttr4Generic' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='genAttribute' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	EList<SGrAttr4GenericType> getFpAttr4Generic();
+	EList<SGrAttr4GenericType> getGenAttribute();
 
 	/**
 	 * Returns the value of the '<em><b>Dp List Element</b></em>' containment reference list.

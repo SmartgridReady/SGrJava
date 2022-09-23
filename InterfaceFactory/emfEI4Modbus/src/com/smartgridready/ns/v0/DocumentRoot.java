@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getBaudRatesSupported <em>Baud Rates Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getByteLenSupported <em>Byte Len Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getFunctionalProfiles <em>Functional Profiles</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getGenDeviceFrame <em>Gen Device Frame</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getModbusFunctionCodesSupported <em>Modbus Function Codes Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getNetConnectionState <em>Net Connection State</em>}</li>
@@ -32,6 +31,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusInterfaceDescription <em>SGr Modbus Interface Description</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSgrContactAPIDeviceFrame <em>Sgr Contact API Device Frame</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrContactAPIDeviceDescriptionType <em>SGr Contact API Device Description Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileDescriptionType <em>SGr Functional Profile Description Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDeviceDescriptionType <em>SGr Modbus Device Description Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDeviceFrame <em>SGr Modbus Device Frame</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrRESTAPIDeviceDescriptionType <em>SGr RESTAPI Device Description Type</em>}</li>
@@ -161,34 +161,6 @@ public interface DocumentRoot extends EObject {
 	 * @generated
 	 */
 	void setDeviceProfile(SGrDeviceProfileType value);
-
-	/**
-	 * Returns the value of the '<em><b>Functional Profiles</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  RPT Root Point for stand alone generic Functional
-	 * 				Profile description
-	 * 			
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Functional Profiles</em>' containment reference.
-	 * @see #setFunctionalProfiles(SGrProfilesFrameType)
-	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_FunctionalProfiles()
-	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='functionalProfiles' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrProfilesFrameType getFunctionalProfiles();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getFunctionalProfiles <em>Functional Profiles</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Functional Profiles</em>' containment reference.
-	 * @see #getFunctionalProfiles()
-	 * @generated
-	 */
-	void setFunctionalProfiles(SGrProfilesFrameType value);
 
 	/**
 	 * Returns the value of the '<em><b>Gen Device Frame</b></em>' containment reference.
@@ -386,6 +358,34 @@ public interface DocumentRoot extends EObject {
 	 * @generated
 	 */
 	void setSGrContactAPIDeviceDescriptionType(SGrContactAPIDeviceDescriptionType value);
+
+	/**
+	 * Returns the value of the '<em><b>SGr Functional Profile Description Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 *  RPT Root Point for stand alone generic Functional
+	 * 				Profile description
+	 * 			
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>SGr Functional Profile Description Type</em>' containment reference.
+	 * @see #setSGrFunctionalProfileDescriptionType(SGrProfilesFrameType)
+	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrFunctionalProfileDescriptionType()
+	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+	 *        extendedMetaData="kind='element' name='SGrFunctionalProfileDescriptionType' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrProfilesFrameType getSGrFunctionalProfileDescriptionType();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileDescriptionType <em>SGr Functional Profile Description Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>SGr Functional Profile Description Type</em>' containment reference.
+	 * @see #getSGrFunctionalProfileDescriptionType()
+	 * @generated
+	 */
+	void setSGrFunctionalProfileDescriptionType(SGrProfilesFrameType value);
 
 	/**
 	 * Returns the value of the '<em><b>SGr Modbus Device Description Type</b></em>' containment reference.

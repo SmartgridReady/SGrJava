@@ -2,7 +2,8 @@
  */
 package com.smartgridready.ns.v0.impl;
 
-import com.smartgridready.ns.v0.SGrModbusAttrFrameType;
+import com.smartgridready.ns.v0.SGrAttr4GenericType;
+import com.smartgridready.ns.v0.SGrAttr4ModbusType;
 import com.smartgridready.ns.v0.SGrModbusDataPointsFrameType;
 import com.smartgridready.ns.v0.SGrModbusProfilesFrameType;
 import com.smartgridready.ns.v0.SGrProfileDescriptionType;
@@ -33,7 +34,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusProfilesFrameTypeImpl#getFunctionalProfile <em>Functional Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusProfilesFrameTypeImpl#getFpMbAttrReference <em>Fp Mb Attr Reference</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusProfilesFrameTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusProfilesFrameTypeImpl#getModbusAttr <em>Modbus Attr</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusProfilesFrameTypeImpl#getDpListElement <em>Dp List Element</em>}</li>
  * </ul>
  *
@@ -51,14 +53,24 @@ public class SGrModbusProfilesFrameTypeImpl extends MinimalEObjectImpl.Container
 	protected SGrProfileDescriptionType functionalProfile;
 
 	/**
-	 * The cached value of the '{@link #getFpMbAttrReference() <em>Fp Mb Attr Reference</em>}' containment reference list.
+	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFpMbAttrReference()
+	 * @see #getGenAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrModbusAttrFrameType> fpMbAttrReference;
+	protected EList<SGrAttr4GenericType> genAttribute;
+
+	/**
+	 * The cached value of the '{@link #getModbusAttr() <em>Modbus Attr</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModbusAttr()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrAttr4ModbusType> modbusAttr;
 
 	/**
 	 * The cached value of the '{@link #getDpListElement() <em>Dp List Element</em>}' containment reference list.
@@ -140,11 +152,24 @@ public class SGrModbusProfilesFrameTypeImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public EList<SGrModbusAttrFrameType> getFpMbAttrReference() {
-		if (fpMbAttrReference == null) {
-			fpMbAttrReference = new EObjectContainmentEList<SGrModbusAttrFrameType>(SGrModbusAttrFrameType.class, this, V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FP_MB_ATTR_REFERENCE);
+	public EList<SGrAttr4GenericType> getGenAttribute() {
+		if (genAttribute == null) {
+			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE);
 		}
-		return fpMbAttrReference;
+		return genAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<SGrAttr4ModbusType> getModbusAttr() {
+		if (modbusAttr == null) {
+			modbusAttr = new EObjectContainmentEList<SGrAttr4ModbusType>(SGrAttr4ModbusType.class, this, V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__MODBUS_ATTR);
+		}
+		return modbusAttr;
 	}
 
 	/**
@@ -170,8 +195,10 @@ public class SGrModbusProfilesFrameTypeImpl extends MinimalEObjectImpl.Container
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				return basicSetFunctionalProfile(null, msgs);
-			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FP_MB_ATTR_REFERENCE:
-				return ((InternalEList<?>)getFpMbAttrReference()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__MODBUS_ATTR:
+				return ((InternalEList<?>)getModbusAttr()).basicRemove(otherEnd, msgs);
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
 				return ((InternalEList<?>)getDpListElement()).basicRemove(otherEnd, msgs);
 		}
@@ -188,8 +215,10 @@ public class SGrModbusProfilesFrameTypeImpl extends MinimalEObjectImpl.Container
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				return getFunctionalProfile();
-			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FP_MB_ATTR_REFERENCE:
-				return getFpMbAttrReference();
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+				return getGenAttribute();
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__MODBUS_ATTR:
+				return getModbusAttr();
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
 				return getDpListElement();
 		}
@@ -208,9 +237,13 @@ public class SGrModbusProfilesFrameTypeImpl extends MinimalEObjectImpl.Container
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				setFunctionalProfile((SGrProfileDescriptionType)newValue);
 				return;
-			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FP_MB_ATTR_REFERENCE:
-				getFpMbAttrReference().clear();
-				getFpMbAttrReference().addAll((Collection<? extends SGrModbusAttrFrameType>)newValue);
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
+				return;
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__MODBUS_ATTR:
+				getModbusAttr().clear();
+				getModbusAttr().addAll((Collection<? extends SGrAttr4ModbusType>)newValue);
 				return;
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
 				getDpListElement().clear();
@@ -231,8 +264,11 @@ public class SGrModbusProfilesFrameTypeImpl extends MinimalEObjectImpl.Container
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				setFunctionalProfile((SGrProfileDescriptionType)null);
 				return;
-			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FP_MB_ATTR_REFERENCE:
-				getFpMbAttrReference().clear();
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+				getGenAttribute().clear();
+				return;
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__MODBUS_ATTR:
+				getModbusAttr().clear();
 				return;
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
 				getDpListElement().clear();
@@ -251,8 +287,10 @@ public class SGrModbusProfilesFrameTypeImpl extends MinimalEObjectImpl.Container
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				return functionalProfile != null;
-			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__FP_MB_ATTR_REFERENCE:
-				return fpMbAttrReference != null && !fpMbAttrReference.isEmpty();
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+				return genAttribute != null && !genAttribute.isEmpty();
+			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__MODBUS_ATTR:
+				return modbusAttr != null && !modbusAttr.isEmpty();
 			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
 				return dpListElement != null && !dpListElement.isEmpty();
 		}

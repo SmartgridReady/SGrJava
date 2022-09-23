@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getDevAttr4Generic <em>Dev Attr4 Generic</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getGenAttribute <em>Gen Attribute</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getFpListElement <em>Fp List Element</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getDeviceName <em>Device Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}</li>
@@ -59,17 +59,17 @@ public interface SGrDeviceDescriptionType extends EObject {
 	void setDeviceProfile(SGrDeviceProfileType value);
 
 	/**
-	 * Returns the value of the '<em><b>Dev Attr4 Generic</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Gen Attribute</b></em>' containment reference list.
 	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4GenericType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dev Attr4 Generic</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceDescriptionType_DevAttr4Generic()
+	 * @return the value of the '<em>Gen Attribute</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceDescriptionType_GenAttribute()
 	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='devAttr4Generic' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='genAttribute' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	EList<SGrAttr4GenericType> getDevAttr4Generic();
+	EList<SGrAttr4GenericType> getGenAttribute();
 
 	/**
 	 * Returns the value of the '<em><b>Fp List Element</b></em>' containment reference list.

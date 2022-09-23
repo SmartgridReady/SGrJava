@@ -24,7 +24,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getDataPoint <em>Data Point</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getModbusDataPoint <em>Modbus Data Point</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getDpMbAttrReference <em>Dp Mb Attr Reference</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getModbusAttr <em>Modbus Attr</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointsFrameType()
@@ -50,14 +51,6 @@ public interface SGrModbusDataPointsFrameType extends EObject {
 	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *     				ModbusAttrFrameTypes contain two branches of
-	 *     				SmartGridready attributes: Modbus related and
-	 *     				Generic fpMbAttrRefernce values are valid for a
-	 *     				single datapoint
-	 *     			
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Modbus Data Point</em>' containment reference list.
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointsFrameType_ModbusDataPoint()
 	 * @model containment="true" required="true"
@@ -67,16 +60,29 @@ public interface SGrModbusDataPointsFrameType extends EObject {
 	EList<SGrModbusDataPointDescriptionType> getModbusDataPoint();
 
 	/**
-	 * Returns the value of the '<em><b>Dp Mb Attr Reference</b></em>' containment reference list.
-	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrModbusAttrFrameType}.
+	 * Returns the value of the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4GenericType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dp Mb Attr Reference</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointsFrameType_DpMbAttrReference()
+	 * @return the value of the '<em>Gen Attribute</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointsFrameType_GenAttribute()
 	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='dpMbAttrReference' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='genAttribute' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	EList<SGrModbusAttrFrameType> getDpMbAttrReference();
+	EList<SGrAttr4GenericType> getGenAttribute();
+
+	/**
+	 * Returns the value of the '<em><b>Modbus Attr</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4ModbusType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Modbus Attr</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointsFrameType_ModbusAttr()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='modbusAttr' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SGrAttr4ModbusType> getModbusAttr();
 
 } // SGrModbusDataPointsFrameType
