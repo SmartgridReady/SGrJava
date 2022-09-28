@@ -920,7 +920,7 @@ public class SGrModbusDevice {
 					drv4Modbus.WriteSingleCoil(regad.intValue(), mbbitsnd[0]);
 			}
 
-		} catch (GenDriverException e) {
+		} catch (GenDriverException | GenDriverSocketException | GenDriverModbusException e) {
 			String causeMessage = e.getCause() != null ? " cause: " + e.getCause().getMessage() : "";
 			System.out.println("Write to modbus failed. " + e.getMessage() + causeMessage);
 		}
