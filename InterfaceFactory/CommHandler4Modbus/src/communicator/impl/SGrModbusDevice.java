@@ -58,6 +58,8 @@ import com.smartgridready.ns.v0.V0Factory;
 
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
+import communicator.common.runtime.GenDriverModbusException;
+import communicator.common.runtime.GenDriverSocketException;
 import communicator.helper.ModbusHlpr;
 
 public class SGrModbusDevice {
@@ -72,13 +74,17 @@ public class SGrModbusDevice {
 
 	}
 
+
 	/**
-	 * <!-- begin-user-doc --> this function reads registers from a Modbus device
-	 * and converts it into the SmartGridready generic layer format sample code
-	 * edited by Chris Broennnimann <!-- end-user-doc -->
 	 * 
-	 **/
-	public String getVal(String sProfileName, String sDataPointName) throws GenDriverException {
+	 * @param sProfileName
+	 * @param sDataPointName
+	 * @return
+	 * @throws GenDriverException
+	 * @throws GenDriverSocketException
+	 * @throws GenDriverModbusException
+	 */
+	public String getVal(String sProfileName, String sDataPointName) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 		if (profile.isPresent()) {
@@ -105,7 +111,7 @@ public class SGrModbusDevice {
 	}
 
 	private String readValue(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint)
-			throws GenDriverException {
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		String retval = "-";
 
@@ -163,14 +169,14 @@ public class SGrModbusDevice {
 	}
 
 	public SGrBasicGenDataPointTypeType getValByGDPType(SGrModbusProfilesFrameType aProfile,
-			SGrModbusDataPointsFrameType aDataPoint) throws GenDriverException {
+			SGrModbusDataPointsFrameType aDataPoint) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		return prv_getValByGDPType(aProfile, aDataPoint);
 
 	}
 
 	public SGrBasicGenDataPointTypeType getValByGDPType(String sProfileName, String sDataPointName)
-			throws GenDriverException {
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 
 		SGrBasicGenDataPointTypeType retval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
@@ -188,7 +194,7 @@ public class SGrModbusDevice {
 	private SGrBasicGenDataPointTypeType prv_getValByGDPType(
 		SGrModbusProfilesFrameType aProfile, 
 		SGrModbusDataPointsFrameType aDataPoint)
-		throws GenDriverException {
+		throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 			
 		
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
@@ -514,7 +520,7 @@ public class SGrModbusDevice {
 		return mbregconv;
 	}
 
-	public String setVal(String sProfileName, String sDataPointName, String sValue) throws GenDriverException {
+	public String setVal(String sProfileName, String sDataPointName, String sValue) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 		if (profile.isPresent()) {
@@ -528,7 +534,7 @@ public class SGrModbusDevice {
 	}
 
 	private void writeValue(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint, String sValue)
-			throws GenDriverException {
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
 
@@ -595,14 +601,14 @@ public class SGrModbusDevice {
 
 // generic class API using SGrBasicGenDataPointTypeType
 	public void setValByGDPType(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint,
-			SGrBasicGenDataPointTypeType sgrValue) throws GenDriverException {
+			SGrBasicGenDataPointTypeType sgrValue) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		prv_setValByGDPType(aProfile, aDataPoint, sgrValue);
 
 	}
 
 	public void setValByGDPType(String sProfileName, String sDataPointName, SGrBasicGenDataPointTypeType sgrValue)
-			throws GenDriverException {
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
 
 		if (profile.isPresent()) {
@@ -615,7 +621,7 @@ public class SGrModbusDevice {
 	}
 
 	private void prv_setValByGDPType(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint,
-			SGrBasicGenDataPointTypeType sgrValue) throws GenDriverException {
+			SGrBasicGenDataPointTypeType sgrValue) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		int[] mbregsnd = new int[120];
 		int res = 0, size = 0;
