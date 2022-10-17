@@ -29,11 +29,10 @@ import java.time.format.DateTimeFormatter;
 
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.SGrOCPPStateType;
-import com.smartgridready.ns.v0.V0Factory;
 
-import communicator.common.runtime.GenDriverAPI4Modbus;
+import communicator.common.runtime.Parity;
 import communicator.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
@@ -67,7 +66,7 @@ public class IBTlabLoopTester {
 	private static int devGaroWallboxExceptions = 0;
 	private static int devFroniusSymoExceptions = 0;
 	// device selection
-	private static boolean  devWagoMeterTestIsOn = false; 
+	private static boolean  devWagoMeterTestIsOn = true; 
 	private static boolean  devABBMeterTestIsOn = true; 
 	private static boolean  devVGT_SGCPTestIsOn = true; 
 	private static boolean  devFroniusSymoTestIsOn = true; 
@@ -86,8 +85,8 @@ public class IBTlabLoopTester {
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
-			mbRTU.initTrspService("COM9");			
-			
+			//mbRTU.initTrspService("COM9");			
+			mbRTU.initTrspService("COM9", 19200, Parity.EVEN);
 			if (devWagoMeterTestIsOn) {
 				System.out.printf("%n-init devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ "%n");
 				initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
@@ -156,8 +155,8 @@ public class IBTlabLoopTester {
 		
 		try {	
 			
-			DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
-			SGrModbusDeviceDescriptionType tstMeter = loader.load(aBaseDir,aDescriptionFile);	
+			DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+			SGrModbusDeviceFrame tstMeter = loader.load(aBaseDir,aDescriptionFile);	
 			devWagoMeter =  new SGrModbusDevice(tstMeter, mbRTU );
 
 			
@@ -309,8 +308,8 @@ public class IBTlabLoopTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
-				SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+				SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 				devABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
 			}
@@ -378,8 +377,8 @@ public class IBTlabLoopTester {
 				
 				try {	
 					
-					DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
-					SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+					DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+					SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 					GenDriverAPI4ModbusTCP mbVGT_SGCP= new GenDriverAPI4ModbusTCP();
@@ -435,8 +434,8 @@ public class IBTlabLoopTester {
 					
 					try {	
 						
-						DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
-						SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+						DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+						SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 						
 						// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 						GenDriverAPI4ModbusTCP mbWbGaro= new GenDriverAPI4ModbusTCP();
@@ -538,8 +537,8 @@ public class IBTlabLoopTester {
 						
 						try {	
 							
-							DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
-							SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+							DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+							SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 							GenDriverAPI4ModbusTCP mbPVFroniusSymo = new GenDriverAPI4ModbusTCP();
@@ -596,8 +595,8 @@ public class IBTlabLoopTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
-				SGrModbusDeviceDescriptionType tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+				SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 				
 				// replace device specific for RTU
 				//add devXXXX =  new SGrModbusDevice(tstDesc, mbRTU );

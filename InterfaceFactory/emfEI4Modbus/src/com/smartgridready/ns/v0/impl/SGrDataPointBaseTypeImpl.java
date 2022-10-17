@@ -3,8 +3,8 @@
 package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
+import com.smartgridready.ns.v0.SGrDataPointBaseType;
 import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
-import com.smartgridready.ns.v0.SGrDataPointsFrameType;
 import com.smartgridready.ns.v0.V0Package;
 
 import java.util.Collection;
@@ -25,19 +25,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>SGr Data Points Frame Type</b></em>'.
+ * An implementation of the model object '<em><b>SGr Data Point Base Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointsFrameTypeImpl#getDataPoint <em>Data Point</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointsFrameTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointBaseTypeImpl#getDataPoint <em>Data Point</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointBaseTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container implements SGrDataPointsFrameType {
+public class SGrDataPointBaseTypeImpl extends MinimalEObjectImpl.Container implements SGrDataPointBaseType {
 	/**
 	 * The cached value of the '{@link #getDataPoint() <em>Data Point</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SGrDataPointsFrameTypeImpl() {
+	protected SGrDataPointBaseTypeImpl() {
 		super();
 	}
 
@@ -74,7 +74,7 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return V0Package.eINSTANCE.getSGrDataPointsFrameType();
+		return V0Package.eINSTANCE.getSGrDataPointBaseType();
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 		SGrDataPointDescriptionType oldDataPoint = dataPoint;
 		dataPoint = newDataPoint;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT, oldDataPoint, newDataPoint);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_BASE_TYPE__DATA_POINT, oldDataPoint, newDataPoint);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -112,14 +112,14 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 		if (newDataPoint != dataPoint) {
 			NotificationChain msgs = null;
 			if (dataPoint != null)
-				msgs = ((InternalEObject)dataPoint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT, null, msgs);
+				msgs = ((InternalEObject)dataPoint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_BASE_TYPE__DATA_POINT, null, msgs);
 			if (newDataPoint != null)
-				msgs = ((InternalEObject)newDataPoint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT, null, msgs);
+				msgs = ((InternalEObject)newDataPoint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_BASE_TYPE__DATA_POINT, null, msgs);
 			msgs = basicSetDataPoint(newDataPoint, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT, newDataPoint, newDataPoint));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_BASE_TYPE__DATA_POINT, newDataPoint, newDataPoint));
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public EList<SGrAttr4GenericType> getGenAttribute() {
 		if (genAttribute == null) {
-			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE);
+			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE);
 		}
 		return genAttribute;
 	}
@@ -143,9 +143,9 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__DATA_POINT:
 				return basicSetDataPoint(null, msgs);
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE:
 				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -159,9 +159,9 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__DATA_POINT:
 				return getDataPoint();
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE:
 				return getGenAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -176,10 +176,10 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__DATA_POINT:
 				setDataPoint((SGrDataPointDescriptionType)newValue);
 				return;
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE:
 				getGenAttribute().clear();
 				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
 				return;
@@ -195,10 +195,10 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__DATA_POINT:
 				setDataPoint((SGrDataPointDescriptionType)null);
 				return;
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE:
 				getGenAttribute().clear();
 				return;
 		}
@@ -213,12 +213,12 @@ public class SGrDataPointsFrameTypeImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__DATA_POINT:
 				return dataPoint != null;
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE:
 				return genAttribute != null && !genAttribute.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //SGrDataPointsFrameTypeImpl
+} //SGrDataPointBaseTypeImpl

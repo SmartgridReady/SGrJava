@@ -2,48 +2,41 @@
  */
 package com.smartgridready.ns.v0;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>SGr Contact API Device Description Type</b></em>'.
+ * A representation of the model object '<em><b>SGr Device Base Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- *  Data Typdefinition for a
- * 				AnyAPI_ Device Description as an EI (External Interface)
- * 			
- * Geraet
+ * Base type for device
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getGenAttribute <em>Gen Attribute</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getContactApiInterfaceDesc <em>Contact Api Interface Desc</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getFpListElement <em>Fp List Element</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getDeviceName <em>Device Name</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerID <em>Manufacturer ID</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerName <em>Manufacturer Name</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceProfile <em>Device Profile</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceName <em>Device Name</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#isIsLocalControl <em>Is Local Control</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerID <em>Manufacturer ID</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerName <em>Manufacturer Name</em>}</li>
  * </ul>
  *
- * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType()
- * @model extendedMetaData="name='SGrContactAPIDeviceDescriptionType' kind='elementOnly'"
+ * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceBaseType()
+ * @model extendedMetaData="name='SGrDeviceBaseType' kind='elementOnly'"
  * @generated
  */
-public interface SGrContactAPIDeviceDescriptionType extends EObject {
+public interface SGrDeviceBaseType extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Device Profile</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Device Profile</em>' containment reference.
 	 * @see #setDeviceProfile(SGrDeviceProfileType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType_DeviceProfile()
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceBaseType_DeviceProfile()
 	 * @model containment="true" required="true"
 	 *        extendedMetaData="kind='element' name='deviceProfile' namespace='##targetNamespace'"
 	 * @generated
@@ -51,7 +44,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	SGrDeviceProfileType getDeviceProfile();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getDeviceProfile <em>Device Profile</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceProfile <em>Device Profile</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Device Profile</em>' containment reference.
@@ -61,65 +54,39 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	void setDeviceProfile(SGrDeviceProfileType value);
 
 	/**
-	 * Returns the value of the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4GenericType}.
+	 * Returns the value of the '<em><b>Gen Attribute</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Gen Attribute</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType_GenAttribute()
+	 * @return the value of the '<em>Gen Attribute</em>' containment reference.
+	 * @see #setGenAttribute(SGrAttr4GenericType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceBaseType_GenAttribute()
 	 * @model containment="true"
 	 *        extendedMetaData="kind='element' name='genAttribute' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	EList<SGrAttr4GenericType> getGenAttribute();
+	SGrAttr4GenericType getGenAttribute();
 
 	/**
-	 * Returns the value of the '<em><b>Contact Api Interface Desc</b></em>' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getGenAttribute <em>Gen Attribute</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contact Api Interface Desc</em>' containment reference.
-	 * @see #setContactApiInterfaceDesc(ContactAPIInterfaceDescType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType_ContactApiInterfaceDesc()
-	 * @model containment="true" required="true"
-	 *        extendedMetaData="kind='element' name='contactApiInterfaceDesc' namespace='##targetNamespace'"
+	 * @param value the new value of the '<em>Gen Attribute</em>' containment reference.
+	 * @see #getGenAttribute()
 	 * @generated
 	 */
-	ContactAPIInterfaceDescType getContactApiInterfaceDesc();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getContactApiInterfaceDesc <em>Contact Api Interface Desc</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Contact Api Interface Desc</em>' containment reference.
-	 * @see #getContactApiInterfaceDesc()
-	 * @generated
-	 */
-	void setContactApiInterfaceDesc(ContactAPIInterfaceDescType value);
-
-	/**
-	 * Returns the value of the '<em><b>Fp List Element</b></em>' containment reference list.
-	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrProfilesFrameType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Fp List Element</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType_FpListElement()
-	 * @model containment="true" required="true"
-	 *        extendedMetaData="kind='element' name='fpListElement' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	EList<SGrProfilesFrameType> getFpListElement();
+	void setGenAttribute(SGrAttr4GenericType value);
 
 	/**
 	 * Returns the value of the '<em><b>Device Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Device Name in the context of the ManufacturerID
+	 * Device Name in the context of the ManufacturerID
 	 * 				
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Device Name</em>' attribute.
 	 * @see #setDeviceName(String)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType_DeviceName()
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceBaseType_DeviceName()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 *        extendedMetaData="kind='attribute' name='deviceName'"
 	 * @generated
@@ -127,7 +94,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	String getDeviceName();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getDeviceName <em>Device Name</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceName <em>Device Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Device Name</em>' attribute.
@@ -141,7 +108,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Value "false" means "is cloud control device",
+	 * Value "false" means "is cloud control device",
 	 * 					indicating that this service is based on cloud. "True" indicates
 	 * 					that services are provided within the range of the local area.
 	 * 				
@@ -150,7 +117,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	 * @see #isSetIsLocalControl()
 	 * @see #unsetIsLocalControl()
 	 * @see #setIsLocalControl(boolean)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType_IsLocalControl()
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceBaseType_IsLocalControl()
 	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
 	 *        extendedMetaData="kind='attribute' name='isLocalControl'"
 	 * @generated
@@ -158,7 +125,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	boolean isIsLocalControl();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#isIsLocalControl <em>Is Local Control</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Local Control</em>' attribute.
@@ -170,7 +137,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	void setIsLocalControl(boolean value);
 
 	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}' attribute.
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#isIsLocalControl <em>Is Local Control</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isSetIsLocalControl()
@@ -181,7 +148,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	void unsetIsLocalControl();
 
 	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}' attribute is set.
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#isIsLocalControl <em>Is Local Control</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return whether the value of the '<em>Is Local Control</em>' attribute is set.
@@ -198,7 +165,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  the identifier as enumeration indicates that the
+	 * the identifier as enumeration indicates that the
 	 * 					manufacturer is related with the organisation and that this
 	 * 					external interface is generated by himself
 	 * 				
@@ -208,7 +175,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	 * @see #isSetManufacturerID()
 	 * @see #unsetManufacturerID()
 	 * @see #setManufacturerID(SGrManufacturerIDType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType_ManufacturerID()
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceBaseType_ManufacturerID()
 	 * @model unsettable="true"
 	 *        extendedMetaData="kind='attribute' name='manufacturerID'"
 	 * @generated
@@ -216,7 +183,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	SGrManufacturerIDType getManufacturerID();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerID <em>Manufacturer ID</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerID <em>Manufacturer ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Manufacturer ID</em>' attribute.
@@ -229,7 +196,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	void setManufacturerID(SGrManufacturerIDType value);
 
 	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerID <em>Manufacturer ID</em>}' attribute.
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerID <em>Manufacturer ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isSetManufacturerID()
@@ -240,7 +207,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	void unsetManufacturerID();
 
 	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerID <em>Manufacturer ID</em>}' attribute is set.
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerID <em>Manufacturer ID</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return whether the value of the '<em>Manufacturer ID</em>' attribute is set.
@@ -256,12 +223,11 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Name of the Manufacturer or OEM
-	 * 				
+	 * Name of the Manufacturer or OEM
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Manufacturer Name</em>' attribute.
 	 * @see #setManufacturerName(String)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType_ManufacturerName()
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceBaseType_ManufacturerName()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 *        extendedMetaData="kind='attribute' name='manufacturerName'"
 	 * @generated
@@ -269,7 +235,7 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	String getManufacturerName();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerName <em>Manufacturer Name</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerName <em>Manufacturer Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Manufacturer Name</em>' attribute.
@@ -278,4 +244,4 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	 */
 	void setManufacturerName(String value);
 
-} // SGrContactAPIDeviceDescriptionType
+} // SGrDeviceBaseType

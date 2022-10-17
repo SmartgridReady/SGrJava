@@ -78,34 +78,35 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE: return createSGrBasicGenArrayDPTypeType();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE: return createSGrBasicGenDataPointTypeType();
 			case V0Package.SGR_CHANGE_LOG: return createSGrChangeLog();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE: return createSGrContactAPIDeviceDescriptionType();
+			case V0Package.SGR_CONTACT_API_DEVICE_FRAME: return createSGrContactAPIDeviceFrame();
+			case V0Package.SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE: return createSGrContactAPIFunctionalProfileType();
+			case V0Package.SGR_DATA_POINT_BASE_TYPE: return createSGrDataPointBaseType();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE: return createSGrDataPointDescriptionType();
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE: return createSGrDataPointsFrameType();
-			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE: return createSGrDeviceDescriptionType();
+			case V0Package.SGR_DEVICE_BASE_TYPE: return createSGrDeviceBaseType();
 			case V0Package.SGR_DEVICE_PROFILE_TYPE: return createSGrDeviceProfileType();
 			case V0Package.SGR_ENUM_LIST_TYPE: return createSGrEnumListType();
 			case V0Package.SGR_FLEX_ASSISTANCE_TYPE: return createSGrFlexAssistanceType();
-			case V0Package.SGR_INTERFACE_DESCRIPTION_TYPE: return createSGrInterfaceDescriptionType();
+			case V0Package.SGR_FUNCTIONAL_PROFILE_BASE_TYPE: return createSGrFunctionalProfileBaseType();
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE: return createSGrFunctionalProfileFrameType();
+			case V0Package.SGR_GEN_DEVICE_FRAME: return createSGrGenDeviceFrame();
+			case V0Package.SGR_GEN_FUNCTIONAL_PROFILE_TYPE: return createSGrGenFunctionalProfileType();
 			case V0Package.SGR_LEGIB_DOCUMENTATION_TYPE: return createSGrLegibDocumentationType();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE: return createSGrModbusDataPointDescriptionType();
-			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE: return createSGrModbusDataPointsFrameType();
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE: return createSGrModbusDeviceDescriptionType();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE: return createSGrModbusDataPointType();
+			case V0Package.SGR_MODBUS_DEVICE_FRAME: return createSGrModbusDeviceFrame();
+			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE: return createSGrModbusFunctionalProfileType();
 			case V0Package.SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE: return createSGrModbusInterfaceDescriptionType();
-			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE: return createSGrModbusProfilesFrameType();
 			case V0Package.SGR_NAMELIST_TYPE: return createSGrNamelistType();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE: return createSGrProfileDescriptionType();
 			case V0Package.SGR_PROFILENUMBER_TYPE: return createSGrProfilenumberType();
-			case V0Package.SGR_PROFILES_FRAME_TYPE: return createSGrProfilesFrameType();
 			case V0Package.SGR_RELEASE_NOTES: return createSGrReleaseNotes();
 			case V0Package.SG_RREST_API_BEARER_TYPE: return createSGRrestAPIBearerType();
 			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE: return createSGrRestAPIDataPointDescriptionType();
-			case V0Package.SGR_REST_API_DATA_POINTS_FRAME_TYPE: return createSGrRestAPIDataPointsFrameType();
-			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE: return createSGrRESTAPIDeviceDescriptionType();
+			case V0Package.SGR_REST_API_DATA_POINT_TYPE: return createSGrRestAPIDataPointType();
+			case V0Package.SGR_REST_API_DEVICE_FRAME: return createSGrRestAPIDeviceFrame();
+			case V0Package.SGR_REST_API_FUNCTIONAL_PROFILE_TYPE: return createSGrRestAPIFunctionalProfileType();
 			case V0Package.SGR_REST_API_INTERFACE_DESCRIPTION_TYPE: return createSGrRestAPIInterfaceDescriptionType();
-			case V0Package.SGR_REST_API_PROFILES_FRAME_TYPE: return createSGrRestAPIProfilesFrameType();
 			case V0Package.SGR_REST_BASIC_TYPE: return createSGrRestBasicType();
-			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE: return createSGrRestDataPointsFrameType();
-			case V0Package.SGR_REST_PROFILES_FRAME_TYPE: return createSGrRestProfilesFrameType();
 			case V0Package.SGR_SCALING_TYPE: return createSGrScalingType();
 			case V0Package.SGR_SERIAL_INTERFACE_CAPABILITY_TYPE: return createSGrSerialInterfaceCapabilityType();
 			case V0Package.SGR_SMOOTH_TRANSITION_TYPE: return createSGrSmoothTransitionType();
@@ -173,6 +174,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrMeasValueStateTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE:
 				return createSGrMeasValueTendencyTypeFromString(eDataType, initialValue);
+			case V0Package.SGR_MEAS_VALUE_TYPE:
+				return createSGrMeasValueTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
 				return createSGrModbusLayer6DeviationTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE:
@@ -295,6 +298,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrMeasValueStateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT:
 				return createSGrMeasValueTendencyTypeObjectFromString(eDataType, initialValue);
+			case V0Package.SGR_MEAS_VALUE_TYPE_OBJECT:
+				return createSGrMeasValueTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
 				return createSGrModbusLayer6DeviationTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT:
@@ -410,6 +415,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrMeasValueStateTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE:
 				return convertSGrMeasValueTendencyTypeToString(eDataType, instanceValue);
+			case V0Package.SGR_MEAS_VALUE_TYPE:
+				return convertSGrMeasValueTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
 				return convertSGrModbusLayer6DeviationTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE:
@@ -532,6 +539,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrMeasValueStateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT:
 				return convertSGrMeasValueTendencyTypeObjectToString(eDataType, instanceValue);
+			case V0Package.SGR_MEAS_VALUE_TYPE_OBJECT:
+				return convertSGrMeasValueTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
 				return convertSGrModbusLayer6DeviationTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT:
@@ -783,9 +792,31 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrContactAPIDeviceDescriptionType createSGrContactAPIDeviceDescriptionType() {
-		SGrContactAPIDeviceDescriptionTypeImpl sGrContactAPIDeviceDescriptionType = new SGrContactAPIDeviceDescriptionTypeImpl();
-		return sGrContactAPIDeviceDescriptionType;
+	public SGrContactAPIDeviceFrame createSGrContactAPIDeviceFrame() {
+		SGrContactAPIDeviceFrameImpl sGrContactAPIDeviceFrame = new SGrContactAPIDeviceFrameImpl();
+		return sGrContactAPIDeviceFrame;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrContactAPIFunctionalProfileType createSGrContactAPIFunctionalProfileType() {
+		SGrContactAPIFunctionalProfileTypeImpl sGrContactAPIFunctionalProfileType = new SGrContactAPIFunctionalProfileTypeImpl();
+		return sGrContactAPIFunctionalProfileType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrDataPointBaseType createSGrDataPointBaseType() {
+		SGrDataPointBaseTypeImpl sGrDataPointBaseType = new SGrDataPointBaseTypeImpl();
+		return sGrDataPointBaseType;
 	}
 
 	/**
@@ -805,20 +836,9 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrDataPointsFrameType createSGrDataPointsFrameType() {
-		SGrDataPointsFrameTypeImpl sGrDataPointsFrameType = new SGrDataPointsFrameTypeImpl();
-		return sGrDataPointsFrameType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrDeviceDescriptionType createSGrDeviceDescriptionType() {
-		SGrDeviceDescriptionTypeImpl sGrDeviceDescriptionType = new SGrDeviceDescriptionTypeImpl();
-		return sGrDeviceDescriptionType;
+	public SGrDeviceBaseType createSGrDeviceBaseType() {
+		SGrDeviceBaseTypeImpl sGrDeviceBaseType = new SGrDeviceBaseTypeImpl();
+		return sGrDeviceBaseType;
 	}
 
 	/**
@@ -860,9 +880,42 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrInterfaceDescriptionType createSGrInterfaceDescriptionType() {
-		SGrInterfaceDescriptionTypeImpl sGrInterfaceDescriptionType = new SGrInterfaceDescriptionTypeImpl();
-		return sGrInterfaceDescriptionType;
+	public SGrFunctionalProfileBaseType createSGrFunctionalProfileBaseType() {
+		SGrFunctionalProfileBaseTypeImpl sGrFunctionalProfileBaseType = new SGrFunctionalProfileBaseTypeImpl();
+		return sGrFunctionalProfileBaseType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrFunctionalProfileFrameType createSGrFunctionalProfileFrameType() {
+		SGrFunctionalProfileFrameTypeImpl sGrFunctionalProfileFrameType = new SGrFunctionalProfileFrameTypeImpl();
+		return sGrFunctionalProfileFrameType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrGenDeviceFrame createSGrGenDeviceFrame() {
+		SGrGenDeviceFrameImpl sGrGenDeviceFrame = new SGrGenDeviceFrameImpl();
+		return sGrGenDeviceFrame;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrGenFunctionalProfileType createSGrGenFunctionalProfileType() {
+		SGrGenFunctionalProfileTypeImpl sGrGenFunctionalProfileType = new SGrGenFunctionalProfileTypeImpl();
+		return sGrGenFunctionalProfileType;
 	}
 
 	/**
@@ -893,9 +946,9 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrModbusDataPointsFrameType createSGrModbusDataPointsFrameType() {
-		SGrModbusDataPointsFrameTypeImpl sGrModbusDataPointsFrameType = new SGrModbusDataPointsFrameTypeImpl();
-		return sGrModbusDataPointsFrameType;
+	public SGrModbusDataPointType createSGrModbusDataPointType() {
+		SGrModbusDataPointTypeImpl sGrModbusDataPointType = new SGrModbusDataPointTypeImpl();
+		return sGrModbusDataPointType;
 	}
 
 	/**
@@ -904,9 +957,20 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrModbusDeviceDescriptionType createSGrModbusDeviceDescriptionType() {
-		SGrModbusDeviceDescriptionTypeImpl sGrModbusDeviceDescriptionType = new SGrModbusDeviceDescriptionTypeImpl();
-		return sGrModbusDeviceDescriptionType;
+	public SGrModbusDeviceFrame createSGrModbusDeviceFrame() {
+		SGrModbusDeviceFrameImpl sGrModbusDeviceFrame = new SGrModbusDeviceFrameImpl();
+		return sGrModbusDeviceFrame;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrModbusFunctionalProfileType createSGrModbusFunctionalProfileType() {
+		SGrModbusFunctionalProfileTypeImpl sGrModbusFunctionalProfileType = new SGrModbusFunctionalProfileTypeImpl();
+		return sGrModbusFunctionalProfileType;
 	}
 
 	/**
@@ -918,17 +982,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public SGrModbusInterfaceDescriptionType createSGrModbusInterfaceDescriptionType() {
 		SGrModbusInterfaceDescriptionTypeImpl sGrModbusInterfaceDescriptionType = new SGrModbusInterfaceDescriptionTypeImpl();
 		return sGrModbusInterfaceDescriptionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrModbusProfilesFrameType createSGrModbusProfilesFrameType() {
-		SGrModbusProfilesFrameTypeImpl sGrModbusProfilesFrameType = new SGrModbusProfilesFrameTypeImpl();
-		return sGrModbusProfilesFrameType;
 	}
 
 	/**
@@ -970,17 +1023,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrProfilesFrameType createSGrProfilesFrameType() {
-		SGrProfilesFrameTypeImpl sGrProfilesFrameType = new SGrProfilesFrameTypeImpl();
-		return sGrProfilesFrameType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public SGrReleaseNotes createSGrReleaseNotes() {
 		SGrReleaseNotesImpl sGrReleaseNotes = new SGrReleaseNotesImpl();
 		return sGrReleaseNotes;
@@ -1014,9 +1056,9 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrRestAPIDataPointsFrameType createSGrRestAPIDataPointsFrameType() {
-		SGrRestAPIDataPointsFrameTypeImpl sGrRestAPIDataPointsFrameType = new SGrRestAPIDataPointsFrameTypeImpl();
-		return sGrRestAPIDataPointsFrameType;
+	public SGrRestAPIDataPointType createSGrRestAPIDataPointType() {
+		SGrRestAPIDataPointTypeImpl sGrRestAPIDataPointType = new SGrRestAPIDataPointTypeImpl();
+		return sGrRestAPIDataPointType;
 	}
 
 	/**
@@ -1025,9 +1067,20 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrRESTAPIDeviceDescriptionType createSGrRESTAPIDeviceDescriptionType() {
-		SGrRESTAPIDeviceDescriptionTypeImpl sGrRESTAPIDeviceDescriptionType = new SGrRESTAPIDeviceDescriptionTypeImpl();
-		return sGrRESTAPIDeviceDescriptionType;
+	public SGrRestAPIDeviceFrame createSGrRestAPIDeviceFrame() {
+		SGrRestAPIDeviceFrameImpl sGrRestAPIDeviceFrame = new SGrRestAPIDeviceFrameImpl();
+		return sGrRestAPIDeviceFrame;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrRestAPIFunctionalProfileType createSGrRestAPIFunctionalProfileType() {
+		SGrRestAPIFunctionalProfileTypeImpl sGrRestAPIFunctionalProfileType = new SGrRestAPIFunctionalProfileTypeImpl();
+		return sGrRestAPIFunctionalProfileType;
 	}
 
 	/**
@@ -1047,42 +1100,9 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrRestAPIProfilesFrameType createSGrRestAPIProfilesFrameType() {
-		SGrRestAPIProfilesFrameTypeImpl sGrRestAPIProfilesFrameType = new SGrRestAPIProfilesFrameTypeImpl();
-		return sGrRestAPIProfilesFrameType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public SGrRestBasicType createSGrRestBasicType() {
 		SGrRestBasicTypeImpl sGrRestBasicType = new SGrRestBasicTypeImpl();
 		return sGrRestBasicType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrRestDataPointsFrameType createSGrRestDataPointsFrameType() {
-		SGrRestDataPointsFrameTypeImpl sGrRestDataPointsFrameType = new SGrRestDataPointsFrameTypeImpl();
-		return sGrRestDataPointsFrameType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrRestProfilesFrameType createSGrRestProfilesFrameType() {
-		SGrRestProfilesFrameTypeImpl sGrRestProfilesFrameType = new SGrRestProfilesFrameTypeImpl();
-		return sGrRestProfilesFrameType;
 	}
 
 	/**
@@ -1638,6 +1658,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertSGrMeasValueTendencyTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrMeasValueType createSGrMeasValueTypeFromString(EDataType eDataType, String initialValue) {
+		SGrMeasValueType result = SGrMeasValueType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrMeasValueTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2781,6 +2821,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrMeasValueTendencyTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrMeasValueTendencyTypeToString(V0Package.eINSTANCE.getSGrMeasValueTendencyType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrMeasValueType createSGrMeasValueTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrMeasValueTypeFromString(V0Package.eINSTANCE.getSGrMeasValueType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrMeasValueTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrMeasValueTypeToString(V0Package.eINSTANCE.getSGrMeasValueType(), instanceValue);
 	}
 
 	/**

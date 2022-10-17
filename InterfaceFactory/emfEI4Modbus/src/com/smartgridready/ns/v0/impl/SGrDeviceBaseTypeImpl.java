@@ -2,20 +2,14 @@
  */
 package com.smartgridready.ns.v0.impl;
 
-import com.smartgridready.ns.v0.ContactAPIInterfaceDescType;
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
-import com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrDeviceBaseType;
 import com.smartgridready.ns.v0.SGrDeviceProfileType;
 import com.smartgridready.ns.v0.SGrManufacturerIDType;
-import com.smartgridready.ns.v0.SGrProfilesFrameType;
 import com.smartgridready.ns.v0.V0Package;
-
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -23,30 +17,25 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>SGr Contact API Device Description Type</b></em>'.
+ * An implementation of the model object '<em><b>SGr Device Base Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl#getContactApiInterfaceDesc <em>Contact Api Interface Desc</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl#getFpListElement <em>Fp List Element</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl#getDeviceName <em>Device Name</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl#isIsLocalControl <em>Is Local Control</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl#getManufacturerID <em>Manufacturer ID</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl#getManufacturerName <em>Manufacturer Name</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#getDeviceProfile <em>Device Profile</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#getDeviceName <em>Device Name</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#isIsLocalControl <em>Is Local Control</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#getManufacturerID <em>Manufacturer ID</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#getManufacturerName <em>Manufacturer Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.Container implements SGrContactAPIDeviceDescriptionType {
+public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implements SGrDeviceBaseType {
 	/**
 	 * The cached value of the '{@link #getDeviceProfile() <em>Device Profile</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -58,34 +47,14 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	protected SGrDeviceProfileType deviceProfile;
 
 	/**
-	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference list.
+	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getGenAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrAttr4GenericType> genAttribute;
-
-	/**
-	 * The cached value of the '{@link #getContactApiInterfaceDesc() <em>Contact Api Interface Desc</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContactApiInterfaceDesc()
-	 * @generated
-	 * @ordered
-	 */
-	protected ContactAPIInterfaceDescType contactApiInterfaceDesc;
-
-	/**
-	 * The cached value of the '{@link #getFpListElement() <em>Fp List Element</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFpListElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<SGrProfilesFrameType> fpListElement;
+	protected SGrAttr4GenericType genAttribute;
 
 	/**
 	 * The default value of the '{@link #getDeviceName() <em>Device Name</em>}' attribute.
@@ -190,7 +159,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SGrContactAPIDeviceDescriptionTypeImpl() {
+	protected SGrDeviceBaseTypeImpl() {
 		super();
 	}
 
@@ -201,7 +170,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return V0Package.eINSTANCE.getSGrContactAPIDeviceDescriptionType();
+		return V0Package.eINSTANCE.getSGrDeviceBaseType();
 	}
 
 	/**
@@ -223,7 +192,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 		SGrDeviceProfileType oldDeviceProfile = deviceProfile;
 		deviceProfile = newDeviceProfile;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE, oldDeviceProfile, newDeviceProfile);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE, oldDeviceProfile, newDeviceProfile);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -239,14 +208,14 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 		if (newDeviceProfile != deviceProfile) {
 			NotificationChain msgs = null;
 			if (deviceProfile != null)
-				msgs = ((InternalEObject)deviceProfile).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE, null, msgs);
+				msgs = ((InternalEObject)deviceProfile).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE, null, msgs);
 			if (newDeviceProfile != null)
-				msgs = ((InternalEObject)newDeviceProfile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE, null, msgs);
+				msgs = ((InternalEObject)newDeviceProfile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE, null, msgs);
 			msgs = basicSetDeviceProfile(newDeviceProfile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE, newDeviceProfile, newDeviceProfile));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE, newDeviceProfile, newDeviceProfile));
 	}
 
 	/**
@@ -255,10 +224,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * @generated
 	 */
 	@Override
-	public EList<SGrAttr4GenericType> getGenAttribute() {
-		if (genAttribute == null) {
-			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE);
-		}
+	public SGrAttr4GenericType getGenAttribute() {
 		return genAttribute;
 	}
 
@@ -267,21 +233,11 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public ContactAPIInterfaceDescType getContactApiInterfaceDesc() {
-		return contactApiInterfaceDesc;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContactApiInterfaceDesc(ContactAPIInterfaceDescType newContactApiInterfaceDesc, NotificationChain msgs) {
-		ContactAPIInterfaceDescType oldContactApiInterfaceDesc = contactApiInterfaceDesc;
-		contactApiInterfaceDesc = newContactApiInterfaceDesc;
+	public NotificationChain basicSetGenAttribute(SGrAttr4GenericType newGenAttribute, NotificationChain msgs) {
+		SGrAttr4GenericType oldGenAttribute = genAttribute;
+		genAttribute = newGenAttribute;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC, oldContactApiInterfaceDesc, newContactApiInterfaceDesc);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE, oldGenAttribute, newGenAttribute);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -293,31 +249,18 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * @generated
 	 */
 	@Override
-	public void setContactApiInterfaceDesc(ContactAPIInterfaceDescType newContactApiInterfaceDesc) {
-		if (newContactApiInterfaceDesc != contactApiInterfaceDesc) {
+	public void setGenAttribute(SGrAttr4GenericType newGenAttribute) {
+		if (newGenAttribute != genAttribute) {
 			NotificationChain msgs = null;
-			if (contactApiInterfaceDesc != null)
-				msgs = ((InternalEObject)contactApiInterfaceDesc).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC, null, msgs);
-			if (newContactApiInterfaceDesc != null)
-				msgs = ((InternalEObject)newContactApiInterfaceDesc).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC, null, msgs);
-			msgs = basicSetContactApiInterfaceDesc(newContactApiInterfaceDesc, msgs);
+			if (genAttribute != null)
+				msgs = ((InternalEObject)genAttribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE, null, msgs);
+			if (newGenAttribute != null)
+				msgs = ((InternalEObject)newGenAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE, null, msgs);
+			msgs = basicSetGenAttribute(newGenAttribute, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC, newContactApiInterfaceDesc, newContactApiInterfaceDesc));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<SGrProfilesFrameType> getFpListElement() {
-		if (fpListElement == null) {
-			fpListElement = new EObjectContainmentEList<SGrProfilesFrameType>(SGrProfilesFrameType.class, this, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT);
-		}
-		return fpListElement;
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE, newGenAttribute, newGenAttribute));
 	}
 
 	/**
@@ -340,7 +283,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 		String oldDeviceName = deviceName;
 		deviceName = newDeviceName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME, oldDeviceName, deviceName));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_NAME, oldDeviceName, deviceName));
 	}
 
 	/**
@@ -365,7 +308,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 		boolean oldIsLocalControlESet = isLocalControlESet;
 		isLocalControlESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL, oldIsLocalControl, isLocalControl, !oldIsLocalControlESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL, oldIsLocalControl, isLocalControl, !oldIsLocalControlESet));
 	}
 
 	/**
@@ -380,7 +323,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 		isLocalControl = IS_LOCAL_CONTROL_EDEFAULT;
 		isLocalControlESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL, oldIsLocalControl, IS_LOCAL_CONTROL_EDEFAULT, oldIsLocalControlESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL, oldIsLocalControl, IS_LOCAL_CONTROL_EDEFAULT, oldIsLocalControlESet));
 	}
 
 	/**
@@ -415,7 +358,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 		boolean oldManufacturerIDESet = manufacturerIDESet;
 		manufacturerIDESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID, oldManufacturerID, manufacturerID, !oldManufacturerIDESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID, oldManufacturerID, manufacturerID, !oldManufacturerIDESet));
 	}
 
 	/**
@@ -430,7 +373,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 		manufacturerID = MANUFACTURER_ID_EDEFAULT;
 		manufacturerIDESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID, oldManufacturerID, MANUFACTURER_ID_EDEFAULT, oldManufacturerIDESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID, oldManufacturerID, MANUFACTURER_ID_EDEFAULT, oldManufacturerIDESet));
 	}
 
 	/**
@@ -463,7 +406,7 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 		String oldManufacturerName = manufacturerName;
 		manufacturerName = newManufacturerName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_NAME, oldManufacturerName, manufacturerName));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME, oldManufacturerName, manufacturerName));
 	}
 
 	/**
@@ -474,14 +417,10 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
+			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				return basicSetDeviceProfile(null, msgs);
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
-				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC:
-				return basicSetContactApiInterfaceDesc(null, msgs);
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
-				return ((InternalEList<?>)getFpListElement()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE:
+				return basicSetGenAttribute(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -494,21 +433,17 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
+			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				return getDeviceProfile();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE:
 				return getGenAttribute();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC:
-				return getContactApiInterfaceDesc();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
-				return getFpListElement();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:
+			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_NAME:
 				return getDeviceName();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL:
+			case V0Package.SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL:
 				return isIsLocalControl();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID:
+			case V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID:
 				return getManufacturerID();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_NAME:
+			case V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME:
 				return getManufacturerName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -519,34 +454,25 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
+			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)newValue);
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
-				getGenAttribute().clear();
-				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
+			case V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE:
+				setGenAttribute((SGrAttr4GenericType)newValue);
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC:
-				setContactApiInterfaceDesc((ContactAPIInterfaceDescType)newValue);
-				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
-				getFpListElement().clear();
-				getFpListElement().addAll((Collection<? extends SGrProfilesFrameType>)newValue);
-				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:
+			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_NAME:
 				setDeviceName((String)newValue);
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL:
+			case V0Package.SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL:
 				setIsLocalControl((Boolean)newValue);
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID:
+			case V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID:
 				setManufacturerID((SGrManufacturerIDType)newValue);
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_NAME:
+			case V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME:
 				setManufacturerName((String)newValue);
 				return;
 		}
@@ -561,28 +487,22 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
+			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)null);
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
-				getGenAttribute().clear();
+			case V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE:
+				setGenAttribute((SGrAttr4GenericType)null);
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC:
-				setContactApiInterfaceDesc((ContactAPIInterfaceDescType)null);
-				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
-				getFpListElement().clear();
-				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:
+			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_NAME:
 				setDeviceName(DEVICE_NAME_EDEFAULT);
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL:
+			case V0Package.SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL:
 				unsetIsLocalControl();
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID:
+			case V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID:
 				unsetManufacturerID();
 				return;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_NAME:
+			case V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME:
 				setManufacturerName(MANUFACTURER_NAME_EDEFAULT);
 				return;
 		}
@@ -597,21 +517,17 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE:
+			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				return deviceProfile != null;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE:
-				return genAttribute != null && !genAttribute.isEmpty();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC:
-				return contactApiInterfaceDesc != null;
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT:
-				return fpListElement != null && !fpListElement.isEmpty();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME:
+			case V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE:
+				return genAttribute != null;
+			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_NAME:
 				return DEVICE_NAME_EDEFAULT == null ? deviceName != null : !DEVICE_NAME_EDEFAULT.equals(deviceName);
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL:
+			case V0Package.SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL:
 				return isSetIsLocalControl();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID:
+			case V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID:
 				return isSetManufacturerID();
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_NAME:
+			case V0Package.SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME:
 				return MANUFACTURER_NAME_EDEFAULT == null ? manufacturerName != null : !MANUFACTURER_NAME_EDEFAULT.equals(manufacturerName);
 		}
 		return super.eIsSet(featureID);
@@ -639,4 +555,4 @@ public class SGrContactAPIDeviceDescriptionTypeImpl extends MinimalEObjectImpl.C
 		return result.toString();
 	}
 
-} //SGrContactAPIDeviceDescriptionTypeImpl
+} //SGrDeviceBaseTypeImpl

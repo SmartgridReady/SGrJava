@@ -37,11 +37,11 @@ import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
 import com.smartgridready.ns.v0.SGrMeasValueStateType;
 import com.smartgridready.ns.v0.SGrMeasValueTendencyType;
-import com.smartgridready.ns.v0.SGrModbusDataPointsFrameType;
-import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrModbusDataPointType;
+import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
+import com.smartgridready.ns.v0.SGrModbusFunctionalProfileType;
 import com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusLayer6DeviationType;
-import com.smartgridready.ns.v0.SGrModbusProfilesFrameType;
 import com.smartgridready.ns.v0.SGrOCPPStateType;
 import com.smartgridready.ns.v0.SGrObligLvlType;
 import com.smartgridready.ns.v0.SGrPowerSourceType;
@@ -66,9 +66,9 @@ public class SGrModbusDevice {
 
 	private final GenDriverAPI4Modbus drv4Modbus;
 
-	private final SGrModbusDeviceDescriptionType myDeviceDescription;
+	private final SGrModbusDeviceFrame myDeviceDescription;
 
-	public SGrModbusDevice(SGrModbusDeviceDescriptionType aDeviceDescription, GenDriverAPI4Modbus aRtuDriver) {
+	public SGrModbusDevice(SGrModbusDeviceFrame aDeviceDescription, GenDriverAPI4Modbus aRtuDriver) {
 		myDeviceDescription = aDeviceDescription;
 		drv4Modbus = aRtuDriver;
 
@@ -86,10 +86,10 @@ public class SGrModbusDevice {
 	 */
 	public String getVal(String sProfileName, String sDataPointName) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
-		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
+		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);
 		if (profile.isPresent()) {
 
-			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
+			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				return readValue(profile.get(), dataPoint.get());
 			}
@@ -97,25 +97,25 @@ public class SGrModbusDevice {
 		return "Profile/access-point " + sProfileName + "/" + sDataPointName + " not found!";
 	}
 
-	private Optional<SGrModbusProfilesFrameType> findProfile(String aProfileName) {
+	private Optional<SGrModbusFunctionalProfileType> findProfile(String aProfileName) {
 		return myDeviceDescription.getFpListElement().stream().filter(
 				modbusProfileFrame -> modbusProfileFrame.getFunctionalProfile().getProfileName().equals(aProfileName))
 				.findFirst();
 	}
 
-	private Optional<SGrModbusDataPointsFrameType> findDataPointForProfile(SGrModbusProfilesFrameType aProfile,
+	private Optional<SGrModbusDataPointType> findDataPointForProfile(SGrModbusFunctionalProfileType aProfile,
 			String aDataPointName) {
 		return aProfile.getDpListElement().stream()
-				.filter(datapoint -> datapoint.getDataPoint().get(0).getDatapointName().equals(aDataPointName))
+				.filter(datapoint -> datapoint.getDataPoint().getDatapointName().equals(aDataPointName))
 				.findFirst();
 	}
 
-	private String readValue(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint)
+	private String readValue(SGrModbusFunctionalProfileType aProfile, SGrModbusDataPointType aDataPoint)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		String retval = "-";
 
-		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
+		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();
 
 		if (dGenType.isSetBoolean()) {
 			boolean bVal = getValByGDPType(aProfile, aDataPoint).isBoolean();
@@ -168,8 +168,8 @@ public class SGrModbusDevice {
 		return retval;
 	}
 
-	public SGrBasicGenDataPointTypeType getValByGDPType(SGrModbusProfilesFrameType aProfile,
-			SGrModbusDataPointsFrameType aDataPoint) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+	public SGrBasicGenDataPointTypeType getValByGDPType(SGrModbusFunctionalProfileType aProfile,
+			SGrModbusDataPointType aDataPoint) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		return prv_getValByGDPType(aProfile, aDataPoint);
 
@@ -177,12 +177,12 @@ public class SGrModbusDevice {
 
 	public SGrBasicGenDataPointTypeType getValByGDPType(String sProfileName, String sDataPointName)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
-		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
+		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);
 
 		SGrBasicGenDataPointTypeType retval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 
 		if (profile.isPresent()) {
-			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
+			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				retval = prv_getValByGDPType(profile.get(), dataPoint.get());
 			}
@@ -192,8 +192,8 @@ public class SGrModbusDevice {
 	}
 
 	private SGrBasicGenDataPointTypeType prv_getValByGDPType(
-		SGrModbusProfilesFrameType aProfile, 
-		SGrModbusDataPointsFrameType aDataPoint)
+		SGrModbusFunctionalProfileType aProfile, 
+		SGrModbusDataPointType aDataPoint)
 		throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 			
 		
@@ -214,12 +214,12 @@ public class SGrModbusDevice {
 		SGrBasicGenDataPointTypeType dMBType = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 		
 		// Data format adaption
-		dGenType = aDataPoint.getDataPoint().get(0)
+		dGenType = aDataPoint.getDataPoint()
 				.getBasicDataType();
 		dMBType = aDataPoint.getModbusDataPoint()
 				.get(0).getModbusDataType();
 		// Data Direction ctrl
-		SGrRWPType dRWPType = aDataPoint.getDataPoint().get(0).getRwpDatadirection();
+		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
 		// Attributes
 		// TODO: Workout instance of attributes, differentiate in between local XML
 		// datapoints & Modbus based datapoints
@@ -522,10 +522,10 @@ public class SGrModbusDevice {
 
 	public String setVal(String sProfileName, String sDataPointName, String sValue) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
-		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
+		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);
 		if (profile.isPresent()) {
 
-			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
+			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				writeValue(profile.get(), dataPoint.get(), sValue);
 			}
@@ -533,10 +533,10 @@ public class SGrModbusDevice {
 		return "Profile/access-point " + sProfileName + "/" + sDataPointName + " not found!";
 	}
 
-	private void writeValue(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint, String sValue)
+	private void writeValue(SGrModbusFunctionalProfileType aProfile, SGrModbusDataPointType aDataPoint, String sValue)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
-		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
+		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();
 
 		if (dGenType.isSetBoolean()) {
 			boolean bVal = false;
@@ -600,7 +600,7 @@ public class SGrModbusDevice {
 	}
 
 // generic class API using SGrBasicGenDataPointTypeType
-	public void setValByGDPType(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint,
+	public void setValByGDPType(SGrModbusFunctionalProfileType aProfile, SGrModbusDataPointType aDataPoint,
 			SGrBasicGenDataPointTypeType sgrValue) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		prv_setValByGDPType(aProfile, aDataPoint, sgrValue);
@@ -609,10 +609,10 @@ public class SGrModbusDevice {
 
 	public void setValByGDPType(String sProfileName, String sDataPointName, SGrBasicGenDataPointTypeType sgrValue)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
-		Optional<SGrModbusProfilesFrameType> profile = findProfile(sProfileName);
+		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);
 
 		if (profile.isPresent()) {
-			Optional<SGrModbusDataPointsFrameType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
+			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				prv_setValByGDPType(profile.get(), dataPoint.get(), sgrValue);
 			}
@@ -620,7 +620,7 @@ public class SGrModbusDevice {
 
 	}
 
-	private void prv_setValByGDPType(SGrModbusProfilesFrameType aProfile, SGrModbusDataPointsFrameType aDataPoint,
+	private void prv_setValByGDPType(SGrModbusFunctionalProfileType aProfile, SGrModbusDataPointType aDataPoint,
 			SGrBasicGenDataPointTypeType sgrValue) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		int[] mbregsnd = new int[120];
@@ -639,11 +639,11 @@ public class SGrModbusDevice {
 		SGrBasicGenDataPointTypeType dMBType = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 
 		// Data format adaption
-		dGenType = aDataPoint.getDataPoint().get(0).getBasicDataType();
+		dGenType = aDataPoint.getDataPoint().getBasicDataType();
 		dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
 
 		// Data Direction ctrl
-		SGrRWPType dRWPType = aDataPoint.getDataPoint().get(0).getRwpDatadirection();
+		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
 		// Attributes
 
 		// TODO: fehlende Instanz von attributen

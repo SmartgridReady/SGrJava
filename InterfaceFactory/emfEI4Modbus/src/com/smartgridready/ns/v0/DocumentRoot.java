@@ -22,21 +22,17 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getBaudRatesSupported <em>Baud Rates Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getByteLenSupported <em>Byte Len Supported</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getGenDeviceFrame <em>Gen Device Frame</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getModbusFunctionCodesSupported <em>Modbus Function Codes Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getNetConnectionState <em>Net Connection State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getParitySupported <em>Parity Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDataPointDescription <em>SGr Modbus Data Point Description</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusInterfaceDescription <em>SGr Modbus Interface Description</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSgrContactAPIDeviceFrame <em>Sgr Contact API Device Frame</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrContactAPIDeviceDescriptionType <em>SGr Contact API Device Description Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileDescriptionType <em>SGr Functional Profile Description Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDeviceDescriptionType <em>SGr Modbus Device Description Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrContactAPIDeviceFrame <em>SGr Contact API Device Frame</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileFrame <em>SGr Functional Profile Frame</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrGenDeviceFrame <em>SGr Gen Device Frame</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDeviceFrame <em>SGr Modbus Device Frame</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrRESTAPIDeviceDescriptionType <em>SGr RESTAPI Device Description Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrRestAPIDeviceFrame <em>SGr Rest API Device Frame</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSgrSerialInterfaceCapability <em>Sgr Serial Interface Capability</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getSGrSerialInterfaceCapability <em>SGr Serial Interface Capability</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getStopBitLenSupported <em>Stop Bit Len Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.DocumentRoot#getTrspServiceModbus <em>Trsp Service Modbus</em>}</li>
  * </ul>
@@ -138,57 +134,6 @@ public interface DocumentRoot extends EObject {
 	 * @generated
 	 */
 	void setByteLenSupported(EByteLenType value);
-
-	/**
-	 * Returns the value of the '<em><b>Device Profile</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Device Profile</em>' containment reference.
-	 * @see #setDeviceProfile(SGrDeviceProfileType)
-	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_DeviceProfile()
-	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='DeviceProfile' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrDeviceProfileType getDeviceProfile();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getDeviceProfile <em>Device Profile</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Device Profile</em>' containment reference.
-	 * @see #getDeviceProfile()
-	 * @generated
-	 */
-	void setDeviceProfile(SGrDeviceProfileType value);
-
-	/**
-	 * Returns the value of the '<em><b>Gen Device Frame</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  RPT Root Point for stand alone generic Device
-	 * 				description
-	 * 			
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Gen Device Frame</em>' containment reference.
-	 * @see #setGenDeviceFrame(SGrDeviceDescriptionType)
-	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_GenDeviceFrame()
-	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='GenDeviceFrame' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrDeviceDescriptionType getGenDeviceFrame();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getGenDeviceFrame <em>Gen Device Frame</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Gen Device Frame</em>' containment reference.
-	 * @see #getGenDeviceFrame()
-	 * @generated
-	 */
-	void setGenDeviceFrame(SGrDeviceDescriptionType value);
 
 	/**
 	 * Returns the value of the '<em><b>Modbus Function Codes Supported</b></em>' attribute.
@@ -309,58 +254,33 @@ public interface DocumentRoot extends EObject {
 	void setSGrModbusInterfaceDescription(SGrModbusInterfaceDescriptionType value);
 
 	/**
-	 * Returns the value of the '<em><b>Sgr Contact API Device Frame</b></em>' containment reference.
+	 * Returns the value of the '<em><b>SGr Contact API Device Frame</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  RPT Root Point for stand alone ContactAPI_ Device
-	 * 				description. It includes the embedded generic Device decription
-	 * 			
+	 *  RPT Root Point for Contact API Device External Interface.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Sgr Contact API Device Frame</em>' containment reference.
-	 * @see #setSgrContactAPIDeviceFrame(SGrContactAPIDeviceDescriptionType)
-	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SgrContactAPIDeviceFrame()
+	 * @return the value of the '<em>SGr Contact API Device Frame</em>' containment reference.
+	 * @see #setSGrContactAPIDeviceFrame(SGrContactAPIDeviceFrame)
+	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrContactAPIDeviceFrame()
 	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='sgrContactAPI_DeviceFrame' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='SGrContactAPIDeviceFrame' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrContactAPIDeviceDescriptionType getSgrContactAPIDeviceFrame();
+	SGrContactAPIDeviceFrame getSGrContactAPIDeviceFrame();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSgrContactAPIDeviceFrame <em>Sgr Contact API Device Frame</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrContactAPIDeviceFrame <em>SGr Contact API Device Frame</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sgr Contact API Device Frame</em>' containment reference.
-	 * @see #getSgrContactAPIDeviceFrame()
+	 * @param value the new value of the '<em>SGr Contact API Device Frame</em>' containment reference.
+	 * @see #getSGrContactAPIDeviceFrame()
 	 * @generated
 	 */
-	void setSgrContactAPIDeviceFrame(SGrContactAPIDeviceDescriptionType value);
+	void setSGrContactAPIDeviceFrame(SGrContactAPIDeviceFrame value);
 
 	/**
-	 * Returns the value of the '<em><b>SGr Contact API Device Description Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>SGr Contact API Device Description Type</em>' containment reference.
-	 * @see #setSGrContactAPIDeviceDescriptionType(SGrContactAPIDeviceDescriptionType)
-	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrContactAPIDeviceDescriptionType()
-	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='SGrContactAPIDeviceDescriptionType' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrContactAPIDeviceDescriptionType getSGrContactAPIDeviceDescriptionType();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrContactAPIDeviceDescriptionType <em>SGr Contact API Device Description Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>SGr Contact API Device Description Type</em>' containment reference.
-	 * @see #getSGrContactAPIDeviceDescriptionType()
-	 * @generated
-	 */
-	void setSGrContactAPIDeviceDescriptionType(SGrContactAPIDeviceDescriptionType value);
-
-	/**
-	 * Returns the value of the '<em><b>SGr Functional Profile Description Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>SGr Functional Profile Frame</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -368,65 +288,66 @@ public interface DocumentRoot extends EObject {
 	 * 				Profile description
 	 * 			
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>SGr Functional Profile Description Type</em>' containment reference.
-	 * @see #setSGrFunctionalProfileDescriptionType(SGrProfilesFrameType)
-	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrFunctionalProfileDescriptionType()
+	 * @return the value of the '<em>SGr Functional Profile Frame</em>' containment reference.
+	 * @see #setSGrFunctionalProfileFrame(SGrFunctionalProfileFrameType)
+	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrFunctionalProfileFrame()
 	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='SGrFunctionalProfileDescriptionType' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='SGrFunctionalProfileFrame' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrProfilesFrameType getSGrFunctionalProfileDescriptionType();
+	SGrFunctionalProfileFrameType getSGrFunctionalProfileFrame();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileDescriptionType <em>SGr Functional Profile Description Type</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileFrame <em>SGr Functional Profile Frame</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>SGr Functional Profile Description Type</em>' containment reference.
-	 * @see #getSGrFunctionalProfileDescriptionType()
+	 * @param value the new value of the '<em>SGr Functional Profile Frame</em>' containment reference.
+	 * @see #getSGrFunctionalProfileFrame()
 	 * @generated
 	 */
-	void setSGrFunctionalProfileDescriptionType(SGrProfilesFrameType value);
+	void setSGrFunctionalProfileFrame(SGrFunctionalProfileFrameType value);
 
 	/**
-	 * Returns the value of the '<em><b>SGr Modbus Device Description Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>SGr Gen Device Frame</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>SGr Modbus Device Description Type</em>' containment reference.
-	 * @see #setSGrModbusDeviceDescriptionType(SGrModbusDeviceDescriptionType)
-	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrModbusDeviceDescriptionType()
+	 * <!-- begin-model-doc -->
+	 *  RPT Root Point for Generic Device External Interface.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>SGr Gen Device Frame</em>' containment reference.
+	 * @see #setSGrGenDeviceFrame(SGrGenDeviceFrame)
+	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrGenDeviceFrame()
 	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='SGrModbusDeviceDescriptionType' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='SGrGenDeviceFrame' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrModbusDeviceDescriptionType getSGrModbusDeviceDescriptionType();
+	SGrGenDeviceFrame getSGrGenDeviceFrame();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDeviceDescriptionType <em>SGr Modbus Device Description Type</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrGenDeviceFrame <em>SGr Gen Device Frame</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>SGr Modbus Device Description Type</em>' containment reference.
-	 * @see #getSGrModbusDeviceDescriptionType()
+	 * @param value the new value of the '<em>SGr Gen Device Frame</em>' containment reference.
+	 * @see #getSGrGenDeviceFrame()
 	 * @generated
 	 */
-	void setSGrModbusDeviceDescriptionType(SGrModbusDeviceDescriptionType value);
+	void setSGrGenDeviceFrame(SGrGenDeviceFrame value);
 
 	/**
 	 * Returns the value of the '<em><b>SGr Modbus Device Frame</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * RPT Root Point for stand alone Modbus Device
-	 * 				description. It includes the embedded generic Device decription
-	 * 			
+	 *  RPT Root Point for Modbux Device External Interface.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SGr Modbus Device Frame</em>' containment reference.
-	 * @see #setSGrModbusDeviceFrame(SGrModbusDeviceDescriptionType)
+	 * @see #setSGrModbusDeviceFrame(SGrModbusDeviceFrame)
 	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrModbusDeviceFrame()
 	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
 	 *        extendedMetaData="kind='element' name='SGrModbusDeviceFrame' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrModbusDeviceDescriptionType getSGrModbusDeviceFrame();
+	SGrModbusDeviceFrame getSGrModbusDeviceFrame();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDeviceFrame <em>SGr Modbus Device Frame</em>}' containment reference.
@@ -436,48 +357,23 @@ public interface DocumentRoot extends EObject {
 	 * @see #getSGrModbusDeviceFrame()
 	 * @generated
 	 */
-	void setSGrModbusDeviceFrame(SGrModbusDeviceDescriptionType value);
-
-	/**
-	 * Returns the value of the '<em><b>SGr RESTAPI Device Description Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>SGr RESTAPI Device Description Type</em>' containment reference.
-	 * @see #setSGrRESTAPIDeviceDescriptionType(SGrRESTAPIDeviceDescriptionType)
-	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrRESTAPIDeviceDescriptionType()
-	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='SGrRESTAPIDeviceDescriptionType' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrRESTAPIDeviceDescriptionType getSGrRESTAPIDeviceDescriptionType();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrRESTAPIDeviceDescriptionType <em>SGr RESTAPI Device Description Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>SGr RESTAPI Device Description Type</em>' containment reference.
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
-	 * @generated
-	 */
-	void setSGrRESTAPIDeviceDescriptionType(SGrRESTAPIDeviceDescriptionType value);
+	void setSGrModbusDeviceFrame(SGrModbusDeviceFrame value);
 
 	/**
 	 * Returns the value of the '<em><b>SGr Rest API Device Frame</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  RPT Root Point for stand alone Rest Device
-	 * 				description. It includes the embedded generic Device decription
-	 * 			
+	 *  RPT Root Point for Rest API Device External Interface.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SGr Rest API Device Frame</em>' containment reference.
-	 * @see #setSGrRestAPIDeviceFrame(SGrRESTAPIDeviceDescriptionType)
+	 * @see #setSGrRestAPIDeviceFrame(SGrRestAPIDeviceFrame)
 	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrRestAPIDeviceFrame()
 	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
 	 *        extendedMetaData="kind='element' name='SGrRestAPIDeviceFrame' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrRESTAPIDeviceDescriptionType getSGrRestAPIDeviceFrame();
+	SGrRestAPIDeviceFrame getSGrRestAPIDeviceFrame();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrRestAPIDeviceFrame <em>SGr Rest API Device Frame</em>}' containment reference.
@@ -487,30 +383,30 @@ public interface DocumentRoot extends EObject {
 	 * @see #getSGrRestAPIDeviceFrame()
 	 * @generated
 	 */
-	void setSGrRestAPIDeviceFrame(SGrRESTAPIDeviceDescriptionType value);
+	void setSGrRestAPIDeviceFrame(SGrRestAPIDeviceFrame value);
 
 	/**
-	 * Returns the value of the '<em><b>Sgr Serial Interface Capability</b></em>' containment reference.
+	 * Returns the value of the '<em><b>SGr Serial Interface Capability</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sgr Serial Interface Capability</em>' containment reference.
-	 * @see #setSgrSerialInterfaceCapability(SGrSerialInterfaceCapabilityType)
-	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SgrSerialInterfaceCapability()
+	 * @return the value of the '<em>SGr Serial Interface Capability</em>' containment reference.
+	 * @see #setSGrSerialInterfaceCapability(SGrSerialInterfaceCapabilityType)
+	 * @see com.smartgridready.ns.v0.V0Package#getDocumentRoot_SGrSerialInterfaceCapability()
 	 * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='element' name='sgrSerialInterfaceCapability' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='SGrSerialInterfaceCapability' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrSerialInterfaceCapabilityType getSgrSerialInterfaceCapability();
+	SGrSerialInterfaceCapabilityType getSGrSerialInterfaceCapability();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSgrSerialInterfaceCapability <em>Sgr Serial Interface Capability</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrSerialInterfaceCapability <em>SGr Serial Interface Capability</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sgr Serial Interface Capability</em>' containment reference.
-	 * @see #getSgrSerialInterfaceCapability()
+	 * @param value the new value of the '<em>SGr Serial Interface Capability</em>' containment reference.
+	 * @see #getSGrSerialInterfaceCapability()
 	 * @generated
 	 */
-	void setSgrSerialInterfaceCapability(SGrSerialInterfaceCapabilityType value);
+	void setSGrSerialInterfaceCapability(SGrSerialInterfaceCapabilityType value);
 
 	/**
 	 * Returns the value of the '<em><b>Stop Bit Len Supported</b></em>' attribute.
