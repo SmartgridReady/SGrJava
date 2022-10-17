@@ -394,10 +394,12 @@ public class HeatPumpTester {
 	   // -----------------------------------------------------------------------------------------------------------------------------	
 		static void initCTADevFrame(String aBaseDir, String aDescriptionFile ) {				
 			
-			try {	
-								
+			try {									
 				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
-				SGrModbusDeviceFrame tstDesc=loader.load(aBaseDir, aDescriptionFile);	
+				SGrModbusDeviceFrame tstDesc=loader.load(aBaseDir, aDescriptionFile);
+				
+				// replace device specific for RTU
+				//add devXXXX= new SGrModbusDevice(tstDesc, mbRTU );
 				
 				// // replace device specific for TCP  (easymodus uses Driver instance per device)						
 				GenDriverAPI4ModbusTCP mbHeatPumpCTA = new GenDriverAPI4ModbusTCP();

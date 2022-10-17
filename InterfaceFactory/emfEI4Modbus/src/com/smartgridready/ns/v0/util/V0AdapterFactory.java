@@ -88,10 +88,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createNetworkConnectionStateTypeAdapter();
 			}
 			@Override
-			public Adapter caseRestAPIJMESPathType1(RestAPIJMESPathType1 object) {
-				return createRestAPIJMESPathType1Adapter();
-			}
-			@Override
 			public Adapter caseRTUDevInstanceType(RTUDevInstanceType object) {
 				return createRTUDevInstanceTypeAdapter();
 			}
@@ -398,20 +394,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNetworkConnectionStateTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.RestAPIJMESPathType1 <em>Rest APIJMES Path Type1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.RestAPIJMESPathType1
-	 * @generated
-	 */
-	public Adapter createRestAPIJMESPathType1Adapter() {
 		return null;
 	}
 

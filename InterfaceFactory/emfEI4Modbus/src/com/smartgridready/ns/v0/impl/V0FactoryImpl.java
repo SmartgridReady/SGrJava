@@ -67,7 +67,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.IP_ADDR_TYPE: return createIpADDRType();
 			case V0Package.MODBUS_JMES_PATH_TYPE: return createModbusJMESPathType();
 			case V0Package.NETWORK_CONNECTION_STATE_TYPE: return createNetworkConnectionStateType();
-			case V0Package.REST_APIJMES_PATH_TYPE1: return createRestAPIJMESPathType1();
 			case V0Package.RTU_DEV_INSTANCE_TYPE: return createRTUDevInstanceType();
 			case V0Package.RT_UTRSP_SRV_INSTANCE_TYPE: return createRTUtrspSrvInstanceType();
 			case V0Package.RTU_TYPE: return createRTUType();
@@ -270,6 +269,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createRestAPIEndPointType1FromString(eDataType, initialValue);
 			case V0Package.REST_APIJMES_PATH_TYPE:
 				return createRestAPIJMESPathTypeFromString(eDataType, initialValue);
+			case V0Package.REST_APIJMES_PATH_TYPE1:
+				return createRestAPIJMESPathType1FromString(eDataType, initialValue);
 			case V0Package.REST_BASIC_PASSWORD_TYPE:
 				return createRestBasicPasswordTypeFromString(eDataType, initialValue);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
@@ -511,6 +512,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertRestAPIEndPointType1ToString(eDataType, instanceValue);
 			case V0Package.REST_APIJMES_PATH_TYPE:
 				return convertRestAPIJMESPathTypeToString(eDataType, instanceValue);
+			case V0Package.REST_APIJMES_PATH_TYPE1:
+				return convertRestAPIJMESPathType1ToString(eDataType, instanceValue);
 			case V0Package.REST_BASIC_PASSWORD_TYPE:
 				return convertRestBasicPasswordTypeToString(eDataType, instanceValue);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
@@ -663,17 +666,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public NetworkConnectionStateType createNetworkConnectionStateType() {
 		NetworkConnectionStateTypeImpl networkConnectionStateType = new NetworkConnectionStateTypeImpl();
 		return networkConnectionStateType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public RestAPIJMESPathType1 createRestAPIJMESPathType1() {
-		RestAPIJMESPathType1Impl restAPIJMESPathType1 = new RestAPIJMESPathType1Impl();
-		return restAPIJMESPathType1;
 	}
 
 	/**
@@ -2568,6 +2560,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertRestAPIJMESPathTypeToString(EDataType eDataType, Object instanceValue) {
+		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.STRING, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String createRestAPIJMESPathType1FromString(EDataType eDataType, String initialValue) {
+		return (String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.STRING, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRestAPIJMESPathType1ToString(EDataType eDataType, Object instanceValue) {
 		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.STRING, instanceValue);
 	}
 

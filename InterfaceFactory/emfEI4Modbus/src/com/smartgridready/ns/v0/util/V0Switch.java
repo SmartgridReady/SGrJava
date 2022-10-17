@@ -96,12 +96,6 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.REST_APIJMES_PATH_TYPE1: {
-				RestAPIJMESPathType1 restAPIJMESPathType1 = (RestAPIJMESPathType1)theEObject;
-				T result = caseRestAPIJMESPathType1(restAPIJMESPathType1);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case V0Package.RTU_DEV_INSTANCE_TYPE: {
 				RTUDevInstanceType rtuDevInstanceType = (RTUDevInstanceType)theEObject;
 				T result = caseRTUDevInstanceType(rtuDevInstanceType);
@@ -518,21 +512,6 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNetworkConnectionStateType(NetworkConnectionStateType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Rest APIJMES Path Type1</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Rest APIJMES Path Type1</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRestAPIJMESPathType1(RestAPIJMESPathType1 object) {
 		return null;
 	}
 
