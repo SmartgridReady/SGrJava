@@ -65,11 +65,6 @@ public interface SGrContactAPIDeviceDescriptionType extends EObject {
 	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrAttr4GenericType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  ContactsAPI_AttrFrameTypes contains only the
-	 * 						generic branch of SGr attributes
-	 * 					
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Gen Attribute</em>' containment reference list.
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrContactAPIDeviceDescriptionType_GenAttribute()
 	 * @model containment="true"
