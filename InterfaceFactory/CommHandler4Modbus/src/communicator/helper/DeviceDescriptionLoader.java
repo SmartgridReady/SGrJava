@@ -19,6 +19,14 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
  */
 
+import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.Properties;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EPackage;
@@ -29,29 +37,41 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 
 
 public class DeviceDescriptionLoader<C> {
+		
+	private static ComposedAdapterFactory composedAdapterFactory;
 	
-	private static ComposedAdapterFactory composedAdapterFactory;		
+	public C load( String aBaseDir, String aDescriptionFile) {
+		return load(aBaseDir, aDescriptionFile, null);
+	}
 	
 	@SuppressWarnings("unchecked")
-	public C load( String aBaseDir, String aDescriptionFile ) {	
+	public C load( String aBaseDir, String aDescriptionFile, Properties properties ) {	
 		
 		try {
-									
+
+			// XML namespace eNS_URI "http://www.smartgridready.com/ns/V0/" map to "com.smartgridready.ns.v0.V0Package" classes.
 			EPackage.Registry.INSTANCE.put( com.smartgridready.ns.v0.V0Package.eNS_URI, com.smartgridready.ns.v0.V0Package.eINSTANCE);
 			
-
+			// Use XMIResourceFactory to parse *.xml files.
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( )
     			.put("xml", new XMIResourceFactoryImpl() );
-
+ 
 			AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(
 					getAdapterFactory(), 
 					new BasicCommandStack());
 			
-			
 			domain.getResourceSet().setPackageRegistry( EPackage.Registry.INSTANCE );			
+			
 			Resource resource = domain.createResource( aBaseDir + aDescriptionFile );
-			resource.load(null);
-							
+			
+			File deviceDescFile = new File( aBaseDir + aDescriptionFile);
+			String deviceDescXml = FileUtils.readFileToString(deviceDescFile, StandardCharsets.UTF_8);
+			
+			deviceDescXml = replacePropertyPlaceholders(deviceDescXml, properties);
+			
+			InputStream is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8);			
+			resource.load(is, null);
+										
 			return (C) resource.getAllContents().next();
 			
 		} catch ( Exception e ) {
@@ -59,6 +79,18 @@ public class DeviceDescriptionLoader<C> {
 			return null;
 		}
 	}
+	
+	private String replacePropertyPlaceholders(String deviceDescriptionXml, Properties properties) {
+
+		String convertedXml = deviceDescriptionXml;
+		if (properties != null) {
+			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+				convertedXml = convertedXml.replaceAll("\\{\\{" + entry.getKey() + "\\}\\}", (String)entry.getValue());
+			}
+		}
+		return convertedXml;
+	}
+	
 	
 	/**
 	 * Return an ComposedAdapterFactory for all registered models

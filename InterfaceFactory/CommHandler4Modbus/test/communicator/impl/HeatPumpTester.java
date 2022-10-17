@@ -26,24 +26,14 @@ package communicator.impl;
 
 
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
-import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
-import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
-import com.smartgridready.ns.v0.SGrOCPPStateType;
+import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.V0Factory;
 
-import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
-import com.smartgridready.ns.v0.SGrEVStateType;
-import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
-import com.smartgridready.ns.v0.V0Factory;
-
-import communicator.helper.DeviceDescriptionLoader;
-import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 
 public class HeatPumpTester {
 
@@ -90,7 +80,7 @@ public class HeatPumpTester {
 		
 		try {
 			
-			DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader=new DeviceDescriptionLoader<>();
+			DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
 		  
 			if (devRTU_IOPIsOn)
 			{
@@ -287,8 +277,8 @@ public class HeatPumpTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader=new DeviceDescriptionLoader<>();
-				SGrModbusDeviceDescriptionType tmpDesc=loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
+				SGrModbusDeviceFrame tmpDesc=loader.load(aBaseDir, aDescriptionFile);	
 				
 				// // replace device specific for TCP  (easymodus uses Driver instance per device)						
 				GenDriverAPI4ModbusTCP mbStiebelISG= new GenDriverAPI4ModbusTCP();
@@ -410,8 +400,8 @@ public class HeatPumpTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader=new DeviceDescriptionLoader<>();
-				SGrModbusDeviceDescriptionType tstDesc=loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
+				SGrModbusDeviceFrame tstDesc=loader.load(aBaseDir, aDescriptionFile);	
 				
 				// replace device specific for RTU
 				//add devXXXX= new SGrModbusDevice(tstDesc, mbRTU );

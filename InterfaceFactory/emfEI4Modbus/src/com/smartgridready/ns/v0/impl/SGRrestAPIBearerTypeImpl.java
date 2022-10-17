@@ -2,15 +2,12 @@
  */
 package com.smartgridready.ns.v0.impl;
 
-import com.smartgridready.ns.v0.RestAPIJMESPathType1;
 import com.smartgridready.ns.v0.SGRrestAPIBearerType;
 import com.smartgridready.ns.v0.V0Package;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -51,14 +48,24 @@ public class SGRrestAPIBearerTypeImpl extends MinimalEObjectImpl.Container imple
 	protected String restAPIEndPoint = REST_API_END_POINT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRestAPIJMESPath() <em>Rest APIJMES Path</em>}' containment reference.
+	 * The default value of the '{@link #getRestAPIJMESPath() <em>Rest APIJMES Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRestAPIJMESPath()
 	 * @generated
 	 * @ordered
 	 */
-	protected RestAPIJMESPathType1 restAPIJMESPath;
+	protected static final String REST_APIJMES_PATH_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getRestAPIJMESPath() <em>Rest APIJMES Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRestAPIJMESPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected String restAPIJMESPath = REST_APIJMES_PATH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,7 +115,7 @@ public class SGRrestAPIBearerTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public RestAPIJMESPathType1 getRestAPIJMESPath() {
+	public String getRestAPIJMESPath() {
 		return restAPIJMESPath;
 	}
 
@@ -117,48 +124,12 @@ public class SGRrestAPIBearerTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRestAPIJMESPath(RestAPIJMESPathType1 newRestAPIJMESPath, NotificationChain msgs) {
-		RestAPIJMESPathType1 oldRestAPIJMESPath = restAPIJMESPath;
+	@Override
+	public void setRestAPIJMESPath(String newRestAPIJMESPath) {
+		String oldRestAPIJMESPath = restAPIJMESPath;
 		restAPIJMESPath = newRestAPIJMESPath;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SG_RREST_API_BEARER_TYPE__REST_APIJMES_PATH, oldRestAPIJMESPath, newRestAPIJMESPath);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setRestAPIJMESPath(RestAPIJMESPathType1 newRestAPIJMESPath) {
-		if (newRestAPIJMESPath != restAPIJMESPath) {
-			NotificationChain msgs = null;
-			if (restAPIJMESPath != null)
-				msgs = ((InternalEObject)restAPIJMESPath).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SG_RREST_API_BEARER_TYPE__REST_APIJMES_PATH, null, msgs);
-			if (newRestAPIJMESPath != null)
-				msgs = ((InternalEObject)newRestAPIJMESPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SG_RREST_API_BEARER_TYPE__REST_APIJMES_PATH, null, msgs);
-			msgs = basicSetRestAPIJMESPath(newRestAPIJMESPath, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SG_RREST_API_BEARER_TYPE__REST_APIJMES_PATH, newRestAPIJMESPath, newRestAPIJMESPath));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case V0Package.SG_RREST_API_BEARER_TYPE__REST_APIJMES_PATH:
-				return basicSetRestAPIJMESPath(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SG_RREST_API_BEARER_TYPE__REST_APIJMES_PATH, oldRestAPIJMESPath, restAPIJMESPath));
 	}
 
 	/**
@@ -189,7 +160,7 @@ public class SGRrestAPIBearerTypeImpl extends MinimalEObjectImpl.Container imple
 				setRestAPIEndPoint((String)newValue);
 				return;
 			case V0Package.SG_RREST_API_BEARER_TYPE__REST_APIJMES_PATH:
-				setRestAPIJMESPath((RestAPIJMESPathType1)newValue);
+				setRestAPIJMESPath((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -207,7 +178,7 @@ public class SGRrestAPIBearerTypeImpl extends MinimalEObjectImpl.Container imple
 				setRestAPIEndPoint(REST_API_END_POINT_EDEFAULT);
 				return;
 			case V0Package.SG_RREST_API_BEARER_TYPE__REST_APIJMES_PATH:
-				setRestAPIJMESPath((RestAPIJMESPathType1)null);
+				setRestAPIJMESPath(REST_APIJMES_PATH_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -224,7 +195,7 @@ public class SGRrestAPIBearerTypeImpl extends MinimalEObjectImpl.Container imple
 			case V0Package.SG_RREST_API_BEARER_TYPE__REST_API_END_POINT:
 				return REST_API_END_POINT_EDEFAULT == null ? restAPIEndPoint != null : !REST_API_END_POINT_EDEFAULT.equals(restAPIEndPoint);
 			case V0Package.SG_RREST_API_BEARER_TYPE__REST_APIJMES_PATH:
-				return restAPIJMESPath != null;
+				return REST_APIJMES_PATH_EDEFAULT == null ? restAPIJMESPath != null : !REST_APIJMES_PATH_EDEFAULT.equals(restAPIJMESPath);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -241,6 +212,8 @@ public class SGRrestAPIBearerTypeImpl extends MinimalEObjectImpl.Container imple
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (restAPIEndPoint: ");
 		result.append(restAPIEndPoint);
+		result.append(", restAPIJMESPath: ");
+		result.append(restAPIJMESPath);
 		result.append(')');
 		return result.toString();
 	}

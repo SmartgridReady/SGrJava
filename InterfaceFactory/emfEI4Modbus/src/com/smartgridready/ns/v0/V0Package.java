@@ -160,31 +160,13 @@ public interface V0Package extends EPackage {
 	int DOCUMENT_ROOT__BYTE_LEN_SUPPORTED = 4;
 
 	/**
-	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT_ROOT__DEVICE_PROFILE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Gen Device Frame</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT_ROOT__GEN_DEVICE_FRAME = 6;
-
-	/**
 	 * The feature id for the '<em><b>Modbus Function Codes Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED = 7;
+	int DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED = 5;
 
 	/**
 	 * The feature id for the '<em><b>Net Connection State</b></em>' containment reference.
@@ -193,7 +175,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__NET_CONNECTION_STATE = 8;
+	int DOCUMENT_ROOT__NET_CONNECTION_STATE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Parity Supported</b></em>' attribute.
@@ -202,7 +184,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__PARITY_SUPPORTED = 9;
+	int DOCUMENT_ROOT__PARITY_SUPPORTED = 7;
 
 	/**
 	 * The feature id for the '<em><b>SGr Modbus Data Point Description</b></em>' containment reference.
@@ -211,7 +193,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__SGR_MODBUS_DATA_POINT_DESCRIPTION = 10;
+	int DOCUMENT_ROOT__SGR_MODBUS_DATA_POINT_DESCRIPTION = 8;
 
 	/**
 	 * The feature id for the '<em><b>SGr Modbus Interface Description</b></em>' containment reference.
@@ -220,43 +202,34 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__SGR_MODBUS_INTERFACE_DESCRIPTION = 11;
+	int DOCUMENT_ROOT__SGR_MODBUS_INTERFACE_DESCRIPTION = 9;
 
 	/**
-	 * The feature id for the '<em><b>Sgr Contact API Device Frame</b></em>' containment reference.
+	 * The feature id for the '<em><b>SGr Contact API Device Frame</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_FRAME = 12;
+	int DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_FRAME = 10;
 
 	/**
-	 * The feature id for the '<em><b>SGr Contact API Device Description Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>SGr Functional Profile Frame</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE = 13;
+	int DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_FRAME = 11;
 
 	/**
-	 * The feature id for the '<em><b>SGr Functional Profile Description Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>SGr Gen Device Frame</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_DESCRIPTION_TYPE = 14;
-
-	/**
-	 * The feature id for the '<em><b>SGr Modbus Device Description Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT_ROOT__SGR_MODBUS_DEVICE_DESCRIPTION_TYPE = 15;
+	int DOCUMENT_ROOT__SGR_GEN_DEVICE_FRAME = 12;
 
 	/**
 	 * The feature id for the '<em><b>SGr Modbus Device Frame</b></em>' containment reference.
@@ -265,16 +238,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__SGR_MODBUS_DEVICE_FRAME = 16;
-
-	/**
-	 * The feature id for the '<em><b>SGr RESTAPI Device Description Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT_ROOT__SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE = 17;
+	int DOCUMENT_ROOT__SGR_MODBUS_DEVICE_FRAME = 13;
 
 	/**
 	 * The feature id for the '<em><b>SGr Rest API Device Frame</b></em>' containment reference.
@@ -283,16 +247,16 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__SGR_REST_API_DEVICE_FRAME = 18;
+	int DOCUMENT_ROOT__SGR_REST_API_DEVICE_FRAME = 14;
 
 	/**
-	 * The feature id for the '<em><b>Sgr Serial Interface Capability</b></em>' containment reference.
+	 * The feature id for the '<em><b>SGr Serial Interface Capability</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__SGR_SERIAL_INTERFACE_CAPABILITY = 19;
+	int DOCUMENT_ROOT__SGR_SERIAL_INTERFACE_CAPABILITY = 15;
 
 	/**
 	 * The feature id for the '<em><b>Stop Bit Len Supported</b></em>' attribute.
@@ -301,7 +265,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__STOP_BIT_LEN_SUPPORTED = 20;
+	int DOCUMENT_ROOT__STOP_BIT_LEN_SUPPORTED = 16;
 
 	/**
 	 * The feature id for the '<em><b>Trsp Service Modbus</b></em>' containment reference.
@@ -310,7 +274,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT__TRSP_SERVICE_MODBUS = 21;
+	int DOCUMENT_ROOT__TRSP_SERVICE_MODBUS = 17;
 
 	/**
 	 * The number of structural features of the '<em>Document Root</em>' class.
@@ -319,7 +283,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 22;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 18;
 
 	/**
 	 * The number of operations of the '<em>Document Root</em>' class.
@@ -478,43 +442,6 @@ public interface V0Package extends EPackage {
 	int NETWORK_CONNECTION_STATE_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.RestAPIJMESPathType1Impl <em>Rest APIJMES Path Type1</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.RestAPIJMESPathType1Impl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRestAPIJMESPathType1()
-	 * @generated
-	 */
-	int REST_APIJMES_PATH_TYPE1 = 5;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REST_APIJMES_PATH_TYPE1__VALUE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Rest APIJMES Path Type1</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REST_APIJMES_PATH_TYPE1_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Rest APIJMES Path Type1</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REST_APIJMES_PATH_TYPE1_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.RTUDevInstanceTypeImpl <em>RTU Dev Instance Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -522,7 +449,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRTUDevInstanceType()
 	 * @generated
 	 */
-	int RTU_DEV_INSTANCE_TYPE = 6;
+	int RTU_DEV_INSTANCE_TYPE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Device Inst Name</b></em>' attribute.
@@ -568,7 +495,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRTUtrspSrvInstanceType()
 	 * @generated
 	 */
-	int RT_UTRSP_SRV_INSTANCE_TYPE = 7;
+	int RT_UTRSP_SRV_INSTANCE_TYPE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Baud Rate</b></em>' attribute.
@@ -632,7 +559,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRTUType()
 	 * @generated
 	 */
-	int RTU_TYPE = 8;
+	int RTU_TYPE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Rtu Trsp Srv Instance</b></em>' containment reference.
@@ -678,7 +605,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrAccessProtectionEnabledType()
 	 * @generated
 	 */
-	int SGR_ACCESS_PROTECTION_ENABLED_TYPE = 9;
+	int SGR_ACCESS_PROTECTION_ENABLED_TYPE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Exception</b></em>' attribute list.
@@ -724,7 +651,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrAttr4GenericType()
 	 * @generated
 	 */
-	int SGR_ATTR4_GENERIC_TYPE = 10;
+	int SGR_ATTR4_GENERIC_TYPE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Max Val</b></em>' attribute.
@@ -844,13 +771,22 @@ public interface V0Package extends EPackage {
 	int SGR_ATTR4_GENERIC_TYPE__TIME_RANGE = 12;
 
 	/**
+	 * The feature id for the '<em><b>Value Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE = 13;
+
+	/**
 	 * The feature id for the '<em><b>Value State</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__VALUE_STATE = 13;
+	int SGR_ATTR4_GENERIC_TYPE__VALUE_STATE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Value Tendency</b></em>' attribute.
@@ -859,7 +795,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY = 14;
+	int SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY = 15;
 
 	/**
 	 * The feature id for the '<em><b>Value Source</b></em>' attribute.
@@ -868,7 +804,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE = 15;
+	int SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Sample Rate</b></em>' attribute.
@@ -877,7 +813,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE = 16;
+	int SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Curtailment</b></em>' attribute.
@@ -886,7 +822,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__CURTAILMENT = 17;
+	int SGR_ATTR4_GENERIC_TYPE__CURTAILMENT = 18;
 
 	/**
 	 * The feature id for the '<em><b>Min Load</b></em>' attribute.
@@ -895,7 +831,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__MIN_LOAD = 18;
+	int SGR_ATTR4_GENERIC_TYPE__MIN_LOAD = 19;
 
 	/**
 	 * The feature id for the '<em><b>Max Lock Time Minutes</b></em>' attribute.
@@ -904,7 +840,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__MAX_LOCK_TIME_MINUTES = 19;
+	int SGR_ATTR4_GENERIC_TYPE__MAX_LOCK_TIME_MINUTES = 20;
 
 	/**
 	 * The feature id for the '<em><b>Min Run Time Minutes</b></em>' attribute.
@@ -913,7 +849,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__MIN_RUN_TIME_MINUTES = 20;
+	int SGR_ATTR4_GENERIC_TYPE__MIN_RUN_TIME_MINUTES = 21;
 
 	/**
 	 * The feature id for the '<em><b>Value By Time Table Minutes</b></em>' attribute.
@@ -922,7 +858,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__VALUE_BY_TIME_TABLE_MINUTES = 21;
+	int SGR_ATTR4_GENERIC_TYPE__VALUE_BY_TIME_TABLE_MINUTES = 22;
 
 	/**
 	 * The feature id for the '<em><b>Flex Assistance</b></em>' containment reference.
@@ -931,7 +867,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE = 22;
+	int SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE = 23;
 
 	/**
 	 * The number of structural features of the '<em>SGr Attr4 Generic Type</em>' class.
@@ -940,7 +876,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE_FEATURE_COUNT = 23;
+	int SGR_ATTR4_GENERIC_TYPE_FEATURE_COUNT = 24;
 
 	/**
 	 * The number of operations of the '<em>SGr Attr4 Generic Type</em>' class.
@@ -959,7 +895,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrAttr4ModbusType()
 	 * @generated
 	 */
-	int SGR_ATTR4_MODBUS_TYPE = 11;
+	int SGR_ATTR4_MODBUS_TYPE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Scaling By Mul Pwr</b></em>' containment reference.
@@ -1050,7 +986,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrAttr4RestAPIType()
 	 * @generated
 	 */
-	int SGR_ATTR4_REST_API_TYPE = 12;
+	int SGR_ATTR4_REST_API_TYPE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Place Holder4future Extensions</b></em>' attribute.
@@ -1087,7 +1023,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrBasicGenArrayDPTypeType()
 	 * @generated
 	 */
-	int SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE = 13;
+	int SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1133,7 +1069,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrBasicGenDataPointTypeType()
 	 * @generated
 	 */
-	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE = 14;
+	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Boolean</b></em>' attribute.
@@ -1287,7 +1223,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrChangeLog()
 	 * @generated
 	 */
-	int SGR_CHANGE_LOG = 15;
+	int SGR_CHANGE_LOG = 14;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -1344,14 +1280,14 @@ public interface V0Package extends EPackage {
 	int SGR_CHANGE_LOG_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl <em>SGr Contact API Device Description Type</em>}' class.
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl <em>SGr Device Base Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrContactAPIDeviceDescriptionTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrContactAPIDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDeviceBaseType()
 	 * @generated
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE = 16;
+	int SGR_DEVICE_BASE_TYPE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -1360,34 +1296,16 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE = 0;
+	int SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Contact Api Interface Desc</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__CONTACT_API_INTERFACE_DESC = 2;
-
-	/**
-	 * The feature id for the '<em><b>Fp List Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT = 3;
+	int SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Device Name</b></em>' attribute.
@@ -1396,7 +1314,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME = 4;
+	int SGR_DEVICE_BASE_TYPE__DEVICE_NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Is Local Control</b></em>' attribute.
@@ -1405,7 +1323,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL = 5;
+	int SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Manufacturer ID</b></em>' attribute.
@@ -1414,7 +1332,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID = 6;
+	int SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID = 4;
 
 	/**
 	 * The feature id for the '<em><b>Manufacturer Name</b></em>' attribute.
@@ -1423,25 +1341,272 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_NAME = 7;
+	int SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME = 5;
 
 	/**
-	 * The number of structural features of the '<em>SGr Contact API Device Description Type</em>' class.
+	 * The number of structural features of the '<em>SGr Device Base Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE_FEATURE_COUNT = 8;
+	int SGR_DEVICE_BASE_TYPE_FEATURE_COUNT = 6;
 
 	/**
-	 * The number of operations of the '<em>SGr Contact API Device Description Type</em>' class.
+	 * The number of operations of the '<em>SGr Device Base Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
+	int SGR_DEVICE_BASE_TYPE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrContactAPIDeviceFrameImpl <em>SGr Contact API Device Frame</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.impl.SGrContactAPIDeviceFrameImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrContactAPIDeviceFrame()
+	 * @generated
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME = 15;
+
+	/**
+	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME__DEVICE_PROFILE = SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME__GEN_ATTRIBUTE = SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Device Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME__DEVICE_NAME = SGR_DEVICE_BASE_TYPE__DEVICE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Local Control</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME__IS_LOCAL_CONTROL = SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL;
+
+	/**
+	 * The feature id for the '<em><b>Manufacturer ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME__MANUFACTURER_ID = SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID;
+
+	/**
+	 * The feature id for the '<em><b>Manufacturer Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME__MANUFACTURER_NAME = SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Contact Api Interface Desc</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME__CONTACT_API_INTERFACE_DESC = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Fp List Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME__FP_LIST_ELEMENT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>SGr Contact API Device Frame</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME_FEATURE_COUNT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>SGr Contact API Device Frame</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_DEVICE_FRAME_OPERATION_COUNT = SGR_DEVICE_BASE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrFunctionalProfileBaseTypeImpl <em>SGr Functional Profile Base Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.impl.SGrFunctionalProfileBaseTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrFunctionalProfileBaseType()
+	 * @generated
+	 */
+	int SGR_FUNCTIONAL_PROFILE_BASE_TYPE = 23;
+
+	/**
+	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_FUNCTIONAL_PROFILE_BASE_TYPE__FUNCTIONAL_PROFILE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_FUNCTIONAL_PROFILE_BASE_TYPE__GEN_ATTRIBUTE = 1;
+
+	/**
+	 * The number of structural features of the '<em>SGr Functional Profile Base Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>SGr Functional Profile Base Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_FUNCTIONAL_PROFILE_BASE_TYPE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrContactAPIFunctionalProfileTypeImpl <em>SGr Contact API Functional Profile Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.impl.SGrContactAPIFunctionalProfileTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrContactAPIFunctionalProfileType()
+	 * @generated
+	 */
+	int SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE = 16;
+
+	/**
+	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE__FUNCTIONAL_PROFILE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__FUNCTIONAL_PROFILE;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE__GEN_ATTRIBUTE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__GEN_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>SGr Contact API Functional Profile Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE_FEATURE_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>SGr Contact API Functional Profile Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE_OPERATION_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrDataPointBaseTypeImpl <em>SGr Data Point Base Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.impl.SGrDataPointBaseTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDataPointBaseType()
+	 * @generated
+	 */
+	int SGR_DATA_POINT_BASE_TYPE = 17;
+
+	/**
+	 * The feature id for the '<em><b>Data Point</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_DATA_POINT_BASE_TYPE__DATA_POINT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE = 1;
+
+	/**
+	 * The number of structural features of the '<em>SGr Data Point Base Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>SGr Data Point Base Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_DATA_POINT_BASE_TYPE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl <em>SGr Data Point Description Type</em>}' class.
@@ -1451,7 +1616,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDataPointDescriptionType()
 	 * @generated
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE = 17;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Basic Data Type</b></em>' containment reference.
@@ -1551,143 +1716,6 @@ public interface V0Package extends EPackage {
 	 * @ordered
 	 */
 	int SGR_DATA_POINT_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrDataPointsFrameTypeImpl <em>SGr Data Points Frame Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrDataPointsFrameTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDataPointsFrameType()
-	 * @generated
-	 */
-	int SGR_DATA_POINTS_FRAME_TYPE = 18;
-
-	/**
-	 * The feature id for the '<em><b>Data Point</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DATA_POINTS_FRAME_TYPE__DATA_POINT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE = 1;
-
-	/**
-	 * The number of structural features of the '<em>SGr Data Points Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DATA_POINTS_FRAME_TYPE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>SGr Data Points Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DATA_POINTS_FRAME_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrDeviceDescriptionTypeImpl <em>SGr Device Description Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrDeviceDescriptionTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDeviceDescriptionType()
-	 * @generated
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE = 19;
-
-	/**
-	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Fp List Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT = 2;
-
-	/**
-	 * The feature id for the '<em><b>Device Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME = 3;
-
-	/**
-	 * The feature id for the '<em><b>Is Local Control</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL = 4;
-
-	/**
-	 * The feature id for the '<em><b>Manufacturer ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID = 5;
-
-	/**
-	 * The feature id for the '<em><b>Manufacturer Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_NAME = 6;
-
-	/**
-	 * The number of structural features of the '<em>SGr Device Description Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE_FEATURE_COUNT = 7;
-
-	/**
-	 * The number of operations of the '<em>SGr Device Description Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrDeviceProfileTypeImpl <em>SGr Device Profile Type</em>}' class.
@@ -2071,23 +2099,105 @@ public interface V0Package extends EPackage {
 	int SGR_FLEX_ASSISTANCE_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrInterfaceDescriptionTypeImpl <em>SGr Interface Description Type</em>}' class.
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrFunctionalProfileFrameTypeImpl <em>SGr Functional Profile Frame Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrInterfaceDescriptionTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrInterfaceDescriptionType()
+	 * @see com.smartgridready.ns.v0.impl.SGrFunctionalProfileFrameTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrFunctionalProfileFrameType()
 	 * @generated
 	 */
-	int SGR_INTERFACE_DESCRIPTION_TYPE = 23;
+	int SGR_FUNCTIONAL_PROFILE_FRAME_TYPE = 24;
 
 	/**
-	 * The feature id for the '<em><b>Technology Used</b></em>' attribute.
+	 * The feature id for the '<em><b>Release Notes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_INTERFACE_DESCRIPTION_TYPE__TECHNOLOGY_USED = 0;
+	int SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__DP_LIST_ELEMENT = 3;
+
+	/**
+	 * The number of structural features of the '<em>SGr Functional Profile Frame Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_FUNCTIONAL_PROFILE_FRAME_TYPE_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>SGr Functional Profile Frame Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_FUNCTIONAL_PROFILE_FRAME_TYPE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrGenDeviceFrameImpl <em>SGr Gen Device Frame</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.impl.SGrGenDeviceFrameImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrGenDeviceFrame()
+	 * @generated
+	 */
+	int SGR_GEN_DEVICE_FRAME = 25;
+
+	/**
+	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_DEVICE_FRAME__DEVICE_PROFILE = SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_DEVICE_FRAME__GEN_ATTRIBUTE = SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Device Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_DEVICE_FRAME__DEVICE_NAME = SGR_DEVICE_BASE_TYPE__DEVICE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Is Local Control</b></em>' attribute.
@@ -2096,25 +2206,107 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_INTERFACE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL = 1;
+	int SGR_GEN_DEVICE_FRAME__IS_LOCAL_CONTROL = SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL;
 
 	/**
-	 * The number of structural features of the '<em>SGr Interface Description Type</em>' class.
+	 * The feature id for the '<em><b>Manufacturer ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_INTERFACE_DESCRIPTION_TYPE_FEATURE_COUNT = 2;
+	int SGR_GEN_DEVICE_FRAME__MANUFACTURER_ID = SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID;
 
 	/**
-	 * The number of operations of the '<em>SGr Interface Description Type</em>' class.
+	 * The feature id for the '<em><b>Manufacturer Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_INTERFACE_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
+	int SGR_GEN_DEVICE_FRAME__MANUFACTURER_NAME = SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Fp List Element</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_DEVICE_FRAME__FP_LIST_ELEMENT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>SGr Gen Device Frame</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_DEVICE_FRAME_FEATURE_COUNT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>SGr Gen Device Frame</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_DEVICE_FRAME_OPERATION_COUNT = SGR_DEVICE_BASE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrGenFunctionalProfileTypeImpl <em>SGr Gen Functional Profile Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.impl.SGrGenFunctionalProfileTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrGenFunctionalProfileType()
+	 * @generated
+	 */
+	int SGR_GEN_FUNCTIONAL_PROFILE_TYPE = 26;
+
+	/**
+	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_FUNCTIONAL_PROFILE_TYPE__FUNCTIONAL_PROFILE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__FUNCTIONAL_PROFILE;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_FUNCTIONAL_PROFILE_TYPE__GEN_ATTRIBUTE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__GEN_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>SGr Gen Functional Profile Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_FUNCTIONAL_PROFILE_TYPE_FEATURE_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>SGr Gen Functional Profile Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_GEN_FUNCTIONAL_PROFILE_TYPE_OPERATION_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrLegibDocumentationTypeImpl <em>SGr Legib Documentation Type</em>}' class.
@@ -2124,7 +2316,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrLegibDocumentationType()
 	 * @generated
 	 */
-	int SGR_LEGIB_DOCUMENTATION_TYPE = 24;
+	int SGR_LEGIB_DOCUMENTATION_TYPE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Text Element</b></em>' attribute.
@@ -2179,7 +2371,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusDataPointDescriptionType()
 	 * @generated
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE = 25;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Data Type</b></em>' containment reference.
@@ -2263,23 +2455,32 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointsFrameTypeImpl <em>SGr Modbus Data Points Frame Type</em>}' class.
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl <em>SGr Modbus Data Point Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrModbusDataPointsFrameTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusDataPointsFrameType()
+	 * @see com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusDataPointType()
 	 * @generated
 	 */
-	int SGR_MODBUS_DATA_POINTS_FRAME_TYPE = 26;
+	int SGR_MODBUS_DATA_POINT_TYPE = 29;
 
 	/**
-	 * The feature id for the '<em><b>Data Point</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Data Point</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINTS_FRAME_TYPE__DATA_POINT = 0;
+	int SGR_MODBUS_DATA_POINT_TYPE__DATA_POINT = SGR_DATA_POINT_BASE_TYPE__DATA_POINT;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DATA_POINT_TYPE__GEN_ATTRIBUTE = SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Data Point</b></em>' containment reference list.
@@ -2288,16 +2489,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_DATA_POINT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE = 2;
+	int SGR_MODBUS_DATA_POINT_TYPE__MODBUS_DATA_POINT = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference list.
@@ -2306,35 +2498,35 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINTS_FRAME_TYPE__MODBUS_ATTR = 3;
+	int SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>SGr Modbus Data Points Frame Type</em>' class.
+	 * The number of structural features of the '<em>SGr Modbus Data Point Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINTS_FRAME_TYPE_FEATURE_COUNT = 4;
+	int SGR_MODBUS_DATA_POINT_TYPE_FEATURE_COUNT = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>SGr Modbus Data Points Frame Type</em>' class.
+	 * The number of operations of the '<em>SGr Modbus Data Point Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINTS_FRAME_TYPE_OPERATION_COUNT = 0;
+	int SGR_MODBUS_DATA_POINT_TYPE_OPERATION_COUNT = SGR_DATA_POINT_BASE_TYPE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceDescriptionTypeImpl <em>SGr Modbus Device Description Type</em>}' class.
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceFrameImpl <em>SGr Modbus Device Frame</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrModbusDeviceDescriptionTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.impl.SGrModbusDeviceFrameImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusDeviceFrame()
 	 * @generated
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE = 27;
+	int SGR_MODBUS_DEVICE_FRAME = 30;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -2343,52 +2535,16 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE = 0;
+	int SGR_MODBUS_DEVICE_FRAME__DEVICE_PROFILE = SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE;
 
 	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_ATTR = 2;
-
-	/**
-	 * The feature id for the '<em><b>Modbus Interface Desc</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MODBUS_INTERFACE_DESC = 3;
-
-	/**
-	 * The feature id for the '<em><b>Fp List Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT = 4;
-
-	/**
-	 * The feature id for the '<em><b>Network Connection State</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__NETWORK_CONNECTION_STATE = 5;
+	int SGR_MODBUS_DEVICE_FRAME__GEN_ATTRIBUTE = SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE;
 
 	/**
 	 * The feature id for the '<em><b>Device Name</b></em>' attribute.
@@ -2397,7 +2553,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME = 6;
+	int SGR_MODBUS_DEVICE_FRAME__DEVICE_NAME = SGR_DEVICE_BASE_TYPE__DEVICE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Is Local Control</b></em>' attribute.
@@ -2406,7 +2562,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL = 7;
+	int SGR_MODBUS_DEVICE_FRAME__IS_LOCAL_CONTROL = SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL;
 
 	/**
 	 * The feature id for the '<em><b>Manufacturer ID</b></em>' attribute.
@@ -2415,7 +2571,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID = 8;
+	int SGR_MODBUS_DEVICE_FRAME__MANUFACTURER_ID = SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID;
 
 	/**
 	 * The feature id for the '<em><b>Manufacturer Name</b></em>' attribute.
@@ -2424,25 +2580,125 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_NAME = 9;
+	int SGR_MODBUS_DEVICE_FRAME__MANUFACTURER_NAME = SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME;
 
 	/**
-	 * The number of structural features of the '<em>SGr Modbus Device Description Type</em>' class.
+	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE_FEATURE_COUNT = 10;
+	int SGR_MODBUS_DEVICE_FRAME__MODBUS_ATTR = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>SGr Modbus Device Description Type</em>' class.
+	 * The feature id for the '<em><b>Modbus Interface Desc</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
+	int SGR_MODBUS_DEVICE_FRAME__MODBUS_INTERFACE_DESC = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Fp List Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DEVICE_FRAME__FP_LIST_ELEMENT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Network Connection State</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DEVICE_FRAME__NETWORK_CONNECTION_STATE = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>SGr Modbus Device Frame</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DEVICE_FRAME_FEATURE_COUNT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>SGr Modbus Device Frame</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DEVICE_FRAME_OPERATION_COUNT = SGR_DEVICE_BASE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrModbusFunctionalProfileTypeImpl <em>SGr Modbus Functional Profile Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.impl.SGrModbusFunctionalProfileTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusFunctionalProfileType()
+	 * @generated
+	 */
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE = 31;
+
+	/**
+	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__FUNCTIONAL_PROFILE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__FUNCTIONAL_PROFILE;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__GEN_ATTRIBUTE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__GEN_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>SGr Modbus Functional Profile Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE_FEATURE_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>SGr Modbus Functional Profile Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE_OPERATION_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrModbusInterfaceDescriptionTypeImpl <em>SGr Modbus Interface Description Type</em>}' class.
@@ -2452,7 +2708,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusInterfaceDescriptionType()
 	 * @generated
 	 */
-	int SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE = 28;
+	int SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE = 32;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Interface Selection</b></em>' attribute.
@@ -2518,70 +2774,6 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrModbusProfilesFrameTypeImpl <em>SGr Modbus Profiles Frame Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrModbusProfilesFrameTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusProfilesFrameType()
-	 * @generated
-	 */
-	int SGR_MODBUS_PROFILES_FRAME_TYPE = 29;
-
-	/**
-	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_PROFILES_FRAME_TYPE__MODBUS_ATTR = 2;
-
-	/**
-	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT = 3;
-
-	/**
-	 * The number of structural features of the '<em>SGr Modbus Profiles Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_PROFILES_FRAME_TYPE_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>SGr Modbus Profiles Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_PROFILES_FRAME_TYPE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl <em>SGr Namelist Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2589,7 +2781,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrNamelistType()
 	 * @generated
 	 */
-	int SGR_NAMELIST_TYPE = 30;
+	int SGR_NAMELIST_TYPE = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name Type</b></em>' attribute.
@@ -2689,7 +2881,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrProfileDescriptionType()
 	 * @generated
 	 */
-	int SGR_PROFILE_DESCRIPTION_TYPE = 31;
+	int SGR_PROFILE_DESCRIPTION_TYPE = 34;
 
 	/**
 	 * The feature id for the '<em><b>Profile Number</b></em>' containment reference.
@@ -2771,7 +2963,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrProfilenumberType()
 	 * @generated
 	 */
-	int SGR_PROFILENUMBER_TYPE = 32;
+	int SGR_PROFILENUMBER_TYPE = 35;
 
 	/**
 	 * The feature id for the '<em><b>Specs Owner Id</b></em>' attribute.
@@ -2837,70 +3029,6 @@ public interface V0Package extends EPackage {
 	int SGR_PROFILENUMBER_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrProfilesFrameTypeImpl <em>SGr Profiles Frame Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrProfilesFrameTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrProfilesFrameType()
-	 * @generated
-	 */
-	int SGR_PROFILES_FRAME_TYPE = 33;
-
-	/**
-	 * The feature id for the '<em><b>Release Notes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES = 0;
-
-	/**
-	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT = 3;
-
-	/**
-	 * The number of structural features of the '<em>SGr Profiles Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_PROFILES_FRAME_TYPE_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>SGr Profiles Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_PROFILES_FRAME_TYPE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrReleaseNotesImpl <em>SGr Release Notes</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2908,7 +3036,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrReleaseNotes()
 	 * @generated
 	 */
-	int SGR_RELEASE_NOTES = 34;
+	int SGR_RELEASE_NOTES = 36;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -2954,7 +3082,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGRrestAPIBearerType()
 	 * @generated
 	 */
-	int SG_RREST_API_BEARER_TYPE = 35;
+	int SG_RREST_API_BEARER_TYPE = 37;
 
 	/**
 	 * The feature id for the '<em><b>Rest API End Point</b></em>' attribute.
@@ -2966,7 +3094,7 @@ public interface V0Package extends EPackage {
 	int SG_RREST_API_BEARER_TYPE__REST_API_END_POINT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Rest APIJMES Path</b></em>' containment reference.
+	 * The feature id for the '<em><b>Rest APIJMES Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3000,7 +3128,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIDataPointDescriptionType()
 	 * @generated
 	 */
-	int SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE = 36;
+	int SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE = 38;
 
 	/**
 	 * The feature id for the '<em><b>Rest API End Point</b></em>' attribute.
@@ -3048,23 +3176,32 @@ public interface V0Package extends EPackage {
 	int SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRestAPIDataPointsFrameTypeImpl <em>SGr Rest API Data Points Frame Type</em>}' class.
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRestAPIDataPointTypeImpl <em>SGr Rest API Data Point Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrRestAPIDataPointsFrameTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIDataPointsFrameType()
+	 * @see com.smartgridready.ns.v0.impl.SGrRestAPIDataPointTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIDataPointType()
 	 * @generated
 	 */
-	int SGR_REST_API_DATA_POINTS_FRAME_TYPE = 37;
+	int SGR_REST_API_DATA_POINT_TYPE = 39;
 
 	/**
-	 * The feature id for the '<em><b>Data Point</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Data Point</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_REST_API_DATA_POINTS_FRAME_TYPE__DATA_POINT = 0;
+	int SGR_REST_API_DATA_POINT_TYPE__DATA_POINT = SGR_DATA_POINT_BASE_TYPE__DATA_POINT;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_DATA_POINT_TYPE__GEN_ATTRIBUTE = SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE;
 
 	/**
 	 * The feature id for the '<em><b>Rest API Data Point</b></em>' containment reference list.
@@ -3073,16 +3210,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_REST_API_DATA_POINTS_FRAME_TYPE__REST_API_DATA_POINT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_API_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE = 2;
+	int SGR_REST_API_DATA_POINT_TYPE__REST_API_DATA_POINT = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Rest API Attr</b></em>' containment reference list.
@@ -3091,35 +3219,35 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_REST_API_DATA_POINTS_FRAME_TYPE__REST_API_ATTR = 3;
+	int SGR_REST_API_DATA_POINT_TYPE__REST_API_ATTR = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>SGr Rest API Data Points Frame Type</em>' class.
+	 * The number of structural features of the '<em>SGr Rest API Data Point Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_REST_API_DATA_POINTS_FRAME_TYPE_FEATURE_COUNT = 4;
+	int SGR_REST_API_DATA_POINT_TYPE_FEATURE_COUNT = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>SGr Rest API Data Points Frame Type</em>' class.
+	 * The number of operations of the '<em>SGr Rest API Data Point Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_REST_API_DATA_POINTS_FRAME_TYPE_OPERATION_COUNT = 0;
+	int SGR_REST_API_DATA_POINT_TYPE_OPERATION_COUNT = SGR_DATA_POINT_BASE_TYPE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRESTAPIDeviceDescriptionTypeImpl <em>SGr RESTAPI Device Description Type</em>}' class.
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRestAPIDeviceFrameImpl <em>SGr Rest API Device Frame</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrRESTAPIDeviceDescriptionTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRESTAPIDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.impl.SGrRestAPIDeviceFrameImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIDeviceFrame()
 	 * @generated
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE = 38;
+	int SGR_REST_API_DEVICE_FRAME = 40;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -3128,43 +3256,16 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEVICE_PROFILE = 0;
+	int SGR_REST_API_DEVICE_FRAME__DEVICE_PROFILE = SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE;
 
 	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__GEN_ATTRIBUTE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Rest API Attr</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_ATTR = 2;
-
-	/**
-	 * The feature id for the '<em><b>Rest API Interface Desc</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__REST_API_INTERFACE_DESC = 3;
-
-	/**
-	 * The feature id for the '<em><b>Fp List Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__FP_LIST_ELEMENT = 4;
+	int SGR_REST_API_DEVICE_FRAME__GEN_ATTRIBUTE = SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE;
 
 	/**
 	 * The feature id for the '<em><b>Device Name</b></em>' attribute.
@@ -3173,7 +3274,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__DEVICE_NAME = 5;
+	int SGR_REST_API_DEVICE_FRAME__DEVICE_NAME = SGR_DEVICE_BASE_TYPE__DEVICE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Is Local Control</b></em>' attribute.
@@ -3182,7 +3283,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__IS_LOCAL_CONTROL = 6;
+	int SGR_REST_API_DEVICE_FRAME__IS_LOCAL_CONTROL = SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL;
 
 	/**
 	 * The feature id for the '<em><b>Manufacturer ID</b></em>' attribute.
@@ -3191,7 +3292,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_ID = 7;
+	int SGR_REST_API_DEVICE_FRAME__MANUFACTURER_ID = SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID;
 
 	/**
 	 * The feature id for the '<em><b>Manufacturer Name</b></em>' attribute.
@@ -3200,25 +3301,116 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE__MANUFACTURER_NAME = 8;
+	int SGR_REST_API_DEVICE_FRAME__MANUFACTURER_NAME = SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME;
 
 	/**
-	 * The number of structural features of the '<em>SGr RESTAPI Device Description Type</em>' class.
+	 * The feature id for the '<em><b>Rest API Attr</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE_FEATURE_COUNT = 9;
+	int SGR_REST_API_DEVICE_FRAME__REST_API_ATTR = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>SGr RESTAPI Device Description Type</em>' class.
+	 * The feature id for the '<em><b>Rest API Interface Desc</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
+	int SGR_REST_API_DEVICE_FRAME__REST_API_INTERFACE_DESC = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Fp List Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_DEVICE_FRAME__FP_LIST_ELEMENT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>SGr Rest API Device Frame</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_DEVICE_FRAME_FEATURE_COUNT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>SGr Rest API Device Frame</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_DEVICE_FRAME_OPERATION_COUNT = SGR_DEVICE_BASE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRestAPIFunctionalProfileTypeImpl <em>SGr Rest API Functional Profile Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.impl.SGrRestAPIFunctionalProfileTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIFunctionalProfileType()
+	 * @generated
+	 */
+	int SGR_REST_API_FUNCTIONAL_PROFILE_TYPE = 41;
+
+	/**
+	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_FUNCTIONAL_PROFILE_TYPE__FUNCTIONAL_PROFILE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__FUNCTIONAL_PROFILE;
+
+	/**
+	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_FUNCTIONAL_PROFILE_TYPE__GEN_ATTRIBUTE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__GEN_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Rest API Attr</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_FUNCTIONAL_PROFILE_TYPE__REST_API_ATTR = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>SGr Rest API Functional Profile Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_FUNCTIONAL_PROFILE_TYPE_FEATURE_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>SGr Rest API Functional Profile Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_REST_API_FUNCTIONAL_PROFILE_TYPE_OPERATION_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRestAPIInterfaceDescriptionTypeImpl <em>SGr Rest API Interface Description Type</em>}' class.
@@ -3228,7 +3420,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIInterfaceDescriptionType()
 	 * @generated
 	 */
-	int SGR_REST_API_INTERFACE_DESCRIPTION_TYPE = 39;
+	int SGR_REST_API_INTERFACE_DESCRIPTION_TYPE = 42;
 
 	/**
 	 * The feature id for the '<em><b>Rest API Interface Selection</b></em>' attribute.
@@ -3312,70 +3504,6 @@ public interface V0Package extends EPackage {
 	int SGR_REST_API_INTERFACE_DESCRIPTION_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRestAPIProfilesFrameTypeImpl <em>SGr Rest API Profiles Frame Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrRestAPIProfilesFrameTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIProfilesFrameType()
-	 * @generated
-	 */
-	int SGR_REST_API_PROFILES_FRAME_TYPE = 40;
-
-	/**
-	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_API_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_API_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Rest API Attr</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_API_PROFILES_FRAME_TYPE__REST_API_ATTR = 2;
-
-	/**
-	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_API_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT = 3;
-
-	/**
-	 * The number of structural features of the '<em>SGr Rest API Profiles Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_API_PROFILES_FRAME_TYPE_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>SGr Rest API Profiles Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_API_PROFILES_FRAME_TYPE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRestBasicTypeImpl <em>SGr Rest Basic Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3383,7 +3511,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestBasicType()
 	 * @generated
 	 */
-	int SGR_REST_BASIC_TYPE = 41;
+	int SGR_REST_BASIC_TYPE = 43;
 
 	/**
 	 * The feature id for the '<em><b>Rest Basic Username</b></em>' attribute.
@@ -3420,134 +3548,6 @@ public interface V0Package extends EPackage {
 	 * @ordered
 	 */
 	int SGR_REST_BASIC_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRestDataPointsFrameTypeImpl <em>SGr Rest Data Points Frame Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrRestDataPointsFrameTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestDataPointsFrameType()
-	 * @generated
-	 */
-	int SGR_REST_DATA_POINTS_FRAME_TYPE = 42;
-
-	/**
-	 * The feature id for the '<em><b>Data Point</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_DATA_POINTS_FRAME_TYPE__DATA_POINT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Rest Data Point</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_DATA_POINTS_FRAME_TYPE__REST_DATA_POINT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_DATA_POINTS_FRAME_TYPE__GEN_ATTRIBUTE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Rest API Attr</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_DATA_POINTS_FRAME_TYPE__REST_API_ATTR = 3;
-
-	/**
-	 * The number of structural features of the '<em>SGr Rest Data Points Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_DATA_POINTS_FRAME_TYPE_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>SGr Rest Data Points Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_DATA_POINTS_FRAME_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrRestProfilesFrameTypeImpl <em>SGr Rest Profiles Frame Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.SGrRestProfilesFrameTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestProfilesFrameType()
-	 * @generated
-	 */
-	int SGR_REST_PROFILES_FRAME_TYPE = 43;
-
-	/**
-	 * The feature id for the '<em><b>Functional Profile</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Rest API Attr</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_PROFILES_FRAME_TYPE__REST_API_ATTR = 2;
-
-	/**
-	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT = 3;
-
-	/**
-	 * The number of structural features of the '<em>SGr Rest Profiles Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_PROFILES_FRAME_TYPE_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>SGr Rest Profiles Frame Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_PROFILES_FRAME_TYPE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrScalingTypeImpl <em>SGr Scaling Type</em>}' class.
@@ -4575,6 +4575,16 @@ public interface V0Package extends EPackage {
 	int SGR_MEAS_VALUE_TENDENCY_TYPE = 78;
 
 	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrMeasValueType <em>SGr Meas Value Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.SGrMeasValueType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMeasValueType()
+	 * @generated
+	 */
+	int SGR_MEAS_VALUE_TYPE = 79;
+
+	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrModbusLayer6DeviationType <em>SGr Modbus Layer6 Deviation Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4582,7 +4592,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusLayer6DeviationType()
 	 * @generated
 	 */
-	int SGR_MODBUS_LAYER6_DEVIATION_TYPE = 79;
+	int SGR_MODBUS_LAYER6_DEVIATION_TYPE = 80;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrModbusReg2BoolArrayType <em>SGr Modbus Reg2 Bool Array Type</em>}' enum.
@@ -4592,7 +4602,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusReg2BoolArrayType()
 	 * @generated
 	 */
-	int SGR_MODBUS_REG2_BOOL_ARRAY_TYPE = 80;
+	int SGR_MODBUS_REG2_BOOL_ARRAY_TYPE = 81;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrMROPresenceLevelIndicationType <em>SGr MRO Presence Level Indication Type</em>}' enum.
@@ -4602,7 +4612,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMROPresenceLevelIndicationType()
 	 * @generated
 	 */
-	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE = 81;
+	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE = 82;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrNamelistKindOfType <em>SGr Namelist Kind Of Type</em>}' enum.
@@ -4612,7 +4622,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrNamelistKindOfType()
 	 * @generated
 	 */
-	int SGR_NAMELIST_KIND_OF_TYPE = 82;
+	int SGR_NAMELIST_KIND_OF_TYPE = 83;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrObligLvlType <em>SGr Oblig Lvl Type</em>}' enum.
@@ -4622,7 +4632,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrObligLvlType()
 	 * @generated
 	 */
-	int SGR_OBLIG_LVL_TYPE = 83;
+	int SGR_OBLIG_LVL_TYPE = 84;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrOCPPStateType <em>SGr OCPP State Type</em>}' enum.
@@ -4632,7 +4642,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrOCPPStateType()
 	 * @generated
 	 */
-	int SGR_OCPP_STATE_TYPE = 84;
+	int SGR_OCPP_STATE_TYPE = 85;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrPowerSourceType <em>SGr Power Source Type</em>}' enum.
@@ -4642,7 +4652,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrPowerSourceType()
 	 * @generated
 	 */
-	int SGR_POWER_SOURCE_TYPE = 85;
+	int SGR_POWER_SOURCE_TYPE = 86;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrReleaseState <em>SGr Release State</em>}' enum.
@@ -4652,7 +4662,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrReleaseState()
 	 * @generated
 	 */
-	int SGR_RELEASE_STATE = 86;
+	int SGR_RELEASE_STATE = 87;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrRestAPIAuthenticationEnumMethodType <em>SGr Rest API Authentication Enum Method Type</em>}' enum.
@@ -4662,7 +4672,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIAuthenticationEnumMethodType()
 	 * @generated
 	 */
-	int SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE = 87;
+	int SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE = 88;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrRestAPIdataTypeType <em>SGr Rest AP Idata Type Type</em>}' enum.
@@ -4672,7 +4682,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIdataTypeType()
 	 * @generated
 	 */
-	int SGR_REST_AP_IDATA_TYPE_TYPE = 88;
+	int SGR_REST_AP_IDATA_TYPE_TYPE = 89;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrRestAPIInterfaceSelectiontype <em>SGr Rest API Interface Selectiontype</em>}' enum.
@@ -4682,7 +4692,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIInterfaceSelectiontype()
 	 * @generated
 	 */
-	int SGR_REST_API_INTERFACE_SELECTIONTYPE = 89;
+	int SGR_REST_API_INTERFACE_SELECTIONTYPE = 90;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrRWPType <em>SGr RWP Type</em>}' enum.
@@ -4692,7 +4702,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRWPType()
 	 * @generated
 	 */
-	int SGR_RWP_TYPE = 90;
+	int SGR_RWP_TYPE = 91;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrSGCPFeedInStateLv2Type <em>SGr SGCP Feed In State Lv2 Type</em>}' enum.
@@ -4702,7 +4712,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPFeedInStateLv2Type()
 	 * @generated
 	 */
-	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE = 91;
+	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE = 92;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrSGCPLoadStateLv2Type <em>SGr SGCP Load State Lv2 Type</em>}' enum.
@@ -4712,7 +4722,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPLoadStateLv2Type()
 	 * @generated
 	 */
-	int SGR_SGCP_LOAD_STATE_LV2_TYPE = 92;
+	int SGR_SGCP_LOAD_STATE_LV2_TYPE = 93;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrSGCPServiceType <em>SGr SGCP Service Type</em>}' enum.
@@ -4722,7 +4732,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPServiceType()
 	 * @generated
 	 */
-	int SGR_SGCP_SERVICE_TYPE = 93;
+	int SGR_SGCP_SERVICE_TYPE = 94;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrSunspStateCodesType <em>SGr Sunsp State Codes Type</em>}' enum.
@@ -4732,7 +4742,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSunspStateCodesType()
 	 * @generated
 	 */
-	int SGR_SUNSP_STATE_CODES_TYPE = 94;
+	int SGR_SUNSP_STATE_CODES_TYPE = 95;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrTransportServicesUsedListType <em>SGr Transport Services Used List Type</em>}' enum.
@@ -4742,7 +4752,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrTransportServicesUsedListType()
 	 * @generated
 	 */
-	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE = 95;
+	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE = 96;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrUnits <em>SGr Units</em>}' enum.
@@ -4752,7 +4762,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrUnits()
 	 * @generated
 	 */
-	int SGR_UNITS = 96;
+	int SGR_UNITS = 97;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SubProfileTypeEnumType <em>Sub Profile Type Enum Type</em>}' enum.
@@ -4762,7 +4772,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSubProfileTypeEnumType()
 	 * @generated
 	 */
-	int SUB_PROFILE_TYPE_ENUM_TYPE = 97;
+	int SUB_PROFILE_TYPE_ENUM_TYPE = 98;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.TEnumConversionFct <em>TEnum Conversion Fct</em>}' enum.
@@ -4772,7 +4782,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTEnumConversionFct()
 	 * @generated
 	 */
-	int TENUM_CONVERSION_FCT = 98;
+	int TENUM_CONVERSION_FCT = 99;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.TEnumExceptionCodeType <em>TEnum Exception Code Type</em>}' enum.
@@ -4782,7 +4792,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTEnumExceptionCodeType()
 	 * @generated
 	 */
-	int TENUM_EXCEPTION_CODE_TYPE = 99;
+	int TENUM_EXCEPTION_CODE_TYPE = 100;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.TEnumObjectType <em>TEnum Object Type</em>}' enum.
@@ -4792,7 +4802,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTEnumObjectType()
 	 * @generated
 	 */
-	int TENUM_OBJECT_TYPE = 100;
+	int TENUM_OBJECT_TYPE = 101;
 
 	/**
 	 * The meta object id for the '<em>Bitmask Type</em>' data type.
@@ -4801,7 +4811,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getBitmaskType()
 	 * @generated
 	 */
-	int BITMASK_TYPE = 101;
+	int BITMASK_TYPE = 102;
 
 	/**
 	 * The meta object id for the '<em>Dp Size Nr Registers Type</em>' data type.
@@ -4810,7 +4820,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getDpSizeNrRegistersType()
 	 * @generated
 	 */
-	int DP_SIZE_NR_REGISTERS_TYPE = 102;
+	int DP_SIZE_NR_REGISTERS_TYPE = 103;
 
 	/**
 	 * The meta object id for the '<em>Dp Size Nr Registers Type Object</em>' data type.
@@ -4820,7 +4830,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getDpSizeNrRegistersTypeObject()
 	 * @generated
 	 */
-	int DP_SIZE_NR_REGISTERS_TYPE_OBJECT = 103;
+	int DP_SIZE_NR_REGISTERS_TYPE_OBJECT = 104;
 
 	/**
 	 * The meta object id for the '<em>EBaud Rate Type Object</em>' data type.
@@ -4830,7 +4840,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getEBaudRateTypeObject()
 	 * @generated
 	 */
-	int EBAUD_RATE_TYPE_OBJECT = 104;
+	int EBAUD_RATE_TYPE_OBJECT = 105;
 
 	/**
 	 * The meta object id for the '<em>EByte Len Type Object</em>' data type.
@@ -4840,7 +4850,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getEByteLenTypeObject()
 	 * @generated
 	 */
-	int EBYTE_LEN_TYPE_OBJECT = 105;
+	int EBYTE_LEN_TYPE_OBJECT = 106;
 
 	/**
 	 * The meta object id for the '<em>EParity Type Object</em>' data type.
@@ -4850,7 +4860,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getEParityTypeObject()
 	 * @generated
 	 */
-	int EPARITY_TYPE_OBJECT = 106;
+	int EPARITY_TYPE_OBJECT = 107;
 
 	/**
 	 * The meta object id for the '<em>EStop Bit Len Type Object</em>' data type.
@@ -4860,7 +4870,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getEStopBitLenTypeObject()
 	 * @generated
 	 */
-	int ESTOP_BIT_LEN_TYPE_OBJECT = 107;
+	int ESTOP_BIT_LEN_TYPE_OBJECT = 108;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n1 Type</em>' data type.
@@ -4870,7 +4880,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4n1Type()
 	 * @generated
 	 */
-	int IP_V4N1_TYPE = 108;
+	int IP_V4N1_TYPE = 109;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n1 Type1</em>' data type.
@@ -4880,7 +4890,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4n1Type1()
 	 * @generated
 	 */
-	int IP_V4N1_TYPE1 = 109;
+	int IP_V4N1_TYPE1 = 110;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n2 Type</em>' data type.
@@ -4890,7 +4900,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4n2Type()
 	 * @generated
 	 */
-	int IP_V4N2_TYPE = 110;
+	int IP_V4N2_TYPE = 111;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n2 Type1</em>' data type.
@@ -4900,7 +4910,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4n2Type1()
 	 * @generated
 	 */
-	int IP_V4N2_TYPE1 = 111;
+	int IP_V4N2_TYPE1 = 112;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n3 Type</em>' data type.
@@ -4910,7 +4920,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4n3Type()
 	 * @generated
 	 */
-	int IP_V4N3_TYPE = 112;
+	int IP_V4N3_TYPE = 113;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n3 Type1</em>' data type.
@@ -4920,7 +4930,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4n3Type1()
 	 * @generated
 	 */
-	int IP_V4N3_TYPE1 = 113;
+	int IP_V4N3_TYPE1 = 114;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n4 Type</em>' data type.
@@ -4930,7 +4940,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4n4Type()
 	 * @generated
 	 */
-	int IP_V4N4_TYPE = 114;
+	int IP_V4N4_TYPE = 115;
 
 	/**
 	 * The meta object id for the '<em>Ip V4n4 Type1</em>' data type.
@@ -4940,7 +4950,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4n4Type1()
 	 * @generated
 	 */
-	int IP_V4N4_TYPE1 = 115;
+	int IP_V4N4_TYPE1 = 116;
 
 	/**
 	 * The meta object id for the '<em>Ip V4port Nr Type</em>' data type.
@@ -4949,7 +4959,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4portNrType()
 	 * @generated
 	 */
-	int IP_V4PORT_NR_TYPE = 116;
+	int IP_V4PORT_NR_TYPE = 117;
 
 	/**
 	 * The meta object id for the '<em>Ip V4port Nr Type Object</em>' data type.
@@ -4959,7 +4969,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getIpV4portNrTypeObject()
 	 * @generated
 	 */
-	int IP_V4PORT_NR_TYPE_OBJECT = 117;
+	int IP_V4PORT_NR_TYPE_OBJECT = 118;
 
 	/**
 	 * The meta object id for the '<em>Master Functions Supported Type Object</em>' data type.
@@ -4969,7 +4979,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getMasterFunctionsSupportedTypeObject()
 	 * @generated
 	 */
-	int MASTER_FUNCTIONS_SUPPORTED_TYPE_OBJECT = 118;
+	int MASTER_FUNCTIONS_SUPPORTED_TYPE_OBJECT = 119;
 
 	/**
 	 * The meta object id for the '<em>Modbus Interface Selection Type Object</em>' data type.
@@ -4979,7 +4989,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getModbusInterfaceSelectionTypeObject()
 	 * @generated
 	 */
-	int MODBUS_INTERFACE_SELECTION_TYPE_OBJECT = 119;
+	int MODBUS_INTERFACE_SELECTION_TYPE_OBJECT = 120;
 
 	/**
 	 * The meta object id for the '<em>Place Holder4future Extensions Type</em>' data type.
@@ -4989,7 +4999,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getPlaceHolder4futureExtensionsType()
 	 * @generated
 	 */
-	int PLACE_HOLDER4FUTURE_EXTENSIONS_TYPE = 120;
+	int PLACE_HOLDER4FUTURE_EXTENSIONS_TYPE = 121;
 
 	/**
 	 * The meta object id for the '<em>Prelim String Def Type</em>' data type.
@@ -4999,7 +5009,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getPrelimStringDefType()
 	 * @generated
 	 */
-	int PRELIM_STRING_DEF_TYPE = 121;
+	int PRELIM_STRING_DEF_TYPE = 122;
 
 	/**
 	 * The meta object id for the '<em>Profile Type Enum Type Object</em>' data type.
@@ -5009,7 +5019,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getProfileTypeEnumTypeObject()
 	 * @generated
 	 */
-	int PROFILE_TYPE_ENUM_TYPE_OBJECT = 122;
+	int PROFILE_TYPE_ENUM_TYPE_OBJECT = 123;
 
 	/**
 	 * The meta object id for the '<em>Rest API End Point Type</em>' data type.
@@ -5019,7 +5029,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRestAPIEndPointType()
 	 * @generated
 	 */
-	int REST_API_END_POINT_TYPE = 123;
+	int REST_API_END_POINT_TYPE = 124;
 
 	/**
 	 * The meta object id for the '<em>Rest API End Point Type1</em>' data type.
@@ -5029,7 +5039,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRestAPIEndPointType1()
 	 * @generated
 	 */
-	int REST_API_END_POINT_TYPE1 = 124;
+	int REST_API_END_POINT_TYPE1 = 125;
 
 	/**
 	 * The meta object id for the '<em>Rest APIJMES Path Type</em>' data type.
@@ -5039,7 +5049,17 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRestAPIJMESPathType()
 	 * @generated
 	 */
-	int REST_APIJMES_PATH_TYPE = 125;
+	int REST_APIJMES_PATH_TYPE = 126;
+
+	/**
+	 * The meta object id for the '<em>Rest APIJMES Path Type1</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.String
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRestAPIJMESPathType1()
+	 * @generated
+	 */
+	int REST_APIJMES_PATH_TYPE1 = 127;
 
 	/**
 	 * The meta object id for the '<em>Rest Basic Password Type</em>' data type.
@@ -5049,7 +5069,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRestBasicPasswordType()
 	 * @generated
 	 */
-	int REST_BASIC_PASSWORD_TYPE = 126;
+	int REST_BASIC_PASSWORD_TYPE = 128;
 
 	/**
 	 * The meta object id for the '<em>Rest Basic Username Type</em>' data type.
@@ -5059,7 +5079,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getRestBasicUsernameType()
 	 * @generated
 	 */
-	int REST_BASIC_USERNAME_TYPE = 127;
+	int REST_BASIC_USERNAME_TYPE = 129;
 
 	/**
 	 * The meta object id for the '<em>SGr Device Kind Type Object</em>' data type.
@@ -5069,7 +5089,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDeviceKindTypeObject()
 	 * @generated
 	 */
-	int SGR_DEVICE_KIND_TYPE_OBJECT = 128;
+	int SGR_DEVICE_KIND_TYPE_OBJECT = 130;
 
 	/**
 	 * The meta object id for the '<em>SG Ready State Lv1 Type Object</em>' data type.
@@ -5079,7 +5099,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGReadyStateLv1TypeObject()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV1_TYPE_OBJECT = 129;
+	int SG_READY_STATE_LV1_TYPE_OBJECT = 131;
 
 	/**
 	 * The meta object id for the '<em>SG Ready State Lv2 Type Object</em>' data type.
@@ -5089,7 +5109,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGReadyStateLv2TypeObject()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV2_TYPE_OBJECT = 130;
+	int SG_READY_STATE_LV2_TYPE_OBJECT = 132;
 
 	/**
 	 * The meta object id for the '<em>SGr EVSE State Lv1 Type Object</em>' data type.
@@ -5099,7 +5119,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrEVSEStateLv1TypeObject()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV1_TYPE_OBJECT = 131;
+	int SGR_EVSE_STATE_LV1_TYPE_OBJECT = 133;
 
 	/**
 	 * The meta object id for the '<em>SGr EVSE State Lv2 Type Object</em>' data type.
@@ -5109,7 +5129,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrEVSEStateLv2TypeObject()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV2_TYPE_OBJECT = 132;
+	int SGR_EVSE_STATE_LV2_TYPE_OBJECT = 134;
 
 	/**
 	 * The meta object id for the '<em>SGr EV State Type Object</em>' data type.
@@ -5119,7 +5139,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrEVStateTypeObject()
 	 * @generated
 	 */
-	int SGR_EV_STATE_TYPE_OBJECT = 133;
+	int SGR_EV_STATE_TYPE_OBJECT = 135;
 
 	/**
 	 * The meta object id for the '<em>SGr HP Op Mode Type Object</em>' data type.
@@ -5129,7 +5149,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrHPOpModeTypeObject()
 	 * @generated
 	 */
-	int SGR_HP_OP_MODE_TYPE_OBJECT = 134;
+	int SGR_HP_OP_MODE_TYPE_OBJECT = 136;
 
 	/**
 	 * The meta object id for the '<em>SGr Language Type Object</em>' data type.
@@ -5139,7 +5159,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrLanguageTypeObject()
 	 * @generated
 	 */
-	int SGR_LANGUAGE_TYPE_OBJECT = 135;
+	int SGR_LANGUAGE_TYPE_OBJECT = 137;
 
 	/**
 	 * The meta object id for the '<em>SGr Manufacturer ID Type Object</em>' data type.
@@ -5149,7 +5169,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrManufacturerIDTypeObject()
 	 * @generated
 	 */
-	int SGR_MANUFACTURER_ID_TYPE_OBJECT = 136;
+	int SGR_MANUFACTURER_ID_TYPE_OBJECT = 138;
 
 	/**
 	 * The meta object id for the '<em>SGr Meas Value Source Type Object</em>' data type.
@@ -5159,7 +5179,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMeasValueSourceTypeObject()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_SOURCE_TYPE_OBJECT = 137;
+	int SGR_MEAS_VALUE_SOURCE_TYPE_OBJECT = 139;
 
 	/**
 	 * The meta object id for the '<em>SGr Meas Value State Type Object</em>' data type.
@@ -5169,7 +5189,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMeasValueStateTypeObject()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_STATE_TYPE_OBJECT = 138;
+	int SGR_MEAS_VALUE_STATE_TYPE_OBJECT = 140;
 
 	/**
 	 * The meta object id for the '<em>SGr Meas Value Tendency Type Object</em>' data type.
@@ -5179,7 +5199,17 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMeasValueTendencyTypeObject()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT = 139;
+	int SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT = 141;
+
+	/**
+	 * The meta object id for the '<em>SGr Meas Value Type Object</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.SGrMeasValueType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMeasValueTypeObject()
+	 * @generated
+	 */
+	int SGR_MEAS_VALUE_TYPE_OBJECT = 142;
 
 	/**
 	 * The meta object id for the '<em>SGr Modbus Layer6 Deviation Type Object</em>' data type.
@@ -5189,7 +5219,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusLayer6DeviationTypeObject()
 	 * @generated
 	 */
-	int SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT = 140;
+	int SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT = 143;
 
 	/**
 	 * The meta object id for the '<em>SGr Modbus Reg2 Bool Array Type Object</em>' data type.
@@ -5199,7 +5229,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrModbusReg2BoolArrayTypeObject()
 	 * @generated
 	 */
-	int SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT = 141;
+	int SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT = 144;
 
 	/**
 	 * The meta object id for the '<em>SGr MRO Presence Level Indication Type Object</em>' data type.
@@ -5209,7 +5239,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMROPresenceLevelIndicationTypeObject()
 	 * @generated
 	 */
-	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT = 142;
+	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT = 145;
 
 	/**
 	 * The meta object id for the '<em>SGr Namelist Kind Of Type Object</em>' data type.
@@ -5219,7 +5249,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrNamelistKindOfTypeObject()
 	 * @generated
 	 */
-	int SGR_NAMELIST_KIND_OF_TYPE_OBJECT = 143;
+	int SGR_NAMELIST_KIND_OF_TYPE_OBJECT = 146;
 
 	/**
 	 * The meta object id for the '<em>SGr Oblig Lvl Type Object</em>' data type.
@@ -5229,7 +5259,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrObligLvlTypeObject()
 	 * @generated
 	 */
-	int SGR_OBLIG_LVL_TYPE_OBJECT = 144;
+	int SGR_OBLIG_LVL_TYPE_OBJECT = 147;
 
 	/**
 	 * The meta object id for the '<em>SGr OCPP State Type Object</em>' data type.
@@ -5239,7 +5269,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrOCPPStateTypeObject()
 	 * @generated
 	 */
-	int SGR_OCPP_STATE_TYPE_OBJECT = 145;
+	int SGR_OCPP_STATE_TYPE_OBJECT = 148;
 
 	/**
 	 * The meta object id for the '<em>SGr Power Source Type Object</em>' data type.
@@ -5249,7 +5279,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrPowerSourceTypeObject()
 	 * @generated
 	 */
-	int SGR_POWER_SOURCE_TYPE_OBJECT = 146;
+	int SGR_POWER_SOURCE_TYPE_OBJECT = 149;
 
 	/**
 	 * The meta object id for the '<em>SGr Precision Type</em>' data type.
@@ -5258,7 +5288,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrPrecisionType()
 	 * @generated
 	 */
-	int SGR_PRECISION_TYPE = 147;
+	int SGR_PRECISION_TYPE = 150;
 
 	/**
 	 * The meta object id for the '<em>SGr Precision Type Object</em>' data type.
@@ -5268,7 +5298,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrPrecisionTypeObject()
 	 * @generated
 	 */
-	int SGR_PRECISION_TYPE_OBJECT = 148;
+	int SGR_PRECISION_TYPE_OBJECT = 151;
 
 	/**
 	 * The meta object id for the '<em>SGr Release State Object</em>' data type.
@@ -5278,7 +5308,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrReleaseStateObject()
 	 * @generated
 	 */
-	int SGR_RELEASE_STATE_OBJECT = 149;
+	int SGR_RELEASE_STATE_OBJECT = 152;
 
 	/**
 	 * The meta object id for the '<em>SGr Rest API Authentication Enum Method Type Object</em>' data type.
@@ -5288,7 +5318,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIAuthenticationEnumMethodTypeObject()
 	 * @generated
 	 */
-	int SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE_OBJECT = 150;
+	int SGR_REST_API_AUTHENTICATION_ENUM_METHOD_TYPE_OBJECT = 153;
 
 	/**
 	 * The meta object id for the '<em>SGr Rest AP Idata Type Type Object</em>' data type.
@@ -5298,7 +5328,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIdataTypeTypeObject()
 	 * @generated
 	 */
-	int SGR_REST_AP_IDATA_TYPE_TYPE_OBJECT = 151;
+	int SGR_REST_AP_IDATA_TYPE_TYPE_OBJECT = 154;
 
 	/**
 	 * The meta object id for the '<em>SGr Rest API Interface Selectiontype Object</em>' data type.
@@ -5308,7 +5338,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRestAPIInterfaceSelectiontypeObject()
 	 * @generated
 	 */
-	int SGR_REST_API_INTERFACE_SELECTIONTYPE_OBJECT = 152;
+	int SGR_REST_API_INTERFACE_SELECTIONTYPE_OBJECT = 155;
 
 	/**
 	 * The meta object id for the '<em>SGr RWP Type Object</em>' data type.
@@ -5318,7 +5348,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRWPTypeObject()
 	 * @generated
 	 */
-	int SGR_RWP_TYPE_OBJECT = 153;
+	int SGR_RWP_TYPE_OBJECT = 156;
 
 	/**
 	 * The meta object id for the '<em>SGr SGCP Feed In State Lv2 Type Object</em>' data type.
@@ -5328,7 +5358,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPFeedInStateLv2TypeObject()
 	 * @generated
 	 */
-	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE_OBJECT = 154;
+	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE_OBJECT = 157;
 
 	/**
 	 * The meta object id for the '<em>SGr SGCP Load State Lv2 Type Object</em>' data type.
@@ -5338,7 +5368,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPLoadStateLv2TypeObject()
 	 * @generated
 	 */
-	int SGR_SGCP_LOAD_STATE_LV2_TYPE_OBJECT = 155;
+	int SGR_SGCP_LOAD_STATE_LV2_TYPE_OBJECT = 158;
 
 	/**
 	 * The meta object id for the '<em>SGr SGCP Service Type Object</em>' data type.
@@ -5348,7 +5378,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPServiceTypeObject()
 	 * @generated
 	 */
-	int SGR_SGCP_SERVICE_TYPE_OBJECT = 156;
+	int SGR_SGCP_SERVICE_TYPE_OBJECT = 159;
 
 	/**
 	 * The meta object id for the '<em>SGr Special Quality Req Type</em>' data type.
@@ -5358,7 +5388,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSpecialQualityReqType()
 	 * @generated
 	 */
-	int SGR_SPECIAL_QUALITY_REQ_TYPE = 157;
+	int SGR_SPECIAL_QUALITY_REQ_TYPE = 160;
 
 	/**
 	 * The meta object id for the '<em>SGr Sunsp State Codes Type Object</em>' data type.
@@ -5368,7 +5398,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSunspStateCodesTypeObject()
 	 * @generated
 	 */
-	int SGR_SUNSP_STATE_CODES_TYPE_OBJECT = 158;
+	int SGR_SUNSP_STATE_CODES_TYPE_OBJECT = 161;
 
 	/**
 	 * The meta object id for the '<em>SGr Transport Services Used List Type Object</em>' data type.
@@ -5378,7 +5408,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrTransportServicesUsedListTypeObject()
 	 * @generated
 	 */
-	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE_OBJECT = 159;
+	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE_OBJECT = 162;
 
 	/**
 	 * The meta object id for the '<em>SGr Units Object</em>' data type.
@@ -5388,7 +5418,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrUnitsObject()
 	 * @generated
 	 */
-	int SGR_UNITS_OBJECT = 160;
+	int SGR_UNITS_OBJECT = 163;
 
 	/**
 	 * The meta object id for the '<em>Sub Profile Type Enum Type Object</em>' data type.
@@ -5398,7 +5428,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSubProfileTypeEnumTypeObject()
 	 * @generated
 	 */
-	int SUB_PROFILE_TYPE_ENUM_TYPE_OBJECT = 161;
+	int SUB_PROFILE_TYPE_ENUM_TYPE_OBJECT = 164;
 
 	/**
 	 * The meta object id for the '<em>TBit Rank</em>' data type.
@@ -5407,7 +5437,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTBitRank()
 	 * @generated
 	 */
-	int TBIT_RANK = 162;
+	int TBIT_RANK = 165;
 
 	/**
 	 * The meta object id for the '<em>TBit Rank Object</em>' data type.
@@ -5417,7 +5447,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTBitRankObject()
 	 * @generated
 	 */
-	int TBIT_RANK_OBJECT = 163;
+	int TBIT_RANK_OBJECT = 166;
 
 	/**
 	 * The meta object id for the '<em>TEnum Conversion Fct Object</em>' data type.
@@ -5427,7 +5457,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTEnumConversionFctObject()
 	 * @generated
 	 */
-	int TENUM_CONVERSION_FCT_OBJECT = 164;
+	int TENUM_CONVERSION_FCT_OBJECT = 167;
 
 	/**
 	 * The meta object id for the '<em>TEnum Exception Code Type Object</em>' data type.
@@ -5437,7 +5467,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTEnumExceptionCodeTypeObject()
 	 * @generated
 	 */
-	int TENUM_EXCEPTION_CODE_TYPE_OBJECT = 165;
+	int TENUM_EXCEPTION_CODE_TYPE_OBJECT = 168;
 
 	/**
 	 * The meta object id for the '<em>TEnum Object Type Object</em>' data type.
@@ -5447,7 +5477,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTEnumObjectTypeObject()
 	 * @generated
 	 */
-	int TENUM_OBJECT_TYPE_OBJECT = 166;
+	int TENUM_OBJECT_TYPE_OBJECT = 169;
 
 	/**
 	 * The meta object id for the '<em>Text Element Type</em>' data type.
@@ -5457,7 +5487,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTextElementType()
 	 * @generated
 	 */
-	int TEXT_ELEMENT_TYPE = 167;
+	int TEXT_ELEMENT_TYPE = 170;
 
 	/**
 	 * The meta object id for the '<em>TI Pport Nr Type</em>' data type.
@@ -5466,7 +5496,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTIPportNrType()
 	 * @generated
 	 */
-	int TI_PPORT_NR_TYPE = 168;
+	int TI_PPORT_NR_TYPE = 171;
 
 	/**
 	 * The meta object id for the '<em>TI Pport Nr Type Object</em>' data type.
@@ -5476,7 +5506,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTIPportNrTypeObject()
 	 * @generated
 	 */
-	int TI_PPORT_NR_TYPE_OBJECT = 169;
+	int TI_PPORT_NR_TYPE_OBJECT = 172;
 
 	/**
 	 * The meta object id for the '<em>TSlave ID Type</em>' data type.
@@ -5485,7 +5515,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTSlaveIDType()
 	 * @generated
 	 */
-	int TSLAVE_ID_TYPE = 170;
+	int TSLAVE_ID_TYPE = 173;
 
 	/**
 	 * The meta object id for the '<em>TSlave ID Type Object</em>' data type.
@@ -5495,7 +5525,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTSlaveIDTypeObject()
 	 * @generated
 	 */
-	int TSLAVE_ID_TYPE_OBJECT = 171;
+	int TSLAVE_ID_TYPE_OBJECT = 174;
 
 
 	/**
@@ -5596,28 +5626,6 @@ public interface V0Package extends EPackage {
 	EAttribute getDocumentRoot_ByteLenSupported();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getDeviceProfile <em>Device Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Device Profile</em>'.
-	 * @see com.smartgridready.ns.v0.DocumentRoot#getDeviceProfile()
-	 * @see #getDocumentRoot()
-	 * @generated
-	 */
-	EReference getDocumentRoot_DeviceProfile();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getGenDeviceFrame <em>Gen Device Frame</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Gen Device Frame</em>'.
-	 * @see com.smartgridready.ns.v0.DocumentRoot#getGenDeviceFrame()
-	 * @see #getDocumentRoot()
-	 * @generated
-	 */
-	EReference getDocumentRoot_GenDeviceFrame();
-
-	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.DocumentRoot#getModbusFunctionCodesSupported <em>Modbus Function Codes Supported</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5673,48 +5681,37 @@ public interface V0Package extends EPackage {
 	EReference getDocumentRoot_SGrModbusInterfaceDescription();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSgrContactAPIDeviceFrame <em>Sgr Contact API Device Frame</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrContactAPIDeviceFrame <em>SGr Contact API Device Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Sgr Contact API Device Frame</em>'.
-	 * @see com.smartgridready.ns.v0.DocumentRoot#getSgrContactAPIDeviceFrame()
+	 * @return the meta object for the containment reference '<em>SGr Contact API Device Frame</em>'.
+	 * @see com.smartgridready.ns.v0.DocumentRoot#getSGrContactAPIDeviceFrame()
 	 * @see #getDocumentRoot()
 	 * @generated
 	 */
-	EReference getDocumentRoot_SgrContactAPIDeviceFrame();
+	EReference getDocumentRoot_SGrContactAPIDeviceFrame();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrContactAPIDeviceDescriptionType <em>SGr Contact API Device Description Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileFrame <em>SGr Functional Profile Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>SGr Contact API Device Description Type</em>'.
-	 * @see com.smartgridready.ns.v0.DocumentRoot#getSGrContactAPIDeviceDescriptionType()
+	 * @return the meta object for the containment reference '<em>SGr Functional Profile Frame</em>'.
+	 * @see com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileFrame()
 	 * @see #getDocumentRoot()
 	 * @generated
 	 */
-	EReference getDocumentRoot_SGrContactAPIDeviceDescriptionType();
+	EReference getDocumentRoot_SGrFunctionalProfileFrame();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileDescriptionType <em>SGr Functional Profile Description Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrGenDeviceFrame <em>SGr Gen Device Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>SGr Functional Profile Description Type</em>'.
-	 * @see com.smartgridready.ns.v0.DocumentRoot#getSGrFunctionalProfileDescriptionType()
+	 * @return the meta object for the containment reference '<em>SGr Gen Device Frame</em>'.
+	 * @see com.smartgridready.ns.v0.DocumentRoot#getSGrGenDeviceFrame()
 	 * @see #getDocumentRoot()
 	 * @generated
 	 */
-	EReference getDocumentRoot_SGrFunctionalProfileDescriptionType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDeviceDescriptionType <em>SGr Modbus Device Description Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>SGr Modbus Device Description Type</em>'.
-	 * @see com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDeviceDescriptionType()
-	 * @see #getDocumentRoot()
-	 * @generated
-	 */
-	EReference getDocumentRoot_SGrModbusDeviceDescriptionType();
+	EReference getDocumentRoot_SGrGenDeviceFrame();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrModbusDeviceFrame <em>SGr Modbus Device Frame</em>}'.
@@ -5728,17 +5725,6 @@ public interface V0Package extends EPackage {
 	EReference getDocumentRoot_SGrModbusDeviceFrame();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrRESTAPIDeviceDescriptionType <em>SGr RESTAPI Device Description Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>SGr RESTAPI Device Description Type</em>'.
-	 * @see com.smartgridready.ns.v0.DocumentRoot#getSGrRESTAPIDeviceDescriptionType()
-	 * @see #getDocumentRoot()
-	 * @generated
-	 */
-	EReference getDocumentRoot_SGrRESTAPIDeviceDescriptionType();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrRestAPIDeviceFrame <em>SGr Rest API Device Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5750,15 +5736,15 @@ public interface V0Package extends EPackage {
 	EReference getDocumentRoot_SGrRestAPIDeviceFrame();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSgrSerialInterfaceCapability <em>Sgr Serial Interface Capability</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.DocumentRoot#getSGrSerialInterfaceCapability <em>SGr Serial Interface Capability</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Sgr Serial Interface Capability</em>'.
-	 * @see com.smartgridready.ns.v0.DocumentRoot#getSgrSerialInterfaceCapability()
+	 * @return the meta object for the containment reference '<em>SGr Serial Interface Capability</em>'.
+	 * @see com.smartgridready.ns.v0.DocumentRoot#getSGrSerialInterfaceCapability()
 	 * @see #getDocumentRoot()
 	 * @generated
 	 */
-	EReference getDocumentRoot_SgrSerialInterfaceCapability();
+	EReference getDocumentRoot_SGrSerialInterfaceCapability();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.DocumentRoot#getStopBitLenSupported <em>Stop Bit Len Supported</em>}'.
@@ -5888,27 +5874,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNetworkConnectionStateType_NextAttempt();
-
-	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.RestAPIJMESPathType1 <em>Rest APIJMES Path Type1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Rest APIJMES Path Type1</em>'.
-	 * @see com.smartgridready.ns.v0.RestAPIJMESPathType1
-	 * @generated
-	 */
-	EClass getRestAPIJMESPathType1();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.RestAPIJMESPathType1#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.smartgridready.ns.v0.RestAPIJMESPathType1#getValue()
-	 * @see #getRestAPIJMESPathType1()
-	 * @generated
-	 */
-	EAttribute getRestAPIJMESPathType1_Value();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.RTUDevInstanceType <em>RTU Dev Instance Type</em>}'.
@@ -6212,6 +6177,17 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EReference getSGrAttr4GenericType_TimeRange();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType <em>Value Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType()
+	 * @see #getSGrAttr4GenericType()
+	 * @generated
+	 */
+	EAttribute getSGrAttr4GenericType_ValueType();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueState <em>Value State</em>}'.
@@ -6682,102 +6658,89 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrChangeLog_Comment();
 
 	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType <em>SGr Contact API Device Description Type</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceFrame <em>SGr Contact API Device Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Contact API Device Description Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType
+	 * @return the meta object for class '<em>SGr Contact API Device Frame</em>'.
+	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceFrame
 	 * @generated
 	 */
-	EClass getSGrContactAPIDeviceDescriptionType();
+	EClass getSGrContactAPIDeviceFrame();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getDeviceProfile <em>Device Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Device Profile</em>'.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getDeviceProfile()
-	 * @see #getSGrContactAPIDeviceDescriptionType()
-	 * @generated
-	 */
-	EReference getSGrContactAPIDeviceDescriptionType_DeviceProfile();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getGenAttribute()
-	 * @see #getSGrContactAPIDeviceDescriptionType()
-	 * @generated
-	 */
-	EReference getSGrContactAPIDeviceDescriptionType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getContactApiInterfaceDesc <em>Contact Api Interface Desc</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceFrame#getContactApiInterfaceDesc <em>Contact Api Interface Desc</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Contact Api Interface Desc</em>'.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getContactApiInterfaceDesc()
-	 * @see #getSGrContactAPIDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceFrame#getContactApiInterfaceDesc()
+	 * @see #getSGrContactAPIDeviceFrame()
 	 * @generated
 	 */
-	EReference getSGrContactAPIDeviceDescriptionType_ContactApiInterfaceDesc();
+	EReference getSGrContactAPIDeviceFrame_ContactApiInterfaceDesc();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getFpListElement <em>Fp List Element</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceFrame#getFpListElement <em>Fp List Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Fp List Element</em>'.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getFpListElement()
-	 * @see #getSGrContactAPIDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceFrame#getFpListElement()
+	 * @see #getSGrContactAPIDeviceFrame()
 	 * @generated
 	 */
-	EReference getSGrContactAPIDeviceDescriptionType_FpListElement();
+	EReference getSGrContactAPIDeviceFrame_FpListElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getDeviceName <em>Device Name</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrContactAPIFunctionalProfileType <em>SGr Contact API Functional Profile Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Device Name</em>'.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getDeviceName()
-	 * @see #getSGrContactAPIDeviceDescriptionType()
+	 * @return the meta object for class '<em>SGr Contact API Functional Profile Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrContactAPIFunctionalProfileType
 	 * @generated
 	 */
-	EAttribute getSGrContactAPIDeviceDescriptionType_DeviceName();
+	EClass getSGrContactAPIFunctionalProfileType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrContactAPIFunctionalProfileType#getDpListElement <em>Dp List Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Local Control</em>'.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#isIsLocalControl()
-	 * @see #getSGrContactAPIDeviceDescriptionType()
+	 * @return the meta object for the containment reference list '<em>Dp List Element</em>'.
+	 * @see com.smartgridready.ns.v0.SGrContactAPIFunctionalProfileType#getDpListElement()
+	 * @see #getSGrContactAPIFunctionalProfileType()
 	 * @generated
 	 */
-	EAttribute getSGrContactAPIDeviceDescriptionType_IsLocalControl();
+	EReference getSGrContactAPIFunctionalProfileType_DpListElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerID <em>Manufacturer ID</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrDataPointBaseType <em>SGr Data Point Base Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Manufacturer ID</em>'.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerID()
-	 * @see #getSGrContactAPIDeviceDescriptionType()
+	 * @return the meta object for class '<em>SGr Data Point Base Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrDataPointBaseType
 	 * @generated
 	 */
-	EAttribute getSGrContactAPIDeviceDescriptionType_ManufacturerID();
+	EClass getSGrDataPointBaseType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerName <em>Manufacturer Name</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDataPointBaseType#getDataPoint <em>Data Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Manufacturer Name</em>'.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType#getManufacturerName()
-	 * @see #getSGrContactAPIDeviceDescriptionType()
+	 * @return the meta object for the containment reference '<em>Data Point</em>'.
+	 * @see com.smartgridready.ns.v0.SGrDataPointBaseType#getDataPoint()
+	 * @see #getSGrDataPointBaseType()
 	 * @generated
 	 */
-	EAttribute getSGrContactAPIDeviceDescriptionType_ManufacturerName();
+	EReference getSGrDataPointBaseType_DataPoint();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrDataPointBaseType#getGenAttribute <em>Gen Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
+	 * @see com.smartgridready.ns.v0.SGrDataPointBaseType#getGenAttribute()
+	 * @see #getSGrDataPointBaseType()
+	 * @generated
+	 */
+	EReference getSGrDataPointBaseType_GenAttribute();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType <em>SGr Data Point Description Type</em>}'.
@@ -6889,123 +6852,80 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrDataPointDescriptionType_Unit();
 
 	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrDataPointsFrameType <em>SGr Data Points Frame Type</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrDeviceBaseType <em>SGr Device Base Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Data Points Frame Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDataPointsFrameType
+	 * @return the meta object for class '<em>SGr Device Base Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrDeviceBaseType
 	 * @generated
 	 */
-	EClass getSGrDataPointsFrameType();
+	EClass getSGrDeviceBaseType();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDataPointsFrameType#getDataPoint <em>Data Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Data Point</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDataPointsFrameType#getDataPoint()
-	 * @see #getSGrDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrDataPointsFrameType_DataPoint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrDataPointsFrameType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDataPointsFrameType#getGenAttribute()
-	 * @see #getSGrDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrDataPointsFrameType_GenAttribute();
-
-	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType <em>SGr Device Description Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Device Description Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDeviceDescriptionType
-	 * @generated
-	 */
-	EClass getSGrDeviceDescriptionType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getDeviceProfile <em>Device Profile</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceProfile <em>Device Profile</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Device Profile</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDeviceDescriptionType#getDeviceProfile()
-	 * @see #getSGrDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceProfile()
+	 * @see #getSGrDeviceBaseType()
 	 * @generated
 	 */
-	EReference getSGrDeviceDescriptionType_DeviceProfile();
+	EReference getSGrDeviceBaseType_DeviceProfile();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getGenAttribute <em>Gen Attribute</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getGenAttribute <em>Gen Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDeviceDescriptionType#getGenAttribute()
-	 * @see #getSGrDeviceDescriptionType()
+	 * @return the meta object for the containment reference '<em>Gen Attribute</em>'.
+	 * @see com.smartgridready.ns.v0.SGrDeviceBaseType#getGenAttribute()
+	 * @see #getSGrDeviceBaseType()
 	 * @generated
 	 */
-	EReference getSGrDeviceDescriptionType_GenAttribute();
+	EReference getSGrDeviceBaseType_GenAttribute();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getFpListElement <em>Fp List Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Fp List Element</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDeviceDescriptionType#getFpListElement()
-	 * @see #getSGrDeviceDescriptionType()
-	 * @generated
-	 */
-	EReference getSGrDeviceDescriptionType_FpListElement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getDeviceName <em>Device Name</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceName <em>Device Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Device Name</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDeviceDescriptionType#getDeviceName()
-	 * @see #getSGrDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceName()
+	 * @see #getSGrDeviceBaseType()
 	 * @generated
 	 */
-	EAttribute getSGrDeviceDescriptionType_DeviceName();
+	EAttribute getSGrDeviceBaseType_DeviceName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#isIsLocalControl <em>Is Local Control</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Local Control</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDeviceDescriptionType#isIsLocalControl()
-	 * @see #getSGrDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrDeviceBaseType#isIsLocalControl()
+	 * @see #getSGrDeviceBaseType()
 	 * @generated
 	 */
-	EAttribute getSGrDeviceDescriptionType_IsLocalControl();
+	EAttribute getSGrDeviceBaseType_IsLocalControl();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getManufacturerID <em>Manufacturer ID</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerID <em>Manufacturer ID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Manufacturer ID</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDeviceDescriptionType#getManufacturerID()
-	 * @see #getSGrDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerID()
+	 * @see #getSGrDeviceBaseType()
 	 * @generated
 	 */
-	EAttribute getSGrDeviceDescriptionType_ManufacturerID();
+	EAttribute getSGrDeviceBaseType_ManufacturerID();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType#getManufacturerName <em>Manufacturer Name</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerName <em>Manufacturer Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Manufacturer Name</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDeviceDescriptionType#getManufacturerName()
-	 * @see #getSGrDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrDeviceBaseType#getManufacturerName()
+	 * @see #getSGrDeviceBaseType()
 	 * @generated
 	 */
-	EAttribute getSGrDeviceDescriptionType_ManufacturerName();
+	EAttribute getSGrDeviceBaseType_ManufacturerName();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrDeviceProfileType <em>SGr Device Profile Type</em>}'.
@@ -7401,36 +7321,132 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrFlexAssistanceType_ObligedTo();
 
 	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrInterfaceDescriptionType <em>SGr Interface Description Type</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrFunctionalProfileBaseType <em>SGr Functional Profile Base Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Interface Description Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrInterfaceDescriptionType
+	 * @return the meta object for class '<em>SGr Functional Profile Base Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileBaseType
 	 * @generated
 	 */
-	EClass getSGrInterfaceDescriptionType();
+	EClass getSGrFunctionalProfileBaseType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrInterfaceDescriptionType#getTechnologyUsed <em>Technology Used</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrFunctionalProfileBaseType#getFunctionalProfile <em>Functional Profile</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Technology Used</em>'.
-	 * @see com.smartgridready.ns.v0.SGrInterfaceDescriptionType#getTechnologyUsed()
-	 * @see #getSGrInterfaceDescriptionType()
+	 * @return the meta object for the containment reference '<em>Functional Profile</em>'.
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileBaseType#getFunctionalProfile()
+	 * @see #getSGrFunctionalProfileBaseType()
 	 * @generated
 	 */
-	EAttribute getSGrInterfaceDescriptionType_TechnologyUsed();
+	EReference getSGrFunctionalProfileBaseType_FunctionalProfile();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrInterfaceDescriptionType#isIsLocalControl <em>Is Local Control</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrFunctionalProfileBaseType#getGenAttribute <em>Gen Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Local Control</em>'.
-	 * @see com.smartgridready.ns.v0.SGrInterfaceDescriptionType#isIsLocalControl()
-	 * @see #getSGrInterfaceDescriptionType()
+	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileBaseType#getGenAttribute()
+	 * @see #getSGrFunctionalProfileBaseType()
 	 * @generated
 	 */
-	EAttribute getSGrInterfaceDescriptionType_IsLocalControl();
+	EReference getSGrFunctionalProfileBaseType_GenAttribute();
+
+	/**
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType <em>SGr Functional Profile Frame Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>SGr Functional Profile Frame Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileFrameType
+	 * @generated
+	 */
+	EClass getSGrFunctionalProfileFrameType();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getReleaseNotes <em>Release Notes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Release Notes</em>'.
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getReleaseNotes()
+	 * @see #getSGrFunctionalProfileFrameType()
+	 * @generated
+	 */
+	EReference getSGrFunctionalProfileFrameType_ReleaseNotes();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getFunctionalProfile <em>Functional Profile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Functional Profile</em>'.
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getFunctionalProfile()
+	 * @see #getSGrFunctionalProfileFrameType()
+	 * @generated
+	 */
+	EReference getSGrFunctionalProfileFrameType_FunctionalProfile();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getGenAttribute <em>Gen Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getGenAttribute()
+	 * @see #getSGrFunctionalProfileFrameType()
+	 * @generated
+	 */
+	EReference getSGrFunctionalProfileFrameType_GenAttribute();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getDpListElement <em>Dp List Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dp List Element</em>'.
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getDpListElement()
+	 * @see #getSGrFunctionalProfileFrameType()
+	 * @generated
+	 */
+	EReference getSGrFunctionalProfileFrameType_DpListElement();
+
+	/**
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrGenDeviceFrame <em>SGr Gen Device Frame</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>SGr Gen Device Frame</em>'.
+	 * @see com.smartgridready.ns.v0.SGrGenDeviceFrame
+	 * @generated
+	 */
+	EClass getSGrGenDeviceFrame();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrGenDeviceFrame#getFpListElement <em>Fp List Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Fp List Element</em>'.
+	 * @see com.smartgridready.ns.v0.SGrGenDeviceFrame#getFpListElement()
+	 * @see #getSGrGenDeviceFrame()
+	 * @generated
+	 */
+	EReference getSGrGenDeviceFrame_FpListElement();
+
+	/**
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrGenFunctionalProfileType <em>SGr Gen Functional Profile Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>SGr Gen Functional Profile Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrGenFunctionalProfileType
+	 * @generated
+	 */
+	EClass getSGrGenFunctionalProfileType();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrGenFunctionalProfileType#getDpListElement <em>Dp List Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dp List Element</em>'.
+	 * @see com.smartgridready.ns.v0.SGrGenFunctionalProfileType#getDpListElement()
+	 * @see #getSGrGenFunctionalProfileType()
+	 * @generated
+	 */
+	EReference getSGrGenFunctionalProfileType_DpListElement();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrLegibDocumentationType <em>SGr Legib Documentation Type</em>}'.
@@ -7563,178 +7579,122 @@ public interface V0Package extends EPackage {
 	EReference getSGrModbusDataPointDescriptionType_ModbusJMESPath();
 
 	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType <em>SGr Modbus Data Points Frame Type</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrModbusDataPointType <em>SGr Modbus Data Point Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Modbus Data Points Frame Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointsFrameType
+	 * @return the meta object for class '<em>SGr Modbus Data Point Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointType
 	 * @generated
 	 */
-	EClass getSGrModbusDataPointsFrameType();
+	EClass getSGrModbusDataPointType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getDataPoint <em>Data Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Data Point</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getDataPoint()
-	 * @see #getSGrModbusDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrModbusDataPointsFrameType_DataPoint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getModbusDataPoint <em>Modbus Data Point</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getModbusDataPoint <em>Modbus Data Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Modbus Data Point</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getModbusDataPoint()
-	 * @see #getSGrModbusDataPointsFrameType()
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointType#getModbusDataPoint()
+	 * @see #getSGrModbusDataPointType()
 	 * @generated
 	 */
-	EReference getSGrModbusDataPointsFrameType_ModbusDataPoint();
+	EReference getSGrModbusDataPointType_ModbusDataPoint();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getGenAttribute()
-	 * @see #getSGrModbusDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrModbusDataPointsFrameType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getModbusAttr <em>Modbus Attr</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getModbusAttr <em>Modbus Attr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Modbus Attr</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointsFrameType#getModbusAttr()
-	 * @see #getSGrModbusDataPointsFrameType()
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointType#getModbusAttr()
+	 * @see #getSGrModbusDataPointType()
 	 * @generated
 	 */
-	EReference getSGrModbusDataPointsFrameType_ModbusAttr();
+	EReference getSGrModbusDataPointType_ModbusAttr();
 
 	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType <em>SGr Modbus Device Description Type</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame <em>SGr Modbus Device Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Modbus Device Description Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType
+	 * @return the meta object for class '<em>SGr Modbus Device Frame</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDeviceFrame
 	 * @generated
 	 */
-	EClass getSGrModbusDeviceDescriptionType();
+	EClass getSGrModbusDeviceFrame();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getDeviceProfile <em>Device Profile</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getModbusAttr <em>Modbus Attr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Device Profile</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getDeviceProfile()
-	 * @see #getSGrModbusDeviceDescriptionType()
+	 * @return the meta object for the containment reference '<em>Modbus Attr</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDeviceFrame#getModbusAttr()
+	 * @see #getSGrModbusDeviceFrame()
 	 * @generated
 	 */
-	EReference getSGrModbusDeviceDescriptionType_DeviceProfile();
+	EReference getSGrModbusDeviceFrame_ModbusAttr();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getGenAttribute()
-	 * @see #getSGrModbusDeviceDescriptionType()
-	 * @generated
-	 */
-	EReference getSGrModbusDeviceDescriptionType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getModbusAttr <em>Modbus Attr</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Modbus Attr</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getModbusAttr()
-	 * @see #getSGrModbusDeviceDescriptionType()
-	 * @generated
-	 */
-	EReference getSGrModbusDeviceDescriptionType_ModbusAttr();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getModbusInterfaceDesc <em>Modbus Interface Desc</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getModbusInterfaceDesc <em>Modbus Interface Desc</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Modbus Interface Desc</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getModbusInterfaceDesc()
-	 * @see #getSGrModbusDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrModbusDeviceFrame#getModbusInterfaceDesc()
+	 * @see #getSGrModbusDeviceFrame()
 	 * @generated
 	 */
-	EReference getSGrModbusDeviceDescriptionType_ModbusInterfaceDesc();
+	EReference getSGrModbusDeviceFrame_ModbusInterfaceDesc();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getFpListElement <em>Fp List Element</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getFpListElement <em>Fp List Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Fp List Element</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getFpListElement()
-	 * @see #getSGrModbusDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrModbusDeviceFrame#getFpListElement()
+	 * @see #getSGrModbusDeviceFrame()
 	 * @generated
 	 */
-	EReference getSGrModbusDeviceDescriptionType_FpListElement();
+	EReference getSGrModbusDeviceFrame_FpListElement();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getNetworkConnectionState <em>Network Connection State</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getNetworkConnectionState <em>Network Connection State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Network Connection State</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getNetworkConnectionState()
-	 * @see #getSGrModbusDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrModbusDeviceFrame#getNetworkConnectionState()
+	 * @see #getSGrModbusDeviceFrame()
 	 * @generated
 	 */
-	EReference getSGrModbusDeviceDescriptionType_NetworkConnectionState();
+	EReference getSGrModbusDeviceFrame_NetworkConnectionState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getDeviceName <em>Device Name</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType <em>SGr Modbus Functional Profile Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Device Name</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getDeviceName()
-	 * @see #getSGrModbusDeviceDescriptionType()
+	 * @return the meta object for class '<em>SGr Modbus Functional Profile Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusFunctionalProfileType
 	 * @generated
 	 */
-	EAttribute getSGrModbusDeviceDescriptionType_DeviceName();
+	EClass getSGrModbusFunctionalProfileType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getModbusAttr <em>Modbus Attr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Local Control</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#isIsLocalControl()
-	 * @see #getSGrModbusDeviceDescriptionType()
+	 * @return the meta object for the containment reference '<em>Modbus Attr</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getModbusAttr()
+	 * @see #getSGrModbusFunctionalProfileType()
 	 * @generated
 	 */
-	EAttribute getSGrModbusDeviceDescriptionType_IsLocalControl();
+	EReference getSGrModbusFunctionalProfileType_ModbusAttr();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getManufacturerID <em>Manufacturer ID</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getDpListElement <em>Dp List Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Manufacturer ID</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getManufacturerID()
-	 * @see #getSGrModbusDeviceDescriptionType()
+	 * @return the meta object for the containment reference list '<em>Dp List Element</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getDpListElement()
+	 * @see #getSGrModbusFunctionalProfileType()
 	 * @generated
 	 */
-	EAttribute getSGrModbusDeviceDescriptionType_ManufacturerID();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getManufacturerName <em>Manufacturer Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Manufacturer Name</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType#getManufacturerName()
-	 * @see #getSGrModbusDeviceDescriptionType()
-	 * @generated
-	 */
-	EAttribute getSGrModbusDeviceDescriptionType_ManufacturerName();
+	EReference getSGrModbusFunctionalProfileType_DpListElement();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType <em>SGr Modbus Interface Description Type</em>}'.
@@ -7800,60 +7760,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSGrModbusInterfaceDescriptionType_ConversionScheme();
-
-	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrModbusProfilesFrameType <em>SGr Modbus Profiles Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Modbus Profiles Frame Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusProfilesFrameType
-	 * @generated
-	 */
-	EClass getSGrModbusProfilesFrameType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusProfilesFrameType#getFunctionalProfile <em>Functional Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Functional Profile</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusProfilesFrameType#getFunctionalProfile()
-	 * @see #getSGrModbusProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrModbusProfilesFrameType_FunctionalProfile();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusProfilesFrameType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusProfilesFrameType#getGenAttribute()
-	 * @see #getSGrModbusProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrModbusProfilesFrameType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusProfilesFrameType#getModbusAttr <em>Modbus Attr</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Modbus Attr</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusProfilesFrameType#getModbusAttr()
-	 * @see #getSGrModbusProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrModbusProfilesFrameType_ModbusAttr();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusProfilesFrameType#getDpListElement <em>Dp List Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dp List Element</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusProfilesFrameType#getDpListElement()
-	 * @see #getSGrModbusProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrModbusProfilesFrameType_DpListElement();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrNamelistType <em>SGr Namelist Type</em>}'.
@@ -8095,60 +8001,6 @@ public interface V0Package extends EPackage {
 	EReference getSGrProfilenumberType_VersionNumber();
 
 	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrProfilesFrameType <em>SGr Profiles Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Profiles Frame Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrProfilesFrameType
-	 * @generated
-	 */
-	EClass getSGrProfilesFrameType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getReleaseNotes <em>Release Notes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Release Notes</em>'.
-	 * @see com.smartgridready.ns.v0.SGrProfilesFrameType#getReleaseNotes()
-	 * @see #getSGrProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrProfilesFrameType_ReleaseNotes();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getFunctionalProfile <em>Functional Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Functional Profile</em>'.
-	 * @see com.smartgridready.ns.v0.SGrProfilesFrameType#getFunctionalProfile()
-	 * @see #getSGrProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrProfilesFrameType_FunctionalProfile();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrProfilesFrameType#getGenAttribute()
-	 * @see #getSGrProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrProfilesFrameType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getDpListElement <em>Dp List Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dp List Element</em>'.
-	 * @see com.smartgridready.ns.v0.SGrProfilesFrameType#getDpListElement()
-	 * @see #getSGrProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrProfilesFrameType_DpListElement();
-
-	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrReleaseNotes <em>SGr Release Notes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8202,15 +8054,15 @@ public interface V0Package extends EPackage {
 	EAttribute getSGRrestAPIBearerType_RestAPIEndPoint();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getRestAPIJMESPath <em>Rest APIJMES Path</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getRestAPIJMESPath <em>Rest APIJMES Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Rest APIJMES Path</em>'.
+	 * @return the meta object for the attribute '<em>Rest APIJMES Path</em>'.
 	 * @see com.smartgridready.ns.v0.SGRrestAPIBearerType#getRestAPIJMESPath()
 	 * @see #getSGRrestAPIBearerType()
 	 * @generated
 	 */
-	EReference getSGRrestAPIBearerType_RestAPIJMESPath();
+	EAttribute getSGRrestAPIBearerType_RestAPIJMESPath();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointDescriptionType <em>SGr Rest API Data Point Description Type</em>}'.
@@ -8256,167 +8108,111 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrRestAPIDataPointDescriptionType_DataType();
 
 	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType <em>SGr Rest API Data Points Frame Type</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointType <em>SGr Rest API Data Point Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Rest API Data Points Frame Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType
+	 * @return the meta object for class '<em>SGr Rest API Data Point Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointType
 	 * @generated
 	 */
-	EClass getSGrRestAPIDataPointsFrameType();
+	EClass getSGrRestAPIDataPointType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType#getDataPoint <em>Data Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Data Point</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType#getDataPoint()
-	 * @see #getSGrRestAPIDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestAPIDataPointsFrameType_DataPoint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType#getRestAPIDataPoint <em>Rest API Data Point</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointType#getRestAPIDataPoint <em>Rest API Data Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Rest API Data Point</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType#getRestAPIDataPoint()
-	 * @see #getSGrRestAPIDataPointsFrameType()
+	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointType#getRestAPIDataPoint()
+	 * @see #getSGrRestAPIDataPointType()
 	 * @generated
 	 */
-	EReference getSGrRestAPIDataPointsFrameType_RestAPIDataPoint();
+	EReference getSGrRestAPIDataPointType_RestAPIDataPoint();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType#getGenAttribute()
-	 * @see #getSGrRestAPIDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestAPIDataPointsFrameType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType#getRestAPIAttr <em>Rest API Attr</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointType#getRestAPIAttr <em>Rest API Attr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Rest API Attr</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType#getRestAPIAttr()
-	 * @see #getSGrRestAPIDataPointsFrameType()
+	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointType#getRestAPIAttr()
+	 * @see #getSGrRestAPIDataPointType()
 	 * @generated
 	 */
-	EReference getSGrRestAPIDataPointsFrameType_RestAPIAttr();
+	EReference getSGrRestAPIDataPointType_RestAPIAttr();
 
 	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType <em>SGr RESTAPI Device Description Type</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestAPIDeviceFrame <em>SGr Rest API Device Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr RESTAPI Device Description Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType
+	 * @return the meta object for class '<em>SGr Rest API Device Frame</em>'.
+	 * @see com.smartgridready.ns.v0.SGrRestAPIDeviceFrame
 	 * @generated
 	 */
-	EClass getSGrRESTAPIDeviceDescriptionType();
+	EClass getSGrRestAPIDeviceFrame();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getDeviceProfile <em>Device Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Device Profile</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getDeviceProfile()
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
-	 * @generated
-	 */
-	EReference getSGrRESTAPIDeviceDescriptionType_DeviceProfile();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getGenAttribute()
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
-	 * @generated
-	 */
-	EReference getSGrRESTAPIDeviceDescriptionType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getRestAPIAttr <em>Rest API Attr</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIDeviceFrame#getRestAPIAttr <em>Rest API Attr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Rest API Attr</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getRestAPIAttr()
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrRestAPIDeviceFrame#getRestAPIAttr()
+	 * @see #getSGrRestAPIDeviceFrame()
 	 * @generated
 	 */
-	EReference getSGrRESTAPIDeviceDescriptionType_RestAPIAttr();
+	EReference getSGrRestAPIDeviceFrame_RestAPIAttr();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getRestAPIInterfaceDesc <em>Rest API Interface Desc</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrRestAPIDeviceFrame#getRestAPIInterfaceDesc <em>Rest API Interface Desc</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Rest API Interface Desc</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getRestAPIInterfaceDesc()
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrRestAPIDeviceFrame#getRestAPIInterfaceDesc()
+	 * @see #getSGrRestAPIDeviceFrame()
 	 * @generated
 	 */
-	EReference getSGrRESTAPIDeviceDescriptionType_RestAPIInterfaceDesc();
+	EReference getSGrRestAPIDeviceFrame_RestAPIInterfaceDesc();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getFpListElement <em>Fp List Element</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIDeviceFrame#getFpListElement <em>Fp List Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Fp List Element</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getFpListElement()
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
+	 * @see com.smartgridready.ns.v0.SGrRestAPIDeviceFrame#getFpListElement()
+	 * @see #getSGrRestAPIDeviceFrame()
 	 * @generated
 	 */
-	EReference getSGrRESTAPIDeviceDescriptionType_FpListElement();
+	EReference getSGrRestAPIDeviceFrame_FpListElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getDeviceName <em>Device Name</em>}'.
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType <em>SGr Rest API Functional Profile Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Device Name</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getDeviceName()
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
+	 * @return the meta object for class '<em>SGr Rest API Functional Profile Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType
 	 * @generated
 	 */
-	EAttribute getSGrRESTAPIDeviceDescriptionType_DeviceName();
+	EClass getSGrRestAPIFunctionalProfileType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#isIsLocalControl <em>Is Local Control</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType#getRestAPIAttr <em>Rest API Attr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Local Control</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#isIsLocalControl()
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
+	 * @return the meta object for the containment reference list '<em>Rest API Attr</em>'.
+	 * @see com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType#getRestAPIAttr()
+	 * @see #getSGrRestAPIFunctionalProfileType()
 	 * @generated
 	 */
-	EAttribute getSGrRESTAPIDeviceDescriptionType_IsLocalControl();
+	EReference getSGrRestAPIFunctionalProfileType_RestAPIAttr();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getManufacturerID <em>Manufacturer ID</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType#getDpListElement <em>Dp List Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Manufacturer ID</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getManufacturerID()
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
+	 * @return the meta object for the containment reference list '<em>Dp List Element</em>'.
+	 * @see com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType#getDpListElement()
+	 * @see #getSGrRestAPIFunctionalProfileType()
 	 * @generated
 	 */
-	EAttribute getSGrRESTAPIDeviceDescriptionType_ManufacturerID();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getManufacturerName <em>Manufacturer Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Manufacturer Name</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType#getManufacturerName()
-	 * @see #getSGrRESTAPIDeviceDescriptionType()
-	 * @generated
-	 */
-	EAttribute getSGrRESTAPIDeviceDescriptionType_ManufacturerName();
+	EReference getSGrRestAPIFunctionalProfileType_DpListElement();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestAPIInterfaceDescriptionType <em>SGr Rest API Interface Description Type</em>}'.
@@ -8506,60 +8302,6 @@ public interface V0Package extends EPackage {
 	EReference getSGrRestAPIInterfaceDescriptionType_RestAPIBasic();
 
 	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType <em>SGr Rest API Profiles Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Rest API Profiles Frame Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType
-	 * @generated
-	 */
-	EClass getSGrRestAPIProfilesFrameType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType#getFunctionalProfile <em>Functional Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Functional Profile</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType#getFunctionalProfile()
-	 * @see #getSGrRestAPIProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestAPIProfilesFrameType_FunctionalProfile();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType#getGenAttribute()
-	 * @see #getSGrRestAPIProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestAPIProfilesFrameType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType#getRestAPIAttr <em>Rest API Attr</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Rest API Attr</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType#getRestAPIAttr()
-	 * @see #getSGrRestAPIProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestAPIProfilesFrameType_RestAPIAttr();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType#getDpListElement <em>Dp List Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dp List Element</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType#getDpListElement()
-	 * @see #getSGrRestAPIProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestAPIProfilesFrameType_DpListElement();
-
-	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestBasicType <em>SGr Rest Basic Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8590,114 +8332,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSGrRestBasicType_RestBasicPassword();
-
-	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType <em>SGr Rest Data Points Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Rest Data Points Frame Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestDataPointsFrameType
-	 * @generated
-	 */
-	EClass getSGrRestDataPointsFrameType();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getDataPoint <em>Data Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Data Point</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getDataPoint()
-	 * @see #getSGrRestDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestDataPointsFrameType_DataPoint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getRestDataPoint <em>Rest Data Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Rest Data Point</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getRestDataPoint()
-	 * @see #getSGrRestDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestDataPointsFrameType_RestDataPoint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getGenAttribute()
-	 * @see #getSGrRestDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestDataPointsFrameType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getRestAPIAttr <em>Rest API Attr</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Rest API Attr</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestDataPointsFrameType#getRestAPIAttr()
-	 * @see #getSGrRestDataPointsFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestDataPointsFrameType_RestAPIAttr();
-
-	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrRestProfilesFrameType <em>SGr Rest Profiles Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SGr Rest Profiles Frame Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestProfilesFrameType
-	 * @generated
-	 */
-	EClass getSGrRestProfilesFrameType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrRestProfilesFrameType#getFunctionalProfile <em>Functional Profile</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Functional Profile</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestProfilesFrameType#getFunctionalProfile()
-	 * @see #getSGrRestProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestProfilesFrameType_FunctionalProfile();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestProfilesFrameType#getGenAttribute <em>Gen Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Gen Attribute</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestProfilesFrameType#getGenAttribute()
-	 * @see #getSGrRestProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestProfilesFrameType_GenAttribute();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestProfilesFrameType#getRestAPIAttr <em>Rest API Attr</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Rest API Attr</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestProfilesFrameType#getRestAPIAttr()
-	 * @see #getSGrRestProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestProfilesFrameType_RestAPIAttr();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrRestProfilesFrameType#getDpListElement <em>Dp List Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dp List Element</em>'.
-	 * @see com.smartgridready.ns.v0.SGrRestProfilesFrameType#getDpListElement()
-	 * @see #getSGrRestProfilesFrameType()
-	 * @generated
-	 */
-	EReference getSGrRestProfilesFrameType_DpListElement();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrScalingType <em>SGr Scaling Type</em>}'.
@@ -9523,6 +9157,16 @@ public interface V0Package extends EPackage {
 	EEnum getSGrMeasValueTendencyType();
 
 	/**
+	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.SGrMeasValueType <em>SGr Meas Value Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>SGr Meas Value Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrMeasValueType
+	 * @generated
+	 */
+	EEnum getSGrMeasValueType();
+
+	/**
 	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.SGrModbusLayer6DeviationType <em>SGr Modbus Layer6 Deviation Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10040,6 +9684,18 @@ public interface V0Package extends EPackage {
 	EDataType getRestAPIJMESPathType();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.String <em>Rest APIJMES Path Type1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Rest APIJMES Path Type1</em>'.
+	 * @see java.lang.String
+	 * @model instanceClass="java.lang.String"
+	 *        extendedMetaData="name='restAPIJMESPathType' baseType='http://www.eclipse.org/emf/2003/XMLType#string'"
+	 * @generated
+	 */
+	EDataType getRestAPIJMESPathType1();
+
+	/**
 	 * Returns the meta object for data type '{@link java.lang.String <em>Rest Basic Password Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10206,6 +9862,18 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EDataType getSGrMeasValueTendencyTypeObject();
+
+	/**
+	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.SGrMeasValueType <em>SGr Meas Value Type Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>SGr Meas Value Type Object</em>'.
+	 * @see com.smartgridready.ns.v0.SGrMeasValueType
+	 * @model instanceClass="com.smartgridready.ns.v0.SGrMeasValueType"
+	 *        extendedMetaData="name='SGrMeasValueType:Object' baseType='SGrMeasValueType'"
+	 * @generated
+	 */
+	EDataType getSGrMeasValueTypeObject();
 
 	/**
 	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.SGrModbusLayer6DeviationType <em>SGr Modbus Layer6 Deviation Type Object</em>}'.
@@ -10559,7 +10227,7 @@ public interface V0Package extends EPackage {
 	 * @return the meta object for data type '<em>Text Element Type</em>'.
 	 * @see java.lang.String
 	 * @model instanceClass="java.lang.String"
-	 *        extendedMetaData="name='textElement_._type' baseType='http://www.eclipse.org/emf/2003/XMLType#string' minLength='0' maxLength='750'"
+	 *        extendedMetaData="name='textElement_._type' baseType='http://www.eclipse.org/emf/2003/XMLType#string' minLength='0' maxLength='4000'"
 	 * @generated
 	 */
 	EDataType getTextElementType();

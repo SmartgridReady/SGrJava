@@ -108,8 +108,6 @@ public class V0Validator extends EObjectValidator {
 				return validateModbusJMESPathType((ModbusJMESPathType)value, diagnostics, context);
 			case V0Package.NETWORK_CONNECTION_STATE_TYPE:
 				return validateNetworkConnectionStateType((NetworkConnectionStateType)value, diagnostics, context);
-			case V0Package.REST_APIJMES_PATH_TYPE1:
-				return validateRestAPIJMESPathType1((RestAPIJMESPathType1)value, diagnostics, context);
 			case V0Package.RTU_DEV_INSTANCE_TYPE:
 				return validateRTUDevInstanceType((RTUDevInstanceType)value, diagnostics, context);
 			case V0Package.RT_UTRSP_SRV_INSTANCE_TYPE:
@@ -130,62 +128,64 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrBasicGenDataPointTypeType((SGrBasicGenDataPointTypeType)value, diagnostics, context);
 			case V0Package.SGR_CHANGE_LOG:
 				return validateSGrChangeLog((SGrChangeLog)value, diagnostics, context);
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE:
-				return validateSGrContactAPIDeviceDescriptionType((SGrContactAPIDeviceDescriptionType)value, diagnostics, context);
+			case V0Package.SGR_CONTACT_API_DEVICE_FRAME:
+				return validateSGrContactAPIDeviceFrame((SGrContactAPIDeviceFrame)value, diagnostics, context);
+			case V0Package.SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE:
+				return validateSGrContactAPIFunctionalProfileType((SGrContactAPIFunctionalProfileType)value, diagnostics, context);
+			case V0Package.SGR_DATA_POINT_BASE_TYPE:
+				return validateSGrDataPointBaseType((SGrDataPointBaseType)value, diagnostics, context);
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE:
 				return validateSGrDataPointDescriptionType((SGrDataPointDescriptionType)value, diagnostics, context);
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE:
-				return validateSGrDataPointsFrameType((SGrDataPointsFrameType)value, diagnostics, context);
-			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE:
-				return validateSGrDeviceDescriptionType((SGrDeviceDescriptionType)value, diagnostics, context);
+			case V0Package.SGR_DEVICE_BASE_TYPE:
+				return validateSGrDeviceBaseType((SGrDeviceBaseType)value, diagnostics, context);
 			case V0Package.SGR_DEVICE_PROFILE_TYPE:
 				return validateSGrDeviceProfileType((SGrDeviceProfileType)value, diagnostics, context);
 			case V0Package.SGR_ENUM_LIST_TYPE:
 				return validateSGrEnumListType((SGrEnumListType)value, diagnostics, context);
 			case V0Package.SGR_FLEX_ASSISTANCE_TYPE:
 				return validateSGrFlexAssistanceType((SGrFlexAssistanceType)value, diagnostics, context);
-			case V0Package.SGR_INTERFACE_DESCRIPTION_TYPE:
-				return validateSGrInterfaceDescriptionType((SGrInterfaceDescriptionType)value, diagnostics, context);
+			case V0Package.SGR_FUNCTIONAL_PROFILE_BASE_TYPE:
+				return validateSGrFunctionalProfileBaseType((SGrFunctionalProfileBaseType)value, diagnostics, context);
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE:
+				return validateSGrFunctionalProfileFrameType((SGrFunctionalProfileFrameType)value, diagnostics, context);
+			case V0Package.SGR_GEN_DEVICE_FRAME:
+				return validateSGrGenDeviceFrame((SGrGenDeviceFrame)value, diagnostics, context);
+			case V0Package.SGR_GEN_FUNCTIONAL_PROFILE_TYPE:
+				return validateSGrGenFunctionalProfileType((SGrGenFunctionalProfileType)value, diagnostics, context);
 			case V0Package.SGR_LEGIB_DOCUMENTATION_TYPE:
 				return validateSGrLegibDocumentationType((SGrLegibDocumentationType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE:
 				return validateSGrModbusDataPointDescriptionType((SGrModbusDataPointDescriptionType)value, diagnostics, context);
-			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE:
-				return validateSGrModbusDataPointsFrameType((SGrModbusDataPointsFrameType)value, diagnostics, context);
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE:
-				return validateSGrModbusDeviceDescriptionType((SGrModbusDeviceDescriptionType)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE:
+				return validateSGrModbusDataPointType((SGrModbusDataPointType)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_DEVICE_FRAME:
+				return validateSGrModbusDeviceFrame((SGrModbusDeviceFrame)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE:
+				return validateSGrModbusFunctionalProfileType((SGrModbusFunctionalProfileType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE:
 				return validateSGrModbusInterfaceDescriptionType((SGrModbusInterfaceDescriptionType)value, diagnostics, context);
-			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE:
-				return validateSGrModbusProfilesFrameType((SGrModbusProfilesFrameType)value, diagnostics, context);
 			case V0Package.SGR_NAMELIST_TYPE:
 				return validateSGrNamelistType((SGrNamelistType)value, diagnostics, context);
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE:
 				return validateSGrProfileDescriptionType((SGrProfileDescriptionType)value, diagnostics, context);
 			case V0Package.SGR_PROFILENUMBER_TYPE:
 				return validateSGrProfilenumberType((SGrProfilenumberType)value, diagnostics, context);
-			case V0Package.SGR_PROFILES_FRAME_TYPE:
-				return validateSGrProfilesFrameType((SGrProfilesFrameType)value, diagnostics, context);
 			case V0Package.SGR_RELEASE_NOTES:
 				return validateSGrReleaseNotes((SGrReleaseNotes)value, diagnostics, context);
 			case V0Package.SG_RREST_API_BEARER_TYPE:
 				return validateSGRrestAPIBearerType((SGRrestAPIBearerType)value, diagnostics, context);
 			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE:
 				return validateSGrRestAPIDataPointDescriptionType((SGrRestAPIDataPointDescriptionType)value, diagnostics, context);
-			case V0Package.SGR_REST_API_DATA_POINTS_FRAME_TYPE:
-				return validateSGrRestAPIDataPointsFrameType((SGrRestAPIDataPointsFrameType)value, diagnostics, context);
-			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE:
-				return validateSGrRESTAPIDeviceDescriptionType((SGrRESTAPIDeviceDescriptionType)value, diagnostics, context);
+			case V0Package.SGR_REST_API_DATA_POINT_TYPE:
+				return validateSGrRestAPIDataPointType((SGrRestAPIDataPointType)value, diagnostics, context);
+			case V0Package.SGR_REST_API_DEVICE_FRAME:
+				return validateSGrRestAPIDeviceFrame((SGrRestAPIDeviceFrame)value, diagnostics, context);
+			case V0Package.SGR_REST_API_FUNCTIONAL_PROFILE_TYPE:
+				return validateSGrRestAPIFunctionalProfileType((SGrRestAPIFunctionalProfileType)value, diagnostics, context);
 			case V0Package.SGR_REST_API_INTERFACE_DESCRIPTION_TYPE:
 				return validateSGrRestAPIInterfaceDescriptionType((SGrRestAPIInterfaceDescriptionType)value, diagnostics, context);
-			case V0Package.SGR_REST_API_PROFILES_FRAME_TYPE:
-				return validateSGrRestAPIProfilesFrameType((SGrRestAPIProfilesFrameType)value, diagnostics, context);
 			case V0Package.SGR_REST_BASIC_TYPE:
 				return validateSGrRestBasicType((SGrRestBasicType)value, diagnostics, context);
-			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE:
-				return validateSGrRestDataPointsFrameType((SGrRestDataPointsFrameType)value, diagnostics, context);
-			case V0Package.SGR_REST_PROFILES_FRAME_TYPE:
-				return validateSGrRestProfilesFrameType((SGrRestProfilesFrameType)value, diagnostics, context);
 			case V0Package.SGR_SCALING_TYPE:
 				return validateSGrScalingType((SGrScalingType)value, diagnostics, context);
 			case V0Package.SGR_SERIAL_INTERFACE_CAPABILITY_TYPE:
@@ -256,6 +256,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrMeasValueStateType((SGrMeasValueStateType)value, diagnostics, context);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE:
 				return validateSGrMeasValueTendencyType((SGrMeasValueTendencyType)value, diagnostics, context);
+			case V0Package.SGR_MEAS_VALUE_TYPE:
+				return validateSGrMeasValueType((SGrMeasValueType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
 				return validateSGrModbusLayer6DeviationType((SGrModbusLayer6DeviationType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE:
@@ -350,6 +352,8 @@ public class V0Validator extends EObjectValidator {
 				return validateRestAPIEndPointType1((String)value, diagnostics, context);
 			case V0Package.REST_APIJMES_PATH_TYPE:
 				return validateRestAPIJMESPathType((String)value, diagnostics, context);
+			case V0Package.REST_APIJMES_PATH_TYPE1:
+				return validateRestAPIJMESPathType1((String)value, diagnostics, context);
 			case V0Package.REST_BASIC_PASSWORD_TYPE:
 				return validateRestBasicPasswordType((String)value, diagnostics, context);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
@@ -378,6 +382,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrMeasValueStateTypeObject((SGrMeasValueStateType)value, diagnostics, context);
 			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT:
 				return validateSGrMeasValueTendencyTypeObject((SGrMeasValueTendencyType)value, diagnostics, context);
+			case V0Package.SGR_MEAS_VALUE_TYPE_OBJECT:
+				return validateSGrMeasValueTypeObject((SGrMeasValueType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
 				return validateSGrModbusLayer6DeviationTypeObject((SGrModbusLayer6DeviationType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT:
@@ -497,15 +503,6 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRestAPIJMESPathType1(RestAPIJMESPathType1 restAPIJMESPathType1, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(restAPIJMESPathType1, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateRTUDevInstanceType(RTUDevInstanceType rtuDevInstanceType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(rtuDevInstanceType, diagnostics, context);
 	}
@@ -596,8 +593,26 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrContactAPIDeviceDescriptionType(SGrContactAPIDeviceDescriptionType sGrContactAPIDeviceDescriptionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrContactAPIDeviceDescriptionType, diagnostics, context);
+	public boolean validateSGrContactAPIDeviceFrame(SGrContactAPIDeviceFrame sGrContactAPIDeviceFrame, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrContactAPIDeviceFrame, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrContactAPIFunctionalProfileType(SGrContactAPIFunctionalProfileType sGrContactAPIFunctionalProfileType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrContactAPIFunctionalProfileType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrDataPointBaseType(SGrDataPointBaseType sGrDataPointBaseType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrDataPointBaseType, diagnostics, context);
 	}
 
 	/**
@@ -614,17 +629,8 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrDataPointsFrameType(SGrDataPointsFrameType sGrDataPointsFrameType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrDataPointsFrameType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrDeviceDescriptionType(SGrDeviceDescriptionType sGrDeviceDescriptionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrDeviceDescriptionType, diagnostics, context);
+	public boolean validateSGrDeviceBaseType(SGrDeviceBaseType sGrDeviceBaseType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrDeviceBaseType, diagnostics, context);
 	}
 
 	/**
@@ -659,8 +665,35 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrInterfaceDescriptionType(SGrInterfaceDescriptionType sGrInterfaceDescriptionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrInterfaceDescriptionType, diagnostics, context);
+	public boolean validateSGrFunctionalProfileBaseType(SGrFunctionalProfileBaseType sGrFunctionalProfileBaseType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrFunctionalProfileBaseType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrFunctionalProfileFrameType(SGrFunctionalProfileFrameType sGrFunctionalProfileFrameType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrFunctionalProfileFrameType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrGenDeviceFrame(SGrGenDeviceFrame sGrGenDeviceFrame, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrGenDeviceFrame, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrGenFunctionalProfileType(SGrGenFunctionalProfileType sGrGenFunctionalProfileType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrGenFunctionalProfileType, diagnostics, context);
 	}
 
 	/**
@@ -686,8 +719,8 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrModbusDataPointsFrameType(SGrModbusDataPointsFrameType sGrModbusDataPointsFrameType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrModbusDataPointsFrameType, diagnostics, context);
+	public boolean validateSGrModbusDataPointType(SGrModbusDataPointType sGrModbusDataPointType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrModbusDataPointType, diagnostics, context);
 	}
 
 	/**
@@ -695,8 +728,17 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrModbusDeviceDescriptionType(SGrModbusDeviceDescriptionType sGrModbusDeviceDescriptionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrModbusDeviceDescriptionType, diagnostics, context);
+	public boolean validateSGrModbusDeviceFrame(SGrModbusDeviceFrame sGrModbusDeviceFrame, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrModbusDeviceFrame, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrModbusFunctionalProfileType(SGrModbusFunctionalProfileType sGrModbusFunctionalProfileType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrModbusFunctionalProfileType, diagnostics, context);
 	}
 
 	/**
@@ -706,15 +748,6 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateSGrModbusInterfaceDescriptionType(SGrModbusInterfaceDescriptionType sGrModbusInterfaceDescriptionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrModbusInterfaceDescriptionType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrModbusProfilesFrameType(SGrModbusProfilesFrameType sGrModbusProfilesFrameType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrModbusProfilesFrameType, diagnostics, context);
 	}
 
 	/**
@@ -749,15 +782,6 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrProfilesFrameType(SGrProfilesFrameType sGrProfilesFrameType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrProfilesFrameType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateSGrReleaseNotes(SGrReleaseNotes sGrReleaseNotes, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrReleaseNotes, diagnostics, context);
 	}
@@ -785,8 +809,8 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrRestAPIDataPointsFrameType(SGrRestAPIDataPointsFrameType sGrRestAPIDataPointsFrameType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrRestAPIDataPointsFrameType, diagnostics, context);
+	public boolean validateSGrRestAPIDataPointType(SGrRestAPIDataPointType sGrRestAPIDataPointType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrRestAPIDataPointType, diagnostics, context);
 	}
 
 	/**
@@ -794,8 +818,17 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrRESTAPIDeviceDescriptionType(SGrRESTAPIDeviceDescriptionType sGrRESTAPIDeviceDescriptionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrRESTAPIDeviceDescriptionType, diagnostics, context);
+	public boolean validateSGrRestAPIDeviceFrame(SGrRestAPIDeviceFrame sGrRestAPIDeviceFrame, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrRestAPIDeviceFrame, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrRestAPIFunctionalProfileType(SGrRestAPIFunctionalProfileType sGrRestAPIFunctionalProfileType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrRestAPIFunctionalProfileType, diagnostics, context);
 	}
 
 	/**
@@ -812,35 +845,8 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrRestAPIProfilesFrameType(SGrRestAPIProfilesFrameType sGrRestAPIProfilesFrameType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrRestAPIProfilesFrameType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateSGrRestBasicType(SGrRestBasicType sGrRestBasicType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrRestBasicType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrRestDataPointsFrameType(SGrRestDataPointsFrameType sGrRestDataPointsFrameType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrRestDataPointsFrameType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrRestProfilesFrameType(SGrRestProfilesFrameType sGrRestProfilesFrameType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrRestProfilesFrameType, diagnostics, context);
 	}
 
 	/**
@@ -1155,6 +1161,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrMeasValueTendencyType(SGrMeasValueTendencyType sGrMeasValueTendencyType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrMeasValueType(SGrMeasValueType sGrMeasValueType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1942,6 +1957,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateRestAPIJMESPathType1(String restAPIJMESPathType1, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateRestBasicPasswordType(String restBasicPasswordType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -2060,6 +2084,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrMeasValueTendencyTypeObject(SGrMeasValueTendencyType sGrMeasValueTendencyTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrMeasValueTypeObject(SGrMeasValueType sGrMeasValueTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2431,9 +2464,9 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateTextElementType_MaxLength(String textElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		int length = textElementType.length();
-		boolean result = length <= 750;
+		boolean result = length <= 4000;
 		if (!result && diagnostics != null)
-			reportMaxLengthViolation(V0Package.eINSTANCE.getTextElementType(), textElementType, length, 750, diagnostics, context);
+			reportMaxLengthViolation(V0Package.eINSTANCE.getTextElementType(), textElementType, length, 4000, diagnostics, context);
 		return result;
 	}
 

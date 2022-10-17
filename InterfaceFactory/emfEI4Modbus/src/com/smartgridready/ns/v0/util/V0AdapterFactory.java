@@ -88,10 +88,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createNetworkConnectionStateTypeAdapter();
 			}
 			@Override
-			public Adapter caseRestAPIJMESPathType1(RestAPIJMESPathType1 object) {
-				return createRestAPIJMESPathType1Adapter();
-			}
-			@Override
 			public Adapter caseRTUDevInstanceType(RTUDevInstanceType object) {
 				return createRTUDevInstanceTypeAdapter();
 			}
@@ -132,20 +128,24 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrChangeLogAdapter();
 			}
 			@Override
-			public Adapter caseSGrContactAPIDeviceDescriptionType(SGrContactAPIDeviceDescriptionType object) {
-				return createSGrContactAPIDeviceDescriptionTypeAdapter();
+			public Adapter caseSGrContactAPIDeviceFrame(SGrContactAPIDeviceFrame object) {
+				return createSGrContactAPIDeviceFrameAdapter();
+			}
+			@Override
+			public Adapter caseSGrContactAPIFunctionalProfileType(SGrContactAPIFunctionalProfileType object) {
+				return createSGrContactAPIFunctionalProfileTypeAdapter();
+			}
+			@Override
+			public Adapter caseSGrDataPointBaseType(SGrDataPointBaseType object) {
+				return createSGrDataPointBaseTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrDataPointDescriptionType(SGrDataPointDescriptionType object) {
 				return createSGrDataPointDescriptionTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrDataPointsFrameType(SGrDataPointsFrameType object) {
-				return createSGrDataPointsFrameTypeAdapter();
-			}
-			@Override
-			public Adapter caseSGrDeviceDescriptionType(SGrDeviceDescriptionType object) {
-				return createSGrDeviceDescriptionTypeAdapter();
+			public Adapter caseSGrDeviceBaseType(SGrDeviceBaseType object) {
+				return createSGrDeviceBaseTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrDeviceProfileType(SGrDeviceProfileType object) {
@@ -160,8 +160,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrFlexAssistanceTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrInterfaceDescriptionType(SGrInterfaceDescriptionType object) {
-				return createSGrInterfaceDescriptionTypeAdapter();
+			public Adapter caseSGrFunctionalProfileBaseType(SGrFunctionalProfileBaseType object) {
+				return createSGrFunctionalProfileBaseTypeAdapter();
+			}
+			@Override
+			public Adapter caseSGrFunctionalProfileFrameType(SGrFunctionalProfileFrameType object) {
+				return createSGrFunctionalProfileFrameTypeAdapter();
+			}
+			@Override
+			public Adapter caseSGrGenDeviceFrame(SGrGenDeviceFrame object) {
+				return createSGrGenDeviceFrameAdapter();
+			}
+			@Override
+			public Adapter caseSGrGenFunctionalProfileType(SGrGenFunctionalProfileType object) {
+				return createSGrGenFunctionalProfileTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrLegibDocumentationType(SGrLegibDocumentationType object) {
@@ -172,20 +184,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrModbusDataPointDescriptionTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrModbusDataPointsFrameType(SGrModbusDataPointsFrameType object) {
-				return createSGrModbusDataPointsFrameTypeAdapter();
+			public Adapter caseSGrModbusDataPointType(SGrModbusDataPointType object) {
+				return createSGrModbusDataPointTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrModbusDeviceDescriptionType(SGrModbusDeviceDescriptionType object) {
-				return createSGrModbusDeviceDescriptionTypeAdapter();
+			public Adapter caseSGrModbusDeviceFrame(SGrModbusDeviceFrame object) {
+				return createSGrModbusDeviceFrameAdapter();
+			}
+			@Override
+			public Adapter caseSGrModbusFunctionalProfileType(SGrModbusFunctionalProfileType object) {
+				return createSGrModbusFunctionalProfileTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrModbusInterfaceDescriptionType(SGrModbusInterfaceDescriptionType object) {
 				return createSGrModbusInterfaceDescriptionTypeAdapter();
-			}
-			@Override
-			public Adapter caseSGrModbusProfilesFrameType(SGrModbusProfilesFrameType object) {
-				return createSGrModbusProfilesFrameTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrNamelistType(SGrNamelistType object) {
@@ -200,10 +212,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrProfilenumberTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrProfilesFrameType(SGrProfilesFrameType object) {
-				return createSGrProfilesFrameTypeAdapter();
-			}
-			@Override
 			public Adapter caseSGrReleaseNotes(SGrReleaseNotes object) {
 				return createSGrReleaseNotesAdapter();
 			}
@@ -216,32 +224,24 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrRestAPIDataPointDescriptionTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrRestAPIDataPointsFrameType(SGrRestAPIDataPointsFrameType object) {
-				return createSGrRestAPIDataPointsFrameTypeAdapter();
+			public Adapter caseSGrRestAPIDataPointType(SGrRestAPIDataPointType object) {
+				return createSGrRestAPIDataPointTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrRESTAPIDeviceDescriptionType(SGrRESTAPIDeviceDescriptionType object) {
-				return createSGrRESTAPIDeviceDescriptionTypeAdapter();
+			public Adapter caseSGrRestAPIDeviceFrame(SGrRestAPIDeviceFrame object) {
+				return createSGrRestAPIDeviceFrameAdapter();
+			}
+			@Override
+			public Adapter caseSGrRestAPIFunctionalProfileType(SGrRestAPIFunctionalProfileType object) {
+				return createSGrRestAPIFunctionalProfileTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrRestAPIInterfaceDescriptionType(SGrRestAPIInterfaceDescriptionType object) {
 				return createSGrRestAPIInterfaceDescriptionTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrRestAPIProfilesFrameType(SGrRestAPIProfilesFrameType object) {
-				return createSGrRestAPIProfilesFrameTypeAdapter();
-			}
-			@Override
 			public Adapter caseSGrRestBasicType(SGrRestBasicType object) {
 				return createSGrRestBasicTypeAdapter();
-			}
-			@Override
-			public Adapter caseSGrRestDataPointsFrameType(SGrRestDataPointsFrameType object) {
-				return createSGrRestDataPointsFrameTypeAdapter();
-			}
-			@Override
-			public Adapter caseSGrRestProfilesFrameType(SGrRestProfilesFrameType object) {
-				return createSGrRestProfilesFrameTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrScalingType(SGrScalingType object) {
@@ -398,20 +398,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.RestAPIJMESPathType1 <em>Rest APIJMES Path Type1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.RestAPIJMESPathType1
-	 * @generated
-	 */
-	public Adapter createRestAPIJMESPathType1Adapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.RTUDevInstanceType <em>RTU Dev Instance Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -552,16 +538,44 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType <em>SGr Contact API Device Description Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrContactAPIDeviceFrame <em>SGr Contact API Device Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType
+	 * @see com.smartgridready.ns.v0.SGrContactAPIDeviceFrame
 	 * @generated
 	 */
-	public Adapter createSGrContactAPIDeviceDescriptionTypeAdapter() {
+	public Adapter createSGrContactAPIDeviceFrameAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrContactAPIFunctionalProfileType <em>SGr Contact API Functional Profile Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrContactAPIFunctionalProfileType
+	 * @generated
+	 */
+	public Adapter createSGrContactAPIFunctionalProfileTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrDataPointBaseType <em>SGr Data Point Base Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrDataPointBaseType
+	 * @generated
+	 */
+	public Adapter createSGrDataPointBaseTypeAdapter() {
 		return null;
 	}
 
@@ -580,30 +594,16 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrDataPointsFrameType <em>SGr Data Points Frame Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrDeviceBaseType <em>SGr Device Base Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrDataPointsFrameType
+	 * @see com.smartgridready.ns.v0.SGrDeviceBaseType
 	 * @generated
 	 */
-	public Adapter createSGrDataPointsFrameTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrDeviceDescriptionType <em>SGr Device Description Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrDeviceDescriptionType
-	 * @generated
-	 */
-	public Adapter createSGrDeviceDescriptionTypeAdapter() {
+	public Adapter createSGrDeviceBaseTypeAdapter() {
 		return null;
 	}
 
@@ -650,16 +650,58 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrInterfaceDescriptionType <em>SGr Interface Description Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrFunctionalProfileBaseType <em>SGr Functional Profile Base Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrInterfaceDescriptionType
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileBaseType
 	 * @generated
 	 */
-	public Adapter createSGrInterfaceDescriptionTypeAdapter() {
+	public Adapter createSGrFunctionalProfileBaseTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType <em>SGr Functional Profile Frame Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrFunctionalProfileFrameType
+	 * @generated
+	 */
+	public Adapter createSGrFunctionalProfileFrameTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrGenDeviceFrame <em>SGr Gen Device Frame</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrGenDeviceFrame
+	 * @generated
+	 */
+	public Adapter createSGrGenDeviceFrameAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrGenFunctionalProfileType <em>SGr Gen Functional Profile Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrGenFunctionalProfileType
+	 * @generated
+	 */
+	public Adapter createSGrGenFunctionalProfileTypeAdapter() {
 		return null;
 	}
 
@@ -692,30 +734,44 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusDataPointsFrameType <em>SGr Modbus Data Points Frame Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusDataPointType <em>SGr Modbus Data Point Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointsFrameType
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointType
 	 * @generated
 	 */
-	public Adapter createSGrModbusDataPointsFrameTypeAdapter() {
+	public Adapter createSGrModbusDataPointTypeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType <em>SGr Modbus Device Description Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame <em>SGr Modbus Device Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType
+	 * @see com.smartgridready.ns.v0.SGrModbusDeviceFrame
 	 * @generated
 	 */
-	public Adapter createSGrModbusDeviceDescriptionTypeAdapter() {
+	public Adapter createSGrModbusDeviceFrameAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType <em>SGr Modbus Functional Profile Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrModbusFunctionalProfileType
+	 * @generated
+	 */
+	public Adapter createSGrModbusFunctionalProfileTypeAdapter() {
 		return null;
 	}
 
@@ -730,20 +786,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSGrModbusInterfaceDescriptionTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusProfilesFrameType <em>SGr Modbus Profiles Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrModbusProfilesFrameType
-	 * @generated
-	 */
-	public Adapter createSGrModbusProfilesFrameTypeAdapter() {
 		return null;
 	}
 
@@ -790,20 +832,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrProfilesFrameType <em>SGr Profiles Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrProfilesFrameType
-	 * @generated
-	 */
-	public Adapter createSGrProfilesFrameTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrReleaseNotes <em>SGr Release Notes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -846,30 +874,44 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType <em>SGr Rest API Data Points Frame Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRestAPIDataPointType <em>SGr Rest API Data Point Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointsFrameType
+	 * @see com.smartgridready.ns.v0.SGrRestAPIDataPointType
 	 * @generated
 	 */
-	public Adapter createSGrRestAPIDataPointsFrameTypeAdapter() {
+	public Adapter createSGrRestAPIDataPointTypeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType <em>SGr RESTAPI Device Description Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRestAPIDeviceFrame <em>SGr Rest API Device Frame</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType
+	 * @see com.smartgridready.ns.v0.SGrRestAPIDeviceFrame
 	 * @generated
 	 */
-	public Adapter createSGrRESTAPIDeviceDescriptionTypeAdapter() {
+	public Adapter createSGrRestAPIDeviceFrameAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType <em>SGr Rest API Functional Profile Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType
+	 * @generated
+	 */
+	public Adapter createSGrRestAPIFunctionalProfileTypeAdapter() {
 		return null;
 	}
 
@@ -888,20 +930,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType <em>SGr Rest API Profiles Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrRestAPIProfilesFrameType
-	 * @generated
-	 */
-	public Adapter createSGrRestAPIProfilesFrameTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRestBasicType <em>SGr Rest Basic Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -912,34 +940,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSGrRestBasicTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRestDataPointsFrameType <em>SGr Rest Data Points Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrRestDataPointsFrameType
-	 * @generated
-	 */
-	public Adapter createSGrRestDataPointsFrameTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrRestProfilesFrameType <em>SGr Rest Profiles Frame Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrRestProfilesFrameType
-	 * @generated
-	 */
-	public Adapter createSGrRestProfilesFrameTypeAdapter() {
 		return null;
 	}
 

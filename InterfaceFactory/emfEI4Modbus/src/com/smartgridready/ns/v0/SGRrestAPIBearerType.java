@@ -46,26 +46,26 @@ public interface SGRrestAPIBearerType extends EObject {
 	void setRestAPIEndPoint(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Rest APIJMES Path</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Rest APIJMES Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rest APIJMES Path</em>' containment reference.
-	 * @see #setRestAPIJMESPath(RestAPIJMESPathType1)
+	 * @return the value of the '<em>Rest APIJMES Path</em>' attribute.
+	 * @see #setRestAPIJMESPath(String)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGRrestAPIBearerType_RestAPIJMESPath()
-	 * @model containment="true" required="true"
+	 * @model dataType="com.smartgridready.ns.v0.RestAPIJMESPathType1" required="true"
 	 *        extendedMetaData="kind='element' name='restAPIJMESPath' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	RestAPIJMESPathType1 getRestAPIJMESPath();
+	String getRestAPIJMESPath();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getRestAPIJMESPath <em>Rest APIJMES Path</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getRestAPIJMESPath <em>Rest APIJMES Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rest APIJMES Path</em>' containment reference.
+	 * @param value the new value of the '<em>Rest APIJMES Path</em>' attribute.
 	 * @see #getRestAPIJMESPath()
 	 * @generated
 	 */
-	void setRestAPIJMESPath(RestAPIJMESPathType1 value);
+	void setRestAPIJMESPath(String value);
 
 } // SGRrestAPIBearerType

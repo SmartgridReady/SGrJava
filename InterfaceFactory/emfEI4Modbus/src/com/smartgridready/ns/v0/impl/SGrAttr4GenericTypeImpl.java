@@ -7,6 +7,7 @@ import com.smartgridready.ns.v0.SGrFlexAssistanceType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
 import com.smartgridready.ns.v0.SGrMeasValueStateType;
 import com.smartgridready.ns.v0.SGrMeasValueTendencyType;
+import com.smartgridready.ns.v0.SGrMeasValueType;
 import com.smartgridready.ns.v0.SGrSmoothTransitionType;
 import com.smartgridready.ns.v0.SGrStabilityFallbackType;
 import com.smartgridready.ns.v0.SGrTimeRangeType;
@@ -46,6 +47,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMaxLatencyTime <em>Max Latency Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getTimeStampLog <em>Time Stamp Log</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getTimeRange <em>Time Range</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueType <em>Value Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueState <em>Value State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueTendency <em>Value Tendency</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueSource <em>Value Source</em>}</li>
@@ -326,6 +328,35 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected SGrTimeRangeType timeRange;
+
+	/**
+	 * The default value of the '{@link #getValueType() <em>Value Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValueType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SGrMeasValueType VALUE_TYPE_EDEFAULT = SGrMeasValueType.MIN;
+
+	/**
+	 * The cached value of the '{@link #getValueType() <em>Value Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValueType()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrMeasValueType valueType = VALUE_TYPE_EDEFAULT;
+
+	/**
+	 * This is true if the Value Type attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean valueTypeESet;
 
 	/**
 	 * The default value of the '{@link #getValueState() <em>Value State</em>}' attribute.
@@ -1096,6 +1127,56 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
+	public SGrMeasValueType getValueType() {
+		return valueType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setValueType(SGrMeasValueType newValueType) {
+		SGrMeasValueType oldValueType = valueType;
+		valueType = newValueType == null ? VALUE_TYPE_EDEFAULT : newValueType;
+		boolean oldValueTypeESet = valueTypeESet;
+		valueTypeESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE, oldValueType, valueType, !oldValueTypeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetValueType() {
+		SGrMeasValueType oldValueType = valueType;
+		boolean oldValueTypeESet = valueTypeESet;
+		valueType = VALUE_TYPE_EDEFAULT;
+		valueTypeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE, oldValueType, VALUE_TYPE_EDEFAULT, oldValueTypeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetValueType() {
+		return valueTypeESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SGrMeasValueStateType getValueState() {
 		return valueState;
 	}
@@ -1639,6 +1720,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return getTimeStampLog();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
 				return getTimeRange();
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
+				return getValueType();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE:
 				return getValueState();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY:
@@ -1709,6 +1792,9 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
 				setTimeRange((SGrTimeRangeType)newValue);
+				return;
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
+				setValueType((SGrMeasValueType)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE:
 				setValueState((SGrMeasValueStateType)newValue);
@@ -1791,6 +1877,9 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
 				setTimeRange((SGrTimeRangeType)null);
 				return;
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
+				unsetValueType();
+				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE:
 				unsetValueState();
 				return;
@@ -1859,6 +1948,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return TIME_STAMP_LOG_EDEFAULT == null ? timeStampLog != null : !TIME_STAMP_LOG_EDEFAULT.equals(timeStampLog);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
 				return timeRange != null;
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
+				return isSetValueType();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE:
 				return isSetValueState();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY:
@@ -1913,6 +2004,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 		result.append(maxLatencyTime);
 		result.append(", timeStampLog: ");
 		result.append(timeStampLog);
+		result.append(", valueType: ");
+		if (valueTypeESet) result.append(valueType); else result.append("<unset>");
 		result.append(", valueState: ");
 		if (valueStateESet) result.append(valueState); else result.append("<unset>");
 		result.append(", valueTendency: ");

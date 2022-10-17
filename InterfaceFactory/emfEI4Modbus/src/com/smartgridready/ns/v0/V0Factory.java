@@ -67,15 +67,6 @@ public interface V0Factory extends EFactory {
 	NetworkConnectionStateType createNetworkConnectionStateType();
 
 	/**
-	 * Returns a new object of class '<em>Rest APIJMES Path Type1</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Rest APIJMES Path Type1</em>'.
-	 * @generated
-	 */
-	RestAPIJMESPathType1 createRestAPIJMESPathType1();
-
-	/**
 	 * Returns a new object of class '<em>RTU Dev Instance Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,13 +157,31 @@ public interface V0Factory extends EFactory {
 	SGrChangeLog createSGrChangeLog();
 
 	/**
-	 * Returns a new object of class '<em>SGr Contact API Device Description Type</em>'.
+	 * Returns a new object of class '<em>SGr Contact API Device Frame</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Contact API Device Description Type</em>'.
+	 * @return a new object of class '<em>SGr Contact API Device Frame</em>'.
 	 * @generated
 	 */
-	SGrContactAPIDeviceDescriptionType createSGrContactAPIDeviceDescriptionType();
+	SGrContactAPIDeviceFrame createSGrContactAPIDeviceFrame();
+
+	/**
+	 * Returns a new object of class '<em>SGr Contact API Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Contact API Functional Profile Type</em>'.
+	 * @generated
+	 */
+	SGrContactAPIFunctionalProfileType createSGrContactAPIFunctionalProfileType();
+
+	/**
+	 * Returns a new object of class '<em>SGr Data Point Base Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Data Point Base Type</em>'.
+	 * @generated
+	 */
+	SGrDataPointBaseType createSGrDataPointBaseType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Data Point Description Type</em>'.
@@ -184,22 +193,13 @@ public interface V0Factory extends EFactory {
 	SGrDataPointDescriptionType createSGrDataPointDescriptionType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Data Points Frame Type</em>'.
+	 * Returns a new object of class '<em>SGr Device Base Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Data Points Frame Type</em>'.
+	 * @return a new object of class '<em>SGr Device Base Type</em>'.
 	 * @generated
 	 */
-	SGrDataPointsFrameType createSGrDataPointsFrameType();
-
-	/**
-	 * Returns a new object of class '<em>SGr Device Description Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Device Description Type</em>'.
-	 * @generated
-	 */
-	SGrDeviceDescriptionType createSGrDeviceDescriptionType();
+	SGrDeviceBaseType createSGrDeviceBaseType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Device Profile Type</em>'.
@@ -229,13 +229,40 @@ public interface V0Factory extends EFactory {
 	SGrFlexAssistanceType createSGrFlexAssistanceType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Interface Description Type</em>'.
+	 * Returns a new object of class '<em>SGr Functional Profile Base Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Interface Description Type</em>'.
+	 * @return a new object of class '<em>SGr Functional Profile Base Type</em>'.
 	 * @generated
 	 */
-	SGrInterfaceDescriptionType createSGrInterfaceDescriptionType();
+	SGrFunctionalProfileBaseType createSGrFunctionalProfileBaseType();
+
+	/**
+	 * Returns a new object of class '<em>SGr Functional Profile Frame Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Functional Profile Frame Type</em>'.
+	 * @generated
+	 */
+	SGrFunctionalProfileFrameType createSGrFunctionalProfileFrameType();
+
+	/**
+	 * Returns a new object of class '<em>SGr Gen Device Frame</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Gen Device Frame</em>'.
+	 * @generated
+	 */
+	SGrGenDeviceFrame createSGrGenDeviceFrame();
+
+	/**
+	 * Returns a new object of class '<em>SGr Gen Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Gen Functional Profile Type</em>'.
+	 * @generated
+	 */
+	SGrGenFunctionalProfileType createSGrGenFunctionalProfileType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Legib Documentation Type</em>'.
@@ -256,22 +283,31 @@ public interface V0Factory extends EFactory {
 	SGrModbusDataPointDescriptionType createSGrModbusDataPointDescriptionType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Modbus Data Points Frame Type</em>'.
+	 * Returns a new object of class '<em>SGr Modbus Data Point Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Modbus Data Points Frame Type</em>'.
+	 * @return a new object of class '<em>SGr Modbus Data Point Type</em>'.
 	 * @generated
 	 */
-	SGrModbusDataPointsFrameType createSGrModbusDataPointsFrameType();
+	SGrModbusDataPointType createSGrModbusDataPointType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Modbus Device Description Type</em>'.
+	 * Returns a new object of class '<em>SGr Modbus Device Frame</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Modbus Device Description Type</em>'.
+	 * @return a new object of class '<em>SGr Modbus Device Frame</em>'.
 	 * @generated
 	 */
-	SGrModbusDeviceDescriptionType createSGrModbusDeviceDescriptionType();
+	SGrModbusDeviceFrame createSGrModbusDeviceFrame();
+
+	/**
+	 * Returns a new object of class '<em>SGr Modbus Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Modbus Functional Profile Type</em>'.
+	 * @generated
+	 */
+	SGrModbusFunctionalProfileType createSGrModbusFunctionalProfileType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Modbus Interface Description Type</em>'.
@@ -281,15 +317,6 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	SGrModbusInterfaceDescriptionType createSGrModbusInterfaceDescriptionType();
-
-	/**
-	 * Returns a new object of class '<em>SGr Modbus Profiles Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Modbus Profiles Frame Type</em>'.
-	 * @generated
-	 */
-	SGrModbusProfilesFrameType createSGrModbusProfilesFrameType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Namelist Type</em>'.
@@ -319,15 +346,6 @@ public interface V0Factory extends EFactory {
 	SGrProfilenumberType createSGrProfilenumberType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Profiles Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Profiles Frame Type</em>'.
-	 * @generated
-	 */
-	SGrProfilesFrameType createSGrProfilesFrameType();
-
-	/**
 	 * Returns a new object of class '<em>SGr Release Notes</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -355,22 +373,31 @@ public interface V0Factory extends EFactory {
 	SGrRestAPIDataPointDescriptionType createSGrRestAPIDataPointDescriptionType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Rest API Data Points Frame Type</em>'.
+	 * Returns a new object of class '<em>SGr Rest API Data Point Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Rest API Data Points Frame Type</em>'.
+	 * @return a new object of class '<em>SGr Rest API Data Point Type</em>'.
 	 * @generated
 	 */
-	SGrRestAPIDataPointsFrameType createSGrRestAPIDataPointsFrameType();
+	SGrRestAPIDataPointType createSGrRestAPIDataPointType();
 
 	/**
-	 * Returns a new object of class '<em>SGr RESTAPI Device Description Type</em>'.
+	 * Returns a new object of class '<em>SGr Rest API Device Frame</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr RESTAPI Device Description Type</em>'.
+	 * @return a new object of class '<em>SGr Rest API Device Frame</em>'.
 	 * @generated
 	 */
-	SGrRESTAPIDeviceDescriptionType createSGrRESTAPIDeviceDescriptionType();
+	SGrRestAPIDeviceFrame createSGrRestAPIDeviceFrame();
+
+	/**
+	 * Returns a new object of class '<em>SGr Rest API Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Rest API Functional Profile Type</em>'.
+	 * @generated
+	 */
+	SGrRestAPIFunctionalProfileType createSGrRestAPIFunctionalProfileType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Rest API Interface Description Type</em>'.
@@ -382,15 +409,6 @@ public interface V0Factory extends EFactory {
 	SGrRestAPIInterfaceDescriptionType createSGrRestAPIInterfaceDescriptionType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Rest API Profiles Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Rest API Profiles Frame Type</em>'.
-	 * @generated
-	 */
-	SGrRestAPIProfilesFrameType createSGrRestAPIProfilesFrameType();
-
-	/**
 	 * Returns a new object of class '<em>SGr Rest Basic Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,24 +416,6 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	SGrRestBasicType createSGrRestBasicType();
-
-	/**
-	 * Returns a new object of class '<em>SGr Rest Data Points Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Rest Data Points Frame Type</em>'.
-	 * @generated
-	 */
-	SGrRestDataPointsFrameType createSGrRestDataPointsFrameType();
-
-	/**
-	 * Returns a new object of class '<em>SGr Rest Profiles Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Rest Profiles Frame Type</em>'.
-	 * @generated
-	 */
-	SGrRestProfilesFrameType createSGrRestProfilesFrameType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Scaling Type</em>'.

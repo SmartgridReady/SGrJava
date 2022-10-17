@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxLatencyTime <em>Max Latency Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeStampLog <em>Time Stamp Log</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeRange <em>Time Range</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType <em>Value Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueState <em>Value State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueTendency <em>Value Tendency</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueSource <em>Value Source</em>}</li>
@@ -522,6 +523,62 @@ public interface SGrAttr4GenericType extends EObject {
 	 * @generated
 	 */
 	void setTimeRange(SGrTimeRangeType value);
+
+	/**
+	 * Returns the value of the '<em><b>Value Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrMeasValueType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 *  MeasValueType: type of measurement. Possbile values are "min", max", "average", "stdDev"
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Value Type</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrMeasValueType
+	 * @see #isSetValueType()
+	 * @see #unsetValueType()
+	 * @see #setValueType(SGrMeasValueType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_ValueType()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='valueType' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrMeasValueType getValueType();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType <em>Value Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Value Type</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrMeasValueType
+	 * @see #isSetValueType()
+	 * @see #unsetValueType()
+	 * @see #getValueType()
+	 * @generated
+	 */
+	void setValueType(SGrMeasValueType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType <em>Value Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetValueType()
+	 * @see #getValueType()
+	 * @see #setValueType(SGrMeasValueType)
+	 * @generated
+	 */
+	void unsetValueType();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType <em>Value Type</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Value Type</em>' attribute is set.
+	 * @see #unsetValueType()
+	 * @see #getValueType()
+	 * @see #setValueType(SGrMeasValueType)
+	 * @generated
+	 */
+	boolean isSetValueType();
 
 	/**
 	 * Returns the value of the '<em><b>Value State</b></em>' attribute.

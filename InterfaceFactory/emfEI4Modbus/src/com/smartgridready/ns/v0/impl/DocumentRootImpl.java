@@ -8,14 +8,13 @@ import com.smartgridready.ns.v0.EByteLenType;
 import com.smartgridready.ns.v0.EParityType;
 import com.smartgridready.ns.v0.EStopBitLenType;
 import com.smartgridready.ns.v0.NetworkConnectionStateType;
-import com.smartgridready.ns.v0.SGrContactAPIDeviceDescriptionType;
-import com.smartgridready.ns.v0.SGrDeviceDescriptionType;
-import com.smartgridready.ns.v0.SGrDeviceProfileType;
+import com.smartgridready.ns.v0.SGrContactAPIDeviceFrame;
+import com.smartgridready.ns.v0.SGrFunctionalProfileFrameType;
+import com.smartgridready.ns.v0.SGrGenDeviceFrame;
 import com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType;
-import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType;
-import com.smartgridready.ns.v0.SGrProfilesFrameType;
-import com.smartgridready.ns.v0.SGrRESTAPIDeviceDescriptionType;
+import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 import com.smartgridready.ns.v0.SGrSerialInterfaceCapabilityType;
 import com.smartgridready.ns.v0.TrspServiceModbusType;
 import com.smartgridready.ns.v0.V0Package;
@@ -50,21 +49,17 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getBaudRatesSupported <em>Baud Rates Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getByteLenSupported <em>Byte Len Supported</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getDeviceProfile <em>Device Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getGenDeviceFrame <em>Gen Device Frame</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getModbusFunctionCodesSupported <em>Modbus Function Codes Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getNetConnectionState <em>Net Connection State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getParitySupported <em>Parity Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrModbusDataPointDescription <em>SGr Modbus Data Point Description</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrModbusInterfaceDescription <em>SGr Modbus Interface Description</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSgrContactAPIDeviceFrame <em>Sgr Contact API Device Frame</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrContactAPIDeviceDescriptionType <em>SGr Contact API Device Description Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrFunctionalProfileDescriptionType <em>SGr Functional Profile Description Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrModbusDeviceDescriptionType <em>SGr Modbus Device Description Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrContactAPIDeviceFrame <em>SGr Contact API Device Frame</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrFunctionalProfileFrame <em>SGr Functional Profile Frame</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrGenDeviceFrame <em>SGr Gen Device Frame</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrModbusDeviceFrame <em>SGr Modbus Device Frame</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrRESTAPIDeviceDescriptionType <em>SGr RESTAPI Device Description Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrRestAPIDeviceFrame <em>SGr Rest API Device Frame</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSgrSerialInterfaceCapability <em>Sgr Serial Interface Capability</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getSGrSerialInterfaceCapability <em>SGr Serial Interface Capability</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getStopBitLenSupported <em>Stop Bit Len Supported</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.DocumentRootImpl#getTrspServiceModbus <em>Trsp Service Modbus</em>}</li>
  * </ul>
@@ -256,64 +251,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public SGrDeviceProfileType getDeviceProfile() {
-		return (SGrDeviceProfileType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_DeviceProfile(), true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDeviceProfile(SGrDeviceProfileType newDeviceProfile, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_DeviceProfile(), newDeviceProfile, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setDeviceProfile(SGrDeviceProfileType newDeviceProfile) {
-		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_DeviceProfile(), newDeviceProfile);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrDeviceDescriptionType getGenDeviceFrame() {
-		return (SGrDeviceDescriptionType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_GenDeviceFrame(), true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGenDeviceFrame(SGrDeviceDescriptionType newGenDeviceFrame, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_GenDeviceFrame(), newGenDeviceFrame, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setGenDeviceFrame(SGrDeviceDescriptionType newGenDeviceFrame) {
-		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_GenDeviceFrame(), newGenDeviceFrame);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String getModbusFunctionCodesSupported() {
 		return (String)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_ModbusFunctionCodesSupported(), true);
 	}
@@ -441,8 +378,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public SGrContactAPIDeviceDescriptionType getSgrContactAPIDeviceFrame() {
-		return (SGrContactAPIDeviceDescriptionType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SgrContactAPIDeviceFrame(), true);
+	public SGrContactAPIDeviceFrame getSGrContactAPIDeviceFrame() {
+		return (SGrContactAPIDeviceFrame)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrContactAPIDeviceFrame(), true);
 	}
 
 	/**
@@ -450,18 +387,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSgrContactAPIDeviceFrame(SGrContactAPIDeviceDescriptionType newSgrContactAPIDeviceFrame, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SgrContactAPIDeviceFrame(), newSgrContactAPIDeviceFrame, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSgrContactAPIDeviceFrame(SGrContactAPIDeviceDescriptionType newSgrContactAPIDeviceFrame) {
-		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SgrContactAPIDeviceFrame(), newSgrContactAPIDeviceFrame);
+	public NotificationChain basicSetSGrContactAPIDeviceFrame(SGrContactAPIDeviceFrame newSGrContactAPIDeviceFrame, NotificationChain msgs) {
+		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrContactAPIDeviceFrame(), newSGrContactAPIDeviceFrame, msgs);
 	}
 
 	/**
@@ -470,17 +397,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public SGrContactAPIDeviceDescriptionType getSGrContactAPIDeviceDescriptionType() {
-		return (SGrContactAPIDeviceDescriptionType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrContactAPIDeviceDescriptionType(), true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSGrContactAPIDeviceDescriptionType(SGrContactAPIDeviceDescriptionType newSGrContactAPIDeviceDescriptionType, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrContactAPIDeviceDescriptionType(), newSGrContactAPIDeviceDescriptionType, msgs);
+	public void setSGrContactAPIDeviceFrame(SGrContactAPIDeviceFrame newSGrContactAPIDeviceFrame) {
+		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrContactAPIDeviceFrame(), newSGrContactAPIDeviceFrame);
 	}
 
 	/**
@@ -489,8 +407,17 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public void setSGrContactAPIDeviceDescriptionType(SGrContactAPIDeviceDescriptionType newSGrContactAPIDeviceDescriptionType) {
-		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrContactAPIDeviceDescriptionType(), newSGrContactAPIDeviceDescriptionType);
+	public SGrFunctionalProfileFrameType getSGrFunctionalProfileFrame() {
+		return (SGrFunctionalProfileFrameType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrFunctionalProfileFrame(), true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSGrFunctionalProfileFrame(SGrFunctionalProfileFrameType newSGrFunctionalProfileFrame, NotificationChain msgs) {
+		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrFunctionalProfileFrame(), newSGrFunctionalProfileFrame, msgs);
 	}
 
 	/**
@@ -499,17 +426,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public SGrProfilesFrameType getSGrFunctionalProfileDescriptionType() {
-		return (SGrProfilesFrameType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrFunctionalProfileDescriptionType(), true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSGrFunctionalProfileDescriptionType(SGrProfilesFrameType newSGrFunctionalProfileDescriptionType, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrFunctionalProfileDescriptionType(), newSGrFunctionalProfileDescriptionType, msgs);
+	public void setSGrFunctionalProfileFrame(SGrFunctionalProfileFrameType newSGrFunctionalProfileFrame) {
+		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrFunctionalProfileFrame(), newSGrFunctionalProfileFrame);
 	}
 
 	/**
@@ -518,8 +436,17 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public void setSGrFunctionalProfileDescriptionType(SGrProfilesFrameType newSGrFunctionalProfileDescriptionType) {
-		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrFunctionalProfileDescriptionType(), newSGrFunctionalProfileDescriptionType);
+	public SGrGenDeviceFrame getSGrGenDeviceFrame() {
+		return (SGrGenDeviceFrame)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrGenDeviceFrame(), true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSGrGenDeviceFrame(SGrGenDeviceFrame newSGrGenDeviceFrame, NotificationChain msgs) {
+		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrGenDeviceFrame(), newSGrGenDeviceFrame, msgs);
 	}
 
 	/**
@@ -528,17 +455,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public SGrModbusDeviceDescriptionType getSGrModbusDeviceDescriptionType() {
-		return (SGrModbusDeviceDescriptionType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDeviceDescriptionType(), true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSGrModbusDeviceDescriptionType(SGrModbusDeviceDescriptionType newSGrModbusDeviceDescriptionType, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDeviceDescriptionType(), newSGrModbusDeviceDescriptionType, msgs);
+	public void setSGrGenDeviceFrame(SGrGenDeviceFrame newSGrGenDeviceFrame) {
+		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrGenDeviceFrame(), newSGrGenDeviceFrame);
 	}
 
 	/**
@@ -547,8 +465,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public void setSGrModbusDeviceDescriptionType(SGrModbusDeviceDescriptionType newSGrModbusDeviceDescriptionType) {
-		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDeviceDescriptionType(), newSGrModbusDeviceDescriptionType);
+	public SGrModbusDeviceFrame getSGrModbusDeviceFrame() {
+		return (SGrModbusDeviceFrame)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDeviceFrame(), true);
 	}
 
 	/**
@@ -556,17 +474,7 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public SGrModbusDeviceDescriptionType getSGrModbusDeviceFrame() {
-		return (SGrModbusDeviceDescriptionType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDeviceFrame(), true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSGrModbusDeviceFrame(SGrModbusDeviceDescriptionType newSGrModbusDeviceFrame, NotificationChain msgs) {
+	public NotificationChain basicSetSGrModbusDeviceFrame(SGrModbusDeviceFrame newSGrModbusDeviceFrame, NotificationChain msgs) {
 		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDeviceFrame(), newSGrModbusDeviceFrame, msgs);
 	}
 
@@ -576,7 +484,7 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public void setSGrModbusDeviceFrame(SGrModbusDeviceDescriptionType newSGrModbusDeviceFrame) {
+	public void setSGrModbusDeviceFrame(SGrModbusDeviceFrame newSGrModbusDeviceFrame) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDeviceFrame(), newSGrModbusDeviceFrame);
 	}
 
@@ -586,8 +494,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public SGrRESTAPIDeviceDescriptionType getSGrRESTAPIDeviceDescriptionType() {
-		return (SGrRESTAPIDeviceDescriptionType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrRESTAPIDeviceDescriptionType(), true);
+	public SGrRestAPIDeviceFrame getSGrRestAPIDeviceFrame() {
+		return (SGrRestAPIDeviceFrame)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrRestAPIDeviceFrame(), true);
 	}
 
 	/**
@@ -595,36 +503,7 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSGrRESTAPIDeviceDescriptionType(SGrRESTAPIDeviceDescriptionType newSGrRESTAPIDeviceDescriptionType, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrRESTAPIDeviceDescriptionType(), newSGrRESTAPIDeviceDescriptionType, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSGrRESTAPIDeviceDescriptionType(SGrRESTAPIDeviceDescriptionType newSGrRESTAPIDeviceDescriptionType) {
-		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrRESTAPIDeviceDescriptionType(), newSGrRESTAPIDeviceDescriptionType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrRESTAPIDeviceDescriptionType getSGrRestAPIDeviceFrame() {
-		return (SGrRESTAPIDeviceDescriptionType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrRestAPIDeviceFrame(), true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSGrRestAPIDeviceFrame(SGrRESTAPIDeviceDescriptionType newSGrRestAPIDeviceFrame, NotificationChain msgs) {
+	public NotificationChain basicSetSGrRestAPIDeviceFrame(SGrRestAPIDeviceFrame newSGrRestAPIDeviceFrame, NotificationChain msgs) {
 		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrRestAPIDeviceFrame(), newSGrRestAPIDeviceFrame, msgs);
 	}
 
@@ -634,7 +513,7 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public void setSGrRestAPIDeviceFrame(SGrRESTAPIDeviceDescriptionType newSGrRestAPIDeviceFrame) {
+	public void setSGrRestAPIDeviceFrame(SGrRestAPIDeviceFrame newSGrRestAPIDeviceFrame) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrRestAPIDeviceFrame(), newSGrRestAPIDeviceFrame);
 	}
 
@@ -644,8 +523,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public SGrSerialInterfaceCapabilityType getSgrSerialInterfaceCapability() {
-		return (SGrSerialInterfaceCapabilityType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SgrSerialInterfaceCapability(), true);
+	public SGrSerialInterfaceCapabilityType getSGrSerialInterfaceCapability() {
+		return (SGrSerialInterfaceCapabilityType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrSerialInterfaceCapability(), true);
 	}
 
 	/**
@@ -653,8 +532,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSgrSerialInterfaceCapability(SGrSerialInterfaceCapabilityType newSgrSerialInterfaceCapability, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SgrSerialInterfaceCapability(), newSgrSerialInterfaceCapability, msgs);
+	public NotificationChain basicSetSGrSerialInterfaceCapability(SGrSerialInterfaceCapabilityType newSGrSerialInterfaceCapability, NotificationChain msgs) {
+		return ((FeatureMap.Internal)getMixed()).basicAdd(V0Package.eINSTANCE.getDocumentRoot_SGrSerialInterfaceCapability(), newSGrSerialInterfaceCapability, msgs);
 	}
 
 	/**
@@ -663,8 +542,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * @generated
 	 */
 	@Override
-	public void setSgrSerialInterfaceCapability(SGrSerialInterfaceCapabilityType newSgrSerialInterfaceCapability) {
-		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SgrSerialInterfaceCapability(), newSgrSerialInterfaceCapability);
+	public void setSGrSerialInterfaceCapability(SGrSerialInterfaceCapabilityType newSGrSerialInterfaceCapability) {
+		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrSerialInterfaceCapability(), newSGrSerialInterfaceCapability);
 	}
 
 	/**
@@ -730,10 +609,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
 			case V0Package.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
 				return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-			case V0Package.DOCUMENT_ROOT__DEVICE_PROFILE:
-				return basicSetDeviceProfile(null, msgs);
-			case V0Package.DOCUMENT_ROOT__GEN_DEVICE_FRAME:
-				return basicSetGenDeviceFrame(null, msgs);
 			case V0Package.DOCUMENT_ROOT__NET_CONNECTION_STATE:
 				return basicSetNetConnectionState(null, msgs);
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DATA_POINT_DESCRIPTION:
@@ -741,21 +616,17 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_INTERFACE_DESCRIPTION:
 				return basicSetSGrModbusInterfaceDescription(null, msgs);
 			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_FRAME:
-				return basicSetSgrContactAPIDeviceFrame(null, msgs);
-			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE:
-				return basicSetSGrContactAPIDeviceDescriptionType(null, msgs);
-			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_DESCRIPTION_TYPE:
-				return basicSetSGrFunctionalProfileDescriptionType(null, msgs);
-			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_DESCRIPTION_TYPE:
-				return basicSetSGrModbusDeviceDescriptionType(null, msgs);
+				return basicSetSGrContactAPIDeviceFrame(null, msgs);
+			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_FRAME:
+				return basicSetSGrFunctionalProfileFrame(null, msgs);
+			case V0Package.DOCUMENT_ROOT__SGR_GEN_DEVICE_FRAME:
+				return basicSetSGrGenDeviceFrame(null, msgs);
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_FRAME:
 				return basicSetSGrModbusDeviceFrame(null, msgs);
-			case V0Package.DOCUMENT_ROOT__SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE:
-				return basicSetSGrRESTAPIDeviceDescriptionType(null, msgs);
 			case V0Package.DOCUMENT_ROOT__SGR_REST_API_DEVICE_FRAME:
 				return basicSetSGrRestAPIDeviceFrame(null, msgs);
 			case V0Package.DOCUMENT_ROOT__SGR_SERIAL_INTERFACE_CAPABILITY:
-				return basicSetSgrSerialInterfaceCapability(null, msgs);
+				return basicSetSGrSerialInterfaceCapability(null, msgs);
 			case V0Package.DOCUMENT_ROOT__TRSP_SERVICE_MODBUS:
 				return basicSetTrspServiceModbus(null, msgs);
 		}
@@ -783,10 +654,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				return getBaudRatesSupported();
 			case V0Package.DOCUMENT_ROOT__BYTE_LEN_SUPPORTED:
 				return getByteLenSupported();
-			case V0Package.DOCUMENT_ROOT__DEVICE_PROFILE:
-				return getDeviceProfile();
-			case V0Package.DOCUMENT_ROOT__GEN_DEVICE_FRAME:
-				return getGenDeviceFrame();
 			case V0Package.DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED:
 				return getModbusFunctionCodesSupported();
 			case V0Package.DOCUMENT_ROOT__NET_CONNECTION_STATE:
@@ -798,21 +665,17 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_INTERFACE_DESCRIPTION:
 				return getSGrModbusInterfaceDescription();
 			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_FRAME:
-				return getSgrContactAPIDeviceFrame();
-			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE:
-				return getSGrContactAPIDeviceDescriptionType();
-			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_DESCRIPTION_TYPE:
-				return getSGrFunctionalProfileDescriptionType();
-			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_DESCRIPTION_TYPE:
-				return getSGrModbusDeviceDescriptionType();
+				return getSGrContactAPIDeviceFrame();
+			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_FRAME:
+				return getSGrFunctionalProfileFrame();
+			case V0Package.DOCUMENT_ROOT__SGR_GEN_DEVICE_FRAME:
+				return getSGrGenDeviceFrame();
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_FRAME:
 				return getSGrModbusDeviceFrame();
-			case V0Package.DOCUMENT_ROOT__SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE:
-				return getSGrRESTAPIDeviceDescriptionType();
 			case V0Package.DOCUMENT_ROOT__SGR_REST_API_DEVICE_FRAME:
 				return getSGrRestAPIDeviceFrame();
 			case V0Package.DOCUMENT_ROOT__SGR_SERIAL_INTERFACE_CAPABILITY:
-				return getSgrSerialInterfaceCapability();
+				return getSGrSerialInterfaceCapability();
 			case V0Package.DOCUMENT_ROOT__STOP_BIT_LEN_SUPPORTED:
 				return getStopBitLenSupported();
 			case V0Package.DOCUMENT_ROOT__TRSP_SERVICE_MODBUS:
@@ -844,12 +707,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 			case V0Package.DOCUMENT_ROOT__BYTE_LEN_SUPPORTED:
 				setByteLenSupported((EByteLenType)newValue);
 				return;
-			case V0Package.DOCUMENT_ROOT__DEVICE_PROFILE:
-				setDeviceProfile((SGrDeviceProfileType)newValue);
-				return;
-			case V0Package.DOCUMENT_ROOT__GEN_DEVICE_FRAME:
-				setGenDeviceFrame((SGrDeviceDescriptionType)newValue);
-				return;
 			case V0Package.DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED:
 				setModbusFunctionCodesSupported((String)newValue);
 				return;
@@ -866,28 +723,22 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				setSGrModbusInterfaceDescription((SGrModbusInterfaceDescriptionType)newValue);
 				return;
 			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_FRAME:
-				setSgrContactAPIDeviceFrame((SGrContactAPIDeviceDescriptionType)newValue);
+				setSGrContactAPIDeviceFrame((SGrContactAPIDeviceFrame)newValue);
 				return;
-			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE:
-				setSGrContactAPIDeviceDescriptionType((SGrContactAPIDeviceDescriptionType)newValue);
+			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_FRAME:
+				setSGrFunctionalProfileFrame((SGrFunctionalProfileFrameType)newValue);
 				return;
-			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_DESCRIPTION_TYPE:
-				setSGrFunctionalProfileDescriptionType((SGrProfilesFrameType)newValue);
-				return;
-			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_DESCRIPTION_TYPE:
-				setSGrModbusDeviceDescriptionType((SGrModbusDeviceDescriptionType)newValue);
+			case V0Package.DOCUMENT_ROOT__SGR_GEN_DEVICE_FRAME:
+				setSGrGenDeviceFrame((SGrGenDeviceFrame)newValue);
 				return;
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_FRAME:
-				setSGrModbusDeviceFrame((SGrModbusDeviceDescriptionType)newValue);
-				return;
-			case V0Package.DOCUMENT_ROOT__SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE:
-				setSGrRESTAPIDeviceDescriptionType((SGrRESTAPIDeviceDescriptionType)newValue);
+				setSGrModbusDeviceFrame((SGrModbusDeviceFrame)newValue);
 				return;
 			case V0Package.DOCUMENT_ROOT__SGR_REST_API_DEVICE_FRAME:
-				setSGrRestAPIDeviceFrame((SGrRESTAPIDeviceDescriptionType)newValue);
+				setSGrRestAPIDeviceFrame((SGrRestAPIDeviceFrame)newValue);
 				return;
 			case V0Package.DOCUMENT_ROOT__SGR_SERIAL_INTERFACE_CAPABILITY:
-				setSgrSerialInterfaceCapability((SGrSerialInterfaceCapabilityType)newValue);
+				setSGrSerialInterfaceCapability((SGrSerialInterfaceCapabilityType)newValue);
 				return;
 			case V0Package.DOCUMENT_ROOT__STOP_BIT_LEN_SUPPORTED:
 				setStopBitLenSupported((EStopBitLenType)newValue);
@@ -922,12 +773,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 			case V0Package.DOCUMENT_ROOT__BYTE_LEN_SUPPORTED:
 				setByteLenSupported(BYTE_LEN_SUPPORTED_EDEFAULT);
 				return;
-			case V0Package.DOCUMENT_ROOT__DEVICE_PROFILE:
-				setDeviceProfile((SGrDeviceProfileType)null);
-				return;
-			case V0Package.DOCUMENT_ROOT__GEN_DEVICE_FRAME:
-				setGenDeviceFrame((SGrDeviceDescriptionType)null);
-				return;
 			case V0Package.DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED:
 				setModbusFunctionCodesSupported(MODBUS_FUNCTION_CODES_SUPPORTED_EDEFAULT);
 				return;
@@ -944,28 +789,22 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				setSGrModbusInterfaceDescription((SGrModbusInterfaceDescriptionType)null);
 				return;
 			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_FRAME:
-				setSgrContactAPIDeviceFrame((SGrContactAPIDeviceDescriptionType)null);
+				setSGrContactAPIDeviceFrame((SGrContactAPIDeviceFrame)null);
 				return;
-			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE:
-				setSGrContactAPIDeviceDescriptionType((SGrContactAPIDeviceDescriptionType)null);
+			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_FRAME:
+				setSGrFunctionalProfileFrame((SGrFunctionalProfileFrameType)null);
 				return;
-			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_DESCRIPTION_TYPE:
-				setSGrFunctionalProfileDescriptionType((SGrProfilesFrameType)null);
-				return;
-			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_DESCRIPTION_TYPE:
-				setSGrModbusDeviceDescriptionType((SGrModbusDeviceDescriptionType)null);
+			case V0Package.DOCUMENT_ROOT__SGR_GEN_DEVICE_FRAME:
+				setSGrGenDeviceFrame((SGrGenDeviceFrame)null);
 				return;
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_FRAME:
-				setSGrModbusDeviceFrame((SGrModbusDeviceDescriptionType)null);
-				return;
-			case V0Package.DOCUMENT_ROOT__SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE:
-				setSGrRESTAPIDeviceDescriptionType((SGrRESTAPIDeviceDescriptionType)null);
+				setSGrModbusDeviceFrame((SGrModbusDeviceFrame)null);
 				return;
 			case V0Package.DOCUMENT_ROOT__SGR_REST_API_DEVICE_FRAME:
-				setSGrRestAPIDeviceFrame((SGrRESTAPIDeviceDescriptionType)null);
+				setSGrRestAPIDeviceFrame((SGrRestAPIDeviceFrame)null);
 				return;
 			case V0Package.DOCUMENT_ROOT__SGR_SERIAL_INTERFACE_CAPABILITY:
-				setSgrSerialInterfaceCapability((SGrSerialInterfaceCapabilityType)null);
+				setSGrSerialInterfaceCapability((SGrSerialInterfaceCapabilityType)null);
 				return;
 			case V0Package.DOCUMENT_ROOT__STOP_BIT_LEN_SUPPORTED:
 				setStopBitLenSupported(STOP_BIT_LEN_SUPPORTED_EDEFAULT);
@@ -995,10 +834,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 				return getBaudRatesSupported() != BAUD_RATES_SUPPORTED_EDEFAULT;
 			case V0Package.DOCUMENT_ROOT__BYTE_LEN_SUPPORTED:
 				return getByteLenSupported() != BYTE_LEN_SUPPORTED_EDEFAULT;
-			case V0Package.DOCUMENT_ROOT__DEVICE_PROFILE:
-				return getDeviceProfile() != null;
-			case V0Package.DOCUMENT_ROOT__GEN_DEVICE_FRAME:
-				return getGenDeviceFrame() != null;
 			case V0Package.DOCUMENT_ROOT__MODBUS_FUNCTION_CODES_SUPPORTED:
 				return MODBUS_FUNCTION_CODES_SUPPORTED_EDEFAULT == null ? getModbusFunctionCodesSupported() != null : !MODBUS_FUNCTION_CODES_SUPPORTED_EDEFAULT.equals(getModbusFunctionCodesSupported());
 			case V0Package.DOCUMENT_ROOT__NET_CONNECTION_STATE:
@@ -1010,21 +845,17 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_INTERFACE_DESCRIPTION:
 				return getSGrModbusInterfaceDescription() != null;
 			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_FRAME:
-				return getSgrContactAPIDeviceFrame() != null;
-			case V0Package.DOCUMENT_ROOT__SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE:
-				return getSGrContactAPIDeviceDescriptionType() != null;
-			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_DESCRIPTION_TYPE:
-				return getSGrFunctionalProfileDescriptionType() != null;
-			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_DESCRIPTION_TYPE:
-				return getSGrModbusDeviceDescriptionType() != null;
+				return getSGrContactAPIDeviceFrame() != null;
+			case V0Package.DOCUMENT_ROOT__SGR_FUNCTIONAL_PROFILE_FRAME:
+				return getSGrFunctionalProfileFrame() != null;
+			case V0Package.DOCUMENT_ROOT__SGR_GEN_DEVICE_FRAME:
+				return getSGrGenDeviceFrame() != null;
 			case V0Package.DOCUMENT_ROOT__SGR_MODBUS_DEVICE_FRAME:
 				return getSGrModbusDeviceFrame() != null;
-			case V0Package.DOCUMENT_ROOT__SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE:
-				return getSGrRESTAPIDeviceDescriptionType() != null;
 			case V0Package.DOCUMENT_ROOT__SGR_REST_API_DEVICE_FRAME:
 				return getSGrRestAPIDeviceFrame() != null;
 			case V0Package.DOCUMENT_ROOT__SGR_SERIAL_INTERFACE_CAPABILITY:
-				return getSgrSerialInterfaceCapability() != null;
+				return getSGrSerialInterfaceCapability() != null;
 			case V0Package.DOCUMENT_ROOT__STOP_BIT_LEN_SUPPORTED:
 				return getStopBitLenSupported() != STOP_BIT_LEN_SUPPORTED_EDEFAULT;
 			case V0Package.DOCUMENT_ROOT__TRSP_SERVICE_MODBUS:
