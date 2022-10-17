@@ -50,7 +50,7 @@ emfEI4Modbus provides the Java-XML binding of XML device descriptions. The class
 When using an IDE (Intellij/Eclipse) you can also use the IDE's Gradle integration to run 'publishToMavenLocal'. The steps above will compile, build the library jar and publish the library to the local maven repository.
 
 ## Build and publish a release
-- Obtain a Github access token for your Github account. This has to be done once before you can  publish to GitHub. See [Obtaining a GitHub token for publishing](https://github.com/SmartgridReady/SGrJavaDrivers#build-and-publish-a-release)
+- Obtain a Github access token for your Github account. This has to be done once before you can  publish to GitHub. See [Obtaining a GitHub token for publishing](https://github.com/SmartgridReady/SGrJavaDrivers#obtaining-a-github-token-for-publishing)
 
 - Change to the local ```{project-root}/SGrJava``` directory.
 - Check that the ```build.gradle``` file has the correct version number for the ```sgr-driver-api.jar``` file:
