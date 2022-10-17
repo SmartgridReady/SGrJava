@@ -108,6 +108,8 @@ public class V0Validator extends EObjectValidator {
 				return validateModbusJMESPathType((ModbusJMESPathType)value, diagnostics, context);
 			case V0Package.NETWORK_CONNECTION_STATE_TYPE:
 				return validateNetworkConnectionStateType((NetworkConnectionStateType)value, diagnostics, context);
+			case V0Package.REST_APIJMES_PATH_TYPE1:
+				return validateRestAPIJMESPathType1((RestAPIJMESPathType1)value, diagnostics, context);
 			case V0Package.RTU_DEV_INSTANCE_TYPE:
 				return validateRTUDevInstanceType((RTUDevInstanceType)value, diagnostics, context);
 			case V0Package.RT_UTRSP_SRV_INSTANCE_TYPE:
@@ -352,8 +354,6 @@ public class V0Validator extends EObjectValidator {
 				return validateRestAPIEndPointType1((String)value, diagnostics, context);
 			case V0Package.REST_APIJMES_PATH_TYPE:
 				return validateRestAPIJMESPathType((String)value, diagnostics, context);
-			case V0Package.REST_APIJMES_PATH_TYPE1:
-				return validateRestAPIJMESPathType1((String)value, diagnostics, context);
 			case V0Package.REST_BASIC_PASSWORD_TYPE:
 				return validateRestBasicPasswordType((String)value, diagnostics, context);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
@@ -496,6 +496,15 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateNetworkConnectionStateType(NetworkConnectionStateType networkConnectionStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(networkConnectionStateType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRestAPIJMESPathType1(RestAPIJMESPathType1 restAPIJMESPathType1, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(restAPIJMESPathType1, diagnostics, context);
 	}
 
 	/**
@@ -1949,15 +1958,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateRestAPIJMESPathType(String restAPIJMESPathType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRestAPIJMESPathType1(String restAPIJMESPathType1, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

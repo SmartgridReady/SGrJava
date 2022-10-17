@@ -865,11 +865,17 @@
       <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#string"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="RestAPIJMESPathType1" instanceClassName="java.lang.String">
+  <eClassifiers xsi:type="ecore:EClass" name="RestAPIJMESPathType1">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="restAPIJMESPathType"/>
-      <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#string"/>
+      <details key="kind" value="simple"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value=":0"/>
+        <details key="kind" value="simple"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="RestBasicPasswordType" instanceClassName="java.lang.String">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -3338,8 +3344,8 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="restAPIJMESPath" lowerBound="1"
-        eType="#//RestAPIJMESPathType1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restAPIJMESPath" lowerBound="1"
+        eType="#//RestAPIJMESPathType1" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="restAPIJMESPath"/>

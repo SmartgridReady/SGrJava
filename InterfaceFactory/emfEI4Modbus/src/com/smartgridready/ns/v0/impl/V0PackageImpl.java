@@ -85,6 +85,13 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass restAPIJMESPathType1EClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass rtuDevInstanceTypeEClass = null;
 
 	/**
@@ -939,13 +946,6 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EDataType restAPIJMESPathType1EDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EDataType restBasicPasswordTypeEDataType = null;
 
 	/**
@@ -1675,6 +1675,29 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EAttribute getNetworkConnectionStateType_NextAttempt() {
         return (EAttribute)getNetworkConnectionStateType().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getRestAPIJMESPathType1() {
+		if (restAPIJMESPathType1EClass == null) {
+			restAPIJMESPathType1EClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(37);
+		}
+		return restAPIJMESPathType1EClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getRestAPIJMESPathType1_Value() {
+        return (EAttribute)getRestAPIJMESPathType1().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3792,8 +3815,8 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGRrestAPIBearerType_RestAPIJMESPath() {
-        return (EAttribute)getSGRrestAPIBearerType().getEStructuralFeatures().get(1);
+	public EReference getSGRrestAPIBearerType_RestAPIJMESPath() {
+        return (EReference)getSGRrestAPIBearerType().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -5571,19 +5594,6 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 			restAPIJMESPathTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(36);
 		}
 		return restAPIJMESPathTypeEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EDataType getRestAPIJMESPathType1() {
-		if (restAPIJMESPathType1EDataType == null) {
-			restAPIJMESPathType1EDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(37);
-		}
-		return restAPIJMESPathType1EDataType;
 	}
 
 	/**
