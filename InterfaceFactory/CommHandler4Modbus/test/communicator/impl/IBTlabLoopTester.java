@@ -67,10 +67,10 @@ public class IBTlabLoopTester {
 	private static int devGaroWallboxExceptions = 0;
 	private static int devFroniusSymoExceptions = 0;
 	// device selection
-	private static boolean  devWagoMeterTestIsOn = true; 
+	private static boolean  devWagoMeterTestIsOn = false; 
 	private static boolean  devABBMeterTestIsOn = true; 
 	private static boolean  devVGT_SGCPTestIsOn = true; 
-	private static boolean  devFroniusSymoTestIsOn = false; 
+	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
 	
 	// shell for enumerations
@@ -117,7 +117,6 @@ public class IBTlabLoopTester {
 				{
 					
 				   // loop data & test reporting
-				   Thread.sleep(2000);  // show last block for ccc  milliseconds
 			        System.out.printf("%n" + dtf.format(LocalDateTime.now()));			        
 					System.out.printf("  ------> LOOP=" +	runtimeCnt + "  Exceptions:");		
 					if (devWagoMeterTestIsOn)   System.out.printf(" WagoMeter=" + devWagoMeterExceptions + ",");
@@ -126,14 +125,15 @@ public class IBTlabLoopTester {
 				    if (devGaroWallboxTestIsOn) System.out.printf(" GaroWallbox=" + devGaroWallboxExceptions+ ",");
 					if (devFroniusSymoTestIsOn) System.out.printf(" FroniusSymo=" + devFroniusSymoExceptions + ",");
 					System.out.println(" <------");
-
-					//Next loop 
+					
+				    //Next loop 
 					if (devWagoMeterTestIsOn)   tstWagoMeter();
 					if (devABBMeterTestIsOn)    tstABBMeter();					
 					if (devVGT_SGCPTestIsOn)    tstVGT_SGCP(); 
 				    if (devGaroWallboxTestIsOn) tstGaroWallbox();
 					if (devFroniusSymoTestIsOn) tstFroniusSymo();	
 
+				    Thread.sleep(500);  // show last block for ccc  milliseconds
 			}
 
 		}
@@ -177,7 +177,7 @@ public class IBTlabLoopTester {
 			try {							
 				mbRTU.setUnitIdentifier((byte) 7);
 			    System.out.println();
-				System.out.println("Testing WAGO Meter");
+				System.out.println("@:Testing WAGO Meter");
 				Thread.sleep(25);
 				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
 				Thread.sleep(10);            
@@ -202,7 +202,7 @@ public class IBTlabLoopTester {
 				fVal2 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
 				Thread.sleep(10);
 				fVal3 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
-				System.out.printf("  CurrentAC L1/2/3 [V]:              " + fVal1 + ",  " + fVal2 + ",  "
+				System.out.printf("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
 						+ fVal3 + " %n");
 				Thread.sleep(10);
 				fVal1 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactor").getFloat32();
@@ -402,7 +402,7 @@ public class IBTlabLoopTester {
 				
 					try {	
 					    System.out.println();
-						System.out.println("Testing devVGT_SGCP");
+						System.out.println("@:Testing devVGT_SGCP");
 						Thread.sleep(25);
 
 						  sVal1 = devVGT_SGCP.getVal("BiDirFlexMgmt", "ReadinessState");
@@ -463,12 +463,12 @@ public class IBTlabLoopTester {
 					
 					
 						try {	
-							 System.out.printf("%nGaroWallbox:%n");							
+							 System.out.printf("%n@:Testing GaroWallbox:%n");							
 							 if ((runtimeCnt%60)== 0)
 							 {
 								 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
 								 devGaroWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
-								 System.out.printf("  Setting HemsCurrentLimit to : " + CurtailCurrent + " %n");
+								 System.out.printf("  Setting HemsCurrentLimit to :     " + CurtailCurrent + " %n");
 							 }
 							 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
 							 Thread.sleep(200);
@@ -476,16 +476,16 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
 							 Thread.sleep(200);
-							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 							 Thread.sleep(200);
 							 sgrEVState = oEnumList.getSgrEVState();
-							 System.out.printf("  EV-StatusCode: " + sgrEVState+ " %n");
+							 System.out.printf("  EV-StatusCode:                    " + sgrEVState+ " %n");
 							 
 							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
 							 Thread.sleep(200);
 							 sgrOCPPState = oEnumList.getSgrOCPPState();
-							 System.out.printf("  OCPP-StatusCode: " + sgrOCPPState + " %n");
-							 System.out.printf("  CurrentAC[A]   I[L1] = " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + " %n");		 
+							 System.out.printf("  OCPP-StatusCode:                  " + sgrOCPPState + " %n");
+							 System.out.printf("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + " %n");		 
 
 							 fVal1 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
 							 Thread.sleep(200);
@@ -493,7 +493,7 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
 							 Thread.sleep(200);
-							 System.out.printf("  PowerAC[kW]:   P[1L] = " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + " %n");	
+							 System.out.printf("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + " %n");	
 								 
 							 fVal1 = devGaroWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
 							 Thread.sleep(200);
@@ -501,13 +501,13 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
 							 Thread.sleep(200);
-							 System.out.printf("  EnergyAC[kWh] L1/L2/L3:   W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + " %n");	
+							 System.out.printf("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + " %n");	
 								
-							 sVal1 = devGaroWallbox.getVal("EVState", "isSmartEV15118");
-							 Thread.sleep(200);
+							 //sVal1 = devGaroWallbox.getVal("EVState", "isSmartEV15118");
+							 //Thread.sleep(200);
 							 //??? sVal2 = devGaroWallbox.getVal("EVState", "EVCCID");
 							 Thread.sleep(200);
-							 System.out.printf("  EVState support (ISO/IEC 15118):" + sVal1 + ",    EVCCID = " + sVal2 + " %n");
+							 System.out.printf("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + " %n");
 							 
 							 fVal1 = devGaroWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat32();
 							 Thread.sleep(200);
@@ -517,7 +517,7 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 iVal1 = devGaroWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
 							 Thread.sleep(200);
-							 System.out.printf("  Curtailment:   SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +" %n");
+							 System.out.printf("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +" %n");
 							 
 							
 						}
@@ -624,7 +624,7 @@ public class IBTlabLoopTester {
 					// if RTU is used, set address here
 					// mbRTU.setUnitIdentifier((byte) 7);
 				    System.out.println();
-					System.out.println("Testing   xxxxx");
+					System.out.println("@:Testing   xxxxx");
 					Thread.sleep(25);
 					
 					// Add test getters and setters for binary interface
