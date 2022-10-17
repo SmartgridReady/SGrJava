@@ -8,36 +8,31 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>SGr Profiles Frame Type</b></em>'.
+ * A representation of the model object '<em><b>SGr Functional Profile Frame Type</b></em>'.
  * <!-- end-user-doc -->
- *
- * <!-- begin-model-doc -->
- * Functional Profile description in generic lineup
- * 			
- * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getReleaseNotes <em>Release Notes</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getFunctionalProfile <em>Functional Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getGenAttribute <em>Gen Attribute</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getDpListElement <em>Dp List Element</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getReleaseNotes <em>Release Notes</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getFunctionalProfile <em>Functional Profile</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getDpListElement <em>Dp List Element</em>}</li>
  * </ul>
  *
- * @see com.smartgridready.ns.v0.V0Package#getSGrProfilesFrameType()
- * @model extendedMetaData="name='SGrProfilesFrameType' kind='elementOnly'"
+ * @see com.smartgridready.ns.v0.V0Package#getSGrFunctionalProfileFrameType()
+ * @model extendedMetaData="name='SGrFunctionalProfileFrame_._type' kind='elementOnly'"
  * @generated
  */
-public interface SGrProfilesFrameType extends EObject {
+public interface SGrFunctionalProfileFrameType extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Release Notes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Release Notes</em>' containment reference.
 	 * @see #setReleaseNotes(SGrReleaseNotes)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfilesFrameType_ReleaseNotes()
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrFunctionalProfileFrameType_ReleaseNotes()
 	 * @model containment="true"
 	 *        extendedMetaData="kind='element' name='releaseNotes' namespace='##targetNamespace'"
 	 * @generated
@@ -45,7 +40,7 @@ public interface SGrProfilesFrameType extends EObject {
 	SGrReleaseNotes getReleaseNotes();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getReleaseNotes <em>Release Notes</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getReleaseNotes <em>Release Notes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Release Notes</em>' containment reference.
@@ -60,7 +55,7 @@ public interface SGrProfilesFrameType extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Functional Profile</em>' containment reference.
 	 * @see #setFunctionalProfile(SGrProfileDescriptionType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfilesFrameType_FunctionalProfile()
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrFunctionalProfileFrameType_FunctionalProfile()
 	 * @model containment="true" required="true"
 	 *        extendedMetaData="kind='element' name='functionalProfile' namespace='##targetNamespace'"
 	 * @generated
@@ -68,7 +63,7 @@ public interface SGrProfilesFrameType extends EObject {
 	SGrProfileDescriptionType getFunctionalProfile();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrProfilesFrameType#getFunctionalProfile <em>Functional Profile</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getFunctionalProfile <em>Functional Profile</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Functional Profile</em>' containment reference.
@@ -83,7 +78,7 @@ public interface SGrProfilesFrameType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gen Attribute</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfilesFrameType_GenAttribute()
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrFunctionalProfileFrameType_GenAttribute()
 	 * @model containment="true"
 	 *        extendedMetaData="kind='element' name='genAttribute' namespace='##targetNamespace'"
 	 * @generated
@@ -92,15 +87,15 @@ public interface SGrProfilesFrameType extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Dp List Element</b></em>' containment reference list.
-	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrDataPointsFrameType}.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrDataPointBaseType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dp List Element</em>' containment reference list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfilesFrameType_DpListElement()
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrFunctionalProfileFrameType_DpListElement()
 	 * @model containment="true" required="true"
 	 *        extendedMetaData="kind='element' name='dpListElement' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	EList<SGrDataPointsFrameType> getDpListElement();
+	EList<SGrDataPointBaseType> getDpListElement();
 
-} // SGrProfilesFrameType
+} // SGrFunctionalProfileFrameType

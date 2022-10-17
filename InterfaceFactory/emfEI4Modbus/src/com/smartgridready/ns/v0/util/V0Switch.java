@@ -162,9 +162,23 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_CONTACT_API_DEVICE_DESCRIPTION_TYPE: {
-				SGrContactAPIDeviceDescriptionType sGrContactAPIDeviceDescriptionType = (SGrContactAPIDeviceDescriptionType)theEObject;
-				T result = caseSGrContactAPIDeviceDescriptionType(sGrContactAPIDeviceDescriptionType);
+			case V0Package.SGR_CONTACT_API_DEVICE_FRAME: {
+				SGrContactAPIDeviceFrame sGrContactAPIDeviceFrame = (SGrContactAPIDeviceFrame)theEObject;
+				T result = caseSGrContactAPIDeviceFrame(sGrContactAPIDeviceFrame);
+				if (result == null) result = caseSGrDeviceBaseType(sGrContactAPIDeviceFrame);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE: {
+				SGrContactAPIFunctionalProfileType sGrContactAPIFunctionalProfileType = (SGrContactAPIFunctionalProfileType)theEObject;
+				T result = caseSGrContactAPIFunctionalProfileType(sGrContactAPIFunctionalProfileType);
+				if (result == null) result = caseSGrFunctionalProfileBaseType(sGrContactAPIFunctionalProfileType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.SGR_DATA_POINT_BASE_TYPE: {
+				SGrDataPointBaseType sGrDataPointBaseType = (SGrDataPointBaseType)theEObject;
+				T result = caseSGrDataPointBaseType(sGrDataPointBaseType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -174,15 +188,9 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_DATA_POINTS_FRAME_TYPE: {
-				SGrDataPointsFrameType sGrDataPointsFrameType = (SGrDataPointsFrameType)theEObject;
-				T result = caseSGrDataPointsFrameType(sGrDataPointsFrameType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case V0Package.SGR_DEVICE_DESCRIPTION_TYPE: {
-				SGrDeviceDescriptionType sGrDeviceDescriptionType = (SGrDeviceDescriptionType)theEObject;
-				T result = caseSGrDeviceDescriptionType(sGrDeviceDescriptionType);
+			case V0Package.SGR_DEVICE_BASE_TYPE: {
+				SGrDeviceBaseType sGrDeviceBaseType = (SGrDeviceBaseType)theEObject;
+				T result = caseSGrDeviceBaseType(sGrDeviceBaseType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -204,9 +212,29 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_INTERFACE_DESCRIPTION_TYPE: {
-				SGrInterfaceDescriptionType sGrInterfaceDescriptionType = (SGrInterfaceDescriptionType)theEObject;
-				T result = caseSGrInterfaceDescriptionType(sGrInterfaceDescriptionType);
+			case V0Package.SGR_FUNCTIONAL_PROFILE_BASE_TYPE: {
+				SGrFunctionalProfileBaseType sGrFunctionalProfileBaseType = (SGrFunctionalProfileBaseType)theEObject;
+				T result = caseSGrFunctionalProfileBaseType(sGrFunctionalProfileBaseType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE: {
+				SGrFunctionalProfileFrameType sGrFunctionalProfileFrameType = (SGrFunctionalProfileFrameType)theEObject;
+				T result = caseSGrFunctionalProfileFrameType(sGrFunctionalProfileFrameType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.SGR_GEN_DEVICE_FRAME: {
+				SGrGenDeviceFrame sGrGenDeviceFrame = (SGrGenDeviceFrame)theEObject;
+				T result = caseSGrGenDeviceFrame(sGrGenDeviceFrame);
+				if (result == null) result = caseSGrDeviceBaseType(sGrGenDeviceFrame);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.SGR_GEN_FUNCTIONAL_PROFILE_TYPE: {
+				SGrGenFunctionalProfileType sGrGenFunctionalProfileType = (SGrGenFunctionalProfileType)theEObject;
+				T result = caseSGrGenFunctionalProfileType(sGrGenFunctionalProfileType);
+				if (result == null) result = caseSGrFunctionalProfileBaseType(sGrGenFunctionalProfileType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -222,27 +250,30 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_MODBUS_DATA_POINTS_FRAME_TYPE: {
-				SGrModbusDataPointsFrameType sGrModbusDataPointsFrameType = (SGrModbusDataPointsFrameType)theEObject;
-				T result = caseSGrModbusDataPointsFrameType(sGrModbusDataPointsFrameType);
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE: {
+				SGrModbusDataPointType sGrModbusDataPointType = (SGrModbusDataPointType)theEObject;
+				T result = caseSGrModbusDataPointType(sGrModbusDataPointType);
+				if (result == null) result = caseSGrDataPointBaseType(sGrModbusDataPointType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_MODBUS_DEVICE_DESCRIPTION_TYPE: {
-				SGrModbusDeviceDescriptionType sGrModbusDeviceDescriptionType = (SGrModbusDeviceDescriptionType)theEObject;
-				T result = caseSGrModbusDeviceDescriptionType(sGrModbusDeviceDescriptionType);
+			case V0Package.SGR_MODBUS_DEVICE_FRAME: {
+				SGrModbusDeviceFrame sGrModbusDeviceFrame = (SGrModbusDeviceFrame)theEObject;
+				T result = caseSGrModbusDeviceFrame(sGrModbusDeviceFrame);
+				if (result == null) result = caseSGrDeviceBaseType(sGrModbusDeviceFrame);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE: {
+				SGrModbusFunctionalProfileType sGrModbusFunctionalProfileType = (SGrModbusFunctionalProfileType)theEObject;
+				T result = caseSGrModbusFunctionalProfileType(sGrModbusFunctionalProfileType);
+				if (result == null) result = caseSGrFunctionalProfileBaseType(sGrModbusFunctionalProfileType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case V0Package.SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE: {
 				SGrModbusInterfaceDescriptionType sGrModbusInterfaceDescriptionType = (SGrModbusInterfaceDescriptionType)theEObject;
 				T result = caseSGrModbusInterfaceDescriptionType(sGrModbusInterfaceDescriptionType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case V0Package.SGR_MODBUS_PROFILES_FRAME_TYPE: {
-				SGrModbusProfilesFrameType sGrModbusProfilesFrameType = (SGrModbusProfilesFrameType)theEObject;
-				T result = caseSGrModbusProfilesFrameType(sGrModbusProfilesFrameType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -264,12 +295,6 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_PROFILES_FRAME_TYPE: {
-				SGrProfilesFrameType sGrProfilesFrameType = (SGrProfilesFrameType)theEObject;
-				T result = caseSGrProfilesFrameType(sGrProfilesFrameType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case V0Package.SGR_RELEASE_NOTES: {
 				SGrReleaseNotes sGrReleaseNotes = (SGrReleaseNotes)theEObject;
 				T result = caseSGrReleaseNotes(sGrReleaseNotes);
@@ -288,15 +313,24 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_REST_API_DATA_POINTS_FRAME_TYPE: {
-				SGrRestAPIDataPointsFrameType sGrRestAPIDataPointsFrameType = (SGrRestAPIDataPointsFrameType)theEObject;
-				T result = caseSGrRestAPIDataPointsFrameType(sGrRestAPIDataPointsFrameType);
+			case V0Package.SGR_REST_API_DATA_POINT_TYPE: {
+				SGrRestAPIDataPointType sGrRestAPIDataPointType = (SGrRestAPIDataPointType)theEObject;
+				T result = caseSGrRestAPIDataPointType(sGrRestAPIDataPointType);
+				if (result == null) result = caseSGrDataPointBaseType(sGrRestAPIDataPointType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_RESTAPI_DEVICE_DESCRIPTION_TYPE: {
-				SGrRESTAPIDeviceDescriptionType sGrRESTAPIDeviceDescriptionType = (SGrRESTAPIDeviceDescriptionType)theEObject;
-				T result = caseSGrRESTAPIDeviceDescriptionType(sGrRESTAPIDeviceDescriptionType);
+			case V0Package.SGR_REST_API_DEVICE_FRAME: {
+				SGrRestAPIDeviceFrame sGrRestAPIDeviceFrame = (SGrRestAPIDeviceFrame)theEObject;
+				T result = caseSGrRestAPIDeviceFrame(sGrRestAPIDeviceFrame);
+				if (result == null) result = caseSGrDeviceBaseType(sGrRestAPIDeviceFrame);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.SGR_REST_API_FUNCTIONAL_PROFILE_TYPE: {
+				SGrRestAPIFunctionalProfileType sGrRestAPIFunctionalProfileType = (SGrRestAPIFunctionalProfileType)theEObject;
+				T result = caseSGrRestAPIFunctionalProfileType(sGrRestAPIFunctionalProfileType);
+				if (result == null) result = caseSGrFunctionalProfileBaseType(sGrRestAPIFunctionalProfileType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -306,27 +340,9 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_REST_API_PROFILES_FRAME_TYPE: {
-				SGrRestAPIProfilesFrameType sGrRestAPIProfilesFrameType = (SGrRestAPIProfilesFrameType)theEObject;
-				T result = caseSGrRestAPIProfilesFrameType(sGrRestAPIProfilesFrameType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case V0Package.SGR_REST_BASIC_TYPE: {
 				SGrRestBasicType sGrRestBasicType = (SGrRestBasicType)theEObject;
 				T result = caseSGrRestBasicType(sGrRestBasicType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case V0Package.SGR_REST_DATA_POINTS_FRAME_TYPE: {
-				SGrRestDataPointsFrameType sGrRestDataPointsFrameType = (SGrRestDataPointsFrameType)theEObject;
-				T result = caseSGrRestDataPointsFrameType(sGrRestDataPointsFrameType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case V0Package.SGR_REST_PROFILES_FRAME_TYPE: {
-				SGrRestProfilesFrameType sGrRestProfilesFrameType = (SGrRestProfilesFrameType)theEObject;
-				T result = caseSGrRestProfilesFrameType(sGrRestProfilesFrameType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -671,17 +687,47 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Contact API Device Description Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Contact API Device Frame</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Contact API Device Description Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Contact API Device Frame</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSGrContactAPIDeviceDescriptionType(SGrContactAPIDeviceDescriptionType object) {
+	public T caseSGrContactAPIDeviceFrame(SGrContactAPIDeviceFrame object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Contact API Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Contact API Functional Profile Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrContactAPIFunctionalProfileType(SGrContactAPIFunctionalProfileType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Data Point Base Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Data Point Base Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrDataPointBaseType(SGrDataPointBaseType object) {
 		return null;
 	}
 
@@ -701,32 +747,17 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Data Points Frame Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Device Base Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Data Points Frame Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Device Base Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSGrDataPointsFrameType(SGrDataPointsFrameType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Device Description Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Device Description Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrDeviceDescriptionType(SGrDeviceDescriptionType object) {
+	public T caseSGrDeviceBaseType(SGrDeviceBaseType object) {
 		return null;
 	}
 
@@ -776,17 +807,62 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Interface Description Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Functional Profile Base Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Interface Description Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Functional Profile Base Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSGrInterfaceDescriptionType(SGrInterfaceDescriptionType object) {
+	public T caseSGrFunctionalProfileBaseType(SGrFunctionalProfileBaseType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Functional Profile Frame Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Functional Profile Frame Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrFunctionalProfileFrameType(SGrFunctionalProfileFrameType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Gen Device Frame</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Gen Device Frame</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrGenDeviceFrame(SGrGenDeviceFrame object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Gen Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Gen Functional Profile Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrGenFunctionalProfileType(SGrGenFunctionalProfileType object) {
 		return null;
 	}
 
@@ -821,32 +897,47 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Modbus Data Points Frame Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Modbus Data Point Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Modbus Data Points Frame Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Modbus Data Point Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSGrModbusDataPointsFrameType(SGrModbusDataPointsFrameType object) {
+	public T caseSGrModbusDataPointType(SGrModbusDataPointType object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Modbus Device Description Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Modbus Device Frame</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Modbus Device Description Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Modbus Device Frame</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSGrModbusDeviceDescriptionType(SGrModbusDeviceDescriptionType object) {
+	public T caseSGrModbusDeviceFrame(SGrModbusDeviceFrame object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Modbus Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Modbus Functional Profile Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrModbusFunctionalProfileType(SGrModbusFunctionalProfileType object) {
 		return null;
 	}
 
@@ -862,21 +953,6 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSGrModbusInterfaceDescriptionType(SGrModbusInterfaceDescriptionType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Modbus Profiles Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Modbus Profiles Frame Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrModbusProfilesFrameType(SGrModbusProfilesFrameType object) {
 		return null;
 	}
 
@@ -926,21 +1002,6 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Profiles Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Profiles Frame Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrProfilesFrameType(SGrProfilesFrameType object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>SGr Release Notes</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -986,32 +1047,47 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Rest API Data Points Frame Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Rest API Data Point Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Rest API Data Points Frame Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Rest API Data Point Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSGrRestAPIDataPointsFrameType(SGrRestAPIDataPointsFrameType object) {
+	public T caseSGrRestAPIDataPointType(SGrRestAPIDataPointType object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr RESTAPI Device Description Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Rest API Device Frame</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr RESTAPI Device Description Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Rest API Device Frame</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSGrRESTAPIDeviceDescriptionType(SGrRESTAPIDeviceDescriptionType object) {
+	public T caseSGrRestAPIDeviceFrame(SGrRestAPIDeviceFrame object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Rest API Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Rest API Functional Profile Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrRestAPIFunctionalProfileType(SGrRestAPIFunctionalProfileType object) {
 		return null;
 	}
 
@@ -1031,21 +1107,6 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Rest API Profiles Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Rest API Profiles Frame Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrRestAPIProfilesFrameType(SGrRestAPIProfilesFrameType object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>SGr Rest Basic Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1057,36 +1118,6 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSGrRestBasicType(SGrRestBasicType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Rest Data Points Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Rest Data Points Frame Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrRestDataPointsFrameType(SGrRestDataPointsFrameType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Rest Profiles Frame Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Rest Profiles Frame Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrRestProfilesFrameType(SGrRestProfilesFrameType object) {
 		return null;
 	}
 

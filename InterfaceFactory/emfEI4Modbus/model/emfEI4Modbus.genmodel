@@ -4,7 +4,7 @@
     modelName="EmfEI4Modbus" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>../../SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
+  <foreignModel>file:/C:/dev/SmartGridReady_test/schema_mod/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
   <genPackages prefix="V0" basePackage="com.smartgridready.ns" resource="XML" disposableProviderFactory="true"
       loadInitialization="true" literalsInterface="false" ecorePackage="v0.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//EBaudRateType">
@@ -262,6 +262,12 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueTendencyType/rising"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueTendencyType/stable"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueTendencyType/falling"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrMeasValueType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueType/min"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueType/max"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueType/average"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueType/stdDev"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrModbusLayer6DeviationType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/_2RegBase1000L2H"/>
@@ -751,6 +757,7 @@
     <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueSourceTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueStateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueTendencyTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrModbusLayer6DeviationTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrModbusReg2BoolArrayTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMROPresenceLevelIndicationTypeObject"/>
@@ -793,21 +800,17 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/xSISchemaLocation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/baudRatesSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/byteLenSupported"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/deviceProfile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/genDeviceFrame"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/modbusFunctionCodesSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/netConnectionState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/paritySupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrModbusDataPointDescription"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrModbusInterfaceDescription"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sgrContactAPIDeviceFrame"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrContactAPIDeviceDescriptionType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrFunctionalProfileDescriptionType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrModbusDeviceDescriptionType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrContactAPIDeviceFrame"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrFunctionalProfileFrame"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrGenDeviceFrame"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrModbusDeviceFrame"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrRESTAPIDeviceDescriptionType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrRestAPIDeviceFrame"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sgrSerialInterfaceCapability"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrSerialInterfaceCapability"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/stopBitLenSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/trspServiceModbus"/>
     </genClasses>
@@ -859,6 +862,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxLatencyTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/timeStampLog"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/timeRange"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueTendency"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueSource"/>
@@ -908,15 +912,16 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrChangeLog/author"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrChangeLog/comment"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrContactAPIDeviceDescriptionType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrContactAPIDeviceDescriptionType/deviceProfile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrContactAPIDeviceDescriptionType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrContactAPIDeviceDescriptionType/contactApiInterfaceDesc"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrContactAPIDeviceDescriptionType/fpListElement"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrContactAPIDeviceDescriptionType/deviceName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrContactAPIDeviceDescriptionType/isLocalControl"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrContactAPIDeviceDescriptionType/manufacturerID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrContactAPIDeviceDescriptionType/manufacturerName"/>
+    <genClasses ecoreClass="v0.ecore#//SGrContactAPIDeviceFrame">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrContactAPIDeviceFrame/contactApiInterfaceDesc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrContactAPIDeviceFrame/fpListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrContactAPIFunctionalProfileType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrContactAPIFunctionalProfileType/dpListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrDataPointBaseType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointBaseType/dataPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointBaseType/genAttribute"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrDataPointDescriptionType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/basicDataType"/>
@@ -929,18 +934,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDataPointDescriptionType/rwpDatadirection"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDataPointDescriptionType/unit"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrDataPointsFrameType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointsFrameType/dataPoint"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointsFrameType/genAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrDeviceDescriptionType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceDescriptionType/deviceProfile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceDescriptionType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceDescriptionType/fpListElement"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceDescriptionType/deviceName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceDescriptionType/isLocalControl"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceDescriptionType/manufacturerID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceDescriptionType/manufacturerName"/>
+    <genClasses ecoreClass="v0.ecore#//SGrDeviceBaseType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceBaseType/deviceProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceBaseType/genAttribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceBaseType/deviceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceBaseType/isLocalControl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceBaseType/manufacturerID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceBaseType/manufacturerName"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrDeviceProfileType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceProfileType/devNameList"/>
@@ -981,9 +981,21 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrFlexAssistanceType/assists"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrFlexAssistanceType/obligedTo"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrInterfaceDescriptionType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrInterfaceDescriptionType/technologyUsed"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrInterfaceDescriptionType/isLocalControl"/>
+    <genClasses ecoreClass="v0.ecore#//SGrFunctionalProfileBaseType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrFunctionalProfileBaseType/functionalProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrFunctionalProfileBaseType/genAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrFunctionalProfileFrameType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrFunctionalProfileFrameType/releaseNotes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrFunctionalProfileFrameType/functionalProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrFunctionalProfileFrameType/genAttribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrFunctionalProfileFrameType/dpListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrGenDeviceFrame">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrGenDeviceFrame/fpListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrGenFunctionalProfileType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrGenFunctionalProfileType/dpListElement"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrLegibDocumentationType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrLegibDocumentationType/textElement"/>
@@ -999,23 +1011,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDataPointDescriptionType/masterFunctionsSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointDescriptionType/modbusJMESPath"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrModbusDataPointsFrameType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointsFrameType/dataPoint"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointsFrameType/modbusDataPoint"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointsFrameType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointsFrameType/modbusAttr"/>
+    <genClasses ecoreClass="v0.ecore#//SGrModbusDataPointType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointType/modbusDataPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointType/modbusAttr"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrModbusDeviceDescriptionType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/deviceProfile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/modbusAttr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/modbusInterfaceDesc"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/fpListElement"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceDescriptionType/networkConnectionState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDeviceDescriptionType/deviceName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDeviceDescriptionType/isLocalControl"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDeviceDescriptionType/manufacturerID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDeviceDescriptionType/manufacturerName"/>
+    <genClasses ecoreClass="v0.ecore#//SGrModbusDeviceFrame">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceFrame/modbusAttr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceFrame/modbusInterfaceDesc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceFrame/fpListElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceFrame/networkConnectionState"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrModbusFunctionalProfileType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusFunctionalProfileType/modbusAttr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusFunctionalProfileType/dpListElement"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrModbusInterfaceDescriptionType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusInterfaceDescriptionType/modbusInterfaceSelection"/>
@@ -1023,12 +1031,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusInterfaceDescriptionType/trspSrvModbusRTUoutOfBox"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusInterfaceDescriptionType/firstRegisterAddressIsOne"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusInterfaceDescriptionType/conversionScheme"/>
-    </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrModbusProfilesFrameType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusProfilesFrameType/functionalProfile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusProfilesFrameType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusProfilesFrameType/modbusAttr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusProfilesFrameType/dpListElement"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrNamelistType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/nameType"/>
@@ -1055,12 +1057,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrProfilenumberType/sgrLevelOfOperation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfilenumberType/versionNumber"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrProfilesFrameType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfilesFrameType/releaseNotes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfilesFrameType/functionalProfile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfilesFrameType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfilesFrameType/dpListElement"/>
-    </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrReleaseNotes">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrReleaseNotes/state"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrReleaseNotes/changelog"/>
@@ -1074,22 +1070,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRestAPIDataPointDescriptionType/restAPIJMESPath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRestAPIDataPointDescriptionType/dataType"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrRestAPIDataPointsFrameType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDataPointsFrameType/dataPoint"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDataPointsFrameType/restAPIDataPoint"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDataPointsFrameType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDataPointsFrameType/restAPIAttr"/>
+    <genClasses ecoreClass="v0.ecore#//SGrRestAPIDataPointType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDataPointType/restAPIDataPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDataPointType/restAPIAttr"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrRESTAPIDeviceDescriptionType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRESTAPIDeviceDescriptionType/deviceProfile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRESTAPIDeviceDescriptionType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRESTAPIDeviceDescriptionType/restAPIAttr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRESTAPIDeviceDescriptionType/restAPIInterfaceDesc"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRESTAPIDeviceDescriptionType/fpListElement"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRESTAPIDeviceDescriptionType/deviceName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRESTAPIDeviceDescriptionType/isLocalControl"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRESTAPIDeviceDescriptionType/manufacturerID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRESTAPIDeviceDescriptionType/manufacturerName"/>
+    <genClasses ecoreClass="v0.ecore#//SGrRestAPIDeviceFrame">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDeviceFrame/restAPIAttr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDeviceFrame/restAPIInterfaceDesc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDeviceFrame/fpListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrRestAPIFunctionalProfileType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIFunctionalProfileType/restAPIAttr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIFunctionalProfileType/dpListElement"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrRestAPIInterfaceDescriptionType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRestAPIInterfaceDescriptionType/restAPIInterfaceSelection"/>
@@ -1100,27 +1092,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIInterfaceDescriptionType/restAPIBearer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIInterfaceDescriptionType/restAPIBasic"/>
     </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrRestAPIProfilesFrameType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIProfilesFrameType/functionalProfile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIProfilesFrameType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIProfilesFrameType/restAPIAttr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIProfilesFrameType/dpListElement"/>
-    </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrRestBasicType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRestBasicType/restBasicUsername"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRestBasicType/restBasicPassword"/>
-    </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrRestDataPointsFrameType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestDataPointsFrameType/dataPoint"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestDataPointsFrameType/restDataPoint"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestDataPointsFrameType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestDataPointsFrameType/restAPIAttr"/>
-    </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrRestProfilesFrameType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestProfilesFrameType/functionalProfile"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestProfilesFrameType/genAttribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestProfilesFrameType/restAPIAttr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestProfilesFrameType/dpListElement"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrScalingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrScalingType/multiplicator"/>

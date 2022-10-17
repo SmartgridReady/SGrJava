@@ -22,17 +22,6 @@ The purpose of this class is to offer a test environment for a Sunspec device op
 
 package communicator.impl;
 
-
-import com.smartgridready.ns.v0.SGrEVStateType;
-import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.SGrModbusDeviceDescriptionType;
-import com.smartgridready.ns.v0.SGrOCPPStateType;
-import com.smartgridready.ns.v0.V0Factory;
-
-import communicator.common.runtime.GenDriverAPI4Modbus;
-import communicator.helper.DeviceDescriptionLoader;
-import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
-import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
 public class SunspecTester {
 
 }

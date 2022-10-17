@@ -3,9 +3,9 @@
 package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
-import com.smartgridready.ns.v0.SGrDataPointsFrameType;
+import com.smartgridready.ns.v0.SGrDataPointBaseType;
+import com.smartgridready.ns.v0.SGrFunctionalProfileFrameType;
 import com.smartgridready.ns.v0.SGrProfileDescriptionType;
-import com.smartgridready.ns.v0.SGrProfilesFrameType;
 import com.smartgridready.ns.v0.SGrReleaseNotes;
 import com.smartgridready.ns.v0.V0Package;
 
@@ -27,21 +27,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>SGr Profiles Frame Type</b></em>'.
+ * An implementation of the model object '<em><b>SGr Functional Profile Frame Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfilesFrameTypeImpl#getReleaseNotes <em>Release Notes</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfilesFrameTypeImpl#getFunctionalProfile <em>Functional Profile</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfilesFrameTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfilesFrameTypeImpl#getDpListElement <em>Dp List Element</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrFunctionalProfileFrameTypeImpl#getReleaseNotes <em>Release Notes</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrFunctionalProfileFrameTypeImpl#getFunctionalProfile <em>Functional Profile</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrFunctionalProfileFrameTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrFunctionalProfileFrameTypeImpl#getDpListElement <em>Dp List Element</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container implements SGrProfilesFrameType {
+public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Container implements SGrFunctionalProfileFrameType {
 	/**
 	 * The cached value of the '{@link #getReleaseNotes() <em>Release Notes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -80,14 +80,14 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrDataPointsFrameType> dpListElement;
+	protected EList<SGrDataPointBaseType> dpListElement;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SGrProfilesFrameTypeImpl() {
+	protected SGrFunctionalProfileFrameTypeImpl() {
 		super();
 	}
 
@@ -98,7 +98,7 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return V0Package.eINSTANCE.getSGrProfilesFrameType();
+		return V0Package.eINSTANCE.getSGrFunctionalProfileFrameType();
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 		SGrReleaseNotes oldReleaseNotes = releaseNotes;
 		releaseNotes = newReleaseNotes;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES, oldReleaseNotes, newReleaseNotes);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES, oldReleaseNotes, newReleaseNotes);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -136,14 +136,14 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 		if (newReleaseNotes != releaseNotes) {
 			NotificationChain msgs = null;
 			if (releaseNotes != null)
-				msgs = ((InternalEObject)releaseNotes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES, null, msgs);
+				msgs = ((InternalEObject)releaseNotes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES, null, msgs);
 			if (newReleaseNotes != null)
-				msgs = ((InternalEObject)newReleaseNotes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES, null, msgs);
+				msgs = ((InternalEObject)newReleaseNotes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES, null, msgs);
 			msgs = basicSetReleaseNotes(newReleaseNotes, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES, newReleaseNotes, newReleaseNotes));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES, newReleaseNotes, newReleaseNotes));
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 		SGrProfileDescriptionType oldFunctionalProfile = functionalProfile;
 		functionalProfile = newFunctionalProfile;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE, oldFunctionalProfile, newFunctionalProfile);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE, oldFunctionalProfile, newFunctionalProfile);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -181,14 +181,14 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 		if (newFunctionalProfile != functionalProfile) {
 			NotificationChain msgs = null;
 			if (functionalProfile != null)
-				msgs = ((InternalEObject)functionalProfile).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE, null, msgs);
+				msgs = ((InternalEObject)functionalProfile).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE, null, msgs);
 			if (newFunctionalProfile != null)
-				msgs = ((InternalEObject)newFunctionalProfile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE, null, msgs);
+				msgs = ((InternalEObject)newFunctionalProfile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE, null, msgs);
 			msgs = basicSetFunctionalProfile(newFunctionalProfile, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE, newFunctionalProfile, newFunctionalProfile));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE, newFunctionalProfile, newFunctionalProfile));
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public EList<SGrAttr4GenericType> getGenAttribute() {
 		if (genAttribute == null) {
-			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE);
+			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE);
 		}
 		return genAttribute;
 	}
@@ -210,9 +210,9 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public EList<SGrDataPointsFrameType> getDpListElement() {
+	public EList<SGrDataPointBaseType> getDpListElement() {
 		if (dpListElement == null) {
-			dpListElement = new EObjectContainmentEList<SGrDataPointsFrameType>(SGrDataPointsFrameType.class, this, V0Package.SGR_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT);
+			dpListElement = new EObjectContainmentEList<SGrDataPointBaseType>(SGrDataPointBaseType.class, this, V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__DP_LIST_ELEMENT);
 		}
 		return dpListElement;
 	}
@@ -225,13 +225,13 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case V0Package.SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES:
 				return basicSetReleaseNotes(null, msgs);
-			case V0Package.SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				return basicSetFunctionalProfile(null, msgs);
-			case V0Package.SGR_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE:
 				return ((InternalEList<?>)getGenAttribute()).basicRemove(otherEnd, msgs);
-			case V0Package.SGR_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__DP_LIST_ELEMENT:
 				return ((InternalEList<?>)getDpListElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -245,13 +245,13 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES:
 				return getReleaseNotes();
-			case V0Package.SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				return getFunctionalProfile();
-			case V0Package.SGR_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE:
 				return getGenAttribute();
-			case V0Package.SGR_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__DP_LIST_ELEMENT:
 				return getDpListElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -266,19 +266,19 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES:
 				setReleaseNotes((SGrReleaseNotes)newValue);
 				return;
-			case V0Package.SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				setFunctionalProfile((SGrProfileDescriptionType)newValue);
 				return;
-			case V0Package.SGR_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE:
 				getGenAttribute().clear();
 				getGenAttribute().addAll((Collection<? extends SGrAttr4GenericType>)newValue);
 				return;
-			case V0Package.SGR_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__DP_LIST_ELEMENT:
 				getDpListElement().clear();
-				getDpListElement().addAll((Collection<? extends SGrDataPointsFrameType>)newValue);
+				getDpListElement().addAll((Collection<? extends SGrDataPointBaseType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -292,16 +292,16 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES:
 				setReleaseNotes((SGrReleaseNotes)null);
 				return;
-			case V0Package.SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				setFunctionalProfile((SGrProfileDescriptionType)null);
 				return;
-			case V0Package.SGR_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE:
 				getGenAttribute().clear();
 				return;
-			case V0Package.SGR_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__DP_LIST_ELEMENT:
 				getDpListElement().clear();
 				return;
 		}
@@ -316,16 +316,16 @@ public class SGrProfilesFrameTypeImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_PROFILES_FRAME_TYPE__RELEASE_NOTES:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__RELEASE_NOTES:
 				return releaseNotes != null;
-			case V0Package.SGR_PROFILES_FRAME_TYPE__FUNCTIONAL_PROFILE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE:
 				return functionalProfile != null;
-			case V0Package.SGR_PROFILES_FRAME_TYPE__GEN_ATTRIBUTE:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE:
 				return genAttribute != null && !genAttribute.isEmpty();
-			case V0Package.SGR_PROFILES_FRAME_TYPE__DP_LIST_ELEMENT:
+			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__DP_LIST_ELEMENT:
 				return dpListElement != null && !dpListElement.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //SGrProfilesFrameTypeImpl
+} //SGrFunctionalProfileFrameTypeImpl
