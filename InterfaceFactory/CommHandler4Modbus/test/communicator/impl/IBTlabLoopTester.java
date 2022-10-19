@@ -53,6 +53,7 @@ public class IBTlabLoopTester {
 	// Modbus TCP devices
 	private static SGrModbusDevice devVGT_SGCP = null;
 	private static SGrModbusDevice devGaroWallbox = null;
+	private static SGrModbusDevice devOMCCIWallbox = null;
 	private static SGrModbusDevice devFroniusSymo = null;
 	
 	// test loop parameters
@@ -64,6 +65,7 @@ public class IBTlabLoopTester {
 	private static int devABBMeterExcpetions = 0;
 	private static int devVGT_SGCPExceptions = 0;
 	private static int devGaroWallboxExceptions = 0;
+	private static int devOMCCIWallboxExceptions = 0;
 	private static int devFroniusSymoExceptions = 0;
 	// device selection
 	private static boolean  devWagoMeterTestIsOn = true; 
@@ -71,6 +73,7 @@ public class IBTlabLoopTester {
 	private static boolean  devVGT_SGCPTestIsOn = true; 
 	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
+	private static boolean  devOMCCIWallboxTestIsOn = false; 
 	
 	// shell for enumerations
 	private static SGrEnumListType oEnumList = null;
@@ -86,7 +89,7 @@ public class IBTlabLoopTester {
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
 			//mbRTU.initTrspService("COM9");			
-			mbRTU.initTrspService("COM9", 19200, Parity.EVEN);
+			mbRTU.initTrspService("COM9", 9600, Parity.NONE);
 			if (devWagoMeterTestIsOn) {
 				System.out.printf("%n-init devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ "%n");
 				initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
@@ -102,8 +105,11 @@ public class IBTlabLoopTester {
 			}
 			if (devFroniusSymoTestIsOn) {
 				System.out.printf("%n-init FroniusSymoTest @:" + dtf.format(LocalDateTime.now()) + "%n"); initFroniusSymo(XML_BASE_DIR,"SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml");
-				
-			}
+			}	
+			if (devOMCCIWallboxTestIsOn) {
+				//TODO: complete and use OMCCI EI.xml
+				System.out.printf("%n-init devOMCCIWallboxTest @:" + dtf.format(LocalDateTime.now())+ "%n"); initOMCCIWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
+			}	
 
  
 		
@@ -123,6 +129,7 @@ public class IBTlabLoopTester {
 					if (devVGT_SGCPTestIsOn)    System.out.printf(" VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
 				    if (devGaroWallboxTestIsOn) System.out.printf(" GaroWallbox=" + devGaroWallboxExceptions+ ",");
 					if (devFroniusSymoTestIsOn) System.out.printf(" FroniusSymo=" + devFroniusSymoExceptions + ",");
+				    if (devOMCCIWallboxTestIsOn) System.out.printf(" OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
 					System.out.println(" <------");
 					
 				    //Next loop 
@@ -131,6 +138,7 @@ public class IBTlabLoopTester {
 					if (devVGT_SGCPTestIsOn)    tstVGT_SGCP(); 
 				    if (devGaroWallboxTestIsOn) tstGaroWallbox();
 					if (devFroniusSymoTestIsOn) tstFroniusSymo();	
+				    if (devOMCCIWallboxTestIsOn) tstOMCCIWallbox();
 
 				    Thread.sleep(500);  // show last block for ccc  milliseconds
 			}
@@ -327,7 +335,7 @@ public class IBTlabLoopTester {
 			
 				try {
 	 				  mbRTU.setUnitIdentifier((byte) 11);	
-	  				  System.out.printf("%nABBMeter:%n");
+	  				  System.out.printf("%n@:Testing ABBMeter:%n");
 					  Thread.sleep(50);
 					  sVal1 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
 					  Thread.sleep(10);
@@ -529,6 +537,110 @@ public class IBTlabLoopTester {
 					}
 			
 				
+				
+			    
+				   // -----------------------------------------------------------------------------------------------------------------------------	
+				   // OMCCI Wallbox Test
+				   // -----------------------------------------------------------------------------------------------------------------------------	
+					static void initOMCCIWallbox(String aBaseDir, String aDescriptionFile ) {				
+						//TODO: complete and use full OMCCI EI.xml
+						try {	
+							
+							DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+							SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+							
+							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
+							GenDriverAPI4ModbusTCP mbWbOMCCI= new GenDriverAPI4ModbusTCP();
+							devOMCCIWallbox = new SGrModbusDevice(tstDesc, mbWbOMCCI);							
+							mbWbOMCCI.initDevice("192.168.1.183",502);	
+							
+						}
+						
+						catch ( Exception e )
+						{
+							System.out.println( "Error loading device description. " + e);
+						}		
+					}
+					
+					
+					static void tstOMCCIWallbox()
+					{
+						float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
+						String  sVal1 = "0.0", sVal2 = "0.0";
+						SGrEVStateType sgrEVState = null;
+						SGrOCPPStateType sgrOCPPState = null;
+						int     iVal1  = 0;
+						float CurtailCurrent;
+						
+						
+							try {	
+								 System.out.printf("%n@:Testing OMCCIWallbox:%n");							
+								 if ((runtimeCnt%60)== 0)
+								 {
+									 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
+									 devOMCCIWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
+									 System.out.printf("  Setting HemsCurrentLimit to :     " + CurtailCurrent + " %n");
+								 }
+								 fVal1 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+								 Thread.sleep(200);
+								 fVal2 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+								 Thread.sleep(200);
+								 fVal3 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+								 Thread.sleep(200);
+								 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
+								 Thread.sleep(200);
+								 sgrEVState = oEnumList.getSgrEVState();
+								 System.out.printf("  EV-StatusCode:                    " + sgrEVState+ " %n");
+								 
+								 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+								 Thread.sleep(200);
+								 sgrOCPPState = oEnumList.getSgrOCPPState();
+								 System.out.printf("  OCPP-StatusCode:                  " + sgrOCPPState + " %n");
+								 System.out.printf("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + " %n");		 
+
+								 fVal1 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
+								 Thread.sleep(200);
+								 fVal2 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getFloat32();
+								 Thread.sleep(200);
+								 fVal3 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
+								 Thread.sleep(200);
+								 System.out.printf("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + " %n");	
+									 
+								 fVal1 = devOMCCIWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
+								 Thread.sleep(200);
+								 fVal2 = devOMCCIWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat32();
+								 Thread.sleep(200);
+								 fVal3 = devOMCCIWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
+								 Thread.sleep(200);
+								 System.out.printf("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + " %n");	
+									
+								 //sVal1 = devOMCCIWallbox.getVal("EVState", "isSmartEV15118");
+								 //Thread.sleep(200);
+								 //??? sVal2 = devOMCCIWallbox.getVal("EVState", "EVCCID");
+								 Thread.sleep(200);
+								 System.out.printf("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + " %n");
+								 
+								 fVal1 = devOMCCIWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat32();
+								 Thread.sleep(200);
+								 fVal2 = devOMCCIWallbox.getValByGDPType("Curtailment", "HemsCurrentLimit").getFloat32();
+								 Thread.sleep(200);
+								 fVal3 = devOMCCIWallbox.getValByGDPType("Curtailment", "HWCurrentLimit").getFloat32();
+								 Thread.sleep(200);
+								 iVal1 = devOMCCIWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
+								 Thread.sleep(200);
+								 System.out.printf("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +" %n");
+								 
+								
+							}
+							catch ( Exception e)
+							{
+								devOMCCIWallboxExceptions++;
+								System.out.println( "Error reading value from device devOMCCIWallbox:" + e);
+								e.printStackTrace();
+							}
+						}
+				
+					
 			    
 				   // -----------------------------------------------------------------------------------------------------------------------------	
 				   // Fronius Symo test 
@@ -558,7 +670,7 @@ public class IBTlabLoopTester {
 						String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
 						
 							try {	
-								 System.out.printf("%nTesting FroniusSymo:%n");
+								 System.out.printf("%n@:Testing FroniusSymo:%n");
 								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "SunspecID");
 								 Thread.sleep(25);
 								 sVal2 = devFroniusSymo.getVal("SunspInvModel", "InvModelBlockLen");
