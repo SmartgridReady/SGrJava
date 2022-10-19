@@ -192,7 +192,7 @@ public class SGrModbusDevice {
 	}
 
 	private SGrBasicGenDataPointTypeType prv_getValByGDPType(
-		SGrModbusFunctionalProfileType aProfile, 
+		SGrModbusFunctionalProfileType aProfile,
 		SGrModbusDataPointType aDataPoint)
 		throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 			
