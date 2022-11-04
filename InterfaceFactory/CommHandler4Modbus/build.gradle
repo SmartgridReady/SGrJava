@@ -47,6 +47,8 @@ dependencies {
     implementation group: 'io.burt', name: 'jmespath-core', version: '0.5.1'
     implementation group: 'io.burt', name: 'jmespath-jackson', version: '0.5.1'
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    implementation group: 'io.vavr', name: 'vavr', version: '0.10.4'
+    
     
     
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.ecore', version: '2.24.0'
@@ -54,11 +56,19 @@ dependencies {
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.common', version: '2.24.0'
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.edit', version: '2.17.0'
 		
-	implementation group: 'log4j', name: 'log4j', version: '1.2.6'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.19.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.19.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.19.0'
+    
 		
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'	
+			
 	testImplementation group: 'org.yaml', name: 'snakeyaml', version: '1.27'
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.10.0'
+	testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.10.0'
+	testImplementation group: 'org.mockito', name: 'mockito-inline', version: '3.10.0'
+	
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1' 
 }
 
 jar {

@@ -3,9 +3,12 @@ package communicator.impl;
 import java.io.IOException;
 import java.util.Optional;
 
-import org.apache.hc.client5.http.fluent.Request;
-import org.apache.hc.client5.http.fluent.Response;
+import org.apache.hc.core5.http.HttpHeaders;
+import org.apache.hc.core5.http.HttpResponse;
+import org.apache.hc.core5.http.HttpStatus;
 import org.apache.hc.core5.http.MethodNotSupportedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,14 +18,20 @@ import com.smartgridready.ns.v0.SGrRestAPIDataPointType;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 import com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType;
 
+import communicator.common.runtime.GenDriverException;
 import communicator.http.authentication.Authenticator;
 import communicator.http.authentication.AuthenticatorFactory;
 import communicator.http.authentication.DummyHttpAuthenticator;
+import communicator.http.client.ApacheRestServiceClient;
+import communicator.http.client.RestServiceClient.HttpMethod;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
+import io.vavr.control.Either;
 
 public class SGrRestApiDevice {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(SGrRestApiDevice.class);
 	
 	private final SGrRestAPIDeviceFrame deviceDescription;
 	private Authenticator httpAuthenticator;
@@ -32,15 +41,20 @@ public class SGrRestApiDevice {
 		this.httpAuthenticator = new DummyHttpAuthenticator();		
 	}
 	
-	public void authenticate() throws MethodNotSupportedException, ReflectiveOperationException {
+	
+	public void authenticate() throws GenDriverException {
 		SGrRestAPIAuthenticationEnumMethodType authMethod = 
 				deviceDescription.getRestAPIInterfaceDesc().getRestAPIAuthenticationMethod();
-		
-		httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
+
+			try {
+				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
+			} catch (MethodNotSupportedException | ReflectiveOperationException e) {
+				throw new GenDriverException("Authenticator instantiation failed: " + e.getMessage(), e);
+			}
 	}
 	
 	
-	public String getVal(String profileName, String dataPointName) {		
+	public String getVal(String profileName, String dataPointName) throws GenDriverException {		
 		Optional<ProfileDataPoint> profileDpOpt = findProfileDataPoint(profileName, dataPointName);	
 		if (profileDpOpt.isPresent()) {
 			return readVal(profileDpOpt.get());
@@ -49,40 +63,73 @@ public class SGrRestApiDevice {
 		}
 	}
 	
-	public String readVal(ProfileDataPoint profileDp) {	
-		
-		Optional<SGrRestAPIDataPointDescriptionType> dpDescriptionOpt 
-			= Optional.ofNullable(profileDp.getDp().getRestAPIDataPoint().get(0));
+	
+	public String readVal(ProfileDataPoint profileDp) throws GenDriverException {	
 		
 		String host = deviceDescription.getRestAPIInterfaceDesc().getTrspSrvRestURIoutOfBox();
 		
+		Optional<SGrRestAPIDataPointDescriptionType> dpDescriptionOpt 
+			= Optional.ofNullable(profileDp.getDp().getRestAPIDataPoint().get(0));
+				
 		if (dpDescriptionOpt.isPresent()) {
 			
 			SGrRestAPIDataPointDescriptionType dpDescription = dpDescriptionOpt.get();
-			Request httpReq = Request.get("https://" + host + dpDescription.getRestAPIEndPoint());
-			
+			ApacheRestServiceClient restServiceClient = new ApacheRestServiceClient("https://" + host, HttpMethod.GET);
+			restServiceClient.setRequestPath(dpDescription.getRestAPIEndPoint());
 			try {
-				
-				Response httpResp = httpAuthenticator.provideAuthenicationHeader(deviceDescription, httpReq).execute();
-				String resp = httpResp.returnContent().asString();
-				System.out.println("Server response: " + resp);
-				
-				JmesPath<JsonNode> path = new JacksonRuntime();
-				Expression<JsonNode> expression = path.compile(dpDescription.getRestAPIJMESPath());
-				
-				ObjectMapper mapper = new ObjectMapper();
-				JsonNode jsonNode = mapper.readTree(resp);
-				
-				JsonNode res = expression.search(jsonNode);
-				return res.asText();
-				
+				String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
+				return parseJsonResponse(dpDescription, response);				
 			} catch (IOException e) {
-				return "Read datapoint failed: " + e.getMessage();
+				throw new GenDriverException("Read value failed: " + e.getMessage(), e);
 			}			
-		}
-		
+		}		
 		return "Missing datapoint description";
-	}	
+	}
+	
+	private String handleServiceCall(ApacheRestServiceClient serviceClient, boolean tryTokenRenewal) throws IOException, GenDriverException {
+		
+		serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription));
+		
+		Either<HttpResponse, String> result = serviceClient.callService();		
+		if (result.isRight()) {
+			return result.get();
+		} else if (tryTokenRenewal && result.getLeft().getCode() == HttpStatus.SC_UNAUTHORIZED) {
+			LOG.info("Authorisation error received. Trying with token renewal");
+			httpAuthenticator.renewToken(deviceDescription);
+			serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription));
+			// recurse into handleServiceCall, set tryTokenRenewal always to false here!
+			handleServiceCall(serviceClient, false); 
+		} else {
+			handleServiceCallError(result.getLeft());
+		}
+		return null;
+	}
+	
+	private void handleServiceCallError(HttpResponse response) throws GenDriverException {
+		throw new GenDriverException(
+				"REST service call failed. HttpStatus: " + 
+				response.getCode() + 
+				" - reason: " + response.getReasonPhrase());
+	}
+	
+
+	private String parseJsonResponse(SGrRestAPIDataPointDescriptionType dpDescription, String jsonResp) 
+	throws GenDriverException {
+
+		JmesPath<JsonNode> path = new JacksonRuntime();
+		Expression<JsonNode> expression = path.compile(dpDescription.getRestAPIJMESPath());
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			JsonNode jsonNode = mapper.readTree(jsonResp);			
+			JsonNode res = expression.search(jsonNode);
+			return res.asText();
+		} catch (IOException e) {
+			throw new GenDriverException("Parsing JSON response failed: " + e.getMessage(), e);
+		}
+	}
+
 	
 	private Optional<ProfileDataPoint> findProfileDataPoint(String profileName, String dataPointName) {
 		
@@ -94,7 +141,8 @@ public class SGrRestApiDevice {
 			}
 		}
 		return Optional.empty();
-	}	
+	}
+	
 	private Optional<SGrRestAPIFunctionalProfileType> findProfile(String profileName) {
 		return deviceDescription.getFpListElement().stream().filter(
 				modbusProfileFrame -> modbusProfileFrame.getFunctionalProfile().getProfileName().equals(profileName))
@@ -126,5 +174,5 @@ public class SGrRestApiDevice {
 		public SGrRestAPIDataPointType getDp() {
 			return dp;
 		}					
-	}
+	}	
 }

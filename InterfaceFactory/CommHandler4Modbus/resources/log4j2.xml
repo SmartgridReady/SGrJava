@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+    <Console name="Console">
+      <PatternLayout pattern="[%t] %-5level %c{1.} - %msg%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="trace">
+        <AppenderRef ref="Console"/>
+    </Root>
+    <logger name="org.apache.hc" level="info" />   
+  </Loggers>    
+</Configuration>

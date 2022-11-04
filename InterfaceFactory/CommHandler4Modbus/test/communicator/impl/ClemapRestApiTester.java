@@ -2,14 +2,18 @@ package communicator.impl;
 
 import java.util.Properties;
 
-import org.apache.hc.core5.http.MethodNotSupportedException;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 
+import communicator.common.runtime.GenDriverException;
 import communicator.helper.DeviceDescriptionLoader;
 
 public class ClemapRestApiTester {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(ClemapRestApiTester.class);
 
 	private static final String XML_BASE_DIR="../../../SGrSpecifications/XMLInstances/ExtInterfaces/";
 	
@@ -29,13 +33,13 @@ public class ClemapRestApiTester {
  
 		try {
 			clemapMonitor.authenticate();
-			System.out.println("ACtot: " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACtot"));
-			System.out.println("ACL1 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL1"));
-			System.out.println("ACL2 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL2"));
-			System.out.println("ACL3 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL3"));
+			LOG.info("ACtot: " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACtot"));
+			LOG.info("ACL1 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL1"));
+			LOG.info("ACL2 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL2"));
+			LOG.info("ACL3 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL3"));
 			
-		} catch (MethodNotSupportedException | ReflectiveOperationException e) {
-			System.out.println("Error: " + e.getMessage());
+		} catch (GenDriverException e) {
+			LOG.info("Error: " + e.getMessage());
 		}						
 	}
 	
