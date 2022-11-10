@@ -3,8 +3,7 @@ package communicator.http.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.EnumMap;
 import java.util.function.Function;
 
 import org.apache.commons.io.IOUtils;
@@ -16,13 +15,16 @@ import org.apache.hc.core5.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.smartgridready.ns.v0.HttpMethod;
+import com.smartgridready.ns.v0.RestServiceCall;
+
 import io.vavr.control.Either;
 
 public class ApacheRestServiceClient extends RestServiceClient {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ApacheRestServiceClient.class);
 	
-	private static final Map<HttpMethod, Function<String, Request>> HTTP_METHOD_MAP = new HashMap<>();
+	private static final EnumMap<HttpMethod, Function<String, Request>> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
 	static {
 		HTTP_METHOD_MAP.put(HttpMethod.GET, Request::get);
 		HTTP_METHOD_MAP.put(HttpMethod.POST, Request::post);
@@ -31,24 +33,24 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		HTTP_METHOD_MAP.put(HttpMethod.DELETE, Request::delete);				
 	}	
 
-	public ApacheRestServiceClient(String baseUri, HttpMethod httpMethod) {
-		super(baseUri, httpMethod);
+	protected ApacheRestServiceClient(String baseUri, RestServiceCall restServiceCall) {
+		super(baseUri, restServiceCall);
 	}
 
 	@Override
 	public Either<HttpResponse, String> callService() throws IOException {
 		
 		String uri = getBaseUri();
-		if (getRequestPath() != null) {
-			uri = uri.concat(getRequestPath());
+		if (getRestServiceCall().getRequestPath() != null) {
+			uri = uri.concat(getRestServiceCall().getRequestPath());
 		}
 		
-		Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(getHttpMethod());
+		Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(getRestServiceCall().getRequestMethod());
 		Request httpReq = requestFactoryFunct.apply(uri);
 		getHttpHeaders().forEach(httpReq::addHeader);
 		
-		if (getRequestBody() != null) {
-			httpReq.bodyString(getRequestBody(), ContentType.APPLICATION_JSON);
+		if (getRestServiceCall().getRequestBody() != null) {
+			httpReq.bodyString(getRestServiceCall().getRequestBody(), ContentType.APPLICATION_JSON);
 		}
 		
 		HttpResponse httpResp = httpReq.execute().returnResponse();
@@ -62,7 +64,4 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		}
 		return Either.left(httpResp);		
 	}
-	
-	
-	
 }

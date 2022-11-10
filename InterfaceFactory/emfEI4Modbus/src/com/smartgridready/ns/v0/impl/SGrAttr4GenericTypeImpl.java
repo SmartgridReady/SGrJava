@@ -227,7 +227,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final XMLGregorianCalendar MAX_SEND_TIME_EDEFAULT = null;
+	protected static final float MAX_SEND_TIME_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getMaxSendTime() <em>Max Send Time</em>}' attribute.
@@ -237,7 +237,16 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected XMLGregorianCalendar maxSendTime = MAX_SEND_TIME_EDEFAULT;
+	protected float maxSendTime = MAX_SEND_TIME_EDEFAULT;
+
+	/**
+	 * This is true if the Max Send Time attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean maxSendTimeESet;
 
 	/**
 	 * The default value of the '{@link #getMaxReceiveTime() <em>Max Receive Time</em>}' attribute.
@@ -247,7 +256,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final XMLGregorianCalendar MAX_RECEIVE_TIME_EDEFAULT = null;
+	protected static final float MAX_RECEIVE_TIME_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getMaxReceiveTime() <em>Max Receive Time</em>}' attribute.
@@ -257,7 +266,16 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected XMLGregorianCalendar maxReceiveTime = MAX_RECEIVE_TIME_EDEFAULT;
+	protected float maxReceiveTime = MAX_RECEIVE_TIME_EDEFAULT;
+
+	/**
+	 * This is true if the Max Receive Time attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean maxReceiveTimeESet;
 
 	/**
 	 * The default value of the '{@link #getMinSendTime() <em>Min Send Time</em>}' attribute.
@@ -267,7 +285,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final XMLGregorianCalendar MIN_SEND_TIME_EDEFAULT = null;
+	protected static final float MIN_SEND_TIME_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getMinSendTime() <em>Min Send Time</em>}' attribute.
@@ -277,7 +295,16 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected XMLGregorianCalendar minSendTime = MIN_SEND_TIME_EDEFAULT;
+	protected float minSendTime = MIN_SEND_TIME_EDEFAULT;
+
+	/**
+	 * This is true if the Min Send Time attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean minSendTimeESet;
 
 	/**
 	 * The default value of the '{@link #getMaxLatencyTime() <em>Max Latency Time</em>}' attribute.
@@ -967,7 +994,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public XMLGregorianCalendar getMaxSendTime() {
+	public float getMaxSendTime() {
 		return maxSendTime;
 	}
 
@@ -977,11 +1004,13 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public void setMaxSendTime(XMLGregorianCalendar newMaxSendTime) {
-		XMLGregorianCalendar oldMaxSendTime = maxSendTime;
+	public void setMaxSendTime(float newMaxSendTime) {
+		float oldMaxSendTime = maxSendTime;
 		maxSendTime = newMaxSendTime;
+		boolean oldMaxSendTimeESet = maxSendTimeESet;
+		maxSendTimeESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME, oldMaxSendTime, maxSendTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME, oldMaxSendTime, maxSendTime, !oldMaxSendTimeESet));
 	}
 
 	/**
@@ -990,7 +1019,32 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public XMLGregorianCalendar getMaxReceiveTime() {
+	public void unsetMaxSendTime() {
+		float oldMaxSendTime = maxSendTime;
+		boolean oldMaxSendTimeESet = maxSendTimeESet;
+		maxSendTime = MAX_SEND_TIME_EDEFAULT;
+		maxSendTimeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME, oldMaxSendTime, MAX_SEND_TIME_EDEFAULT, oldMaxSendTimeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetMaxSendTime() {
+		return maxSendTimeESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public float getMaxReceiveTime() {
 		return maxReceiveTime;
 	}
 
@@ -1000,11 +1054,13 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public void setMaxReceiveTime(XMLGregorianCalendar newMaxReceiveTime) {
-		XMLGregorianCalendar oldMaxReceiveTime = maxReceiveTime;
+	public void setMaxReceiveTime(float newMaxReceiveTime) {
+		float oldMaxReceiveTime = maxReceiveTime;
 		maxReceiveTime = newMaxReceiveTime;
+		boolean oldMaxReceiveTimeESet = maxReceiveTimeESet;
+		maxReceiveTimeESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME, oldMaxReceiveTime, maxReceiveTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME, oldMaxReceiveTime, maxReceiveTime, !oldMaxReceiveTimeESet));
 	}
 
 	/**
@@ -1013,7 +1069,32 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public XMLGregorianCalendar getMinSendTime() {
+	public void unsetMaxReceiveTime() {
+		float oldMaxReceiveTime = maxReceiveTime;
+		boolean oldMaxReceiveTimeESet = maxReceiveTimeESet;
+		maxReceiveTime = MAX_RECEIVE_TIME_EDEFAULT;
+		maxReceiveTimeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME, oldMaxReceiveTime, MAX_RECEIVE_TIME_EDEFAULT, oldMaxReceiveTimeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetMaxReceiveTime() {
+		return maxReceiveTimeESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public float getMinSendTime() {
 		return minSendTime;
 	}
 
@@ -1023,11 +1104,38 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public void setMinSendTime(XMLGregorianCalendar newMinSendTime) {
-		XMLGregorianCalendar oldMinSendTime = minSendTime;
+	public void setMinSendTime(float newMinSendTime) {
+		float oldMinSendTime = minSendTime;
 		minSendTime = newMinSendTime;
+		boolean oldMinSendTimeESet = minSendTimeESet;
+		minSendTimeESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME, oldMinSendTime, minSendTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME, oldMinSendTime, minSendTime, !oldMinSendTimeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetMinSendTime() {
+		float oldMinSendTime = minSendTime;
+		boolean oldMinSendTimeESet = minSendTimeESet;
+		minSendTime = MIN_SEND_TIME_EDEFAULT;
+		minSendTimeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME, oldMinSendTime, MIN_SEND_TIME_EDEFAULT, oldMinSendTimeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetMinSendTime() {
+		return minSendTimeESet;
 	}
 
 	/**
@@ -1776,13 +1884,13 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				setMinSendDelta((Float)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME:
-				setMaxSendTime((XMLGregorianCalendar)newValue);
+				setMaxSendTime((Float)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME:
-				setMaxReceiveTime((XMLGregorianCalendar)newValue);
+				setMaxReceiveTime((Float)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
-				setMinSendTime((XMLGregorianCalendar)newValue);
+				setMinSendTime((Float)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME:
 				setMaxLatencyTime((BigInteger)newValue);
@@ -1860,13 +1968,13 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				unsetMinSendDelta();
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME:
-				setMaxSendTime(MAX_SEND_TIME_EDEFAULT);
+				unsetMaxSendTime();
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME:
-				setMaxReceiveTime(MAX_RECEIVE_TIME_EDEFAULT);
+				unsetMaxReceiveTime();
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
-				setMinSendTime(MIN_SEND_TIME_EDEFAULT);
+				unsetMinSendTime();
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME:
 				setMaxLatencyTime(MAX_LATENCY_TIME_EDEFAULT);
@@ -1937,11 +2045,11 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_DELTA:
 				return isSetMinSendDelta();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME:
-				return MAX_SEND_TIME_EDEFAULT == null ? maxSendTime != null : !MAX_SEND_TIME_EDEFAULT.equals(maxSendTime);
+				return isSetMaxSendTime();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME:
-				return MAX_RECEIVE_TIME_EDEFAULT == null ? maxReceiveTime != null : !MAX_RECEIVE_TIME_EDEFAULT.equals(maxReceiveTime);
+				return isSetMaxReceiveTime();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
-				return MIN_SEND_TIME_EDEFAULT == null ? minSendTime != null : !MIN_SEND_TIME_EDEFAULT.equals(minSendTime);
+				return isSetMinSendTime();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME:
 				return MAX_LATENCY_TIME_EDEFAULT == null ? maxLatencyTime != null : !MAX_LATENCY_TIME_EDEFAULT.equals(maxLatencyTime);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
@@ -1995,11 +2103,11 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 		result.append(", minSendDelta: ");
 		if (minSendDeltaESet) result.append(minSendDelta); else result.append("<unset>");
 		result.append(", maxSendTime: ");
-		result.append(maxSendTime);
+		if (maxSendTimeESet) result.append(maxSendTime); else result.append("<unset>");
 		result.append(", maxReceiveTime: ");
-		result.append(maxReceiveTime);
+		if (maxReceiveTimeESet) result.append(maxReceiveTime); else result.append("<unset>");
 		result.append(", minSendTime: ");
-		result.append(minSendTime);
+		if (minSendTimeESet) result.append(minSendTime); else result.append("<unset>");
 		result.append(", maxLatencyTime: ");
 		result.append(maxLatencyTime);
 		result.append(", timeStampLog: ");

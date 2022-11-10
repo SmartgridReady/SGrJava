@@ -2,13 +2,16 @@
  */
 package com.smartgridready.ns.v0.impl;
 
+import com.smartgridready.ns.v0.RestServiceCall;
 import com.smartgridready.ns.v0.SGrRestAPIDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrRestAPIdataTypeType;
 import com.smartgridready.ns.v0.V0Package;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -21,8 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrRestAPIDataPointDescriptionTypeImpl#getRestAPIEndPoint <em>Rest API End Point</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrRestAPIDataPointDescriptionTypeImpl#getRestAPIJMESPath <em>Rest APIJMES Path</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrRestAPIDataPointDescriptionTypeImpl#getRestServiceCall <em>Rest Service Call</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrRestAPIDataPointDescriptionTypeImpl#getDataType <em>Data Type</em>}</li>
  * </ul>
  *
@@ -30,44 +32,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Container implements SGrRestAPIDataPointDescriptionType {
 	/**
-	 * The default value of the '{@link #getRestAPIEndPoint() <em>Rest API End Point</em>}' attribute.
+	 * The cached value of the '{@link #getRestServiceCall() <em>Rest Service Call</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRestAPIEndPoint()
+	 * @see #getRestServiceCall()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String REST_API_END_POINT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getRestAPIEndPoint() <em>Rest API End Point</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRestAPIEndPoint()
-	 * @generated
-	 * @ordered
-	 */
-	protected String restAPIEndPoint = REST_API_END_POINT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getRestAPIJMESPath() <em>Rest APIJMES Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRestAPIJMESPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String REST_APIJMES_PATH_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getRestAPIJMESPath() <em>Rest APIJMES Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRestAPIJMESPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected String restAPIJMESPath = REST_APIJMES_PATH_EDEFAULT;
+	protected RestServiceCall restServiceCall;
 
 	/**
 	 * The default value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
@@ -123,8 +95,23 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * @generated
 	 */
 	@Override
-	public String getRestAPIEndPoint() {
-		return restAPIEndPoint;
+	public RestServiceCall getRestServiceCall() {
+		return restServiceCall;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRestServiceCall(RestServiceCall newRestServiceCall, NotificationChain msgs) {
+		RestServiceCall oldRestServiceCall = restServiceCall;
+		restServiceCall = newRestServiceCall;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_SERVICE_CALL, oldRestServiceCall, newRestServiceCall);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -133,34 +120,18 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * @generated
 	 */
 	@Override
-	public void setRestAPIEndPoint(String newRestAPIEndPoint) {
-		String oldRestAPIEndPoint = restAPIEndPoint;
-		restAPIEndPoint = newRestAPIEndPoint;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_API_END_POINT, oldRestAPIEndPoint, restAPIEndPoint));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getRestAPIJMESPath() {
-		return restAPIJMESPath;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setRestAPIJMESPath(String newRestAPIJMESPath) {
-		String oldRestAPIJMESPath = restAPIJMESPath;
-		restAPIJMESPath = newRestAPIJMESPath;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_APIJMES_PATH, oldRestAPIJMESPath, restAPIJMESPath));
+	public void setRestServiceCall(RestServiceCall newRestServiceCall) {
+		if (newRestServiceCall != restServiceCall) {
+			NotificationChain msgs = null;
+			if (restServiceCall != null)
+				msgs = ((InternalEObject)restServiceCall).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_SERVICE_CALL, null, msgs);
+			if (newRestServiceCall != null)
+				msgs = ((InternalEObject)newRestServiceCall).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_SERVICE_CALL, null, msgs);
+			msgs = basicSetRestServiceCall(newRestServiceCall, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_SERVICE_CALL, newRestServiceCall, newRestServiceCall));
 	}
 
 	/**
@@ -219,12 +190,24 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_SERVICE_CALL:
+				return basicSetRestServiceCall(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_API_END_POINT:
-				return getRestAPIEndPoint();
-			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_APIJMES_PATH:
-				return getRestAPIJMESPath();
+			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_SERVICE_CALL:
+				return getRestServiceCall();
 			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__DATA_TYPE:
 				return getDataType();
 		}
@@ -239,11 +222,8 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_API_END_POINT:
-				setRestAPIEndPoint((String)newValue);
-				return;
-			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_APIJMES_PATH:
-				setRestAPIJMESPath((String)newValue);
+			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_SERVICE_CALL:
+				setRestServiceCall((RestServiceCall)newValue);
 				return;
 			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__DATA_TYPE:
 				setDataType((SGrRestAPIdataTypeType)newValue);
@@ -260,11 +240,8 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_API_END_POINT:
-				setRestAPIEndPoint(REST_API_END_POINT_EDEFAULT);
-				return;
-			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_APIJMES_PATH:
-				setRestAPIJMESPath(REST_APIJMES_PATH_EDEFAULT);
+			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_SERVICE_CALL:
+				setRestServiceCall((RestServiceCall)null);
 				return;
 			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__DATA_TYPE:
 				unsetDataType();
@@ -281,10 +258,8 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_API_END_POINT:
-				return REST_API_END_POINT_EDEFAULT == null ? restAPIEndPoint != null : !REST_API_END_POINT_EDEFAULT.equals(restAPIEndPoint);
-			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_APIJMES_PATH:
-				return REST_APIJMES_PATH_EDEFAULT == null ? restAPIJMESPath != null : !REST_APIJMES_PATH_EDEFAULT.equals(restAPIJMESPath);
+			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__REST_SERVICE_CALL:
+				return restServiceCall != null;
 			case V0Package.SGR_REST_API_DATA_POINT_DESCRIPTION_TYPE__DATA_TYPE:
 				return isSetDataType();
 		}
@@ -301,11 +276,7 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (restAPIEndPoint: ");
-		result.append(restAPIEndPoint);
-		result.append(", restAPIJMESPath: ");
-		result.append(restAPIJMESPath);
-		result.append(", dataType: ");
+		result.append(" (dataType: ");
 		if (dataTypeESet) result.append(dataType); else result.append("<unset>");
 		result.append(')');
 		return result.toString();

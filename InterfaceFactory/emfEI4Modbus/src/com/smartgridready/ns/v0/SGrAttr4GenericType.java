@@ -367,50 +367,108 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  The maximum time between 2 notifications
+	 *  The maximum time between 2 notifications in seconds
 	 * 					
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Max Send Time</em>' attribute.
-	 * @see #setMaxSendTime(XMLGregorianCalendar)
+	 * @see #isSetMaxSendTime()
+	 * @see #unsetMaxSendTime()
+	 * @see #setMaxSendTime(float)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_MaxSendTime()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.Time"
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float"
 	 *        extendedMetaData="kind='element' name='maxSendTime' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	XMLGregorianCalendar getMaxSendTime();
+	float getMaxSendTime();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxSendTime <em>Max Send Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Max Send Time</em>' attribute.
+	 * @see #isSetMaxSendTime()
+	 * @see #unsetMaxSendTime()
 	 * @see #getMaxSendTime()
 	 * @generated
 	 */
-	void setMaxSendTime(XMLGregorianCalendar value);
+	void setMaxSendTime(float value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxSendTime <em>Max Send Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMaxSendTime()
+	 * @see #getMaxSendTime()
+	 * @see #setMaxSendTime(float)
+	 * @generated
+	 */
+	void unsetMaxSendTime();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxSendTime <em>Max Send Time</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Max Send Time</em>' attribute is set.
+	 * @see #unsetMaxSendTime()
+	 * @see #getMaxSendTime()
+	 * @see #setMaxSendTime(float)
+	 * @generated
+	 */
+	boolean isSetMaxSendTime();
 
 	/**
 	 * Returns the value of the '<em><b>Max Receive Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 *  The maximum time between 2 notifications in seconds
+	 * 					
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Max Receive Time</em>' attribute.
-	 * @see #setMaxReceiveTime(XMLGregorianCalendar)
+	 * @see #isSetMaxReceiveTime()
+	 * @see #unsetMaxReceiveTime()
+	 * @see #setMaxReceiveTime(float)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_MaxReceiveTime()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.Time"
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float"
 	 *        extendedMetaData="kind='element' name='maxReceiveTime' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	XMLGregorianCalendar getMaxReceiveTime();
+	float getMaxReceiveTime();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxReceiveTime <em>Max Receive Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Max Receive Time</em>' attribute.
+	 * @see #isSetMaxReceiveTime()
+	 * @see #unsetMaxReceiveTime()
 	 * @see #getMaxReceiveTime()
 	 * @generated
 	 */
-	void setMaxReceiveTime(XMLGregorianCalendar value);
+	void setMaxReceiveTime(float value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxReceiveTime <em>Max Receive Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMaxReceiveTime()
+	 * @see #getMaxReceiveTime()
+	 * @see #setMaxReceiveTime(float)
+	 * @generated
+	 */
+	void unsetMaxReceiveTime();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxReceiveTime <em>Max Receive Time</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Max Receive Time</em>' attribute is set.
+	 * @see #unsetMaxReceiveTime()
+	 * @see #getMaxReceiveTime()
+	 * @see #setMaxReceiveTime(float)
+	 * @generated
+	 */
+	boolean isSetMaxReceiveTime();
 
 	/**
 	 * Returns the value of the '<em><b>Min Send Time</b></em>' attribute.
@@ -418,27 +476,54 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 *  The fastest possible or allowable sequence of
-	 * 						notifications
+	 * 						notifications in seconds
 	 * 					
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Min Send Time</em>' attribute.
-	 * @see #setMinSendTime(XMLGregorianCalendar)
+	 * @see #isSetMinSendTime()
+	 * @see #unsetMinSendTime()
+	 * @see #setMinSendTime(float)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_MinSendTime()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.Time"
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float"
 	 *        extendedMetaData="kind='element' name='minSendTime' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	XMLGregorianCalendar getMinSendTime();
+	float getMinSendTime();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendTime <em>Min Send Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Min Send Time</em>' attribute.
+	 * @see #isSetMinSendTime()
+	 * @see #unsetMinSendTime()
 	 * @see #getMinSendTime()
 	 * @generated
 	 */
-	void setMinSendTime(XMLGregorianCalendar value);
+	void setMinSendTime(float value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendTime <em>Min Send Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMinSendTime()
+	 * @see #getMinSendTime()
+	 * @see #setMinSendTime(float)
+	 * @generated
+	 */
+	void unsetMinSendTime();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendTime <em>Min Send Time</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Min Send Time</em>' attribute is set.
+	 * @see #unsetMinSendTime()
+	 * @see #getMinSendTime()
+	 * @see #setMinSendTime(float)
+	 * @generated
+	 */
+	boolean isSetMinSendTime();
 
 	/**
 	 * Returns the value of the '<em><b>Max Latency Time</b></em>' attribute.

@@ -13,8 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getRestAPIEndPoint <em>Rest API End Point</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getRestAPIJMESPath <em>Rest APIJMES Path</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getServiceCall <em>Service Call</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGRrestAPIBearerType()
@@ -23,49 +22,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SGRrestAPIBearerType extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Rest API End Point</b></em>' attribute.
+	 * Returns the value of the '<em><b>Service Call</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rest API End Point</em>' attribute.
-	 * @see #setRestAPIEndPoint(String)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGRrestAPIBearerType_RestAPIEndPoint()
-	 * @model dataType="com.smartgridready.ns.v0.RestAPIEndPointType1" required="true"
-	 *        extendedMetaData="kind='element' name='restAPIEndPoint' namespace='##targetNamespace'"
+	 * @return the value of the '<em>Service Call</em>' containment reference.
+	 * @see #setServiceCall(RestServiceCall)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGRrestAPIBearerType_ServiceCall()
+	 * @model containment="true" required="true"
+	 *        extendedMetaData="kind='element' name='serviceCall' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	String getRestAPIEndPoint();
+	RestServiceCall getServiceCall();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getRestAPIEndPoint <em>Rest API End Point</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getServiceCall <em>Service Call</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rest API End Point</em>' attribute.
-	 * @see #getRestAPIEndPoint()
+	 * @param value the new value of the '<em>Service Call</em>' containment reference.
+	 * @see #getServiceCall()
 	 * @generated
 	 */
-	void setRestAPIEndPoint(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Rest APIJMES Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rest APIJMES Path</em>' attribute.
-	 * @see #setRestAPIJMESPath(String)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGRrestAPIBearerType_RestAPIJMESPath()
-	 * @model dataType="com.smartgridready.ns.v0.RestAPIJMESPathType1" required="true"
-	 *        extendedMetaData="kind='element' name='restAPIJMESPath' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	String getRestAPIJMESPath();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGRrestAPIBearerType#getRestAPIJMESPath <em>Rest APIJMES Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rest APIJMES Path</em>' attribute.
-	 * @see #getRestAPIJMESPath()
-	 * @generated
-	 */
-	void setRestAPIJMESPath(String value);
+	void setServiceCall(RestServiceCall value);
 
 } // SGRrestAPIBearerType

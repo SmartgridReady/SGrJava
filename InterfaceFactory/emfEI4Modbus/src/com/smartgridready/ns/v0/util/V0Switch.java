@@ -78,6 +78,18 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case V0Package.HEADER_ENTRY: {
+				HeaderEntry headerEntry = (HeaderEntry)theEObject;
+				T result = caseHeaderEntry(headerEntry);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.HEADER_LIST: {
+				HeaderList headerList = (HeaderList)theEObject;
+				T result = caseHeaderList(headerList);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case V0Package.IP_ADDR_TYPE: {
 				IpADDRType ipADDRType = (IpADDRType)theEObject;
 				T result = caseIpADDRType(ipADDRType);
@@ -93,6 +105,18 @@ public class V0Switch<T> extends Switch<T> {
 			case V0Package.NETWORK_CONNECTION_STATE_TYPE: {
 				NetworkConnectionStateType networkConnectionStateType = (NetworkConnectionStateType)theEObject;
 				T result = caseNetworkConnectionStateType(networkConnectionStateType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.RESPONSE_QUERY: {
+				ResponseQuery responseQuery = (ResponseQuery)theEObject;
+				T result = caseResponseQuery(responseQuery);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.REST_SERVICE_CALL: {
+				RestServiceCall restServiceCall = (RestServiceCall)theEObject;
+				T result = caseRestServiceCall(restServiceCall);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -471,6 +495,36 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Header Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Header Entry</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHeaderEntry(HeaderEntry object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Header List</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Header List</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHeaderList(HeaderList object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ip ADDR Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -512,6 +566,36 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNetworkConnectionStateType(NetworkConnectionStateType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Response Query</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Response Query</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResponseQuery(ResponseQuery object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rest Service Call</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rest Service Call</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRestServiceCall(RestServiceCall object) {
 		return null;
 	}
 

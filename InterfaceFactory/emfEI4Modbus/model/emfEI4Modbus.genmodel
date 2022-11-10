@@ -39,6 +39,13 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//EStopBitLenType/_15"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//EStopBitLenType/_2"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//HttpMethod">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/GET"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/POST"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/PUT"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/PATCH"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/DELETE"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//MasterFunctionsSupportedType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupportedType/Primitives"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupportedType/ReadDiscreteInputs"/>
@@ -120,6 +127,11 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/R48"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/R49"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/R50"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//ResponseQueryType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ResponseQueryType/JMESPathExpression"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ResponseQueryType/XPathExpression"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ResponseQueryType/RegularExpression"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrDeviceKindType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrDeviceKindType/Battery"/>
@@ -725,6 +737,7 @@
     <genDataTypes ecoreDataType="v0.ecore#//EByteLenTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//EParityTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//EStopBitLenTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//HttpMethodObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//IpV4n1Type"/>
     <genDataTypes ecoreDataType="v0.ecore#//IpV4n1Type1"/>
     <genDataTypes ecoreDataType="v0.ecore#//IpV4n2Type"/>
@@ -740,10 +753,9 @@
     <genDataTypes ecoreDataType="v0.ecore#//PlaceHolder4futureExtensionsType"/>
     <genDataTypes ecoreDataType="v0.ecore#//PrelimStringDefType"/>
     <genDataTypes ecoreDataType="v0.ecore#//ProfileTypeEnumTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ResponseQueryTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//RestAPIEndPointType"/>
-    <genDataTypes ecoreDataType="v0.ecore#//RestAPIEndPointType1"/>
     <genDataTypes ecoreDataType="v0.ecore#//RestAPIJMESPathType"/>
-    <genDataTypes ecoreDataType="v0.ecore#//RestAPIJMESPathType1"/>
     <genDataTypes ecoreDataType="v0.ecore#//RestBasicPasswordType"/>
     <genDataTypes ecoreDataType="v0.ecore#//RestBasicUsernameType"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrDeviceKindTypeObject"/>
@@ -815,6 +827,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/stopBitLenSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/trspServiceModbus"/>
     </genClasses>
+    <genClasses ecoreClass="v0.ecore#//HeaderEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//HeaderEntry/headerName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//HeaderEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//HeaderList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//HeaderList/header"/>
+    </genClasses>
     <genClasses ecoreClass="v0.ecore#//IpADDRType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//IpADDRType/ipV4n1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//IpADDRType/ipV4n2"/>
@@ -827,6 +846,17 @@
     <genClasses ecoreClass="v0.ecore#//NetworkConnectionStateType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//NetworkConnectionStateType/isConnected"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//NetworkConnectionStateType/nextAttempt"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ResponseQuery">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ResponseQuery/queryType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ResponseQuery/query"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestServiceCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestServiceCall/requestHeader"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestServiceCall/requestMethod"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestServiceCall/requestPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestServiceCall/requestBody"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestServiceCall/responseQuery"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//RTUDevInstanceType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RTUDevInstanceType/deviceInstName"/>
@@ -1057,15 +1087,14 @@
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrReleaseNotes">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrReleaseNotes/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrReleaseNotes/remarks"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrReleaseNotes/changelog"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGRrestAPIBearerType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGRrestAPIBearerType/restAPIEndPoint"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGRrestAPIBearerType/restAPIJMESPath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGRrestAPIBearerType/serviceCall"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrRestAPIDataPointDescriptionType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRestAPIDataPointDescriptionType/restAPIEndPoint"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRestAPIDataPointDescriptionType/restAPIJMESPath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrRestAPIDataPointDescriptionType/restServiceCall"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrRestAPIDataPointDescriptionType/dataType"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrRestAPIDataPointType">

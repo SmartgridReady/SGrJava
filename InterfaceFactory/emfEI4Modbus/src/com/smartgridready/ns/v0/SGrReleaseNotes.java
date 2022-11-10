@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrReleaseNotes#getState <em>State</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrReleaseNotes#getRemarks <em>Remarks</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrReleaseNotes#getChangelog <em>Changelog</em>}</li>
  * </ul>
  *
@@ -82,6 +83,29 @@ public interface SGrReleaseNotes extends EObject {
 	 * @generated
 	 */
 	boolean isSetState();
+
+	/**
+	 * Returns the value of the '<em><b>Remarks</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Remarks</em>' attribute.
+	 * @see #setRemarks(String)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrReleaseNotes_Remarks()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+	 *        extendedMetaData="kind='element' name='remarks' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	String getRemarks();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrReleaseNotes#getRemarks <em>Remarks</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Remarks</em>' attribute.
+	 * @see #getRemarks()
+	 * @generated
+	 */
+	void setRemarks(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Changelog</b></em>' containment reference list.

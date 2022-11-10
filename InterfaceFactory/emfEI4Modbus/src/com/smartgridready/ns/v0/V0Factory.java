@@ -40,6 +40,24 @@ public interface V0Factory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+	 * Returns a new object of class '<em>Header Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Header Entry</em>'.
+	 * @generated
+	 */
+	HeaderEntry createHeaderEntry();
+
+	/**
+	 * Returns a new object of class '<em>Header List</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Header List</em>'.
+	 * @generated
+	 */
+	HeaderList createHeaderList();
+
+	/**
 	 * Returns a new object of class '<em>Ip ADDR Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,6 +83,24 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	NetworkConnectionStateType createNetworkConnectionStateType();
+
+	/**
+	 * Returns a new object of class '<em>Response Query</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Response Query</em>'.
+	 * @generated
+	 */
+	ResponseQuery createResponseQuery();
+
+	/**
+	 * Returns a new object of class '<em>Rest Service Call</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rest Service Call</em>'.
+	 * @generated
+	 */
+	RestServiceCall createRestServiceCall();
 
 	/**
 	 * Returns a new object of class '<em>RTU Dev Instance Type</em>'.

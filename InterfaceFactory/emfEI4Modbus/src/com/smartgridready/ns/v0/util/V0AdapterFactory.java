@@ -76,6 +76,14 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createDocumentRootAdapter();
 			}
 			@Override
+			public Adapter caseHeaderEntry(HeaderEntry object) {
+				return createHeaderEntryAdapter();
+			}
+			@Override
+			public Adapter caseHeaderList(HeaderList object) {
+				return createHeaderListAdapter();
+			}
+			@Override
 			public Adapter caseIpADDRType(IpADDRType object) {
 				return createIpADDRTypeAdapter();
 			}
@@ -86,6 +94,14 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNetworkConnectionStateType(NetworkConnectionStateType object) {
 				return createNetworkConnectionStateTypeAdapter();
+			}
+			@Override
+			public Adapter caseResponseQuery(ResponseQuery object) {
+				return createResponseQueryAdapter();
+			}
+			@Override
+			public Adapter caseRestServiceCall(RestServiceCall object) {
+				return createRestServiceCallAdapter();
 			}
 			@Override
 			public Adapter caseRTUDevInstanceType(RTUDevInstanceType object) {
@@ -356,6 +372,34 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.HeaderEntry <em>Header Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.HeaderEntry
+	 * @generated
+	 */
+	public Adapter createHeaderEntryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.HeaderList <em>Header List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.HeaderList
+	 * @generated
+	 */
+	public Adapter createHeaderListAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.IpADDRType <em>Ip ADDR Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -394,6 +438,34 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNetworkConnectionStateTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.ResponseQuery <em>Response Query</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.ResponseQuery
+	 * @generated
+	 */
+	public Adapter createResponseQueryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.RestServiceCall <em>Rest Service Call</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.RestServiceCall
+	 * @generated
+	 */
+	public Adapter createRestServiceCallAdapter() {
 		return null;
 	}
 

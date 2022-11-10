@@ -6,24 +6,26 @@ import java.util.Optional;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
-import org.apache.hc.core5.http.MethodNotSupportedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smartgridready.ns.v0.RestServiceCall;
 import com.smartgridready.ns.v0.SGrRestAPIAuthenticationEnumMethodType;
 import com.smartgridready.ns.v0.SGrRestAPIDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrRestAPIDataPointType;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 import com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType;
 
-import communicator.common.runtime.GenDriverException;
 import communicator.http.authentication.Authenticator;
 import communicator.http.authentication.AuthenticatorFactory;
 import communicator.http.authentication.DummyHttpAuthenticator;
-import communicator.http.client.ApacheRestServiceClient;
-import communicator.http.client.RestServiceClient.HttpMethod;
+import communicator.http.client.RestServiceClient;
+import communicator.http.client.RestServiceClientFactory;
+import communicator.restapi.exception.RestApiAuthenticationException;
+import communicator.restapi.exception.RestApiResponseParseException;
+import communicator.restapi.exception.RestApiServiceCallException;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
@@ -35,26 +37,24 @@ public class SGrRestApiDevice {
 	
 	private final SGrRestAPIDeviceFrame deviceDescription;
 	private Authenticator httpAuthenticator;
+	private RestServiceClientFactory restServiceClientFactory;
 	
-	public SGrRestApiDevice(SGrRestAPIDeviceFrame deviceDescription) {
+	public SGrRestApiDevice(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
 		this.deviceDescription = deviceDescription;
-		this.httpAuthenticator = new DummyHttpAuthenticator();		
+		this.restServiceClientFactory = restServiceClientFactory;
+		this.httpAuthenticator = new DummyHttpAuthenticator();
 	}
 	
 	
-	public void authenticate() throws GenDriverException {
+	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
 		SGrRestAPIAuthenticationEnumMethodType authMethod = 
 				deviceDescription.getRestAPIInterfaceDesc().getRestAPIAuthenticationMethod();
-
-			try {
-				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
-			} catch (MethodNotSupportedException | ReflectiveOperationException e) {
-				throw new GenDriverException("Authenticator instantiation failed: " + e.getMessage(), e);
-			}
+				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);		
+				httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
 	}
 	
 	
-	public String getVal(String profileName, String dataPointName) throws GenDriverException {		
+	public String getVal(String profileName, String dataPointName) throws IOException, RestApiServiceCallException, RestApiResponseParseException {		
 		Optional<ProfileDataPoint> profileDpOpt = findProfileDataPoint(profileName, dataPointName);	
 		if (profileDpOpt.isPresent()) {
 			return readVal(profileDpOpt.get());
@@ -64,7 +64,7 @@ public class SGrRestApiDevice {
 	}
 	
 	
-	public String readVal(ProfileDataPoint profileDp) throws GenDriverException {	
+	public String readVal(ProfileDataPoint profileDp) throws IOException, RestApiServiceCallException, RestApiResponseParseException {	
 		
 		String host = deviceDescription.getRestAPIInterfaceDesc().getTrspSrvRestURIoutOfBox();
 		
@@ -74,50 +74,42 @@ public class SGrRestApiDevice {
 		if (dpDescriptionOpt.isPresent()) {
 			
 			SGrRestAPIDataPointDescriptionType dpDescription = dpDescriptionOpt.get();
-			ApacheRestServiceClient restServiceClient = new ApacheRestServiceClient("https://" + host, HttpMethod.GET);
-			restServiceClient.setRequestPath(dpDescription.getRestAPIEndPoint());
-			try {
-				String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
-				return parseJsonResponse(dpDescription, response);				
-			} catch (IOException e) {
-				throw new GenDriverException("Read value failed: " + e.getMessage(), e);
-			}			
+			RestServiceCall serviceCall = dpDescription.getRestServiceCall();
+			RestServiceClient restServiceClient = restServiceClientFactory.create(host, serviceCall);					
+
+			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
+			return parseJsonResponse(serviceCall.getResponseQuery().getQuery(), response);				
+		
 		}		
-		return "Missing datapoint description";
+		return "Missing 'restAPIDataPoint' description in device description XML file";
 	}
 	
-	private String handleServiceCall(ApacheRestServiceClient serviceClient, boolean tryTokenRenewal) throws IOException, GenDriverException {
+	
+	private String handleServiceCall(RestServiceClient serviceClient, boolean tryTokenRenewal) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
 		
-		serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription));
+		serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory));
 		
 		Either<HttpResponse, String> result = serviceClient.callService();		
 		if (result.isRight()) {
 			return result.get();
 		} else if (tryTokenRenewal && result.getLeft().getCode() == HttpStatus.SC_UNAUTHORIZED) {
 			LOG.info("Authorisation error received. Trying with token renewal");
-			httpAuthenticator.renewToken(deviceDescription);
-			serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription));
+			httpAuthenticator.renewToken(deviceDescription, restServiceClientFactory);
+			serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory));
 			// recurse into handleServiceCall, set tryTokenRenewal always to false here!
 			handleServiceCall(serviceClient, false); 
 		} else {
-			handleServiceCallError(result.getLeft());
+			throw new RestApiServiceCallException(result.getLeft());
 		}
 		return null;
 	}
 	
-	private void handleServiceCallError(HttpResponse response) throws GenDriverException {
-		throw new GenDriverException(
-				"REST service call failed. HttpStatus: " + 
-				response.getCode() + 
-				" - reason: " + response.getReasonPhrase());
-	}
-	
 
-	private String parseJsonResponse(SGrRestAPIDataPointDescriptionType dpDescription, String jsonResp) 
-	throws GenDriverException {
+	private String parseJsonResponse(String jmesPath, String jsonResp) 
+	throws RestApiResponseParseException {
 
 		JmesPath<JsonNode> path = new JacksonRuntime();
-		Expression<JsonNode> expression = path.compile(dpDescription.getRestAPIJMESPath());
+		Expression<JsonNode> expression = path.compile(jmesPath);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
@@ -126,7 +118,7 @@ public class SGrRestApiDevice {
 			JsonNode res = expression.search(jsonNode);
 			return res.asText();
 		} catch (IOException e) {
-			throw new GenDriverException("Parsing JSON response failed: " + e.getMessage(), e);
+			throw new RestApiResponseParseException("Parsing JSON response failed: " + e.getMessage(), e);
 		}
 	}
 

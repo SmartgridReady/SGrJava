@@ -102,12 +102,20 @@ public class V0Validator extends EObjectValidator {
 				return validateContactAPIInterfaceDescType((ContactAPIInterfaceDescType)value, diagnostics, context);
 			case V0Package.DOCUMENT_ROOT:
 				return validateDocumentRoot((DocumentRoot)value, diagnostics, context);
+			case V0Package.HEADER_ENTRY:
+				return validateHeaderEntry((HeaderEntry)value, diagnostics, context);
+			case V0Package.HEADER_LIST:
+				return validateHeaderList((HeaderList)value, diagnostics, context);
 			case V0Package.IP_ADDR_TYPE:
 				return validateIpADDRType((IpADDRType)value, diagnostics, context);
 			case V0Package.MODBUS_JMES_PATH_TYPE:
 				return validateModbusJMESPathType((ModbusJMESPathType)value, diagnostics, context);
 			case V0Package.NETWORK_CONNECTION_STATE_TYPE:
 				return validateNetworkConnectionStateType((NetworkConnectionStateType)value, diagnostics, context);
+			case V0Package.RESPONSE_QUERY:
+				return validateResponseQuery((ResponseQuery)value, diagnostics, context);
+			case V0Package.REST_SERVICE_CALL:
+				return validateRestServiceCall((RestServiceCall)value, diagnostics, context);
 			case V0Package.RTU_DEV_INSTANCE_TYPE:
 				return validateRTUDevInstanceType((RTUDevInstanceType)value, diagnostics, context);
 			case V0Package.RT_UTRSP_SRV_INSTANCE_TYPE:
@@ -226,12 +234,16 @@ public class V0Validator extends EObjectValidator {
 				return validateEParityType((EParityType)value, diagnostics, context);
 			case V0Package.ESTOP_BIT_LEN_TYPE:
 				return validateEStopBitLenType((EStopBitLenType)value, diagnostics, context);
+			case V0Package.HTTP_METHOD:
+				return validateHttpMethod((HttpMethod)value, diagnostics, context);
 			case V0Package.MASTER_FUNCTIONS_SUPPORTED_TYPE:
 				return validateMasterFunctionsSupportedType((MasterFunctionsSupportedType)value, diagnostics, context);
 			case V0Package.MODBUS_INTERFACE_SELECTION_TYPE:
 				return validateModbusInterfaceSelectionType((ModbusInterfaceSelectionType)value, diagnostics, context);
 			case V0Package.PROFILE_TYPE_ENUM_TYPE:
 				return validateProfileTypeEnumType((ProfileTypeEnumType)value, diagnostics, context);
+			case V0Package.RESPONSE_QUERY_TYPE:
+				return validateResponseQueryType((ResponseQueryType)value, diagnostics, context);
 			case V0Package.SGR_DEVICE_KIND_TYPE:
 				return validateSGrDeviceKindType((SGrDeviceKindType)value, diagnostics, context);
 			case V0Package.SG_READY_STATE_LV1_TYPE:
@@ -316,6 +328,8 @@ public class V0Validator extends EObjectValidator {
 				return validateEParityTypeObject((EParityType)value, diagnostics, context);
 			case V0Package.ESTOP_BIT_LEN_TYPE_OBJECT:
 				return validateEStopBitLenTypeObject((EStopBitLenType)value, diagnostics, context);
+			case V0Package.HTTP_METHOD_OBJECT:
+				return validateHttpMethodObject((HttpMethod)value, diagnostics, context);
 			case V0Package.IP_V4N1_TYPE:
 				return validateIpV4n1Type((BigInteger)value, diagnostics, context);
 			case V0Package.IP_V4N1_TYPE1:
@@ -346,14 +360,12 @@ public class V0Validator extends EObjectValidator {
 				return validatePrelimStringDefType((String)value, diagnostics, context);
 			case V0Package.PROFILE_TYPE_ENUM_TYPE_OBJECT:
 				return validateProfileTypeEnumTypeObject((ProfileTypeEnumType)value, diagnostics, context);
+			case V0Package.RESPONSE_QUERY_TYPE_OBJECT:
+				return validateResponseQueryTypeObject((ResponseQueryType)value, diagnostics, context);
 			case V0Package.REST_API_END_POINT_TYPE:
 				return validateRestAPIEndPointType((String)value, diagnostics, context);
-			case V0Package.REST_API_END_POINT_TYPE1:
-				return validateRestAPIEndPointType1((String)value, diagnostics, context);
 			case V0Package.REST_APIJMES_PATH_TYPE:
 				return validateRestAPIJMESPathType((String)value, diagnostics, context);
-			case V0Package.REST_APIJMES_PATH_TYPE1:
-				return validateRestAPIJMESPathType1((String)value, diagnostics, context);
 			case V0Package.REST_BASIC_PASSWORD_TYPE:
 				return validateRestBasicPasswordType((String)value, diagnostics, context);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
@@ -476,6 +488,24 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateHeaderEntry(HeaderEntry headerEntry, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(headerEntry, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHeaderList(HeaderList headerList, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(headerList, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateIpADDRType(IpADDRType ipADDRType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(ipADDRType, diagnostics, context);
 	}
@@ -496,6 +526,24 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateNetworkConnectionStateType(NetworkConnectionStateType networkConnectionStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(networkConnectionStateType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateResponseQuery(ResponseQuery responseQuery, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(responseQuery, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRestServiceCall(RestServiceCall restServiceCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(restServiceCall, diagnostics, context);
 	}
 
 	/**
@@ -1034,6 +1082,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateHttpMethod(HttpMethod httpMethod, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMasterFunctionsSupportedType(MasterFunctionsSupportedType masterFunctionsSupportedType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1053,6 +1110,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateProfileTypeEnumType(ProfileTypeEnumType profileTypeEnumType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateResponseQueryType(ResponseQueryType responseQueryType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1431,6 +1497,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateEStopBitLenTypeObject(EStopBitLenType eStopBitLenTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHttpMethodObject(HttpMethod httpMethodObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1930,6 +2005,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateResponseQueryTypeObject(ResponseQueryType responseQueryTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateRestAPIEndPointType(String restAPIEndPointType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1939,25 +2023,7 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRestAPIEndPointType1(String restAPIEndPointType1, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateRestAPIJMESPathType(String restAPIJMESPathType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRestAPIJMESPathType1(String restAPIJMESPathType1, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

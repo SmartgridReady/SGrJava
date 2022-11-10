@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrReleaseNotesImpl#getState <em>State</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrReleaseNotesImpl#getRemarks <em>Remarks</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrReleaseNotesImpl#getChangelog <em>Changelog</em>}</li>
  * </ul>
  *
@@ -66,6 +67,26 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected boolean stateESet;
+
+	/**
+	 * The default value of the '{@link #getRemarks() <em>Remarks</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRemarks()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String REMARKS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getRemarks() <em>Remarks</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRemarks()
+	 * @generated
+	 * @ordered
+	 */
+	protected String remarks = REMARKS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getChangelog() <em>Changelog</em>}' containment reference list.
@@ -152,6 +173,29 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public String getRemarks() {
+		return remarks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRemarks(String newRemarks) {
+		String oldRemarks = remarks;
+		remarks = newRemarks;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_RELEASE_NOTES__REMARKS, oldRemarks, remarks));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<SGrChangeLog> getChangelog() {
 		if (changelog == null) {
 			changelog = new EObjectContainmentEList<SGrChangeLog>(SGrChangeLog.class, this, V0Package.SGR_RELEASE_NOTES__CHANGELOG);
@@ -183,6 +227,8 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case V0Package.SGR_RELEASE_NOTES__STATE:
 				return getState();
+			case V0Package.SGR_RELEASE_NOTES__REMARKS:
+				return getRemarks();
 			case V0Package.SGR_RELEASE_NOTES__CHANGELOG:
 				return getChangelog();
 		}
@@ -200,6 +246,9 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case V0Package.SGR_RELEASE_NOTES__STATE:
 				setState((SGrReleaseState)newValue);
+				return;
+			case V0Package.SGR_RELEASE_NOTES__REMARKS:
+				setRemarks((String)newValue);
 				return;
 			case V0Package.SGR_RELEASE_NOTES__CHANGELOG:
 				getChangelog().clear();
@@ -220,6 +269,9 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_RELEASE_NOTES__STATE:
 				unsetState();
 				return;
+			case V0Package.SGR_RELEASE_NOTES__REMARKS:
+				setRemarks(REMARKS_EDEFAULT);
+				return;
 			case V0Package.SGR_RELEASE_NOTES__CHANGELOG:
 				getChangelog().clear();
 				return;
@@ -237,6 +289,8 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case V0Package.SGR_RELEASE_NOTES__STATE:
 				return isSetState();
+			case V0Package.SGR_RELEASE_NOTES__REMARKS:
+				return REMARKS_EDEFAULT == null ? remarks != null : !REMARKS_EDEFAULT.equals(remarks);
 			case V0Package.SGR_RELEASE_NOTES__CHANGELOG:
 				return changelog != null && !changelog.isEmpty();
 		}
@@ -255,6 +309,8 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (state: ");
 		if (stateESet) result.append(state); else result.append("<unset>");
+		result.append(", remarks: ");
+		result.append(remarks);
 		result.append(')');
 		return result.toString();
 	}

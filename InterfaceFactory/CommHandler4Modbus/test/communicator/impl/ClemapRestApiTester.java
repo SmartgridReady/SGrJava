@@ -1,5 +1,6 @@
 package communicator.impl;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,11 @@ import org.slf4j.LoggerFactory;
 
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 
-import communicator.common.runtime.GenDriverException;
 import communicator.helper.DeviceDescriptionLoader;
+import communicator.http.client.ApacheRestServiceClientFactory;
+import communicator.restapi.exception.RestApiAuthenticationException;
+import communicator.restapi.exception.RestApiResponseParseException;
+import communicator.restapi.exception.RestApiServiceCallException;
 
 public class ClemapRestApiTester {
 	
@@ -29,7 +33,7 @@ public class ClemapRestApiTester {
 		DeviceDescriptionLoader<SGrRestAPIDeviceFrame> loader = new DeviceDescriptionLoader<>();						
 		
 		SGrRestAPIDeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);	
-		SGrRestApiDevice clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc);
+		SGrRestApiDevice clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
  
 		try {
 			clemapMonitor.authenticate();
@@ -38,7 +42,7 @@ public class ClemapRestApiTester {
 			LOG.info("ACL2 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL2"));
 			LOG.info("ACL3 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL3"));
 			
-		} catch (GenDriverException e) {
+		} catch (RestApiAuthenticationException | RestApiServiceCallException | RestApiResponseParseException | IOException e) {
 			LOG.info("Error: " + e.getMessage());
 		}						
 	}

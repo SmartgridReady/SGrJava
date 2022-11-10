@@ -4,78 +4,52 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpResponse;
+import org.eclipse.emf.common.util.EList;
+
+import com.smartgridready.ns.v0.HeaderEntry;
+import com.smartgridready.ns.v0.HeaderList;
+import com.smartgridready.ns.v0.RestServiceCall;
 
 import io.vavr.control.Either;
 
 public abstract class RestServiceClient {
 	
-	public enum HttpMethod {
-		GET,
-		POST,
-		PUT,
-		PATCH,
-		DELETE;
-	}
-
 	private final String baseUri;
 	
-	private final HttpMethod httpMethod;
+	private final Map<String, String> httpHeaders;
 	
-	private Map<String, String> httpHeaders = new HashMap<>();
+	private final RestServiceCall restServiceCall;
 	
-	private String requestPath;
-	
-	private String requestBody;
-	
-	private ContentType requestBodyContentType;
-	
-	
-	protected RestServiceClient(String baseUri, HttpMethod httpMethod) {
+	protected RestServiceClient(String baseUri, RestServiceCall serviceCall) {		
 		this.baseUri = baseUri;
-		this.httpMethod = httpMethod;
-	}
+		this.restServiceCall = serviceCall;
+		this.httpHeaders = convertHeaders(serviceCall.getRequestHeader());
+	}	
 		
 	public RestServiceClient addHeader(String key, String value) {
 		httpHeaders.put(key, value);
 		return this;
 	}
 
-	public RestServiceClient setRequestPath(String requestPath) {
-		this.requestPath = requestPath;
-		return this;
-	}
-
-	public RestServiceClient setRequestBody(String requestBody, ContentType requestBodyContentType) {
-		this.requestBody = requestBody;
-		this.requestBodyContentType = requestBodyContentType;
-		return this;
-	}
-
 	public String getBaseUri() {
 		return baseUri;
-	}
-
-	public HttpMethod getHttpMethod() {
-		return httpMethod;
 	}
 	
 	public Map<String, String> getHttpHeaders() {
 		return httpHeaders;
 	}
-
-	public String getRequestPath() {
-		return requestPath;
-	}
-
-	public String getRequestBody() {
-		return requestBody;
+	
+	public RestServiceCall getRestServiceCall() {
+		return restServiceCall;
 	}
 	
-	public ContentType getRequestBodyContentType() {
-		return requestBodyContentType;
+	public abstract Either<HttpResponse, String> callService() throws IOException;
+	
+	private Map<String, String> convertHeaders( HeaderList httpHeaders ) {
+		Map<String, String> headers = new HashMap<>();
+		EList<HeaderEntry> entries = httpHeaders.getHeader();
+		entries.forEach( headerEntry -> headers.put(headerEntry.getHeaderName(), headerEntry.getValue()) );
+		return headers;		
 	}
-
-	protected abstract Either<HttpResponse, String> callService() throws IOException;
 }

@@ -4,9 +4,9 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.hc.core5.http.MethodNotSupportedException;
-
 import com.smartgridready.ns.v0.SGrRestAPIAuthenticationEnumMethodType;
+
+import communicator.restapi.exception.RestApiAuthenticationException;
 
 public class AuthenticatorFactory {
 	
@@ -19,13 +19,17 @@ public class AuthenticatorFactory {
 	}
 	
 	public static final Authenticator getAuthenticator(SGrRestAPIAuthenticationEnumMethodType authMethodType)
-		throws ReflectiveOperationException, MethodNotSupportedException {
+		throws RestApiAuthenticationException {
 		Class<? extends Authenticator> authClass = AUTHENTICATOR_REGISTRY.get(authMethodType);
 		if (authClass != null) {
 			Constructor<? extends Authenticator> ctor;
-			ctor = authClass.getDeclaredConstructor();
-			return ctor.newInstance();
+			try {
+				ctor = authClass.getDeclaredConstructor();
+				return ctor.newInstance();
+			} catch (ReflectiveOperationException e) {
+				throw new RestApiAuthenticationException("Authenticator creation failed.", e);
+			}
 		}
-		throw new MethodNotSupportedException("Authentication method " +  authMethodType.getName() + " not supported yet.");		
+		throw new RestApiAuthenticationException("Authentication method " +  authMethodType.getName() + " not supported yet.");		
 	}	
 }

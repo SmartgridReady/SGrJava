@@ -1,19 +1,12 @@
 package communicator.http.authentication;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.hc.client5.http.fluent.Request;
-import org.apache.hc.client5.http.fluent.Response;
-import org.apache.hc.core5.http.ClassicHttpResponse;
-import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
@@ -23,9 +16,12 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
+import com.smartgridready.ns.v0.SGrRestAPIInterfaceDescriptionType;
 
-import communicator.http.client.ApacheRestServiceClient;
-import communicator.http.client.RestServiceClient.HttpMethod;
+import communicator.http.client.RestServiceClient;
+import communicator.http.client.RestServiceClientFactory;
+import communicator.restapi.exception.RestApiResponseParseException;
+import communicator.restapi.exception.RestApiServiceCallException;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
@@ -40,28 +36,14 @@ public class BearerTokenAuthenticator implements Authenticator {
 	private Optional<String> bearerToken = Optional.empty();	
 	
 	@Override
-	public String getAuthorizationHeaderValue(SGrRestAPIDeviceFrame deviceDescription)
-			throws IOException {
+	public String getAuthorizationHeaderValue(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory)
+			throws IOException, RestApiServiceCallException, RestApiResponseParseException {
 		
 		if (!bearerToken.isPresent() || isBearerTokenExpired()) {
-			authenticate(deviceDescription);			
+			authenticate(deviceDescription, restServiceClientFactory);			
 		}
 		return "Bearer " + bearerToken.get();
-	}
-	
-	@Override
-	public Request provideAuthenicationHeader (
-			SGrRestAPIDeviceFrame deviceDescription,
-			Request requestBuilder) throws IOException {
-		
-		if (!bearerToken.isPresent() || isBearerTokenExpired()) {
-			authenticate(deviceDescription);			
-		}
-		
-		requestBuilder.addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + bearerToken.get());
-		return requestBuilder;		
-	}
-	
+	}	
 	
 	@Override
 	public boolean isTokenRenewalSupported() {
@@ -69,55 +51,34 @@ public class BearerTokenAuthenticator implements Authenticator {
 	}
 	
 	@Override
-	public void renewToken(SGrRestAPIDeviceFrame deviceDescription) throws IOException {
+	public void renewToken(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException {
 		bearerToken = Optional.empty();
-		authenticate(deviceDescription);		
+		authenticate(deviceDescription, restServiceClientFactory);		
 	}
 	
-	private int authenticate(SGrRestAPIDeviceFrame deviceDescription) throws IOException {
+	private void authenticate(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException {
 		
-		String host = deviceDescription.getRestAPIInterfaceDesc().getTrspSrvRestURIoutOfBox(); 
-		String jmesPath = deviceDescription.getRestAPIInterfaceDesc().getRestAPIBearer().getRestAPIJMESPath();
-		String restApiEndpoint = deviceDescription.getRestAPIInterfaceDesc().getRestAPIBearer().getRestAPIEndPoint();				
+		SGrRestAPIInterfaceDescriptionType ifDescription = deviceDescription.getRestAPIInterfaceDesc();		
+		String host = ifDescription.getTrspSrvRestURIoutOfBox();
 		
-		// Handles current (Clemap proprietary) format coding of the sgr:restAPIEndPoint element.		
-		Pattern pattern = Pattern.compile("'(.*?)'");
-		Matcher matcher = pattern.matcher(restApiEndpoint);
-		if (matcher.find()) {	
-			String authBody = matcher.group(1);
-			authBody = authBody.replace("'", "");
-			
-			String authPath = "";
-			pattern = Pattern.compile(">(.*?)$");			
-			matcher = pattern.matcher(restApiEndpoint);
-			if (matcher.find()) {
-				authPath = matcher.group(1);
-			}
-			
-			return requestBearerToken(host, authPath, authBody, jmesPath);			
-		} else {
-			throw new IllegalArgumentException("Invalid sgr:restAPIEndPoint: No authentication request defined.");
-		}		
+		RestServiceClient restServiceClient = restServiceClientFactory.create(host, ifDescription.getRestAPIBearer().getServiceCall());
+		requestBearerToken(restServiceClient);
 	}
 	
-	private int requestBearerToken(String host, String authPath, String body, String jmesPath) throws IOException {
+	private void requestBearerToken(RestServiceClient restServiceClient) throws IOException, RestApiServiceCallException {
 		
-		ApacheRestServiceClient serviceClient = new ApacheRestServiceClient("https://" + host, HttpMethod.POST);
-		serviceClient.setRequestPath(authPath);
-		serviceClient.setRequestBody(body, ContentType.APPLICATION_JSON);
-		Either<HttpResponse, String> result = serviceClient.callService();
-	
+		Either<HttpResponse, String> result = restServiceClient.callService();			
 		if (result.isRight()) {
-			bearerToken = parseResponse(result.get(), jmesPath);
+			bearerToken = parseResponse(result.get(), restServiceClient.getRestServiceCall().getResponseQuery().getQuery());
 			if (bearerToken.isPresent()) { 
 				LOG.info("Received bearer token={}", bearerToken.get());
-				return HttpStatus.SC_OK;
 			} else {
-				return HttpStatus.SC_NO_CONTENT;
+				LOG.info("Bearer token missing in response.");
 			}
+			
 		} else {
 			LOG.error("Authenticate failed with http status={}", result.getLeft().getCode());
-			return result.getLeft().getCode();
+			throw new RestApiServiceCallException(result.getLeft());
 		}				
 	}	
 	
@@ -157,7 +118,7 @@ public class BearerTokenAuthenticator implements Authenticator {
 				long expiryTimestamp = res.asLong(0);			
 				long currentTimestamp = System.currentTimeMillis() / 1000l;				
 				return (expiryTimestamp + TOKEN_EXPIRY_THRESHOLD_MS < currentTimestamp);						
-
+  
 			} catch (IOException e) { 
 				LOG.warn("Unable to extract expiration time from JWT token");
 				return true;

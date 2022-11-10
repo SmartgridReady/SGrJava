@@ -64,9 +64,13 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 		switch (eClass.getClassifierID()) {
 			case V0Package.CONTACT_API_INTERFACE_DESC_TYPE: return createContactAPIInterfaceDescType();
 			case V0Package.DOCUMENT_ROOT: return createDocumentRoot();
+			case V0Package.HEADER_ENTRY: return createHeaderEntry();
+			case V0Package.HEADER_LIST: return createHeaderList();
 			case V0Package.IP_ADDR_TYPE: return createIpADDRType();
 			case V0Package.MODBUS_JMES_PATH_TYPE: return createModbusJMESPathType();
 			case V0Package.NETWORK_CONNECTION_STATE_TYPE: return createNetworkConnectionStateType();
+			case V0Package.RESPONSE_QUERY: return createResponseQuery();
+			case V0Package.REST_SERVICE_CALL: return createRestServiceCall();
 			case V0Package.RTU_DEV_INSTANCE_TYPE: return createRTUDevInstanceType();
 			case V0Package.RT_UTRSP_SRV_INSTANCE_TYPE: return createRTUtrspSrvInstanceType();
 			case V0Package.RTU_TYPE: return createRTUType();
@@ -143,12 +147,16 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createEParityTypeFromString(eDataType, initialValue);
 			case V0Package.ESTOP_BIT_LEN_TYPE:
 				return createEStopBitLenTypeFromString(eDataType, initialValue);
+			case V0Package.HTTP_METHOD:
+				return createHttpMethodFromString(eDataType, initialValue);
 			case V0Package.MASTER_FUNCTIONS_SUPPORTED_TYPE:
 				return createMasterFunctionsSupportedTypeFromString(eDataType, initialValue);
 			case V0Package.MODBUS_INTERFACE_SELECTION_TYPE:
 				return createModbusInterfaceSelectionTypeFromString(eDataType, initialValue);
 			case V0Package.PROFILE_TYPE_ENUM_TYPE:
 				return createProfileTypeEnumTypeFromString(eDataType, initialValue);
+			case V0Package.RESPONSE_QUERY_TYPE:
+				return createResponseQueryTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE:
 				return createSGrDeviceKindTypeFromString(eDataType, initialValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE:
@@ -233,6 +241,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createEParityTypeObjectFromString(eDataType, initialValue);
 			case V0Package.ESTOP_BIT_LEN_TYPE_OBJECT:
 				return createEStopBitLenTypeObjectFromString(eDataType, initialValue);
+			case V0Package.HTTP_METHOD_OBJECT:
+				return createHttpMethodObjectFromString(eDataType, initialValue);
 			case V0Package.IP_V4N1_TYPE:
 				return createIpV4n1TypeFromString(eDataType, initialValue);
 			case V0Package.IP_V4N1_TYPE1:
@@ -263,14 +273,12 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createPrelimStringDefTypeFromString(eDataType, initialValue);
 			case V0Package.PROFILE_TYPE_ENUM_TYPE_OBJECT:
 				return createProfileTypeEnumTypeObjectFromString(eDataType, initialValue);
+			case V0Package.RESPONSE_QUERY_TYPE_OBJECT:
+				return createResponseQueryTypeObjectFromString(eDataType, initialValue);
 			case V0Package.REST_API_END_POINT_TYPE:
 				return createRestAPIEndPointTypeFromString(eDataType, initialValue);
-			case V0Package.REST_API_END_POINT_TYPE1:
-				return createRestAPIEndPointType1FromString(eDataType, initialValue);
 			case V0Package.REST_APIJMES_PATH_TYPE:
 				return createRestAPIJMESPathTypeFromString(eDataType, initialValue);
-			case V0Package.REST_APIJMES_PATH_TYPE1:
-				return createRestAPIJMESPathType1FromString(eDataType, initialValue);
 			case V0Package.REST_BASIC_PASSWORD_TYPE:
 				return createRestBasicPasswordTypeFromString(eDataType, initialValue);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
@@ -386,12 +394,16 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertEParityTypeToString(eDataType, instanceValue);
 			case V0Package.ESTOP_BIT_LEN_TYPE:
 				return convertEStopBitLenTypeToString(eDataType, instanceValue);
+			case V0Package.HTTP_METHOD:
+				return convertHttpMethodToString(eDataType, instanceValue);
 			case V0Package.MASTER_FUNCTIONS_SUPPORTED_TYPE:
 				return convertMasterFunctionsSupportedTypeToString(eDataType, instanceValue);
 			case V0Package.MODBUS_INTERFACE_SELECTION_TYPE:
 				return convertModbusInterfaceSelectionTypeToString(eDataType, instanceValue);
 			case V0Package.PROFILE_TYPE_ENUM_TYPE:
 				return convertProfileTypeEnumTypeToString(eDataType, instanceValue);
+			case V0Package.RESPONSE_QUERY_TYPE:
+				return convertResponseQueryTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE:
 				return convertSGrDeviceKindTypeToString(eDataType, instanceValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE:
@@ -476,6 +488,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertEParityTypeObjectToString(eDataType, instanceValue);
 			case V0Package.ESTOP_BIT_LEN_TYPE_OBJECT:
 				return convertEStopBitLenTypeObjectToString(eDataType, instanceValue);
+			case V0Package.HTTP_METHOD_OBJECT:
+				return convertHttpMethodObjectToString(eDataType, instanceValue);
 			case V0Package.IP_V4N1_TYPE:
 				return convertIpV4n1TypeToString(eDataType, instanceValue);
 			case V0Package.IP_V4N1_TYPE1:
@@ -506,14 +520,12 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertPrelimStringDefTypeToString(eDataType, instanceValue);
 			case V0Package.PROFILE_TYPE_ENUM_TYPE_OBJECT:
 				return convertProfileTypeEnumTypeObjectToString(eDataType, instanceValue);
+			case V0Package.RESPONSE_QUERY_TYPE_OBJECT:
+				return convertResponseQueryTypeObjectToString(eDataType, instanceValue);
 			case V0Package.REST_API_END_POINT_TYPE:
 				return convertRestAPIEndPointTypeToString(eDataType, instanceValue);
-			case V0Package.REST_API_END_POINT_TYPE1:
-				return convertRestAPIEndPointType1ToString(eDataType, instanceValue);
 			case V0Package.REST_APIJMES_PATH_TYPE:
 				return convertRestAPIJMESPathTypeToString(eDataType, instanceValue);
-			case V0Package.REST_APIJMES_PATH_TYPE1:
-				return convertRestAPIJMESPathType1ToString(eDataType, instanceValue);
 			case V0Package.REST_BASIC_PASSWORD_TYPE:
 				return convertRestBasicPasswordTypeToString(eDataType, instanceValue);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
@@ -641,6 +653,28 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
+	public HeaderEntry createHeaderEntry() {
+		HeaderEntryImpl headerEntry = new HeaderEntryImpl();
+		return headerEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public HeaderList createHeaderList() {
+		HeaderListImpl headerList = new HeaderListImpl();
+		return headerList;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public IpADDRType createIpADDRType() {
 		IpADDRTypeImpl ipADDRType = new IpADDRTypeImpl();
 		return ipADDRType;
@@ -666,6 +700,28 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public NetworkConnectionStateType createNetworkConnectionStateType() {
 		NetworkConnectionStateTypeImpl networkConnectionStateType = new NetworkConnectionStateTypeImpl();
 		return networkConnectionStateType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResponseQuery createResponseQuery() {
+		ResponseQueryImpl responseQuery = new ResponseQueryImpl();
+		return responseQuery;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RestServiceCall createRestServiceCall() {
+		RestServiceCallImpl restServiceCall = new RestServiceCallImpl();
+		return restServiceCall;
 	}
 
 	/**
@@ -1358,6 +1414,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public HttpMethod createHttpMethodFromString(EDataType eDataType, String initialValue) {
+		HttpMethod result = HttpMethod.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertHttpMethodToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MasterFunctionsSupportedType createMasterFunctionsSupportedTypeFromString(EDataType eDataType, String initialValue) {
 		MasterFunctionsSupportedType result = MasterFunctionsSupportedType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -1410,6 +1486,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertProfileTypeEnumTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResponseQueryType createResponseQueryTypeFromString(EDataType eDataType, String initialValue) {
+		ResponseQueryType result = ResponseQueryType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertResponseQueryTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2244,6 +2340,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public HttpMethod createHttpMethodObjectFromString(EDataType eDataType, String initialValue) {
+		return createHttpMethodFromString(V0Package.eINSTANCE.getHttpMethod(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertHttpMethodObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertHttpMethodToString(V0Package.eINSTANCE.getHttpMethod(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public BigInteger createIpV4n1TypeFromString(EDataType eDataType, String initialValue) {
 		return (BigInteger)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.POSITIVE_INTEGER, initialValue);
 	}
@@ -2514,6 +2628,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ResponseQueryType createResponseQueryTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createResponseQueryTypeFromString(V0Package.eINSTANCE.getResponseQueryType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertResponseQueryTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertResponseQueryTypeToString(V0Package.eINSTANCE.getResponseQueryType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String createRestAPIEndPointTypeFromString(EDataType eDataType, String initialValue) {
 		return (String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.STRING, initialValue);
 	}
@@ -2532,24 +2664,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String createRestAPIEndPointType1FromString(EDataType eDataType, String initialValue) {
-		return (String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.STRING, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertRestAPIEndPointType1ToString(EDataType eDataType, Object instanceValue) {
-		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.STRING, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String createRestAPIJMESPathTypeFromString(EDataType eDataType, String initialValue) {
 		return (String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.STRING, initialValue);
 	}
@@ -2560,24 +2674,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertRestAPIJMESPathTypeToString(EDataType eDataType, Object instanceValue) {
-		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.STRING, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String createRestAPIJMESPathType1FromString(EDataType eDataType, String initialValue) {
-		return (String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.STRING, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertRestAPIJMESPathType1ToString(EDataType eDataType, Object instanceValue) {
 		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.STRING, instanceValue);
 	}
 
