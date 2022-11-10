@@ -18,10 +18,11 @@ import com.smartgridready.ns.v0.SGrRestAPIAuthenticationEnumMethodType;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 
 import communicator.helper.DeviceDescriptionLoader;
-import communicator.http.authentication.AuthenticatorFactory;
-import communicator.http.authentication.BearerTokenAuthenticator;
-import communicator.http.client.ApacheRestServiceClient;
-import communicator.http.client.RestServiceClientFactory;
+import communicator.restapi.http.authentication.AuthenticatorFactory;
+import communicator.restapi.http.authentication.BearerTokenAuthenticator;
+import communicator.restapi.http.client.ApacheRestServiceClient;
+import communicator.restapi.http.client.RestServiceClientFactory;
+import communicator.restapi.impl.SGrRestApiDevice;
 import io.vavr.control.Either;
 
 @ExtendWith(value = MockitoExtension.class)

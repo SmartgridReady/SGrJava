@@ -1,4 +1,4 @@
-package communicator.http.client;
+package communicator.restapi.http.client;
 
 import java.io.IOException;
 import java.io.InputStream;

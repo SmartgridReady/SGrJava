@@ -1,4 +1,4 @@
-package communicator.impl;
+package communicator.restapi.impl;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -18,14 +18,14 @@ import com.smartgridready.ns.v0.SGrRestAPIDataPointType;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 import com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType;
 
-import communicator.http.authentication.Authenticator;
-import communicator.http.authentication.AuthenticatorFactory;
-import communicator.http.authentication.DummyHttpAuthenticator;
-import communicator.http.client.RestServiceClient;
-import communicator.http.client.RestServiceClientFactory;
 import communicator.restapi.exception.RestApiAuthenticationException;
 import communicator.restapi.exception.RestApiResponseParseException;
 import communicator.restapi.exception.RestApiServiceCallException;
+import communicator.restapi.http.authentication.Authenticator;
+import communicator.restapi.http.authentication.AuthenticatorFactory;
+import communicator.restapi.http.authentication.DummyHttpAuthenticator;
+import communicator.restapi.http.client.RestServiceClient;
+import communicator.restapi.http.client.RestServiceClientFactory;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;

@@ -1,4 +1,4 @@
-package communicator.http.client;
+package communicator.restapi.http.client;
 
 import com.smartgridready.ns.v0.RestServiceCall;
 

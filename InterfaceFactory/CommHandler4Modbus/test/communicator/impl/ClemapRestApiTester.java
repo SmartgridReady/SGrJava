@@ -10,10 +10,11 @@ import org.slf4j.LoggerFactory;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 
 import communicator.helper.DeviceDescriptionLoader;
-import communicator.http.client.ApacheRestServiceClientFactory;
 import communicator.restapi.exception.RestApiAuthenticationException;
 import communicator.restapi.exception.RestApiResponseParseException;
 import communicator.restapi.exception.RestApiServiceCallException;
+import communicator.restapi.http.client.ApacheRestServiceClientFactory;
+import communicator.restapi.impl.SGrRestApiDevice;
 
 public class ClemapRestApiTester {
 	

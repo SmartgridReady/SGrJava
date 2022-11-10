@@ -1,4 +1,4 @@
-package communicator.http.authentication;
+package communicator.restapi.http.authentication;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -18,10 +18,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 import com.smartgridready.ns.v0.SGrRestAPIInterfaceDescriptionType;
 
-import communicator.http.client.RestServiceClient;
-import communicator.http.client.RestServiceClientFactory;
 import communicator.restapi.exception.RestApiResponseParseException;
 import communicator.restapi.exception.RestApiServiceCallException;
+import communicator.restapi.http.client.RestServiceClient;
+import communicator.restapi.http.client.RestServiceClientFactory;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;

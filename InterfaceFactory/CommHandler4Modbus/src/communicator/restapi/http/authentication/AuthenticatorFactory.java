@@ -1,4 +1,4 @@
-package communicator.http.authentication;
+package communicator.restapi.http.authentication;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
