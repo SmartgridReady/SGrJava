@@ -12,8 +12,6 @@ import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.smartgridready.ns.v0.HttpMethod;
 import com.smartgridready.ns.v0.RestServiceCall;
@@ -21,8 +19,6 @@ import com.smartgridready.ns.v0.RestServiceCall;
 import io.vavr.control.Either;
 
 public class ApacheRestServiceClient extends RestServiceClient {
-	
-	private static final Logger LOG = LoggerFactory.getLogger(ApacheRestServiceClient.class);
 	
 	private static final EnumMap<HttpMethod, Function<String, Request>> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
 	static {
@@ -58,7 +54,6 @@ public class ApacheRestServiceClient extends RestServiceClient {
 			try ( InputStream is = ((ClassicHttpResponse)httpResp).getEntity().getContent() ) {					
 				
 				String jsonResp = IOUtils.toString(is, StandardCharsets.UTF_8);
-				LOG.info("Server response: {}", jsonResp);
 				return Either.right(jsonResp);
 			}
 		}

@@ -89,19 +89,21 @@ public class SGrRestApiDevice {
 		
 		serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory));
 		
+		LOG.info("Calling REST service: {} {}", serviceClient.getBaseUri(), serviceClient.getRestServiceCall());
+		
 		Either<HttpResponse, String> result = serviceClient.callService();		
 		if (result.isRight()) {
+			LOG.info("Received response: {}", result.get());
 			return result.get();
 		} else if (tryTokenRenewal && result.getLeft().getCode() == HttpStatus.SC_UNAUTHORIZED) {
 			LOG.info("Authorisation error received. Trying with token renewal");
 			httpAuthenticator.renewToken(deviceDescription, restServiceClientFactory);
 			serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory));
 			// recurse into handleServiceCall, set tryTokenRenewal always to false here!
-			handleServiceCall(serviceClient, false); 
+			return handleServiceCall(serviceClient, false); 
 		} else {
 			throw new RestApiServiceCallException(result.getLeft());
 		}
-		return null;
 	}
 	
 

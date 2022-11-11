@@ -1,4 +1,4 @@
-package communicator.impl;
+package communicator.restapi.impl;
 
 import java.io.IOException;
 import java.util.Properties;

@@ -67,8 +67,11 @@ public class BearerTokenAuthenticator implements Authenticator {
 	
 	private void requestBearerToken(RestServiceClient restServiceClient) throws IOException, RestApiServiceCallException {
 		
+		LOG.info("Calling REST service: {} - {}", restServiceClient.getBaseUri(), restServiceClient.getRestServiceCall());
+		
 		Either<HttpResponse, String> result = restServiceClient.callService();			
 		if (result.isRight()) {
+			LOG.info("Received response: {}", result.get());
 			bearerToken = parseResponse(result.get(), restServiceClient.getRestServiceCall().getResponseQuery().getQuery());
 			if (bearerToken.isPresent()) { 
 				LOG.info("Received bearer token={}", bearerToken.get());
@@ -101,28 +104,27 @@ public class BearerTokenAuthenticator implements Authenticator {
 	
 	private boolean isBearerTokenExpired() {
 		
-		String[] tokenParts = bearerToken.get().split("\\.");
-		if (tokenParts.length >= 2) {
-			
-			Decoder decoder = Base64.getDecoder();
-			String jsonBody = new String(decoder.decode(tokenParts[1]), StandardCharsets.UTF_8);
-			
-			JmesPath<JsonNode> path = new JacksonRuntime();
-			Expression<JsonNode> expression = path.compile("exp");
-			
-			ObjectMapper mapper = new ObjectMapper();
-			JsonNode jsonNode;
-			try {
+		try {
+			String[] tokenParts = bearerToken.get().split("\\.");		
+			if (tokenParts.length >= 2) {
+				
+				Decoder decoder = Base64.getDecoder();
+				String jsonBody = new String(decoder.decode(tokenParts[1]), StandardCharsets.UTF_8);
+				
+				JmesPath<JsonNode> path = new JacksonRuntime();
+				Expression<JsonNode> expression = path.compile("exp");
+				
+				ObjectMapper mapper = new ObjectMapper();
+				JsonNode jsonNode;
 				jsonNode = mapper.readTree(jsonBody);
 				JsonNode res = expression.search(jsonNode);
 				long expiryTimestamp = res.asLong(0);			
 				long currentTimestamp = System.currentTimeMillis() / 1000l;				
-				return (expiryTimestamp + TOKEN_EXPIRY_THRESHOLD_MS < currentTimestamp);						
-  
-			} catch (IOException e) { 
-				LOG.warn("Unable to extract expiration time from JWT token");
-				return true;
-			}			
+				return (expiryTimestamp + TOKEN_EXPIRY_THRESHOLD_MS < currentTimestamp);
+			}
+		} catch (Exception e) {
+			LOG.warn("Unable to extract expiration time from JWT token", e);
+			return true;			
 		}
 		// Token invalid, treat as expired
 		LOG.warn("Missing JWT token parts. Should at least have a HEADER and PAYLOAD part.");
