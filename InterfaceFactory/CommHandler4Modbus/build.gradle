@@ -24,7 +24,7 @@ apply plugin: 'maven-publish'
 
 sourceSets {
         main.java.srcDirs = ['src', 'src-gen' ]
-        main.resources.srcDirs = ['src', 'src-gen' ] 
+        main.resources.srcDirs = ['resources' ] 
         test.java.srcDirs = ['test']               
 }
 

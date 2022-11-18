@@ -66,7 +66,7 @@ public class BearerTokenAuthenticator implements Authenticator {
 	private void requestBearerToken(RestServiceClient restServiceClient) throws IOException, RestApiServiceCallException {
 		
 		if (LOG.isInfoEnabled()) {
-				LOG.info("Calling REST service: {} - {}", 
+				LOG.debug("Calling REST service: {} - {}", 
 							restServiceClient.getBaseUri(), 
 							RestServiceClientUtils.printServiceCall(restServiceClient.getRestServiceCall()));
 		}
@@ -76,9 +76,9 @@ public class BearerTokenAuthenticator implements Authenticator {
 			LOG.info("Received response: {}", result.get());
 			bearerToken = parseResponse(result.get(), restServiceClient.getRestServiceCall().getResponseQuery().getQuery());
 			if (bearerToken.isPresent()) { 
-				LOG.info("Received bearer token={}", bearerToken.get());
+				LOG.debug("Received bearer token={}", bearerToken.get());
 			} else {
-				LOG.info("Bearer token missing in response.");
+				LOG.error("Bearer token missing in response.");
 			}
 			
 		} else {
