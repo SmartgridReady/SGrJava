@@ -883,10 +883,10 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatencyTime" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatencyTimeMs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="maxLatencyTime"/>
+        <details key="name" value="maxLatencyTimeMs"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -2346,34 +2346,11 @@
       <details key="baseType" value="SGrMROPresenceLevelIndicationType"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="SGrNamelistKindOfType">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrNamelistKindOfType"/>
-    </eAnnotations>
-    <eLiterals name="Device"/>
-    <eLiterals name="FunctionalProfile" value="1"/>
-    <eLiterals name="DataPoint" value="2"/>
-    <eLiterals name="other" value="3"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="SGrNamelistKindOfTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrNamelistKindOfType:Object"/>
-      <details key="baseType" value="SGrNamelistKindOfType"/>
-    </eAnnotations>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrNamelistType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrNamelistType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameType" lowerBound="1"
-        eType="#//SGrNamelistKindOfType" unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="nameType"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sLV1Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>

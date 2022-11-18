@@ -528,6 +528,7 @@ public class SGrModbusDevice {
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				writeValue(profile.get(), dataPoint.get(), sValue);
+				return "OK";
 			}
 		}
 		return "Profile/access-point " + sProfileName + "/" + sDataPointName + " not found!";
@@ -540,8 +541,9 @@ public class SGrModbusDevice {
 
 		if (dGenType.isSetBoolean()) {
 			boolean bVal = false;
-			if ((sValue == "true") || (sValue == "TRUE"))
+			if (sValue.equals("true") || sValue.equals("TRUE")) {
 				bVal = true;
+			}
 			dGenType.setBoolean(bVal);
 		}
 		/*

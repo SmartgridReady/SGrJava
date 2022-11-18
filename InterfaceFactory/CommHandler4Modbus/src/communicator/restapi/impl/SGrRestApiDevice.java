@@ -2,7 +2,9 @@ package communicator.restapi.impl;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.Properties;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
@@ -26,6 +28,7 @@ import communicator.restapi.http.authentication.AuthenticatorFactory;
 import communicator.restapi.http.authentication.DummyHttpAuthenticator;
 import communicator.restapi.http.client.RestServiceClient;
 import communicator.restapi.http.client.RestServiceClientFactory;
+import communicator.restapi.http.client.RestServiceClientUtils;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
@@ -43,8 +46,7 @@ public class SGrRestApiDevice {
 		this.deviceDescription = deviceDescription;
 		this.restServiceClientFactory = restServiceClientFactory;
 		this.httpAuthenticator = new DummyHttpAuthenticator();
-	}
-	
+	}	
 	
 	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
 		SGrRestAPIAuthenticationEnumMethodType authMethod = 
@@ -52,44 +54,57 @@ public class SGrRestApiDevice {
 				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);		
 				httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
 	}
-	
-	
+		
 	public String getVal(String profileName, String dataPointName) throws IOException, RestApiServiceCallException, RestApiResponseParseException {		
 		Optional<ProfileDataPoint> profileDpOpt = findProfileDataPoint(profileName, dataPointName);	
 		if (profileDpOpt.isPresent()) {
-			return readVal(profileDpOpt.get());
+			return doReadWriteVal(profileDpOpt.get(), Optional.empty());
 		} else {
 			return "Profile/access-point " + profileName + "/" + dataPointName + " not found!";
 		}
 	}
 	
-	
-	public String readVal(ProfileDataPoint profileDp) throws IOException, RestApiServiceCallException, RestApiResponseParseException {	
+	public String setVal(String profileName, String dataPointName, String value) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
+		Optional<ProfileDataPoint> profileDpOpt = findProfileDataPoint(profileName, dataPointName);	
+		if (profileDpOpt.isPresent()) {
+			return doReadWriteVal(profileDpOpt.get(), Optional.of(value));
+		} else {
+			return "Profile/access-point " + profileName + "/" + dataPointName + " not found!";
+		}						
+	}
+
+	private String doReadWriteVal(ProfileDataPoint profileDp, Optional<String> value) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
 		
 		String host = deviceDescription.getRestAPIInterfaceDesc().getTrspSrvRestURIoutOfBox();
 		
 		Optional<SGrRestAPIDataPointDescriptionType> dpDescriptionOpt 
-			= Optional.ofNullable(profileDp.getDp().getRestAPIDataPoint().get(0));
-				
+		= Optional.ofNullable(profileDp.getDp().getRestAPIDataPoint().get(0));
+		
 		if (dpDescriptionOpt.isPresent()) {
+			
+			Properties substitutions = new Properties();
+			if (value.isPresent()) {
+				substitutions.put("value", value.get());
+			}
 			
 			SGrRestAPIDataPointDescriptionType dpDescription = dpDescriptionOpt.get();
 			RestServiceCall serviceCall = dpDescription.getRestServiceCall();
-			RestServiceClient restServiceClient = restServiceClientFactory.create(host, serviceCall);					
-
+			RestServiceClient restServiceClient = restServiceClientFactory.create(host, serviceCall, substitutions);
 			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
-			return parseJsonResponse(serviceCall.getResponseQuery().getQuery(), response);				
-		
-		}		
+			return parseJsonResponse(serviceCall.getResponseQuery().getQuery(), response);
+		}
 		return "Missing 'restAPIDataPoint' description in device description XML file";
-	}
-	
-	
+	}	
+
 	private String handleServiceCall(RestServiceClient serviceClient, boolean tryTokenRenewal) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
 		
 		serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory));
 		
-		LOG.info("Calling REST service: {} {}", serviceClient.getBaseUri(), serviceClient.getRestServiceCall());
+		if (LOG.isInfoEnabled()) {
+			LOG.info("Calling REST service: {} - {}", 
+						serviceClient.getBaseUri(), 
+						RestServiceClientUtils.printServiceCall(serviceClient.getRestServiceCall()));
+		}
 		
 		Either<HttpResponse, String> result = serviceClient.callService();		
 		if (result.isRight()) {
@@ -107,14 +122,18 @@ public class SGrRestApiDevice {
 	}
 	
 
-	private String parseJsonResponse(String jmesPath, String jsonResp) 
-	throws RestApiResponseParseException {
-
+	private String parseJsonResponse(String jmesPath, String jsonResp) throws RestApiResponseParseException {
+		
+		if (jmesPath.trim().isEmpty()) {
+			// no parsing required
+			return jsonResp;
+		}
+		
 		JmesPath<JsonNode> path = new JacksonRuntime();
 		Expression<JsonNode> expression = path.compile(jmesPath);
-		
+
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		try {
 			JsonNode jsonNode = mapper.readTree(jsonResp);			
 			JsonNode res = expression.search(jsonNode);

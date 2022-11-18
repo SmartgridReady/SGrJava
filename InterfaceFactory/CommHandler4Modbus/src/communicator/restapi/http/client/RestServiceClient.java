@@ -1,55 +1,82 @@
 package communicator.restapi.http.client;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.hc.core5.http.HttpResponse;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.HeaderList;
 import com.smartgridready.ns.v0.RestServiceCall;
+import com.smartgridready.ns.v0.V0Factory;
 
 import io.vavr.control.Either;
 
 public abstract class RestServiceClient {
 	
-	private final String baseUri;
-	
-	private final Map<String, String> httpHeaders;
+	private final String baseUri;	
 	
 	private final RestServiceCall restServiceCall;
 	
 	protected RestServiceClient(String baseUri, RestServiceCall serviceCall) {		
-		this.baseUri = baseUri;
-		this.restServiceCall = serviceCall;
-		this.httpHeaders = convertHeaders(serviceCall.getRequestHeader());
-	}	
+		this(baseUri, serviceCall, new Properties());
+	}
+	
+	protected RestServiceClient(String baseUri, RestServiceCall serviceCall, Properties substitutions) {
+		this.baseUri = replacePropertyPlaceholders(baseUri, substitutions);
+		this.restServiceCall = cloneRestServiceCallWithSubstitutions(serviceCall, substitutions);
+	}
+	
 		
 	public RestServiceClient addHeader(String key, String value) {
-		httpHeaders.put(key, value);
+		
+		HeaderEntry headerEntry = V0Factory.eINSTANCE.createHeaderEntry();
+		headerEntry.setHeaderName(key);
+		headerEntry.setValue(value);		
+		restServiceCall.getRequestHeader().getHeader().add(headerEntry);
+		
 		return this;
 	}
 
 	public String getBaseUri() {
-		return baseUri;
+		return getBaseUri(new Properties());
 	}
 	
-	public Map<String, String> getHttpHeaders() {
-		return httpHeaders;
+	public String getBaseUri(Properties substitutions) {
+		return replacePropertyPlaceholders(baseUri, substitutions);
 	}
 	
 	public RestServiceCall getRestServiceCall() {
 		return restServiceCall;
 	}
 	
+	private RestServiceCall cloneRestServiceCallWithSubstitutions(RestServiceCall restServiceCall, Properties substitutions) {
+		
+		// handle substitutions, do this on a clone, do not modify the EI loaded from XML.
+		RestServiceCall clone = EcoreUtil.copy(restServiceCall);
+		clone.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
+		clone.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));	
+		clone.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
+		
+		HeaderList headers = clone.getRequestHeader();
+		headers.getHeader().forEach( header -> {
+			header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions));
+		});
+		return clone;
+	}
+	
 	public abstract Either<HttpResponse, String> callService() throws IOException;
 	
-	private Map<String, String> convertHeaders( HeaderList httpHeaders ) {
-		Map<String, String> headers = new HashMap<>();
-		EList<HeaderEntry> entries = httpHeaders.getHeader();
-		entries.forEach( headerEntry -> headers.put(headerEntry.getHeaderName(), headerEntry.getValue()) );
-		return headers;		
-	}
+	private static String replacePropertyPlaceholders(String template, Properties properties) {
+
+		String convertedTemplate = template;		
+		if (properties != null) {
+			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+				convertedTemplate = convertedTemplate.replaceAll("\\{\\{" + entry.getKey() + "\\}\\}", (String)entry.getValue());
+			}
+		}
+		return convertedTemplate;
+	}		 	
 }

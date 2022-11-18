@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.EnumMap;
+import java.util.Properties;
 import java.util.function.Function;
 
 import org.apache.commons.io.IOUtils;
@@ -32,6 +33,10 @@ public class ApacheRestServiceClient extends RestServiceClient {
 	protected ApacheRestServiceClient(String baseUri, RestServiceCall restServiceCall) {
 		super(baseUri, restServiceCall);
 	}
+	
+	protected ApacheRestServiceClient(String baseUri, RestServiceCall restServiceCall, Properties substitutions) {
+		super(baseUri, restServiceCall, substitutions);
+	}
 
 	@Override
 	public Either<HttpResponse, String> callService() throws IOException {
@@ -43,7 +48,9 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		
 		Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(getRestServiceCall().getRequestMethod());
 		Request httpReq = requestFactoryFunct.apply(uri);
-		getHttpHeaders().forEach(httpReq::addHeader);
+		
+		getRestServiceCall().getRequestHeader().getHeader().forEach(headerEntry -> 
+			httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue()));
 		
 		if (getRestServiceCall().getRequestBody() != null) {
 			httpReq.bodyString(getRestServiceCall().getRequestBody(), ContentType.APPLICATION_JSON);

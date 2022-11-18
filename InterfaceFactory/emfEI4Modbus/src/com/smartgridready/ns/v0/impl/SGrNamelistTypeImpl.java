@@ -2,7 +2,6 @@
  */
 package com.smartgridready.ns.v0.impl;
 
-import com.smartgridready.ns.v0.SGrNamelistKindOfType;
 import com.smartgridready.ns.v0.SGrNamelistType;
 import com.smartgridready.ns.v0.V0Package;
 
@@ -21,7 +20,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getNameType <em>Name Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSLV1Name <em>SLV1 Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSWorkName <em>SWork Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSManufName <em>SManuf Name</em>}</li>
@@ -34,35 +32,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * @generated
  */
 public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements SGrNamelistType {
-	/**
-	 * The default value of the '{@link #getNameType() <em>Name Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNameType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final SGrNamelistKindOfType NAME_TYPE_EDEFAULT = SGrNamelistKindOfType.DEVICE;
-
-	/**
-	 * The cached value of the '{@link #getNameType() <em>Name Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNameType()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrNamelistKindOfType nameType = NAME_TYPE_EDEFAULT;
-
-	/**
-	 * This is true if the Name Type attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean nameTypeESet;
-
 	/**
 	 * The default value of the '{@link #getSLV1Name() <em>SLV1 Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -220,56 +189,6 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	protected EClass eStaticClass() {
 		return V0Package.eINSTANCE.getSGrNamelistType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrNamelistKindOfType getNameType() {
-		return nameType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setNameType(SGrNamelistKindOfType newNameType) {
-		SGrNamelistKindOfType oldNameType = nameType;
-		nameType = newNameType == null ? NAME_TYPE_EDEFAULT : newNameType;
-		boolean oldNameTypeESet = nameTypeESet;
-		nameTypeESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_NAMELIST_TYPE__NAME_TYPE, oldNameType, nameType, !oldNameTypeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetNameType() {
-		SGrNamelistKindOfType oldNameType = nameType;
-		boolean oldNameTypeESet = nameTypeESet;
-		nameType = NAME_TYPE_EDEFAULT;
-		nameTypeESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_NAMELIST_TYPE__NAME_TYPE, oldNameType, NAME_TYPE_EDEFAULT, oldNameTypeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetNameType() {
-		return nameTypeESet;
 	}
 
 	/**
@@ -441,8 +360,6 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_NAMELIST_TYPE__NAME_TYPE:
-				return getNameType();
 			case V0Package.SGR_NAMELIST_TYPE__SLV1_NAME:
 				return getSLV1Name();
 			case V0Package.SGR_NAMELIST_TYPE__SWORK_NAME:
@@ -469,9 +386,6 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_NAMELIST_TYPE__NAME_TYPE:
-				setNameType((SGrNamelistKindOfType)newValue);
-				return;
 			case V0Package.SGR_NAMELIST_TYPE__SLV1_NAME:
 				setSLV1Name((String)newValue);
 				return;
@@ -505,9 +419,6 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_NAMELIST_TYPE__NAME_TYPE:
-				unsetNameType();
-				return;
 			case V0Package.SGR_NAMELIST_TYPE__SLV1_NAME:
 				setSLV1Name(SLV1_NAME_EDEFAULT);
 				return;
@@ -541,8 +452,6 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_NAMELIST_TYPE__NAME_TYPE:
-				return isSetNameType();
 			case V0Package.SGR_NAMELIST_TYPE__SLV1_NAME:
 				return SLV1_NAME_EDEFAULT == null ? sLV1Name != null : !SLV1_NAME_EDEFAULT.equals(sLV1Name);
 			case V0Package.SGR_NAMELIST_TYPE__SWORK_NAME:
@@ -571,9 +480,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (nameType: ");
-		if (nameTypeESet) result.append(nameType); else result.append("<unset>");
-		result.append(", sLV1Name: ");
+		result.append(" (sLV1Name: ");
 		result.append(sLV1Name);
 		result.append(", sWorkName: ");
 		result.append(sWorkName);

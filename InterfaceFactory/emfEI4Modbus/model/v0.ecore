@@ -1223,13 +1223,13 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatencyTime" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatencyTimeMs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" Maximum occurring or permitted delay time, e.g. of&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;a data transaction&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value=" Maximum occurring or permitted delay time, e.g. of&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;a data transaction in milliseconds&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="maxLatencyTime"/>
+        <details key="name" value="maxLatencyTimeMs"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1268,7 +1268,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueState" eType="#//SGrMeasValueStateType"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" MeasValueState: Status / validity of the&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;measurement. Possible values are &quot;normal&quot;, &quot;outOfRange&quot;, &quot;error&quot;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value=" MeasValueState: Status / validity of the&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;measurement. Possible values are &quot;normal&quot;, &quot;error&quot;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -3080,28 +3080,6 @@
       <details key="baseType" value="SGrMROPresenceLevelIndicationType"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="SGrNamelistKindOfType">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value=""/>
-    </eAnnotations>
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrNamelistKindOfType"/>
-    </eAnnotations>
-    <eLiterals name="Device">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Identifies the level of the names used -Device&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;-FunctionalProfile -DataPoint -other&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="FunctionalProfile" value="1"/>
-    <eLiterals name="DataPoint" value="2"/>
-    <eLiterals name="other" value="3"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="SGrNamelistKindOfTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrNamelistKindOfType:Object"/>
-      <details key="baseType" value="SGrNamelistKindOfType"/>
-    </eAnnotations>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrNamelistType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="a list of relevant namespaces&#xA;&#x9;&#x9;&#x9;&#x9;list for to display names used in different standards like EEBUS,&#xA;&#x9;&#x9;&#x9;&#x9;IEC6850,, SAREF4ENER etc this list type is used for devices,&#xA;&#x9;&#x9;&#x9;&#x9;functional profiles and datapoints. This namespace naming framework&#xA;&#x9;&#x9;&#x9;&#x9;is typically used by the SGr association in order to tailer web&#xA;&#x9;&#x9;&#x9;&#x9;based information tools. This complex data type is intended to be&#xA;&#x9;&#x9;&#x9;&#x9;extended for future relevant standarrds in order to secure&#xA;&#x9;&#x9;&#x9;&#x9;information over technology live cycles&#xA;&#x9;&#x9;&#x9;&#xD;&#xA; List der für ein Profil&#xA;&#x9;&#x9;&#x9;&#x9;relevanten Namen von benutzten Standards&#xA;&#x9;&#x9;&#x9;"/>
@@ -3110,17 +3088,6 @@
       <details key="name" value="SGrNamelistType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameType" lowerBound="1"
-        eType="#//SGrNamelistKindOfType" unsettable="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="is used to define where this naming is place in a&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;device-architecture hierarchy way Device; FunctionalProfile;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;DataPoint&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="nameType"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sLV1Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="names used for SGr label V1 used to secure legacy&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;compatibility&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
@@ -3936,7 +3903,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrTimeRangeType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="ime range min…max"/>
+      <details key="documentation" value="time range min…max"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrTimeRangeType"/>

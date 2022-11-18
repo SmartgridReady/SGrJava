@@ -1,5 +1,7 @@
 package communicator.restapi.http.client;
 
+import java.util.Properties;
+
 import com.smartgridready.ns.v0.RestServiceCall;
 
 public class ApacheRestServiceClientFactory implements RestServiceClientFactory {
@@ -9,4 +11,7 @@ public class ApacheRestServiceClientFactory implements RestServiceClientFactory 
 		return new ApacheRestServiceClient(baseUri, restServiceCall);
 	}
 	
+	public RestServiceClient create(String baseUri, RestServiceCall restServiceCall, Properties substitutions) {
+		return new ApacheRestServiceClient(baseUri, restServiceCall, substitutions);
+	}
 }

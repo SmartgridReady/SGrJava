@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
@@ -21,6 +22,7 @@ import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 import communicator.helper.DeviceDescriptionLoader;
 import communicator.restapi.http.authentication.BearerTokenAuthenticator;
 import communicator.restapi.http.client.ApacheRestServiceClient;
+import communicator.restapi.http.client.RestServiceClientUtils;
 import communicator.restapi.http.client.RestServiceClientFactory;
 import io.vavr.control.Either;
 
@@ -40,6 +42,8 @@ class SGrRestAPIDeviceTest {
 	ApacheRestServiceClient restServiceClientReq;
 	
 	static SGrRestAPIDeviceFrame deviceFrame;
+	
+	static SGrRestAPIDeviceFrame deviceFrameMeterGroup;
 			
 	private static final String XML_BASE_DIR="../../../SGrSpecifications/XMLInstances/ExtInterfaces/";
 	
@@ -60,20 +64,36 @@ class SGrRestAPIDeviceTest {
 	
 	private static final String CLEMAP_METER_RESP = "[{\"sensor_id\":\"63343431ecf2cf013a1e5a9f\",\"opm\":{\"value\":1,\"last_updt\":\"2022-11-07T15:19:54.560Z\"},\"ten_sec\":{\"p_l1\":1.5,\"p_l2\":2,\"p_l3\":4.0,\"q_l1\":2.3,\"q_l2\":0,\"q_l3\":4,\"last_upd\":\"2022-11-07T15:21:50.000Z\"},\"one_min\":{\"p_l1\":0.003,\"p_l2\":0,\"p_l3\":0,\"q_l1\":-0.002,\"q_l2\":0,\"q_l3\":0,\"avg_energy_l1\":0,\"avg_energy_l2\":0,\"avg_energy_l3\":0,\"v_l1\":227.869,\"v_l2\":0,\"v_l3\":0,\"i_l1\":0.001,\"i_l2\":0,\"i_l3\":0,\"s_l1\":0.173,\"s_l2\":0,\"s_l3\":0,\"pf_l1\":0.085,\"pf_l2\":1,\"pf_l3\":1,\"last_update\":\"2022-11-07T15:19:47.579Z\"}}]";
 	
+	
+	private static final String METER_GROUP_CONFIG_JSON = "{\r\n"
+			+ "    \"name\": \"ErgoMeters\",\r\n"
+			+ "    \"description\": \"Meter group for tests\",\r\n"
+			+ "    \"address\": {},\r\n"
+			+ "    \"coordinates\": {},\r\n"
+			+ "    \"group_measuring_point\": false,\r\n"
+			+ "    \"sensor_ids\": [],\r\n"
+			+ "    \"user_ids\": [\"hfurrer@ergonomics.ch\"],\r\n"
+			+ "    \"organization_ids\": [],\r\n"
+			+ "    \"virtual_meter_point\": false\r\n"
+			+ "}";
+	
+	
 	@BeforeAll
 	static void initDeviceFrame() {
 		deviceFrame = new DeviceDescriptionLoader<SGrRestAPIDeviceFrame>()
 				.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
+		
+		deviceFrameMeterGroup = new DeviceDescriptionLoader<SGrRestAPIDeviceFrame>()
+				.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudMeterGroupV0.2.1.xml");
 	}
 	
 	
 	@Test
 	void testgetValSuccessWithBearerAuthentication() throws Exception {
 
-		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(
-				restServiceClientAuth, // fist call
-				restServiceClientReq);  // second call
+		// given
+		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
@@ -95,11 +115,8 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithTokenRenewal() throws Exception {
 		
 		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(
-				restServiceClientAuth, // fist call
-				restServiceClientReq,  // second call
-				restServiceClientAuth, // third call 
-				restServiceClientReq); // final call
+		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
@@ -123,6 +140,28 @@ class SGrRestAPIDeviceTest {
 		// then		
 		assertEquals("7.5", res);
 		
+	}
+	
+	@Test
+	void testSetVal() throws Exception {
+		
+		// given					
+		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrameMeterGroup.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
+		
+		when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrameMeterGroup.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
+		when(restServiceClientReq.callService()).thenReturn(Either.right("Group allocated."));
+		
+		// when
+		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrameMeterGroup, restServiceClientFactory);
+		device.authenticate();
+		String res = device.setVal("Configuration", "CreateMeterGroup", METER_GROUP_CONFIG_JSON);
+		
+		// then		
+		assertEquals("Group allocated.", res);				
 	}
 
 }

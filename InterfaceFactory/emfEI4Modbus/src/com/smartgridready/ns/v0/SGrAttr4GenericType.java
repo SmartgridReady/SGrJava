@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxSendTime <em>Max Send Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxReceiveTime <em>Max Receive Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendTime <em>Min Send Time</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxLatencyTime <em>Max Latency Time</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxLatencyTimeMs <em>Max Latency Time Ms</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeStampLog <em>Time Stamp Log</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeRange <em>Time Range</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType <em>Value Type</em>}</li>
@@ -526,32 +526,32 @@ public interface SGrAttr4GenericType extends EObject {
 	boolean isSetMinSendTime();
 
 	/**
-	 * Returns the value of the '<em><b>Max Latency Time</b></em>' attribute.
+	 * Returns the value of the '<em><b>Max Latency Time Ms</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 *  Maximum occurring or permitted delay time, e.g. of
-	 * 						a data transaction
+	 * 						a data transaction in milliseconds
 	 * 					
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Max Latency Time</em>' attribute.
-	 * @see #setMaxLatencyTime(BigInteger)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_MaxLatencyTime()
+	 * @return the value of the '<em>Max Latency Time Ms</em>' attribute.
+	 * @see #setMaxLatencyTimeMs(BigInteger)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_MaxLatencyTimeMs()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.UnsignedLong"
-	 *        extendedMetaData="kind='element' name='maxLatencyTime' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='maxLatencyTimeMs' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	BigInteger getMaxLatencyTime();
+	BigInteger getMaxLatencyTimeMs();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxLatencyTime <em>Max Latency Time</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxLatencyTimeMs <em>Max Latency Time Ms</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Max Latency Time</em>' attribute.
-	 * @see #getMaxLatencyTime()
+	 * @param value the new value of the '<em>Max Latency Time Ms</em>' attribute.
+	 * @see #getMaxLatencyTimeMs()
 	 * @generated
 	 */
-	void setMaxLatencyTime(BigInteger value);
+	void setMaxLatencyTimeMs(BigInteger value);
 
 	/**
 	 * Returns the value of the '<em><b>Time Stamp Log</b></em>' attribute.
@@ -672,7 +672,7 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 *  MeasValueState: Status / validity of the
-	 * 						measurement. Possible values are "normal", "outOfRange", "error"
+	 * 						measurement. Possible values are "normal", "error"
 	 * 					
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value State</em>' attribute.

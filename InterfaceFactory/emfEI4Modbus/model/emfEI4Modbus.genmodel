@@ -323,12 +323,6 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMROPresenceLevelIndicationType/R"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMROPresenceLevelIndicationType/O"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrNamelistKindOfType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrNamelistKindOfType/Device"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrNamelistKindOfType/FunctionalProfile"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrNamelistKindOfType/DataPoint"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrNamelistKindOfType/other"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrObligLvlType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrObligLvlType/OLSHALL"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrObligLvlType/OLSHOULD"/>
@@ -774,7 +768,6 @@
     <genDataTypes ecoreDataType="v0.ecore#//SGrModbusLayer6DeviationTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrModbusReg2BoolArrayTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMROPresenceLevelIndicationTypeObject"/>
-    <genDataTypes ecoreDataType="v0.ecore#//SGrNamelistKindOfTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrObligLvlTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrOCPPStateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrPowerSourceTypeObject"/>
@@ -887,7 +880,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxSendTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxReceiveTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/minSendTime"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxLatencyTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxLatencyTimeMs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/timeStampLog"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/timeRange"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueType"/>
@@ -1061,7 +1054,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusInterfaceDescriptionType/conversionScheme"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrNamelistType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/nameType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sLV1Name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sWorkName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sManufName"/>

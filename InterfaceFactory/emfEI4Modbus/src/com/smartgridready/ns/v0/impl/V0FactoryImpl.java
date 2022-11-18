@@ -189,8 +189,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrModbusReg2BoolArrayTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE:
 				return createSGrMROPresenceLevelIndicationTypeFromString(eDataType, initialValue);
-			case V0Package.SGR_NAMELIST_KIND_OF_TYPE:
-				return createSGrNamelistKindOfTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_OBLIG_LVL_TYPE:
 				return createSGrObligLvlTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_OCPP_STATE_TYPE:
@@ -315,8 +313,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrModbusReg2BoolArrayTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT:
 				return createSGrMROPresenceLevelIndicationTypeObjectFromString(eDataType, initialValue);
-			case V0Package.SGR_NAMELIST_KIND_OF_TYPE_OBJECT:
-				return createSGrNamelistKindOfTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_OBLIG_LVL_TYPE_OBJECT:
 				return createSGrObligLvlTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_OCPP_STATE_TYPE_OBJECT:
@@ -436,8 +432,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrModbusReg2BoolArrayTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE:
 				return convertSGrMROPresenceLevelIndicationTypeToString(eDataType, instanceValue);
-			case V0Package.SGR_NAMELIST_KIND_OF_TYPE:
-				return convertSGrNamelistKindOfTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_OBLIG_LVL_TYPE:
 				return convertSGrObligLvlTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_OCPP_STATE_TYPE:
@@ -562,8 +556,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrModbusReg2BoolArrayTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT:
 				return convertSGrMROPresenceLevelIndicationTypeObjectToString(eDataType, instanceValue);
-			case V0Package.SGR_NAMELIST_KIND_OF_TYPE_OBJECT:
-				return convertSGrNamelistKindOfTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_OBLIG_LVL_TYPE_OBJECT:
 				return convertSGrObligLvlTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_OCPP_STATE_TYPE_OBJECT:
@@ -1834,26 +1826,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SGrNamelistKindOfType createSGrNamelistKindOfTypeFromString(EDataType eDataType, String initialValue) {
-		SGrNamelistKindOfType result = SGrNamelistKindOfType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrNamelistKindOfTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public SGrObligLvlType createSGrObligLvlTypeFromString(EDataType eDataType, String initialValue) {
 		SGrObligLvlType result = SGrObligLvlType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -2999,24 +2971,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrMROPresenceLevelIndicationTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrMROPresenceLevelIndicationTypeToString(V0Package.eINSTANCE.getSGrMROPresenceLevelIndicationType(), instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SGrNamelistKindOfType createSGrNamelistKindOfTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createSGrNamelistKindOfTypeFromString(V0Package.eINSTANCE.getSGrNamelistKindOfType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrNamelistKindOfTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertSGrNamelistKindOfTypeToString(V0Package.eINSTANCE.getSGrNamelistKindOfType(), instanceValue);
 	}
 
 	/**

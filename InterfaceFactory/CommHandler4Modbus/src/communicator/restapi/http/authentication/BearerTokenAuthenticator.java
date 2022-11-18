@@ -6,10 +6,7 @@ import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Optional;
 
-import org.apache.hc.client5.http.fluent.Request;
-import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
-import org.apache.hc.core5.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +19,7 @@ import communicator.restapi.exception.RestApiResponseParseException;
 import communicator.restapi.exception.RestApiServiceCallException;
 import communicator.restapi.http.client.RestServiceClient;
 import communicator.restapi.http.client.RestServiceClientFactory;
+import communicator.restapi.http.client.RestServiceClientUtils;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
@@ -67,7 +65,11 @@ public class BearerTokenAuthenticator implements Authenticator {
 	
 	private void requestBearerToken(RestServiceClient restServiceClient) throws IOException, RestApiServiceCallException {
 		
-		LOG.info("Calling REST service: {} - {}", restServiceClient.getBaseUri(), restServiceClient.getRestServiceCall());
+		if (LOG.isInfoEnabled()) {
+				LOG.info("Calling REST service: {} - {}", 
+							restServiceClient.getBaseUri(), 
+							RestServiceClientUtils.printServiceCall(restServiceClient.getRestServiceCall()));
+		}
 		
 		Either<HttpResponse, String> result = restServiceClient.callService();			
 		if (result.isRight()) {

@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getNameType <em>Name Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSLV1Name <em>SLV1 Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSWorkName <em>SWork Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSManufName <em>SManuf Name</em>}</li>
@@ -43,65 +42,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface SGrNamelistType extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Name Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrNamelistKindOfType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * is used to define where this naming is place in a
-	 * 						device-architecture hierarchy way Device; FunctionalProfile;
-	 * 						DataPoint
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Name Type</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrNamelistKindOfType
-	 * @see #isSetNameType()
-	 * @see #unsetNameType()
-	 * @see #setNameType(SGrNamelistKindOfType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrNamelistType_NameType()
-	 * @model unsettable="true" required="true"
-	 *        extendedMetaData="kind='element' name='nameType' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrNamelistKindOfType getNameType();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrNamelistType#getNameType <em>Name Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name Type</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrNamelistKindOfType
-	 * @see #isSetNameType()
-	 * @see #unsetNameType()
-	 * @see #getNameType()
-	 * @generated
-	 */
-	void setNameType(SGrNamelistKindOfType value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrNamelistType#getNameType <em>Name Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetNameType()
-	 * @see #getNameType()
-	 * @see #setNameType(SGrNamelistKindOfType)
-	 * @generated
-	 */
-	void unsetNameType();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrNamelistType#getNameType <em>Name Type</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name Type</em>' attribute is set.
-	 * @see #unsetNameType()
-	 * @see #getNameType()
-	 * @see #setNameType(SGrNamelistKindOfType)
-	 * @generated
-	 */
-	boolean isSetNameType();
-
 	/**
 	 * Returns the value of the '<em><b>SLV1 Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

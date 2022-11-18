@@ -276,8 +276,6 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrModbusReg2BoolArrayType((SGrModbusReg2BoolArrayType)value, diagnostics, context);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE:
 				return validateSGrMROPresenceLevelIndicationType((SGrMROPresenceLevelIndicationType)value, diagnostics, context);
-			case V0Package.SGR_NAMELIST_KIND_OF_TYPE:
-				return validateSGrNamelistKindOfType((SGrNamelistKindOfType)value, diagnostics, context);
 			case V0Package.SGR_OBLIG_LVL_TYPE:
 				return validateSGrObligLvlType((SGrObligLvlType)value, diagnostics, context);
 			case V0Package.SGR_OCPP_STATE_TYPE:
@@ -402,8 +400,6 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrModbusReg2BoolArrayTypeObject((SGrModbusReg2BoolArrayType)value, diagnostics, context);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT:
 				return validateSGrMROPresenceLevelIndicationTypeObject((SGrMROPresenceLevelIndicationType)value, diagnostics, context);
-			case V0Package.SGR_NAMELIST_KIND_OF_TYPE_OBJECT:
-				return validateSGrNamelistKindOfTypeObject((SGrNamelistKindOfType)value, diagnostics, context);
 			case V0Package.SGR_OBLIG_LVL_TYPE_OBJECT:
 				return validateSGrObligLvlTypeObject((SGrObligLvlType)value, diagnostics, context);
 			case V0Package.SGR_OCPP_STATE_TYPE_OBJECT:
@@ -1263,15 +1259,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrMROPresenceLevelIndicationType(SGrMROPresenceLevelIndicationType sGrMROPresenceLevelIndicationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrNamelistKindOfType(SGrNamelistKindOfType sGrNamelistKindOfType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2186,15 +2173,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrMROPresenceLevelIndicationTypeObject(SGrMROPresenceLevelIndicationType sGrMROPresenceLevelIndicationTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrNamelistKindOfTypeObject(SGrNamelistKindOfType sGrNamelistKindOfTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

@@ -44,7 +44,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMaxSendTime <em>Max Send Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMaxReceiveTime <em>Max Receive Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMinSendTime <em>Min Send Time</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMaxLatencyTime <em>Max Latency Time</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMaxLatencyTimeMs <em>Max Latency Time Ms</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getTimeStampLog <em>Time Stamp Log</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getTimeRange <em>Time Range</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueType <em>Value Type</em>}</li>
@@ -307,24 +307,24 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	protected boolean minSendTimeESet;
 
 	/**
-	 * The default value of the '{@link #getMaxLatencyTime() <em>Max Latency Time</em>}' attribute.
+	 * The default value of the '{@link #getMaxLatencyTimeMs() <em>Max Latency Time Ms</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMaxLatencyTime()
+	 * @see #getMaxLatencyTimeMs()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigInteger MAX_LATENCY_TIME_EDEFAULT = null;
+	protected static final BigInteger MAX_LATENCY_TIME_MS_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMaxLatencyTime() <em>Max Latency Time</em>}' attribute.
+	 * The cached value of the '{@link #getMaxLatencyTimeMs() <em>Max Latency Time Ms</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMaxLatencyTime()
+	 * @see #getMaxLatencyTimeMs()
 	 * @generated
 	 * @ordered
 	 */
-	protected BigInteger maxLatencyTime = MAX_LATENCY_TIME_EDEFAULT;
+	protected BigInteger maxLatencyTimeMs = MAX_LATENCY_TIME_MS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTimeStampLog() <em>Time Stamp Log</em>}' attribute.
@@ -1144,8 +1144,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public BigInteger getMaxLatencyTime() {
-		return maxLatencyTime;
+	public BigInteger getMaxLatencyTimeMs() {
+		return maxLatencyTimeMs;
 	}
 
 	/**
@@ -1154,11 +1154,11 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public void setMaxLatencyTime(BigInteger newMaxLatencyTime) {
-		BigInteger oldMaxLatencyTime = maxLatencyTime;
-		maxLatencyTime = newMaxLatencyTime;
+	public void setMaxLatencyTimeMs(BigInteger newMaxLatencyTimeMs) {
+		BigInteger oldMaxLatencyTimeMs = maxLatencyTimeMs;
+		maxLatencyTimeMs = newMaxLatencyTimeMs;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME, oldMaxLatencyTime, maxLatencyTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS, oldMaxLatencyTimeMs, maxLatencyTimeMs));
 	}
 
 	/**
@@ -1822,8 +1822,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return getMaxReceiveTime();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
 				return getMinSendTime();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME:
-				return getMaxLatencyTime();
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
+				return getMaxLatencyTimeMs();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
 				return getTimeStampLog();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
@@ -1892,8 +1892,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
 				setMinSendTime((Float)newValue);
 				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME:
-				setMaxLatencyTime((BigInteger)newValue);
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
+				setMaxLatencyTimeMs((BigInteger)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
 				setTimeStampLog((XMLGregorianCalendar)newValue);
@@ -1976,8 +1976,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
 				unsetMinSendTime();
 				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME:
-				setMaxLatencyTime(MAX_LATENCY_TIME_EDEFAULT);
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
+				setMaxLatencyTimeMs(MAX_LATENCY_TIME_MS_EDEFAULT);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
 				setTimeStampLog(TIME_STAMP_LOG_EDEFAULT);
@@ -2050,8 +2050,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return isSetMaxReceiveTime();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
 				return isSetMinSendTime();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME:
-				return MAX_LATENCY_TIME_EDEFAULT == null ? maxLatencyTime != null : !MAX_LATENCY_TIME_EDEFAULT.equals(maxLatencyTime);
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
+				return MAX_LATENCY_TIME_MS_EDEFAULT == null ? maxLatencyTimeMs != null : !MAX_LATENCY_TIME_MS_EDEFAULT.equals(maxLatencyTimeMs);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
 				return TIME_STAMP_LOG_EDEFAULT == null ? timeStampLog != null : !TIME_STAMP_LOG_EDEFAULT.equals(timeStampLog);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
@@ -2108,8 +2108,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 		if (maxReceiveTimeESet) result.append(maxReceiveTime); else result.append("<unset>");
 		result.append(", minSendTime: ");
 		if (minSendTimeESet) result.append(minSendTime); else result.append("<unset>");
-		result.append(", maxLatencyTime: ");
-		result.append(maxLatencyTime);
+		result.append(", maxLatencyTimeMs: ");
+		result.append(maxLatencyTimeMs);
 		result.append(", timeStampLog: ");
 		result.append(timeStampLog);
 		result.append(", valueType: ");
