@@ -20,9 +20,8 @@ import com.smartgridready.ns.v0.RestServiceCall;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 
 import communicator.helper.DeviceDescriptionLoader;
-import communicator.restapi.http.authentication.BearerTokenAuthenticator;
-import communicator.restapi.http.client.ApacheRestServiceClient;
-import communicator.restapi.http.client.RestServiceClientUtils;
+import communicator.restapi.http.authentication.Authenticator;
+import communicator.restapi.http.client.RestServiceClient;
 import communicator.restapi.http.client.RestServiceClientFactory;
 import io.vavr.control.Either;
 
@@ -30,20 +29,18 @@ import io.vavr.control.Either;
 class SGrRestAPIDeviceTest {
 		
 	@Mock
-	BearerTokenAuthenticator authenticator;
+	Authenticator authenticator;
 	
 	@Mock
 	RestServiceClientFactory restServiceClientFactory;
 	
 	@Mock
-	ApacheRestServiceClient restServiceClientAuth;
+	RestServiceClient restServiceClientAuth;
 	
 	@Mock
-	ApacheRestServiceClient restServiceClientReq;
+	RestServiceClient restServiceClientReq;
 	
 	static SGrRestAPIDeviceFrame deviceFrame;
-	
-	static SGrRestAPIDeviceFrame deviceFrameMeterGroup;
 			
 	private static final String XML_BASE_DIR="../../../SGrSpecifications/XMLInstances/ExtInterfaces/";
 	
@@ -77,14 +74,13 @@ class SGrRestAPIDeviceTest {
 			+ "    \"virtual_meter_point\": false\r\n"
 			+ "}";
 	
+	private static final String METER_GROUP_CONFIG_RESP = " {\"name\":\"ErgoMeters\",\"description\":\"Meter group for tests\",\"address\":{},\"coordinates\":{},\"group_measuring_point\":false,\"sensor_ids\":[],\"user_ids\":[\"636e081e4195a677ca6190be\"],\"organization_ids\":[],\"virtual_meter_point\":false,\"_id\":\"6380bbd5200d8506be9b7c10\"}";
+	
 	
 	@BeforeAll
 	static void initDeviceFrame() {
 		deviceFrame = new DeviceDescriptionLoader<SGrRestAPIDeviceFrame>()
-				.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
-		
-		deviceFrameMeterGroup = new DeviceDescriptionLoader<SGrRestAPIDeviceFrame>()
-				.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudMeterGroupV0.2.1.xml");
+				.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");		
 	}
 	
 	
@@ -96,9 +92,7 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
-		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
-		
-		when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrame.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
+		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));		
 		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
 		
 		// when
@@ -121,9 +115,6 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 		
-		when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrame.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());	
-		
-		
 		List<Either<HttpResponse, String>> responseSequence = new LinkedList<>();
 		responseSequence.add(Either.left( new BasicClassicHttpResponse(401, "Needs token renewal.")));
 		responseSequence.add(Either.right(CLEMAP_METER_RESP));					
@@ -142,6 +133,7 @@ class SGrRestAPIDeviceTest {
 		
 	}
 	
+	
 	@Test
 	void testSetVal() throws Exception {
 		
@@ -149,19 +141,17 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
 		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrameMeterGroup.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
-		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
-		
-		when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrameMeterGroup.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
-		when(restServiceClientReq.callService()).thenReturn(Either.right("Group allocated."));
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));		
+		when(restServiceClientReq.callService()).thenReturn(Either.right(METER_GROUP_CONFIG_RESP));
 		
 		// when
-		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrameMeterGroup, restServiceClientFactory);
+		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
 		String res = device.setVal("Configuration", "CreateMeterGroup", METER_GROUP_CONFIG_JSON);
 		
 		// then		
-		assertEquals("Group allocated.", res);				
+		assertEquals("6380bbd5200d8506be9b7c10", res);				
 	}
 
 }

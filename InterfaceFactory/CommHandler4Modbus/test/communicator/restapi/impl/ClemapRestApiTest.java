@@ -1,11 +1,8 @@
 package communicator.restapi.impl;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.io.IOException;
 import java.util.Properties;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +14,6 @@ import communicator.restapi.exception.RestApiAuthenticationException;
 import communicator.restapi.exception.RestApiResponseParseException;
 import communicator.restapi.exception.RestApiServiceCallException;
 import communicator.restapi.http.client.ApacheRestServiceClientFactory;
-import communicator.restapi.impl.SGrRestApiDevice;
 
 class ClemapRestApiTest {
 	
@@ -32,8 +28,8 @@ class ClemapRestApiTest {
 			+ "    \"coordinates\": {},\r\n"
 			+ "    \"group_measuring_point\": false,\r\n"
 			+ "    \"sensor_ids\": [],\r\n"
-			+ "    \"user_ids\": [\"hfurrer@ergonomics.ch\"],\r\n"
-			+ "    \"organization_ids\": [\"63343431ecf2cf013a1e5a9f\"],\r\n"
+			+ "    \"user_ids\": [\"636e081e4195a677ca6190be\"],\r\n"
+			+ "    \"organization_ids\": [],\r\n"
 			+ "    \"virtual_meter_point\": false\r\n"
 			+ "}";
 	
@@ -65,7 +61,6 @@ class ClemapRestApiTest {
 		}						
 	}
 	
-	@Disabled
 	@Test
 	void testClemapWrite() throws Exception {
 		
@@ -77,7 +72,7 @@ class ClemapRestApiTest {
 
 		DeviceDescriptionLoader<SGrRestAPIDeviceFrame> loader = new DeviceDescriptionLoader<>();						
 		
-		SGrRestAPIDeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudMeterGroupV0.2.1.xml", props);	
+		SGrRestAPIDeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);	
 		SGrRestApiDevice clemapConfigurator =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
 		
 		try {
