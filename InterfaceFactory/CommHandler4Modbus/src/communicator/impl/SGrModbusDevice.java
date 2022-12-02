@@ -35,8 +35,6 @@ import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
-import com.smartgridready.ns.v0.SGrMeasValueStateType;
-import com.smartgridready.ns.v0.SGrMeasValueTendencyType;
 import com.smartgridready.ns.v0.SGrModbusDataPointType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.SGrModbusFunctionalProfileType;
@@ -963,36 +961,32 @@ public class SGrModbusDevice {
 	// type
 	// convert from enumeration into Modbus RegRes number
 	int Enum2RegResConversion(SGrEnumListType oGenVal) { // TODO(ongoing): extend this list manually for EACH
-															// enumeration being added to the system
+														 // enumeration being added to the system
 		int retval = 0;
 
-		if (oGenVal.isSetSgrMeasValueState()) { // E0001
-			retval = oGenVal.getSgrMeasValueState().getValue();
-		} else if (oGenVal.isSetSgrMeasValueTendency()) { // E0002
-			retval = oGenVal.getSgrMeasValueTendency().getValue();
-		} else if (oGenVal.isSetSgrMeasValueSource()) { // E0003
+		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
 			retval = oGenVal.getSgrMeasValueSource().getValue();
-		} else if (oGenVal.isSetSgrPowerSource()) { // E0004
+		} else if (oGenVal.isSetSgrPowerSource()) { // E0002
 			retval = oGenVal.getSgrPowerSource().getValue();
-		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0005
+		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0003
 			retval = oGenVal.getSgreadyStateLv2().getValue();
-		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0006
+		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0004
 			retval = oGenVal.getSgreadyStateLv1().getValue();
-		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0007
+		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0005
 			retval = oGenVal.getSgrSunspStateCodes().getValue();
-		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0008
+		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0006
 			retval = oGenVal.getSgrEVSEStateLv2().getValue();
-		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0009
+		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0010
 			retval = oGenVal.getSgrEVSEStateLv1().getValue();
-		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0010
+		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0011
 			retval = oGenVal.getSgrSGCPLoadStateLv2().getValue();
-		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0011
+		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0012
 			retval = oGenVal.getSgrSGCPFeedInStateLv2().getValue();
-		} else if (oGenVal.isSetSgrEVState()) { // E0012
+		} else if (oGenVal.isSetSgrEVState()) { // E0013
 			retval = oGenVal.getSgrEVState().getValue();
-		} else if (oGenVal.isSetSgrSGCPService()) { // E0013
+		} else if (oGenVal.isSetSgrSGCPService()) { // E0014
 			retval = oGenVal.getSgrSGCPService().getValue();
-		} else if (oGenVal.isSetSgrObligLvl()) { // E0014
+		} else if (oGenVal.isSetSgrObligLvl()) { // E0015
 			retval = oGenVal.getSgrObligLvl().getValue();
 		} else if (oGenVal.isSetSgrOCPPState()) {
 			// E0015
@@ -1011,39 +1005,33 @@ public class SGrModbusDevice {
 
 		// TODO(ongoing): extend this list manually for EACH enumeration being added to
 		// the system
-		if (oGenVal.isSetSgrMeasValueState()) { // E0001
-			rval = oGenVal.getSgrMeasValueState().toString();
-		} else if (oGenVal.isSetSgrMeasValueTendency()) { // E0002
-			rval = oGenVal.getSgrMeasValueTendency().toString();
-		} else if (oGenVal.isSetSgrMeasValueSource()) { // E0003
+		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
 			rval = oGenVal.getSgrMeasValueSource().toString();
-		} else if (oGenVal.isSetSgrPowerSource()) { // E0004
+		} else if (oGenVal.isSetSgrPowerSource()) { // E0002
 			rval = oGenVal.getSgrPowerSource().toString();
-		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0005
+		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0003
 			rval = oGenVal.getSgreadyStateLv2().toString();
-		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0006
+		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0004
 			rval = oGenVal.getSgreadyStateLv1().toString();
-		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0007
+		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0005
 			rval = oGenVal.getSgrSunspStateCodes().toString();
-		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0008
+		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0006
 			rval = oGenVal.getSgrEVSEStateLv2().toString();
-		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0009
+		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0007
 			rval = oGenVal.getSgrEVSEStateLv1().toString();
-		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0010
+		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0008
 			rval = oGenVal.getSgrSGCPLoadStateLv2().toString();
-		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0011
+		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0009
 			rval = oGenVal.getSgrSGCPFeedInStateLv2().toString();
-		} else if (oGenVal.isSetSgrEVState()) { // E0012
+		} else if (oGenVal.isSetSgrEVState()) { // E0010
 			rval = oGenVal.getSgrEVState().toString();
-		} else if (oGenVal.isSetSgrSGCPService()) { // E0013
+		} else if (oGenVal.isSetSgrSGCPService()) { // E0011
 			rval = oGenVal.getSgrSGCPService().toString();
-		} else if (oGenVal.isSetSgrObligLvl()) { // E0014
+		} else if (oGenVal.isSetSgrObligLvl()) { // E0012
 			rval = oGenVal.getSgrObligLvl().toString();
-		} else if (oGenVal.isSetSgrOCPPState()) {
-			// E0015
+		} else if (oGenVal.isSetSgrOCPPState()) {// E0013
 			rval = oGenVal.getSgrOCPPState().toString();
-		} else if (oGenVal.isSetSgrHPOpMode()) {
-			// E0016
+		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
 			rval = oGenVal.getSgrHPOpMode().toString();
 		}
 
@@ -1056,39 +1044,33 @@ public class SGrModbusDevice {
 
 		// TODO(ongoing): extend this list manually for EACH enumeration being added to
 		// the system
-		if (oGenVal.isSetSgrMeasValueState()) { // E0001
-			rval.setSgrMeasValueState(SGrMeasValueStateType.get((int) RegRes));
-		} else if (oGenVal.isSetSgrMeasValueTendency()) { // E0002
-			rval.setSgrMeasValueTendency(SGrMeasValueTendencyType.get((int) RegRes));
-		} else if (oGenVal.isSetSgrMeasValueSource()) { // E0003
+		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
 			rval.setSgrMeasValueSource(SGrMeasValueSourceType.get((int) RegRes));
-		} else if (oGenVal.isSetSgrPowerSource()) { // E0004
+		} else if (oGenVal.isSetSgrPowerSource()) { // E0002
 			rval.setSgrPowerSource(SGrPowerSourceType.get((int) RegRes));
-		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0005
+		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0003
 			rval.setSgreadyStateLv2(SGReadyStateLv2Type.get((int) RegRes));
-		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0006
+		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0004
 			rval.setSgreadyStateLv1(SGReadyStateLv1Type.get((int) RegRes));
-		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0007
+		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0005
 			rval.setSgrSunspStateCodes(SGrSunspStateCodesType.get((int) RegRes));
-		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0008
+		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0006
 			rval.setSgrEVSEStateLv2(SGrEVSEStateLv2Type.get((int) RegRes));
-		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0009
+		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0007
 			rval.setSgrEVSEStateLv1(SGrEVSEStateLv1Type.get((int) RegRes));
-		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0010
+		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E008
 			rval.setSgrSGCPLoadStateLv2(SGrSGCPLoadStateLv2Type.get((int) RegRes));
-		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0011
+		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0009
 			rval.setSgrSGCPFeedInStateLv2(SGrSGCPFeedInStateLv2Type.get((int) RegRes));
-		} else if (oGenVal.isSetSgrEVState()) { // E0012
+		} else if (oGenVal.isSetSgrEVState()) { // E0010
 			rval.setSgrEVState(SGrEVStateType.get((int) RegRes));
-		} else if (oGenVal.isSetSgrSGCPService()) { // E0013
+		} else if (oGenVal.isSetSgrSGCPService()) { // E0011
 			rval.setSgrSGCPService(SGrSGCPServiceType.get((int) RegRes));
-		} else if (oGenVal.isSetSgrObligLvl()) { // E0014
+		} else if (oGenVal.isSetSgrObligLvl()) { // E0012
 			rval.setSgrObligLvl(SGrObligLvlType.get((int) RegRes));
-		} else if (oGenVal.isSetSgrOCPPState()) {
-			// E0015
+		} else if (oGenVal.isSetSgrOCPPState()) { // E0013
 			rval.setSgrOCPPState(SGrOCPPStateType.get((int) RegRes));
-		} else if (oGenVal.isSetSgrHPOpMode()) {
-			// E0016
+		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
 			rval.setSgrHPOpMode(SGrHPOpModeType.get((int) RegRes));
 		}
 
