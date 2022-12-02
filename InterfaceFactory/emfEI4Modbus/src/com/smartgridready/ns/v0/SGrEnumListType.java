@@ -13,8 +13,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrMeasValueState <em>Sgr Meas Value State</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrMeasValueTendency <em>Sgr Meas Value Tendency</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrMeasValueSource <em>Sgr Meas Value Source</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrPowerSource <em>Sgr Power Source</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgreadyStateLv2 <em>Sgready State Lv2</em>}</li>
@@ -36,112 +34,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface SGrEnumListType extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Sgr Meas Value State</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrMeasValueStateType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sgr Meas Value State</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMeasValueStateType
-	 * @see #isSetSgrMeasValueState()
-	 * @see #unsetSgrMeasValueState()
-	 * @see #setSgrMeasValueState(SGrMeasValueStateType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_SgrMeasValueState()
-	 * @model unsettable="true"
-	 *        extendedMetaData="kind='element' name='sgrMeasValueState' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrMeasValueStateType getSgrMeasValueState();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrMeasValueState <em>Sgr Meas Value State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sgr Meas Value State</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMeasValueStateType
-	 * @see #isSetSgrMeasValueState()
-	 * @see #unsetSgrMeasValueState()
-	 * @see #getSgrMeasValueState()
-	 * @generated
-	 */
-	void setSgrMeasValueState(SGrMeasValueStateType value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrMeasValueState <em>Sgr Meas Value State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSgrMeasValueState()
-	 * @see #getSgrMeasValueState()
-	 * @see #setSgrMeasValueState(SGrMeasValueStateType)
-	 * @generated
-	 */
-	void unsetSgrMeasValueState();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrMeasValueState <em>Sgr Meas Value State</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sgr Meas Value State</em>' attribute is set.
-	 * @see #unsetSgrMeasValueState()
-	 * @see #getSgrMeasValueState()
-	 * @see #setSgrMeasValueState(SGrMeasValueStateType)
-	 * @generated
-	 */
-	boolean isSetSgrMeasValueState();
-
-	/**
-	 * Returns the value of the '<em><b>Sgr Meas Value Tendency</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrMeasValueTendencyType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sgr Meas Value Tendency</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMeasValueTendencyType
-	 * @see #isSetSgrMeasValueTendency()
-	 * @see #unsetSgrMeasValueTendency()
-	 * @see #setSgrMeasValueTendency(SGrMeasValueTendencyType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_SgrMeasValueTendency()
-	 * @model unsettable="true"
-	 *        extendedMetaData="kind='element' name='sgrMeasValueTendency' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrMeasValueTendencyType getSgrMeasValueTendency();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrMeasValueTendency <em>Sgr Meas Value Tendency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sgr Meas Value Tendency</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMeasValueTendencyType
-	 * @see #isSetSgrMeasValueTendency()
-	 * @see #unsetSgrMeasValueTendency()
-	 * @see #getSgrMeasValueTendency()
-	 * @generated
-	 */
-	void setSgrMeasValueTendency(SGrMeasValueTendencyType value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrMeasValueTendency <em>Sgr Meas Value Tendency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSgrMeasValueTendency()
-	 * @see #getSgrMeasValueTendency()
-	 * @see #setSgrMeasValueTendency(SGrMeasValueTendencyType)
-	 * @generated
-	 */
-	void unsetSgrMeasValueTendency();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrMeasValueTendency <em>Sgr Meas Value Tendency</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sgr Meas Value Tendency</em>' attribute is set.
-	 * @see #unsetSgrMeasValueTendency()
-	 * @see #getSgrMeasValueTendency()
-	 * @see #setSgrMeasValueTendency(SGrMeasValueTendencyType)
-	 * @generated
-	 */
-	boolean isSetSgrMeasValueTendency();
-
 	/**
 	 * Returns the value of the '<em><b>Sgr Meas Value Source</b></em>' attribute.
 	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrMeasValueSourceType}.

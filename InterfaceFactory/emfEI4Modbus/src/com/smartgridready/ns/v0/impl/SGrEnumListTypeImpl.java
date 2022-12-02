@@ -10,8 +10,6 @@ import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
-import com.smartgridready.ns.v0.SGrMeasValueStateType;
-import com.smartgridready.ns.v0.SGrMeasValueTendencyType;
 import com.smartgridready.ns.v0.SGrOCPPStateType;
 import com.smartgridready.ns.v0.SGrObligLvlType;
 import com.smartgridready.ns.v0.SGrPowerSourceType;
@@ -36,8 +34,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrMeasValueState <em>Sgr Meas Value State</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrMeasValueTendency <em>Sgr Meas Value Tendency</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrMeasValueSource <em>Sgr Meas Value Source</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrPowerSource <em>Sgr Power Source</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgreadyStateLv2 <em>Sgready State Lv2</em>}</li>
@@ -57,64 +53,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * @generated
  */
 public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements SGrEnumListType {
-	/**
-	 * The default value of the '{@link #getSgrMeasValueState() <em>Sgr Meas Value State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSgrMeasValueState()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final SGrMeasValueStateType SGR_MEAS_VALUE_STATE_EDEFAULT = SGrMeasValueStateType.NORMAL;
-
-	/**
-	 * The cached value of the '{@link #getSgrMeasValueState() <em>Sgr Meas Value State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSgrMeasValueState()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrMeasValueStateType sgrMeasValueState = SGR_MEAS_VALUE_STATE_EDEFAULT;
-
-	/**
-	 * This is true if the Sgr Meas Value State attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean sgrMeasValueStateESet;
-
-	/**
-	 * The default value of the '{@link #getSgrMeasValueTendency() <em>Sgr Meas Value Tendency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSgrMeasValueTendency()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final SGrMeasValueTendencyType SGR_MEAS_VALUE_TENDENCY_EDEFAULT = SGrMeasValueTendencyType.RISING;
-
-	/**
-	 * The cached value of the '{@link #getSgrMeasValueTendency() <em>Sgr Meas Value Tendency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSgrMeasValueTendency()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrMeasValueTendencyType sgrMeasValueTendency = SGR_MEAS_VALUE_TENDENCY_EDEFAULT;
-
-	/**
-	 * This is true if the Sgr Meas Value Tendency attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean sgrMeasValueTendencyESet;
-
 	/**
 	 * The default value of the '{@link #getSgrMeasValueSource() <em>Sgr Meas Value Source</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -538,106 +476,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	protected EClass eStaticClass() {
 		return V0Package.eINSTANCE.getSGrEnumListType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrMeasValueStateType getSgrMeasValueState() {
-		return sgrMeasValueState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSgrMeasValueState(SGrMeasValueStateType newSgrMeasValueState) {
-		SGrMeasValueStateType oldSgrMeasValueState = sgrMeasValueState;
-		sgrMeasValueState = newSgrMeasValueState == null ? SGR_MEAS_VALUE_STATE_EDEFAULT : newSgrMeasValueState;
-		boolean oldSgrMeasValueStateESet = sgrMeasValueStateESet;
-		sgrMeasValueStateESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_STATE, oldSgrMeasValueState, sgrMeasValueState, !oldSgrMeasValueStateESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetSgrMeasValueState() {
-		SGrMeasValueStateType oldSgrMeasValueState = sgrMeasValueState;
-		boolean oldSgrMeasValueStateESet = sgrMeasValueStateESet;
-		sgrMeasValueState = SGR_MEAS_VALUE_STATE_EDEFAULT;
-		sgrMeasValueStateESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_STATE, oldSgrMeasValueState, SGR_MEAS_VALUE_STATE_EDEFAULT, oldSgrMeasValueStateESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetSgrMeasValueState() {
-		return sgrMeasValueStateESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrMeasValueTendencyType getSgrMeasValueTendency() {
-		return sgrMeasValueTendency;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSgrMeasValueTendency(SGrMeasValueTendencyType newSgrMeasValueTendency) {
-		SGrMeasValueTendencyType oldSgrMeasValueTendency = sgrMeasValueTendency;
-		sgrMeasValueTendency = newSgrMeasValueTendency == null ? SGR_MEAS_VALUE_TENDENCY_EDEFAULT : newSgrMeasValueTendency;
-		boolean oldSgrMeasValueTendencyESet = sgrMeasValueTendencyESet;
-		sgrMeasValueTendencyESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_TENDENCY, oldSgrMeasValueTendency, sgrMeasValueTendency, !oldSgrMeasValueTendencyESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetSgrMeasValueTendency() {
-		SGrMeasValueTendencyType oldSgrMeasValueTendency = sgrMeasValueTendency;
-		boolean oldSgrMeasValueTendencyESet = sgrMeasValueTendencyESet;
-		sgrMeasValueTendency = SGR_MEAS_VALUE_TENDENCY_EDEFAULT;
-		sgrMeasValueTendencyESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_TENDENCY, oldSgrMeasValueTendency, SGR_MEAS_VALUE_TENDENCY_EDEFAULT, oldSgrMeasValueTendencyESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetSgrMeasValueTendency() {
-		return sgrMeasValueTendencyESet;
 	}
 
 	/**
@@ -1348,10 +1186,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_STATE:
-				return getSgrMeasValueState();
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_TENDENCY:
-				return getSgrMeasValueTendency();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_SOURCE:
 				return getSgrMeasValueSource();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_POWER_SOURCE:
@@ -1392,12 +1226,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_STATE:
-				setSgrMeasValueState((SGrMeasValueStateType)newValue);
-				return;
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_TENDENCY:
-				setSgrMeasValueTendency((SGrMeasValueTendencyType)newValue);
-				return;
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_SOURCE:
 				setSgrMeasValueSource((SGrMeasValueSourceType)newValue);
 				return;
@@ -1452,12 +1280,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_STATE:
-				unsetSgrMeasValueState();
-				return;
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_TENDENCY:
-				unsetSgrMeasValueTendency();
-				return;
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_SOURCE:
 				unsetSgrMeasValueSource();
 				return;
@@ -1512,10 +1334,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_STATE:
-				return isSetSgrMeasValueState();
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_TENDENCY:
-				return isSetSgrMeasValueTendency();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_SOURCE:
 				return isSetSgrMeasValueSource();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_POWER_SOURCE:
@@ -1558,11 +1376,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (sgrMeasValueState: ");
-		if (sgrMeasValueStateESet) result.append(sgrMeasValueState); else result.append("<unset>");
-		result.append(", sgrMeasValueTendency: ");
-		if (sgrMeasValueTendencyESet) result.append(sgrMeasValueTendency); else result.append("<unset>");
-		result.append(", sgrMeasValueSource: ");
+		result.append(" (sgrMeasValueSource: ");
 		if (sgrMeasValueSourceESet) result.append(sgrMeasValueSource); else result.append("<unset>");
 		result.append(", sgrPowerSource: ");
 		if (sgrPowerSourceESet) result.append(sgrPowerSource); else result.append("<unset>");

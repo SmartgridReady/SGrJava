@@ -266,16 +266,8 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueSourceType/calculatedValue"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueSourceType/empiricalValue"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrMeasValueStateType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueStateType/normal"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueStateType/error"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrMeasValueTendencyType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueTendencyType/rising"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueTendencyType/stable"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueTendencyType/falling"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrMeasValueType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueType/value"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueType/min"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueType/max"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMeasValueType/average"/>
@@ -631,8 +623,8 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/PhaseAngle"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/CurrentQuadrant"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/Frequency"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ActiveEnerBalanceAC"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ReactiveEnerBalanceAC"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ActiveEnergyBalanceAC"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ReactiveEnergyBalanceAC"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/CurrentDirection"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/PowerQuadrant"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/EnergyDC"/>
@@ -762,8 +754,6 @@
     <genDataTypes ecoreDataType="v0.ecore#//SGrLanguageTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrManufacturerIDTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueSourceTypeObject"/>
-    <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueStateTypeObject"/>
-    <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueTendencyTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrModbusLayer6DeviationTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrModbusReg2BoolArrayTypeObject"/>
@@ -876,16 +866,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/precision"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/stabilityFallback"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/smoothTransition"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/minSendDelta"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxSendTime"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxReceiveTime"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/minSendTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxLatencyTimeMs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/timeStampLog"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/timeRange"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueTendency"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/sampleRate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/curtailment"/>
@@ -981,8 +963,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceProfileType/devPrgDesc"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrEnumListType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrMeasValueState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrMeasValueTendency"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrMeasValueSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrPowerSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgreadyStateLv2"/>
@@ -1134,10 +1114,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrStabilityFallbackType/maxReceiveTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrStabilityFallbackType/initValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrStabilityFallbackType/fallbackValue"/>
-    </genClasses>
-    <genClasses ecoreClass="v0.ecore#//SGrTimeRangeType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrTimeRangeType/startTime"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrTimeRangeType/endTime"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrVersionNumberType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrVersionNumberType/primaryVersionNumber"/>

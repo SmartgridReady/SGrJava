@@ -5,8 +5,6 @@ package com.smartgridready.ns.v0.impl;
 import com.smartgridready.ns.v0.SGrStabilityFallbackType;
 import com.smartgridready.ns.v0.V0Package;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -38,7 +36,7 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 * @ordered
 	 */
-	protected static final XMLGregorianCalendar MAX_RECEIVE_TIME_EDEFAULT = null;
+	protected static final float MAX_RECEIVE_TIME_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getMaxReceiveTime() <em>Max Receive Time</em>}' attribute.
@@ -48,7 +46,16 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 * @ordered
 	 */
-	protected XMLGregorianCalendar maxReceiveTime = MAX_RECEIVE_TIME_EDEFAULT;
+	protected float maxReceiveTime = MAX_RECEIVE_TIME_EDEFAULT;
+
+	/**
+	 * This is true if the Max Receive Time attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean maxReceiveTimeESet;
 
 	/**
 	 * The default value of the '{@link #getInitValue() <em>Init Value</em>}' attribute.
@@ -133,7 +140,7 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
-	public XMLGregorianCalendar getMaxReceiveTime() {
+	public float getMaxReceiveTime() {
 		return maxReceiveTime;
 	}
 
@@ -143,11 +150,38 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 */
 	@Override
-	public void setMaxReceiveTime(XMLGregorianCalendar newMaxReceiveTime) {
-		XMLGregorianCalendar oldMaxReceiveTime = maxReceiveTime;
+	public void setMaxReceiveTime(float newMaxReceiveTime) {
+		float oldMaxReceiveTime = maxReceiveTime;
 		maxReceiveTime = newMaxReceiveTime;
+		boolean oldMaxReceiveTimeESet = maxReceiveTimeESet;
+		maxReceiveTimeESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_STABILITY_FALLBACK_TYPE__MAX_RECEIVE_TIME, oldMaxReceiveTime, maxReceiveTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_STABILITY_FALLBACK_TYPE__MAX_RECEIVE_TIME, oldMaxReceiveTime, maxReceiveTime, !oldMaxReceiveTimeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetMaxReceiveTime() {
+		float oldMaxReceiveTime = maxReceiveTime;
+		boolean oldMaxReceiveTimeESet = maxReceiveTimeESet;
+		maxReceiveTime = MAX_RECEIVE_TIME_EDEFAULT;
+		maxReceiveTimeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_STABILITY_FALLBACK_TYPE__MAX_RECEIVE_TIME, oldMaxReceiveTime, MAX_RECEIVE_TIME_EDEFAULT, oldMaxReceiveTimeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetMaxReceiveTime() {
+		return maxReceiveTimeESet;
 	}
 
 	/**
@@ -277,7 +311,7 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE__MAX_RECEIVE_TIME:
-				setMaxReceiveTime((XMLGregorianCalendar)newValue);
+				setMaxReceiveTime((Float)newValue);
 				return;
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE__INIT_VALUE:
 				setInitValue((Float)newValue);
@@ -298,7 +332,7 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE__MAX_RECEIVE_TIME:
-				setMaxReceiveTime(MAX_RECEIVE_TIME_EDEFAULT);
+				unsetMaxReceiveTime();
 				return;
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE__INIT_VALUE:
 				unsetInitValue();
@@ -319,7 +353,7 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE__MAX_RECEIVE_TIME:
-				return MAX_RECEIVE_TIME_EDEFAULT == null ? maxReceiveTime != null : !MAX_RECEIVE_TIME_EDEFAULT.equals(maxReceiveTime);
+				return isSetMaxReceiveTime();
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE__INIT_VALUE:
 				return isSetInitValue();
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE__FALLBACK_VALUE:
@@ -339,7 +373,7 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (maxReceiveTime: ");
-		result.append(maxReceiveTime);
+		if (maxReceiveTimeESet) result.append(maxReceiveTime); else result.append("<unset>");
 		result.append(", initValue: ");
 		if (initValueESet) result.append(initValue); else result.append("<unset>");
 		result.append(", fallbackValue: ");

@@ -188,30 +188,30 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	FREQUENCY(12, "Frequency", "Frequency"),
 
 	/**
-	 * The '<em><b>Active Ener Balance AC</b></em>' literal object.
+	 * The '<em><b>Active Energy Balance AC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 13:
 	 * <!-- end-model-doc -->
-	 * @see #ACTIVE_ENER_BALANCE_AC_VALUE
+	 * @see #ACTIVE_ENERGY_BALANCE_AC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ACTIVE_ENER_BALANCE_AC(13, "ActiveEnerBalanceAC", "ActiveEnerBalanceAC"),
+	ACTIVE_ENERGY_BALANCE_AC(13, "ActiveEnergyBalanceAC", "ActiveEnergyBalanceAC"),
 
 	/**
-	 * The '<em><b>Reactive Ener Balance AC</b></em>' literal object.
+	 * The '<em><b>Reactive Energy Balance AC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 14:
 	 * <!-- end-model-doc -->
-	 * @see #REACTIVE_ENER_BALANCE_AC_VALUE
+	 * @see #REACTIVE_ENERGY_BALANCE_AC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	REACTIVE_ENER_BALANCE_AC(14, "ReactiveEnerBalanceAC", "ReactiveEnerBalanceAC"),
+	REACTIVE_ENERGY_BALANCE_AC(14, "ReactiveEnergyBalanceAC", "ReactiveEnergyBalanceAC"),
 
 	/**
 	 * The '<em><b>Current Direction</b></em>' literal object.
@@ -1241,32 +1241,32 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	public static final int FREQUENCY_VALUE = 12;
 
 	/**
-	 * The '<em><b>Active Ener Balance AC</b></em>' literal value.
+	 * The '<em><b>Active Energy Balance AC</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 13:
 	 * <!-- end-model-doc -->
-	 * @see #ACTIVE_ENER_BALANCE_AC
-	 * @model name="ActiveEnerBalanceAC"
+	 * @see #ACTIVE_ENERGY_BALANCE_AC
+	 * @model name="ActiveEnergyBalanceAC"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACTIVE_ENER_BALANCE_AC_VALUE = 13;
+	public static final int ACTIVE_ENERGY_BALANCE_AC_VALUE = 13;
 
 	/**
-	 * The '<em><b>Reactive Ener Balance AC</b></em>' literal value.
+	 * The '<em><b>Reactive Energy Balance AC</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 14:
 	 * <!-- end-model-doc -->
-	 * @see #REACTIVE_ENER_BALANCE_AC
-	 * @model name="ReactiveEnerBalanceAC"
+	 * @see #REACTIVE_ENERGY_BALANCE_AC
+	 * @model name="ReactiveEnergyBalanceAC"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REACTIVE_ENER_BALANCE_AC_VALUE = 14;
+	public static final int REACTIVE_ENERGY_BALANCE_AC_VALUE = 14;
 
 	/**
 	 * The '<em><b>Current Direction</b></em>' literal value.
@@ -2199,8 +2199,8 @@ public enum SubProfileTypeEnumType implements Enumerator {
 			PHASE_ANGLE,
 			CURRENT_QUADRANT,
 			FREQUENCY,
-			ACTIVE_ENER_BALANCE_AC,
-			REACTIVE_ENER_BALANCE_AC,
+			ACTIVE_ENERGY_BALANCE_AC,
+			REACTIVE_ENERGY_BALANCE_AC,
 			CURRENT_DIRECTION,
 			POWER_QUADRANT,
 			ENERGY_DC,
@@ -2335,8 +2335,8 @@ public enum SubProfileTypeEnumType implements Enumerator {
 			case PHASE_ANGLE_VALUE: return PHASE_ANGLE;
 			case CURRENT_QUADRANT_VALUE: return CURRENT_QUADRANT;
 			case FREQUENCY_VALUE: return FREQUENCY;
-			case ACTIVE_ENER_BALANCE_AC_VALUE: return ACTIVE_ENER_BALANCE_AC;
-			case REACTIVE_ENER_BALANCE_AC_VALUE: return REACTIVE_ENER_BALANCE_AC;
+			case ACTIVE_ENERGY_BALANCE_AC_VALUE: return ACTIVE_ENERGY_BALANCE_AC;
+			case REACTIVE_ENERGY_BALANCE_AC_VALUE: return REACTIVE_ENERGY_BALANCE_AC;
 			case CURRENT_DIRECTION_VALUE: return CURRENT_DIRECTION;
 			case POWER_QUADRANT_VALUE: return POWER_QUADRANT;
 			case ENERGY_DC_VALUE: return ENERGY_DC;

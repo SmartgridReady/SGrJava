@@ -27,6 +27,7 @@ package communicator.impl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+// WIP/cb import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
@@ -47,6 +48,7 @@ public class IBTlabLoopTester {
 	// Modbus RTU devices
 	private static SGrModbusDevice devWagoMeter = null;
 	private static SGrModbusDevice devABBMeter = null;
+	private static SGrModbusDevice devTB_ABBMeter = null;
 	// we need a single driver instance for RTU and separate these by device addres
 	private static GenDriverAPI4ModbusRTU mbRTU = null;
 	
@@ -61,18 +63,23 @@ public class IBTlabLoopTester {
 	private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     
 	// Exception Counters
-	private static int devWagoMeterExceptions = 0;
 	private static int devABBMeterExcpetions = 0;
 	private static int devVGT_SGCPExceptions = 0;
 	private static int devGaroWallboxExceptions = 0;
-	private static int devOMCCIWallboxExceptions = 0;
 	private static int devFroniusSymoExceptions = 0;
+	// TestBox
+	private static int devTB_ABBMeterExcpetions = 0;
+	private static int devWagoMeterExceptions = 0;
+	private static int devOMCCIWallboxExceptions = 0;
+	
 	// device selection
-	private static boolean  devWagoMeterTestIsOn = true; 
 	private static boolean  devABBMeterTestIsOn = true; 
 	private static boolean  devVGT_SGCPTestIsOn = true; 
 	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
+	// TestBox
+	private static boolean  devTB_ABBMeterTestIsOn = false; 
+	private static boolean  devWagoMeterTestIsOn = false; 
 	private static boolean  devOMCCIWallboxTestIsOn = false; 
 	
 	// shell for enumerations
@@ -88,12 +95,8 @@ public class IBTlabLoopTester {
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
-			//mbRTU.initTrspService("COM9");			
-			mbRTU.initTrspService("COM9", 9600, Parity.NONE);
-			if (devWagoMeterTestIsOn) {
-				System.out.printf("%n-init devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ "%n");
-				initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
-			}
+			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface		
+			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
 			if (devABBMeterTestIsOn)  {
 				System.out.printf("%n-init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ "%n");initABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
 			}
@@ -106,10 +109,19 @@ public class IBTlabLoopTester {
 			if (devFroniusSymoTestIsOn) {
 				System.out.printf("%n-init FroniusSymoTest @:" + dtf.format(LocalDateTime.now()) + "%n"); initFroniusSymo(XML_BASE_DIR,"SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml");
 			}	
+
+			// TestBox
+			if (devTB_ABBMeterTestIsOn)  {
+				System.out.printf("%n-init TestBox: devTB_ABBMeterTest @:" + dtf.format(LocalDateTime.now())+ "%n");initTB_ABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
+			}
+			if (devWagoMeterTestIsOn) {
+				System.out.printf("%n-init TestBox: devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ "%n");
+				initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
+			}
 			if (devOMCCIWallboxTestIsOn) {
 				//TODO: complete and use OMCCI EI.xml
 				System.out.printf("%n-init devOMCCIWallboxTest @:" + dtf.format(LocalDateTime.now())+ "%n"); initOMCCIWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
-			}	
+			}
 
  
 		
@@ -124,38 +136,43 @@ public class IBTlabLoopTester {
 				   // loop data & test reporting
 			        System.out.printf("%n" + dtf.format(LocalDateTime.now()));			        
 					System.out.printf("  ------> LOOP=" +	runtimeCnt + "  Exceptions:");		
-					if (devWagoMeterTestIsOn)   System.out.printf(" WagoMeter=" + devWagoMeterExceptions + ",");
 					if (devABBMeterTestIsOn)    System.out.printf(" ABBMeter=" +  devABBMeterExcpetions+ ",");
 					if (devVGT_SGCPTestIsOn)    System.out.printf(" VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
 				    if (devGaroWallboxTestIsOn) System.out.printf(" GaroWallbox=" + devGaroWallboxExceptions+ ",");
 					if (devFroniusSymoTestIsOn) System.out.printf(" FroniusSymo=" + devFroniusSymoExceptions + ",");
-				    if (devOMCCIWallboxTestIsOn) System.out.printf(" OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
+					// TestBox
+					if (devTB_ABBMeterTestIsOn)    System.out.printf(" TestBox ABBMeter=" +  devTB_ABBMeterExcpetions+ ",");
+				  if (devOMCCIWallboxTestIsOn) System.out.printf(" TestBox OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
+					if (devWagoMeterTestIsOn)   System.out.printf(" TestBox WagoMeter=" + devWagoMeterExceptions + ",");
 					System.out.println(" <------");
 					
-				    //Next loop 
-					if (devWagoMeterTestIsOn)   tstWagoMeter();
+				    //_____Next loop 
 					if (devABBMeterTestIsOn)    tstABBMeter();					
 					if (devVGT_SGCPTestIsOn)    tstVGT_SGCP(); 
 				    if (devGaroWallboxTestIsOn) tstGaroWallbox();
 					if (devFroniusSymoTestIsOn) tstFroniusSymo();	
+					// TestBox
+					if (devTB_ABBMeterTestIsOn)  tstTB_ABBMeter();	
 				    if (devOMCCIWallboxTestIsOn) tstOMCCIWallbox();
+					if (devWagoMeterTestIsOn)    tstWagoMeter();
 
 				    Thread.sleep(500);  // show last block for ccc  milliseconds
+				}
 			}
 
-		}
-		catch ( Exception e)
-		{
+		    catch ( Exception e)
+	 	   {
 				System.out.println( "Error reading value from device " + e);
 				e.printStackTrace();
-		}
-	 }
-	 catch ( Exception e )
-	 {
-			System.out.println( "Error loading device description. " + e);
-	 }									
-  }
-	
+		   }
+	   }
+	 
+	   catch ( Exception e )
+	   {
+		  	 System.out.println( "Error loading device description. " + e);
+	   }									
+ 
+	}
    // -----------------------------------------------------------------------------------------------------------------------------	
    // WAGO Meter testing
    // -----------------------------------------------------------------------------------------------------------------------------	
@@ -184,7 +201,7 @@ public class IBTlabLoopTester {
 			try {							
 				mbRTU.setUnitIdentifier((byte) 7);
 			    System.out.println();
-				System.out.println("@:Testing WAGO Meter");
+				System.out.println("@:Testing TestBox: WAGO Meter");
 				Thread.sleep(25);
 				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
 				Thread.sleep(10);            
@@ -353,7 +370,7 @@ public class IBTlabLoopTester {
 					  Thread.sleep(10);
 					  sVal4 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL3");
 					  Thread.sleep(10);
-					  System.out.printf(" ActivePowerAC [KW]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + " %n");	
+					  System.out.printf(" ActivePowerAC [KW]:           " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + " %n");	
 	 	
 					  sVal1 = devABBMeter.getVal("CurrentAC", "CurrentACL1");
 					  Thread.sleep(10);
@@ -363,13 +380,80 @@ public class IBTlabLoopTester {
 					  Thread.sleep(10);
 					  sVal4 = devABBMeter.getVal("CurrentAC", "CurrentACN");
 					  Thread.sleep(10);
-					  System.out.printf(" CurrentAC [A]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + " %n");	
+					  System.out.printf(" CurrentAC [A]:             " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + " %n");	
 		
 					
 				}
 				catch ( Exception e)
 				{
 					devABBMeterExcpetions++;
+					System.out.println( "Error reading value from device devABBMeter:" +  e);
+					e.printStackTrace();
+				}
+			}
+		
+
+	   // -----------------------------------------------------------------------------------------------------------------------------	
+	   // Device ABBMeter Testing
+	   // -----------------------------------------------------------------------------------------------------------------------------	
+		static void initTB_ABBMeter(String aBaseDir, String aDescriptionFile ) {				
+			
+			try {	
+				
+				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+				SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				devTB_ABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
+				
+			}
+			
+			catch ( Exception e )
+			{
+				System.out.println( "Error loading device description. " + e);
+			}		
+		}
+		
+		static void tstTB_ABBMeter()
+		{
+			float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0;
+			String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
+			
+				try {
+	 				  mbRTU.setUnitIdentifier((byte) 1 );	
+	  				  System.out.printf("%n@:Testing TestBox: ABBMeter:%n");
+					  Thread.sleep(50);
+					  sVal1 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
+					  Thread.sleep(10);
+					  sVal2 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
+					  Thread.sleep(10);
+					  sVal3 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
+					  Thread.sleep(10);
+					  System.out.printf(" ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + " %n");	
+	 
+					  sVal1 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACtot");
+					  Thread.sleep(10);
+					  sVal2 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL1");
+					  Thread.sleep(10);
+					  sVal3 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL2");
+					  Thread.sleep(10);
+					  sVal4 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL3");
+					  Thread.sleep(10);
+					  System.out.printf(" ActivePowerAC [KW]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + " %n");	
+	 	
+					  sVal1 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACL1");
+					  Thread.sleep(10);
+					  sVal2 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACL2");
+					  Thread.sleep(10);
+					  sVal3 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACL3");
+					  Thread.sleep(10);
+					  sVal4 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACN");
+					  Thread.sleep(10);
+					  System.out.printf(" CurrentAC [A]:              " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + " %n");	
+		
+					
+				}
+				catch ( Exception e)
+				{
+					devTB_ABBMeterExcpetions++;
 					System.out.println( "Error reading value from device devABBMeter:" +  e);
 					e.printStackTrace();
 				}
@@ -574,7 +658,7 @@ public class IBTlabLoopTester {
 						
 						
 							try {	
-								 System.out.printf("%n@:Testing OMCCIWallbox:%n");							
+								 System.out.printf("%n@:Testing TestBox: OMCCIWallbox:%n");							
 								 if ((runtimeCnt%60)== 0)
 								 {
 									 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
@@ -655,7 +739,7 @@ public class IBTlabLoopTester {
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 							GenDriverAPI4ModbusTCP mbPVFroniusSymo = new GenDriverAPI4ModbusTCP();
 							devFroniusSymo = new SGrModbusDevice(tstDesc, mbPVFroniusSymo);
-							mbPVFroniusSymo.initDevice("192.168.1.181",502);
+						    mbPVFroniusSymo.initDevice("192.168.1.181",502);
 						}
 						
 						catch ( Exception e )
@@ -668,7 +752,10 @@ public class IBTlabLoopTester {
 					{
 						float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0;
 						String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
+						//SGrBool2BitRankType sgrBool2BitRank = oEnumList.getSgrBool2BitRank();
 						
+						
+						boolean b1,b2,b3,b4;
 							try {	
 								 System.out.printf("%n@:Testing FroniusSymo:%n");
 								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "SunspecID");
@@ -687,7 +774,9 @@ public class IBTlabLoopTester {
 								 Thread.sleep(25);
 								 System.out.printf("  SunspInvModel CurrentAC [A]:          " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");			
 											
-								
+								 
+								//b3= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT3_VALUE).getDpInstance().get(SGrBool2BitRankType.BIT3_VALUE).isBoolean();
+								// b1= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT1_VALUE).getDpInstance().get(SGrBool2BitRankType.BIT1_VALUE).isBoolean();
 							}
 							catch ( Exception e)
 							{

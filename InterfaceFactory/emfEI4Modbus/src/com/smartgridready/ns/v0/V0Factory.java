@@ -490,15 +490,6 @@ public interface V0Factory extends EFactory {
 	SGrStabilityFallbackType createSGrStabilityFallbackType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Time Range Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Time Range Type</em>'.
-	 * @generated
-	 */
-	SGrTimeRangeType createSGrTimeRangeType();
-
-	/**
 	 * Returns a new object of class '<em>SGr Version Number Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

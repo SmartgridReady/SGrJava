@@ -1179,53 +1179,9 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minSendDelta" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
-        unsettable="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" A measured value difference that must lead to a&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;notification . Unit: inheritted&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="minSendDelta"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxSendTime" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
-        unsettable="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" The maximum time between 2 notifications in seconds&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="maxSendTime"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxReceiveTime" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
-        unsettable="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" The maximum time between 2 notifications in seconds&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="maxReceiveTime"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minSendTime" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
-        unsettable="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" The fastest possible or allowable sequence of&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;notifications in seconds&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="minSendTime"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatencyTimeMs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" Maximum occurring or permitted delay time, e.g. of&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;a data transaction in milliseconds&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value=" Maximum time in milliseconds from capturing of measured value &#xA;            until ready at the external interface (i.e. analog-digital conversion time)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1233,57 +1189,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeStampLog" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//DateTime">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" This is the date Time Value indicates that any&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;value generation must be paired with the time of either a&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;measuement was taken or where a higher controls software level&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;indicates when it got the value&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="timeStampLog"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="timeRange" eType="#//SGrTimeRangeType"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="time range min…max"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="timeRange"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueType" eType="#//SGrMeasValueType"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" MeasValueType: type of measurement. Possbile values are &quot;min&quot;, max&quot;, &quot;average&quot;, &quot;stdDev&quot;"/>
+        <details key="documentation" value=" MeasValueType: type of measurement. Possbile values are &quot;value&quot;, &quot;min&quot;, max&quot;, &quot;average&quot;, &quot;stdDev&quot;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="valueType"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueState" eType="#//SGrMeasValueStateType"
-        unsettable="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" MeasValueState: Status / validity of the&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;measurement. Possible values are &quot;normal&quot;, &quot;error&quot;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="valueState"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueTendency" eType="#//SGrMeasValueTendencyType"
-        unsettable="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" value trend based on timely changes, potential&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;values are rising, stable, falling&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="valueTendency"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1298,8 +1211,7 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleRate" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
-        unsettable="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleRate" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" SampleRate in milliseconds&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
@@ -2128,22 +2040,6 @@
       <details key="name" value="SGrEnumListType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrMeasValueState" eType="#//SGrMeasValueStateType"
-        unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="sgrMeasValueState"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrMeasValueTendency" eType="#//SGrMeasValueTendencyType"
-        unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="sgrMeasValueTendency"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrMeasValueSource" eType="#//SGrMeasValueSourceType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -2733,47 +2629,15 @@
       <details key="baseType" value="SGrMeasValueSourceType"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="SGrMeasValueStateType">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="E0001"/>
-    </eAnnotations>
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrMeasValueStateType"/>
-    </eAnnotations>
-    <eLiterals name="normal"/>
-    <eLiterals name="error" value="1"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="SGrMeasValueStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrMeasValueStateType:Object"/>
-      <details key="baseType" value="SGrMeasValueStateType"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="SGrMeasValueTendencyType">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="E0002: value trend based on timely changes, potential&#xA;&#x9;&#x9;&#x9;&#x9;values are rising, stable, falling&#xA;&#x9;&#x9;&#x9;"/>
-    </eAnnotations>
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrMeasValueTendencyType"/>
-    </eAnnotations>
-    <eLiterals name="rising"/>
-    <eLiterals name="stable" value="1"/>
-    <eLiterals name="falling" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="SGrMeasValueTendencyTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrMeasValueTendencyType:Object"/>
-      <details key="baseType" value="SGrMeasValueTendencyType"/>
-    </eAnnotations>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrMeasValueType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrMeasValueType"/>
     </eAnnotations>
-    <eLiterals name="min"/>
-    <eLiterals name="max" value="1"/>
-    <eLiterals name="average" value="2"/>
-    <eLiterals name="stdDev" value="3"/>
+    <eLiterals name="value"/>
+    <eLiterals name="min" value="1"/>
+    <eLiterals name="max" value="2"/>
+    <eLiterals name="average" value="3"/>
+    <eLiterals name="stdDev" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrMeasValueTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -3802,7 +3666,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="winTms" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="indicates a time window in which the new operating&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;mode is started randomly. The time window begins with the start&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;command of the operating mode. The value 0 means immediate&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="indicates a time window in seconds in which the new operating&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;mode is started randomly. The time window begins with the start&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;command of the operating mode. The value 0 means immediate&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -3812,7 +3676,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rvrtTms" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="determines how long the operating mode should be&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;active. When the time has elapsed, the operating mode is&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;automatically terminated. If rvrtTms = 0 (standard value), the&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;operating mode remains active until a new command is received.&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="determines how long the operating mode should be&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;active in seconds. When the time has elapsed, the operating mode is&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;automatically terminated. If rvrtTms = 0 (standard value), the&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;operating mode remains active until a new command is received.&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -3822,7 +3686,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rmpTms" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="specifies how quickly the changes should be made.&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;The corresponding value is gradually changed from the old to the&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;new value in the specified time.&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="specifies how quickly the changes should be made in seconds.&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;The corresponding value is gradually changed from the old to the&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;new value in the specified time.&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -3849,7 +3713,10 @@
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxReceiveTime" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float" unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Time in seconds. If the device does not recieve any communication within this specified time the device automatically initiates the fallback. 0 indicates no fallback will be performed."/>
+      </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="maxReceiveTime"/>
@@ -3900,37 +3767,6 @@
       <details key="name" value="SGrSunspStateCodesType:Object"/>
       <details key="baseType" value="SGrSunspStateCodesType"/>
     </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SGrTimeRangeType">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="time range min…max"/>
-    </eAnnotations>
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrTimeRangeType"/>
-      <details key="kind" value="elementOnly"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Cycle begins"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="startTime"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endTime" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Time">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Cycle ends"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="endTime"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrTransportServicesUsedListType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -4260,12 +4096,12 @@
         <details key="documentation" value="12:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ActiveEnerBalanceAC" value="13">
+    <eLiterals name="ActiveEnergyBalanceAC" value="13">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="13:"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="ReactiveEnerBalanceAC" value="14">
+    <eLiterals name="ReactiveEnergyBalanceAC" value="14">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="14:"/>
       </eAnnotations>

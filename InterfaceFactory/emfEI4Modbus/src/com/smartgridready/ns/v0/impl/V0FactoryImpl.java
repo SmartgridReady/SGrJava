@@ -114,7 +114,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_SERIAL_INTERFACE_CAPABILITY_TYPE: return createSGrSerialInterfaceCapabilityType();
 			case V0Package.SGR_SMOOTH_TRANSITION_TYPE: return createSGrSmoothTransitionType();
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE: return createSGrStabilityFallbackType();
-			case V0Package.SGR_TIME_RANGE_TYPE: return createSGrTimeRangeType();
 			case V0Package.SGR_VERSION_NUMBER_TYPE: return createSGrVersionNumberType();
 			case V0Package.TCP_DEV_INSTANCE_TYPE: return createTCPDevInstanceType();
 			case V0Package.TC_PTRSP_SRV_INSTANCE_TYPE: return createTCPtrspSrvInstanceType();
@@ -177,10 +176,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrManufacturerIDTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MEAS_VALUE_SOURCE_TYPE:
 				return createSGrMeasValueSourceTypeFromString(eDataType, initialValue);
-			case V0Package.SGR_MEAS_VALUE_STATE_TYPE:
-				return createSGrMeasValueStateTypeFromString(eDataType, initialValue);
-			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE:
-				return createSGrMeasValueTendencyTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MEAS_VALUE_TYPE:
 				return createSGrMeasValueTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
@@ -301,10 +296,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrManufacturerIDTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MEAS_VALUE_SOURCE_TYPE_OBJECT:
 				return createSGrMeasValueSourceTypeObjectFromString(eDataType, initialValue);
-			case V0Package.SGR_MEAS_VALUE_STATE_TYPE_OBJECT:
-				return createSGrMeasValueStateTypeObjectFromString(eDataType, initialValue);
-			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT:
-				return createSGrMeasValueTendencyTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MEAS_VALUE_TYPE_OBJECT:
 				return createSGrMeasValueTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
@@ -420,10 +411,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrManufacturerIDTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MEAS_VALUE_SOURCE_TYPE:
 				return convertSGrMeasValueSourceTypeToString(eDataType, instanceValue);
-			case V0Package.SGR_MEAS_VALUE_STATE_TYPE:
-				return convertSGrMeasValueStateTypeToString(eDataType, instanceValue);
-			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE:
-				return convertSGrMeasValueTendencyTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MEAS_VALUE_TYPE:
 				return convertSGrMeasValueTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
@@ -544,10 +531,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrManufacturerIDTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MEAS_VALUE_SOURCE_TYPE_OBJECT:
 				return convertSGrMeasValueSourceTypeObjectToString(eDataType, instanceValue);
-			case V0Package.SGR_MEAS_VALUE_STATE_TYPE_OBJECT:
-				return convertSGrMeasValueStateTypeObjectToString(eDataType, instanceValue);
-			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT:
-				return convertSGrMeasValueTendencyTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MEAS_VALUE_TYPE_OBJECT:
 				return convertSGrMeasValueTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
@@ -1195,17 +1178,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
-	public SGrTimeRangeType createSGrTimeRangeType() {
-		SGrTimeRangeTypeImpl sGrTimeRangeType = new SGrTimeRangeTypeImpl();
-		return sGrTimeRangeType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public SGrVersionNumberType createSGrVersionNumberType() {
 		SGrVersionNumberTypeImpl sGrVersionNumberType = new SGrVersionNumberTypeImpl();
 		return sGrVersionNumberType;
@@ -1698,46 +1670,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertSGrMeasValueSourceTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SGrMeasValueStateType createSGrMeasValueStateTypeFromString(EDataType eDataType, String initialValue) {
-		SGrMeasValueStateType result = SGrMeasValueStateType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrMeasValueStateTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SGrMeasValueTendencyType createSGrMeasValueTendencyTypeFromString(EDataType eDataType, String initialValue) {
-		SGrMeasValueTendencyType result = SGrMeasValueTendencyType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrMeasValueTendencyTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2863,42 +2795,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrMeasValueSourceTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrMeasValueSourceTypeToString(V0Package.eINSTANCE.getSGrMeasValueSourceType(), instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SGrMeasValueStateType createSGrMeasValueStateTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createSGrMeasValueStateTypeFromString(V0Package.eINSTANCE.getSGrMeasValueStateType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrMeasValueStateTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertSGrMeasValueStateTypeToString(V0Package.eINSTANCE.getSGrMeasValueStateType(), instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SGrMeasValueTendencyType createSGrMeasValueTendencyTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createSGrMeasValueTendencyTypeFromString(V0Package.eINSTANCE.getSGrMeasValueTendencyType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrMeasValueTendencyTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertSGrMeasValueTendencyTypeToString(V0Package.eINSTANCE.getSGrMeasValueTendencyType(), instanceValue);
 	}
 
 	/**

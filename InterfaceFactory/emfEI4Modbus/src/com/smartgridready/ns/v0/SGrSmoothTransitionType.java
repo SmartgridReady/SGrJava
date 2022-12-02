@@ -39,7 +39,7 @@ public interface SGrSmoothTransitionType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * indicates a time window in which the new operating
+	 * indicates a time window in seconds in which the new operating
 	 * 						mode is started randomly. The time window begins with the start
 	 * 						command of the operating mode. The value 0 means immediate
 	 * 					
@@ -69,7 +69,7 @@ public interface SGrSmoothTransitionType extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * determines how long the operating mode should be
-	 * 						active. When the time has elapsed, the operating mode is
+	 * 						active in seconds. When the time has elapsed, the operating mode is
 	 * 						automatically terminated. If rvrtTms = 0 (standard value), the
 	 * 						operating mode remains active until a new command is received.
 	 * 					
@@ -98,7 +98,7 @@ public interface SGrSmoothTransitionType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * specifies how quickly the changes should be made.
+	 * specifies how quickly the changes should be made in seconds.
 	 * 						The corresponding value is gradually changed from the old to the
 	 * 						new value in the specified time.
 	 * 					

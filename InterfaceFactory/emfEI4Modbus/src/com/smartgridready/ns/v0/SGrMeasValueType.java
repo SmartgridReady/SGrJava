@@ -19,6 +19,16 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum SGrMeasValueType implements Enumerator {
 	/**
+	 * The '<em><b>Value</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #VALUE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	VALUE(0, "value", "value"),
+
+	/**
 	 * The '<em><b>Min</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26,7 +36,7 @@ public enum SGrMeasValueType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MIN(0, "min", "min"),
+	MIN(1, "min", "min"),
 
 	/**
 	 * The '<em><b>Max</b></em>' literal object.
@@ -36,7 +46,7 @@ public enum SGrMeasValueType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MAX(1, "max", "max"),
+	MAX(2, "max", "max"),
 
 	/**
 	 * The '<em><b>Average</b></em>' literal object.
@@ -46,7 +56,7 @@ public enum SGrMeasValueType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AVERAGE(2, "average", "average"),
+	AVERAGE(3, "average", "average"),
 
 	/**
 	 * The '<em><b>Std Dev</b></em>' literal object.
@@ -56,7 +66,18 @@ public enum SGrMeasValueType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STD_DEV(3, "stdDev", "stdDev");
+	STD_DEV(4, "stdDev", "stdDev");
+
+	/**
+	 * The '<em><b>Value</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #VALUE
+	 * @model name="value"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VALUE_VALUE = 0;
 
 	/**
 	 * The '<em><b>Min</b></em>' literal value.
@@ -67,7 +88,7 @@ public enum SGrMeasValueType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MIN_VALUE = 0;
+	public static final int MIN_VALUE = 1;
 
 	/**
 	 * The '<em><b>Max</b></em>' literal value.
@@ -78,7 +99,7 @@ public enum SGrMeasValueType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MAX_VALUE = 1;
+	public static final int MAX_VALUE = 2;
 
 	/**
 	 * The '<em><b>Average</b></em>' literal value.
@@ -89,7 +110,7 @@ public enum SGrMeasValueType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AVERAGE_VALUE = 2;
+	public static final int AVERAGE_VALUE = 3;
 
 	/**
 	 * The '<em><b>Std Dev</b></em>' literal value.
@@ -100,7 +121,7 @@ public enum SGrMeasValueType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STD_DEV_VALUE = 3;
+	public static final int STD_DEV_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>SGr Meas Value Type</b></em>' enumerators.
@@ -110,6 +131,7 @@ public enum SGrMeasValueType implements Enumerator {
 	 */
 	private static final SGrMeasValueType[] VALUES_ARRAY =
 		new SGrMeasValueType[] {
+			VALUE,
 			MIN,
 			MAX,
 			AVERAGE,
@@ -170,6 +192,7 @@ public enum SGrMeasValueType implements Enumerator {
 	 */
 	public static SGrMeasValueType get(int value) {
 		switch (value) {
+			case VALUE_VALUE: return VALUE;
 			case MIN_VALUE: return MIN;
 			case MAX_VALUE: return MAX;
 			case AVERAGE_VALUE: return AVERAGE;
