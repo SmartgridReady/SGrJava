@@ -5,17 +5,12 @@ package com.smartgridready.ns.v0.impl;
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
 import com.smartgridready.ns.v0.SGrFlexAssistanceType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
-import com.smartgridready.ns.v0.SGrMeasValueStateType;
-import com.smartgridready.ns.v0.SGrMeasValueTendencyType;
 import com.smartgridready.ns.v0.SGrMeasValueType;
 import com.smartgridready.ns.v0.SGrSmoothTransitionType;
 import com.smartgridready.ns.v0.SGrStabilityFallbackType;
-import com.smartgridready.ns.v0.SGrTimeRangeType;
 import com.smartgridready.ns.v0.V0Package;
 
 import java.math.BigInteger;
-
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -40,16 +35,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getPrecision <em>Precision</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getStabilityFallback <em>Stability Fallback</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getSmoothTransition <em>Smooth Transition</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMinSendDelta <em>Min Send Delta</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMaxSendTime <em>Max Send Time</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMaxReceiveTime <em>Max Receive Time</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMinSendTime <em>Min Send Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMaxLatencyTimeMs <em>Max Latency Time Ms</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getTimeStampLog <em>Time Stamp Log</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getTimeRange <em>Time Range</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueType <em>Value Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueState <em>Value State</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueTendency <em>Value Tendency</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueSource <em>Value Source</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getSampleRate <em>Sample Rate</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getCurtailment <em>Curtailment</em>}</li>
@@ -191,122 +178,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	protected SGrSmoothTransitionType smoothTransition;
 
 	/**
-	 * The default value of the '{@link #getMinSendDelta() <em>Min Send Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMinSendDelta()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final float MIN_SEND_DELTA_EDEFAULT = 0.0F;
-
-	/**
-	 * The cached value of the '{@link #getMinSendDelta() <em>Min Send Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMinSendDelta()
-	 * @generated
-	 * @ordered
-	 */
-	protected float minSendDelta = MIN_SEND_DELTA_EDEFAULT;
-
-	/**
-	 * This is true if the Min Send Delta attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean minSendDeltaESet;
-
-	/**
-	 * The default value of the '{@link #getMaxSendTime() <em>Max Send Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMaxSendTime()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final float MAX_SEND_TIME_EDEFAULT = 0.0F;
-
-	/**
-	 * The cached value of the '{@link #getMaxSendTime() <em>Max Send Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMaxSendTime()
-	 * @generated
-	 * @ordered
-	 */
-	protected float maxSendTime = MAX_SEND_TIME_EDEFAULT;
-
-	/**
-	 * This is true if the Max Send Time attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean maxSendTimeESet;
-
-	/**
-	 * The default value of the '{@link #getMaxReceiveTime() <em>Max Receive Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMaxReceiveTime()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final float MAX_RECEIVE_TIME_EDEFAULT = 0.0F;
-
-	/**
-	 * The cached value of the '{@link #getMaxReceiveTime() <em>Max Receive Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMaxReceiveTime()
-	 * @generated
-	 * @ordered
-	 */
-	protected float maxReceiveTime = MAX_RECEIVE_TIME_EDEFAULT;
-
-	/**
-	 * This is true if the Max Receive Time attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean maxReceiveTimeESet;
-
-	/**
-	 * The default value of the '{@link #getMinSendTime() <em>Min Send Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMinSendTime()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final float MIN_SEND_TIME_EDEFAULT = 0.0F;
-
-	/**
-	 * The cached value of the '{@link #getMinSendTime() <em>Min Send Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMinSendTime()
-	 * @generated
-	 * @ordered
-	 */
-	protected float minSendTime = MIN_SEND_TIME_EDEFAULT;
-
-	/**
-	 * This is true if the Min Send Time attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean minSendTimeESet;
-
-	/**
 	 * The default value of the '{@link #getMaxLatencyTimeMs() <em>Max Latency Time Ms</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -327,36 +198,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	protected BigInteger maxLatencyTimeMs = MAX_LATENCY_TIME_MS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTimeStampLog() <em>Time Stamp Log</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTimeStampLog()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final XMLGregorianCalendar TIME_STAMP_LOG_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTimeStampLog() <em>Time Stamp Log</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTimeStampLog()
-	 * @generated
-	 * @ordered
-	 */
-	protected XMLGregorianCalendar timeStampLog = TIME_STAMP_LOG_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getTimeRange() <em>Time Range</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTimeRange()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrTimeRangeType timeRange;
-
-	/**
 	 * The default value of the '{@link #getValueType() <em>Value Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,7 +205,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final SGrMeasValueType VALUE_TYPE_EDEFAULT = SGrMeasValueType.MIN;
+	protected static final SGrMeasValueType VALUE_TYPE_EDEFAULT = SGrMeasValueType.VALUE;
 
 	/**
 	 * The cached value of the '{@link #getValueType() <em>Value Type</em>}' attribute.
@@ -384,64 +225,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected boolean valueTypeESet;
-
-	/**
-	 * The default value of the '{@link #getValueState() <em>Value State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueState()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final SGrMeasValueStateType VALUE_STATE_EDEFAULT = SGrMeasValueStateType.NORMAL;
-
-	/**
-	 * The cached value of the '{@link #getValueState() <em>Value State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueState()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrMeasValueStateType valueState = VALUE_STATE_EDEFAULT;
-
-	/**
-	 * This is true if the Value State attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean valueStateESet;
-
-	/**
-	 * The default value of the '{@link #getValueTendency() <em>Value Tendency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueTendency()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final SGrMeasValueTendencyType VALUE_TENDENCY_EDEFAULT = SGrMeasValueTendencyType.RISING;
-
-	/**
-	 * The cached value of the '{@link #getValueTendency() <em>Value Tendency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueTendency()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrMeasValueTendencyType valueTendency = VALUE_TENDENCY_EDEFAULT;
-
-	/**
-	 * This is true if the Value Tendency attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean valueTendencyESet;
 
 	/**
 	 * The default value of the '{@link #getValueSource() <em>Value Source</em>}' attribute.
@@ -480,7 +263,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float SAMPLE_RATE_EDEFAULT = 0.0F;
+	protected static final BigInteger SAMPLE_RATE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSampleRate() <em>Sample Rate</em>}' attribute.
@@ -490,16 +273,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected float sampleRate = SAMPLE_RATE_EDEFAULT;
-
-	/**
-	 * This is true if the Sample Rate attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean sampleRateESet;
+	protected BigInteger sampleRate = SAMPLE_RATE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCurtailment() <em>Curtailment</em>}' attribute.
@@ -944,206 +718,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public float getMinSendDelta() {
-		return minSendDelta;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMinSendDelta(float newMinSendDelta) {
-		float oldMinSendDelta = minSendDelta;
-		minSendDelta = newMinSendDelta;
-		boolean oldMinSendDeltaESet = minSendDeltaESet;
-		minSendDeltaESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_DELTA, oldMinSendDelta, minSendDelta, !oldMinSendDeltaESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetMinSendDelta() {
-		float oldMinSendDelta = minSendDelta;
-		boolean oldMinSendDeltaESet = minSendDeltaESet;
-		minSendDelta = MIN_SEND_DELTA_EDEFAULT;
-		minSendDeltaESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_DELTA, oldMinSendDelta, MIN_SEND_DELTA_EDEFAULT, oldMinSendDeltaESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetMinSendDelta() {
-		return minSendDeltaESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public float getMaxSendTime() {
-		return maxSendTime;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMaxSendTime(float newMaxSendTime) {
-		float oldMaxSendTime = maxSendTime;
-		maxSendTime = newMaxSendTime;
-		boolean oldMaxSendTimeESet = maxSendTimeESet;
-		maxSendTimeESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME, oldMaxSendTime, maxSendTime, !oldMaxSendTimeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetMaxSendTime() {
-		float oldMaxSendTime = maxSendTime;
-		boolean oldMaxSendTimeESet = maxSendTimeESet;
-		maxSendTime = MAX_SEND_TIME_EDEFAULT;
-		maxSendTimeESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME, oldMaxSendTime, MAX_SEND_TIME_EDEFAULT, oldMaxSendTimeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetMaxSendTime() {
-		return maxSendTimeESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public float getMaxReceiveTime() {
-		return maxReceiveTime;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMaxReceiveTime(float newMaxReceiveTime) {
-		float oldMaxReceiveTime = maxReceiveTime;
-		maxReceiveTime = newMaxReceiveTime;
-		boolean oldMaxReceiveTimeESet = maxReceiveTimeESet;
-		maxReceiveTimeESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME, oldMaxReceiveTime, maxReceiveTime, !oldMaxReceiveTimeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetMaxReceiveTime() {
-		float oldMaxReceiveTime = maxReceiveTime;
-		boolean oldMaxReceiveTimeESet = maxReceiveTimeESet;
-		maxReceiveTime = MAX_RECEIVE_TIME_EDEFAULT;
-		maxReceiveTimeESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME, oldMaxReceiveTime, MAX_RECEIVE_TIME_EDEFAULT, oldMaxReceiveTimeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetMaxReceiveTime() {
-		return maxReceiveTimeESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public float getMinSendTime() {
-		return minSendTime;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMinSendTime(float newMinSendTime) {
-		float oldMinSendTime = minSendTime;
-		minSendTime = newMinSendTime;
-		boolean oldMinSendTimeESet = minSendTimeESet;
-		minSendTimeESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME, oldMinSendTime, minSendTime, !oldMinSendTimeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetMinSendTime() {
-		float oldMinSendTime = minSendTime;
-		boolean oldMinSendTimeESet = minSendTimeESet;
-		minSendTime = MIN_SEND_TIME_EDEFAULT;
-		minSendTimeESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME, oldMinSendTime, MIN_SEND_TIME_EDEFAULT, oldMinSendTimeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetMinSendTime() {
-		return minSendTimeESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public BigInteger getMaxLatencyTimeMs() {
 		return maxLatencyTimeMs;
 	}
@@ -1159,74 +733,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 		maxLatencyTimeMs = newMaxLatencyTimeMs;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS, oldMaxLatencyTimeMs, maxLatencyTimeMs));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public XMLGregorianCalendar getTimeStampLog() {
-		return timeStampLog;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTimeStampLog(XMLGregorianCalendar newTimeStampLog) {
-		XMLGregorianCalendar oldTimeStampLog = timeStampLog;
-		timeStampLog = newTimeStampLog;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG, oldTimeStampLog, timeStampLog));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrTimeRangeType getTimeRange() {
-		return timeRange;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTimeRange(SGrTimeRangeType newTimeRange, NotificationChain msgs) {
-		SGrTimeRangeType oldTimeRange = timeRange;
-		timeRange = newTimeRange;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE, oldTimeRange, newTimeRange);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTimeRange(SGrTimeRangeType newTimeRange) {
-		if (newTimeRange != timeRange) {
-			NotificationChain msgs = null;
-			if (timeRange != null)
-				msgs = ((InternalEObject)timeRange).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE, null, msgs);
-			if (newTimeRange != null)
-				msgs = ((InternalEObject)newTimeRange).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE, null, msgs);
-			msgs = basicSetTimeRange(newTimeRange, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE, newTimeRange, newTimeRange));
 	}
 
 	/**
@@ -1285,106 +791,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public SGrMeasValueStateType getValueState() {
-		return valueState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setValueState(SGrMeasValueStateType newValueState) {
-		SGrMeasValueStateType oldValueState = valueState;
-		valueState = newValueState == null ? VALUE_STATE_EDEFAULT : newValueState;
-		boolean oldValueStateESet = valueStateESet;
-		valueStateESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE, oldValueState, valueState, !oldValueStateESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetValueState() {
-		SGrMeasValueStateType oldValueState = valueState;
-		boolean oldValueStateESet = valueStateESet;
-		valueState = VALUE_STATE_EDEFAULT;
-		valueStateESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE, oldValueState, VALUE_STATE_EDEFAULT, oldValueStateESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetValueState() {
-		return valueStateESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrMeasValueTendencyType getValueTendency() {
-		return valueTendency;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setValueTendency(SGrMeasValueTendencyType newValueTendency) {
-		SGrMeasValueTendencyType oldValueTendency = valueTendency;
-		valueTendency = newValueTendency == null ? VALUE_TENDENCY_EDEFAULT : newValueTendency;
-		boolean oldValueTendencyESet = valueTendencyESet;
-		valueTendencyESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY, oldValueTendency, valueTendency, !oldValueTendencyESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetValueTendency() {
-		SGrMeasValueTendencyType oldValueTendency = valueTendency;
-		boolean oldValueTendencyESet = valueTendencyESet;
-		valueTendency = VALUE_TENDENCY_EDEFAULT;
-		valueTendencyESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY, oldValueTendency, VALUE_TENDENCY_EDEFAULT, oldValueTendencyESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetValueTendency() {
-		return valueTendencyESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public SGrMeasValueSourceType getValueSource() {
 		return valueSource;
 	}
@@ -1435,7 +841,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public float getSampleRate() {
+	public BigInteger getSampleRate() {
 		return sampleRate;
 	}
 
@@ -1445,38 +851,11 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public void setSampleRate(float newSampleRate) {
-		float oldSampleRate = sampleRate;
+	public void setSampleRate(BigInteger newSampleRate) {
+		BigInteger oldSampleRate = sampleRate;
 		sampleRate = newSampleRate;
-		boolean oldSampleRateESet = sampleRateESet;
-		sampleRateESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE, oldSampleRate, sampleRate, !oldSampleRateESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetSampleRate() {
-		float oldSampleRate = sampleRate;
-		boolean oldSampleRateESet = sampleRateESet;
-		sampleRate = SAMPLE_RATE_EDEFAULT;
-		sampleRateESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE, oldSampleRate, SAMPLE_RATE_EDEFAULT, oldSampleRateESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetSampleRate() {
-		return sampleRateESet;
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE, oldSampleRate, sampleRate));
 	}
 
 	/**
@@ -1786,8 +1165,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return basicSetStabilityFallback(null, msgs);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__SMOOTH_TRANSITION:
 				return basicSetSmoothTransition(null, msgs);
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
-				return basicSetTimeRange(null, msgs);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
 				return basicSetFlexAssistance(null, msgs);
 		}
@@ -1814,26 +1191,10 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return getStabilityFallback();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__SMOOTH_TRANSITION:
 				return getSmoothTransition();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_DELTA:
-				return getMinSendDelta();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME:
-				return getMaxSendTime();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME:
-				return getMaxReceiveTime();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
-				return getMinSendTime();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
 				return getMaxLatencyTimeMs();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
-				return getTimeStampLog();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
-				return getTimeRange();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
 				return getValueType();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE:
-				return getValueState();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY:
-				return getValueTendency();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE:
 				return getValueSource();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE:
@@ -1880,41 +1241,17 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__SMOOTH_TRANSITION:
 				setSmoothTransition((SGrSmoothTransitionType)newValue);
 				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_DELTA:
-				setMinSendDelta((Float)newValue);
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME:
-				setMaxSendTime((Float)newValue);
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME:
-				setMaxReceiveTime((Float)newValue);
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
-				setMinSendTime((Float)newValue);
-				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
 				setMaxLatencyTimeMs((BigInteger)newValue);
 				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
-				setTimeStampLog((XMLGregorianCalendar)newValue);
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
-				setTimeRange((SGrTimeRangeType)newValue);
-				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
 				setValueType((SGrMeasValueType)newValue);
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE:
-				setValueState((SGrMeasValueStateType)newValue);
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY:
-				setValueTendency((SGrMeasValueTendencyType)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE:
 				setValueSource((SGrMeasValueSourceType)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE:
-				setSampleRate((Float)newValue);
+				setSampleRate((BigInteger)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__CURTAILMENT:
 				setCurtailment((Float)newValue);
@@ -1964,41 +1301,17 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__SMOOTH_TRANSITION:
 				setSmoothTransition((SGrSmoothTransitionType)null);
 				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_DELTA:
-				unsetMinSendDelta();
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME:
-				unsetMaxSendTime();
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME:
-				unsetMaxReceiveTime();
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
-				unsetMinSendTime();
-				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
 				setMaxLatencyTimeMs(MAX_LATENCY_TIME_MS_EDEFAULT);
 				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
-				setTimeStampLog(TIME_STAMP_LOG_EDEFAULT);
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
-				setTimeRange((SGrTimeRangeType)null);
-				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
 				unsetValueType();
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE:
-				unsetValueState();
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY:
-				unsetValueTendency();
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE:
 				unsetValueSource();
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE:
-				unsetSampleRate();
+				setSampleRate(SAMPLE_RATE_EDEFAULT);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__CURTAILMENT:
 				unsetCurtailment();
@@ -2042,30 +1355,14 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return stabilityFallback != null;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__SMOOTH_TRANSITION:
 				return smoothTransition != null;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_DELTA:
-				return isSetMinSendDelta();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_SEND_TIME:
-				return isSetMaxSendTime();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_RECEIVE_TIME:
-				return isSetMaxReceiveTime();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_SEND_TIME:
-				return isSetMinSendTime();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
 				return MAX_LATENCY_TIME_MS_EDEFAULT == null ? maxLatencyTimeMs != null : !MAX_LATENCY_TIME_MS_EDEFAULT.equals(maxLatencyTimeMs);
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
-				return TIME_STAMP_LOG_EDEFAULT == null ? timeStampLog != null : !TIME_STAMP_LOG_EDEFAULT.equals(timeStampLog);
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_RANGE:
-				return timeRange != null;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
 				return isSetValueType();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_STATE:
-				return isSetValueState();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TENDENCY:
-				return isSetValueTendency();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE:
 				return isSetValueSource();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE:
-				return isSetSampleRate();
+				return SAMPLE_RATE_EDEFAULT == null ? sampleRate != null : !SAMPLE_RATE_EDEFAULT.equals(sampleRate);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__CURTAILMENT:
 				return isSetCurtailment();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MIN_LOAD:
@@ -2100,28 +1397,14 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 		result.append(specQualityRequirement);
 		result.append(", precision: ");
 		if (precisionESet) result.append(precision); else result.append("<unset>");
-		result.append(", minSendDelta: ");
-		if (minSendDeltaESet) result.append(minSendDelta); else result.append("<unset>");
-		result.append(", maxSendTime: ");
-		if (maxSendTimeESet) result.append(maxSendTime); else result.append("<unset>");
-		result.append(", maxReceiveTime: ");
-		if (maxReceiveTimeESet) result.append(maxReceiveTime); else result.append("<unset>");
-		result.append(", minSendTime: ");
-		if (minSendTimeESet) result.append(minSendTime); else result.append("<unset>");
 		result.append(", maxLatencyTimeMs: ");
 		result.append(maxLatencyTimeMs);
-		result.append(", timeStampLog: ");
-		result.append(timeStampLog);
 		result.append(", valueType: ");
 		if (valueTypeESet) result.append(valueType); else result.append("<unset>");
-		result.append(", valueState: ");
-		if (valueStateESet) result.append(valueState); else result.append("<unset>");
-		result.append(", valueTendency: ");
-		if (valueTendencyESet) result.append(valueTendency); else result.append("<unset>");
 		result.append(", valueSource: ");
 		if (valueSourceESet) result.append(valueSource); else result.append("<unset>");
 		result.append(", sampleRate: ");
-		if (sampleRateESet) result.append(sampleRate); else result.append("<unset>");
+		result.append(sampleRate);
 		result.append(", curtailment: ");
 		if (curtailmentESet) result.append(curtailment); else result.append("<unset>");
 		result.append(", minLoad: ");

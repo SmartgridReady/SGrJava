@@ -4,8 +4,6 @@ package com.smartgridready.ns.v0;
 
 import java.math.BigInteger;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -30,16 +28,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getPrecision <em>Precision</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getStabilityFallback <em>Stability Fallback</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getSmoothTransition <em>Smooth Transition</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendDelta <em>Min Send Delta</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxSendTime <em>Max Send Time</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxReceiveTime <em>Max Receive Time</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendTime <em>Min Send Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxLatencyTimeMs <em>Max Latency Time Ms</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeStampLog <em>Time Stamp Log</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeRange <em>Time Range</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType <em>Value Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueState <em>Value State</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueTendency <em>Value Tendency</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueSource <em>Value Source</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getSampleRate <em>Sample Rate</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getCurtailment <em>Curtailment</em>}</li>
@@ -308,230 +298,12 @@ public interface SGrAttr4GenericType extends EObject {
 	void setSmoothTransition(SGrSmoothTransitionType value);
 
 	/**
-	 * Returns the value of the '<em><b>Min Send Delta</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  A measured value difference that must lead to a
-	 * 						notification . Unit: inheritted
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Min Send Delta</em>' attribute.
-	 * @see #isSetMinSendDelta()
-	 * @see #unsetMinSendDelta()
-	 * @see #setMinSendDelta(float)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_MinSendDelta()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float"
-	 *        extendedMetaData="kind='element' name='minSendDelta' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	float getMinSendDelta();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendDelta <em>Min Send Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Min Send Delta</em>' attribute.
-	 * @see #isSetMinSendDelta()
-	 * @see #unsetMinSendDelta()
-	 * @see #getMinSendDelta()
-	 * @generated
-	 */
-	void setMinSendDelta(float value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendDelta <em>Min Send Delta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMinSendDelta()
-	 * @see #getMinSendDelta()
-	 * @see #setMinSendDelta(float)
-	 * @generated
-	 */
-	void unsetMinSendDelta();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendDelta <em>Min Send Delta</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Min Send Delta</em>' attribute is set.
-	 * @see #unsetMinSendDelta()
-	 * @see #getMinSendDelta()
-	 * @see #setMinSendDelta(float)
-	 * @generated
-	 */
-	boolean isSetMinSendDelta();
-
-	/**
-	 * Returns the value of the '<em><b>Max Send Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  The maximum time between 2 notifications in seconds
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Max Send Time</em>' attribute.
-	 * @see #isSetMaxSendTime()
-	 * @see #unsetMaxSendTime()
-	 * @see #setMaxSendTime(float)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_MaxSendTime()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float"
-	 *        extendedMetaData="kind='element' name='maxSendTime' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	float getMaxSendTime();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxSendTime <em>Max Send Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Max Send Time</em>' attribute.
-	 * @see #isSetMaxSendTime()
-	 * @see #unsetMaxSendTime()
-	 * @see #getMaxSendTime()
-	 * @generated
-	 */
-	void setMaxSendTime(float value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxSendTime <em>Max Send Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMaxSendTime()
-	 * @see #getMaxSendTime()
-	 * @see #setMaxSendTime(float)
-	 * @generated
-	 */
-	void unsetMaxSendTime();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxSendTime <em>Max Send Time</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Max Send Time</em>' attribute is set.
-	 * @see #unsetMaxSendTime()
-	 * @see #getMaxSendTime()
-	 * @see #setMaxSendTime(float)
-	 * @generated
-	 */
-	boolean isSetMaxSendTime();
-
-	/**
-	 * Returns the value of the '<em><b>Max Receive Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  The maximum time between 2 notifications in seconds
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Max Receive Time</em>' attribute.
-	 * @see #isSetMaxReceiveTime()
-	 * @see #unsetMaxReceiveTime()
-	 * @see #setMaxReceiveTime(float)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_MaxReceiveTime()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float"
-	 *        extendedMetaData="kind='element' name='maxReceiveTime' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	float getMaxReceiveTime();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxReceiveTime <em>Max Receive Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Max Receive Time</em>' attribute.
-	 * @see #isSetMaxReceiveTime()
-	 * @see #unsetMaxReceiveTime()
-	 * @see #getMaxReceiveTime()
-	 * @generated
-	 */
-	void setMaxReceiveTime(float value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxReceiveTime <em>Max Receive Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMaxReceiveTime()
-	 * @see #getMaxReceiveTime()
-	 * @see #setMaxReceiveTime(float)
-	 * @generated
-	 */
-	void unsetMaxReceiveTime();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxReceiveTime <em>Max Receive Time</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Max Receive Time</em>' attribute is set.
-	 * @see #unsetMaxReceiveTime()
-	 * @see #getMaxReceiveTime()
-	 * @see #setMaxReceiveTime(float)
-	 * @generated
-	 */
-	boolean isSetMaxReceiveTime();
-
-	/**
-	 * Returns the value of the '<em><b>Min Send Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  The fastest possible or allowable sequence of
-	 * 						notifications in seconds
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Min Send Time</em>' attribute.
-	 * @see #isSetMinSendTime()
-	 * @see #unsetMinSendTime()
-	 * @see #setMinSendTime(float)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_MinSendTime()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float"
-	 *        extendedMetaData="kind='element' name='minSendTime' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	float getMinSendTime();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendTime <em>Min Send Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Min Send Time</em>' attribute.
-	 * @see #isSetMinSendTime()
-	 * @see #unsetMinSendTime()
-	 * @see #getMinSendTime()
-	 * @generated
-	 */
-	void setMinSendTime(float value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendTime <em>Min Send Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMinSendTime()
-	 * @see #getMinSendTime()
-	 * @see #setMinSendTime(float)
-	 * @generated
-	 */
-	void unsetMinSendTime();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinSendTime <em>Min Send Time</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Min Send Time</em>' attribute is set.
-	 * @see #unsetMinSendTime()
-	 * @see #getMinSendTime()
-	 * @see #setMinSendTime(float)
-	 * @generated
-	 */
-	boolean isSetMinSendTime();
-
-	/**
 	 * Returns the value of the '<em><b>Max Latency Time Ms</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Maximum occurring or permitted delay time, e.g. of
-	 * 						a data transaction in milliseconds
+	 *  Maximum time in milliseconds from capturing of measured value 
+	 *             until ready at the external interface (i.e. analog-digital conversion time)
 	 * 					
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Max Latency Time Ms</em>' attribute.
@@ -554,68 +326,12 @@ public interface SGrAttr4GenericType extends EObject {
 	void setMaxLatencyTimeMs(BigInteger value);
 
 	/**
-	 * Returns the value of the '<em><b>Time Stamp Log</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  This is the date Time Value indicates that any
-	 * 						value generation must be paired with the time of either a
-	 * 						measuement was taken or where a higher controls software level
-	 * 						indicates when it got the value
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Time Stamp Log</em>' attribute.
-	 * @see #setTimeStampLog(XMLGregorianCalendar)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_TimeStampLog()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.DateTime"
-	 *        extendedMetaData="kind='element' name='timeStampLog' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	XMLGregorianCalendar getTimeStampLog();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeStampLog <em>Time Stamp Log</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Time Stamp Log</em>' attribute.
-	 * @see #getTimeStampLog()
-	 * @generated
-	 */
-	void setTimeStampLog(XMLGregorianCalendar value);
-
-	/**
-	 * Returns the value of the '<em><b>Time Range</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * time range min…max
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Time Range</em>' containment reference.
-	 * @see #setTimeRange(SGrTimeRangeType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_TimeRange()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='timeRange' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrTimeRangeType getTimeRange();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeRange <em>Time Range</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Time Range</em>' containment reference.
-	 * @see #getTimeRange()
-	 * @generated
-	 */
-	void setTimeRange(SGrTimeRangeType value);
-
-	/**
 	 * Returns the value of the '<em><b>Value Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrMeasValueType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  MeasValueType: type of measurement. Possbile values are "min", max", "average", "stdDev"
+	 *  MeasValueType: type of measurement. Possbile values are "value", "min", max", "average", "stdDev"
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value Type</em>' attribute.
 	 * @see com.smartgridready.ns.v0.SGrMeasValueType
@@ -664,122 +380,6 @@ public interface SGrAttr4GenericType extends EObject {
 	 * @generated
 	 */
 	boolean isSetValueType();
-
-	/**
-	 * Returns the value of the '<em><b>Value State</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrMeasValueStateType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  MeasValueState: Status / validity of the
-	 * 						measurement. Possible values are "normal", "error"
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Value State</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMeasValueStateType
-	 * @see #isSetValueState()
-	 * @see #unsetValueState()
-	 * @see #setValueState(SGrMeasValueStateType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_ValueState()
-	 * @model unsettable="true"
-	 *        extendedMetaData="kind='element' name='valueState' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrMeasValueStateType getValueState();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueState <em>Value State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value State</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMeasValueStateType
-	 * @see #isSetValueState()
-	 * @see #unsetValueState()
-	 * @see #getValueState()
-	 * @generated
-	 */
-	void setValueState(SGrMeasValueStateType value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueState <em>Value State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetValueState()
-	 * @see #getValueState()
-	 * @see #setValueState(SGrMeasValueStateType)
-	 * @generated
-	 */
-	void unsetValueState();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueState <em>Value State</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Value State</em>' attribute is set.
-	 * @see #unsetValueState()
-	 * @see #getValueState()
-	 * @see #setValueState(SGrMeasValueStateType)
-	 * @generated
-	 */
-	boolean isSetValueState();
-
-	/**
-	 * Returns the value of the '<em><b>Value Tendency</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrMeasValueTendencyType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  value trend based on timely changes, potential
-	 * 						values are rising, stable, falling
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Value Tendency</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMeasValueTendencyType
-	 * @see #isSetValueTendency()
-	 * @see #unsetValueTendency()
-	 * @see #setValueTendency(SGrMeasValueTendencyType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_ValueTendency()
-	 * @model unsettable="true"
-	 *        extendedMetaData="kind='element' name='valueTendency' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrMeasValueTendencyType getValueTendency();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueTendency <em>Value Tendency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value Tendency</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMeasValueTendencyType
-	 * @see #isSetValueTendency()
-	 * @see #unsetValueTendency()
-	 * @see #getValueTendency()
-	 * @generated
-	 */
-	void setValueTendency(SGrMeasValueTendencyType value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueTendency <em>Value Tendency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetValueTendency()
-	 * @see #getValueTendency()
-	 * @see #setValueTendency(SGrMeasValueTendencyType)
-	 * @generated
-	 */
-	void unsetValueTendency();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueTendency <em>Value Tendency</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Value Tendency</em>' attribute is set.
-	 * @see #unsetValueTendency()
-	 * @see #getValueTendency()
-	 * @see #setValueTendency(SGrMeasValueTendencyType)
-	 * @generated
-	 */
-	boolean isSetValueTendency();
 
 	/**
 	 * Returns the value of the '<em><b>Value Source</b></em>' attribute.
@@ -849,50 +449,23 @@ public interface SGrAttr4GenericType extends EObject {
 	 * 					
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Sample Rate</em>' attribute.
-	 * @see #isSetSampleRate()
-	 * @see #unsetSampleRate()
-	 * @see #setSampleRate(float)
+	 * @see #setSampleRate(BigInteger)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_SampleRate()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float"
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.UnsignedLong"
 	 *        extendedMetaData="kind='element' name='sampleRate' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	float getSampleRate();
+	BigInteger getSampleRate();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getSampleRate <em>Sample Rate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Sample Rate</em>' attribute.
-	 * @see #isSetSampleRate()
-	 * @see #unsetSampleRate()
 	 * @see #getSampleRate()
 	 * @generated
 	 */
-	void setSampleRate(float value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getSampleRate <em>Sample Rate</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSampleRate()
-	 * @see #getSampleRate()
-	 * @see #setSampleRate(float)
-	 * @generated
-	 */
-	void unsetSampleRate();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getSampleRate <em>Sample Rate</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sample Rate</em>' attribute is set.
-	 * @see #unsetSampleRate()
-	 * @see #getSampleRate()
-	 * @see #setSampleRate(float)
-	 * @generated
-	 */
-	boolean isSetSampleRate();
+	void setSampleRate(BigInteger value);
 
 	/**
 	 * Returns the value of the '<em><b>Curtailment</b></em>' attribute.

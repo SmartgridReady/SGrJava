@@ -276,10 +276,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrStabilityFallbackTypeAdapter();
 			}
 			@Override
-			public Adapter caseSGrTimeRangeType(SGrTimeRangeType object) {
-				return createSGrTimeRangeTypeAdapter();
-			}
-			@Override
 			public Adapter caseSGrVersionNumberType(SGrVersionNumberType object) {
 				return createSGrVersionNumberTypeAdapter();
 			}
@@ -1068,20 +1064,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSGrStabilityFallbackTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrTimeRangeType <em>SGr Time Range Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.SGrTimeRangeType
-	 * @generated
-	 */
-	public Adapter createSGrTimeRangeTypeAdapter() {
 		return null;
 	}
 

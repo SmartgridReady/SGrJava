@@ -388,12 +388,6 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_TIME_RANGE_TYPE: {
-				SGrTimeRangeType sGrTimeRangeType = (SGrTimeRangeType)theEObject;
-				T result = caseSGrTimeRangeType(sGrTimeRangeType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case V0Package.SGR_VERSION_NUMBER_TYPE: {
 				SGrVersionNumberType sGrVersionNumberType = (SGrVersionNumberType)theEObject;
 				T result = caseSGrVersionNumberType(sGrVersionNumberType);
@@ -1241,21 +1235,6 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSGrStabilityFallbackType(SGrStabilityFallbackType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Time Range Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Time Range Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrTimeRangeType(SGrTimeRangeType object) {
 		return null;
 	}
 

@@ -2,8 +2,6 @@
  */
 package com.smartgridready.ns.v0;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -36,24 +34,54 @@ public interface SGrStabilityFallbackType extends EObject {
 	 * Returns the value of the '<em><b>Max Receive Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Time in seconds. If the device does not recieve any communication within this specified time the device automatically initiates the fallback. 0 indicates no fallback will be performed.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Max Receive Time</em>' attribute.
-	 * @see #setMaxReceiveTime(XMLGregorianCalendar)
+	 * @see #isSetMaxReceiveTime()
+	 * @see #unsetMaxReceiveTime()
+	 * @see #setMaxReceiveTime(float)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrStabilityFallbackType_MaxReceiveTime()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.Time" required="true"
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float" required="true"
 	 *        extendedMetaData="kind='element' name='maxReceiveTime' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	XMLGregorianCalendar getMaxReceiveTime();
+	float getMaxReceiveTime();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrStabilityFallbackType#getMaxReceiveTime <em>Max Receive Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Max Receive Time</em>' attribute.
+	 * @see #isSetMaxReceiveTime()
+	 * @see #unsetMaxReceiveTime()
 	 * @see #getMaxReceiveTime()
 	 * @generated
 	 */
-	void setMaxReceiveTime(XMLGregorianCalendar value);
+	void setMaxReceiveTime(float value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrStabilityFallbackType#getMaxReceiveTime <em>Max Receive Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMaxReceiveTime()
+	 * @see #getMaxReceiveTime()
+	 * @see #setMaxReceiveTime(float)
+	 * @generated
+	 */
+	void unsetMaxReceiveTime();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrStabilityFallbackType#getMaxReceiveTime <em>Max Receive Time</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Max Receive Time</em>' attribute is set.
+	 * @see #unsetMaxReceiveTime()
+	 * @see #getMaxReceiveTime()
+	 * @see #setMaxReceiveTime(float)
+	 * @generated
+	 */
+	boolean isSetMaxReceiveTime();
 
 	/**
 	 * Returns the value of the '<em><b>Init Value</b></em>' attribute.

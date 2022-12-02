@@ -202,8 +202,6 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrSmoothTransitionType((SGrSmoothTransitionType)value, diagnostics, context);
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE:
 				return validateSGrStabilityFallbackType((SGrStabilityFallbackType)value, diagnostics, context);
-			case V0Package.SGR_TIME_RANGE_TYPE:
-				return validateSGrTimeRangeType((SGrTimeRangeType)value, diagnostics, context);
 			case V0Package.SGR_VERSION_NUMBER_TYPE:
 				return validateSGrVersionNumberType((SGrVersionNumberType)value, diagnostics, context);
 			case V0Package.TCP_DEV_INSTANCE_TYPE:
@@ -264,10 +262,6 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrManufacturerIDType((SGrManufacturerIDType)value, diagnostics, context);
 			case V0Package.SGR_MEAS_VALUE_SOURCE_TYPE:
 				return validateSGrMeasValueSourceType((SGrMeasValueSourceType)value, diagnostics, context);
-			case V0Package.SGR_MEAS_VALUE_STATE_TYPE:
-				return validateSGrMeasValueStateType((SGrMeasValueStateType)value, diagnostics, context);
-			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE:
-				return validateSGrMeasValueTendencyType((SGrMeasValueTendencyType)value, diagnostics, context);
 			case V0Package.SGR_MEAS_VALUE_TYPE:
 				return validateSGrMeasValueType((SGrMeasValueType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
@@ -388,10 +382,6 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrManufacturerIDTypeObject((SGrManufacturerIDType)value, diagnostics, context);
 			case V0Package.SGR_MEAS_VALUE_SOURCE_TYPE_OBJECT:
 				return validateSGrMeasValueSourceTypeObject((SGrMeasValueSourceType)value, diagnostics, context);
-			case V0Package.SGR_MEAS_VALUE_STATE_TYPE_OBJECT:
-				return validateSGrMeasValueStateTypeObject((SGrMeasValueStateType)value, diagnostics, context);
-			case V0Package.SGR_MEAS_VALUE_TENDENCY_TYPE_OBJECT:
-				return validateSGrMeasValueTendencyTypeObject((SGrMeasValueTendencyType)value, diagnostics, context);
 			case V0Package.SGR_MEAS_VALUE_TYPE_OBJECT:
 				return validateSGrMeasValueTypeObject((SGrMeasValueType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
@@ -934,15 +924,6 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrTimeRangeType(SGrTimeRangeType sGrTimeRangeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrTimeRangeType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateSGrVersionNumberType(SGrVersionNumberType sGrVersionNumberType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrVersionNumberType, diagnostics, context);
 	}
@@ -1205,24 +1186,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrMeasValueSourceType(SGrMeasValueSourceType sGrMeasValueSourceType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrMeasValueStateType(SGrMeasValueStateType sGrMeasValueStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrMeasValueTendencyType(SGrMeasValueTendencyType sGrMeasValueTendencyType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2119,24 +2082,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrMeasValueSourceTypeObject(SGrMeasValueSourceType sGrMeasValueSourceTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrMeasValueStateTypeObject(SGrMeasValueStateType sGrMeasValueStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrMeasValueTendencyTypeObject(SGrMeasValueTendencyType sGrMeasValueTendencyTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
