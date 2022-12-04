@@ -2,7 +2,7 @@
  */
 package com.smartgridready.ns.v0;
 
-import java.math.BigInteger;
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -25,8 +25,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getType <em>Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getLenght <em>Lenght</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getDpInstance <em>Dp Instance</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getArrLen <em>Arr Len</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenArrayDPTypeType()
@@ -35,49 +36,89 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SGrBasicGenArrayDPTypeType extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Dp Instance</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(SGrBasicGenDataPointTypeType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenArrayDPTypeType_Type()
+	 * @return the value of the '<em>Dp Instance</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenArrayDPTypeType_DpInstance()
 	 * @model containment="true" required="true"
-	 *        extendedMetaData="kind='element' name='type' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='dpInstance' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrBasicGenDataPointTypeType getType();
+	EList<SGrBasicGenDataPointTypeType> getDpInstance();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getType <em>Type</em>}' containment reference.
+	 * Returns the value of the '<em><b>Arr Len</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' containment reference.
-	 * @see #getType()
+	 * @return the value of the '<em>Arr Len</em>' attribute.
+	 * @see #isSetArrLen()
+	 * @see #unsetArrLen()
+	 * @see #setArrLen(long)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenArrayDPTypeType_ArrLen()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.UnsignedInt" required="true"
+	 *        extendedMetaData="kind='element' name='arrLen' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	void setType(SGrBasicGenDataPointTypeType value);
+	long getArrLen();
 
 	/**
-	 * Returns the value of the '<em><b>Lenght</b></em>' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getArrLen <em>Arr Len</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lenght</em>' attribute.
-	 * @see #setLenght(BigInteger)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenArrayDPTypeType_Lenght()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.Integer" required="true"
-	 *        extendedMetaData="kind='element' name='lenght' namespace='##targetNamespace'"
+	 * @param value the new value of the '<em>Arr Len</em>' attribute.
+	 * @see #isSetArrLen()
+	 * @see #unsetArrLen()
+	 * @see #getArrLen()
 	 * @generated
 	 */
-	BigInteger getLenght();
+	void setArrLen(long value);
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getLenght <em>Lenght</em>}' attribute.
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getArrLen <em>Arr Len</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lenght</em>' attribute.
-	 * @see #getLenght()
+	 * @see #isSetArrLen()
+	 * @see #getArrLen()
+	 * @see #setArrLen(long)
 	 * @generated
 	 */
-	void setLenght(BigInteger value);
+	void unsetArrLen();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getArrLen <em>Arr Len</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Arr Len</em>' attribute is set.
+	 * @see #unsetArrLen()
+	 * @see #getArrLen()
+	 * @see #setArrLen(long)
+	 * @generated
+	 */
+	boolean isSetArrLen();
+
+	/**
+	 * Returns the value of the '<em><b>Enum2 Arr Index</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enum2 Arr Index</em>' containment reference.
+	 * @see #setEnum2ArrIndex(SGrEnumListType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenArrayDPTypeType_Enum2ArrIndex()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='enum2ArrIndex' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrEnumListType getEnum2ArrIndex();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enum2 Arr Index</em>' containment reference.
+	 * @see #getEnum2ArrIndex()
+	 * @generated
+	 */
+	void setEnum2ArrIndex(SGrEnumListType value);
 
 } // SGrBasicGenArrayDPTypeType

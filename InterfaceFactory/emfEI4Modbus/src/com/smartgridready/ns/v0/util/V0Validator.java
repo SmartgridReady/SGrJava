@@ -242,6 +242,8 @@ public class V0Validator extends EObjectValidator {
 				return validateProfileTypeEnumType((ProfileTypeEnumType)value, diagnostics, context);
 			case V0Package.RESPONSE_QUERY_TYPE:
 				return validateResponseQueryType((ResponseQueryType)value, diagnostics, context);
+			case V0Package.SGR_BOOL2_BIT_RANK_TYPE:
+				return validateSGrBool2BitRankType((SGrBool2BitRankType)value, diagnostics, context);
 			case V0Package.SGR_DEVICE_KIND_TYPE:
 				return validateSGrDeviceKindType((SGrDeviceKindType)value, diagnostics, context);
 			case V0Package.SG_READY_STATE_LV1_TYPE:
@@ -266,8 +268,6 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrMeasValueType((SGrMeasValueType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
 				return validateSGrModbusLayer6DeviationType((SGrModbusLayer6DeviationType)value, diagnostics, context);
-			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE:
-				return validateSGrModbusReg2BoolArrayType((SGrModbusReg2BoolArrayType)value, diagnostics, context);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE:
 				return validateSGrMROPresenceLevelIndicationType((SGrMROPresenceLevelIndicationType)value, diagnostics, context);
 			case V0Package.SGR_OBLIG_LVL_TYPE:
@@ -362,6 +362,8 @@ public class V0Validator extends EObjectValidator {
 				return validateRestBasicPasswordType((String)value, diagnostics, context);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
 				return validateRestBasicUsernameType((String)value, diagnostics, context);
+			case V0Package.SGR_BOOL2_BIT_RANK_TYPE_OBJECT:
+				return validateSGrBool2BitRankTypeObject((SGrBool2BitRankType)value, diagnostics, context);
 			case V0Package.SGR_DEVICE_KIND_TYPE_OBJECT:
 				return validateSGrDeviceKindTypeObject((SGrDeviceKindType)value, diagnostics, context);
 			case V0Package.SG_READY_STATE_LV1_TYPE_OBJECT:
@@ -386,8 +388,6 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrMeasValueTypeObject((SGrMeasValueType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
 				return validateSGrModbusLayer6DeviationTypeObject((SGrModbusLayer6DeviationType)value, diagnostics, context);
-			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT:
-				return validateSGrModbusReg2BoolArrayTypeObject((SGrModbusReg2BoolArrayType)value, diagnostics, context);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT:
 				return validateSGrMROPresenceLevelIndicationTypeObject((SGrMROPresenceLevelIndicationType)value, diagnostics, context);
 			case V0Package.SGR_OBLIG_LVL_TYPE_OBJECT:
@@ -1104,6 +1104,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSGrBool2BitRankType(SGrBool2BitRankType sGrBool2BitRankType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSGrDeviceKindType(SGrDeviceKindType sGrDeviceKindType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1204,15 +1213,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrModbusLayer6DeviationType(SGrModbusLayer6DeviationType sGrModbusLayer6DeviationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrModbusReg2BoolArrayType(SGrModbusReg2BoolArrayType sGrModbusReg2BoolArrayType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2000,6 +2000,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSGrBool2BitRankTypeObject(SGrBool2BitRankType sGrBool2BitRankTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSGrDeviceKindTypeObject(SGrDeviceKindType sGrDeviceKindTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -2100,15 +2109,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrModbusLayer6DeviationTypeObject(SGrModbusLayer6DeviationType sGrModbusLayer6DeviationTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrModbusReg2BoolArrayTypeObject(SGrModbusReg2BoolArrayType sGrModbusReg2BoolArrayTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

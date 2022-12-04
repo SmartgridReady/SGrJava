@@ -133,6 +133,40 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ResponseQueryType/XPathExpression"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ResponseQueryType/RegularExpression"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrBool2BitRankType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit0"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit1"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit2"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit3"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit4"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit5"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit6"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit7"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit8"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit9"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit10"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit11"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit12"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit13"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit14"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit15"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit16"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit17"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit18"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit19"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit20"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit21"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit22"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit23"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit24"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit25"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit26"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit27"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit28"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit29"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit30"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit31"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrDeviceKindType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrDeviceKindType/Battery"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrDeviceKindType/Compressor"/>
@@ -276,39 +310,10 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrModbusLayer6DeviationType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/_2RegBase1000L2H"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/_2RegBase1000H2L"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrModbusReg2BoolArrayType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB0"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB1"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB2"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB3"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB4"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB5"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB6"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB7"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB8"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB9"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB10"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB11"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB12"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB13"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB14"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB15"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB16"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB27"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB18"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB19"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB20"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB21"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB22"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB23"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB24"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB25"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB26"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB28"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB29"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB30"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusReg2BoolArrayType/Register2BooleanB31"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/bitmap8"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/bitmap16"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/bitmap32"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/bitmap64"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrMROPresenceLevelIndicationType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMROPresenceLevelIndicationType/M"/>
@@ -744,6 +749,7 @@
     <genDataTypes ecoreDataType="v0.ecore#//RestAPIJMESPathType"/>
     <genDataTypes ecoreDataType="v0.ecore#//RestBasicPasswordType"/>
     <genDataTypes ecoreDataType="v0.ecore#//RestBasicUsernameType"/>
+    <genDataTypes ecoreDataType="v0.ecore#//SGrBool2BitRankTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrDeviceKindTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGReadyStateLv1TypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGReadyStateLv2TypeObject"/>
@@ -756,7 +762,6 @@
     <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueSourceTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrModbusLayer6DeviationTypeObject"/>
-    <genDataTypes ecoreDataType="v0.ecore#//SGrModbusReg2BoolArrayTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMROPresenceLevelIndicationTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrObligLvlTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrOCPPStateTypeObject"/>
@@ -867,6 +872,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/stabilityFallback"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/smoothTransition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxLatencyTimeMs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/timeStampLog"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/sampleRate"/>
@@ -890,8 +896,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4RestAPIType/placeHolder4futureExtensions"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrBasicGenArrayDPTypeType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrBasicGenArrayDPTypeType/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenArrayDPTypeType/lenght"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrBasicGenArrayDPTypeType/dpInstance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenArrayDPTypeType/arrLen"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrBasicGenArrayDPTypeType/enum2ArrIndex"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrBasicGenDataPointTypeType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/boolean"/>
@@ -977,6 +984,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrObligLvl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrOCPPState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrHPOpMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrBool2BitRank"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrFlexAssistanceType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrFlexAssistanceType/assists"/>
@@ -1040,6 +1048,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sIEC61850Name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sSAREFName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sEEBUSName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sSUNSPECName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sHPbwpName"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrProfileDescriptionType">

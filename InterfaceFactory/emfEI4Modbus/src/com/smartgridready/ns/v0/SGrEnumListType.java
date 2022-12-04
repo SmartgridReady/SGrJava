@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrObligLvl <em>Sgr Oblig Lvl</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrOCPPState <em>Sgr OCPP State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHPOpMode <em>Sgr HP Op Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrBool2BitRank <em>Sgr Bool2 Bit Rank</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType()
@@ -775,5 +776,58 @@ public interface SGrEnumListType extends EObject {
 	 * @generated
 	 */
 	boolean isSetSgrHPOpMode();
+
+	/**
+	 * Returns the value of the '<em><b>Sgr Bool2 Bit Rank</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrBool2BitRankType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sgr Bool2 Bit Rank</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrBool2BitRankType
+	 * @see #isSetSgrBool2BitRank()
+	 * @see #unsetSgrBool2BitRank()
+	 * @see #setSgrBool2BitRank(SGrBool2BitRankType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_SgrBool2BitRank()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='sgrBool2BitRank' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrBool2BitRankType getSgrBool2BitRank();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrBool2BitRank <em>Sgr Bool2 Bit Rank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sgr Bool2 Bit Rank</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrBool2BitRankType
+	 * @see #isSetSgrBool2BitRank()
+	 * @see #unsetSgrBool2BitRank()
+	 * @see #getSgrBool2BitRank()
+	 * @generated
+	 */
+	void setSgrBool2BitRank(SGrBool2BitRankType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrBool2BitRank <em>Sgr Bool2 Bit Rank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSgrBool2BitRank()
+	 * @see #getSgrBool2BitRank()
+	 * @see #setSgrBool2BitRank(SGrBool2BitRankType)
+	 * @generated
+	 */
+	void unsetSgrBool2BitRank();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrBool2BitRank <em>Sgr Bool2 Bit Rank</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Sgr Bool2 Bit Rank</em>' attribute is set.
+	 * @see #unsetSgrBool2BitRank()
+	 * @see #getSgrBool2BitRank()
+	 * @see #setSgrBool2BitRank(SGrBool2BitRankType)
+	 * @generated
+	 */
+	boolean isSetSgrBool2BitRank();
 
 } // SGrEnumListType

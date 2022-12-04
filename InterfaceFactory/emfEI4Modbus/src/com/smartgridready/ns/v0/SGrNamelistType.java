@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSIEC61850Name <em>SIEC61850 Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSSAREFName <em>SSAREF Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSEEBUSName <em>SEEBUS Name</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSSUNSPECName <em>SSUNSPEC Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSHPbwpName <em>SH Pbwp Name</em>}</li>
  * </ul>
  *
@@ -206,6 +207,34 @@ public interface SGrNamelistType extends EObject {
 	 * @generated
 	 */
 	void setSEEBUSName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>SSUNSPEC Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * sSUNSPEC for terminology place to add the www.sunspec.org
+	 * 						abreviations if an overlap exists
+	 * 					
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>SSUNSPEC Name</em>' attribute.
+	 * @see #setSSUNSPECName(String)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrNamelistType_SSUNSPECName()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+	 *        extendedMetaData="kind='element' name='sSUNSPECName' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	String getSSUNSPECName();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrNamelistType#getSSUNSPECName <em>SSUNSPEC Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>SSUNSPEC Name</em>' attribute.
+	 * @see #getSSUNSPECName()
+	 * @generated
+	 */
+	void setSSUNSPECName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>SH Pbwp Name</b></em>' attribute.

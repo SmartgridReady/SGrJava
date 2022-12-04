@@ -156,6 +156,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createProfileTypeEnumTypeFromString(eDataType, initialValue);
 			case V0Package.RESPONSE_QUERY_TYPE:
 				return createResponseQueryTypeFromString(eDataType, initialValue);
+			case V0Package.SGR_BOOL2_BIT_RANK_TYPE:
+				return createSGrBool2BitRankTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE:
 				return createSGrDeviceKindTypeFromString(eDataType, initialValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE:
@@ -180,8 +182,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrMeasValueTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
 				return createSGrModbusLayer6DeviationTypeFromString(eDataType, initialValue);
-			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE:
-				return createSGrModbusReg2BoolArrayTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE:
 				return createSGrMROPresenceLevelIndicationTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_OBLIG_LVL_TYPE:
@@ -276,6 +276,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createRestBasicPasswordTypeFromString(eDataType, initialValue);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
 				return createRestBasicUsernameTypeFromString(eDataType, initialValue);
+			case V0Package.SGR_BOOL2_BIT_RANK_TYPE_OBJECT:
+				return createSGrBool2BitRankTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE_OBJECT:
 				return createSGrDeviceKindTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE_OBJECT:
@@ -300,8 +302,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrMeasValueTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
 				return createSGrModbusLayer6DeviationTypeObjectFromString(eDataType, initialValue);
-			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT:
-				return createSGrModbusReg2BoolArrayTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT:
 				return createSGrMROPresenceLevelIndicationTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_OBLIG_LVL_TYPE_OBJECT:
@@ -391,6 +391,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertProfileTypeEnumTypeToString(eDataType, instanceValue);
 			case V0Package.RESPONSE_QUERY_TYPE:
 				return convertResponseQueryTypeToString(eDataType, instanceValue);
+			case V0Package.SGR_BOOL2_BIT_RANK_TYPE:
+				return convertSGrBool2BitRankTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE:
 				return convertSGrDeviceKindTypeToString(eDataType, instanceValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE:
@@ -415,8 +417,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrMeasValueTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE:
 				return convertSGrModbusLayer6DeviationTypeToString(eDataType, instanceValue);
-			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE:
-				return convertSGrModbusReg2BoolArrayTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE:
 				return convertSGrMROPresenceLevelIndicationTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_OBLIG_LVL_TYPE:
@@ -511,6 +511,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertRestBasicPasswordTypeToString(eDataType, instanceValue);
 			case V0Package.REST_BASIC_USERNAME_TYPE:
 				return convertRestBasicUsernameTypeToString(eDataType, instanceValue);
+			case V0Package.SGR_BOOL2_BIT_RANK_TYPE_OBJECT:
+				return convertSGrBool2BitRankTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE_OBJECT:
 				return convertSGrDeviceKindTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE_OBJECT:
@@ -535,8 +537,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrMeasValueTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MODBUS_LAYER6_DEVIATION_TYPE_OBJECT:
 				return convertSGrModbusLayer6DeviationTypeObjectToString(eDataType, instanceValue);
-			case V0Package.SGR_MODBUS_REG2_BOOL_ARRAY_TYPE_OBJECT:
-				return convertSGrModbusReg2BoolArrayTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT:
 				return convertSGrMROPresenceLevelIndicationTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_OBLIG_LVL_TYPE_OBJECT:
@@ -1478,6 +1478,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SGrBool2BitRankType createSGrBool2BitRankTypeFromString(EDataType eDataType, String initialValue) {
+		SGrBool2BitRankType result = SGrBool2BitRankType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrBool2BitRankTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SGrDeviceKindType createSGrDeviceKindTypeFromString(EDataType eDataType, String initialValue) {
 		SGrDeviceKindType result = SGrDeviceKindType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -1710,26 +1730,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertSGrModbusLayer6DeviationTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SGrModbusReg2BoolArrayType createSGrModbusReg2BoolArrayTypeFromString(EDataType eDataType, String initialValue) {
-		SGrModbusReg2BoolArrayType result = SGrModbusReg2BoolArrayType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrModbusReg2BoolArrayTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2622,6 +2622,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SGrBool2BitRankType createSGrBool2BitRankTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrBool2BitRankTypeFromString(V0Package.eINSTANCE.getSGrBool2BitRankType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrBool2BitRankTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrBool2BitRankTypeToString(V0Package.eINSTANCE.getSGrBool2BitRankType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SGrDeviceKindType createSGrDeviceKindTypeObjectFromString(EDataType eDataType, String initialValue) {
 		return createSGrDeviceKindTypeFromString(V0Package.eINSTANCE.getSGrDeviceKindType(), initialValue);
 	}
@@ -2831,24 +2849,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrModbusLayer6DeviationTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrModbusLayer6DeviationTypeToString(V0Package.eINSTANCE.getSGrModbusLayer6DeviationType(), instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SGrModbusReg2BoolArrayType createSGrModbusReg2BoolArrayTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createSGrModbusReg2BoolArrayTypeFromString(V0Package.eINSTANCE.getSGrModbusReg2BoolArrayType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrModbusReg2BoolArrayTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertSGrModbusReg2BoolArrayTypeToString(V0Package.eINSTANCE.getSGrModbusReg2BoolArrayType(), instanceValue);
 	}
 
 	/**

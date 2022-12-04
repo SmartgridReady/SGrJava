@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSIEC61850Name <em>SIEC61850 Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSSAREFName <em>SSAREF Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSEEBUSName <em>SEEBUS Name</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSSUNSPECName <em>SSUNSPEC Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSHPbwpName <em>SH Pbwp Name</em>}</li>
  * </ul>
  *
@@ -151,6 +152,26 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected String sEEBUSName = SEEBUS_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSSUNSPECName() <em>SSUNSPEC Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSSUNSPECName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SSUNSPEC_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSSUNSPECName() <em>SSUNSPEC Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSSUNSPECName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String sSUNSPECName = SSUNSPEC_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSHPbwpName() <em>SH Pbwp Name</em>}' attribute.
@@ -335,6 +356,29 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public String getSSUNSPECName() {
+		return sSUNSPECName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSSUNSPECName(String newSSUNSPECName) {
+		String oldSSUNSPECName = sSUNSPECName;
+		sSUNSPECName = newSSUNSPECName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_NAMELIST_TYPE__SSUNSPEC_NAME, oldSSUNSPECName, sSUNSPECName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String getSHPbwpName() {
 		return sHPbwpName;
 	}
@@ -372,6 +416,8 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 				return getSSAREFName();
 			case V0Package.SGR_NAMELIST_TYPE__SEEBUS_NAME:
 				return getSEEBUSName();
+			case V0Package.SGR_NAMELIST_TYPE__SSUNSPEC_NAME:
+				return getSSUNSPECName();
 			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
 				return getSHPbwpName();
 		}
@@ -403,6 +449,9 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case V0Package.SGR_NAMELIST_TYPE__SEEBUS_NAME:
 				setSEEBUSName((String)newValue);
+				return;
+			case V0Package.SGR_NAMELIST_TYPE__SSUNSPEC_NAME:
+				setSSUNSPECName((String)newValue);
 				return;
 			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
 				setSHPbwpName((String)newValue);
@@ -437,6 +486,9 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_NAMELIST_TYPE__SEEBUS_NAME:
 				setSEEBUSName(SEEBUS_NAME_EDEFAULT);
 				return;
+			case V0Package.SGR_NAMELIST_TYPE__SSUNSPEC_NAME:
+				setSSUNSPECName(SSUNSPEC_NAME_EDEFAULT);
+				return;
 			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
 				setSHPbwpName(SH_PBWP_NAME_EDEFAULT);
 				return;
@@ -464,6 +516,8 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 				return SSAREF_NAME_EDEFAULT == null ? sSAREFName != null : !SSAREF_NAME_EDEFAULT.equals(sSAREFName);
 			case V0Package.SGR_NAMELIST_TYPE__SEEBUS_NAME:
 				return SEEBUS_NAME_EDEFAULT == null ? sEEBUSName != null : !SEEBUS_NAME_EDEFAULT.equals(sEEBUSName);
+			case V0Package.SGR_NAMELIST_TYPE__SSUNSPEC_NAME:
+				return SSUNSPEC_NAME_EDEFAULT == null ? sSUNSPECName != null : !SSUNSPEC_NAME_EDEFAULT.equals(sSUNSPECName);
 			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
 				return SH_PBWP_NAME_EDEFAULT == null ? sHPbwpName != null : !SH_PBWP_NAME_EDEFAULT.equals(sHPbwpName);
 		}
@@ -492,6 +546,8 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 		result.append(sSAREFName);
 		result.append(", sEEBUSName: ");
 		result.append(sEEBUSName);
+		result.append(", sSUNSPECName: ");
+		result.append(sSUNSPECName);
 		result.append(", sHPbwpName: ");
 		result.append(sHPbwpName);
 		result.append(')');

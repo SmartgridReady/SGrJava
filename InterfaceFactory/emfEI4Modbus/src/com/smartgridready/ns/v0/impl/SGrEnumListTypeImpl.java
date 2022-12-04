@@ -4,6 +4,7 @@ package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
+import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
@@ -48,6 +49,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrObligLvl <em>Sgr Oblig Lvl</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrOCPPState <em>Sgr OCPP State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrHPOpMode <em>Sgr HP Op Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrBool2BitRank <em>Sgr Bool2 Bit Rank</em>}</li>
  * </ul>
  *
  * @generated
@@ -458,6 +460,35 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected boolean sgrHPOpModeESet;
+
+	/**
+	 * The default value of the '{@link #getSgrBool2BitRank() <em>Sgr Bool2 Bit Rank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSgrBool2BitRank()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SGrBool2BitRankType SGR_BOOL2_BIT_RANK_EDEFAULT = SGrBool2BitRankType.BIT0;
+
+	/**
+	 * The cached value of the '{@link #getSgrBool2BitRank() <em>Sgr Bool2 Bit Rank</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSgrBool2BitRank()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrBool2BitRankType sgrBool2BitRank = SGR_BOOL2_BIT_RANK_EDEFAULT;
+
+	/**
+	 * This is true if the Sgr Bool2 Bit Rank attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sgrBool2BitRankESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1184,6 +1215,56 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public SGrBool2BitRankType getSgrBool2BitRank() {
+		return sgrBool2BitRank;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSgrBool2BitRank(SGrBool2BitRankType newSgrBool2BitRank) {
+		SGrBool2BitRankType oldSgrBool2BitRank = sgrBool2BitRank;
+		sgrBool2BitRank = newSgrBool2BitRank == null ? SGR_BOOL2_BIT_RANK_EDEFAULT : newSgrBool2BitRank;
+		boolean oldSgrBool2BitRankESet = sgrBool2BitRankESet;
+		sgrBool2BitRankESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__SGR_BOOL2_BIT_RANK, oldSgrBool2BitRank, sgrBool2BitRank, !oldSgrBool2BitRankESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetSgrBool2BitRank() {
+		SGrBool2BitRankType oldSgrBool2BitRank = sgrBool2BitRank;
+		boolean oldSgrBool2BitRankESet = sgrBool2BitRankESet;
+		sgrBool2BitRank = SGR_BOOL2_BIT_RANK_EDEFAULT;
+		sgrBool2BitRankESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__SGR_BOOL2_BIT_RANK, oldSgrBool2BitRank, SGR_BOOL2_BIT_RANK_EDEFAULT, oldSgrBool2BitRankESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetSgrBool2BitRank() {
+		return sgrBool2BitRankESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_SOURCE:
@@ -1214,6 +1295,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return getSgrOCPPState();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE:
 				return getSgrHPOpMode();
+			case V0Package.SGR_ENUM_LIST_TYPE__SGR_BOOL2_BIT_RANK:
+				return getSgrBool2BitRank();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1267,6 +1350,9 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE:
 				setSgrHPOpMode((SGrHPOpModeType)newValue);
+				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__SGR_BOOL2_BIT_RANK:
+				setSgrBool2BitRank((SGrBool2BitRankType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1322,6 +1408,9 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE:
 				unsetSgrHPOpMode();
 				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__SGR_BOOL2_BIT_RANK:
+				unsetSgrBool2BitRank();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1362,6 +1451,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return isSetSgrOCPPState();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HP_OP_MODE:
 				return isSetSgrHPOpMode();
+			case V0Package.SGR_ENUM_LIST_TYPE__SGR_BOOL2_BIT_RANK:
+				return isSetSgrBool2BitRank();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1404,6 +1495,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 		if (sgrOCPPStateESet) result.append(sgrOCPPState); else result.append("<unset>");
 		result.append(", sgrHPOpMode: ");
 		if (sgrHPOpModeESet) result.append(sgrHPOpMode); else result.append("<unset>");
+		result.append(", sgrBool2BitRank: ");
+		if (sgrBool2BitRankESet) result.append(sgrBool2BitRank); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}
