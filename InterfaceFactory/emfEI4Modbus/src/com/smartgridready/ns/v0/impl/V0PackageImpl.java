@@ -414,6 +414,13 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass sGrTimeSyncBlockNotificationTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass sGrVersionNumberTypeEClass = null;
 
 	/**
@@ -436,13 +443,6 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	private EClass tcpTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass timeSyncBlockNotificationTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2216,7 +2216,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrAttr4ModbusType_TimeSyncBlockNotification() {
+	public EReference getSGrAttr4ModbusType_AccessProtection() {
         return (EReference)getSGrAttr4ModbusType().getEStructuralFeatures().get(4);
 	}
 
@@ -2226,18 +2226,8 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrAttr4ModbusType_AccessProtection() {
-        return (EReference)getSGrAttr4ModbusType().getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getSGrAttr4ModbusType_Layer6Deviation() {
-        return (EAttribute)getSGrAttr4ModbusType().getEStructuralFeatures().get(6);
+        return (EAttribute)getSGrAttr4ModbusType().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -3423,8 +3413,28 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getSGrModbusDataPointType_LastAccessTime() {
+        return (EAttribute)getSGrModbusDataPointType().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrModbusDataPointType_TimeToLive() {
+        return (EAttribute)getSGrModbusDataPointType().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getSGrModbusDataPointType_ModbusAttr() {
-        return (EReference)getSGrModbusDataPointType().getEStructuralFeatures().get(1);
+        return (EReference)getSGrModbusDataPointType().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3499,7 +3509,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrModbusFunctionalProfileType_ModbusAttr() {
+	public EReference getSGrModbusFunctionalProfileType_TimeSyncBlockNotification() {
         return (EReference)getSGrModbusFunctionalProfileType().getEStructuralFeatures().get(0);
 	}
 
@@ -3509,8 +3519,18 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrModbusFunctionalProfileType_DpListElement() {
+	public EReference getSGrModbusFunctionalProfileType_ModbusAttr() {
         return (EReference)getSGrModbusFunctionalProfileType().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSGrModbusFunctionalProfileType_DpListElement() {
+        return (EReference)getSGrModbusFunctionalProfileType().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -4307,9 +4327,82 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
+	public EClass getSGrTimeSyncBlockNotificationType() {
+		if (sGrTimeSyncBlockNotificationTypeEClass == null) {
+			sGrTimeSyncBlockNotificationTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(144);
+		}
+		return sGrTimeSyncBlockNotificationTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrTimeSyncBlockNotificationType_BlockNumber() {
+        return (EAttribute)getSGrTimeSyncBlockNotificationType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrTimeSyncBlockNotificationType_LastAccessTime() {
+        return (EAttribute)getSGrTimeSyncBlockNotificationType().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrTimeSyncBlockNotificationType_TimeToLive() {
+        return (EAttribute)getSGrTimeSyncBlockNotificationType().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrTimeSyncBlockNotificationType_FirstAddr() {
+        return (EAttribute)getSGrTimeSyncBlockNotificationType().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrTimeSyncBlockNotificationType_RegisterType() {
+        return (EAttribute)getSGrTimeSyncBlockNotificationType().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrTimeSyncBlockNotificationType_Size() {
+        return (EAttribute)getSGrTimeSyncBlockNotificationType().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSGrVersionNumberType() {
 		if (sGrVersionNumberTypeEClass == null) {
-			sGrVersionNumberTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(148);
+			sGrVersionNumberTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(149);
 		}
 		return sGrVersionNumberTypeEClass;
 	}
@@ -4352,7 +4445,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EClass getTCPDevInstanceType() {
 		if (tcpDevInstanceTypeEClass == null) {
-			tcpDevInstanceTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(153);
+			tcpDevInstanceTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(154);
 		}
 		return tcpDevInstanceTypeEClass;
 	}
@@ -4385,7 +4478,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EClass getTCPtrspSrvInstanceType() {
 		if (tcPtrspSrvInstanceTypeEClass == null) {
-			tcPtrspSrvInstanceTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(154);
+			tcPtrspSrvInstanceTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(155);
 		}
 		return tcPtrspSrvInstanceTypeEClass;
 	}
@@ -4398,7 +4491,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EClass getTCPType() {
 		if (tcpTypeEClass == null) {
-			tcpTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(155);
+			tcpTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(156);
 		}
 		return tcpTypeEClass;
 	}
@@ -4421,39 +4514,6 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EReference getTCPType_TcpDevInstance() {
         return (EReference)getTCPType().getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getTimeSyncBlockNotificationType() {
-		if (timeSyncBlockNotificationTypeEClass == null) {
-			timeSyncBlockNotificationTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(163);
-		}
-		return timeSyncBlockNotificationTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTimeSyncBlockNotificationType_BlockNumber() {
-        return (EAttribute)getTimeSyncBlockNotificationType().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTimeSyncBlockNotificationType_TimeoutMs() {
-        return (EAttribute)getTimeSyncBlockNotificationType().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -5197,7 +5257,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EEnum getSGrTransportServicesUsedListType() {
 		if (sGrTransportServicesUsedListTypeEEnum == null) {
-			sGrTransportServicesUsedListTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(144);
+			sGrTransportServicesUsedListTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(145);
 		}
 		return sGrTransportServicesUsedListTypeEEnum;
 	}
@@ -5210,7 +5270,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EEnum getSGrUnits() {
 		if (sGrUnitsEEnum == null) {
-			sGrUnitsEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(146);
+			sGrUnitsEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(147);
 		}
 		return sGrUnitsEEnum;
 	}
@@ -5223,7 +5283,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EEnum getSubProfileTypeEnumType() {
 		if (subProfileTypeEnumTypeEEnum == null) {
-			subProfileTypeEnumTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(149);
+			subProfileTypeEnumTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(150);
 		}
 		return subProfileTypeEnumTypeEEnum;
 	}
@@ -5236,7 +5296,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EEnum getTEnumConversionFct() {
 		if (tEnumConversionFctEEnum == null) {
-			tEnumConversionFctEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(156);
+			tEnumConversionFctEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(157);
 		}
 		return tEnumConversionFctEEnum;
 	}
@@ -5249,7 +5309,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EEnum getTEnumExceptionCodeType() {
 		if (tEnumExceptionCodeTypeEEnum == null) {
-			tEnumExceptionCodeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(158);
+			tEnumExceptionCodeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(159);
 		}
 		return tEnumExceptionCodeTypeEEnum;
 	}
@@ -5262,7 +5322,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EEnum getTEnumObjectType() {
 		if (tEnumObjectTypeEEnum == null) {
-			tEnumObjectTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(160);
+			tEnumObjectTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(161);
 		}
 		return tEnumObjectTypeEEnum;
 	}
@@ -6016,7 +6076,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EDataType getSGrTransportServicesUsedListTypeObject() {
 		if (sGrTransportServicesUsedListTypeObjectEDataType == null) {
-			sGrTransportServicesUsedListTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(145);
+			sGrTransportServicesUsedListTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(146);
 		}
 		return sGrTransportServicesUsedListTypeObjectEDataType;
 	}
@@ -6029,7 +6089,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EDataType getSGrUnitsObject() {
 		if (sGrUnitsObjectEDataType == null) {
-			sGrUnitsObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(147);
+			sGrUnitsObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(148);
 		}
 		return sGrUnitsObjectEDataType;
 	}
@@ -6042,7 +6102,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EDataType getSubProfileTypeEnumTypeObject() {
 		if (subProfileTypeEnumTypeObjectEDataType == null) {
-			subProfileTypeEnumTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(150);
+			subProfileTypeEnumTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(151);
 		}
 		return subProfileTypeEnumTypeObjectEDataType;
 	}
@@ -6055,7 +6115,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EDataType getTBitRank() {
 		if (tBitRankEDataType == null) {
-			tBitRankEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(151);
+			tBitRankEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(152);
 		}
 		return tBitRankEDataType;
 	}
@@ -6068,7 +6128,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EDataType getTBitRankObject() {
 		if (tBitRankObjectEDataType == null) {
-			tBitRankObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(152);
+			tBitRankObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(153);
 		}
 		return tBitRankObjectEDataType;
 	}
@@ -6081,7 +6141,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EDataType getTEnumConversionFctObject() {
 		if (tEnumConversionFctObjectEDataType == null) {
-			tEnumConversionFctObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(157);
+			tEnumConversionFctObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(158);
 		}
 		return tEnumConversionFctObjectEDataType;
 	}
@@ -6094,7 +6154,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EDataType getTEnumExceptionCodeTypeObject() {
 		if (tEnumExceptionCodeTypeObjectEDataType == null) {
-			tEnumExceptionCodeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(159);
+			tEnumExceptionCodeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(160);
 		}
 		return tEnumExceptionCodeTypeObjectEDataType;
 	}
@@ -6107,7 +6167,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EDataType getTEnumObjectTypeObject() {
 		if (tEnumObjectTypeObjectEDataType == null) {
-			tEnumObjectTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(161);
+			tEnumObjectTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(162);
 		}
 		return tEnumObjectTypeObjectEDataType;
 	}
@@ -6120,7 +6180,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	@Override
 	public EDataType getTextElementType() {
 		if (textElementTypeEDataType == null) {
-			textElementTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(162);
+			textElementTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(163);
 		}
 		return textElementTypeEDataType;
 	}

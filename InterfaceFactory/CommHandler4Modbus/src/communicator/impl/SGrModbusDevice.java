@@ -232,7 +232,7 @@ public class SGrModbusDevice {
 				   }
 				   else
 				   { // special case register based array: 
-					   bIsBitmap = true;	   
+					   bIsBitmap = true;						   
 				   }		
 			}
 			else
@@ -254,58 +254,62 @@ public class SGrModbusDevice {
 			// WIP/cb
 				
 			TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
-			BigInteger regad = MBRegRef.getAddr();
 			
-					// boolean bMBfirstRegOne = this.modbusInterfaceDesc.isFirstRegisterAddressIsOne();
-			boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
+			if (System.currentTimeMillis() > (aDataPoint.getLastAccessTime() + aDataPoint.getTimeToLive()) )
+			{
+			  BigInteger regad = MBRegRef.getAddr();
 			
-			if (bMBfirstRegOne)
+			  // boolean bMBfirstRegOne = this.modbusInterfaceDesc.isFirstRegisterAddressIsOne();
+			  boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
+			
+			  if (bMBfirstRegOne)
 				regad = regad.subtract(BigInteger.ONE);
-			int bitRank = MBRegRef.getBitRank();
-			TEnumObjectType MBregType = MBRegRef.getRegisterType();
+			  int bitRank = MBRegRef.getBitRank();
+			  TEnumObjectType MBregType = MBRegRef.getRegisterType();
 			
-			int size = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
-			EList<TEnumConversionFct> MBconvScheme = modbusInterfaceDesc.getConversionScheme(); 
+			  int size = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
+			  EList<TEnumConversionFct> MBconvScheme = modbusInterfaceDesc.getConversionScheme(); 
 
 
-			if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER) {
+			  if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER) {
 				mbregresp = drv4Modbus.ReadHoldingRegisters(regad.intValue(), size);
 				bGotRegisters = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER) {
+			  } else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER) {
 				mbregresp = drv4Modbus.ReadInputRegisters(regad.intValue(), size);
 				bGotRegisters = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.DISCRETE_INPUT) {
+			  } else if (MBRegRef.getRegisterType() == TEnumObjectType.DISCRETE_INPUT) {
 				mbbitresp = drv4Modbus.ReadDiscreteInputs(regad.intValue(), size);
 				bGotDiscrete = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.COIL) {
+			  } else if (MBRegRef.getRegisterType() == TEnumObjectType.COIL) {
 				mbbitresp = drv4Modbus.ReadCoils(regad.intValue(), size);
 				bGotDiscrete = true;
+			  }
+			  // align byte stream to Big Endian
+			  mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
+			  //WIP/cb
+			  aDataPoint.setLastAccessTime(System.currentTimeMillis());
 			}
-			// align byte stream to Big Endian
-			mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
 			
 			if (bIsBitmap)
-			{  // the only array type solved os far
+			{  // the only array type solved so far
 			  SGrBasicGenDataPointTypeType dpi = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();					
 			  RetVal.getDpInstance().add(dpi);
 			  RetVal.getDpInstance().get(0).setBoolean(false);  
   		      final long lVal;
-			  switch (size)
-			  {
-				case 1:
+  		      
+  		      if ( aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()== SGrModbusLayer6DeviationType.BITMAP16_VALUE  )
+  		      {
 					if ((mbregresp[0] & (1<<arrIndex))!=0)
 					    RetVal.getDpInstance().get(0).setBoolean(true);
-					break;
-				case 2:
+					   aDataPoint.getModbusDataPoint().get(0).getModbusDataType().setInt16U(mbregresp[0]); 
+  		      }
+  		      
+  		      if ( aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()== SGrModbusLayer6DeviationType.BITMAP32_VALUE  )
+  		      {
 					   lVal = (long) Math.abs(RegRes);
 					   if ((lVal & (1<<arrIndex))!=0)
 						    RetVal.getDpInstance().get(0).setBoolean(true);
-					break;
-				case 4:
-					   lVal = (long) RegRes;
-					   if ((lVal & (1<<arrIndex))!=0)
-						    RetVal.getDpInstance().get(0).setBoolean(true);
-					break;			
+					   aDataPoint.getModbusDataPoint().get(0).getModbusDataType().setInt32U(lVal);;	
 			  }
 			}
             

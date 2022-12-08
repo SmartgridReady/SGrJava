@@ -5,6 +5,7 @@ package com.smartgridready.ns.v0.impl;
 import com.smartgridready.ns.v0.SGrAttr4ModbusType;
 import com.smartgridready.ns.v0.SGrModbusDataPointType;
 import com.smartgridready.ns.v0.SGrModbusFunctionalProfileType;
+import com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType;
 import com.smartgridready.ns.v0.V0Package;
 
 import java.util.Collection;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusFunctionalProfileTypeImpl#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusFunctionalProfileTypeImpl#getModbusAttr <em>Modbus Attr</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusFunctionalProfileTypeImpl#getDpListElement <em>Dp List Element</em>}</li>
  * </ul>
@@ -37,6 +39,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBaseTypeImpl implements SGrModbusFunctionalProfileType {
+	/**
+	 * The cached value of the '{@link #getTimeSyncBlockNotification() <em>Time Sync Block Notification</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeSyncBlockNotification()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrTimeSyncBlockNotificationType> timeSyncBlockNotification;
+
 	/**
 	 * The cached value of the '{@link #getModbusAttr() <em>Modbus Attr</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -74,6 +86,19 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	@Override
 	protected EClass eStaticClass() {
 		return V0Package.eINSTANCE.getSGrModbusFunctionalProfileType();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<SGrTimeSyncBlockNotificationType> getTimeSyncBlockNotification() {
+		if (timeSyncBlockNotification == null) {
+			timeSyncBlockNotification = new EObjectContainmentEList<SGrTimeSyncBlockNotificationType>(SGrTimeSyncBlockNotificationType.class, this, V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__TIME_SYNC_BLOCK_NOTIFICATION);
+		}
+		return timeSyncBlockNotification;
 	}
 
 	/**
@@ -142,6 +167,8 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
+				return ((InternalEList<?>)getTimeSyncBlockNotification()).basicRemove(otherEnd, msgs);
 			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR:
 				return basicSetModbusAttr(null, msgs);
 			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT:
@@ -158,6 +185,8 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
+				return getTimeSyncBlockNotification();
 			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR:
 				return getModbusAttr();
 			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT:
@@ -175,6 +204,10 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
+				getTimeSyncBlockNotification().clear();
+				getTimeSyncBlockNotification().addAll((Collection<? extends SGrTimeSyncBlockNotificationType>)newValue);
+				return;
 			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR:
 				setModbusAttr((SGrAttr4ModbusType)newValue);
 				return;
@@ -194,6 +227,9 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
+				getTimeSyncBlockNotification().clear();
+				return;
 			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR:
 				setModbusAttr((SGrAttr4ModbusType)null);
 				return;
@@ -212,6 +248,8 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
+				return timeSyncBlockNotification != null && !timeSyncBlockNotification.isEmpty();
 			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR:
 				return modbusAttr != null;
 			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT:

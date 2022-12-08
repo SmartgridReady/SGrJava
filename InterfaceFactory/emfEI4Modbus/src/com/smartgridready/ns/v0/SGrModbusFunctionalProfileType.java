@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getModbusAttr <em>Modbus Attr</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getDpListElement <em>Dp List Element</em>}</li>
  * </ul>
@@ -26,6 +27,26 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface SGrModbusFunctionalProfileType extends SGrFunctionalProfileBaseType {
+	/**
+	 * Returns the value of the '<em><b>Time Sync Block Notification</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * 
+	 *     				       a transaction number for a sequence of Registeres
+	 *     				       (usually transmitted by Blocktransfers) to be
+	 *     				      transferred together
+	 *     			        
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Time Sync Block Notification</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusFunctionalProfileType_TimeSyncBlockNotification()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='timeSyncBlockNotification' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SGrTimeSyncBlockNotificationType> getTimeSyncBlockNotification();
+
 	/**
 	 * Returns the value of the '<em><b>Modbus Attr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

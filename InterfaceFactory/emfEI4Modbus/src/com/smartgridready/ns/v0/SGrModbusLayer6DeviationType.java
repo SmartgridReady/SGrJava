@@ -96,23 +96,7 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BITMAP32(4, "bitmap32", "bitmap32"),
-
-	/**
-	 * The '<em><b>Bitmap64</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *             
-	 *   <documentation>bitmap for uint64 </documentation>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @see #BITMAP64_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BITMAP64(5, "bitmap64", "bitmap64");
+	BITMAP32(4, "bitmap32", "bitmap32");
 
 	/**
 	 * The '<em><b>2Reg Base1000 L2H</b></em>' literal value.
@@ -197,23 +181,6 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 	public static final int BITMAP32_VALUE = 4;
 
 	/**
-	 * The '<em><b>Bitmap64</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *             
-	 *   <documentation>bitmap for uint64 </documentation>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @see #BITMAP64
-	 * @model name="bitmap64"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BITMAP64_VALUE = 5;
-
-	/**
 	 * An array of all the '<em><b>SGr Modbus Layer6 Deviation Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -226,7 +193,6 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 			BITMAP8,
 			BITMAP16,
 			BITMAP32,
-			BITMAP64,
 		};
 
 	/**
@@ -288,7 +254,6 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 			case BITMAP8_VALUE: return BITMAP8;
 			case BITMAP16_VALUE: return BITMAP16;
 			case BITMAP32_VALUE: return BITMAP32;
-			case BITMAP64_VALUE: return BITMAP64;
 		}
 		return null;
 	}

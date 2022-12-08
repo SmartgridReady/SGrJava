@@ -1073,22 +1073,13 @@ public interface V0Package extends EPackage {
 	int SGR_ATTR4_MODBUS_TYPE__POLL_LATENCY_MS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Time Sync Block Notification</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION = 4;
-
-	/**
 	 * The feature id for the '<em><b>Access Protection</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION = 5;
+	int SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Layer6 Deviation</b></em>' attribute.
@@ -1097,7 +1088,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION = 6;
+	int SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION = 5;
 
 	/**
 	 * The number of structural features of the '<em>SGr Attr4 Modbus Type</em>' class.
@@ -1106,7 +1097,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_MODBUS_TYPE_FEATURE_COUNT = 7;
+	int SGR_ATTR4_MODBUS_TYPE_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>SGr Attr4 Modbus Type</em>' class.
@@ -2631,13 +2622,31 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_DATA_POINT_TYPE__MODBUS_DATA_POINT = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Last Access Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DATA_POINT_TYPE__LAST_ACCESS_TIME = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Time To Live</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 1;
+	int SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>SGr Modbus Data Point Type</em>' class.
@@ -2646,7 +2655,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_TYPE_FEATURE_COUNT = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 2;
+	int SGR_MODBUS_DATA_POINT_TYPE_FEATURE_COUNT = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>SGr Modbus Data Point Type</em>' class.
@@ -2804,13 +2813,22 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__GEN_ATTRIBUTE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__GEN_ATTRIBUTE;
 
 	/**
+	 * The feature id for the '<em><b>Time Sync Block Notification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__TIME_SYNC_BLOCK_NOTIFICATION = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 0;
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
@@ -2819,7 +2837,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 1;
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>SGr Modbus Functional Profile Type</em>' class.
@@ -2828,7 +2846,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE_FEATURE_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 2;
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE_FEATURE_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>SGr Modbus Functional Profile Type</em>' class.
@@ -3900,6 +3918,88 @@ public interface V0Package extends EPackage {
 	int SGR_STABILITY_FALLBACK_TYPE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrTimeSyncBlockNotificationTypeImpl <em>SGr Time Sync Block Notification Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.impl.SGrTimeSyncBlockNotificationTypeImpl
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrTimeSyncBlockNotificationType()
+	 * @generated
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE = 52;
+
+	/**
+	 * The feature id for the '<em><b>Block Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__BLOCK_NUMBER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Last Access Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__LAST_ACCESS_TIME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Time To Live</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__TIME_TO_LIVE = 2;
+
+	/**
+	 * The feature id for the '<em><b>First Addr</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__FIRST_ADDR = 3;
+
+	/**
+	 * The feature id for the '<em><b>Register Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__REGISTER_TYPE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__SIZE = 5;
+
+	/**
+	 * The number of structural features of the '<em>SGr Time Sync Block Notification Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE_FEATURE_COUNT = 6;
+
+	/**
+	 * The number of operations of the '<em>SGr Time Sync Block Notification Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.SGrVersionNumberTypeImpl <em>SGr Version Number Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3907,7 +4007,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrVersionNumberType()
 	 * @generated
 	 */
-	int SGR_VERSION_NUMBER_TYPE = 52;
+	int SGR_VERSION_NUMBER_TYPE = 53;
 
 	/**
 	 * The feature id for the '<em><b>Primary Version Number</b></em>' attribute.
@@ -3962,7 +4062,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTCPDevInstanceType()
 	 * @generated
 	 */
-	int TCP_DEV_INSTANCE_TYPE = 53;
+	int TCP_DEV_INSTANCE_TYPE = 54;
 
 	/**
 	 * The feature id for the '<em><b>Dev Inst Name</b></em>' attribute.
@@ -4008,7 +4108,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTCPtrspSrvInstanceType()
 	 * @generated
 	 */
-	int TC_PTRSP_SRV_INSTANCE_TYPE = 54;
+	int TC_PTRSP_SRV_INSTANCE_TYPE = 55;
 
 	/**
 	 * The number of structural features of the '<em>TC Ptrsp Srv Instance Type</em>' class.
@@ -4036,7 +4136,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTCPType()
 	 * @generated
 	 */
-	int TCP_TYPE = 55;
+	int TCP_TYPE = 56;
 
 	/**
 	 * The feature id for the '<em><b>Tcp Trsp Srv Instance</b></em>' containment reference.
@@ -4073,52 +4173,6 @@ public interface V0Package extends EPackage {
 	 * @ordered
 	 */
 	int TCP_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.TimeSyncBlockNotificationTypeImpl <em>Time Sync Block Notification Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.impl.TimeSyncBlockNotificationTypeImpl
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTimeSyncBlockNotificationType()
-	 * @generated
-	 */
-	int TIME_SYNC_BLOCK_NOTIFICATION_TYPE = 56;
-
-	/**
-	 * The feature id for the '<em><b>Block Number</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SYNC_BLOCK_NOTIFICATION_TYPE__BLOCK_NUMBER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Timeout Ms</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SYNC_BLOCK_NOTIFICATION_TYPE__TIMEOUT_MS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Time Sync Block Notification Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SYNC_BLOCK_NOTIFICATION_TYPE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Time Sync Block Notification Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SYNC_BLOCK_NOTIFICATION_TYPE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.impl.TPIPModbusImpl <em>TPIP Modbus</em>}' class.
@@ -6471,17 +6525,6 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrAttr4ModbusType_PollLatencyMS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Time Sync Block Notification</em>'.
-	 * @see com.smartgridready.ns.v0.SGrAttr4ModbusType#getTimeSyncBlockNotification()
-	 * @see #getSGrAttr4ModbusType()
-	 * @generated
-	 */
-	EReference getSGrAttr4ModbusType_TimeSyncBlockNotification();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getAccessProtection <em>Access Protection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7717,6 +7760,28 @@ public interface V0Package extends EPackage {
 	EReference getSGrModbusDataPointType_ModbusDataPoint();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getLastAccessTime <em>Last Access Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Last Access Time</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointType#getLastAccessTime()
+	 * @see #getSGrModbusDataPointType()
+	 * @generated
+	 */
+	EAttribute getSGrModbusDataPointType_LastAccessTime();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeToLive <em>Time To Live</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time To Live</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeToLive()
+	 * @see #getSGrModbusDataPointType()
+	 * @generated
+	 */
+	EAttribute getSGrModbusDataPointType_TimeToLive();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getModbusAttr <em>Modbus Attr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7790,6 +7855,17 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EClass getSGrModbusFunctionalProfileType();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Time Sync Block Notification</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getTimeSyncBlockNotification()
+	 * @see #getSGrModbusFunctionalProfileType()
+	 * @generated
+	 */
+	EReference getSGrModbusFunctionalProfileType_TimeSyncBlockNotification();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getModbusAttr <em>Modbus Attr</em>}'.
@@ -8612,6 +8688,82 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrStabilityFallbackType_FallbackValue();
 
 	/**
+	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType <em>SGr Time Sync Block Notification Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>SGr Time Sync Block Notification Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType
+	 * @generated
+	 */
+	EClass getSGrTimeSyncBlockNotificationType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getBlockNumber <em>Block Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Block Number</em>'.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getBlockNumber()
+	 * @see #getSGrTimeSyncBlockNotificationType()
+	 * @generated
+	 */
+	EAttribute getSGrTimeSyncBlockNotificationType_BlockNumber();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getLastAccessTime <em>Last Access Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Last Access Time</em>'.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getLastAccessTime()
+	 * @see #getSGrTimeSyncBlockNotificationType()
+	 * @generated
+	 */
+	EAttribute getSGrTimeSyncBlockNotificationType_LastAccessTime();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getTimeToLive <em>Time To Live</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time To Live</em>'.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getTimeToLive()
+	 * @see #getSGrTimeSyncBlockNotificationType()
+	 * @generated
+	 */
+	EAttribute getSGrTimeSyncBlockNotificationType_TimeToLive();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getFirstAddr <em>First Addr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>First Addr</em>'.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getFirstAddr()
+	 * @see #getSGrTimeSyncBlockNotificationType()
+	 * @generated
+	 */
+	EAttribute getSGrTimeSyncBlockNotificationType_FirstAddr();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getRegisterType <em>Register Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Register Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getRegisterType()
+	 * @see #getSGrTimeSyncBlockNotificationType()
+	 * @generated
+	 */
+	EAttribute getSGrTimeSyncBlockNotificationType_RegisterType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getSize()
+	 * @see #getSGrTimeSyncBlockNotificationType()
+	 * @generated
+	 */
+	EAttribute getSGrTimeSyncBlockNotificationType_Size();
+
+	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrVersionNumberType <em>SGr Version Number Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8727,38 +8879,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EReference getTCPType_TcpDevInstance();
-
-	/**
-	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.TimeSyncBlockNotificationType <em>Time Sync Block Notification Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Time Sync Block Notification Type</em>'.
-	 * @see com.smartgridready.ns.v0.TimeSyncBlockNotificationType
-	 * @generated
-	 */
-	EClass getTimeSyncBlockNotificationType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.TimeSyncBlockNotificationType#getBlockNumber <em>Block Number</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Block Number</em>'.
-	 * @see com.smartgridready.ns.v0.TimeSyncBlockNotificationType#getBlockNumber()
-	 * @see #getTimeSyncBlockNotificationType()
-	 * @generated
-	 */
-	EAttribute getTimeSyncBlockNotificationType_BlockNumber();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.TimeSyncBlockNotificationType#getTimeoutMs <em>Timeout Ms</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Timeout Ms</em>'.
-	 * @see com.smartgridready.ns.v0.TimeSyncBlockNotificationType#getTimeoutMs()
-	 * @see #getTimeSyncBlockNotificationType()
-	 * @generated
-	 */
-	EAttribute getTimeSyncBlockNotificationType_TimeoutMs();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.TPIPModbus <em>TPIP Modbus</em>}'.

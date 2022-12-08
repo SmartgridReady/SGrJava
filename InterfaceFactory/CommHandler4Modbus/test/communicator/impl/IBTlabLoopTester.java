@@ -752,10 +752,11 @@ public class IBTlabLoopTester {
 					static void tstFroniusSymo()
 					{
 						float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0;
-						String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
-											
-						
+						String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";						
 						boolean b;
+						long l;
+											
+
 							try {	
 								 System.out.printf("%n@:Testing FroniusSymo:%n");
 								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "SunspecID");
@@ -772,55 +773,146 @@ public class IBTlabLoopTester {
 								 Thread.sleep(25);
 								 sVal3 = devFroniusSymo.getVal("SunspInvModel", "CurrentACL3");
 								 Thread.sleep(25);
-								 System.out.printf("  SunspInvModel CurrentAC [A]:          " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");			
-								
-								
-								// REM: array type is preliminary  
-								System.out.printf("  SunspInvModel EventList 1: isTrue =  ");
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT0_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT0, ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT1_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT1, ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT2_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT2, ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT3_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT3, ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT4_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT4 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT5_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT5 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT6_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT6 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT7_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT7 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT8_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT8 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT9_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT9 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT10_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT10, ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT11_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT11, ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT12_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT12, ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT13_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT13, ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT14_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT14 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT15_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT15 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT16_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT16 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT17_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT17 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT18_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT18 ") ;
-								b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT19_VALUE).getDpInstance().get(0).isBoolean();
-								if (b)  System.out.printf("BIT19 ") ;
-								System.out.printf("%n");
-							}
-							catch ( Exception e)
-							{
+								 System.out.printf("  SunspInvModel CurrentAC [A]:          " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");	
+								 Thread.sleep(25);		
+									
+								 // REM: array type is preliminary  
+								 System.out.printf("  Status SunspInvModel EvenList1 %n");
+								 l =  devFroniusSymo.getValByGDPType("  SunspInvModel","EventList1").getInt32U();
+								 System.out.printf("   StatusRegister :         " + l + " %n");
+							     Thread.sleep(25);
+								 System.out.printf("   SunspInvModel EventList 1: isTrue =  ");
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT0_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT0, ") ;
+								Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT1_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT1, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT2_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT2, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT3_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT3, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT4_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT4 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT5_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT5 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT6_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT6 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT7_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT7 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT8_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT8 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT9_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT9 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT10_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT10, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT11_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT11, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT12_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT12, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT13_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT13, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT14_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT14 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT15_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT15 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT16_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT16 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT17_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT17 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT18_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT18 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT19_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT19 ") ;
+								 Thread.sleep(25);
+								 System.out.printf("%n");
+								 // REM: array type is preliminary  
+								 System.out.printf("  Status SunspInvModel EvenList2 %n");
+								 System.out.printf("   EventList 2: isTrue =  ");
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT0_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT0, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT1_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT1, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT2_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT2, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT3_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT3, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT4_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT4 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT5_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT5 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT6_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT6 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT7_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT7 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT8_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT8 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT9_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT9 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT10_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT10, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT11_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT11, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT12_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT12, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT13_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT13, ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT14_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT14 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT15_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT15 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT16_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT16 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT17_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT17 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT18_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT18 ") ;
+								 Thread.sleep(25);
+								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList2",SGrBool2BitRankType.BIT19_VALUE).getDpInstance().get(0).isBoolean();
+								 if (b)  System.out.printf("BIT19 ") ;
+								 Thread.sleep(25);
+								 System.out.printf("%n");
+								 Thread.sleep(25);
+								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList1").getInt32U();
+								 System.out.printf("   StatusRegister :         " + l + " %n");
+							 }
+							 catch ( Exception e)
+							 {
 								devFroniusSymoExceptions++;
 								System.out.println( "Error reading value from device: "+ devFroniusSymo.getClass().getName() + e);
 								e.printStackTrace();

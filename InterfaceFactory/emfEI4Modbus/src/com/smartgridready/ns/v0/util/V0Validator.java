@@ -202,6 +202,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrSmoothTransitionType((SGrSmoothTransitionType)value, diagnostics, context);
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE:
 				return validateSGrStabilityFallbackType((SGrStabilityFallbackType)value, diagnostics, context);
+			case V0Package.SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE:
+				return validateSGrTimeSyncBlockNotificationType((SGrTimeSyncBlockNotificationType)value, diagnostics, context);
 			case V0Package.SGR_VERSION_NUMBER_TYPE:
 				return validateSGrVersionNumberType((SGrVersionNumberType)value, diagnostics, context);
 			case V0Package.TCP_DEV_INSTANCE_TYPE:
@@ -210,8 +212,6 @@ public class V0Validator extends EObjectValidator {
 				return validateTCPtrspSrvInstanceType((TCPtrspSrvInstanceType)value, diagnostics, context);
 			case V0Package.TCP_TYPE:
 				return validateTCPType((TCPType)value, diagnostics, context);
-			case V0Package.TIME_SYNC_BLOCK_NOTIFICATION_TYPE:
-				return validateTimeSyncBlockNotificationType((TimeSyncBlockNotificationType)value, diagnostics, context);
 			case V0Package.TPIP_MODBUS:
 				return validateTPIPModbus((TPIPModbus)value, diagnostics, context);
 			case V0Package.TPIP_V4GEN_ADDR_TYPE:
@@ -924,6 +924,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSGrTimeSyncBlockNotificationType(SGrTimeSyncBlockNotificationType sGrTimeSyncBlockNotificationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrTimeSyncBlockNotificationType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSGrVersionNumberType(SGrVersionNumberType sGrVersionNumberType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrVersionNumberType, diagnostics, context);
 	}
@@ -953,15 +962,6 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateTCPType(TCPType tcpType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(tcpType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTimeSyncBlockNotificationType(TimeSyncBlockNotificationType timeSyncBlockNotificationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(timeSyncBlockNotificationType, diagnostics, context);
 	}
 
 	/**

@@ -276,6 +276,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrStabilityFallbackTypeAdapter();
 			}
 			@Override
+			public Adapter caseSGrTimeSyncBlockNotificationType(SGrTimeSyncBlockNotificationType object) {
+				return createSGrTimeSyncBlockNotificationTypeAdapter();
+			}
+			@Override
 			public Adapter caseSGrVersionNumberType(SGrVersionNumberType object) {
 				return createSGrVersionNumberTypeAdapter();
 			}
@@ -290,10 +294,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTCPType(TCPType object) {
 				return createTCPTypeAdapter();
-			}
-			@Override
-			public Adapter caseTimeSyncBlockNotificationType(TimeSyncBlockNotificationType object) {
-				return createTimeSyncBlockNotificationTypeAdapter();
 			}
 			@Override
 			public Adapter caseTPIPModbus(TPIPModbus object) {
@@ -1068,6 +1068,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType <em>SGr Time Sync Block Notification Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType
+	 * @generated
+	 */
+	public Adapter createSGrTimeSyncBlockNotificationTypeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrVersionNumberType <em>SGr Version Number Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1120,20 +1134,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTCPTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.TimeSyncBlockNotificationType <em>Time Sync Block Notification Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.TimeSyncBlockNotificationType
-	 * @generated
-	 */
-	public Adapter createTimeSyncBlockNotificationTypeAdapter() {
 		return null;
 	}
 

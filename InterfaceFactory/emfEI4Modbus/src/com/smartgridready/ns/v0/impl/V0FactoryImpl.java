@@ -114,11 +114,11 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_SERIAL_INTERFACE_CAPABILITY_TYPE: return createSGrSerialInterfaceCapabilityType();
 			case V0Package.SGR_SMOOTH_TRANSITION_TYPE: return createSGrSmoothTransitionType();
 			case V0Package.SGR_STABILITY_FALLBACK_TYPE: return createSGrStabilityFallbackType();
+			case V0Package.SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE: return createSGrTimeSyncBlockNotificationType();
 			case V0Package.SGR_VERSION_NUMBER_TYPE: return createSGrVersionNumberType();
 			case V0Package.TCP_DEV_INSTANCE_TYPE: return createTCPDevInstanceType();
 			case V0Package.TC_PTRSP_SRV_INSTANCE_TYPE: return createTCPtrspSrvInstanceType();
 			case V0Package.TCP_TYPE: return createTCPType();
-			case V0Package.TIME_SYNC_BLOCK_NOTIFICATION_TYPE: return createTimeSyncBlockNotificationType();
 			case V0Package.TPIP_MODBUS: return createTPIPModbus();
 			case V0Package.TPIP_V4GEN_ADDR_TYPE: return createTPipV4genAddrType();
 			case V0Package.TPIP_V6GEN_ADDR_TYPE: return createTPipV6genAddrType();
@@ -1178,6 +1178,17 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
+	public SGrTimeSyncBlockNotificationType createSGrTimeSyncBlockNotificationType() {
+		SGrTimeSyncBlockNotificationTypeImpl sGrTimeSyncBlockNotificationType = new SGrTimeSyncBlockNotificationTypeImpl();
+		return sGrTimeSyncBlockNotificationType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SGrVersionNumberType createSGrVersionNumberType() {
 		SGrVersionNumberTypeImpl sGrVersionNumberType = new SGrVersionNumberTypeImpl();
 		return sGrVersionNumberType;
@@ -1214,17 +1225,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public TCPType createTCPType() {
 		TCPTypeImpl tcpType = new TCPTypeImpl();
 		return tcpType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TimeSyncBlockNotificationType createTimeSyncBlockNotificationType() {
-		TimeSyncBlockNotificationTypeImpl timeSyncBlockNotificationType = new TimeSyncBlockNotificationTypeImpl();
-		return timeSyncBlockNotificationType;
 	}
 
 	/**

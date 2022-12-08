@@ -490,6 +490,15 @@ public interface V0Factory extends EFactory {
 	SGrStabilityFallbackType createSGrStabilityFallbackType();
 
 	/**
+	 * Returns a new object of class '<em>SGr Time Sync Block Notification Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Time Sync Block Notification Type</em>'.
+	 * @generated
+	 */
+	SGrTimeSyncBlockNotificationType createSGrTimeSyncBlockNotificationType();
+
+	/**
 	 * Returns a new object of class '<em>SGr Version Number Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -524,15 +533,6 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	TCPType createTCPType();
-
-	/**
-	 * Returns a new object of class '<em>Time Sync Block Notification Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Time Sync Block Notification Type</em>'.
-	 * @generated
-	 */
-	TimeSyncBlockNotificationType createTimeSyncBlockNotificationType();
 
 	/**
 	 * Returns a new object of class '<em>TPIP Modbus</em>'.

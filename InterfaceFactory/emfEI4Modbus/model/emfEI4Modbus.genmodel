@@ -313,7 +313,6 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/bitmap8"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/bitmap16"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/bitmap32"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrModbusLayer6DeviationType/bitmap64"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrMROPresenceLevelIndicationType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrMROPresenceLevelIndicationType/M"/>
@@ -888,7 +887,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4ModbusType/stepByIncrement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4ModbusType/sunssf"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4ModbusType/pollLatencyMS"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4ModbusType/timeSyncBlockNotification"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4ModbusType/accessProtection"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4ModbusType/layer6Deviation"/>
     </genClasses>
@@ -1022,6 +1020,8 @@
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrModbusDataPointType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointType/modbusDataPoint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDataPointType/lastAccessTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusDataPointType/timeToLive"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointType/modbusAttr"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrModbusDeviceFrame">
@@ -1031,6 +1031,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDeviceFrame/networkConnectionState"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrModbusFunctionalProfileType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusFunctionalProfileType/timeSyncBlockNotification"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusFunctionalProfileType/modbusAttr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusFunctionalProfileType/dpListElement"/>
     </genClasses>
@@ -1124,6 +1125,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrStabilityFallbackType/initValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrStabilityFallbackType/fallbackValue"/>
     </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrTimeSyncBlockNotificationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrTimeSyncBlockNotificationType/blockNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrTimeSyncBlockNotificationType/lastAccessTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrTimeSyncBlockNotificationType/timeToLive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrTimeSyncBlockNotificationType/firstAddr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrTimeSyncBlockNotificationType/registerType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrTimeSyncBlockNotificationType/size"/>
+    </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrVersionNumberType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrVersionNumberType/primaryVersionNumber"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrVersionNumberType/secondaryVersionNumber"/>
@@ -1137,10 +1146,6 @@
     <genClasses ecoreClass="v0.ecore#//TCPType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//TCPType/tcpTrspSrvInstance"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//TCPType/tcpDevInstance"/>
-    </genClasses>
-    <genClasses ecoreClass="v0.ecore#//TimeSyncBlockNotificationType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//TimeSyncBlockNotificationType/blockNumber"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//TimeSyncBlockNotificationType/timeoutMs"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//TPIPModbus">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//TPIPModbus/port"/>
