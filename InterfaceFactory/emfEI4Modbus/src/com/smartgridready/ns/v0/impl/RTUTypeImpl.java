@@ -82,7 +82,6 @@ public class RTUTypeImpl extends MinimalEObjectImpl.Container implements RTUType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public RTUtrspSrvInstanceType getRtuTrspSrvInstance() {
 		return rtuTrspSrvInstance;
 	}
@@ -107,7 +106,6 @@ public class RTUTypeImpl extends MinimalEObjectImpl.Container implements RTUType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRtuTrspSrvInstance(RTUtrspSrvInstanceType newRtuTrspSrvInstance) {
 		if (newRtuTrspSrvInstance != rtuTrspSrvInstance) {
 			NotificationChain msgs = null;
@@ -127,7 +125,6 @@ public class RTUTypeImpl extends MinimalEObjectImpl.Container implements RTUType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<RTUDevInstanceType> getRtuDevInstance() {
 		if (rtuDevInstance == null) {
 			rtuDevInstance = new EObjectContainmentEList<RTUDevInstanceType>(RTUDevInstanceType.class, this, V0Package.RTU_TYPE__RTU_DEV_INSTANCE);

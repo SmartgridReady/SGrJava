@@ -122,7 +122,6 @@ public class SGrLegibDocumentationTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getTextElement() {
 		return textElement;
 	}
@@ -132,7 +131,6 @@ public class SGrLegibDocumentationTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTextElement(String newTextElement) {
 		String oldTextElement = textElement;
 		textElement = newTextElement;
@@ -145,7 +143,6 @@ public class SGrLegibDocumentationTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrLanguageType getLanguage() {
 		return language;
 	}
@@ -155,7 +152,6 @@ public class SGrLegibDocumentationTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setLanguage(SGrLanguageType newLanguage) {
 		SGrLanguageType oldLanguage = language;
 		language = newLanguage == null ? LANGUAGE_EDEFAULT : newLanguage;
@@ -170,7 +166,6 @@ public class SGrLegibDocumentationTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetLanguage() {
 		SGrLanguageType oldLanguage = language;
 		boolean oldLanguageESet = languageESet;
@@ -185,7 +180,6 @@ public class SGrLegibDocumentationTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetLanguage() {
 		return languageESet;
 	}
@@ -195,7 +189,6 @@ public class SGrLegibDocumentationTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getUri() {
 		return uri;
 	}
@@ -205,7 +198,6 @@ public class SGrLegibDocumentationTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setUri(String newUri) {
 		String oldUri = uri;
 		uri = newUri;

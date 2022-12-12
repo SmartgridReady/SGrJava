@@ -111,7 +111,6 @@ public class SGrFlexAssistanceTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrSGCPServiceType getAssists() {
 		return assists;
 	}
@@ -121,7 +120,6 @@ public class SGrFlexAssistanceTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAssists(SGrSGCPServiceType newAssists) {
 		SGrSGCPServiceType oldAssists = assists;
 		assists = newAssists == null ? ASSISTS_EDEFAULT : newAssists;
@@ -136,7 +134,6 @@ public class SGrFlexAssistanceTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetAssists() {
 		SGrSGCPServiceType oldAssists = assists;
 		boolean oldAssistsESet = assistsESet;
@@ -151,7 +148,6 @@ public class SGrFlexAssistanceTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetAssists() {
 		return assistsESet;
 	}
@@ -161,7 +157,6 @@ public class SGrFlexAssistanceTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrObligLvlType getObligedTo() {
 		return obligedTo;
 	}
@@ -171,7 +166,6 @@ public class SGrFlexAssistanceTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setObligedTo(SGrObligLvlType newObligedTo) {
 		SGrObligLvlType oldObligedTo = obligedTo;
 		obligedTo = newObligedTo == null ? OBLIGED_TO_EDEFAULT : newObligedTo;
@@ -186,7 +180,6 @@ public class SGrFlexAssistanceTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetObligedTo() {
 		SGrObligLvlType oldObligedTo = obligedTo;
 		boolean oldObligedToESet = obligedToESet;
@@ -201,7 +194,6 @@ public class SGrFlexAssistanceTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetObligedTo() {
 		return obligedToESet;
 	}

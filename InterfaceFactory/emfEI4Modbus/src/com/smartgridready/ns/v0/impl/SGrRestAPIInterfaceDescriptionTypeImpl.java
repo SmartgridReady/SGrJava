@@ -182,7 +182,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrRestAPIInterfaceSelectiontype getRestAPIInterfaceSelection() {
 		return restAPIInterfaceSelection;
 	}
@@ -192,7 +191,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRestAPIInterfaceSelection(SGrRestAPIInterfaceSelectiontype newRestAPIInterfaceSelection) {
 		SGrRestAPIInterfaceSelectiontype oldRestAPIInterfaceSelection = restAPIInterfaceSelection;
 		restAPIInterfaceSelection = newRestAPIInterfaceSelection == null ? REST_API_INTERFACE_SELECTION_EDEFAULT : newRestAPIInterfaceSelection;
@@ -207,7 +205,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetRestAPIInterfaceSelection() {
 		SGrRestAPIInterfaceSelectiontype oldRestAPIInterfaceSelection = restAPIInterfaceSelection;
 		boolean oldRestAPIInterfaceSelectionESet = restAPIInterfaceSelectionESet;
@@ -222,7 +219,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetRestAPIInterfaceSelection() {
 		return restAPIInterfaceSelectionESet;
 	}
@@ -232,7 +228,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TPipV4genAddrType getTrspSrvRestTCPV4outOfBox() {
 		return trspSrvRestTCPV4outOfBox;
 	}
@@ -257,7 +252,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTrspSrvRestTCPV4outOfBox(TPipV4genAddrType newTrspSrvRestTCPV4outOfBox) {
 		if (newTrspSrvRestTCPV4outOfBox != trspSrvRestTCPV4outOfBox) {
 			NotificationChain msgs = null;
@@ -277,7 +271,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TPipV6genAddrType getTrspSrvRestTCPV6outOfBox() {
 		return trspSrvRestTCPV6outOfBox;
 	}
@@ -302,7 +295,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTrspSrvRestTCPV6outOfBox(TPipV6genAddrType newTrspSrvRestTCPV6outOfBox) {
 		if (newTrspSrvRestTCPV6outOfBox != trspSrvRestTCPV6outOfBox) {
 			NotificationChain msgs = null;
@@ -322,7 +314,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getTrspSrvRestURIoutOfBox() {
 		return trspSrvRestURIoutOfBox;
 	}
@@ -332,7 +323,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTrspSrvRestURIoutOfBox(String newTrspSrvRestURIoutOfBox) {
 		String oldTrspSrvRestURIoutOfBox = trspSrvRestURIoutOfBox;
 		trspSrvRestURIoutOfBox = newTrspSrvRestURIoutOfBox;
@@ -345,7 +335,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrRestAPIAuthenticationEnumMethodType getRestAPIAuthenticationMethod() {
 		return restAPIAuthenticationMethod;
 	}
@@ -355,7 +344,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRestAPIAuthenticationMethod(SGrRestAPIAuthenticationEnumMethodType newRestAPIAuthenticationMethod) {
 		SGrRestAPIAuthenticationEnumMethodType oldRestAPIAuthenticationMethod = restAPIAuthenticationMethod;
 		restAPIAuthenticationMethod = newRestAPIAuthenticationMethod == null ? REST_API_AUTHENTICATION_METHOD_EDEFAULT : newRestAPIAuthenticationMethod;
@@ -370,7 +358,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetRestAPIAuthenticationMethod() {
 		SGrRestAPIAuthenticationEnumMethodType oldRestAPIAuthenticationMethod = restAPIAuthenticationMethod;
 		boolean oldRestAPIAuthenticationMethodESet = restAPIAuthenticationMethodESet;
@@ -385,7 +372,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetRestAPIAuthenticationMethod() {
 		return restAPIAuthenticationMethodESet;
 	}
@@ -395,7 +381,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGRrestAPIBearerType getRestAPIBearer() {
 		return restAPIBearer;
 	}
@@ -420,7 +405,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRestAPIBearer(SGRrestAPIBearerType newRestAPIBearer) {
 		if (newRestAPIBearer != restAPIBearer) {
 			NotificationChain msgs = null;
@@ -440,7 +424,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrRestBasicType getRestAPIBasic() {
 		return restAPIBasic;
 	}
@@ -465,7 +448,6 @@ public class SGrRestAPIInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRestAPIBasic(SGrRestBasicType newRestAPIBasic) {
 		if (newRestAPIBasic != restAPIBasic) {
 			NotificationChain msgs = null;

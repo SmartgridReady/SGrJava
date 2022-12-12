@@ -122,7 +122,6 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrReleaseState getState() {
 		return state;
 	}
@@ -132,7 +131,6 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setState(SGrReleaseState newState) {
 		SGrReleaseState oldState = state;
 		state = newState == null ? STATE_EDEFAULT : newState;
@@ -147,7 +145,6 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetState() {
 		SGrReleaseState oldState = state;
 		boolean oldStateESet = stateESet;
@@ -162,7 +159,6 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetState() {
 		return stateESet;
 	}
@@ -172,7 +168,6 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getRemarks() {
 		return remarks;
 	}
@@ -182,7 +177,6 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRemarks(String newRemarks) {
 		String oldRemarks = remarks;
 		remarks = newRemarks;
@@ -195,7 +189,6 @@ public class SGrReleaseNotesImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<SGrChangeLog> getChangelog() {
 		if (changelog == null) {
 			changelog = new EObjectContainmentEList<SGrChangeLog>(SGrChangeLog.class, this, V0Package.SGR_RELEASE_NOTES__CHANGELOG);

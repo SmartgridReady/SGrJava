@@ -171,7 +171,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public FeatureMap getMixed() {
 		if (mixed == null) {
 			mixed = new BasicFeatureMap(this, V0Package.DOCUMENT_ROOT__MIXED);
@@ -184,7 +183,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EMap<String, String> getXMLNSPrefixMap() {
 		if (xMLNSPrefixMap == null) {
 			xMLNSPrefixMap = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, V0Package.DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
@@ -197,7 +195,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EMap<String, String> getXSISchemaLocation() {
 		if (xSISchemaLocation == null) {
 			xSISchemaLocation = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, V0Package.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
@@ -210,7 +207,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EBaudRateType getBaudRatesSupported() {
 		return (EBaudRateType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_BaudRatesSupported(), true);
 	}
@@ -220,7 +216,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBaudRatesSupported(EBaudRateType newBaudRatesSupported) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_BaudRatesSupported(), newBaudRatesSupported);
 	}
@@ -230,7 +225,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EByteLenType getByteLenSupported() {
 		return (EByteLenType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_ByteLenSupported(), true);
 	}
@@ -240,7 +234,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setByteLenSupported(EByteLenType newByteLenSupported) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_ByteLenSupported(), newByteLenSupported);
 	}
@@ -250,7 +243,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getModbusFunctionCodesSupported() {
 		return (String)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_ModbusFunctionCodesSupported(), true);
 	}
@@ -260,7 +252,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setModbusFunctionCodesSupported(String newModbusFunctionCodesSupported) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_ModbusFunctionCodesSupported(), newModbusFunctionCodesSupported);
 	}
@@ -270,7 +261,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public NetworkConnectionStateType getNetConnectionState() {
 		return (NetworkConnectionStateType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_NetConnectionState(), true);
 	}
@@ -289,7 +279,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setNetConnectionState(NetworkConnectionStateType newNetConnectionState) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_NetConnectionState(), newNetConnectionState);
 	}
@@ -299,7 +288,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EParityType getParitySupported() {
 		return (EParityType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_ParitySupported(), true);
 	}
@@ -309,7 +297,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setParitySupported(EParityType newParitySupported) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_ParitySupported(), newParitySupported);
 	}
@@ -319,7 +306,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrModbusDataPointDescriptionType getSGrModbusDataPointDescription() {
 		return (SGrModbusDataPointDescriptionType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDataPointDescription(), true);
 	}
@@ -338,7 +324,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSGrModbusDataPointDescription(SGrModbusDataPointDescriptionType newSGrModbusDataPointDescription) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDataPointDescription(), newSGrModbusDataPointDescription);
 	}
@@ -348,7 +333,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrModbusInterfaceDescriptionType getSGrModbusInterfaceDescription() {
 		return (SGrModbusInterfaceDescriptionType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrModbusInterfaceDescription(), true);
 	}
@@ -367,7 +351,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSGrModbusInterfaceDescription(SGrModbusInterfaceDescriptionType newSGrModbusInterfaceDescription) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrModbusInterfaceDescription(), newSGrModbusInterfaceDescription);
 	}
@@ -377,7 +360,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrContactAPIDeviceFrame getSGrContactAPIDeviceFrame() {
 		return (SGrContactAPIDeviceFrame)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrContactAPIDeviceFrame(), true);
 	}
@@ -396,7 +378,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSGrContactAPIDeviceFrame(SGrContactAPIDeviceFrame newSGrContactAPIDeviceFrame) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrContactAPIDeviceFrame(), newSGrContactAPIDeviceFrame);
 	}
@@ -406,7 +387,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrFunctionalProfileFrameType getSGrFunctionalProfileFrame() {
 		return (SGrFunctionalProfileFrameType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrFunctionalProfileFrame(), true);
 	}
@@ -425,7 +405,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSGrFunctionalProfileFrame(SGrFunctionalProfileFrameType newSGrFunctionalProfileFrame) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrFunctionalProfileFrame(), newSGrFunctionalProfileFrame);
 	}
@@ -435,7 +414,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrGenDeviceFrame getSGrGenDeviceFrame() {
 		return (SGrGenDeviceFrame)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrGenDeviceFrame(), true);
 	}
@@ -454,7 +432,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSGrGenDeviceFrame(SGrGenDeviceFrame newSGrGenDeviceFrame) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrGenDeviceFrame(), newSGrGenDeviceFrame);
 	}
@@ -464,7 +441,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrModbusDeviceFrame getSGrModbusDeviceFrame() {
 		return (SGrModbusDeviceFrame)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDeviceFrame(), true);
 	}
@@ -483,7 +459,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSGrModbusDeviceFrame(SGrModbusDeviceFrame newSGrModbusDeviceFrame) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrModbusDeviceFrame(), newSGrModbusDeviceFrame);
 	}
@@ -493,7 +468,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrRestAPIDeviceFrame getSGrRestAPIDeviceFrame() {
 		return (SGrRestAPIDeviceFrame)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrRestAPIDeviceFrame(), true);
 	}
@@ -512,7 +486,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSGrRestAPIDeviceFrame(SGrRestAPIDeviceFrame newSGrRestAPIDeviceFrame) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrRestAPIDeviceFrame(), newSGrRestAPIDeviceFrame);
 	}
@@ -522,7 +495,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrSerialInterfaceCapabilityType getSGrSerialInterfaceCapability() {
 		return (SGrSerialInterfaceCapabilityType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_SGrSerialInterfaceCapability(), true);
 	}
@@ -541,7 +513,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSGrSerialInterfaceCapability(SGrSerialInterfaceCapabilityType newSGrSerialInterfaceCapability) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_SGrSerialInterfaceCapability(), newSGrSerialInterfaceCapability);
 	}
@@ -551,7 +522,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EStopBitLenType getStopBitLenSupported() {
 		return (EStopBitLenType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_StopBitLenSupported(), true);
 	}
@@ -561,7 +531,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setStopBitLenSupported(EStopBitLenType newStopBitLenSupported) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_StopBitLenSupported(), newStopBitLenSupported);
 	}
@@ -571,7 +540,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TrspServiceModbusType getTrspServiceModbus() {
 		return (TrspServiceModbusType)getMixed().get(V0Package.eINSTANCE.getDocumentRoot_TrspServiceModbus(), true);
 	}
@@ -590,7 +558,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTrspServiceModbus(TrspServiceModbusType newTrspServiceModbus) {
 		((FeatureMap.Internal)getMixed()).set(V0Package.eINSTANCE.getDocumentRoot_TrspServiceModbus(), newTrspServiceModbus);
 	}

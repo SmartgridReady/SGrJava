@@ -109,7 +109,6 @@ public class SGrScalingTypeImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getMultiplicator() {
 		return multiplicator;
 	}
@@ -119,7 +118,6 @@ public class SGrScalingTypeImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMultiplicator(int newMultiplicator) {
 		int oldMultiplicator = multiplicator;
 		multiplicator = newMultiplicator;
@@ -134,7 +132,6 @@ public class SGrScalingTypeImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetMultiplicator() {
 		int oldMultiplicator = multiplicator;
 		boolean oldMultiplicatorESet = multiplicatorESet;
@@ -149,7 +146,6 @@ public class SGrScalingTypeImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetMultiplicator() {
 		return multiplicatorESet;
 	}
@@ -159,7 +155,6 @@ public class SGrScalingTypeImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getPowerof10() {
 		return powerof10;
 	}
@@ -169,7 +164,6 @@ public class SGrScalingTypeImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setPowerof10(int newPowerof10) {
 		int oldPowerof10 = powerof10;
 		powerof10 = newPowerof10;
@@ -184,7 +178,6 @@ public class SGrScalingTypeImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetPowerof10() {
 		int oldPowerof10 = powerof10;
 		boolean oldPowerof10ESet = powerof10ESet;
@@ -199,7 +192,6 @@ public class SGrScalingTypeImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetPowerof10() {
 		return powerof10ESet;
 	}

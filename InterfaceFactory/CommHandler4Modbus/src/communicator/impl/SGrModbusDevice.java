@@ -50,6 +50,7 @@ import com.smartgridready.ns.v0.SGrSGCPLoadStateLv2Type;
 import com.smartgridready.ns.v0.SGrSGCPServiceType;
 import com.smartgridready.ns.v0.SGrScalingType;
 import com.smartgridready.ns.v0.SGrSunspStateCodesType;
+import com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType;
 import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.TEnumConversionFct;
 import com.smartgridready.ns.v0.TEnumObjectType;
@@ -255,7 +256,9 @@ public class SGrModbusDevice {
 				
 			TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 			
-			if (System.currentTimeMillis() > (aDataPoint.getLastAccessTime() + aDataPoint.getTimeToLive()) )
+			//check time to live data cashing
+			if ((! aDataPoint.isSetTimeToLive())
+			|| (System.currentTimeMillis() > (aDataPoint.getLastAccessTime() + aDataPoint.getTimeToLive()) ))
 			{
 			  BigInteger regad = MBRegRef.getAddr();
 			
@@ -319,7 +322,7 @@ public class SGrModbusDevice {
 	
 	
 	
-	    // SGrModbusFunctionalProfileType  based API for reading binary  types  (single data point)
+	// SGrModbusFunctionalProfileType  based API for reading binary  types  (single data point)
 	public SGrBasicGenDataPointTypeType getValByGDPType(SGrModbusFunctionalProfileType aProfile,
 			SGrModbusDataPointType aDataPoint) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
@@ -338,12 +341,59 @@ public class SGrModbusDevice {
 		if (profile.isPresent()) {
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
-				retval = prv_getValByGDPType(profile.get(), dataPoint.get());
+				
+				// check if data point is member of a block transfer
+				if (dataPoint.get().isSetTimeSyncBlockRefIndex())
+				  retval = 	prv_getValByGDPTypebyBlockTransfer(profile.get(), dataPoint.get());	
+				else
+				  retval = prv_getValByGDPType(profile.get(), dataPoint.get());
 			}
 		}
-
 		return retval;
 	}
+	
+	
+	
+	
+	private SGrBasicGenDataPointTypeType prv_getValByGDPTypebyBlockTransfer(
+			SGrModbusFunctionalProfileType aProfile,
+			SGrModbusDataPointType aDataPoint)
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+		
+		SGrBasicGenDataPointTypeType RetVal = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+		
+
+		SGrTimeSyncBlockNotificationType tsbn =  aProfile.getTimeSyncBlockNotification().get(0);
+		
+		if ((tsbn.getLastAccessTime()+tsbn.getTimeToLive()) < System.currentTimeMillis())
+		{
+			int n;
+			//need new data
+			if (tsbn.getCashDataBuffer().size() < tsbn.getSize())
+			{  // first use of CashDataBuffer for this blocktranfer, create instance  
+				for (n=1;n<tsbn.getSize();n++)
+				  tsbn.getCashDataBuffer().add(0);
+			}
+			n = tsbn.getCashDataBuffer().size();
+			tsbn.getFirstAddr();
+			tsbn.getRegisterType();
+			aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference().getAddr();
+			aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
+			
+			
+		}
+		else
+		{
+			
+		}
+		
+		//WIP/cb
+		
+	
+		
+		return RetVal;
+	}
+	
 
 	private SGrBasicGenDataPointTypeType prv_getValByGDPType(
 		SGrModbusFunctionalProfileType aProfile,
@@ -370,6 +420,7 @@ public class SGrModbusDevice {
 		// Data format adaption
 		dGenType = aDataPoint.getDataPoint()
 				.getBasicDataType();
+		
 		dMBType = aDataPoint.getModbusDataPoint()
 				.get(0).getModbusDataType();
 		// Data Direction ctrl
@@ -390,6 +441,7 @@ public class SGrModbusDevice {
 		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
 		}
 		
+		
 			
 		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 		BigInteger regad = MBRegRef.getAddr();
@@ -404,66 +456,60 @@ public class SGrModbusDevice {
 		
 		int size = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
 		EList<TEnumConversionFct> MBconvScheme = modbusInterfaceDesc.getConversionScheme();
-
-		// TODO: catch SerialPortTimeoutException
-		// accessing physical interface
-		//if (modbusInterfaceDesc.getModbusInterfaceSelection() == ModbusInterfaceSelectionType.RTU) {
-			if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER) {
-				mbregresp = drv4Modbus.ReadHoldingRegisters(regad.intValue(), size);
-				bGotRegisters = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER) {
-				mbregresp = drv4Modbus.ReadInputRegisters(regad.intValue(), size);
-				bGotRegisters = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.DISCRETE_INPUT) {
-				mbbitresp = drv4Modbus.ReadDiscreteInputs(regad.intValue(), size);
-				bGotDiscrete = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.COIL) {
-				mbbitresp = drv4Modbus.ReadCoils(regad.intValue(), size);
-				bGotDiscrete = true;
-			}
-
-		int[] singleResp = new int[2];
-		int[] doubleResp = new int[4];
-		if (bGotRegisters) {
-			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN))
-				// TODO: rethink Blocktransfer here
-				// align byte stream to Big Endian
-				mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
-			// do we have Layer 6 deviations ?
-	        if (l6dev >= 0  )   mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
-
-	        for (int u = 0; u < size; u++) {
-	        	
-	        	
-				if (u == 0)
-					RegRes = mbregresp[u];
-				else {
-					RegRes = RegRes << 16;
-					RegRes = RegRes | (mbregresp[u] & 0x0000ffff);
-				}
-				// TODO: finalize this. Is it really needed?
 				
-				if (size == 2)
-			    {
-			    	singleResp[0] = mbregresp[0];
-			    	singleResp[1] = mbregresp[1];
-			    } 
-			    else if (size == 4)
-			    {
-			    	doubleResp[0] = mbregresp[0];
-			    	doubleResp[1] = mbregresp[1];
-			    	doubleResp[2] = mbregresp[2];
-			    	doubleResp[3] = mbregresp[3];
-			    }
-			    else if (size > 2)
-			    {
-			    	
-			    }
-			    
-				//TODO: manage block transfers if timeSyncBlockNotification is set
-			}
+		// accessing physical interface
+		if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER) {
+			mbregresp = drv4Modbus.ReadHoldingRegisters(regad.intValue(), size);
+			bGotRegisters = true;
+		} else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER) {
+			mbregresp = drv4Modbus.ReadInputRegisters(regad.intValue(), size);
+			bGotRegisters = true;
+		} else if (MBRegRef.getRegisterType() == TEnumObjectType.DISCRETE_INPUT) {
+			mbbitresp = drv4Modbus.ReadDiscreteInputs(regad.intValue(), size);
+			bGotDiscrete = true;
+		} else if (MBRegRef.getRegisterType() == TEnumObjectType.COIL) {
+			mbbitresp = drv4Modbus.ReadCoils(regad.intValue(), size);
+			bGotDiscrete = true;
 		}
-		
+
+	    int[] singleResp = new int[2];
+	    int[] doubleResp = new int[4];
+	    if (bGotRegisters) {
+		  if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN))
+			// align byte stream to Big Endian
+		 	 mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
+		  // do we have Layer 6 deviations ?
+	      if (l6dev >= 0  )   mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
+
+	      for (int u = 0; u < size; u++) 
+	      {
+			if (u == 0)
+				RegRes = mbregresp[u];
+			else {
+				RegRes = RegRes << 16;
+				RegRes = RegRes | (mbregresp[u] & 0x0000ffff);
+			}
+			// TODO: finalize this. Is it really needed?
+				
+			if (size == 2)
+			{
+			   	singleResp[0] = mbregresp[0];
+			   	singleResp[1] = mbregresp[1];
+			} 
+			else if (size == 4)
+			{
+			   	doubleResp[0] = mbregresp[0];
+			   	doubleResp[1] = mbregresp[1];
+			   	doubleResp[2] = mbregresp[2];
+			   	doubleResp[3] = mbregresp[3];
+			 }
+			 else if (size > 2)
+			 {
+			    	
+			  }
+          }
+	    }
+
 		if (bGotDiscrete) { // TODO: manage discrete block conversion
 
 		}		

@@ -91,7 +91,6 @@ public class SGrRestBasicTypeImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getRestBasicUsername() {
 		return restBasicUsername;
 	}
@@ -101,7 +100,6 @@ public class SGrRestBasicTypeImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRestBasicUsername(String newRestBasicUsername) {
 		String oldRestBasicUsername = restBasicUsername;
 		restBasicUsername = newRestBasicUsername;
@@ -114,7 +112,6 @@ public class SGrRestBasicTypeImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getRestBasicPassword() {
 		return restBasicPassword;
 	}
@@ -124,7 +121,6 @@ public class SGrRestBasicTypeImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRestBasicPassword(String newRestBasicPassword) {
 		String oldRestBasicPassword = restBasicPassword;
 		restBasicPassword = newRestBasicPassword;

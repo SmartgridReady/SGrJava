@@ -84,7 +84,6 @@ public class TCPDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getDevInstName() {
 		return devInstName;
 	}
@@ -94,7 +93,6 @@ public class TCPDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDevInstName(String newDevInstName) {
 		String oldDevInstName = devInstName;
 		devInstName = newDevInstName;
@@ -107,7 +105,6 @@ public class TCPDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TPIPModbus getDevAddr() {
 		return devAddr;
 	}
@@ -132,7 +129,6 @@ public class TCPDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDevAddr(TPIPModbus newDevAddr) {
 		if (newDevAddr != devAddr) {
 			NotificationChain msgs = null;

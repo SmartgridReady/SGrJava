@@ -148,7 +148,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public HeaderList getRequestHeader() {
 		return requestHeader;
 	}
@@ -173,7 +172,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRequestHeader(HeaderList newRequestHeader) {
 		if (newRequestHeader != requestHeader) {
 			NotificationChain msgs = null;
@@ -193,7 +191,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public HttpMethod getRequestMethod() {
 		return requestMethod;
 	}
@@ -203,7 +200,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRequestMethod(HttpMethod newRequestMethod) {
 		HttpMethod oldRequestMethod = requestMethod;
 		requestMethod = newRequestMethod == null ? REQUEST_METHOD_EDEFAULT : newRequestMethod;
@@ -218,7 +214,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetRequestMethod() {
 		HttpMethod oldRequestMethod = requestMethod;
 		boolean oldRequestMethodESet = requestMethodESet;
@@ -233,7 +228,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetRequestMethod() {
 		return requestMethodESet;
 	}
@@ -243,7 +237,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getRequestPath() {
 		return requestPath;
 	}
@@ -253,7 +246,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRequestPath(String newRequestPath) {
 		String oldRequestPath = requestPath;
 		requestPath = newRequestPath;
@@ -266,7 +258,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getRequestBody() {
 		return requestBody;
 	}
@@ -276,7 +267,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRequestBody(String newRequestBody) {
 		String oldRequestBody = requestBody;
 		requestBody = newRequestBody;
@@ -289,7 +279,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ResponseQuery getResponseQuery() {
 		return responseQuery;
 	}
@@ -314,7 +303,6 @@ public class RestServiceCallImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setResponseQuery(ResponseQuery newResponseQuery) {
 		if (newResponseQuery != responseQuery) {
 			NotificationChain msgs = null;

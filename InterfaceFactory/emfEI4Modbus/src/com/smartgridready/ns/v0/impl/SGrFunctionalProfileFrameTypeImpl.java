@@ -106,7 +106,6 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrReleaseNotes getReleaseNotes() {
 		return releaseNotes;
 	}
@@ -131,7 +130,6 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setReleaseNotes(SGrReleaseNotes newReleaseNotes) {
 		if (newReleaseNotes != releaseNotes) {
 			NotificationChain msgs = null;
@@ -151,7 +149,6 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrProfileDescriptionType getFunctionalProfile() {
 		return functionalProfile;
 	}
@@ -176,7 +173,6 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFunctionalProfile(SGrProfileDescriptionType newFunctionalProfile) {
 		if (newFunctionalProfile != functionalProfile) {
 			NotificationChain msgs = null;
@@ -196,7 +192,6 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<SGrAttr4GenericType> getGenAttribute() {
 		if (genAttribute == null) {
 			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE);
@@ -209,7 +204,6 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<SGrDataPointBaseType> getDpListElement() {
 		if (dpListElement == null) {
 			dpListElement = new EObjectContainmentEList<SGrDataPointBaseType>(SGrDataPointBaseType.class, this, V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__DP_LIST_ELEMENT);

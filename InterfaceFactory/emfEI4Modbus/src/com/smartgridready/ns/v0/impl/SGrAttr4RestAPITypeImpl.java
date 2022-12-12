@@ -70,7 +70,6 @@ public class SGrAttr4RestAPITypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getPlaceHolder4futureExtensions() {
 		return placeHolder4futureExtensions;
 	}
@@ -80,7 +79,6 @@ public class SGrAttr4RestAPITypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setPlaceHolder4futureExtensions(String newPlaceHolder4futureExtensions) {
 		String oldPlaceHolder4futureExtensions = placeHolder4futureExtensions;
 		placeHolder4futureExtensions = newPlaceHolder4futureExtensions;

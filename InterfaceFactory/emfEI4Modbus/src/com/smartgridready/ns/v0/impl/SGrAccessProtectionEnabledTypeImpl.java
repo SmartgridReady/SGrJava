@@ -97,7 +97,6 @@ public class SGrAccessProtectionEnabledTypeImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<TEnumExceptionCodeType> getModbusException() {
 		if (modbusException == null) {
 			modbusException = new EDataTypeEList<TEnumExceptionCodeType>(TEnumExceptionCodeType.class, this, V0Package.SGR_ACCESS_PROTECTION_ENABLED_TYPE__MODBUS_EXCEPTION);
@@ -110,7 +109,6 @@ public class SGrAccessProtectionEnabledTypeImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isIsEnabled() {
 		return isEnabled;
 	}
@@ -120,7 +118,6 @@ public class SGrAccessProtectionEnabledTypeImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setIsEnabled(boolean newIsEnabled) {
 		boolean oldIsEnabled = isEnabled;
 		isEnabled = newIsEnabled;
@@ -135,7 +132,6 @@ public class SGrAccessProtectionEnabledTypeImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetIsEnabled() {
 		boolean oldIsEnabled = isEnabled;
 		boolean oldIsEnabledESet = isEnabledESet;
@@ -150,7 +146,6 @@ public class SGrAccessProtectionEnabledTypeImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetIsEnabled() {
 		return isEnabledESet;
 	}

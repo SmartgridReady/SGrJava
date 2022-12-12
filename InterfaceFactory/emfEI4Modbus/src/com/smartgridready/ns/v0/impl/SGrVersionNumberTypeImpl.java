@@ -139,7 +139,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getPrimaryVersionNumber() {
 		return primaryVersionNumber;
 	}
@@ -149,7 +148,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setPrimaryVersionNumber(int newPrimaryVersionNumber) {
 		int oldPrimaryVersionNumber = primaryVersionNumber;
 		primaryVersionNumber = newPrimaryVersionNumber;
@@ -164,7 +162,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetPrimaryVersionNumber() {
 		int oldPrimaryVersionNumber = primaryVersionNumber;
 		boolean oldPrimaryVersionNumberESet = primaryVersionNumberESet;
@@ -179,7 +176,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetPrimaryVersionNumber() {
 		return primaryVersionNumberESet;
 	}
@@ -189,7 +185,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getSecondaryVersionNumber() {
 		return secondaryVersionNumber;
 	}
@@ -199,7 +194,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSecondaryVersionNumber(int newSecondaryVersionNumber) {
 		int oldSecondaryVersionNumber = secondaryVersionNumber;
 		secondaryVersionNumber = newSecondaryVersionNumber;
@@ -214,7 +208,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetSecondaryVersionNumber() {
 		int oldSecondaryVersionNumber = secondaryVersionNumber;
 		boolean oldSecondaryVersionNumberESet = secondaryVersionNumberESet;
@@ -229,7 +222,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetSecondaryVersionNumber() {
 		return secondaryVersionNumberESet;
 	}
@@ -239,7 +231,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getSubReleaseVersionNumber() {
 		return subReleaseVersionNumber;
 	}
@@ -249,7 +240,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSubReleaseVersionNumber(int newSubReleaseVersionNumber) {
 		int oldSubReleaseVersionNumber = subReleaseVersionNumber;
 		subReleaseVersionNumber = newSubReleaseVersionNumber;
@@ -264,7 +254,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetSubReleaseVersionNumber() {
 		int oldSubReleaseVersionNumber = subReleaseVersionNumber;
 		boolean oldSubReleaseVersionNumberESet = subReleaseVersionNumberESet;
@@ -279,7 +268,6 @@ public class SGrVersionNumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetSubReleaseVersionNumber() {
 		return subReleaseVersionNumberESet;
 	}

@@ -82,7 +82,6 @@ public class TCPTypeImpl extends MinimalEObjectImpl.Container implements TCPType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TCPtrspSrvInstanceType getTcpTrspSrvInstance() {
 		return tcpTrspSrvInstance;
 	}
@@ -107,7 +106,6 @@ public class TCPTypeImpl extends MinimalEObjectImpl.Container implements TCPType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTcpTrspSrvInstance(TCPtrspSrvInstanceType newTcpTrspSrvInstance) {
 		if (newTcpTrspSrvInstance != tcpTrspSrvInstance) {
 			NotificationChain msgs = null;
@@ -127,7 +125,6 @@ public class TCPTypeImpl extends MinimalEObjectImpl.Container implements TCPType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<TCPDevInstanceType> getTcpDevInstance() {
 		if (tcpDevInstance == null) {
 			tcpDevInstance = new EObjectContainmentEList<TCPDevInstanceType>(TCPDevInstanceType.class, this, V0Package.TCP_TYPE__TCP_DEV_INSTANCE);

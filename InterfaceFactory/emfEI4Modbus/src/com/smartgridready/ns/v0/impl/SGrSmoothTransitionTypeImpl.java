@@ -114,7 +114,6 @@ public class SGrSmoothTransitionTypeImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BigInteger getWinTms() {
 		return winTms;
 	}
@@ -124,7 +123,6 @@ public class SGrSmoothTransitionTypeImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setWinTms(BigInteger newWinTms) {
 		BigInteger oldWinTms = winTms;
 		winTms = newWinTms;
@@ -137,7 +135,6 @@ public class SGrSmoothTransitionTypeImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BigInteger getRvrtTms() {
 		return rvrtTms;
 	}
@@ -147,7 +144,6 @@ public class SGrSmoothTransitionTypeImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRvrtTms(BigInteger newRvrtTms) {
 		BigInteger oldRvrtTms = rvrtTms;
 		rvrtTms = newRvrtTms;
@@ -160,7 +156,6 @@ public class SGrSmoothTransitionTypeImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BigInteger getRmpTms() {
 		return rmpTms;
 	}
@@ -170,7 +165,6 @@ public class SGrSmoothTransitionTypeImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRmpTms(BigInteger newRmpTms) {
 		BigInteger oldRmpTms = rmpTms;
 		rmpTms = newRmpTms;

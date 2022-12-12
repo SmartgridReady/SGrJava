@@ -139,7 +139,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public float getMaxReceiveTime() {
 		return maxReceiveTime;
 	}
@@ -149,7 +148,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMaxReceiveTime(float newMaxReceiveTime) {
 		float oldMaxReceiveTime = maxReceiveTime;
 		maxReceiveTime = newMaxReceiveTime;
@@ -164,7 +162,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetMaxReceiveTime() {
 		float oldMaxReceiveTime = maxReceiveTime;
 		boolean oldMaxReceiveTimeESet = maxReceiveTimeESet;
@@ -179,7 +176,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetMaxReceiveTime() {
 		return maxReceiveTimeESet;
 	}
@@ -189,7 +185,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public float getInitValue() {
 		return initValue;
 	}
@@ -199,7 +194,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInitValue(float newInitValue) {
 		float oldInitValue = initValue;
 		initValue = newInitValue;
@@ -214,7 +208,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetInitValue() {
 		float oldInitValue = initValue;
 		boolean oldInitValueESet = initValueESet;
@@ -229,7 +222,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetInitValue() {
 		return initValueESet;
 	}
@@ -239,7 +231,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public float getFallbackValue() {
 		return fallbackValue;
 	}
@@ -249,7 +240,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFallbackValue(float newFallbackValue) {
 		float oldFallbackValue = fallbackValue;
 		fallbackValue = newFallbackValue;
@@ -264,7 +254,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetFallbackValue() {
 		float oldFallbackValue = fallbackValue;
 		boolean oldFallbackValueESet = fallbackValueESet;
@@ -279,7 +268,6 @@ public class SGrStabilityFallbackTypeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetFallbackValue() {
 		return fallbackValueESet;
 	}

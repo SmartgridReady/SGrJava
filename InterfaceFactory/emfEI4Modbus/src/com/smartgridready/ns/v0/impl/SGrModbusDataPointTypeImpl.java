@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getModbusDataPoint <em>Modbus Data Point</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getLastAccessTime <em>Last Access Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getTimeToLive <em>Time To Live</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getTimeSyncBlockRefIndex <em>Time Sync Block Ref Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getModbusAttr <em>Modbus Attr</em>}</li>
  * </ul>
  *
@@ -108,6 +109,35 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	protected boolean timeToLiveESet;
 
 	/**
+	 * The default value of the '{@link #getTimeSyncBlockRefIndex() <em>Time Sync Block Ref Index</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeSyncBlockRefIndex()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int TIME_SYNC_BLOCK_REF_INDEX_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getTimeSyncBlockRefIndex() <em>Time Sync Block Ref Index</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeSyncBlockRefIndex()
+	 * @generated
+	 * @ordered
+	 */
+	protected int timeSyncBlockRefIndex = TIME_SYNC_BLOCK_REF_INDEX_EDEFAULT;
+
+	/**
+	 * This is true if the Time Sync Block Ref Index attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean timeSyncBlockRefIndexESet;
+
+	/**
 	 * The cached value of the '{@link #getModbusAttr() <em>Modbus Attr</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -141,7 +171,6 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<SGrModbusDataPointDescriptionType> getModbusDataPoint() {
 		if (modbusDataPoint == null) {
 			modbusDataPoint = new EObjectContainmentEList<SGrModbusDataPointDescriptionType>(SGrModbusDataPointDescriptionType.class, this, V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_DATA_POINT);
@@ -154,7 +183,6 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public long getLastAccessTime() {
 		return lastAccessTime;
 	}
@@ -164,7 +192,6 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setLastAccessTime(long newLastAccessTime) {
 		long oldLastAccessTime = lastAccessTime;
 		lastAccessTime = newLastAccessTime;
@@ -179,7 +206,6 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetLastAccessTime() {
 		long oldLastAccessTime = lastAccessTime;
 		boolean oldLastAccessTimeESet = lastAccessTimeESet;
@@ -194,7 +220,6 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetLastAccessTime() {
 		return lastAccessTimeESet;
 	}
@@ -204,7 +229,6 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public long getTimeToLive() {
 		return timeToLive;
 	}
@@ -214,7 +238,6 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTimeToLive(long newTimeToLive) {
 		long oldTimeToLive = timeToLive;
 		timeToLive = newTimeToLive;
@@ -229,7 +252,6 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetTimeToLive() {
 		long oldTimeToLive = timeToLive;
 		boolean oldTimeToLiveESet = timeToLiveESet;
@@ -244,7 +266,6 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetTimeToLive() {
 		return timeToLiveESet;
 	}
@@ -254,7 +275,52 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public int getTimeSyncBlockRefIndex() {
+		return timeSyncBlockRefIndex;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimeSyncBlockRefIndex(int newTimeSyncBlockRefIndex) {
+		int oldTimeSyncBlockRefIndex = timeSyncBlockRefIndex;
+		timeSyncBlockRefIndex = newTimeSyncBlockRefIndex;
+		boolean oldTimeSyncBlockRefIndexESet = timeSyncBlockRefIndexESet;
+		timeSyncBlockRefIndexESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX, oldTimeSyncBlockRefIndex, timeSyncBlockRefIndex, !oldTimeSyncBlockRefIndexESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTimeSyncBlockRefIndex() {
+		int oldTimeSyncBlockRefIndex = timeSyncBlockRefIndex;
+		boolean oldTimeSyncBlockRefIndexESet = timeSyncBlockRefIndexESet;
+		timeSyncBlockRefIndex = TIME_SYNC_BLOCK_REF_INDEX_EDEFAULT;
+		timeSyncBlockRefIndexESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX, oldTimeSyncBlockRefIndex, TIME_SYNC_BLOCK_REF_INDEX_EDEFAULT, oldTimeSyncBlockRefIndexESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTimeSyncBlockRefIndex() {
+		return timeSyncBlockRefIndexESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<SGrAttr4ModbusType> getModbusAttr() {
 		if (modbusAttr == null) {
 			modbusAttr = new EObjectContainmentEList<SGrAttr4ModbusType>(SGrAttr4ModbusType.class, this, V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR);
@@ -292,6 +358,8 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 				return getLastAccessTime();
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
 				return getTimeToLive();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX:
+				return getTimeSyncBlockRefIndex();
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				return getModbusAttr();
 		}
@@ -316,6 +384,9 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
 				setTimeToLive((Long)newValue);
+				return;
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX:
+				setTimeSyncBlockRefIndex((Integer)newValue);
 				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				getModbusAttr().clear();
@@ -342,6 +413,9 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
 				unsetTimeToLive();
 				return;
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX:
+				unsetTimeSyncBlockRefIndex();
+				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				getModbusAttr().clear();
 				return;
@@ -363,6 +437,8 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 				return isSetLastAccessTime();
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
 				return isSetTimeToLive();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX:
+				return isSetTimeSyncBlockRefIndex();
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				return modbusAttr != null && !modbusAttr.isEmpty();
 		}
@@ -383,6 +459,8 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 		if (lastAccessTimeESet) result.append(lastAccessTime); else result.append("<unset>");
 		result.append(", timeToLive: ");
 		if (timeToLiveESet) result.append(timeToLive); else result.append("<unset>");
+		result.append(", timeSyncBlockRefIndex: ");
+		if (timeSyncBlockRefIndexESet) result.append(timeSyncBlockRefIndex); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

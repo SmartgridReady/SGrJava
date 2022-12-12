@@ -100,7 +100,6 @@ public class RTUDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getDeviceInstName() {
 		return deviceInstName;
 	}
@@ -110,7 +109,6 @@ public class RTUDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDeviceInstName(String newDeviceInstName) {
 		String oldDeviceInstName = deviceInstName;
 		deviceInstName = newDeviceInstName;
@@ -123,7 +121,6 @@ public class RTUDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getSlaveAddr() {
 		return slaveAddr;
 	}
@@ -133,7 +130,6 @@ public class RTUDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSlaveAddr(int newSlaveAddr) {
 		int oldSlaveAddr = slaveAddr;
 		slaveAddr = newSlaveAddr;
@@ -148,7 +144,6 @@ public class RTUDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetSlaveAddr() {
 		int oldSlaveAddr = slaveAddr;
 		boolean oldSlaveAddrESet = slaveAddrESet;
@@ -163,7 +158,6 @@ public class RTUDevInstanceTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetSlaveAddr() {
 		return slaveAddrESet;
 	}

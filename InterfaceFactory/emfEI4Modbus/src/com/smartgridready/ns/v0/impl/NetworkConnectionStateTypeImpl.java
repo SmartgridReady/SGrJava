@@ -102,7 +102,6 @@ public class NetworkConnectionStateTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isIsConnected() {
 		return isConnected;
 	}
@@ -112,7 +111,6 @@ public class NetworkConnectionStateTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setIsConnected(boolean newIsConnected) {
 		boolean oldIsConnected = isConnected;
 		isConnected = newIsConnected;
@@ -127,7 +125,6 @@ public class NetworkConnectionStateTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetIsConnected() {
 		boolean oldIsConnected = isConnected;
 		boolean oldIsConnectedESet = isConnectedESet;
@@ -142,7 +139,6 @@ public class NetworkConnectionStateTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetIsConnected() {
 		return isConnectedESet;
 	}
@@ -152,7 +148,6 @@ public class NetworkConnectionStateTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public XMLGregorianCalendar getNextAttempt() {
 		return nextAttempt;
 	}
@@ -162,7 +157,6 @@ public class NetworkConnectionStateTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setNextAttempt(XMLGregorianCalendar newNextAttempt) {
 		XMLGregorianCalendar oldNextAttempt = nextAttempt;
 		nextAttempt = newNextAttempt;

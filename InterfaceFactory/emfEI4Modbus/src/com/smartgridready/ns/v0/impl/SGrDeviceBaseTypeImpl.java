@@ -178,7 +178,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrDeviceProfileType getDeviceProfile() {
 		return deviceProfile;
 	}
@@ -203,7 +202,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDeviceProfile(SGrDeviceProfileType newDeviceProfile) {
 		if (newDeviceProfile != deviceProfile) {
 			NotificationChain msgs = null;
@@ -223,7 +221,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrAttr4GenericType getGenAttribute() {
 		return genAttribute;
 	}
@@ -248,7 +245,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setGenAttribute(SGrAttr4GenericType newGenAttribute) {
 		if (newGenAttribute != genAttribute) {
 			NotificationChain msgs = null;
@@ -268,7 +264,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getDeviceName() {
 		return deviceName;
 	}
@@ -278,7 +273,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDeviceName(String newDeviceName) {
 		String oldDeviceName = deviceName;
 		deviceName = newDeviceName;
@@ -291,7 +285,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isIsLocalControl() {
 		return isLocalControl;
 	}
@@ -301,7 +294,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setIsLocalControl(boolean newIsLocalControl) {
 		boolean oldIsLocalControl = isLocalControl;
 		isLocalControl = newIsLocalControl;
@@ -316,7 +308,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetIsLocalControl() {
 		boolean oldIsLocalControl = isLocalControl;
 		boolean oldIsLocalControlESet = isLocalControlESet;
@@ -331,7 +322,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetIsLocalControl() {
 		return isLocalControlESet;
 	}
@@ -341,7 +331,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrManufacturerIDType getManufacturerID() {
 		return manufacturerID;
 	}
@@ -351,7 +340,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setManufacturerID(SGrManufacturerIDType newManufacturerID) {
 		SGrManufacturerIDType oldManufacturerID = manufacturerID;
 		manufacturerID = newManufacturerID == null ? MANUFACTURER_ID_EDEFAULT : newManufacturerID;
@@ -366,7 +354,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetManufacturerID() {
 		SGrManufacturerIDType oldManufacturerID = manufacturerID;
 		boolean oldManufacturerIDESet = manufacturerIDESet;
@@ -381,7 +368,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetManufacturerID() {
 		return manufacturerIDESet;
 	}
@@ -391,7 +377,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getManufacturerName() {
 		return manufacturerName;
 	}
@@ -401,7 +386,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setManufacturerName(String newManufacturerName) {
 		String oldManufacturerName = manufacturerName;
 		manufacturerName = newManufacturerName;

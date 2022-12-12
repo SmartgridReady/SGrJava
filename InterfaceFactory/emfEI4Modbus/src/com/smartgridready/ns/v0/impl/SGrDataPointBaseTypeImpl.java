@@ -82,7 +82,6 @@ public class SGrDataPointBaseTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrDataPointDescriptionType getDataPoint() {
 		return dataPoint;
 	}
@@ -107,7 +106,6 @@ public class SGrDataPointBaseTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDataPoint(SGrDataPointDescriptionType newDataPoint) {
 		if (newDataPoint != dataPoint) {
 			NotificationChain msgs = null;
@@ -127,7 +125,6 @@ public class SGrDataPointBaseTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<SGrAttr4GenericType> getGenAttribute() {
 		if (genAttribute == null) {
 			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_DATA_POINT_BASE_TYPE__GEN_ATTRIBUTE);

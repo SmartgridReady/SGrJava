@@ -109,7 +109,6 @@ public class ContactAPIInterfaceDescTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getNumContacts() {
 		return numContacts;
 	}
@@ -119,7 +118,6 @@ public class ContactAPIInterfaceDescTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setNumContacts(int newNumContacts) {
 		int oldNumContacts = numContacts;
 		numContacts = newNumContacts;
@@ -134,7 +132,6 @@ public class ContactAPIInterfaceDescTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetNumContacts() {
 		int oldNumContacts = numContacts;
 		boolean oldNumContactsESet = numContactsESet;
@@ -149,7 +146,6 @@ public class ContactAPIInterfaceDescTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetNumContacts() {
 		return numContactsESet;
 	}
@@ -159,7 +155,6 @@ public class ContactAPIInterfaceDescTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public long getContactStabilisationTimeMs() {
 		return contactStabilisationTimeMs;
 	}
@@ -169,7 +164,6 @@ public class ContactAPIInterfaceDescTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setContactStabilisationTimeMs(long newContactStabilisationTimeMs) {
 		long oldContactStabilisationTimeMs = contactStabilisationTimeMs;
 		contactStabilisationTimeMs = newContactStabilisationTimeMs;
@@ -184,7 +178,6 @@ public class ContactAPIInterfaceDescTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetContactStabilisationTimeMs() {
 		long oldContactStabilisationTimeMs = contactStabilisationTimeMs;
 		boolean oldContactStabilisationTimeMsESet = contactStabilisationTimeMsESet;
@@ -199,7 +192,6 @@ public class ContactAPIInterfaceDescTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetContactStabilisationTimeMs() {
 		return contactStabilisationTimeMsESet;
 	}

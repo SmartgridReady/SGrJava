@@ -135,7 +135,6 @@ public class SGrChangeLogImpl extends MinimalEObjectImpl.Container implements SG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getVersion() {
 		return version;
 	}
@@ -145,7 +144,6 @@ public class SGrChangeLogImpl extends MinimalEObjectImpl.Container implements SG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
@@ -158,7 +156,6 @@ public class SGrChangeLogImpl extends MinimalEObjectImpl.Container implements SG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public XMLGregorianCalendar getDate() {
 		return date;
 	}
@@ -168,7 +165,6 @@ public class SGrChangeLogImpl extends MinimalEObjectImpl.Container implements SG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDate(XMLGregorianCalendar newDate) {
 		XMLGregorianCalendar oldDate = date;
 		date = newDate;
@@ -181,7 +177,6 @@ public class SGrChangeLogImpl extends MinimalEObjectImpl.Container implements SG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getAuthor() {
 		return author;
 	}
@@ -191,7 +186,6 @@ public class SGrChangeLogImpl extends MinimalEObjectImpl.Container implements SG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAuthor(String newAuthor) {
 		String oldAuthor = author;
 		author = newAuthor;
@@ -204,7 +198,6 @@ public class SGrChangeLogImpl extends MinimalEObjectImpl.Container implements SG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getComment() {
 		return comment;
 	}
@@ -214,7 +207,6 @@ public class SGrChangeLogImpl extends MinimalEObjectImpl.Container implements SG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setComment(String newComment) {
 		String oldComment = comment;
 		comment = newComment;

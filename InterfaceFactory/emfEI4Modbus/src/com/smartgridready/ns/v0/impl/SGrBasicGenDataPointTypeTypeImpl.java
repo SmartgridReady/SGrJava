@@ -421,7 +421,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isBoolean() {
 		return boolean_;
 	}
@@ -431,7 +430,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBoolean(boolean newBoolean) {
 		boolean oldBoolean = boolean_;
 		boolean_ = newBoolean;
@@ -446,7 +444,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetBoolean() {
 		boolean oldBoolean = boolean_;
 		boolean oldBooleanESet = booleanESet;
@@ -461,7 +458,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetBoolean() {
 		return booleanESet;
 	}
@@ -471,7 +467,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public byte getInt8() {
 		return int8;
 	}
@@ -481,7 +476,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInt8(byte newInt8) {
 		byte oldInt8 = int8;
 		int8 = newInt8;
@@ -496,7 +490,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetInt8() {
 		byte oldInt8 = int8;
 		boolean oldInt8ESet = int8ESet;
@@ -511,7 +504,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetInt8() {
 		return int8ESet;
 	}
@@ -521,7 +513,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public short getInt16() {
 		return int16;
 	}
@@ -531,7 +522,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInt16(short newInt16) {
 		short oldInt16 = int16;
 		int16 = newInt16;
@@ -546,7 +536,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetInt16() {
 		short oldInt16 = int16;
 		boolean oldInt16ESet = int16ESet;
@@ -561,7 +550,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetInt16() {
 		return int16ESet;
 	}
@@ -571,7 +559,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BigInteger getInt32() {
 		return int32;
 	}
@@ -581,7 +568,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInt32(BigInteger newInt32) {
 		BigInteger oldInt32 = int32;
 		int32 = newInt32;
@@ -594,7 +580,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public long getInt64() {
 		return int64;
 	}
@@ -604,7 +589,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInt64(long newInt64) {
 		long oldInt64 = int64;
 		int64 = newInt64;
@@ -619,7 +603,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetInt64() {
 		long oldInt64 = int64;
 		boolean oldInt64ESet = int64ESet;
@@ -634,7 +617,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetInt64() {
 		return int64ESet;
 	}
@@ -644,7 +626,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public short getInt8U() {
 		return int8U;
 	}
@@ -654,7 +635,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInt8U(short newInt8U) {
 		short oldInt8U = int8U;
 		int8U = newInt8U;
@@ -669,7 +649,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetInt8U() {
 		short oldInt8U = int8U;
 		boolean oldInt8UESet = int8UESet;
@@ -684,7 +663,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetInt8U() {
 		return int8UESet;
 	}
@@ -694,7 +672,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getInt16U() {
 		return int16U;
 	}
@@ -704,7 +681,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInt16U(int newInt16U) {
 		int oldInt16U = int16U;
 		int16U = newInt16U;
@@ -719,7 +695,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetInt16U() {
 		int oldInt16U = int16U;
 		boolean oldInt16UESet = int16UESet;
@@ -734,7 +709,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetInt16U() {
 		return int16UESet;
 	}
@@ -744,7 +718,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public long getInt32U() {
 		return int32U;
 	}
@@ -754,7 +727,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInt32U(long newInt32U) {
 		long oldInt32U = int32U;
 		int32U = newInt32U;
@@ -769,7 +741,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetInt32U() {
 		long oldInt32U = int32U;
 		boolean oldInt32UESet = int32UESet;
@@ -784,7 +755,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetInt32U() {
 		return int32UESet;
 	}
@@ -794,7 +764,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BigInteger getInt64U() {
 		return int64U;
 	}
@@ -804,7 +773,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInt64U(BigInteger newInt64U) {
 		BigInteger oldInt64U = int64U;
 		int64U = newInt64U;
@@ -817,7 +785,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public float getFloat32() {
 		return float32;
 	}
@@ -827,7 +794,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFloat32(float newFloat32) {
 		float oldFloat32 = float32;
 		float32 = newFloat32;
@@ -842,7 +808,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetFloat32() {
 		float oldFloat32 = float32;
 		boolean oldFloat32ESet = float32ESet;
@@ -857,7 +822,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetFloat32() {
 		return float32ESet;
 	}
@@ -867,7 +831,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public double getFloat64() {
 		return float64;
 	}
@@ -877,7 +840,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFloat64(double newFloat64) {
 		double oldFloat64 = float64;
 		float64 = newFloat64;
@@ -892,7 +854,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetFloat64() {
 		double oldFloat64 = float64;
 		boolean oldFloat64ESet = float64ESet;
@@ -907,7 +868,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetFloat64() {
 		return float64ESet;
 	}
@@ -917,7 +877,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrEnumListType getEnum() {
 		return enum_;
 	}
@@ -942,7 +901,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setEnum(SGrEnumListType newEnum) {
 		if (newEnum != enum_) {
 			NotificationChain msgs = null;
@@ -962,7 +920,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public XMLGregorianCalendar getDateTime() {
 		return dateTime;
 	}
@@ -972,7 +929,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDateTime(XMLGregorianCalendar newDateTime) {
 		XMLGregorianCalendar oldDateTime = dateTime;
 		dateTime = newDateTime;
@@ -985,7 +941,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getString() {
 		return string;
 	}
@@ -995,7 +950,6 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setString(String newString) {
 		String oldString = string;
 		string = newString;

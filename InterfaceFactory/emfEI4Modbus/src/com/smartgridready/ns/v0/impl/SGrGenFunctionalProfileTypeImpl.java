@@ -66,7 +66,6 @@ public class SGrGenFunctionalProfileTypeImpl extends SGrFunctionalProfileBaseTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<SGrDataPointBaseType> getDpListElement() {
 		if (dpListElement == null) {
 			dpListElement = new EObjectContainmentEList<SGrDataPointBaseType>(SGrDataPointBaseType.class, this, V0Package.SGR_GEN_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT);

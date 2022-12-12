@@ -133,7 +133,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public BigInteger getAddr() {
 		return addr;
 	}
@@ -143,7 +142,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAddr(BigInteger newAddr) {
 		BigInteger oldAddr = addr;
 		addr = newAddr;
@@ -156,7 +154,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public short getBitRank() {
 		return bitRank;
 	}
@@ -166,7 +163,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setBitRank(short newBitRank) {
 		short oldBitRank = bitRank;
 		bitRank = newBitRank;
@@ -181,7 +177,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetBitRank() {
 		short oldBitRank = bitRank;
 		boolean oldBitRankESet = bitRankESet;
@@ -196,7 +191,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetBitRank() {
 		return bitRankESet;
 	}
@@ -206,7 +200,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TEnumObjectType getRegisterType() {
 		return registerType;
 	}
@@ -216,7 +209,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setRegisterType(TEnumObjectType newRegisterType) {
 		TEnumObjectType oldRegisterType = registerType;
 		registerType = newRegisterType == null ? REGISTER_TYPE_EDEFAULT : newRegisterType;
@@ -231,7 +223,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetRegisterType() {
 		TEnumObjectType oldRegisterType = registerType;
 		boolean oldRegisterTypeESet = registerTypeESet;
@@ -246,7 +237,6 @@ public class TSGrModbusRegisterRefImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetRegisterType() {
 		return registerTypeESet;
 	}

@@ -2640,13 +2640,22 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Time Sync Block Ref Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 3;
+	int SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>SGr Modbus Data Point Type</em>' class.
@@ -2655,7 +2664,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_TYPE_FEATURE_COUNT = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 4;
+	int SGR_MODBUS_DATA_POINT_TYPE_FEATURE_COUNT = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>SGr Modbus Data Point Type</em>' class.
@@ -3928,22 +3937,13 @@ public interface V0Package extends EPackage {
 	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE = 52;
 
 	/**
-	 * The feature id for the '<em><b>Block Number</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__BLOCK_NUMBER = 0;
-
-	/**
 	 * The feature id for the '<em><b>Last Access Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__LAST_ACCESS_TIME = 1;
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__LAST_ACCESS_TIME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Time To Live</b></em>' attribute.
@@ -3952,7 +3952,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__TIME_TO_LIVE = 2;
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__TIME_TO_LIVE = 1;
 
 	/**
 	 * The feature id for the '<em><b>First Addr</b></em>' attribute.
@@ -3961,7 +3961,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__FIRST_ADDR = 3;
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__FIRST_ADDR = 2;
 
 	/**
 	 * The feature id for the '<em><b>Register Type</b></em>' attribute.
@@ -3970,7 +3970,16 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__REGISTER_TYPE = 4;
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__REGISTER_TYPE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Cash Data Buffer</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__CASH_DATA_BUFFER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -7782,6 +7791,17 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrModbusDataPointType_TimeToLive();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeSyncBlockRefIndex <em>Time Sync Block Ref Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Sync Block Ref Index</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeSyncBlockRefIndex()
+	 * @see #getSGrModbusDataPointType()
+	 * @generated
+	 */
+	EAttribute getSGrModbusDataPointType_TimeSyncBlockRefIndex();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getModbusAttr <em>Modbus Attr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8698,17 +8718,6 @@ public interface V0Package extends EPackage {
 	EClass getSGrTimeSyncBlockNotificationType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getBlockNumber <em>Block Number</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Block Number</em>'.
-	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getBlockNumber()
-	 * @see #getSGrTimeSyncBlockNotificationType()
-	 * @generated
-	 */
-	EAttribute getSGrTimeSyncBlockNotificationType_BlockNumber();
-
-	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getLastAccessTime <em>Last Access Time</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8751,6 +8760,17 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSGrTimeSyncBlockNotificationType_RegisterType();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getCashDataBuffer <em>Cash Data Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Cash Data Buffer</em>'.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getCashDataBuffer()
+	 * @see #getSGrTimeSyncBlockNotificationType()
+	 * @generated
+	 */
+	EAttribute getSGrTimeSyncBlockNotificationType_CashDataBuffer();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getSize <em>Size</em>}'.

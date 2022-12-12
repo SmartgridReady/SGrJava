@@ -157,7 +157,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrProfilenumberType getProfileNumber() {
 		return profileNumber;
 	}
@@ -182,7 +181,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setProfileNumber(SGrProfilenumberType newProfileNumber) {
 		if (newProfileNumber != profileNumber) {
 			NotificationChain msgs = null;
@@ -202,7 +200,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrNamelistType getFpNameList() {
 		return fpNameList;
 	}
@@ -227,7 +224,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setFpNameList(SGrNamelistType newFpNameList) {
 		if (newFpNameList != fpNameList) {
 			NotificationChain msgs = null;
@@ -247,7 +243,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<SGrLegibDocumentationType> getFpLegibDesc() {
 		if (fpLegibDesc == null) {
 			fpLegibDesc = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_LEGIB_DESC);
@@ -260,7 +255,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<SGrLegibDocumentationType> getFpPrgDesc() {
 		if (fpPrgDesc == null) {
 			fpPrgDesc = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC);
@@ -273,7 +267,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrMROPresenceLevelIndicationType getMroVisibilityIndicator() {
 		return mroVisibilityIndicator;
 	}
@@ -283,7 +276,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMroVisibilityIndicator(SGrMROPresenceLevelIndicationType newMroVisibilityIndicator) {
 		SGrMROPresenceLevelIndicationType oldMroVisibilityIndicator = mroVisibilityIndicator;
 		mroVisibilityIndicator = newMroVisibilityIndicator == null ? MRO_VISIBILITY_INDICATOR_EDEFAULT : newMroVisibilityIndicator;
@@ -298,7 +290,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetMroVisibilityIndicator() {
 		SGrMROPresenceLevelIndicationType oldMroVisibilityIndicator = mroVisibilityIndicator;
 		boolean oldMroVisibilityIndicatorESet = mroVisibilityIndicatorESet;
@@ -313,7 +304,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetMroVisibilityIndicator() {
 		return mroVisibilityIndicatorESet;
 	}
@@ -323,7 +313,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getProfileName() {
 		return profileName;
 	}
@@ -333,7 +322,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setProfileName(String newProfileName) {
 		String oldProfileName = profileName;
 		profileName = newProfileName;

@@ -196,7 +196,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrScalingType getScalingByMulPwr() {
 		return scalingByMulPwr;
 	}
@@ -221,7 +220,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setScalingByMulPwr(SGrScalingType newScalingByMulPwr) {
 		if (newScalingByMulPwr != scalingByMulPwr) {
 			NotificationChain msgs = null;
@@ -241,7 +239,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public long getStepByIncrement() {
 		return stepByIncrement;
 	}
@@ -251,7 +248,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setStepByIncrement(long newStepByIncrement) {
 		long oldStepByIncrement = stepByIncrement;
 		stepByIncrement = newStepByIncrement;
@@ -266,7 +262,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetStepByIncrement() {
 		long oldStepByIncrement = stepByIncrement;
 		boolean oldStepByIncrementESet = stepByIncrementESet;
@@ -281,7 +276,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetStepByIncrement() {
 		return stepByIncrementESet;
 	}
@@ -291,7 +285,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public long getSunssf() {
 		return sunssf;
 	}
@@ -301,7 +294,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSunssf(long newSunssf) {
 		long oldSunssf = sunssf;
 		sunssf = newSunssf;
@@ -316,7 +308,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetSunssf() {
 		long oldSunssf = sunssf;
 		boolean oldSunssfESet = sunssfESet;
@@ -331,7 +322,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetSunssf() {
 		return sunssfESet;
 	}
@@ -341,7 +331,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public long getPollLatencyMS() {
 		return pollLatencyMS;
 	}
@@ -351,7 +340,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setPollLatencyMS(long newPollLatencyMS) {
 		long oldPollLatencyMS = pollLatencyMS;
 		pollLatencyMS = newPollLatencyMS;
@@ -366,7 +354,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetPollLatencyMS() {
 		long oldPollLatencyMS = pollLatencyMS;
 		boolean oldPollLatencyMSESet = pollLatencyMSESet;
@@ -381,7 +368,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetPollLatencyMS() {
 		return pollLatencyMSESet;
 	}
@@ -391,7 +377,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrAccessProtectionEnabledType getAccessProtection() {
 		return accessProtection;
 	}
@@ -416,7 +401,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setAccessProtection(SGrAccessProtectionEnabledType newAccessProtection) {
 		if (newAccessProtection != accessProtection) {
 			NotificationChain msgs = null;
@@ -436,7 +420,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SGrModbusLayer6DeviationType getLayer6Deviation() {
 		return layer6Deviation;
 	}
@@ -446,7 +429,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setLayer6Deviation(SGrModbusLayer6DeviationType newLayer6Deviation) {
 		SGrModbusLayer6DeviationType oldLayer6Deviation = layer6Deviation;
 		layer6Deviation = newLayer6Deviation == null ? LAYER6_DEVIATION_EDEFAULT : newLayer6Deviation;
@@ -461,7 +443,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void unsetLayer6Deviation() {
 		SGrModbusLayer6DeviationType oldLayer6Deviation = layer6Deviation;
 		boolean oldLayer6DeviationESet = layer6DeviationESet;
@@ -476,7 +457,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isSetLayer6Deviation() {
 		return layer6DeviationESet;
 	}
