@@ -100,6 +100,7 @@ public class SGrSerialInterfaceCapabilityTypeImpl extends MinimalEObjectImpl.Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EBaudRateType> getBaudRatesSupported() {
 		if (baudRatesSupported == null) {
 			baudRatesSupported = new EDataTypeEList<EBaudRateType>(EBaudRateType.class, this, V0Package.SGR_SERIAL_INTERFACE_CAPABILITY_TYPE__BAUD_RATES_SUPPORTED);
@@ -112,6 +113,7 @@ public class SGrSerialInterfaceCapabilityTypeImpl extends MinimalEObjectImpl.Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EByteLenType> getByteLenSupported() {
 		if (byteLenSupported == null) {
 			byteLenSupported = new EDataTypeEList<EByteLenType>(EByteLenType.class, this, V0Package.SGR_SERIAL_INTERFACE_CAPABILITY_TYPE__BYTE_LEN_SUPPORTED);
@@ -124,6 +126,7 @@ public class SGrSerialInterfaceCapabilityTypeImpl extends MinimalEObjectImpl.Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EParityType> getParitySupported() {
 		if (paritySupported == null) {
 			paritySupported = new EDataTypeEList<EParityType>(EParityType.class, this, V0Package.SGR_SERIAL_INTERFACE_CAPABILITY_TYPE__PARITY_SUPPORTED);
@@ -136,6 +139,7 @@ public class SGrSerialInterfaceCapabilityTypeImpl extends MinimalEObjectImpl.Con
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EStopBitLenType> getStopBitLenSupported() {
 		if (stopBitLenSupported == null) {
 			stopBitLenSupported = new EDataTypeEList<EStopBitLenType>(EStopBitLenType.class, this, V0Package.SGR_SERIAL_INTERFACE_CAPABILITY_TYPE__STOP_BIT_LEN_SUPPORTED);

@@ -78,6 +78,7 @@ public class SGrRestAPIFunctionalProfileTypeImpl extends SGrFunctionalProfileBas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrAttr4RestAPIType> getRestAPIAttr() {
 		if (restAPIAttr == null) {
 			restAPIAttr = new EObjectContainmentEList<SGrAttr4RestAPIType>(SGrAttr4RestAPIType.class, this, V0Package.SGR_REST_API_FUNCTIONAL_PROFILE_TYPE__REST_API_ATTR);
@@ -90,6 +91,7 @@ public class SGrRestAPIFunctionalProfileTypeImpl extends SGrFunctionalProfileBas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrRestAPIDataPointType> getDpListElement() {
 		if (dpListElement == null) {
 			dpListElement = new EObjectContainmentEList<SGrRestAPIDataPointType>(SGrRestAPIDataPointType.class, this, V0Package.SGR_REST_API_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT);

@@ -81,6 +81,7 @@ public class SGrContactAPIDeviceFrameImpl extends SGrDeviceBaseTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ContactAPIInterfaceDescType getContactApiInterfaceDesc() {
 		return contactApiInterfaceDesc;
 	}
@@ -105,6 +106,7 @@ public class SGrContactAPIDeviceFrameImpl extends SGrDeviceBaseTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContactApiInterfaceDesc(ContactAPIInterfaceDescType newContactApiInterfaceDesc) {
 		if (newContactApiInterfaceDesc != contactApiInterfaceDesc) {
 			NotificationChain msgs = null;
@@ -124,6 +126,7 @@ public class SGrContactAPIDeviceFrameImpl extends SGrDeviceBaseTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrContactAPIFunctionalProfileType> getFpListElement() {
 		if (fpListElement == null) {
 			fpListElement = new EObjectContainmentEList<SGrContactAPIFunctionalProfileType>(SGrContactAPIFunctionalProfileType.class, this, V0Package.SGR_CONTACT_API_DEVICE_FRAME__FP_LIST_ELEMENT);

@@ -7,21 +7,16 @@ import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.V0Package;
 
-import java.util.Collection;
+import java.math.BigInteger;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,8 +26,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenArrayDPTypeTypeImpl#getDpInstance <em>Dp Instance</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenArrayDPTypeTypeImpl#getArrLen <em>Arr Len</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenArrayDPTypeTypeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenArrayDPTypeTypeImpl#getLenght <em>Lenght</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenArrayDPTypeTypeImpl#getEnum2ArrIndex <em>Enum2 Arr Index</em>}</li>
  * </ul>
  *
@@ -40,43 +35,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container implements SGrBasicGenArrayDPTypeType {
 	/**
-	 * The cached value of the '{@link #getDpInstance() <em>Dp Instance</em>}' containment reference list.
+	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDpInstance()
+	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SGrBasicGenDataPointTypeType> dpInstance;
+	protected SGrBasicGenDataPointTypeType type;
 
 	/**
-	 * The default value of the '{@link #getArrLen() <em>Arr Len</em>}' attribute.
+	 * The default value of the '{@link #getLenght() <em>Lenght</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArrLen()
+	 * @see #getLenght()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long ARR_LEN_EDEFAULT = 0L;
+	protected static final BigInteger LENGHT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getArrLen() <em>Arr Len</em>}' attribute.
+	 * The cached value of the '{@link #getLenght() <em>Lenght</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArrLen()
+	 * @see #getLenght()
 	 * @generated
 	 * @ordered
 	 */
-	protected long arrLen = ARR_LEN_EDEFAULT;
-
-	/**
-	 * This is true if the Arr Len attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean arrLenESet;
+	protected BigInteger lenght = LENGHT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getEnum2ArrIndex() <em>Enum2 Arr Index</em>}' containment reference.
@@ -112,11 +98,24 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SGrBasicGenDataPointTypeType> getDpInstance() {
-		if (dpInstance == null) {
-			dpInstance = new EObjectContainmentEList<SGrBasicGenDataPointTypeType>(SGrBasicGenDataPointTypeType.class, this, V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__DP_INSTANCE);
+	@Override
+	public SGrBasicGenDataPointTypeType getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetType(SGrBasicGenDataPointTypeType newType, NotificationChain msgs) {
+		SGrBasicGenDataPointTypeType oldType = type;
+		type = newType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE, oldType, newType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return dpInstance;
+		return msgs;
 	}
 
 	/**
@@ -124,8 +123,19 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getArrLen() {
-		return arrLen;
+	@Override
+	public void setType(SGrBasicGenDataPointTypeType newType) {
+		if (newType != type) {
+			NotificationChain msgs = null;
+			if (type != null)
+				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE, null, msgs);
+			if (newType != null)
+				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE, null, msgs);
+			msgs = basicSetType(newType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE, newType, newType));
 	}
 
 	/**
@@ -133,13 +143,22 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setArrLen(long newArrLen) {
-		long oldArrLen = arrLen;
-		arrLen = newArrLen;
-		boolean oldArrLenESet = arrLenESet;
-		arrLenESet = true;
+	@Override
+	public BigInteger getLenght() {
+		return lenght;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLenght(BigInteger newLenght) {
+		BigInteger oldLenght = lenght;
+		lenght = newLenght;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ARR_LEN, oldArrLen, arrLen, !oldArrLenESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__LENGHT, oldLenght, lenght));
 	}
 
 	/**
@@ -147,29 +166,7 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetArrLen() {
-		long oldArrLen = arrLen;
-		boolean oldArrLenESet = arrLenESet;
-		arrLen = ARR_LEN_EDEFAULT;
-		arrLenESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ARR_LEN, oldArrLen, ARR_LEN_EDEFAULT, oldArrLenESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetArrLen() {
-		return arrLenESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public SGrEnumListType getEnum2ArrIndex() {
 		return enum2ArrIndex;
 	}
@@ -194,6 +191,7 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnum2ArrIndex(SGrEnumListType newEnum2ArrIndex) {
 		if (newEnum2ArrIndex != enum2ArrIndex) {
 			NotificationChain msgs = null;
@@ -216,8 +214,8 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__DP_INSTANCE:
-				return ((InternalEList<?>)getDpInstance()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE:
+				return basicSetType(null, msgs);
 			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ENUM2_ARR_INDEX:
 				return basicSetEnum2ArrIndex(null, msgs);
 		}
@@ -232,10 +230,10 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__DP_INSTANCE:
-				return getDpInstance();
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ARR_LEN:
-				return getArrLen();
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE:
+				return getType();
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__LENGHT:
+				return getLenght();
 			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ENUM2_ARR_INDEX:
 				return getEnum2ArrIndex();
 		}
@@ -247,16 +245,14 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__DP_INSTANCE:
-				getDpInstance().clear();
-				getDpInstance().addAll((Collection<? extends SGrBasicGenDataPointTypeType>)newValue);
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE:
+				setType((SGrBasicGenDataPointTypeType)newValue);
 				return;
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ARR_LEN:
-				setArrLen((Long)newValue);
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__LENGHT:
+				setLenght((BigInteger)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ENUM2_ARR_INDEX:
 				setEnum2ArrIndex((SGrEnumListType)newValue);
@@ -273,11 +269,11 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__DP_INSTANCE:
-				getDpInstance().clear();
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE:
+				setType((SGrBasicGenDataPointTypeType)null);
 				return;
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ARR_LEN:
-				unsetArrLen();
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__LENGHT:
+				setLenght(LENGHT_EDEFAULT);
 				return;
 			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ENUM2_ARR_INDEX:
 				setEnum2ArrIndex((SGrEnumListType)null);
@@ -294,10 +290,10 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__DP_INSTANCE:
-				return dpInstance != null && !dpInstance.isEmpty();
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ARR_LEN:
-				return isSetArrLen();
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE:
+				return type != null;
+			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__LENGHT:
+				return LENGHT_EDEFAULT == null ? lenght != null : !LENGHT_EDEFAULT.equals(lenght);
 			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ENUM2_ARR_INDEX:
 				return enum2ArrIndex != null;
 		}
@@ -314,8 +310,8 @@ public class SGrBasicGenArrayDPTypeTypeImpl extends MinimalEObjectImpl.Container
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (arrLen: ");
-		if (arrLenESet) result.append(arrLen); else result.append("<unset>");
+		result.append(" (lenght: ");
+		result.append(lenght);
 		result.append(')');
 		return result.toString();
 	}

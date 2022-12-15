@@ -93,6 +93,7 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrTimeSyncBlockNotificationType> getTimeSyncBlockNotification() {
 		if (timeSyncBlockNotification == null) {
 			timeSyncBlockNotification = new EObjectContainmentEList<SGrTimeSyncBlockNotificationType>(SGrTimeSyncBlockNotificationType.class, this, V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__TIME_SYNC_BLOCK_NOTIFICATION);
@@ -105,6 +106,7 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrAttr4ModbusType getModbusAttr() {
 		return modbusAttr;
 	}
@@ -129,6 +131,7 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModbusAttr(SGrAttr4ModbusType newModbusAttr) {
 		if (newModbusAttr != modbusAttr) {
 			NotificationChain msgs = null;
@@ -148,6 +151,7 @@ public class SGrModbusFunctionalProfileTypeImpl extends SGrFunctionalProfileBase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrModbusDataPointType> getDpListElement() {
 		if (dpListElement == null) {
 			dpListElement = new EObjectContainmentEList<SGrModbusDataPointType>(SGrModbusDataPointType.class, this, V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT);

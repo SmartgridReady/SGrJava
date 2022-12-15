@@ -75,6 +75,7 @@ public class TrspServiceModbusTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RTUType getRtu() {
 		return rtu;
 	}
@@ -99,6 +100,7 @@ public class TrspServiceModbusTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRtu(RTUType newRtu) {
 		if (newRtu != rtu) {
 			NotificationChain msgs = null;
@@ -118,6 +120,7 @@ public class TrspServiceModbusTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TCPType getTcp() {
 		return tcp;
 	}
@@ -142,6 +145,7 @@ public class TrspServiceModbusTypeImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTcp(TCPType newTcp) {
 		if (newTcp != tcp) {
 			NotificationChain msgs = null;

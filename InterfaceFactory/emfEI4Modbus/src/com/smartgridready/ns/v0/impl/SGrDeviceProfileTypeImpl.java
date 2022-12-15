@@ -367,6 +367,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrNamelistType getDevNameList() {
 		return devNameList;
 	}
@@ -391,6 +392,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDevNameList(SGrNamelistType newDevNameList) {
 		if (newDevNameList != devNameList) {
 			NotificationChain msgs = null;
@@ -410,6 +412,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrLegibDocumentationType> getDevLegibDesc() {
 		if (devLegibDesc == null) {
 			devLegibDesc = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_LEGIB_DESC);
@@ -422,6 +425,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrTransportServicesUsedListType getTransportService() {
 		return transportService;
 	}
@@ -431,6 +435,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTransportService(SGrTransportServicesUsedListType newTransportService) {
 		SGrTransportServicesUsedListType oldTransportService = transportService;
 		transportService = newTransportService == null ? TRANSPORT_SERVICE_EDEFAULT : newTransportService;
@@ -445,6 +450,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTransportService() {
 		SGrTransportServicesUsedListType oldTransportService = transportService;
 		boolean oldTransportServiceESet = transportServiceESet;
@@ -459,6 +465,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTransportService() {
 		return transportServiceESet;
 	}
@@ -468,6 +475,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrDeviceKindType getDeviceKind() {
 		return deviceKind;
 	}
@@ -477,6 +485,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeviceKind(SGrDeviceKindType newDeviceKind) {
 		SGrDeviceKindType oldDeviceKind = deviceKind;
 		deviceKind = newDeviceKind == null ? DEVICE_KIND_EDEFAULT : newDeviceKind;
@@ -491,6 +500,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDeviceKind() {
 		SGrDeviceKindType oldDeviceKind = deviceKind;
 		boolean oldDeviceKindESet = deviceKindESet;
@@ -505,6 +515,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDeviceKind() {
 		return deviceKindESet;
 	}
@@ -514,6 +525,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getSerialNumber() {
 		return serialNumber;
 	}
@@ -523,6 +535,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSerialNumber(BigInteger newSerialNumber) {
 		BigInteger oldSerialNumber = serialNumber;
 		serialNumber = newSerialNumber;
@@ -535,6 +548,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrVersionNumberType getSoftwareRevision() {
 		return softwareRevision;
 	}
@@ -559,6 +573,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSoftwareRevision(SGrVersionNumberType newSoftwareRevision) {
 		if (newSoftwareRevision != softwareRevision) {
 			NotificationChain msgs = null;
@@ -578,6 +593,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrVersionNumberType getHardwareRevision() {
 		return hardwareRevision;
 	}
@@ -602,6 +618,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHardwareRevision(SGrVersionNumberType newHardwareRevision) {
 		if (newHardwareRevision != hardwareRevision) {
 			NotificationChain msgs = null;
@@ -621,6 +638,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBrandName() {
 		return brandName;
 	}
@@ -630,6 +648,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBrandName(String newBrandName) {
 		String oldBrandName = brandName;
 		brandName = newBrandName;
@@ -642,6 +661,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrPowerSourceType getPowerSource() {
 		return powerSource;
 	}
@@ -651,6 +671,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPowerSource(SGrPowerSourceType newPowerSource) {
 		SGrPowerSourceType oldPowerSource = powerSource;
 		powerSource = newPowerSource == null ? POWER_SOURCE_EDEFAULT : newPowerSource;
@@ -665,6 +686,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPowerSource() {
 		SGrPowerSourceType oldPowerSource = powerSource;
 		boolean oldPowerSourceESet = powerSourceESet;
@@ -679,6 +701,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPowerSource() {
 		return powerSourceESet;
 	}
@@ -688,6 +711,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNominalPower() {
 		return nominalPower;
 	}
@@ -697,6 +721,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNominalPower(String newNominalPower) {
 		String oldNominalPower = nominalPower;
 		nominalPower = newNominalPower;
@@ -709,6 +734,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getManufSpecIdent() {
 		return manufSpecIdent;
 	}
@@ -718,6 +744,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setManufSpecIdent(String newManufSpecIdent) {
 		String oldManufSpecIdent = manufSpecIdent;
 		manufSpecIdent = newManufSpecIdent;
@@ -730,6 +757,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getManufacturerLabel() {
 		return manufacturerLabel;
 	}
@@ -739,6 +767,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setManufacturerLabel(String newManufacturerLabel) {
 		String oldManufacturerLabel = manufacturerLabel;
 		manufacturerLabel = newManufacturerLabel;
@@ -751,6 +780,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRemAuthorID() {
 		return remAuthorID;
 	}
@@ -760,6 +790,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRemAuthorID(String newRemAuthorID) {
 		String oldRemAuthorID = remAuthorID;
 		remAuthorID = newRemAuthorID;
@@ -772,6 +803,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getDevLevelofOperation() {
 		return devLevelofOperation;
 	}
@@ -781,6 +813,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDevLevelofOperation(int newDevLevelofOperation) {
 		int oldDevLevelofOperation = devLevelofOperation;
 		devLevelofOperation = newDevLevelofOperation;
@@ -795,6 +828,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDevLevelofOperation() {
 		int oldDevLevelofOperation = devLevelofOperation;
 		boolean oldDevLevelofOperationESet = devLevelofOperationESet;
@@ -809,6 +843,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDevLevelofOperation() {
 		return devLevelofOperationESet;
 	}
@@ -818,6 +853,7 @@ public class SGrDeviceProfileTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrLegibDocumentationType> getDevPrgDesc() {
 		if (devPrgDesc == null) {
 			devPrgDesc = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_DEVICE_PROFILE_TYPE__DEV_PRG_DESC);

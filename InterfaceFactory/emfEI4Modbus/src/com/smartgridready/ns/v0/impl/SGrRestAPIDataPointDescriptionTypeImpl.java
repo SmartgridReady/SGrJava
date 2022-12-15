@@ -94,6 +94,7 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RestServiceCall getRestServiceCall() {
 		return restServiceCall;
 	}
@@ -118,6 +119,7 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRestServiceCall(RestServiceCall newRestServiceCall) {
 		if (newRestServiceCall != restServiceCall) {
 			NotificationChain msgs = null;
@@ -137,6 +139,7 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrRestAPIdataTypeType getDataType() {
 		return dataType;
 	}
@@ -146,6 +149,7 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataType(SGrRestAPIdataTypeType newDataType) {
 		SGrRestAPIdataTypeType oldDataType = dataType;
 		dataType = newDataType == null ? DATA_TYPE_EDEFAULT : newDataType;
@@ -160,6 +164,7 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDataType() {
 		SGrRestAPIdataTypeType oldDataType = dataType;
 		boolean oldDataTypeESet = dataTypeESet;
@@ -174,6 +179,7 @@ public class SGrRestAPIDataPointDescriptionTypeImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDataType() {
 		return dataTypeESet;
 	}

@@ -82,6 +82,7 @@ public class SGrFunctionalProfileBaseTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrProfileDescriptionType getFunctionalProfile() {
 		return functionalProfile;
 	}
@@ -106,6 +107,7 @@ public class SGrFunctionalProfileBaseTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFunctionalProfile(SGrProfileDescriptionType newFunctionalProfile) {
 		if (newFunctionalProfile != functionalProfile) {
 			NotificationChain msgs = null;
@@ -125,6 +127,7 @@ public class SGrFunctionalProfileBaseTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrAttr4GenericType> getGenAttribute() {
 		if (genAttribute == null) {
 			genAttribute = new EObjectContainmentEList<SGrAttr4GenericType>(SGrAttr4GenericType.class, this, V0Package.SGR_FUNCTIONAL_PROFILE_BASE_TYPE__GEN_ATTRIBUTE);

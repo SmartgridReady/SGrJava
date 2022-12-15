@@ -1156,22 +1156,22 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE = 16;
 
 	/**
-	 * The feature id for the '<em><b>Dp Instance</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__DP_INSTANCE = 0;
+	int SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__TYPE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Arr Len</b></em>' attribute.
+	 * The feature id for the '<em><b>Lenght</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__ARR_LEN = 1;
+	int SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE__LENGHT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Enum2 Arr Index</b></em>' containment reference.
@@ -6587,26 +6587,26 @@ public interface V0Package extends EPackage {
 	EClass getSGrBasicGenArrayDPTypeType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getDpInstance <em>Dp Instance</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Dp Instance</em>'.
-	 * @see com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getDpInstance()
+	 * @return the meta object for the containment reference '<em>Type</em>'.
+	 * @see com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getType()
 	 * @see #getSGrBasicGenArrayDPTypeType()
 	 * @generated
 	 */
-	EReference getSGrBasicGenArrayDPTypeType_DpInstance();
+	EReference getSGrBasicGenArrayDPTypeType_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getArrLen <em>Arr Len</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getLenght <em>Lenght</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Arr Len</em>'.
-	 * @see com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getArrLen()
+	 * @return the meta object for the attribute '<em>Lenght</em>'.
+	 * @see com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getLenght()
 	 * @see #getSGrBasicGenArrayDPTypeType()
 	 * @generated
 	 */
-	EAttribute getSGrBasicGenArrayDPTypeType_ArrLen();
+	EAttribute getSGrBasicGenArrayDPTypeType_Lenght();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}'.

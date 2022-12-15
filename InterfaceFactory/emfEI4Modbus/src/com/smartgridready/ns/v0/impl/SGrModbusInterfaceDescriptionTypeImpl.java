@@ -154,6 +154,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ModbusInterfaceSelectionType getModbusInterfaceSelection() {
 		return modbusInterfaceSelection;
 	}
@@ -163,6 +164,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModbusInterfaceSelection(ModbusInterfaceSelectionType newModbusInterfaceSelection) {
 		ModbusInterfaceSelectionType oldModbusInterfaceSelection = modbusInterfaceSelection;
 		modbusInterfaceSelection = newModbusInterfaceSelection == null ? MODBUS_INTERFACE_SELECTION_EDEFAULT : newModbusInterfaceSelection;
@@ -177,6 +179,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetModbusInterfaceSelection() {
 		ModbusInterfaceSelectionType oldModbusInterfaceSelection = modbusInterfaceSelection;
 		boolean oldModbusInterfaceSelectionESet = modbusInterfaceSelectionESet;
@@ -191,6 +194,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetModbusInterfaceSelection() {
 		return modbusInterfaceSelectionESet;
 	}
@@ -200,6 +204,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TPIPModbus getTrspSrvModbusTCPoutOfBox() {
 		return trspSrvModbusTCPoutOfBox;
 	}
@@ -224,6 +229,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTrspSrvModbusTCPoutOfBox(TPIPModbus newTrspSrvModbusTCPoutOfBox) {
 		if (newTrspSrvModbusTCPoutOfBox != trspSrvModbusTCPoutOfBox) {
 			NotificationChain msgs = null;
@@ -243,6 +249,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TPRTUModbus getTrspSrvModbusRTUoutOfBox() {
 		return trspSrvModbusRTUoutOfBox;
 	}
@@ -267,6 +274,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTrspSrvModbusRTUoutOfBox(TPRTUModbus newTrspSrvModbusRTUoutOfBox) {
 		if (newTrspSrvModbusRTUoutOfBox != trspSrvModbusRTUoutOfBox) {
 			NotificationChain msgs = null;
@@ -286,6 +294,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFirstRegisterAddressIsOne() {
 		return firstRegisterAddressIsOne;
 	}
@@ -295,6 +304,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFirstRegisterAddressIsOne(boolean newFirstRegisterAddressIsOne) {
 		boolean oldFirstRegisterAddressIsOne = firstRegisterAddressIsOne;
 		firstRegisterAddressIsOne = newFirstRegisterAddressIsOne;
@@ -309,6 +319,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFirstRegisterAddressIsOne() {
 		boolean oldFirstRegisterAddressIsOne = firstRegisterAddressIsOne;
 		boolean oldFirstRegisterAddressIsOneESet = firstRegisterAddressIsOneESet;
@@ -323,6 +334,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFirstRegisterAddressIsOne() {
 		return firstRegisterAddressIsOneESet;
 	}
@@ -332,6 +344,7 @@ public class SGrModbusInterfaceDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TEnumConversionFct> getConversionScheme() {
 		if (conversionScheme == null) {
 			conversionScheme = new EDataTypeEList<TEnumConversionFct>(TEnumConversionFct.class, this, V0Package.SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE__CONVERSION_SCHEME);

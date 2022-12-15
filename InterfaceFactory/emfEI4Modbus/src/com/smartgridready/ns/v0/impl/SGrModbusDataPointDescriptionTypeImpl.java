@@ -168,6 +168,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrBasicGenDataPointTypeType getModbusDataType() {
 		return modbusDataType;
 	}
@@ -192,6 +193,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModbusDataType(SGrBasicGenDataPointTypeType newModbusDataType) {
 		if (newModbusDataType != modbusDataType) {
 			NotificationChain msgs = null;
@@ -211,6 +213,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrBasicGenArrayDPTypeType getModbusArrayDataType() {
 		return modbusArrayDataType;
 	}
@@ -235,6 +238,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModbusArrayDataType(SGrBasicGenArrayDPTypeType newModbusArrayDataType) {
 		if (newModbusArrayDataType != modbusArrayDataType) {
 			NotificationChain msgs = null;
@@ -254,6 +258,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TSGrModbusRegisterRef getModbusFirstRegisterReference() {
 		return modbusFirstRegisterReference;
 	}
@@ -278,6 +283,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModbusFirstRegisterReference(TSGrModbusRegisterRef newModbusFirstRegisterReference) {
 		if (newModbusFirstRegisterReference != modbusFirstRegisterReference) {
 			NotificationChain msgs = null;
@@ -297,6 +303,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getDpSizeNrRegisters() {
 		return dpSizeNrRegisters;
 	}
@@ -306,6 +313,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDpSizeNrRegisters(int newDpSizeNrRegisters) {
 		int oldDpSizeNrRegisters = dpSizeNrRegisters;
 		dpSizeNrRegisters = newDpSizeNrRegisters;
@@ -320,6 +328,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDpSizeNrRegisters() {
 		int oldDpSizeNrRegisters = dpSizeNrRegisters;
 		boolean oldDpSizeNrRegistersESet = dpSizeNrRegistersESet;
@@ -334,6 +343,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDpSizeNrRegisters() {
 		return dpSizeNrRegistersESet;
 	}
@@ -343,6 +353,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getBitmask() {
 		return bitmask;
 	}
@@ -352,6 +363,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBitmask(byte[] newBitmask) {
 		byte[] oldBitmask = bitmask;
 		bitmask = newBitmask;
@@ -364,6 +376,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MasterFunctionsSupportedType> getMasterFunctionsSupported() {
 		if (masterFunctionsSupported == null) {
 			masterFunctionsSupported = new EDataTypeEList<MasterFunctionsSupportedType>(MasterFunctionsSupportedType.class, this, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MASTER_FUNCTIONS_SUPPORTED);
@@ -376,6 +389,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ModbusJMESPathType getModbusJMESPath() {
 		return modbusJMESPath;
 	}
@@ -400,6 +414,7 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModbusJMESPath(ModbusJMESPathType newModbusJMESPath) {
 		if (newModbusJMESPath != modbusJMESPath) {
 			NotificationChain msgs = null;

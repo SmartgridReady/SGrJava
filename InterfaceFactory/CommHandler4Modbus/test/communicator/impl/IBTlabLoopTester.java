@@ -74,9 +74,9 @@ public class IBTlabLoopTester {
 	private static int devOMCCIWallboxExceptions = 0;
 	
 	// device selection
-	private static boolean  devABBMeterTestIsOn = false; 
-	private static boolean  devVGT_SGCPTestIsOn = false; 
-	private static boolean  devFroniusSymoTestIsOn = false; 
+	private static boolean  devABBMeterTestIsOn = true; 
+	private static boolean  devVGT_SGCPTestIsOn = true; 
+	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
 	// TestBox
 	private static boolean  devTB_ABBMeterTestIsOn = false; 
@@ -781,7 +781,7 @@ public class IBTlabLoopTester {
 								 l =  devFroniusSymo.getValByGDPType("  SunspInvModel","EventList1").getInt32U();
 								 System.out.printf("   StatusRegister :         " + l + " %n");
 							     Thread.sleep(25);
-								 System.out.printf("   SunspInvModel EventList 1: isTrue =  ");
+							/*	 System.out.printf("   SunspInvModel EventList 1: isTrue =  ");
 								 b= devFroniusSymo.getValByArrGDPType("SunspInvModel","EventList1",SGrBool2BitRankType.BIT0_VALUE).getDpInstance().get(0).isBoolean();
 								 if (b)  System.out.printf("BIT0, ") ;
 								Thread.sleep(25);
@@ -910,6 +910,7 @@ public class IBTlabLoopTester {
 								 Thread.sleep(25);
 								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList1").getInt32U();
 								 System.out.printf("   StatusRegister :         " + l + " %n");
+								 */
 							 }
 							 catch ( Exception e)
 							 {

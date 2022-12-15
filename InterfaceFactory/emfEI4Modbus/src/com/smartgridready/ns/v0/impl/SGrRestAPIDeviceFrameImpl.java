@@ -93,6 +93,7 @@ public class SGrRestAPIDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrAttr4RestAPIType> getRestAPIAttr() {
 		if (restAPIAttr == null) {
 			restAPIAttr = new EObjectContainmentEList<SGrAttr4RestAPIType>(SGrAttr4RestAPIType.class, this, V0Package.SGR_REST_API_DEVICE_FRAME__REST_API_ATTR);
@@ -105,6 +106,7 @@ public class SGrRestAPIDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrRestAPIInterfaceDescriptionType getRestAPIInterfaceDesc() {
 		return restAPIInterfaceDesc;
 	}
@@ -129,6 +131,7 @@ public class SGrRestAPIDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRestAPIInterfaceDesc(SGrRestAPIInterfaceDescriptionType newRestAPIInterfaceDesc) {
 		if (newRestAPIInterfaceDesc != restAPIInterfaceDesc) {
 			NotificationChain msgs = null;
@@ -148,6 +151,7 @@ public class SGrRestAPIDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrRestAPIFunctionalProfileType> getFpListElement() {
 		if (fpListElement == null) {
 			fpListElement = new EObjectContainmentEList<SGrRestAPIFunctionalProfileType>(SGrRestAPIFunctionalProfileType.class, this, V0Package.SGR_REST_API_DEVICE_FRAME__FP_LIST_ELEMENT);

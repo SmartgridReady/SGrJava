@@ -91,6 +91,7 @@ public class HeaderEntryImpl extends MinimalEObjectImpl.Container implements Hea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getHeaderName() {
 		return headerName;
 	}
@@ -100,6 +101,7 @@ public class HeaderEntryImpl extends MinimalEObjectImpl.Container implements Hea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHeaderName(String newHeaderName) {
 		String oldHeaderName = headerName;
 		headerName = newHeaderName;
@@ -112,6 +114,7 @@ public class HeaderEntryImpl extends MinimalEObjectImpl.Container implements Hea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return value;
 	}
@@ -121,6 +124,7 @@ public class HeaderEntryImpl extends MinimalEObjectImpl.Container implements Hea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;

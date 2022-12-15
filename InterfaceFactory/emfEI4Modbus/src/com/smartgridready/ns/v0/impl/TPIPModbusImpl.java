@@ -123,6 +123,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getPort() {
 		return port;
 	}
@@ -132,6 +133,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPort(long newPort) {
 		long oldPort = port;
 		port = newPort;
@@ -146,6 +148,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPort() {
 		long oldPort = port;
 		boolean oldPortESet = portESet;
@@ -160,6 +163,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPort() {
 		return portESet;
 	}
@@ -169,6 +173,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IpADDRType getAddress() {
 		return address;
 	}
@@ -193,6 +198,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAddress(IpADDRType newAddress) {
 		if (newAddress != address) {
 			NotificationChain msgs = null;
@@ -212,6 +218,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSlaveID() {
 		return slaveID;
 	}
@@ -221,6 +228,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSlaveID(int newSlaveID) {
 		int oldSlaveID = slaveID;
 		slaveID = newSlaveID;
@@ -235,6 +243,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSlaveID() {
 		int oldSlaveID = slaveID;
 		boolean oldSlaveIDESet = slaveIDESet;
@@ -249,6 +258,7 @@ public class TPIPModbusImpl extends MinimalEObjectImpl.Container implements TPIP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSlaveID() {
 		return slaveIDESet;
 	}

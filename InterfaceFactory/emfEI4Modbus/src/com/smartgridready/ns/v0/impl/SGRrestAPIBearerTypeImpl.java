@@ -63,6 +63,7 @@ public class SGRrestAPIBearerTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RestServiceCall getServiceCall() {
 		return serviceCall;
 	}
@@ -87,6 +88,7 @@ public class SGRrestAPIBearerTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setServiceCall(RestServiceCall newServiceCall) {
 		if (newServiceCall != serviceCall) {
 			NotificationChain msgs = null;

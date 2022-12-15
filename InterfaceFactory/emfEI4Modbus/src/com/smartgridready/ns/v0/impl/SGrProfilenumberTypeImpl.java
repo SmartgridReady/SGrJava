@@ -185,6 +185,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSpecsOwnerId() {
 		return specsOwnerId;
 	}
@@ -194,6 +195,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSpecsOwnerId(int newSpecsOwnerId) {
 		int oldSpecsOwnerId = specsOwnerId;
 		specsOwnerId = newSpecsOwnerId;
@@ -208,6 +210,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSpecsOwnerId() {
 		int oldSpecsOwnerId = specsOwnerId;
 		boolean oldSpecsOwnerIdESet = specsOwnerIdESet;
@@ -222,6 +225,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSpecsOwnerId() {
 		return specsOwnerIdESet;
 	}
@@ -231,6 +235,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProfileTypeEnumType getProfileIdentification() {
 		return profileIdentification;
 	}
@@ -240,6 +245,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProfileIdentification(ProfileTypeEnumType newProfileIdentification) {
 		ProfileTypeEnumType oldProfileIdentification = profileIdentification;
 		profileIdentification = newProfileIdentification == null ? PROFILE_IDENTIFICATION_EDEFAULT : newProfileIdentification;
@@ -254,6 +260,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetProfileIdentification() {
 		ProfileTypeEnumType oldProfileIdentification = profileIdentification;
 		boolean oldProfileIdentificationESet = profileIdentificationESet;
@@ -268,6 +275,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetProfileIdentification() {
 		return profileIdentificationESet;
 	}
@@ -277,6 +285,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SubProfileTypeEnumType getSubProfileIdent() {
 		return subProfileIdent;
 	}
@@ -286,6 +295,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSubProfileIdent(SubProfileTypeEnumType newSubProfileIdent) {
 		SubProfileTypeEnumType oldSubProfileIdent = subProfileIdent;
 		subProfileIdent = newSubProfileIdent == null ? SUB_PROFILE_IDENT_EDEFAULT : newSubProfileIdent;
@@ -300,6 +310,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSubProfileIdent() {
 		SubProfileTypeEnumType oldSubProfileIdent = subProfileIdent;
 		boolean oldSubProfileIdentESet = subProfileIdentESet;
@@ -314,6 +325,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSubProfileIdent() {
 		return subProfileIdentESet;
 	}
@@ -323,6 +335,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSgrLevelOfOperation() {
 		return sgrLevelOfOperation;
 	}
@@ -332,6 +345,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrLevelOfOperation(int newSgrLevelOfOperation) {
 		int oldSgrLevelOfOperation = sgrLevelOfOperation;
 		sgrLevelOfOperation = newSgrLevelOfOperation;
@@ -346,6 +360,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrLevelOfOperation() {
 		int oldSgrLevelOfOperation = sgrLevelOfOperation;
 		boolean oldSgrLevelOfOperationESet = sgrLevelOfOperationESet;
@@ -360,6 +375,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrLevelOfOperation() {
 		return sgrLevelOfOperationESet;
 	}
@@ -369,6 +385,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrVersionNumberType getVersionNumber() {
 		return versionNumber;
 	}
@@ -393,6 +410,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersionNumber(SGrVersionNumberType newVersionNumber) {
 		if (newVersionNumber != versionNumber) {
 			NotificationChain msgs = null;

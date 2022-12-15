@@ -105,6 +105,7 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrAttr4ModbusType getModbusAttr() {
 		return modbusAttr;
 	}
@@ -129,6 +130,7 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModbusAttr(SGrAttr4ModbusType newModbusAttr) {
 		if (newModbusAttr != modbusAttr) {
 			NotificationChain msgs = null;
@@ -148,6 +150,7 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrModbusInterfaceDescriptionType getModbusInterfaceDesc() {
 		return modbusInterfaceDesc;
 	}
@@ -172,6 +175,7 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModbusInterfaceDesc(SGrModbusInterfaceDescriptionType newModbusInterfaceDesc) {
 		if (newModbusInterfaceDesc != modbusInterfaceDesc) {
 			NotificationChain msgs = null;
@@ -191,6 +195,7 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrModbusFunctionalProfileType> getFpListElement() {
 		if (fpListElement == null) {
 			fpListElement = new EObjectContainmentEList<SGrModbusFunctionalProfileType>(SGrModbusFunctionalProfileType.class, this, V0Package.SGR_MODBUS_DEVICE_FRAME__FP_LIST_ELEMENT);
@@ -203,6 +208,7 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NetworkConnectionStateType getNetworkConnectionState() {
 		return networkConnectionState;
 	}
@@ -227,6 +233,7 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNetworkConnectionState(NetworkConnectionStateType newNetworkConnectionState) {
 		if (newNetworkConnectionState != networkConnectionState) {
 			NotificationChain msgs = null;

@@ -231,6 +231,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrBasicGenDataPointTypeType getBasicDataType() {
 		return basicDataType;
 	}
@@ -255,6 +256,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBasicDataType(SGrBasicGenDataPointTypeType newBasicDataType) {
 		if (newBasicDataType != basicDataType) {
 			NotificationChain msgs = null;
@@ -274,6 +276,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrBasicGenArrayDPTypeType getBasicArrayDataType() {
 		return basicArrayDataType;
 	}
@@ -298,6 +301,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBasicArrayDataType(SGrBasicGenArrayDPTypeType newBasicArrayDataType) {
 		if (newBasicArrayDataType != basicArrayDataType) {
 			NotificationChain msgs = null;
@@ -317,6 +321,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrNamelistType getDpNameList() {
 		return dpNameList;
 	}
@@ -341,6 +346,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDpNameList(SGrNamelistType newDpNameList) {
 		if (newDpNameList != dpNameList) {
 			NotificationChain msgs = null;
@@ -360,6 +366,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrLegibDocumentationType> getDpLegibDesc() {
 		if (dpLegibDesc == null) {
 			dpLegibDesc = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC);
@@ -372,6 +379,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrLegibDocumentationType> getDpPrgDesc() {
 		if (dpPrgDesc == null) {
 			dpPrgDesc = new EObjectContainmentEList<SGrLegibDocumentationType>(SGrLegibDocumentationType.class, this, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESC);
@@ -384,6 +392,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDatapointName() {
 		return datapointName;
 	}
@@ -393,6 +402,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatapointName(String newDatapointName) {
 		String oldDatapointName = datapointName;
 		datapointName = newDatapointName;
@@ -405,6 +415,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrMROPresenceLevelIndicationType getMroVisibilityIndicator() {
 		return mroVisibilityIndicator;
 	}
@@ -414,6 +425,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMroVisibilityIndicator(SGrMROPresenceLevelIndicationType newMroVisibilityIndicator) {
 		SGrMROPresenceLevelIndicationType oldMroVisibilityIndicator = mroVisibilityIndicator;
 		mroVisibilityIndicator = newMroVisibilityIndicator == null ? MRO_VISIBILITY_INDICATOR_EDEFAULT : newMroVisibilityIndicator;
@@ -428,6 +440,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetMroVisibilityIndicator() {
 		SGrMROPresenceLevelIndicationType oldMroVisibilityIndicator = mroVisibilityIndicator;
 		boolean oldMroVisibilityIndicatorESet = mroVisibilityIndicatorESet;
@@ -442,6 +455,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetMroVisibilityIndicator() {
 		return mroVisibilityIndicatorESet;
 	}
@@ -451,6 +465,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrRWPType getRwpDatadirection() {
 		return rwpDatadirection;
 	}
@@ -460,6 +475,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRwpDatadirection(SGrRWPType newRwpDatadirection) {
 		SGrRWPType oldRwpDatadirection = rwpDatadirection;
 		rwpDatadirection = newRwpDatadirection == null ? RWP_DATADIRECTION_EDEFAULT : newRwpDatadirection;
@@ -474,6 +490,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetRwpDatadirection() {
 		SGrRWPType oldRwpDatadirection = rwpDatadirection;
 		boolean oldRwpDatadirectionESet = rwpDatadirectionESet;
@@ -488,6 +505,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetRwpDatadirection() {
 		return rwpDatadirectionESet;
 	}
@@ -497,6 +515,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrUnits getUnit() {
 		return unit;
 	}
@@ -506,6 +525,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnit(SGrUnits newUnit) {
 		SGrUnits oldUnit = unit;
 		unit = newUnit == null ? UNIT_EDEFAULT : newUnit;
@@ -520,6 +540,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUnit() {
 		SGrUnits oldUnit = unit;
 		boolean oldUnitESet = unitESet;
@@ -534,6 +555,7 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUnit() {
 		return unitESet;
 	}

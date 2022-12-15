@@ -514,6 +514,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrMeasValueSourceType getSgrMeasValueSource() {
 		return sgrMeasValueSource;
 	}
@@ -523,6 +524,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrMeasValueSource(SGrMeasValueSourceType newSgrMeasValueSource) {
 		SGrMeasValueSourceType oldSgrMeasValueSource = sgrMeasValueSource;
 		sgrMeasValueSource = newSgrMeasValueSource == null ? SGR_MEAS_VALUE_SOURCE_EDEFAULT : newSgrMeasValueSource;
@@ -537,6 +539,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrMeasValueSource() {
 		SGrMeasValueSourceType oldSgrMeasValueSource = sgrMeasValueSource;
 		boolean oldSgrMeasValueSourceESet = sgrMeasValueSourceESet;
@@ -551,6 +554,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrMeasValueSource() {
 		return sgrMeasValueSourceESet;
 	}
@@ -560,6 +564,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrPowerSourceType getSgrPowerSource() {
 		return sgrPowerSource;
 	}
@@ -569,6 +574,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrPowerSource(SGrPowerSourceType newSgrPowerSource) {
 		SGrPowerSourceType oldSgrPowerSource = sgrPowerSource;
 		sgrPowerSource = newSgrPowerSource == null ? SGR_POWER_SOURCE_EDEFAULT : newSgrPowerSource;
@@ -583,6 +589,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrPowerSource() {
 		SGrPowerSourceType oldSgrPowerSource = sgrPowerSource;
 		boolean oldSgrPowerSourceESet = sgrPowerSourceESet;
@@ -597,6 +604,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrPowerSource() {
 		return sgrPowerSourceESet;
 	}
@@ -606,6 +614,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGReadyStateLv2Type getSgreadyStateLv2() {
 		return sgreadyStateLv2;
 	}
@@ -615,6 +624,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgreadyStateLv2(SGReadyStateLv2Type newSgreadyStateLv2) {
 		SGReadyStateLv2Type oldSgreadyStateLv2 = sgreadyStateLv2;
 		sgreadyStateLv2 = newSgreadyStateLv2 == null ? SGREADY_STATE_LV2_EDEFAULT : newSgreadyStateLv2;
@@ -629,6 +639,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgreadyStateLv2() {
 		SGReadyStateLv2Type oldSgreadyStateLv2 = sgreadyStateLv2;
 		boolean oldSgreadyStateLv2ESet = sgreadyStateLv2ESet;
@@ -643,6 +654,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgreadyStateLv2() {
 		return sgreadyStateLv2ESet;
 	}
@@ -652,6 +664,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGReadyStateLv1Type getSgreadyStateLv1() {
 		return sgreadyStateLv1;
 	}
@@ -661,6 +674,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgreadyStateLv1(SGReadyStateLv1Type newSgreadyStateLv1) {
 		SGReadyStateLv1Type oldSgreadyStateLv1 = sgreadyStateLv1;
 		sgreadyStateLv1 = newSgreadyStateLv1 == null ? SGREADY_STATE_LV1_EDEFAULT : newSgreadyStateLv1;
@@ -675,6 +689,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgreadyStateLv1() {
 		SGReadyStateLv1Type oldSgreadyStateLv1 = sgreadyStateLv1;
 		boolean oldSgreadyStateLv1ESet = sgreadyStateLv1ESet;
@@ -689,6 +704,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgreadyStateLv1() {
 		return sgreadyStateLv1ESet;
 	}
@@ -698,6 +714,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrSunspStateCodesType getSgrSunspStateCodes() {
 		return sgrSunspStateCodes;
 	}
@@ -707,6 +724,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrSunspStateCodes(SGrSunspStateCodesType newSgrSunspStateCodes) {
 		SGrSunspStateCodesType oldSgrSunspStateCodes = sgrSunspStateCodes;
 		sgrSunspStateCodes = newSgrSunspStateCodes == null ? SGR_SUNSP_STATE_CODES_EDEFAULT : newSgrSunspStateCodes;
@@ -721,6 +739,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrSunspStateCodes() {
 		SGrSunspStateCodesType oldSgrSunspStateCodes = sgrSunspStateCodes;
 		boolean oldSgrSunspStateCodesESet = sgrSunspStateCodesESet;
@@ -735,6 +754,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrSunspStateCodes() {
 		return sgrSunspStateCodesESet;
 	}
@@ -744,6 +764,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrEVSEStateLv2Type getSgrEVSEStateLv2() {
 		return sgrEVSEStateLv2;
 	}
@@ -753,6 +774,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrEVSEStateLv2(SGrEVSEStateLv2Type newSgrEVSEStateLv2) {
 		SGrEVSEStateLv2Type oldSgrEVSEStateLv2 = sgrEVSEStateLv2;
 		sgrEVSEStateLv2 = newSgrEVSEStateLv2 == null ? SGR_EVSE_STATE_LV2_EDEFAULT : newSgrEVSEStateLv2;
@@ -767,6 +789,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrEVSEStateLv2() {
 		SGrEVSEStateLv2Type oldSgrEVSEStateLv2 = sgrEVSEStateLv2;
 		boolean oldSgrEVSEStateLv2ESet = sgrEVSEStateLv2ESet;
@@ -781,6 +804,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrEVSEStateLv2() {
 		return sgrEVSEStateLv2ESet;
 	}
@@ -790,6 +814,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrEVSEStateLv1Type getSgrEVSEStateLv1() {
 		return sgrEVSEStateLv1;
 	}
@@ -799,6 +824,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrEVSEStateLv1(SGrEVSEStateLv1Type newSgrEVSEStateLv1) {
 		SGrEVSEStateLv1Type oldSgrEVSEStateLv1 = sgrEVSEStateLv1;
 		sgrEVSEStateLv1 = newSgrEVSEStateLv1 == null ? SGR_EVSE_STATE_LV1_EDEFAULT : newSgrEVSEStateLv1;
@@ -813,6 +839,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrEVSEStateLv1() {
 		SGrEVSEStateLv1Type oldSgrEVSEStateLv1 = sgrEVSEStateLv1;
 		boolean oldSgrEVSEStateLv1ESet = sgrEVSEStateLv1ESet;
@@ -827,6 +854,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrEVSEStateLv1() {
 		return sgrEVSEStateLv1ESet;
 	}
@@ -836,6 +864,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrSGCPLoadStateLv2Type getSgrSGCPLoadStateLv2() {
 		return sgrSGCPLoadStateLv2;
 	}
@@ -845,6 +874,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrSGCPLoadStateLv2(SGrSGCPLoadStateLv2Type newSgrSGCPLoadStateLv2) {
 		SGrSGCPLoadStateLv2Type oldSgrSGCPLoadStateLv2 = sgrSGCPLoadStateLv2;
 		sgrSGCPLoadStateLv2 = newSgrSGCPLoadStateLv2 == null ? SGR_SGCP_LOAD_STATE_LV2_EDEFAULT : newSgrSGCPLoadStateLv2;
@@ -859,6 +889,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrSGCPLoadStateLv2() {
 		SGrSGCPLoadStateLv2Type oldSgrSGCPLoadStateLv2 = sgrSGCPLoadStateLv2;
 		boolean oldSgrSGCPLoadStateLv2ESet = sgrSGCPLoadStateLv2ESet;
@@ -873,6 +904,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrSGCPLoadStateLv2() {
 		return sgrSGCPLoadStateLv2ESet;
 	}
@@ -882,6 +914,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrSGCPFeedInStateLv2Type getSgrSGCPFeedInStateLv2() {
 		return sgrSGCPFeedInStateLv2;
 	}
@@ -891,6 +924,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrSGCPFeedInStateLv2(SGrSGCPFeedInStateLv2Type newSgrSGCPFeedInStateLv2) {
 		SGrSGCPFeedInStateLv2Type oldSgrSGCPFeedInStateLv2 = sgrSGCPFeedInStateLv2;
 		sgrSGCPFeedInStateLv2 = newSgrSGCPFeedInStateLv2 == null ? SGR_SGCP_FEED_IN_STATE_LV2_EDEFAULT : newSgrSGCPFeedInStateLv2;
@@ -905,6 +939,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrSGCPFeedInStateLv2() {
 		SGrSGCPFeedInStateLv2Type oldSgrSGCPFeedInStateLv2 = sgrSGCPFeedInStateLv2;
 		boolean oldSgrSGCPFeedInStateLv2ESet = sgrSGCPFeedInStateLv2ESet;
@@ -919,6 +954,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrSGCPFeedInStateLv2() {
 		return sgrSGCPFeedInStateLv2ESet;
 	}
@@ -928,6 +964,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrEVStateType getSgrEVState() {
 		return sgrEVState;
 	}
@@ -937,6 +974,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrEVState(SGrEVStateType newSgrEVState) {
 		SGrEVStateType oldSgrEVState = sgrEVState;
 		sgrEVState = newSgrEVState == null ? SGR_EV_STATE_EDEFAULT : newSgrEVState;
@@ -951,6 +989,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrEVState() {
 		SGrEVStateType oldSgrEVState = sgrEVState;
 		boolean oldSgrEVStateESet = sgrEVStateESet;
@@ -965,6 +1004,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrEVState() {
 		return sgrEVStateESet;
 	}
@@ -974,6 +1014,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrSGCPServiceType getSgrSGCPService() {
 		return sgrSGCPService;
 	}
@@ -983,6 +1024,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrSGCPService(SGrSGCPServiceType newSgrSGCPService) {
 		SGrSGCPServiceType oldSgrSGCPService = sgrSGCPService;
 		sgrSGCPService = newSgrSGCPService == null ? SGR_SGCP_SERVICE_EDEFAULT : newSgrSGCPService;
@@ -997,6 +1039,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrSGCPService() {
 		SGrSGCPServiceType oldSgrSGCPService = sgrSGCPService;
 		boolean oldSgrSGCPServiceESet = sgrSGCPServiceESet;
@@ -1011,6 +1054,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrSGCPService() {
 		return sgrSGCPServiceESet;
 	}
@@ -1020,6 +1064,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrObligLvlType getSgrObligLvl() {
 		return sgrObligLvl;
 	}
@@ -1029,6 +1074,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrObligLvl(SGrObligLvlType newSgrObligLvl) {
 		SGrObligLvlType oldSgrObligLvl = sgrObligLvl;
 		sgrObligLvl = newSgrObligLvl == null ? SGR_OBLIG_LVL_EDEFAULT : newSgrObligLvl;
@@ -1043,6 +1089,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrObligLvl() {
 		SGrObligLvlType oldSgrObligLvl = sgrObligLvl;
 		boolean oldSgrObligLvlESet = sgrObligLvlESet;
@@ -1057,6 +1104,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrObligLvl() {
 		return sgrObligLvlESet;
 	}
@@ -1066,6 +1114,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrOCPPStateType getSgrOCPPState() {
 		return sgrOCPPState;
 	}
@@ -1075,6 +1124,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrOCPPState(SGrOCPPStateType newSgrOCPPState) {
 		SGrOCPPStateType oldSgrOCPPState = sgrOCPPState;
 		sgrOCPPState = newSgrOCPPState == null ? SGR_OCPP_STATE_EDEFAULT : newSgrOCPPState;
@@ -1089,6 +1139,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrOCPPState() {
 		SGrOCPPStateType oldSgrOCPPState = sgrOCPPState;
 		boolean oldSgrOCPPStateESet = sgrOCPPStateESet;
@@ -1103,6 +1154,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrOCPPState() {
 		return sgrOCPPStateESet;
 	}
@@ -1112,6 +1164,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrHPOpModeType getSgrHPOpMode() {
 		return sgrHPOpMode;
 	}
@@ -1121,6 +1174,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrHPOpMode(SGrHPOpModeType newSgrHPOpMode) {
 		SGrHPOpModeType oldSgrHPOpMode = sgrHPOpMode;
 		sgrHPOpMode = newSgrHPOpMode == null ? SGR_HP_OP_MODE_EDEFAULT : newSgrHPOpMode;
@@ -1135,6 +1189,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrHPOpMode() {
 		SGrHPOpModeType oldSgrHPOpMode = sgrHPOpMode;
 		boolean oldSgrHPOpModeESet = sgrHPOpModeESet;
@@ -1149,6 +1204,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrHPOpMode() {
 		return sgrHPOpModeESet;
 	}
@@ -1158,6 +1214,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrBool2BitRankType getSgrBool2BitRank() {
 		return sgrBool2BitRank;
 	}
@@ -1167,6 +1224,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSgrBool2BitRank(SGrBool2BitRankType newSgrBool2BitRank) {
 		SGrBool2BitRankType oldSgrBool2BitRank = sgrBool2BitRank;
 		sgrBool2BitRank = newSgrBool2BitRank == null ? SGR_BOOL2_BIT_RANK_EDEFAULT : newSgrBool2BitRank;
@@ -1181,6 +1239,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSgrBool2BitRank() {
 		SGrBool2BitRankType oldSgrBool2BitRank = sgrBool2BitRank;
 		boolean oldSgrBool2BitRankESet = sgrBool2BitRankESet;
@@ -1195,6 +1254,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSgrBool2BitRank() {
 		return sgrBool2BitRankESet;
 	}

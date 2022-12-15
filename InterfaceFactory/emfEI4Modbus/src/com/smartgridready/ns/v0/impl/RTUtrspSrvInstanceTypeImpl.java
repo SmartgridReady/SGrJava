@@ -173,6 +173,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EBaudRateType getBaudRate() {
 		return baudRate;
 	}
@@ -182,6 +183,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBaudRate(EBaudRateType newBaudRate) {
 		EBaudRateType oldBaudRate = baudRate;
 		baudRate = newBaudRate == null ? BAUD_RATE_EDEFAULT : newBaudRate;
@@ -196,6 +198,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetBaudRate() {
 		EBaudRateType oldBaudRate = baudRate;
 		boolean oldBaudRateESet = baudRateESet;
@@ -210,6 +213,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetBaudRate() {
 		return baudRateESet;
 	}
@@ -219,6 +223,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EByteLenType getByteLen() {
 		return byteLen;
 	}
@@ -228,6 +233,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setByteLen(EByteLenType newByteLen) {
 		EByteLenType oldByteLen = byteLen;
 		byteLen = newByteLen == null ? BYTE_LEN_EDEFAULT : newByteLen;
@@ -242,6 +248,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetByteLen() {
 		EByteLenType oldByteLen = byteLen;
 		boolean oldByteLenESet = byteLenESet;
@@ -256,6 +263,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetByteLen() {
 		return byteLenESet;
 	}
@@ -265,6 +273,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EParityType getParity() {
 		return parity;
 	}
@@ -274,6 +283,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParity(EParityType newParity) {
 		EParityType oldParity = parity;
 		parity = newParity == null ? PARITY_EDEFAULT : newParity;
@@ -288,6 +298,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetParity() {
 		EParityType oldParity = parity;
 		boolean oldParityESet = parityESet;
@@ -302,6 +313,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetParity() {
 		return parityESet;
 	}
@@ -311,6 +323,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EStopBitLenType getStopBitLen() {
 		return stopBitLen;
 	}
@@ -320,6 +333,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStopBitLen(EStopBitLenType newStopBitLen) {
 		EStopBitLenType oldStopBitLen = stopBitLen;
 		stopBitLen = newStopBitLen == null ? STOP_BIT_LEN_EDEFAULT : newStopBitLen;
@@ -334,6 +348,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetStopBitLen() {
 		EStopBitLenType oldStopBitLen = stopBitLen;
 		boolean oldStopBitLenESet = stopBitLenESet;
@@ -348,6 +363,7 @@ public class RTUtrspSrvInstanceTypeImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetStopBitLen() {
 		return stopBitLenESet;
 	}

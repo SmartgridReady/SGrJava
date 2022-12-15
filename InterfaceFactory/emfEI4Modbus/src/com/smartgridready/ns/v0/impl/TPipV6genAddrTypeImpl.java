@@ -70,6 +70,7 @@ public class TPipV6genAddrTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPrelimStringDef() {
 		return prelimStringDef;
 	}
@@ -79,6 +80,7 @@ public class TPipV6genAddrTypeImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrelimStringDef(String newPrelimStringDef) {
 		String oldPrelimStringDef = prelimStringDef;
 		prelimStringDef = newPrelimStringDef;

@@ -68,6 +68,7 @@ public class HeaderListImpl extends MinimalEObjectImpl.Container implements Head
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<HeaderEntry> getHeader() {
 		if (header == null) {
 			header = new EObjectContainmentEList<HeaderEntry>(HeaderEntry.class, this, V0Package.HEADER_LIST__HEADER);

@@ -217,6 +217,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSlaveAddr() {
 		return slaveAddr;
 	}
@@ -226,6 +227,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSlaveAddr(int newSlaveAddr) {
 		int oldSlaveAddr = slaveAddr;
 		slaveAddr = newSlaveAddr;
@@ -240,6 +242,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSlaveAddr() {
 		int oldSlaveAddr = slaveAddr;
 		boolean oldSlaveAddrESet = slaveAddrESet;
@@ -254,6 +257,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSlaveAddr() {
 		return slaveAddrESet;
 	}
@@ -263,6 +267,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EBaudRateType getBaudRateSelected() {
 		return baudRateSelected;
 	}
@@ -272,6 +277,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBaudRateSelected(EBaudRateType newBaudRateSelected) {
 		EBaudRateType oldBaudRateSelected = baudRateSelected;
 		baudRateSelected = newBaudRateSelected == null ? BAUD_RATE_SELECTED_EDEFAULT : newBaudRateSelected;
@@ -286,6 +292,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetBaudRateSelected() {
 		EBaudRateType oldBaudRateSelected = baudRateSelected;
 		boolean oldBaudRateSelectedESet = baudRateSelectedESet;
@@ -300,6 +307,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetBaudRateSelected() {
 		return baudRateSelectedESet;
 	}
@@ -309,6 +317,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EByteLenType getByteLenSelected() {
 		return byteLenSelected;
 	}
@@ -318,6 +327,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setByteLenSelected(EByteLenType newByteLenSelected) {
 		EByteLenType oldByteLenSelected = byteLenSelected;
 		byteLenSelected = newByteLenSelected == null ? BYTE_LEN_SELECTED_EDEFAULT : newByteLenSelected;
@@ -332,6 +342,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetByteLenSelected() {
 		EByteLenType oldByteLenSelected = byteLenSelected;
 		boolean oldByteLenSelectedESet = byteLenSelectedESet;
@@ -346,6 +357,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetByteLenSelected() {
 		return byteLenSelectedESet;
 	}
@@ -355,6 +367,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EParityType getParitySelected() {
 		return paritySelected;
 	}
@@ -364,6 +377,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParitySelected(EParityType newParitySelected) {
 		EParityType oldParitySelected = paritySelected;
 		paritySelected = newParitySelected == null ? PARITY_SELECTED_EDEFAULT : newParitySelected;
@@ -378,6 +392,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetParitySelected() {
 		EParityType oldParitySelected = paritySelected;
 		boolean oldParitySelectedESet = paritySelectedESet;
@@ -392,6 +407,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetParitySelected() {
 		return paritySelectedESet;
 	}
@@ -401,6 +417,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EStopBitLenType getStopBitLenSelected() {
 		return stopBitLenSelected;
 	}
@@ -410,6 +427,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStopBitLenSelected(EStopBitLenType newStopBitLenSelected) {
 		EStopBitLenType oldStopBitLenSelected = stopBitLenSelected;
 		stopBitLenSelected = newStopBitLenSelected == null ? STOP_BIT_LEN_SELECTED_EDEFAULT : newStopBitLenSelected;
@@ -424,6 +442,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetStopBitLenSelected() {
 		EStopBitLenType oldStopBitLenSelected = stopBitLenSelected;
 		boolean oldStopBitLenSelectedESet = stopBitLenSelectedESet;
@@ -438,6 +457,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetStopBitLenSelected() {
 		return stopBitLenSelectedESet;
 	}
@@ -447,6 +467,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrSerialInterfaceCapabilityType getSerialInterfaceCapability() {
 		return serialInterfaceCapability;
 	}
@@ -471,6 +492,7 @@ public class TPRTUModbusImpl extends MinimalEObjectImpl.Container implements TPR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSerialInterfaceCapability(SGrSerialInterfaceCapabilityType newSerialInterfaceCapability) {
 		if (newSerialInterfaceCapability != serialInterfaceCapability) {
 			NotificationChain msgs = null;

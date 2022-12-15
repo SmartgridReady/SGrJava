@@ -101,6 +101,7 @@ public class ResponseQueryImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResponseQueryType getQueryType() {
 		return queryType;
 	}
@@ -110,6 +111,7 @@ public class ResponseQueryImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQueryType(ResponseQueryType newQueryType) {
 		ResponseQueryType oldQueryType = queryType;
 		queryType = newQueryType == null ? QUERY_TYPE_EDEFAULT : newQueryType;
@@ -124,6 +126,7 @@ public class ResponseQueryImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetQueryType() {
 		ResponseQueryType oldQueryType = queryType;
 		boolean oldQueryTypeESet = queryTypeESet;
@@ -138,6 +141,7 @@ public class ResponseQueryImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetQueryType() {
 		return queryTypeESet;
 	}
@@ -147,6 +151,7 @@ public class ResponseQueryImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getQuery() {
 		return query;
 	}
@@ -156,6 +161,7 @@ public class ResponseQueryImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQuery(String newQuery) {
 		String oldQuery = query;
 		query = newQuery;

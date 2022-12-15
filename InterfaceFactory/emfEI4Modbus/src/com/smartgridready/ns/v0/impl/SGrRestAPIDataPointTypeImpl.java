@@ -78,6 +78,7 @@ public class SGrRestAPIDataPointTypeImpl extends SGrDataPointBaseTypeImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrRestAPIDataPointDescriptionType> getRestAPIDataPoint() {
 		if (restAPIDataPoint == null) {
 			restAPIDataPoint = new EObjectContainmentEList<SGrRestAPIDataPointDescriptionType>(SGrRestAPIDataPointDescriptionType.class, this, V0Package.SGR_REST_API_DATA_POINT_TYPE__REST_API_DATA_POINT);
@@ -90,6 +91,7 @@ public class SGrRestAPIDataPointTypeImpl extends SGrDataPointBaseTypeImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SGrAttr4RestAPIType> getRestAPIAttr() {
 		if (restAPIAttr == null) {
 			restAPIAttr = new EObjectContainmentEList<SGrAttr4RestAPIType>(SGrAttr4RestAPIType.class, this, V0Package.SGR_REST_API_DATA_POINT_TYPE__REST_API_ATTR);

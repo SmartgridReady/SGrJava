@@ -62,6 +62,7 @@ public class SGrGenDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements SGrG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrGenFunctionalProfileType getFpListElement() {
 		return fpListElement;
 	}
@@ -86,6 +87,7 @@ public class SGrGenDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements SGrG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFpListElement(SGrGenFunctionalProfileType newFpListElement) {
 		if (newFpListElement != fpListElement) {
 			NotificationChain msgs = null;

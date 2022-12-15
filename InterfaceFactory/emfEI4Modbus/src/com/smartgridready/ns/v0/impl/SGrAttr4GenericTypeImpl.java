@@ -477,6 +477,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getMaxVal() {
 		return maxVal;
 	}
@@ -486,6 +487,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaxVal(float newMaxVal) {
 		float oldMaxVal = maxVal;
 		maxVal = newMaxVal;
@@ -500,6 +502,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetMaxVal() {
 		float oldMaxVal = maxVal;
 		boolean oldMaxValESet = maxValESet;
@@ -514,6 +517,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetMaxVal() {
 		return maxValESet;
 	}
@@ -523,6 +527,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getMinVal() {
 		return minVal;
 	}
@@ -532,6 +537,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMinVal(float newMinVal) {
 		float oldMinVal = minVal;
 		minVal = newMinVal;
@@ -546,6 +552,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetMinVal() {
 		float oldMinVal = minVal;
 		boolean oldMinValESet = minValESet;
@@ -560,6 +567,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetMinVal() {
 		return minValESet;
 	}
@@ -569,6 +577,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSpecQualityRequirement() {
 		return specQualityRequirement;
 	}
@@ -578,6 +587,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSpecQualityRequirement(String newSpecQualityRequirement) {
 		String oldSpecQualityRequirement = specQualityRequirement;
 		specQualityRequirement = newSpecQualityRequirement;
@@ -590,6 +600,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getPrecision() {
 		return precision;
 	}
@@ -599,6 +610,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrecision(double newPrecision) {
 		double oldPrecision = precision;
 		precision = newPrecision;
@@ -613,6 +625,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPrecision() {
 		double oldPrecision = precision;
 		boolean oldPrecisionESet = precisionESet;
@@ -627,6 +640,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPrecision() {
 		return precisionESet;
 	}
@@ -636,6 +650,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrStabilityFallbackType getStabilityFallback() {
 		return stabilityFallback;
 	}
@@ -660,6 +675,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStabilityFallback(SGrStabilityFallbackType newStabilityFallback) {
 		if (newStabilityFallback != stabilityFallback) {
 			NotificationChain msgs = null;
@@ -679,6 +695,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrSmoothTransitionType getSmoothTransition() {
 		return smoothTransition;
 	}
@@ -703,6 +720,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSmoothTransition(SGrSmoothTransitionType newSmoothTransition) {
 		if (newSmoothTransition != smoothTransition) {
 			NotificationChain msgs = null;
@@ -722,6 +740,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getMaxLatencyTimeMs() {
 		return maxLatencyTimeMs;
 	}
@@ -731,6 +750,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaxLatencyTimeMs(BigInteger newMaxLatencyTimeMs) {
 		BigInteger oldMaxLatencyTimeMs = maxLatencyTimeMs;
 		maxLatencyTimeMs = newMaxLatencyTimeMs;
@@ -743,6 +763,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public XMLGregorianCalendar getTimeStampLog() {
 		return timeStampLog;
 	}
@@ -752,6 +773,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTimeStampLog(XMLGregorianCalendar newTimeStampLog) {
 		XMLGregorianCalendar oldTimeStampLog = timeStampLog;
 		timeStampLog = newTimeStampLog;
@@ -764,6 +786,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrMeasValueType getValueType() {
 		return valueType;
 	}
@@ -773,6 +796,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValueType(SGrMeasValueType newValueType) {
 		SGrMeasValueType oldValueType = valueType;
 		valueType = newValueType == null ? VALUE_TYPE_EDEFAULT : newValueType;
@@ -787,6 +811,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetValueType() {
 		SGrMeasValueType oldValueType = valueType;
 		boolean oldValueTypeESet = valueTypeESet;
@@ -801,6 +826,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetValueType() {
 		return valueTypeESet;
 	}
@@ -810,6 +836,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrMeasValueSourceType getValueSource() {
 		return valueSource;
 	}
@@ -819,6 +846,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValueSource(SGrMeasValueSourceType newValueSource) {
 		SGrMeasValueSourceType oldValueSource = valueSource;
 		valueSource = newValueSource == null ? VALUE_SOURCE_EDEFAULT : newValueSource;
@@ -833,6 +861,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetValueSource() {
 		SGrMeasValueSourceType oldValueSource = valueSource;
 		boolean oldValueSourceESet = valueSourceESet;
@@ -847,6 +876,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetValueSource() {
 		return valueSourceESet;
 	}
@@ -856,6 +886,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getSampleRate() {
 		return sampleRate;
 	}
@@ -865,6 +896,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSampleRate(BigInteger newSampleRate) {
 		BigInteger oldSampleRate = sampleRate;
 		sampleRate = newSampleRate;
@@ -877,6 +909,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getCurtailment() {
 		return curtailment;
 	}
@@ -886,6 +919,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCurtailment(float newCurtailment) {
 		float oldCurtailment = curtailment;
 		curtailment = newCurtailment;
@@ -900,6 +934,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCurtailment() {
 		float oldCurtailment = curtailment;
 		boolean oldCurtailmentESet = curtailmentESet;
@@ -914,6 +949,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCurtailment() {
 		return curtailmentESet;
 	}
@@ -923,6 +959,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getMinLoad() {
 		return minLoad;
 	}
@@ -932,6 +969,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMinLoad(float newMinLoad) {
 		float oldMinLoad = minLoad;
 		minLoad = newMinLoad;
@@ -946,6 +984,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetMinLoad() {
 		float oldMinLoad = minLoad;
 		boolean oldMinLoadESet = minLoadESet;
@@ -960,6 +999,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetMinLoad() {
 		return minLoadESet;
 	}
@@ -969,6 +1009,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getMaxLockTimeMinutes() {
 		return maxLockTimeMinutes;
 	}
@@ -978,6 +1019,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaxLockTimeMinutes(float newMaxLockTimeMinutes) {
 		float oldMaxLockTimeMinutes = maxLockTimeMinutes;
 		maxLockTimeMinutes = newMaxLockTimeMinutes;
@@ -992,6 +1034,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetMaxLockTimeMinutes() {
 		float oldMaxLockTimeMinutes = maxLockTimeMinutes;
 		boolean oldMaxLockTimeMinutesESet = maxLockTimeMinutesESet;
@@ -1006,6 +1049,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetMaxLockTimeMinutes() {
 		return maxLockTimeMinutesESet;
 	}
@@ -1015,6 +1059,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getMinRunTimeMinutes() {
 		return minRunTimeMinutes;
 	}
@@ -1024,6 +1069,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMinRunTimeMinutes(float newMinRunTimeMinutes) {
 		float oldMinRunTimeMinutes = minRunTimeMinutes;
 		minRunTimeMinutes = newMinRunTimeMinutes;
@@ -1038,6 +1084,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetMinRunTimeMinutes() {
 		float oldMinRunTimeMinutes = minRunTimeMinutes;
 		boolean oldMinRunTimeMinutesESet = minRunTimeMinutesESet;
@@ -1052,6 +1099,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetMinRunTimeMinutes() {
 		return minRunTimeMinutesESet;
 	}
@@ -1061,6 +1109,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getValueByTimeTableMinutes() {
 		return valueByTimeTableMinutes;
 	}
@@ -1070,6 +1119,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValueByTimeTableMinutes(float newValueByTimeTableMinutes) {
 		float oldValueByTimeTableMinutes = valueByTimeTableMinutes;
 		valueByTimeTableMinutes = newValueByTimeTableMinutes;
@@ -1084,6 +1134,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetValueByTimeTableMinutes() {
 		float oldValueByTimeTableMinutes = valueByTimeTableMinutes;
 		boolean oldValueByTimeTableMinutesESet = valueByTimeTableMinutesESet;
@@ -1098,6 +1149,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetValueByTimeTableMinutes() {
 		return valueByTimeTableMinutesESet;
 	}
@@ -1107,6 +1159,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SGrFlexAssistanceType getFlexAssistance() {
 		return flexAssistance;
 	}
@@ -1131,6 +1184,7 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFlexAssistance(SGrFlexAssistanceType newFlexAssistance) {
 		if (newFlexAssistance != flexAssistance) {
 			NotificationChain msgs = null;

@@ -217,6 +217,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSLV1Name() {
 		return sLV1Name;
 	}
@@ -226,6 +227,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSLV1Name(String newSLV1Name) {
 		String oldSLV1Name = sLV1Name;
 		sLV1Name = newSLV1Name;
@@ -238,6 +240,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSWorkName() {
 		return sWorkName;
 	}
@@ -247,6 +250,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSWorkName(String newSWorkName) {
 		String oldSWorkName = sWorkName;
 		sWorkName = newSWorkName;
@@ -259,6 +263,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSManufName() {
 		return sManufName;
 	}
@@ -268,6 +273,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSManufName(String newSManufName) {
 		String oldSManufName = sManufName;
 		sManufName = newSManufName;
@@ -280,6 +286,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSIEC61850Name() {
 		return sIEC61850Name;
 	}
@@ -289,6 +296,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSIEC61850Name(String newSIEC61850Name) {
 		String oldSIEC61850Name = sIEC61850Name;
 		sIEC61850Name = newSIEC61850Name;
@@ -301,6 +309,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSSAREFName() {
 		return sSAREFName;
 	}
@@ -310,6 +319,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSSAREFName(String newSSAREFName) {
 		String oldSSAREFName = sSAREFName;
 		sSAREFName = newSSAREFName;
@@ -322,6 +332,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSEEBUSName() {
 		return sEEBUSName;
 	}
@@ -331,6 +342,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSEEBUSName(String newSEEBUSName) {
 		String oldSEEBUSName = sEEBUSName;
 		sEEBUSName = newSEEBUSName;
@@ -343,6 +355,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSSUNSPECName() {
 		return sSUNSPECName;
 	}
@@ -352,6 +365,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSSUNSPECName(String newSSUNSPECName) {
 		String oldSSUNSPECName = sSUNSPECName;
 		sSUNSPECName = newSSUNSPECName;
@@ -364,6 +378,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSHPbwpName() {
 		return sHPbwpName;
 	}
@@ -373,6 +388,7 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSHPbwpName(String newSHPbwpName) {
 		String oldSHPbwpName = sHPbwpName;
 		sHPbwpName = newSHPbwpName;
