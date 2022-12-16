@@ -23,9 +23,9 @@ apply plugin: 'maven-publish'
 
 
 sourceSets {
-        main.java.srcDirs = ['src', 'src-gen' ]
+        main.java.srcDirs = ['src' ]
         main.resources.srcDirs = ['resources' ] 
-        test.java.srcDirs = ['test']               
+        test.java.srcDirs = ['test']
 }
 
 java {
@@ -91,7 +91,9 @@ jar {
     }
 }
 
-
+test { // needed that JUnit5 is used for tests.
+    useJUnitPlatform()
+}
 
 
 tasks."compileJava".dependsOn ':InterfaceFactory:emfEI4Modbus:publishToMavenLocal'
