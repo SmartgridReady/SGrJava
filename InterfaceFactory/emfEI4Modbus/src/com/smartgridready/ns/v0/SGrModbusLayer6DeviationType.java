@@ -51,52 +51,20 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 	_2REG_BASE1000_H2L(1, "_2RegBase1000H2L", "2RegBase1000_H2L"),
 
 	/**
-	 * The '<em><b>Bitmap8</b></em>' literal object.
+	 * The '<em><b>Bitmap Register</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 
 	 *             
-	 *   <documentation>bitmap for uint8 </documentation>
+	 *   <documentation>bitmap for Registers (typical: Status Bits). For to be visible as generic boolean array or unsigned integer mapped in parallel towards one data single point definition. To manage this like a block transfer for the booleans is highly recommended.</documentation>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @see #BITMAP8_VALUE
+	 * @see #BITMAP_REGISTER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BITMAP8(2, "bitmap8", "bitmap8"),
-
-	/**
-	 * The '<em><b>Bitmap16</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *             
-	 *   <documentation>bitmap for uint16 </documentation>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @see #BITMAP16_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BITMAP16(3, "bitmap16", "bitmap16"),
-
-	/**
-	 * The '<em><b>Bitmap32</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *             
-	 *   <documentation>bitmap for uint32 </documentation>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @see #BITMAP32_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BITMAP32(4, "bitmap32", "bitmap32");
+	BITMAP_REGISTER(2, "bitmapRegister", "bitmapRegister");
 
 	/**
 	 * The '<em><b>2Reg Base1000 L2H</b></em>' literal value.
@@ -130,55 +98,21 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 	public static final int _2REG_BASE1000_H2L_VALUE = 1;
 
 	/**
-	 * The '<em><b>Bitmap8</b></em>' literal value.
+	 * The '<em><b>Bitmap Register</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 
 	 *             
-	 *   <documentation>bitmap for uint8 </documentation>
+	 *   <documentation>bitmap for Registers (typical: Status Bits). For to be visible as generic boolean array or unsigned integer mapped in parallel towards one data single point definition. To manage this like a block transfer for the booleans is highly recommended.</documentation>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @see #BITMAP8
-	 * @model name="bitmap8"
+	 * @see #BITMAP_REGISTER
+	 * @model name="bitmapRegister"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BITMAP8_VALUE = 2;
-
-	/**
-	 * The '<em><b>Bitmap16</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *             
-	 *   <documentation>bitmap for uint16 </documentation>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @see #BITMAP16
-	 * @model name="bitmap16"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BITMAP16_VALUE = 3;
-
-	/**
-	 * The '<em><b>Bitmap32</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *             
-	 *   <documentation>bitmap for uint32 </documentation>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @see #BITMAP32
-	 * @model name="bitmap32"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BITMAP32_VALUE = 4;
+	public static final int BITMAP_REGISTER_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>SGr Modbus Layer6 Deviation Type</b></em>' enumerators.
@@ -190,9 +124,7 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 		new SGrModbusLayer6DeviationType[] {
 			_2REG_BASE1000_L2H,
 			_2REG_BASE1000_H2L,
-			BITMAP8,
-			BITMAP16,
-			BITMAP32,
+			BITMAP_REGISTER,
 		};
 
 	/**
@@ -251,9 +183,7 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 		switch (value) {
 			case _2REG_BASE1000_L2H_VALUE: return _2REG_BASE1000_L2H;
 			case _2REG_BASE1000_H2L_VALUE: return _2REG_BASE1000_H2L;
-			case BITMAP8_VALUE: return BITMAP8;
-			case BITMAP16_VALUE: return BITMAP16;
-			case BITMAP32_VALUE: return BITMAP32;
+			case BITMAP_REGISTER_VALUE: return BITMAP_REGISTER;
 		}
 		return null;
 	}

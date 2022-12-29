@@ -2975,19 +2975,9 @@
         <details key="documentation" value="&#xD;&#xA;            &#xD;&#xA;  &lt;documentation>2 Registers show a combined value, as example in kWh and MWh beginning with lower range @ higher address&lt;/documentation>&#xD;&#xA;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="bitmap8" value="2">
+    <eLiterals name="bitmapRegister" value="2">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&#xD;&#xA;            &#xD;&#xA;  &lt;documentation>bitmap for uint8 &lt;/documentation>&#xD;&#xA;"/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="bitmap16" value="3">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&#xD;&#xA;            &#xD;&#xA;  &lt;documentation>bitmap for uint16 &lt;/documentation>&#xD;&#xA;"/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="bitmap32" value="4">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&#xD;&#xA;            &#xD;&#xA;  &lt;documentation>bitmap for uint32 &lt;/documentation>&#xD;&#xA;"/>
+        <details key="documentation" value="&#xD;&#xA;            &#xD;&#xA;  &lt;documentation>bitmap for Registers (typical: Status Bits). For to be visible as generic boolean array or unsigned integer mapped in parallel towards one data single point definition. To manage this like a block transfer for the booleans is highly recommended.&lt;/documentation>&#xD;&#xA;"/>
       </eAnnotations>
     </eLiterals>
   </eClassifiers>

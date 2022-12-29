@@ -2265,9 +2265,7 @@
     </eAnnotations>
     <eLiterals name="_2RegBase1000L2H" literal="2RegBase1000_L2H"/>
     <eLiterals name="_2RegBase1000H2L" value="1" literal="2RegBase1000_H2L"/>
-    <eLiterals name="bitmap8" value="2"/>
-    <eLiterals name="bitmap16" value="3"/>
-    <eLiterals name="bitmap32" value="4"/>
+    <eLiterals name="bitmapRegister" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrModbusLayer6DeviationTypeObject"
       instanceClassName="org.eclipse.emf.common.util.Enumerator">
