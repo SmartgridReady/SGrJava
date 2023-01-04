@@ -162,12 +162,6 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE: {
-				SGrBasicGenArrayDPTypeType sGrBasicGenArrayDPTypeType = (SGrBasicGenArrayDPTypeType)theEObject;
-				T result = caseSGrBasicGenArrayDPTypeType(sGrBasicGenArrayDPTypeType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE: {
 				SGrBasicGenDataPointTypeType sGrBasicGenDataPointTypeType = (SGrBasicGenDataPointTypeType)theEObject;
 				T result = caseSGrBasicGenDataPointTypeType(sGrBasicGenDataPointTypeType);
@@ -695,21 +689,6 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSGrAttr4RestAPIType(SGrAttr4RestAPIType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Basic Gen Array DP Type Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Basic Gen Array DP Type Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrBasicGenArrayDPTypeType(SGrBasicGenArrayDPTypeType object) {
 		return null;
 	}
 

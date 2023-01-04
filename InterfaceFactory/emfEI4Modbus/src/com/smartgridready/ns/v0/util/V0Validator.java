@@ -130,8 +130,6 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrAttr4ModbusType((SGrAttr4ModbusType)value, diagnostics, context);
 			case V0Package.SGR_ATTR4_REST_API_TYPE:
 				return validateSGrAttr4RestAPIType((SGrAttr4RestAPIType)value, diagnostics, context);
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE:
-				return validateSGrBasicGenArrayDPTypeType((SGrBasicGenArrayDPTypeType)value, diagnostics, context);
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE:
 				return validateSGrBasicGenDataPointTypeType((SGrBasicGenDataPointTypeType)value, diagnostics, context);
 			case V0Package.SGR_CHANGE_LOG:
@@ -593,15 +591,6 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateSGrAttr4RestAPIType(SGrAttr4RestAPIType sGrAttr4RestAPIType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrAttr4RestAPIType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrBasicGenArrayDPTypeType(SGrBasicGenArrayDPTypeType sGrBasicGenArrayDPTypeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sGrBasicGenArrayDPTypeType, diagnostics, context);
 	}
 
 	/**

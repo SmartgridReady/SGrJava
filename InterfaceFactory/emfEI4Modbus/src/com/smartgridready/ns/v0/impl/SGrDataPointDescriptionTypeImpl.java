@@ -2,9 +2,9 @@
  */
 package com.smartgridready.ns.v0.impl;
 
-import com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
+import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrLegibDocumentationType;
 import com.smartgridready.ns.v0.SGrMROPresenceLevelIndicationType;
 import com.smartgridready.ns.v0.SGrNamelistType;
@@ -37,7 +37,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getBasicDataType <em>Basic Data Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getBasicArrayDataType <em>Basic Array Data Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getLenght <em>Lenght</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getEnum2ArrIndex <em>Enum2 Arr Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpNameList <em>Dp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpLegibDesc <em>Dp Legib Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpPrgDesc <em>Dp Prg Desc</em>}</li>
@@ -61,14 +62,43 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	protected SGrBasicGenDataPointTypeType basicDataType;
 
 	/**
-	 * The cached value of the '{@link #getBasicArrayDataType() <em>Basic Array Data Type</em>}' containment reference.
+	 * The default value of the '{@link #getLenght() <em>Lenght</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBasicArrayDataType()
+	 * @see #getLenght()
 	 * @generated
 	 * @ordered
 	 */
-	protected SGrBasicGenArrayDPTypeType basicArrayDataType;
+	protected static final int LENGHT_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getLenght() <em>Lenght</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLenght()
+	 * @generated
+	 * @ordered
+	 */
+	protected int lenght = LENGHT_EDEFAULT;
+
+	/**
+	 * This is true if the Lenght attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean lenghtESet;
+
+	/**
+	 * The cached value of the '{@link #getEnum2ArrIndex() <em>Enum2 Arr Index</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEnum2ArrIndex()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrEnumListType enum2ArrIndex;
 
 	/**
 	 * The cached value of the '{@link #getDpNameList() <em>Dp Name List</em>}' containment reference.
@@ -277,8 +307,8 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
-	public SGrBasicGenArrayDPTypeType getBasicArrayDataType() {
-		return basicArrayDataType;
+	public int getLenght() {
+		return lenght;
 	}
 
 	/**
@@ -286,11 +316,61 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBasicArrayDataType(SGrBasicGenArrayDPTypeType newBasicArrayDataType, NotificationChain msgs) {
-		SGrBasicGenArrayDPTypeType oldBasicArrayDataType = basicArrayDataType;
-		basicArrayDataType = newBasicArrayDataType;
+	@Override
+	public void setLenght(int newLenght) {
+		int oldLenght = lenght;
+		lenght = newLenght;
+		boolean oldLenghtESet = lenghtESet;
+		lenghtESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__LENGHT, oldLenght, lenght, !oldLenghtESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetLenght() {
+		int oldLenght = lenght;
+		boolean oldLenghtESet = lenghtESet;
+		lenght = LENGHT_EDEFAULT;
+		lenghtESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__LENGHT, oldLenght, LENGHT_EDEFAULT, oldLenghtESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetLenght() {
+		return lenghtESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrEnumListType getEnum2ArrIndex() {
+		return enum2ArrIndex;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEnum2ArrIndex(SGrEnumListType newEnum2ArrIndex, NotificationChain msgs) {
+		SGrEnumListType oldEnum2ArrIndex = enum2ArrIndex;
+		enum2ArrIndex = newEnum2ArrIndex;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE, oldBasicArrayDataType, newBasicArrayDataType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX, oldEnum2ArrIndex, newEnum2ArrIndex);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -302,18 +382,18 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
-	public void setBasicArrayDataType(SGrBasicGenArrayDPTypeType newBasicArrayDataType) {
-		if (newBasicArrayDataType != basicArrayDataType) {
+	public void setEnum2ArrIndex(SGrEnumListType newEnum2ArrIndex) {
+		if (newEnum2ArrIndex != enum2ArrIndex) {
 			NotificationChain msgs = null;
-			if (basicArrayDataType != null)
-				msgs = ((InternalEObject)basicArrayDataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE, null, msgs);
-			if (newBasicArrayDataType != null)
-				msgs = ((InternalEObject)newBasicArrayDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE, null, msgs);
-			msgs = basicSetBasicArrayDataType(newBasicArrayDataType, msgs);
+			if (enum2ArrIndex != null)
+				msgs = ((InternalEObject)enum2ArrIndex).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX, null, msgs);
+			if (newEnum2ArrIndex != null)
+				msgs = ((InternalEObject)newEnum2ArrIndex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX, null, msgs);
+			msgs = basicSetEnum2ArrIndex(newEnum2ArrIndex, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE, newBasicArrayDataType, newBasicArrayDataType));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX, newEnum2ArrIndex, newEnum2ArrIndex));
 	}
 
 	/**
@@ -570,8 +650,8 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				return basicSetBasicDataType(null, msgs);
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
-				return basicSetBasicArrayDataType(null, msgs);
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
+				return basicSetEnum2ArrIndex(null, msgs);
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				return basicSetDpNameList(null, msgs);
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
@@ -592,8 +672,10 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				return getBasicDataType();
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
-				return getBasicArrayDataType();
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__LENGHT:
+				return getLenght();
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
+				return getEnum2ArrIndex();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				return getDpNameList();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
@@ -624,8 +706,11 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				setBasicDataType((SGrBasicGenDataPointTypeType)newValue);
 				return;
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
-				setBasicArrayDataType((SGrBasicGenArrayDPTypeType)newValue);
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__LENGHT:
+				setLenght((Integer)newValue);
+				return;
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
+				setEnum2ArrIndex((SGrEnumListType)newValue);
 				return;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				setDpNameList((SGrNamelistType)newValue);
@@ -665,8 +750,11 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				setBasicDataType((SGrBasicGenDataPointTypeType)null);
 				return;
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
-				setBasicArrayDataType((SGrBasicGenArrayDPTypeType)null);
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__LENGHT:
+				unsetLenght();
+				return;
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
+				setEnum2ArrIndex((SGrEnumListType)null);
 				return;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				setDpNameList((SGrNamelistType)null);
@@ -703,8 +791,10 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				return basicDataType != null;
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_ARRAY_DATA_TYPE:
-				return basicArrayDataType != null;
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__LENGHT:
+				return isSetLenght();
+			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
+				return enum2ArrIndex != null;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				return dpNameList != null;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
@@ -733,7 +823,9 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (datapointName: ");
+		result.append(" (lenght: ");
+		if (lenghtESet) result.append(lenght); else result.append("<unset>");
+		result.append(", datapointName: ");
 		result.append(datapointName);
 		result.append(", mroVisibilityIndicator: ");
 		if (mroVisibilityIndicatorESet) result.append(mroVisibilityIndicator); else result.append("<unset>");

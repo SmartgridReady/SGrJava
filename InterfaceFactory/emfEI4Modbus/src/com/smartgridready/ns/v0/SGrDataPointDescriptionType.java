@@ -27,7 +27,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicDataType <em>Basic Data Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicArrayDataType <em>Basic Array Data Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getLenght <em>Lenght</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpNameList <em>Dp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpLegibDesc <em>Dp Legib Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpPrgDesc <em>Dp Prg Desc</em>}</li>
@@ -66,27 +67,77 @@ public interface SGrDataPointDescriptionType extends EObject {
 	void setBasicDataType(SGrBasicGenDataPointTypeType value);
 
 	/**
-	 * Returns the value of the '<em><b>Basic Array Data Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Lenght</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Basic Array Data Type</em>' containment reference.
-	 * @see #setBasicArrayDataType(SGrBasicGenArrayDPTypeType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_BasicArrayDataType()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='basicArrayDataType' namespace='##targetNamespace'"
+	 * @return the value of the '<em>Lenght</em>' attribute.
+	 * @see #isSetLenght()
+	 * @see #unsetLenght()
+	 * @see #setLenght(int)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_Lenght()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+	 *        extendedMetaData="kind='element' name='lenght' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrBasicGenArrayDPTypeType getBasicArrayDataType();
+	int getLenght();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicArrayDataType <em>Basic Array Data Type</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getLenght <em>Lenght</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Basic Array Data Type</em>' containment reference.
-	 * @see #getBasicArrayDataType()
+	 * @param value the new value of the '<em>Lenght</em>' attribute.
+	 * @see #isSetLenght()
+	 * @see #unsetLenght()
+	 * @see #getLenght()
 	 * @generated
 	 */
-	void setBasicArrayDataType(SGrBasicGenArrayDPTypeType value);
+	void setLenght(int value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getLenght <em>Lenght</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLenght()
+	 * @see #getLenght()
+	 * @see #setLenght(int)
+	 * @generated
+	 */
+	void unsetLenght();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getLenght <em>Lenght</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Lenght</em>' attribute is set.
+	 * @see #unsetLenght()
+	 * @see #getLenght()
+	 * @see #setLenght(int)
+	 * @generated
+	 */
+	boolean isSetLenght();
+
+	/**
+	 * Returns the value of the '<em><b>Enum2 Arr Index</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enum2 Arr Index</em>' containment reference.
+	 * @see #setEnum2ArrIndex(SGrEnumListType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_Enum2ArrIndex()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='enum2ArrIndex' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrEnumListType getEnum2ArrIndex();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enum2 Arr Index</em>' containment reference.
+	 * @see #getEnum2ArrIndex()
+	 * @generated
+	 */
+	void setEnum2ArrIndex(SGrEnumListType value);
 
 	/**
 	 * Returns the value of the '<em><b>Dp Name List</b></em>' containment reference.

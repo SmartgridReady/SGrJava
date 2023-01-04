@@ -166,15 +166,6 @@ public interface V0Factory extends EFactory {
 	SGrAttr4RestAPIType createSGrAttr4RestAPIType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Basic Gen Array DP Type Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Basic Gen Array DP Type Type</em>'.
-	 * @generated
-	 */
-	SGrBasicGenArrayDPTypeType createSGrBasicGenArrayDPTypeType();
-
-	/**
 	 * Returns a new object of class '<em>SGr Basic Gen Data Point Type Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

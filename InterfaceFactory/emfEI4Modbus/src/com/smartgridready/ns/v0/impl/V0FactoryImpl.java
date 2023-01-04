@@ -78,7 +78,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_ATTR4_GENERIC_TYPE: return createSGrAttr4GenericType();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE: return createSGrAttr4ModbusType();
 			case V0Package.SGR_ATTR4_REST_API_TYPE: return createSGrAttr4RestAPIType();
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE: return createSGrBasicGenArrayDPTypeType();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE: return createSGrBasicGenDataPointTypeType();
 			case V0Package.SGR_CHANGE_LOG: return createSGrChangeLog();
 			case V0Package.SGR_CONTACT_API_DEVICE_FRAME: return createSGrContactAPIDeviceFrame();
@@ -774,17 +773,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public SGrAttr4RestAPIType createSGrAttr4RestAPIType() {
 		SGrAttr4RestAPITypeImpl sGrAttr4RestAPIType = new SGrAttr4RestAPITypeImpl();
 		return sGrAttr4RestAPIType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrBasicGenArrayDPTypeType createSGrBasicGenArrayDPTypeType() {
-		SGrBasicGenArrayDPTypeTypeImpl sGrBasicGenArrayDPTypeType = new SGrBasicGenArrayDPTypeTypeImpl();
-		return sGrBasicGenArrayDPTypeType;
 	}
 
 	/**

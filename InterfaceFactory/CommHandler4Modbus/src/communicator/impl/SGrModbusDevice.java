@@ -30,7 +30,6 @@ import org.eclipse.emf.common.util.EList;
 
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
-import com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
@@ -200,14 +199,16 @@ public class SGrModbusDevice {
 		return retval;
 	}
 
+
 	// Read a single value
 	private SGrBasicGenDataPointTypeType prv_getValByGDPType(
 			SGrModbusFunctionalProfileType aProfile,
 			SGrModbusDataPointType aDataPoint) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 				
-		return prv_getValArrayByGDPType(aProfile, aDataPoint, 1)[0];
+		return prv_getValByGDPType(aProfile, aDataPoint, 1)[0];
 		
 	}
+
 	
 	// Get array of values
 	public SGrBasicGenDataPointTypeType[] getValArrByGDPType(String sProfileName, String sDataPointName) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
@@ -218,16 +219,16 @@ public class SGrModbusDevice {
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				
-				int arrLen = dataPoint.get().getDataPoint().getBasicArrayDataType().getLenght().intValue();
+				int arrLen = dataPoint.get().getDataPoint().getLenght();
 				
-				return prv_getValArrayByGDPType(profile.get(), dataPoint.get(), arrLen);
+				return prv_getValByGDPType(profile.get(), dataPoint.get(), arrLen);
 			}
 		}
 		return new SGrBasicGenDataPointTypeType[] {};
 	}
 	
 	// Read an array of values
-	private SGrBasicGenDataPointTypeType[] prv_getValArrayByGDPType(
+	private SGrBasicGenDataPointTypeType[] prv_getValByGDPType(
 		SGrModbusFunctionalProfileType aProfile,
 		SGrModbusDataPointType aDataPoint, int arrayLen)
 		throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
@@ -249,13 +250,13 @@ public class SGrModbusDevice {
 		
 		int mbArrayLen = arrayLen;
 		// bitmap in a single or double register reference
-		if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
-			mbArrayLen = 1;
+		// TODO/cb if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
+		//	mbArrayLen = 1;
 
-		//check time to live data cashing
-		if ((! aDataPoint.isSetTimeToLive())
-		|| (System.currentTimeMillis() > (aDataPoint.getLastAccessTime() + aDataPoint.getTimeToLive()) ))
-		{
+		//check time to live data cashing: TODO/hf: change cashing 
+		//if ((! aDataPoint.isSetTimeToLive())
+		//|| (System.currentTimeMillis() > (aDataPoint.getLastAccessTime() + aDataPoint.getTimeToLive()) ))
+		//{
 			int size = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();		
 		
 			if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER) {
@@ -292,11 +293,11 @@ public class SGrModbusDevice {
 			   aDataPoint.setLastAccessTime(System.currentTimeMillis());
 			//get just polled data value
 			return resultList.toArray(new SGrBasicGenDataPointTypeType[0]);	
-		}
+		/*}   To be removed by hf after modifying cash procedures
 		// get cashed data value
 		// TODO/cb organize cashing  & type conversion from aDataPoint.
 		 SGrBasicGenDataPointTypeType retVal[] = null;
-		return (retVal);	
+		return (retVal);	 */
 }
 
 
@@ -310,15 +311,17 @@ public class SGrModbusDevice {
 		long RegRes = 0;
 		double dVal = 0.0;
 		float fVal = (float) 0.0;
-		SGrBasicGenDataPointTypeType dMBType ;
 
 		SGrBasicGenDataPointTypeType RetVal = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-		SGrBasicGenDataPointTypeType dGenType = evalGenDataType(aDataPoint,arrayLen);	
-		if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
-		  dMBType  = evalModbusDataType(aDataPoint,1);
+		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();   //evalGenDataType(aDataPoint,arrayLen);	
+		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
+		
+		//if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
+		/*  dMBType  =  aDataPoint.getModbusDataPoint().get(0);
 		else
 		  dMBType  = evalModbusDataType(aDataPoint,arrayLen);
-
+        */
+		
 // TODO/cb DEBUG Workflow:  get array Datapoint type if arrlen > 1
 		// make special threatmend for bitmap registers
 		
@@ -355,8 +358,8 @@ public class SGrModbusDevice {
 				mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
 			// do we have Layer 6 deviations ?
 	        if (l6dev >= 0  )   mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
-            // manage concersion of bitmap into array of boolean
-	        if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
+            // manage conversion of bitmap into array of boolean
+	        /* TODO/cb BITMAP_REGISTER_VALUE if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
 	        {
 			  switch (arrayLen)
 			  {
@@ -379,7 +382,7 @@ public class SGrModbusDevice {
 					break;
 			  }
 			}
-			else
+			else */
 			{
 			
 	            for (int u = 0; u < size; u++) {
@@ -1064,8 +1067,7 @@ public class SGrModbusDevice {
 		return dVal;
 	}
 
-	// ================================================== code to be maintained
-	// frequently ==============================================
+	// ===================================== code to be maintained frequently ==============================================
 	// Manually adopted enumeration handling: needs 3 enrties for each enumerated
 	// type
 	// convert from enumeration into Modbus RegRes number
@@ -1186,7 +1188,7 @@ public class SGrModbusDevice {
 		return rval;
 	}
 	
-
+/* TODO: delete
 	private SGrBasicGenDataPointTypeType evalGenDataType(SGrModbusDataPointType aDataPoint, int arrayLen) {
 		
 		SGrDataPointDescriptionType descType = aDataPoint.getDataPoint();
@@ -1206,6 +1208,6 @@ public class SGrModbusDevice {
 			return descType.getModbusArrayDataType().getType();
 		}
 		return null;
-	}
-	
+	} 
+	*/
 }

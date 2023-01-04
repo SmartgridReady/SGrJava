@@ -16,7 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusDataType <em>Modbus Data Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusArrayDataType <em>Modbus Array Data Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght <em>Lenght</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusFirstRegisterReference <em>Modbus First Register Reference</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpSizeNrRegisters <em>Dp Size Nr Registers</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getBitmask <em>Bitmask</em>}</li>
@@ -53,27 +54,77 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	void setModbusDataType(SGrBasicGenDataPointTypeType value);
 
 	/**
-	 * Returns the value of the '<em><b>Modbus Array Data Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Lenght</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modbus Array Data Type</em>' containment reference.
-	 * @see #setModbusArrayDataType(SGrBasicGenArrayDPTypeType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_ModbusArrayDataType()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='modbusArrayDataType' namespace='##targetNamespace'"
+	 * @return the value of the '<em>Lenght</em>' attribute.
+	 * @see #isSetLenght()
+	 * @see #unsetLenght()
+	 * @see #setLenght(int)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_Lenght()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+	 *        extendedMetaData="kind='element' name='lenght' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrBasicGenArrayDPTypeType getModbusArrayDataType();
+	int getLenght();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusArrayDataType <em>Modbus Array Data Type</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght <em>Lenght</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Modbus Array Data Type</em>' containment reference.
-	 * @see #getModbusArrayDataType()
+	 * @param value the new value of the '<em>Lenght</em>' attribute.
+	 * @see #isSetLenght()
+	 * @see #unsetLenght()
+	 * @see #getLenght()
 	 * @generated
 	 */
-	void setModbusArrayDataType(SGrBasicGenArrayDPTypeType value);
+	void setLenght(int value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght <em>Lenght</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLenght()
+	 * @see #getLenght()
+	 * @see #setLenght(int)
+	 * @generated
+	 */
+	void unsetLenght();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght <em>Lenght</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Lenght</em>' attribute is set.
+	 * @see #unsetLenght()
+	 * @see #getLenght()
+	 * @see #setLenght(int)
+	 * @generated
+	 */
+	boolean isSetLenght();
+
+	/**
+	 * Returns the value of the '<em><b>Enum2 Arr Index</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enum2 Arr Index</em>' containment reference.
+	 * @see #setEnum2ArrIndex(SGrEnumListType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_Enum2ArrIndex()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='enum2ArrIndex' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrEnumListType getEnum2ArrIndex();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enum2 Arr Index</em>' containment reference.
+	 * @see #getEnum2ArrIndex()
+	 * @generated
+	 */
+	void setEnum2ArrIndex(SGrEnumListType value);
 
 	/**
 	 * Returns the value of the '<em><b>Modbus First Register Reference</b></em>' containment reference.
