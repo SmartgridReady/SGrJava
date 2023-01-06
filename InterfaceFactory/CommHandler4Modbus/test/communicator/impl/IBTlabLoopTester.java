@@ -76,8 +76,8 @@ public class IBTlabLoopTester {
 	// device selection
 	private static boolean  devABBMeterTestIsOn = false; 
 	private static boolean  devVGT_SGCPTestIsOn = false; 
-	private static boolean  devFroniusSymoTestIsOn = false; 
-	private static boolean  devGaroWallboxTestIsOn = true; 
+	private static boolean  devFroniusSymoTestIsOn = true; 
+	private static boolean  devGaroWallboxTestIsOn = false; 
 	// TestBox
 	private static boolean  devTB_ABBMeterTestIsOn = false; 
 	private static boolean  devWagoMeterTestIsOn = false; 
@@ -777,17 +777,17 @@ public class IBTlabLoopTester {
 									
 								 
 								 System.out.printf("  Status SunspInvModel EvenList1 %n");
-								 l =  devFroniusSymo.getValByGDPType("  SunspInvModel","EventList1").getInt32U();
+								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList1").getInt32U();
 								 System.out.printf("   StatusRegister :         " + l + " %n");
 							     Thread.sleep(25);
 								 System.out.printf("   SunspInvModel EventList 1: isTrue =  ");
-						     	 b = devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT0_VALUE].isBoolean();
+						     	 b = devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT0_VALUE].getBitmap().get(0);
 								 if (b)  System.out.printf("BIT0, ") ;
 								Thread.sleep(25);
-								 b= devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT1_VALUE].isBoolean();
+								 b= devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT1_VALUE].getBitmap().get(0);
 								 if (b)  System.out.printf("BIT1, ") ;
 								 Thread.sleep(25);
-								 b= devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT2_VALUE].isBoolean();
+								 b= devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT2_VALUE].getBitmap().get(0);
 								 if (b)  System.out.printf("BIT2, ") ;
 								 Thread.sleep(25);
 								 b= devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT3_VALUE].isBoolean();

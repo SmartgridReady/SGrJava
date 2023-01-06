@@ -6,6 +6,8 @@ import java.math.BigInteger;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBit <em>Bit</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getBitmap <em>Bitmap</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBoolean <em>Boolean</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getInt8 <em>Int8</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getInt16 <em>Int16</em>}</li>
@@ -50,54 +52,17 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SGrBasicGenDataPointTypeType extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Bit</b></em>' attribute.
+	 * Returns the value of the '<em><b>Bitmap</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Boolean}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bit</em>' attribute.
-	 * @see #isSetBit()
-	 * @see #unsetBit()
-	 * @see #setBit(boolean)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenDataPointTypeType_Bit()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
-	 *        extendedMetaData="kind='element' name='bit' namespace='##targetNamespace'"
+	 * @return the value of the '<em>Bitmap</em>' attribute list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenDataPointTypeType_Bitmap()
+	 * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.Boolean" upper="32"
+	 *        extendedMetaData="kind='element' name='bitmap' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	boolean isBit();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBit <em>Bit</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bit</em>' attribute.
-	 * @see #isSetBit()
-	 * @see #unsetBit()
-	 * @see #isBit()
-	 * @generated
-	 */
-	void setBit(boolean value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBit <em>Bit</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetBit()
-	 * @see #isBit()
-	 * @see #setBit(boolean)
-	 * @generated
-	 */
-	void unsetBit();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBit <em>Bit</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Bit</em>' attribute is set.
-	 * @see #unsetBit()
-	 * @see #isBit()
-	 * @see #setBit(boolean)
-	 * @generated
-	 */
-	boolean isSetBit();
+	EList<Boolean> getBitmap();
 
 	/**
 	 * Returns the value of the '<em><b>Boolean</b></em>' attribute.

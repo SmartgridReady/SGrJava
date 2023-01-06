@@ -8,16 +8,22 @@ import com.smartgridready.ns.v0.V0Package;
 
 import java.math.BigInteger;
 
+import java.util.Collection;
+
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +33,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenDataPointTypeTypeImpl#isBit <em>Bit</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getBitmap <em>Bitmap</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenDataPointTypeTypeImpl#isBoolean <em>Boolean</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getInt8 <em>Int8</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrBasicGenDataPointTypeTypeImpl#getInt16 <em>Int16</em>}</li>
@@ -48,33 +54,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Container implements SGrBasicGenDataPointTypeType {
 	/**
-	 * The default value of the '{@link #isBit() <em>Bit</em>}' attribute.
+	 * The cached value of the '{@link #getBitmap() <em>Bitmap</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isBit()
+	 * @see #getBitmap()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean BIT_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isBit() <em>Bit</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isBit()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean bit = BIT_EDEFAULT;
-
-	/**
-	 * This is true if the Bit attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean bitESet;
+	protected EList<Boolean> bitmap;
 
 	/**
 	 * The default value of the '{@link #isBoolean() <em>Boolean</em>}' attribute.
@@ -452,48 +439,11 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public boolean isBit() {
-		return bit;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBit(boolean newBit) {
-		boolean oldBit = bit;
-		bit = newBit;
-		boolean oldBitESet = bitESet;
-		bitESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BIT, oldBit, bit, !oldBitESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetBit() {
-		boolean oldBit = bit;
-		boolean oldBitESet = bitESet;
-		bit = BIT_EDEFAULT;
-		bitESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BIT, oldBit, BIT_EDEFAULT, oldBitESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetBit() {
-		return bitESet;
+	public EList<Boolean> getBitmap() {
+		if (bitmap == null) {
+			bitmap = new EDataTypeEList<Boolean>(Boolean.class, this, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BITMAP);
+		}
+		return bitmap;
 	}
 
 	/**
@@ -1105,8 +1055,8 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BIT:
-				return isBit();
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BITMAP:
+				return getBitmap();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
 				return isBoolean();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8:
@@ -1144,11 +1094,13 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BIT:
-				setBit((Boolean)newValue);
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BITMAP:
+				getBitmap().clear();
+				getBitmap().addAll((Collection<? extends Boolean>)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
 				setBoolean((Boolean)newValue);
@@ -1204,8 +1156,8 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BIT:
-				unsetBit();
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BITMAP:
+				getBitmap().clear();
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
 				unsetBoolean();
@@ -1261,8 +1213,8 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BIT:
-				return isSetBit();
+			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BITMAP:
+				return bitmap != null && !bitmap.isEmpty();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
 				return isSetBoolean();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8:
@@ -1305,8 +1257,8 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (bit: ");
-		if (bitESet) result.append(bit); else result.append("<unset>");
+		result.append(" (bitmap: ");
+		result.append(bitmap);
 		result.append(", boolean: ");
 		if (booleanESet) result.append(boolean_); else result.append("<unset>");
 		result.append(", int8: ");

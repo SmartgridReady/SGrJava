@@ -34,8 +34,8 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getModbusDataType <em>Modbus Data Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getLenght <em>Lenght</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getEnum2ArrIndex <em>Enum2 Arr Index</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getArrLen <em>Arr Len</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getModbusFirstRegisterReference <em>Modbus First Register Reference</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getDpSizeNrRegisters <em>Dp Size Nr Registers</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getBitmask <em>Bitmask</em>}</li>
@@ -57,43 +57,43 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	protected SGrBasicGenDataPointTypeType modbusDataType;
 
 	/**
-	 * The default value of the '{@link #getLenght() <em>Lenght</em>}' attribute.
+	 * The default value of the '{@link #getArrLen() <em>Arr Len</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLenght()
+	 * @see #getArrLen()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int LENGHT_EDEFAULT = 0;
+	protected static final int ARR_LEN_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getLenght() <em>Lenght</em>}' attribute.
+	 * The cached value of the '{@link #getArrLen() <em>Arr Len</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLenght()
+	 * @see #getArrLen()
 	 * @generated
 	 * @ordered
 	 */
-	protected int lenght = LENGHT_EDEFAULT;
+	protected int arrLen = ARR_LEN_EDEFAULT;
 
 	/**
-	 * This is true if the Lenght attribute has been set.
+	 * This is true if the Arr Len attribute has been set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean lenghtESet;
+	protected boolean arrLenESet;
 
 	/**
-	 * The cached value of the '{@link #getEnum2ArrIndex() <em>Enum2 Arr Index</em>}' containment reference.
+	 * The cached value of the '{@link #getEnum2bitmapIndex() <em>Enum2bitmap Index</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEnum2ArrIndex()
+	 * @see #getEnum2bitmapIndex()
 	 * @generated
 	 * @ordered
 	 */
-	protected SGrEnumListType enum2ArrIndex;
+	protected SGrEnumListType enum2bitmapIndex;
 
 	/**
 	 * The cached value of the '{@link #getModbusFirstRegisterReference() <em>Modbus First Register Reference</em>}' containment reference.
@@ -244,8 +244,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 */
 	@Override
-	public int getLenght() {
-		return lenght;
+	public int getArrLen() {
+		return arrLen;
 	}
 
 	/**
@@ -254,13 +254,13 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 */
 	@Override
-	public void setLenght(int newLenght) {
-		int oldLenght = lenght;
-		lenght = newLenght;
-		boolean oldLenghtESet = lenghtESet;
-		lenghtESet = true;
+	public void setArrLen(int newArrLen) {
+		int oldArrLen = arrLen;
+		arrLen = newArrLen;
+		boolean oldArrLenESet = arrLenESet;
+		arrLenESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__LENGHT, oldLenght, lenght, !oldLenghtESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN, oldArrLen, arrLen, !oldArrLenESet));
 	}
 
 	/**
@@ -269,13 +269,13 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 */
 	@Override
-	public void unsetLenght() {
-		int oldLenght = lenght;
-		boolean oldLenghtESet = lenghtESet;
-		lenght = LENGHT_EDEFAULT;
-		lenghtESet = false;
+	public void unsetArrLen() {
+		int oldArrLen = arrLen;
+		boolean oldArrLenESet = arrLenESet;
+		arrLen = ARR_LEN_EDEFAULT;
+		arrLenESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__LENGHT, oldLenght, LENGHT_EDEFAULT, oldLenghtESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN, oldArrLen, ARR_LEN_EDEFAULT, oldArrLenESet));
 	}
 
 	/**
@@ -284,8 +284,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 */
 	@Override
-	public boolean isSetLenght() {
-		return lenghtESet;
+	public boolean isSetArrLen() {
+		return arrLenESet;
 	}
 
 	/**
@@ -294,8 +294,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 */
 	@Override
-	public SGrEnumListType getEnum2ArrIndex() {
-		return enum2ArrIndex;
+	public SGrEnumListType getEnum2bitmapIndex() {
+		return enum2bitmapIndex;
 	}
 
 	/**
@@ -303,11 +303,11 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEnum2ArrIndex(SGrEnumListType newEnum2ArrIndex, NotificationChain msgs) {
-		SGrEnumListType oldEnum2ArrIndex = enum2ArrIndex;
-		enum2ArrIndex = newEnum2ArrIndex;
+	public NotificationChain basicSetEnum2bitmapIndex(SGrEnumListType newEnum2bitmapIndex, NotificationChain msgs) {
+		SGrEnumListType oldEnum2bitmapIndex = enum2bitmapIndex;
+		enum2bitmapIndex = newEnum2bitmapIndex;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX, oldEnum2ArrIndex, newEnum2ArrIndex);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX, oldEnum2bitmapIndex, newEnum2bitmapIndex);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -319,18 +319,18 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 */
 	@Override
-	public void setEnum2ArrIndex(SGrEnumListType newEnum2ArrIndex) {
-		if (newEnum2ArrIndex != enum2ArrIndex) {
+	public void setEnum2bitmapIndex(SGrEnumListType newEnum2bitmapIndex) {
+		if (newEnum2bitmapIndex != enum2bitmapIndex) {
 			NotificationChain msgs = null;
-			if (enum2ArrIndex != null)
-				msgs = ((InternalEObject)enum2ArrIndex).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX, null, msgs);
-			if (newEnum2ArrIndex != null)
-				msgs = ((InternalEObject)newEnum2ArrIndex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX, null, msgs);
-			msgs = basicSetEnum2ArrIndex(newEnum2ArrIndex, msgs);
+			if (enum2bitmapIndex != null)
+				msgs = ((InternalEObject)enum2bitmapIndex).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX, null, msgs);
+			if (newEnum2bitmapIndex != null)
+				msgs = ((InternalEObject)newEnum2bitmapIndex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX, null, msgs);
+			msgs = basicSetEnum2bitmapIndex(newEnum2bitmapIndex, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX, newEnum2ArrIndex, newEnum2ArrIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX, newEnum2bitmapIndex, newEnum2bitmapIndex));
 	}
 
 	/**
@@ -519,8 +519,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				return basicSetModbusDataType(null, msgs);
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
-				return basicSetEnum2ArrIndex(null, msgs);
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
+				return basicSetEnum2bitmapIndex(null, msgs);
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				return basicSetModbusFirstRegisterReference(null, msgs);
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_JMES_PATH:
@@ -539,10 +539,10 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				return getModbusDataType();
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__LENGHT:
-				return getLenght();
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
-				return getEnum2ArrIndex();
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
+				return getArrLen();
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
+				return getEnum2bitmapIndex();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				return getModbusFirstRegisterReference();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_SIZE_NR_REGISTERS:
@@ -569,11 +569,11 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				setModbusDataType((SGrBasicGenDataPointTypeType)newValue);
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__LENGHT:
-				setLenght((Integer)newValue);
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
+				setArrLen((Integer)newValue);
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
-				setEnum2ArrIndex((SGrEnumListType)newValue);
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
+				setEnum2bitmapIndex((SGrEnumListType)newValue);
 				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				setModbusFirstRegisterReference((TSGrModbusRegisterRef)newValue);
@@ -606,11 +606,11 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				setModbusDataType((SGrBasicGenDataPointTypeType)null);
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__LENGHT:
-				unsetLenght();
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
+				unsetArrLen();
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
-				setEnum2ArrIndex((SGrEnumListType)null);
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
+				setEnum2bitmapIndex((SGrEnumListType)null);
 				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				setModbusFirstRegisterReference((TSGrModbusRegisterRef)null);
@@ -641,10 +641,10 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				return modbusDataType != null;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__LENGHT:
-				return isSetLenght();
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX:
-				return enum2ArrIndex != null;
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
+				return isSetArrLen();
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
+				return enum2bitmapIndex != null;
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				return modbusFirstRegisterReference != null;
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_SIZE_NR_REGISTERS:
@@ -669,8 +669,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (lenght: ");
-		if (lenghtESet) result.append(lenght); else result.append("<unset>");
+		result.append(" (arrLen: ");
+		if (arrLenESet) result.append(arrLen); else result.append("<unset>");
 		result.append(", dpSizeNrRegisters: ");
 		if (dpSizeNrRegistersESet) result.append(dpSizeNrRegisters); else result.append("<unset>");
 		result.append(", bitmask: ");

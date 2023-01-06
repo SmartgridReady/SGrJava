@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusDataType <em>Modbus Data Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght <em>Lenght</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen <em>Arr Len</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusFirstRegisterReference <em>Modbus First Register Reference</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpSizeNrRegisters <em>Dp Size Nr Registers</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getBitmask <em>Bitmask</em>}</li>
@@ -54,77 +54,77 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	void setModbusDataType(SGrBasicGenDataPointTypeType value);
 
 	/**
-	 * Returns the value of the '<em><b>Lenght</b></em>' attribute.
+	 * Returns the value of the '<em><b>Arr Len</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lenght</em>' attribute.
-	 * @see #isSetLenght()
-	 * @see #unsetLenght()
-	 * @see #setLenght(int)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_Lenght()
+	 * @return the value of the '<em>Arr Len</em>' attribute.
+	 * @see #isSetArrLen()
+	 * @see #unsetArrLen()
+	 * @see #setArrLen(int)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_ArrLen()
 	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
-	 *        extendedMetaData="kind='element' name='lenght' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='arrLen' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	int getLenght();
+	int getArrLen();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght <em>Lenght</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen <em>Arr Len</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lenght</em>' attribute.
-	 * @see #isSetLenght()
-	 * @see #unsetLenght()
-	 * @see #getLenght()
+	 * @param value the new value of the '<em>Arr Len</em>' attribute.
+	 * @see #isSetArrLen()
+	 * @see #unsetArrLen()
+	 * @see #getArrLen()
 	 * @generated
 	 */
-	void setLenght(int value);
+	void setArrLen(int value);
 
 	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght <em>Lenght</em>}' attribute.
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen <em>Arr Len</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetLenght()
-	 * @see #getLenght()
-	 * @see #setLenght(int)
+	 * @see #isSetArrLen()
+	 * @see #getArrLen()
+	 * @see #setArrLen(int)
 	 * @generated
 	 */
-	void unsetLenght();
+	void unsetArrLen();
 
 	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght <em>Lenght</em>}' attribute is set.
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen <em>Arr Len</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Lenght</em>' attribute is set.
-	 * @see #unsetLenght()
-	 * @see #getLenght()
-	 * @see #setLenght(int)
+	 * @return whether the value of the '<em>Arr Len</em>' attribute is set.
+	 * @see #unsetArrLen()
+	 * @see #getArrLen()
+	 * @see #setArrLen(int)
 	 * @generated
 	 */
-	boolean isSetLenght();
+	boolean isSetArrLen();
 
 	/**
-	 * Returns the value of the '<em><b>Enum2 Arr Index</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Enum2bitmap Index</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enum2 Arr Index</em>' containment reference.
-	 * @see #setEnum2ArrIndex(SGrEnumListType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_Enum2ArrIndex()
+	 * @return the value of the '<em>Enum2bitmap Index</em>' containment reference.
+	 * @see #setEnum2bitmapIndex(SGrEnumListType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_Enum2bitmapIndex()
 	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='enum2ArrIndex' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='enum2bitmapIndex' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrEnumListType getEnum2ArrIndex();
+	SGrEnumListType getEnum2bitmapIndex();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Enum2 Arr Index</em>' containment reference.
-	 * @see #getEnum2ArrIndex()
+	 * @param value the new value of the '<em>Enum2bitmap Index</em>' containment reference.
+	 * @see #getEnum2bitmapIndex()
 	 * @generated
 	 */
-	void setEnum2ArrIndex(SGrEnumListType value);
+	void setEnum2bitmapIndex(SGrEnumListType value);
 
 	/**
 	 * Returns the value of the '<em><b>Modbus First Register Reference</b></em>' containment reference.

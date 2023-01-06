@@ -1156,13 +1156,13 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE = 16;
 
 	/**
-	 * The feature id for the '<em><b>Bit</b></em>' attribute.
+	 * The feature id for the '<em><b>Bitmap</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BIT = 0;
+	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BITMAP = 0;
 
 	/**
 	 * The feature id for the '<em><b>Boolean</b></em>' attribute.
@@ -1721,22 +1721,22 @@ public interface V0Package extends EPackage {
 	int SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Lenght</b></em>' attribute.
+	 * The feature id for the '<em><b>Arr Len</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__LENGHT = 1;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN = 1;
 
 	/**
-	 * The feature id for the '<em><b>Enum2 Arr Index</b></em>' containment reference.
+	 * The feature id for the '<em><b>Enum2bitmap Index</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX = 2;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX = 2;
 
 	/**
 	 * The feature id for the '<em><b>Dp Name List</b></em>' containment reference.
@@ -2476,22 +2476,22 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Lenght</b></em>' attribute.
+	 * The feature id for the '<em><b>Arr Len</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__LENGHT = 1;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN = 1;
 
 	/**
-	 * The feature id for the '<em><b>Enum2 Arr Index</b></em>' containment reference.
+	 * The feature id for the '<em><b>Enum2bitmap Index</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2_ARR_INDEX = 2;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX = 2;
 
 	/**
 	 * The feature id for the '<em><b>Modbus First Register Reference</b></em>' containment reference.
@@ -6559,15 +6559,15 @@ public interface V0Package extends EPackage {
 	EClass getSGrBasicGenDataPointTypeType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBit <em>Bit</em>}'.
+	 * Returns the meta object for the attribute list '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getBitmap <em>Bitmap</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Bit</em>'.
-	 * @see com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBit()
+	 * @return the meta object for the attribute list '<em>Bitmap</em>'.
+	 * @see com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getBitmap()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
 	 */
-	EAttribute getSGrBasicGenDataPointTypeType_Bit();
+	EAttribute getSGrBasicGenDataPointTypeType_Bitmap();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBoolean <em>Boolean</em>}'.
@@ -6884,26 +6884,26 @@ public interface V0Package extends EPackage {
 	EReference getSGrDataPointDescriptionType_BasicDataType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getLenght <em>Lenght</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getArrLen <em>Arr Len</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Lenght</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDataPointDescriptionType#getLenght()
+	 * @return the meta object for the attribute '<em>Arr Len</em>'.
+	 * @see com.smartgridready.ns.v0.SGrDataPointDescriptionType#getArrLen()
 	 * @see #getSGrDataPointDescriptionType()
 	 * @generated
 	 */
-	EAttribute getSGrDataPointDescriptionType_Lenght();
+	EAttribute getSGrDataPointDescriptionType_ArrLen();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Enum2 Arr Index</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2ArrIndex()
+	 * @return the meta object for the containment reference '<em>Enum2bitmap Index</em>'.
+	 * @see com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2bitmapIndex()
 	 * @see #getSGrDataPointDescriptionType()
 	 * @generated
 	 */
-	EReference getSGrDataPointDescriptionType_Enum2ArrIndex();
+	EReference getSGrDataPointDescriptionType_Enum2bitmapIndex();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpNameList <em>Dp Name List</em>}'.
@@ -7633,26 +7633,26 @@ public interface V0Package extends EPackage {
 	EReference getSGrModbusDataPointDescriptionType_ModbusDataType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght <em>Lenght</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen <em>Arr Len</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Lenght</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getLenght()
+	 * @return the meta object for the attribute '<em>Arr Len</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen()
 	 * @see #getSGrModbusDataPointDescriptionType()
 	 * @generated
 	 */
-	EAttribute getSGrModbusDataPointDescriptionType_Lenght();
+	EAttribute getSGrModbusDataPointDescriptionType_ArrLen();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2ArrIndex <em>Enum2 Arr Index</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Enum2 Arr Index</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2ArrIndex()
+	 * @return the meta object for the containment reference '<em>Enum2bitmap Index</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2bitmapIndex()
 	 * @see #getSGrModbusDataPointDescriptionType()
 	 * @generated
 	 */
-	EReference getSGrModbusDataPointDescriptionType_Enum2ArrIndex();
+	EReference getSGrModbusDataPointDescriptionType_Enum2bitmapIndex();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusFirstRegisterReference <em>Modbus First Register Reference</em>}'.

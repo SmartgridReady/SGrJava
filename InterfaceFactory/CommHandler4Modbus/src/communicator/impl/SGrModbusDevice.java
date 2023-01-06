@@ -219,7 +219,7 @@ public class SGrModbusDevice {
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				
-				int arrLen = dataPoint.get().getDataPoint().getLenght();
+				int arrLen = dataPoint.get().getDataPoint().getArrLen();
 				
 				return prv_getValByGDPType(profile.get(), dataPoint.get(), arrLen);
 			}
@@ -249,10 +249,11 @@ public class SGrModbusDevice {
 			regad = regad.subtract(BigInteger.ONE);
 		
 		int mbArrayLen = arrayLen;
-		// bitmap in a single or double register reference
-		// TODO/cb if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
-		//	mbArrayLen = 1;
-
+		
+		if (!aDataPoint.getDataPoint().getBasicDataType().getBitmap().isEmpty())
+		{  // this is a Bitmap Register fetch cycle
+			mbArrayLen = 1;
+		}
 		//check time to live data cashing: TODO/hf: change cashing 
 		//if ((! aDataPoint.isSetTimeToLive())
 		//|| (System.currentTimeMillis() > (aDataPoint.getLastAccessTime() + aDataPoint.getTimeToLive()) ))

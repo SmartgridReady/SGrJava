@@ -2265,7 +2265,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrBasicGenDataPointTypeType_Bit() {
+	public EAttribute getSGrBasicGenDataPointTypeType_Bitmap() {
         return (EAttribute)getSGrBasicGenDataPointTypeType().getEStructuralFeatures().get(0);
 	}
 
@@ -2580,7 +2580,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrDataPointDescriptionType_Lenght() {
+	public EAttribute getSGrDataPointDescriptionType_ArrLen() {
         return (EAttribute)getSGrDataPointDescriptionType().getEStructuralFeatures().get(1);
 	}
 
@@ -2590,7 +2590,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrDataPointDescriptionType_Enum2ArrIndex() {
+	public EReference getSGrDataPointDescriptionType_Enum2bitmapIndex() {
         return (EReference)getSGrDataPointDescriptionType().getEStructuralFeatures().get(2);
 	}
 
@@ -3300,7 +3300,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrModbusDataPointDescriptionType_Lenght() {
+	public EAttribute getSGrModbusDataPointDescriptionType_ArrLen() {
         return (EAttribute)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(1);
 	}
 
@@ -3310,7 +3310,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrModbusDataPointDescriptionType_Enum2ArrIndex() {
+	public EReference getSGrModbusDataPointDescriptionType_Enum2bitmapIndex() {
         return (EReference)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(2);
 	}
 
