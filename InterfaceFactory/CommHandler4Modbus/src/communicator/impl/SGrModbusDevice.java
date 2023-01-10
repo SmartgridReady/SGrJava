@@ -227,6 +227,8 @@ public class SGrModbusDevice {
 		return new SGrBasicGenDataPointTypeType[] {};
 	}
 	
+	
+	
 	// Read an array of values
 	private SGrBasicGenDataPointTypeType[] prv_getValByGDPType(
 		SGrModbusFunctionalProfileType aProfile,
@@ -255,8 +257,8 @@ public class SGrModbusDevice {
 			mbArrayLen = 1;
 			arrayLen = aDataPoint.getDataPoint().getArrLen();
 		}
-		//check time to live data cashing: TODO/hf: change cashing 
-		//if ((! aDataPoint.isSetTimeToLive())
+		//check time to live data cashing: TODO/hf: enhance cashing for arrays 
+		//if ((! aDataPoint.isSetTimeToLive())  
 		//|| (System.currentTimeMillis() > (aDataPoint.getLastAccessTime() + aDataPoint.getTimeToLive()) ))
 		//{
 			int size = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();		
@@ -295,11 +297,12 @@ public class SGrModbusDevice {
 			   aDataPoint.setLastAccessTime(System.currentTimeMillis());
 			//get just polled data value
 			return resultList.toArray(new SGrBasicGenDataPointTypeType[0]);	
-		/*}   To be removed by hf after modifying cash procedures
+	/*	}   
 		// get cashed data value
-		// TODO/cb organize cashing  & type conversion from aDataPoint.
-		 SGrBasicGenDataPointTypeType retVal[] = null;
-		return (retVal);	 */
+		// TODO/cb / hf organize cashing  & type conversion from aDataPoint arrays.
+		List<SGrBasicGenDataPointTypeType> CashedList = new ArrayList<>();
+		CashedList.add(aDataPoint.getDataPoint().getBasicDataType());
+		return CashedList.toArray(new SGrBasicGenDataPointTypeType[0]);	 */
 }
 
 
@@ -315,7 +318,7 @@ public class SGrModbusDevice {
 		float fVal = (float) 0.0;
 
 		//SGrBasicGenDataPointTypeType RetVal = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();   //evalGenDataType(aDataPoint,arrayLen);	
+		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();   ;	
 		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
 		
 		//if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
@@ -440,7 +443,7 @@ public class SGrModbusDevice {
 					bVal = true;
 			if (dGenType.getBitmap().size()<= arrOffset )
 				dGenType.getBitmap().add(false);
-			dGenType.getBitmap().set(0, bVal);
+			dGenType.getBitmap().set(arrOffset, bVal);
 			}
 		}
 		else if (dGenType.isSetBoolean()) {
@@ -1207,27 +1210,5 @@ public class SGrModbusDevice {
 
 		return rval;
 	}
-	
-/* TODO: delete
-	private SGrBasicGenDataPointTypeType evalGenDataType(SGrModbusDataPointType aDataPoint, int arrayLen) {
-		
-		SGrDataPointDescriptionType descType = aDataPoint.getDataPoint();
-		if ((descType.getBasicDataType() != null) && (arrayLen==1)) {
-			return descType.getBasicDataType();
-		} else if (descType.getBasicArrayDataType() != null) {
-			return descType.getBasicArrayDataType().getType();
-		}
-		return null;
-	}
-	
-	private SGrBasicGenDataPointTypeType evalModbusDataType(SGrModbusDataPointType aDataPoint, int arrayLen) {
-		SGrModbusDataPointDescriptionType descType = aDataPoint.getModbusDataPoint().get(0);
-		if ((descType.getModbusDataType() != null) && (arrayLen==1)) {
-			return descType.getModbusDataType();
-		} else if (descType.getModbusArrayDataType().getType() != null) {
-			return descType.getModbusArrayDataType().getType();
-		}
-		return null;
-	} 
-	*/
+
 }

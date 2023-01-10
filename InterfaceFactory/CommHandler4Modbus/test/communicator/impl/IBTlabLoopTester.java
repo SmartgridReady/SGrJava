@@ -74,9 +74,9 @@ public class IBTlabLoopTester {
 	private static int devOMCCIWallboxExceptions = 0;
 	
 	// device selection
-	private static boolean  devABBMeterTestIsOn = true; 
+	private static boolean  devABBMeterTestIsOn = false; 
 	private static boolean  devVGT_SGCPTestIsOn = false; 
-	private static boolean  devFroniusSymoTestIsOn = false; 
+	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = false; 
 	// TestBox
 	private static boolean  devTB_ABBMeterTestIsOn = false; 
@@ -777,13 +777,14 @@ public class IBTlabLoopTester {
 									
 								 
 								 System.out.printf("  Status  EvenList1 %n");
-								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList1").getInt32U();
-								 System.out.printf("   StatusRegister :         " + l + " %n");
+								// l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList1").getInt32U();
+								// System.out.printf("   StatusRegister :         " + l + " %n");
 							     Thread.sleep(25);
 								 System.out.printf("    EventList 1: isTrue =  ");
 						     	 b = devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT0_VALUE].getBitmap().get(0);
 								 if (b)  System.out.printf("BIT0, ") ;
 								Thread.sleep(25);
+								 // TODO: enable test when array datapoint isntances are welected
 								 b= devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT1_VALUE].getBitmap().get(0);
 								 if (b)  System.out.printf("BIT1, ") ;
 								 Thread.sleep(25);
@@ -841,6 +842,7 @@ public class IBTlabLoopTester {
 								 b= devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList1")[SGrBool2BitRankType.BIT19_VALUE].getBitmap().get(0);
 								 if (b)  System.out.printf("BIT19, ") ;
 								 Thread.sleep(25);
+								 //*/
 								 System.out.printf("%n");
 								 // REM: array type is preliminary  
 								 System.out.printf("  Status EvenList2 %n");
@@ -848,6 +850,8 @@ public class IBTlabLoopTester {
 								 b= devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList2")[SGrBool2BitRankType.BIT0_VALUE].getBitmap().get(0);
 								 if (b)  System.out.printf("BIT0, ") ;
 								 Thread.sleep(25);
+
+								 /* TODO: enable test when array datapoint isntances are welected
 								 b= devFroniusSymo.getValArrByGDPType("SunspInvModel","EventList2")[SGrBool2BitRankType.BIT1_VALUE].getBitmap().get(0);
 								 if (b)  System.out.printf("BIT1, ") ;
 								 Thread.sleep(25);
@@ -907,6 +911,7 @@ public class IBTlabLoopTester {
 								 Thread.sleep(25);
 								 System.out.printf("%n");
 								 Thread.sleep(25);
+								 */
 								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList1").getInt32U();
 								 System.out.printf("   StatusRegister :         " + l + " %n");
 							 }
