@@ -643,7 +643,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/flexAssistance"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrBasicGenDataPointTypeType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/bitmap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrBasicGenDataPointTypeType/enum2bitmapIndex"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/boolean"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/int8"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBasicGenDataPointTypeType/int16"/>
@@ -672,7 +672,6 @@
     <genClasses ecoreClass="v0.ecore#//SGrDataPointDescriptionType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/basicDataType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDataPointDescriptionType/arrLen"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/enum2bitmapIndex"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/dpNameList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/dpLegibDesc"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDataPointDescriptionType/dpPrgDesc"/>

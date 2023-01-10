@@ -1156,13 +1156,13 @@ public interface V0Package extends EPackage {
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE = 16;
 
 	/**
-	 * The feature id for the '<em><b>Bitmap</b></em>' attribute list.
+	 * The feature id for the '<em><b>Enum2bitmap Index</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BITMAP = 0;
+	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM2BITMAP_INDEX = 0;
 
 	/**
 	 * The feature id for the '<em><b>Boolean</b></em>' attribute.
@@ -1730,22 +1730,13 @@ public interface V0Package extends EPackage {
 	int SGR_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN = 1;
 
 	/**
-	 * The feature id for the '<em><b>Enum2bitmap Index</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX = 2;
-
-	/**
 	 * The feature id for the '<em><b>Dp Name List</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST = 3;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST = 2;
 
 	/**
 	 * The feature id for the '<em><b>Dp Legib Desc</b></em>' containment reference list.
@@ -1754,7 +1745,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC = 4;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC = 3;
 
 	/**
 	 * The feature id for the '<em><b>Dp Prg Desc</b></em>' containment reference list.
@@ -1763,7 +1754,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESC = 5;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE__DP_PRG_DESC = 4;
 
 	/**
 	 * The feature id for the '<em><b>Datapoint Name</b></em>' attribute.
@@ -1772,7 +1763,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__DATAPOINT_NAME = 6;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE__DATAPOINT_NAME = 5;
 
 	/**
 	 * The feature id for the '<em><b>Mro Visibility Indicator</b></em>' attribute.
@@ -1781,7 +1772,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR = 7;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR = 6;
 
 	/**
 	 * The feature id for the '<em><b>Rwp Datadirection</b></em>' attribute.
@@ -1790,7 +1781,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__RWP_DATADIRECTION = 8;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE__RWP_DATADIRECTION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' attribute.
@@ -1799,7 +1790,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE__UNIT = 9;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE__UNIT = 8;
 
 	/**
 	 * The number of structural features of the '<em>SGr Data Point Description Type</em>' class.
@@ -1808,7 +1799,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DATA_POINT_DESCRIPTION_TYPE_FEATURE_COUNT = 10;
+	int SGR_DATA_POINT_DESCRIPTION_TYPE_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>SGr Data Point Description Type</em>' class.
@@ -2485,22 +2476,13 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN = 1;
 
 	/**
-	 * The feature id for the '<em><b>Enum2bitmap Index</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX = 2;
-
-	/**
 	 * The feature id for the '<em><b>Modbus First Register Reference</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE = 3;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Dp Size Nr Registers</b></em>' attribute.
@@ -2509,7 +2491,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_SIZE_NR_REGISTERS = 4;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_SIZE_NR_REGISTERS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Bitmask</b></em>' attribute.
@@ -2518,7 +2500,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__BITMASK = 5;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__BITMASK = 4;
 
 	/**
 	 * The feature id for the '<em><b>Master Functions Supported</b></em>' attribute list.
@@ -2527,7 +2509,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MASTER_FUNCTIONS_SUPPORTED = 6;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MASTER_FUNCTIONS_SUPPORTED = 5;
 
 	/**
 	 * The feature id for the '<em><b>Modbus JMES Path</b></em>' containment reference.
@@ -2536,7 +2518,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_JMES_PATH = 7;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_JMES_PATH = 6;
 
 	/**
 	 * The number of structural features of the '<em>SGr Modbus Data Point Description Type</em>' class.
@@ -2545,7 +2527,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE_FEATURE_COUNT = 8;
+	int SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>SGr Modbus Data Point Description Type</em>' class.
@@ -2612,13 +2594,13 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Time Sync Block Ref Index</b></em>' attribute.
+	 * The feature id for the '<em><b>Block Cash Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 3;
+	int SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME = SGR_DATA_POINT_BASE_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference list.
@@ -2739,13 +2721,22 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_DEVICE_FRAME__FP_LIST_ELEMENT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Time Sync Block Notification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_MODBUS_DEVICE_FRAME__TIME_SYNC_BLOCK_NOTIFICATION = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Network Connection State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_FRAME__NETWORK_CONNECTION_STATE = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 3;
+	int SGR_MODBUS_DEVICE_FRAME__NETWORK_CONNECTION_STATE = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>SGr Modbus Device Frame</em>' class.
@@ -2754,7 +2745,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_DEVICE_FRAME_FEATURE_COUNT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 4;
+	int SGR_MODBUS_DEVICE_FRAME_FEATURE_COUNT = SGR_DEVICE_BASE_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>SGr Modbus Device Frame</em>' class.
@@ -2794,22 +2785,13 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__GEN_ATTRIBUTE = SGR_FUNCTIONAL_PROFILE_BASE_TYPE__GEN_ATTRIBUTE;
 
 	/**
-	 * The feature id for the '<em><b>Time Sync Block Notification</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__TIME_SYNC_BLOCK_NOTIFICATION = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Modbus Attr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 1;
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__MODBUS_ATTR = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dp List Element</b></em>' containment reference list.
@@ -2818,7 +2800,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 2;
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE__DP_LIST_ELEMENT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>SGr Modbus Functional Profile Type</em>' class.
@@ -2827,7 +2809,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE_FEATURE_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 3;
+	int SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE_FEATURE_COUNT = SGR_FUNCTIONAL_PROFILE_BASE_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>SGr Modbus Functional Profile Type</em>' class.
@@ -3945,13 +3927,13 @@ public interface V0Package extends EPackage {
 	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__REGISTER_TYPE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Cash Data Buffer</b></em>' attribute list.
+	 * The feature id for the '<em><b>Block Cash Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__CASH_DATA_BUFFER = 4;
+	int SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE__BLOCK_CASH_NAME = 4;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -6559,15 +6541,15 @@ public interface V0Package extends EPackage {
 	EClass getSGrBasicGenDataPointTypeType();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getBitmap <em>Bitmap</em>}'.
+	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Bitmap</em>'.
-	 * @see com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getBitmap()
+	 * @return the meta object for the containment reference '<em>Enum2bitmap Index</em>'.
+	 * @see com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getEnum2bitmapIndex()
 	 * @see #getSGrBasicGenDataPointTypeType()
 	 * @generated
 	 */
-	EAttribute getSGrBasicGenDataPointTypeType_Bitmap();
+	EReference getSGrBasicGenDataPointTypeType_Enum2bitmapIndex();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBoolean <em>Boolean</em>}'.
@@ -6893,17 +6875,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSGrDataPointDescriptionType_ArrLen();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Enum2bitmap Index</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2bitmapIndex()
-	 * @see #getSGrDataPointDescriptionType()
-	 * @generated
-	 */
-	EReference getSGrDataPointDescriptionType_Enum2bitmapIndex();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpNameList <em>Dp Name List</em>}'.
@@ -7644,17 +7615,6 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrModbusDataPointDescriptionType_ArrLen();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Enum2bitmap Index</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getEnum2bitmapIndex()
-	 * @see #getSGrModbusDataPointDescriptionType()
-	 * @generated
-	 */
-	EReference getSGrModbusDataPointDescriptionType_Enum2bitmapIndex();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusFirstRegisterReference <em>Modbus First Register Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7753,15 +7713,15 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrModbusDataPointType_TimeToLive();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeSyncBlockRefIndex <em>Time Sync Block Ref Index</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getBlockCashName <em>Block Cash Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Time Sync Block Ref Index</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeSyncBlockRefIndex()
+	 * @return the meta object for the attribute '<em>Block Cash Name</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDataPointType#getBlockCashName()
 	 * @see #getSGrModbusDataPointType()
 	 * @generated
 	 */
-	EAttribute getSGrModbusDataPointType_TimeSyncBlockRefIndex();
+	EAttribute getSGrModbusDataPointType_BlockCashName();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getModbusAttr <em>Modbus Attr</em>}'.
@@ -7818,6 +7778,17 @@ public interface V0Package extends EPackage {
 	EReference getSGrModbusDeviceFrame_FpListElement();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Time Sync Block Notification</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusDeviceFrame#getTimeSyncBlockNotification()
+	 * @see #getSGrModbusDeviceFrame()
+	 * @generated
+	 */
+	EReference getSGrModbusDeviceFrame_TimeSyncBlockNotification();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getNetworkConnectionState <em>Network Connection State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7837,17 +7808,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EClass getSGrModbusFunctionalProfileType();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Time Sync Block Notification</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getTimeSyncBlockNotification()
-	 * @see #getSGrModbusFunctionalProfileType()
-	 * @generated
-	 */
-	EReference getSGrModbusFunctionalProfileType_TimeSyncBlockNotification();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrModbusFunctionalProfileType#getModbusAttr <em>Modbus Attr</em>}'.
@@ -8724,15 +8684,15 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrTimeSyncBlockNotificationType_RegisterType();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getCashDataBuffer <em>Cash Data Buffer</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getBlockCashName <em>Block Cash Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Cash Data Buffer</em>'.
-	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getCashDataBuffer()
+	 * @return the meta object for the attribute '<em>Block Cash Name</em>'.
+	 * @see com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getBlockCashName()
 	 * @see #getSGrTimeSyncBlockNotificationType()
 	 * @generated
 	 */
-	EAttribute getSGrTimeSyncBlockNotificationType_CashDataBuffer();
+	EAttribute getSGrTimeSyncBlockNotificationType_BlockCashName();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType#getSize <em>Size</em>}'.

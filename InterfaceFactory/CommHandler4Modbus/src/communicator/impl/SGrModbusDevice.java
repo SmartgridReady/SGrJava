@@ -252,12 +252,8 @@ public class SGrModbusDevice {
 		
 		int mbArrayLen = arrayLen;
 		
-		if (!aDataPoint.getDataPoint().getBasicDataType().getBitmap().isEmpty())
-		{  // this is a Bitmap Register fetch cycle:  Bits must be read into generic uint and boolean array data Type
-			mbArrayLen = 1;
-			arrayLen = aDataPoint.getDataPoint().getArrLen();
-		}
-		//check time to live data cashing: TODO/hf: enhance cashing for arrays 
+
+		//check time to live data cashing: TODO/hf: add cashing for arrays 
 		//if ((! aDataPoint.isSetTimeToLive())  
 		//|| (System.currentTimeMillis() > (aDataPoint.getLastAccessTime() + aDataPoint.getTimeToLive()) ))
 		//{
@@ -299,7 +295,7 @@ public class SGrModbusDevice {
 			return resultList.toArray(new SGrBasicGenDataPointTypeType[0]);	
 	/*	}   
 		// get cashed data value
-		// TODO/cb / hf organize cashing  & type conversion from aDataPoint arrays.
+		// TODO/hf organize cashing  & type conversion from aDataPoint arrays.
 		List<SGrBasicGenDataPointTypeType> CashedList = new ArrayList<>();
 		CashedList.add(aDataPoint.getDataPoint().getBasicDataType());
 		return CashedList.toArray(new SGrBasicGenDataPointTypeType[0]);	 */
@@ -364,39 +360,34 @@ public class SGrModbusDevice {
 			// do we have Layer 6 deviations ?
 	        if (l6dev >= 0  )   mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
 
-	        int lpOffs = arrOffset;
-	        
-	        if (!dGenType.getBitmap().isEmpty())  lpOffs = 0;
-	          
-			{
+
 			
-	            for (int u = 0; u < size; u++) {
-	        	if (u == 0)
-					RegRes = mbregresp[u + lpOffs*size];
+            for (int u = 0; u < size; u++) {
+            	if (u == 0)
+					RegRes = mbregresp[u + arrOffset*size];
 				else {
 					RegRes = RegRes << 16;
-					RegRes = RegRes | (mbregresp[u + lpOffs*size] & 0x0000ffff);
+					RegRes = RegRes | (mbregresp[u + arrOffset*size] & 0x0000ffff);
 				}
 				// TODO: finalize this. Is it really needed?
 				
 				if (size == 2)
 			    {
-			    	singleResp[0] = mbregresp[0 + lpOffs*size];
-			    	singleResp[1] = mbregresp[1 + lpOffs*size];
+			    	singleResp[0] = mbregresp[0 + arrOffset*size];
+			    	singleResp[1] = mbregresp[1 + arrOffset*size];
 			    } 
 			    else if (size == 4)
 			    {
-			    	doubleResp[0] = mbregresp[0 + lpOffs*size];
-			    	doubleResp[1] = mbregresp[1 + lpOffs*size];
-			    	doubleResp[2] = mbregresp[2 + lpOffs*size];
-			    	doubleResp[3] = mbregresp[3 + lpOffs*size];
+			    	doubleResp[0] = mbregresp[0 + arrOffset*size];
+			    	doubleResp[1] = mbregresp[1 + arrOffset*size];
+			    	doubleResp[2] = mbregresp[2 + arrOffset*size];
+			    	doubleResp[3] = mbregresp[3 + arrOffset*size];
 			    }
 			    else if (size > 2)
 			    {
 			    	
 			    }
-	         }
-          }
+	        }
 	    }
 
 		if (bGotDiscrete) { // TODO: manage discrete block conversion
@@ -407,44 +398,19 @@ public class SGrModbusDevice {
 		// TODO: Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
 		
-		if (!dGenType.getBitmap().isEmpty())
+		if (dGenType.getEnum2bitmapIndex()!=null)
 		{
-			switch (arrayLen)
-			{
-			case 8:
-				RegRes = ((long) Math.abs(mbregresp[0] &0xff));
-				short shVal = (byte) Math.abs(RegRes);
-				dGenType.setInt8U(shVal);
-				if ((RegRes & (1<<arrOffset))!=0)
-					RegRes=1;
-				break;
-			case 16:
-				int iVal = (int) Math.abs(RegRes);
-				dGenType.setInt16U(iVal);
-				if ((RegRes & (1<<arrOffset))!=0)
-					RegRes=1;
-				break;
-			case 32:	
-				RegRes =  (((long) mbregresp[1])<<16) & ((long) 0xffff0000);
-				RegRes = (long) Math.abs(RegRes + (long) mbregresp[0]);
-				dGenType.setInt32U(RegRes);
-				if ((RegRes & (1<<arrOffset))!=0)
-					RegRes=1;
-				else
-					RegRes=0;
-				break;
-			}
-			boolean bVal = false;	
-			//TODO:delete deb
-			RegRes = arrOffset & 1;
- 			//TODO:delete deb end
-			if (bGotRegisters) {
-				if (RegRes != 0)
-					bVal = true;
-			if (dGenType.getBitmap().size()<= arrOffset )
-				dGenType.getBitmap().add(false);
-			dGenType.getBitmap().set(arrOffset, bVal);
-			}
+			RegRes = ((long) Math.abs(mbregresp[0] &0xff));
+			short shVal = (byte) Math.abs(RegRes);
+			dGenType.setInt8U(shVal);
+
+			int iVal = (int) Math.abs(RegRes);
+			dGenType.setInt16U(iVal);
+			RegRes =  (((long) mbregresp[1])<<16) & ((long) 0xffff0000);
+			RegRes = (long) Math.abs(RegRes + (long) mbregresp[0]);
+			// DEBUG
+			RegRes = 0xaaaaaaaa;
+			dGenType.setInt32U(RegRes);
 		}
 		else if (dGenType.isSetBoolean()) {
 			// TODO: add bus data

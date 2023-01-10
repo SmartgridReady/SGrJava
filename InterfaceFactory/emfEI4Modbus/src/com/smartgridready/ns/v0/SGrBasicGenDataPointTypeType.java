@@ -6,8 +6,6 @@ import java.math.BigInteger;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -29,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getBitmap <em>Bitmap</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBoolean <em>Boolean</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getInt8 <em>Int8</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getInt16 <em>Int16</em>}</li>
@@ -52,17 +50,31 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SGrBasicGenDataPointTypeType extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Bitmap</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Boolean}.
+	 * Returns the value of the '<em><b>Enum2bitmap Index</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bitmap</em>' attribute list.
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenDataPointTypeType_Bitmap()
-	 * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.Boolean" upper="32"
-	 *        extendedMetaData="kind='element' name='bitmap' namespace='##targetNamespace'"
+	 * <!-- begin-model-doc -->
+	 * bitmap for Registers (typical: Status Bits). For to be visible as generic boolean array or unsigned integer mapped in parallel towards one data single point definition. Depending on the TransportService,  this requires specialized sw coding.
+	 *           
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Enum2bitmap Index</em>' containment reference.
+	 * @see #setEnum2bitmapIndex(SGrEnumListType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenDataPointTypeType_Enum2bitmapIndex()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='enum2bitmapIndex' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	EList<Boolean> getBitmap();
+	SGrEnumListType getEnum2bitmapIndex();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enum2bitmap Index</em>' containment reference.
+	 * @see #getEnum2bitmapIndex()
+	 * @generated
+	 */
+	void setEnum2bitmapIndex(SGrEnumListType value);
 
 	/**
 	 * Returns the value of the '<em><b>Boolean</b></em>' attribute.

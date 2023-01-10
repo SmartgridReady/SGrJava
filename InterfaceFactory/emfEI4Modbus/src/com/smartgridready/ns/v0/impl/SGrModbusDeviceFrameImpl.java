@@ -7,6 +7,7 @@ import com.smartgridready.ns.v0.SGrAttr4ModbusType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.SGrModbusFunctionalProfileType;
 import com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType;
+import com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType;
 import com.smartgridready.ns.v0.V0Package;
 
 import java.util.Collection;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceFrameImpl#getModbusAttr <em>Modbus Attr</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceFrameImpl#getModbusInterfaceDesc <em>Modbus Interface Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceFrameImpl#getFpListElement <em>Fp List Element</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceFrameImpl#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDeviceFrameImpl#getNetworkConnectionState <em>Network Connection State</em>}</li>
  * </ul>
  *
@@ -70,6 +72,16 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 	 * @ordered
 	 */
 	protected EList<SGrModbusFunctionalProfileType> fpListElement;
+
+	/**
+	 * The cached value of the '{@link #getTimeSyncBlockNotification() <em>Time Sync Block Notification</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeSyncBlockNotification()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SGrTimeSyncBlockNotificationType> timeSyncBlockNotification;
 
 	/**
 	 * The cached value of the '{@link #getNetworkConnectionState() <em>Network Connection State</em>}' containment reference.
@@ -209,6 +221,19 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 	 * @generated
 	 */
 	@Override
+	public EList<SGrTimeSyncBlockNotificationType> getTimeSyncBlockNotification() {
+		if (timeSyncBlockNotification == null) {
+			timeSyncBlockNotification = new EObjectContainmentEList<SGrTimeSyncBlockNotificationType>(SGrTimeSyncBlockNotificationType.class, this, V0Package.SGR_MODBUS_DEVICE_FRAME__TIME_SYNC_BLOCK_NOTIFICATION);
+		}
+		return timeSyncBlockNotification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NetworkConnectionStateType getNetworkConnectionState() {
 		return networkConnectionState;
 	}
@@ -262,6 +287,8 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 				return basicSetModbusInterfaceDesc(null, msgs);
 			case V0Package.SGR_MODBUS_DEVICE_FRAME__FP_LIST_ELEMENT:
 				return ((InternalEList<?>)getFpListElement()).basicRemove(otherEnd, msgs);
+			case V0Package.SGR_MODBUS_DEVICE_FRAME__TIME_SYNC_BLOCK_NOTIFICATION:
+				return ((InternalEList<?>)getTimeSyncBlockNotification()).basicRemove(otherEnd, msgs);
 			case V0Package.SGR_MODBUS_DEVICE_FRAME__NETWORK_CONNECTION_STATE:
 				return basicSetNetworkConnectionState(null, msgs);
 		}
@@ -282,6 +309,8 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 				return getModbusInterfaceDesc();
 			case V0Package.SGR_MODBUS_DEVICE_FRAME__FP_LIST_ELEMENT:
 				return getFpListElement();
+			case V0Package.SGR_MODBUS_DEVICE_FRAME__TIME_SYNC_BLOCK_NOTIFICATION:
+				return getTimeSyncBlockNotification();
 			case V0Package.SGR_MODBUS_DEVICE_FRAME__NETWORK_CONNECTION_STATE:
 				return getNetworkConnectionState();
 		}
@@ -307,6 +336,10 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 				getFpListElement().clear();
 				getFpListElement().addAll((Collection<? extends SGrModbusFunctionalProfileType>)newValue);
 				return;
+			case V0Package.SGR_MODBUS_DEVICE_FRAME__TIME_SYNC_BLOCK_NOTIFICATION:
+				getTimeSyncBlockNotification().clear();
+				getTimeSyncBlockNotification().addAll((Collection<? extends SGrTimeSyncBlockNotificationType>)newValue);
+				return;
 			case V0Package.SGR_MODBUS_DEVICE_FRAME__NETWORK_CONNECTION_STATE:
 				setNetworkConnectionState((NetworkConnectionStateType)newValue);
 				return;
@@ -331,6 +364,9 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 			case V0Package.SGR_MODBUS_DEVICE_FRAME__FP_LIST_ELEMENT:
 				getFpListElement().clear();
 				return;
+			case V0Package.SGR_MODBUS_DEVICE_FRAME__TIME_SYNC_BLOCK_NOTIFICATION:
+				getTimeSyncBlockNotification().clear();
+				return;
 			case V0Package.SGR_MODBUS_DEVICE_FRAME__NETWORK_CONNECTION_STATE:
 				setNetworkConnectionState((NetworkConnectionStateType)null);
 				return;
@@ -352,6 +388,8 @@ public class SGrModbusDeviceFrameImpl extends SGrDeviceBaseTypeImpl implements S
 				return modbusInterfaceDesc != null;
 			case V0Package.SGR_MODBUS_DEVICE_FRAME__FP_LIST_ELEMENT:
 				return fpListElement != null && !fpListElement.isEmpty();
+			case V0Package.SGR_MODBUS_DEVICE_FRAME__TIME_SYNC_BLOCK_NOTIFICATION:
+				return timeSyncBlockNotification != null && !timeSyncBlockNotification.isEmpty();
 			case V0Package.SGR_MODBUS_DEVICE_FRAME__NETWORK_CONNECTION_STATE:
 				return networkConnectionState != null;
 		}

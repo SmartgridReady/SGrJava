@@ -4,7 +4,6 @@ package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
-import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrLegibDocumentationType;
 import com.smartgridready.ns.v0.SGrMROPresenceLevelIndicationType;
 import com.smartgridready.ns.v0.SGrNamelistType;
@@ -38,7 +37,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getBasicDataType <em>Basic Data Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getArrLen <em>Arr Len</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpNameList <em>Dp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpLegibDesc <em>Dp Legib Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDataPointDescriptionTypeImpl#getDpPrgDesc <em>Dp Prg Desc</em>}</li>
@@ -89,16 +87,6 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * @ordered
 	 */
 	protected boolean arrLenESet;
-
-	/**
-	 * The cached value of the '{@link #getEnum2bitmapIndex() <em>Enum2bitmap Index</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEnum2bitmapIndex()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrEnumListType enum2bitmapIndex;
 
 	/**
 	 * The cached value of the '{@link #getDpNameList() <em>Dp Name List</em>}' containment reference.
@@ -357,51 +345,6 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
-	public SGrEnumListType getEnum2bitmapIndex() {
-		return enum2bitmapIndex;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEnum2bitmapIndex(SGrEnumListType newEnum2bitmapIndex, NotificationChain msgs) {
-		SGrEnumListType oldEnum2bitmapIndex = enum2bitmapIndex;
-		enum2bitmapIndex = newEnum2bitmapIndex;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX, oldEnum2bitmapIndex, newEnum2bitmapIndex);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setEnum2bitmapIndex(SGrEnumListType newEnum2bitmapIndex) {
-		if (newEnum2bitmapIndex != enum2bitmapIndex) {
-			NotificationChain msgs = null;
-			if (enum2bitmapIndex != null)
-				msgs = ((InternalEObject)enum2bitmapIndex).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX, null, msgs);
-			if (newEnum2bitmapIndex != null)
-				msgs = ((InternalEObject)newEnum2bitmapIndex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX, null, msgs);
-			msgs = basicSetEnum2bitmapIndex(newEnum2bitmapIndex, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX, newEnum2bitmapIndex, newEnum2bitmapIndex));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public SGrNamelistType getDpNameList() {
 		return dpNameList;
 	}
@@ -650,8 +593,6 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 		switch (featureID) {
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__BASIC_DATA_TYPE:
 				return basicSetBasicDataType(null, msgs);
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
-				return basicSetEnum2bitmapIndex(null, msgs);
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				return basicSetDpNameList(null, msgs);
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
@@ -674,8 +615,6 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 				return getBasicDataType();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
 				return getArrLen();
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
-				return getEnum2bitmapIndex();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				return getDpNameList();
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:
@@ -708,9 +647,6 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 				return;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
 				setArrLen((Integer)newValue);
-				return;
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
-				setEnum2bitmapIndex((SGrEnumListType)newValue);
 				return;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				setDpNameList((SGrNamelistType)newValue);
@@ -753,9 +689,6 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
 				unsetArrLen();
 				return;
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
-				setEnum2bitmapIndex((SGrEnumListType)null);
-				return;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				setDpNameList((SGrNamelistType)null);
 				return;
@@ -793,8 +726,6 @@ public class SGrDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Containe
 				return basicDataType != null;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
 				return isSetArrLen();
-			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__ENUM2BITMAP_INDEX:
-				return enum2bitmapIndex != null;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_NAME_LIST:
 				return dpNameList != null;
 			case V0Package.SGR_DATA_POINT_DESCRIPTION_TYPE__DP_LEGIB_DESC:

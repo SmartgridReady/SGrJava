@@ -48,23 +48,7 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	_2REG_BASE1000_H2L(1, "_2RegBase1000H2L", "2RegBase1000_H2L"),
-
-	/**
-	 * The '<em><b>Bitmap Register</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *             
-	 *   <documentation>bitmap for Registers (typical: Status Bits). For to be visible as generic boolean array or unsigned integer mapped in parallel towards one data single point definition. To manage this like a block transfer for the booleans is highly recommended.</documentation>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @see #BITMAP_REGISTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BITMAP_REGISTER(2, "bitmapRegister", "bitmapRegister");
+	_2REG_BASE1000_H2L(1, "_2RegBase1000H2L", "2RegBase1000_H2L");
 
 	/**
 	 * The '<em><b>2Reg Base1000 L2H</b></em>' literal value.
@@ -98,23 +82,6 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 	public static final int _2REG_BASE1000_H2L_VALUE = 1;
 
 	/**
-	 * The '<em><b>Bitmap Register</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *             
-	 *   <documentation>bitmap for Registers (typical: Status Bits). For to be visible as generic boolean array or unsigned integer mapped in parallel towards one data single point definition. To manage this like a block transfer for the booleans is highly recommended.</documentation>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @see #BITMAP_REGISTER
-	 * @model name="bitmapRegister"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BITMAP_REGISTER_VALUE = 2;
-
-	/**
 	 * An array of all the '<em><b>SGr Modbus Layer6 Deviation Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -124,7 +91,6 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 		new SGrModbusLayer6DeviationType[] {
 			_2REG_BASE1000_L2H,
 			_2REG_BASE1000_H2L,
-			BITMAP_REGISTER,
 		};
 
 	/**
@@ -183,7 +149,6 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 		switch (value) {
 			case _2REG_BASE1000_L2H_VALUE: return _2REG_BASE1000_L2H;
 			case _2REG_BASE1000_H2L_VALUE: return _2REG_BASE1000_H2L;
-			case BITMAP_REGISTER_VALUE: return BITMAP_REGISTER;
 		}
 		return null;
 	}

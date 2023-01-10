@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicDataType <em>Basic Data Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getArrLen <em>Arr Len</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpNameList <em>Dp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpLegibDesc <em>Dp Legib Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpPrgDesc <em>Dp Prg Desc</em>}</li>
@@ -115,29 +114,6 @@ public interface SGrDataPointDescriptionType extends EObject {
 	 * @generated
 	 */
 	boolean isSetArrLen();
-
-	/**
-	 * Returns the value of the '<em><b>Enum2bitmap Index</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enum2bitmap Index</em>' containment reference.
-	 * @see #setEnum2bitmapIndex(SGrEnumListType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_Enum2bitmapIndex()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='enum2bitmapIndex' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrEnumListType getEnum2bitmapIndex();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Enum2bitmap Index</em>' containment reference.
-	 * @see #getEnum2bitmapIndex()
-	 * @generated
-	 */
-	void setEnum2bitmapIndex(SGrEnumListType value);
 
 	/**
 	 * Returns the value of the '<em><b>Dp Name List</b></em>' containment reference.

@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getModbusDataPoint <em>Modbus Data Point</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getLastAccessTime <em>Last Access Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getTimeToLive <em>Time To Live</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getTimeSyncBlockRefIndex <em>Time Sync Block Ref Index</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getBlockCashName <em>Block Cash Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getModbusAttr <em>Modbus Attr</em>}</li>
  * </ul>
  *
@@ -109,33 +109,24 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	protected boolean timeToLiveESet;
 
 	/**
-	 * The default value of the '{@link #getTimeSyncBlockRefIndex() <em>Time Sync Block Ref Index</em>}' attribute.
+	 * The default value of the '{@link #getBlockCashName() <em>Block Cash Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTimeSyncBlockRefIndex()
+	 * @see #getBlockCashName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int TIME_SYNC_BLOCK_REF_INDEX_EDEFAULT = 0;
+	protected static final String BLOCK_CASH_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTimeSyncBlockRefIndex() <em>Time Sync Block Ref Index</em>}' attribute.
+	 * The cached value of the '{@link #getBlockCashName() <em>Block Cash Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTimeSyncBlockRefIndex()
+	 * @see #getBlockCashName()
 	 * @generated
 	 * @ordered
 	 */
-	protected int timeSyncBlockRefIndex = TIME_SYNC_BLOCK_REF_INDEX_EDEFAULT;
-
-	/**
-	 * This is true if the Time Sync Block Ref Index attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean timeSyncBlockRefIndexESet;
+	protected String blockCashName = BLOCK_CASH_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getModbusAttr() <em>Modbus Attr</em>}' containment reference list.
@@ -285,8 +276,8 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * @generated
 	 */
 	@Override
-	public int getTimeSyncBlockRefIndex() {
-		return timeSyncBlockRefIndex;
+	public String getBlockCashName() {
+		return blockCashName;
 	}
 
 	/**
@@ -295,38 +286,11 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * @generated
 	 */
 	@Override
-	public void setTimeSyncBlockRefIndex(int newTimeSyncBlockRefIndex) {
-		int oldTimeSyncBlockRefIndex = timeSyncBlockRefIndex;
-		timeSyncBlockRefIndex = newTimeSyncBlockRefIndex;
-		boolean oldTimeSyncBlockRefIndexESet = timeSyncBlockRefIndexESet;
-		timeSyncBlockRefIndexESet = true;
+	public void setBlockCashName(String newBlockCashName) {
+		String oldBlockCashName = blockCashName;
+		blockCashName = newBlockCashName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX, oldTimeSyncBlockRefIndex, timeSyncBlockRefIndex, !oldTimeSyncBlockRefIndexESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetTimeSyncBlockRefIndex() {
-		int oldTimeSyncBlockRefIndex = timeSyncBlockRefIndex;
-		boolean oldTimeSyncBlockRefIndexESet = timeSyncBlockRefIndexESet;
-		timeSyncBlockRefIndex = TIME_SYNC_BLOCK_REF_INDEX_EDEFAULT;
-		timeSyncBlockRefIndexESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX, oldTimeSyncBlockRefIndex, TIME_SYNC_BLOCK_REF_INDEX_EDEFAULT, oldTimeSyncBlockRefIndexESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetTimeSyncBlockRefIndex() {
-		return timeSyncBlockRefIndexESet;
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME, oldBlockCashName, blockCashName));
 	}
 
 	/**
@@ -372,8 +336,8 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 				return getLastAccessTime();
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
 				return getTimeToLive();
-			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX:
-				return getTimeSyncBlockRefIndex();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME:
+				return getBlockCashName();
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				return getModbusAttr();
 		}
@@ -399,8 +363,8 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
 				setTimeToLive((Long)newValue);
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX:
-				setTimeSyncBlockRefIndex((Integer)newValue);
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME:
+				setBlockCashName((String)newValue);
 				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				getModbusAttr().clear();
@@ -427,8 +391,8 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
 				unsetTimeToLive();
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX:
-				unsetTimeSyncBlockRefIndex();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME:
+				setBlockCashName(BLOCK_CASH_NAME_EDEFAULT);
 				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				getModbusAttr().clear();
@@ -451,8 +415,8 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 				return isSetLastAccessTime();
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
 				return isSetTimeToLive();
-			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_SYNC_BLOCK_REF_INDEX:
-				return isSetTimeSyncBlockRefIndex();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME:
+				return BLOCK_CASH_NAME_EDEFAULT == null ? blockCashName != null : !BLOCK_CASH_NAME_EDEFAULT.equals(blockCashName);
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				return modbusAttr != null && !modbusAttr.isEmpty();
 		}
@@ -473,8 +437,8 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 		if (lastAccessTimeESet) result.append(lastAccessTime); else result.append("<unset>");
 		result.append(", timeToLive: ");
 		if (timeToLiveESet) result.append(timeToLive); else result.append("<unset>");
-		result.append(", timeSyncBlockRefIndex: ");
-		if (timeSyncBlockRefIndexESet) result.append(timeSyncBlockRefIndex); else result.append("<unset>");
+		result.append(", blockCashName: ");
+		result.append(blockCashName);
 		result.append(')');
 		return result.toString();
 	}

@@ -1010,11 +1010,11 @@
       <details key="name" value="SGrBasicGenDataPointTypeType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bitmap" unique="false"
-        upperBound="32" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enum2bitmapIndex" eType="#//SGrEnumListType"
+        containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="bitmap"/>
+        <details key="name" value="enum2bitmapIndex"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1285,14 +1285,6 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="arrLen"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="enum2bitmapIndex" eType="#//SGrEnumListType"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="enum2bitmapIndex"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -2041,14 +2033,6 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="enum2bitmapIndex" eType="#//SGrEnumListType"
-        containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="enum2bitmapIndex"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modbusFirstRegisterReference"
         lowerBound="1" eType="#//TSGrModbusRegisterRef" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -2119,11 +2103,10 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeSyncBlockRefIndex"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="blockCashName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="timeSyncBlockRefIndex"/>
+        <details key="name" value="blockCashName"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -2166,6 +2149,15 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeSyncBlockNotification"
+        upperBound="-1" eType="#//SGrTimeSyncBlockNotificationType" containment="true"
+        resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="timeSyncBlockNotification"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="networkConnectionState"
         eType="#//NetworkConnectionStateType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -2180,15 +2172,6 @@
       <details key="name" value="SGrModbusFunctionalProfileType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="timeSyncBlockNotification"
-        upperBound="-1" eType="#//SGrTimeSyncBlockNotificationType" containment="true"
-        resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="timeSyncBlockNotification"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modbusAttr" eType="#//SGrAttr4ModbusType"
         containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -2259,7 +2242,6 @@
     </eAnnotations>
     <eLiterals name="_2RegBase1000L2H" literal="2RegBase1000_L2H"/>
     <eLiterals name="_2RegBase1000H2L" value="1" literal="2RegBase1000_H2L"/>
-    <eLiterals name="bitmapRegister" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrModbusLayer6DeviationTypeObject"
       instanceClassName="org.eclipse.emf.common.util.Enumerator">
@@ -3040,11 +3022,11 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cashDataBuffer" unique="false"
-        lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="blockCashName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="cashDataBuffer"/>
+        <details key="name" value="blockCashName"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>

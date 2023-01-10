@@ -2265,8 +2265,8 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrBasicGenDataPointTypeType_Bitmap() {
-        return (EAttribute)getSGrBasicGenDataPointTypeType().getEStructuralFeatures().get(0);
+	public EReference getSGrBasicGenDataPointTypeType_Enum2bitmapIndex() {
+        return (EReference)getSGrBasicGenDataPointTypeType().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2590,7 +2590,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrDataPointDescriptionType_Enum2bitmapIndex() {
+	public EReference getSGrDataPointDescriptionType_DpNameList() {
         return (EReference)getSGrDataPointDescriptionType().getEStructuralFeatures().get(2);
 	}
 
@@ -2600,7 +2600,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrDataPointDescriptionType_DpNameList() {
+	public EReference getSGrDataPointDescriptionType_DpLegibDesc() {
         return (EReference)getSGrDataPointDescriptionType().getEStructuralFeatures().get(3);
 	}
 
@@ -2610,7 +2610,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrDataPointDescriptionType_DpLegibDesc() {
+	public EReference getSGrDataPointDescriptionType_DpPrgDesc() {
         return (EReference)getSGrDataPointDescriptionType().getEStructuralFeatures().get(4);
 	}
 
@@ -2620,18 +2620,8 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrDataPointDescriptionType_DpPrgDesc() {
-        return (EReference)getSGrDataPointDescriptionType().getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getSGrDataPointDescriptionType_DatapointName() {
-        return (EAttribute)getSGrDataPointDescriptionType().getEStructuralFeatures().get(6);
+        return (EAttribute)getSGrDataPointDescriptionType().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -2641,7 +2631,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	@Override
 	public EAttribute getSGrDataPointDescriptionType_MroVisibilityIndicator() {
-        return (EAttribute)getSGrDataPointDescriptionType().getEStructuralFeatures().get(7);
+        return (EAttribute)getSGrDataPointDescriptionType().getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -2651,7 +2641,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	@Override
 	public EAttribute getSGrDataPointDescriptionType_RwpDatadirection() {
-        return (EAttribute)getSGrDataPointDescriptionType().getEStructuralFeatures().get(8);
+        return (EAttribute)getSGrDataPointDescriptionType().getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -2661,7 +2651,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	@Override
 	public EAttribute getSGrDataPointDescriptionType_Unit() {
-        return (EAttribute)getSGrDataPointDescriptionType().getEStructuralFeatures().get(9);
+        return (EAttribute)getSGrDataPointDescriptionType().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -3310,7 +3300,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrModbusDataPointDescriptionType_Enum2bitmapIndex() {
+	public EReference getSGrModbusDataPointDescriptionType_ModbusFirstRegisterReference() {
         return (EReference)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(2);
 	}
 
@@ -3320,18 +3310,8 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrModbusDataPointDescriptionType_ModbusFirstRegisterReference() {
-        return (EReference)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getSGrModbusDataPointDescriptionType_DpSizeNrRegisters() {
-        return (EAttribute)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(4);
+        return (EAttribute)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3341,7 +3321,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	@Override
 	public EAttribute getSGrModbusDataPointDescriptionType_Bitmask() {
-        return (EAttribute)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(5);
+        return (EAttribute)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -3351,7 +3331,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	@Override
 	public EAttribute getSGrModbusDataPointDescriptionType_MasterFunctionsSupported() {
-        return (EAttribute)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(6);
+        return (EAttribute)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -3361,7 +3341,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	@Override
 	public EReference getSGrModbusDataPointDescriptionType_ModbusJMESPath() {
-        return (EReference)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(7);
+        return (EReference)getSGrModbusDataPointDescriptionType().getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -3413,7 +3393,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrModbusDataPointType_TimeSyncBlockRefIndex() {
+	public EAttribute getSGrModbusDataPointType_BlockCashName() {
         return (EAttribute)getSGrModbusDataPointType().getEStructuralFeatures().get(3);
 	}
 
@@ -3476,8 +3456,18 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrModbusDeviceFrame_NetworkConnectionState() {
+	public EReference getSGrModbusDeviceFrame_TimeSyncBlockNotification() {
         return (EReference)getSGrModbusDeviceFrame().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSGrModbusDeviceFrame_NetworkConnectionState() {
+        return (EReference)getSGrModbusDeviceFrame().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -3499,7 +3489,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrModbusFunctionalProfileType_TimeSyncBlockNotification() {
+	public EReference getSGrModbusFunctionalProfileType_ModbusAttr() {
         return (EReference)getSGrModbusFunctionalProfileType().getEStructuralFeatures().get(0);
 	}
 
@@ -3509,18 +3499,8 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrModbusFunctionalProfileType_ModbusAttr() {
-        return (EReference)getSGrModbusFunctionalProfileType().getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getSGrModbusFunctionalProfileType_DpListElement() {
-        return (EReference)getSGrModbusFunctionalProfileType().getEStructuralFeatures().get(2);
+        return (EReference)getSGrModbusFunctionalProfileType().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -4370,7 +4350,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrTimeSyncBlockNotificationType_CashDataBuffer() {
+	public EAttribute getSGrTimeSyncBlockNotificationType_BlockCashName() {
         return (EAttribute)getSGrTimeSyncBlockNotificationType().getEStructuralFeatures().get(4);
 	}
 

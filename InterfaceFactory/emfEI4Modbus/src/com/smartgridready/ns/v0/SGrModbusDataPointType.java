@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getModbusDataPoint <em>Modbus Data Point</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getLastAccessTime <em>Last Access Time</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeToLive <em>Time To Live</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeSyncBlockRefIndex <em>Time Sync Block Ref Index</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getBlockCashName <em>Block Cash Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getModbusAttr <em>Modbus Attr</em>}</li>
  * </ul>
  *
@@ -156,54 +156,27 @@ public interface SGrModbusDataPointType extends SGrDataPointBaseType {
 	boolean isSetTimeToLive();
 
 	/**
-	 * Returns the value of the '<em><b>Time Sync Block Ref Index</b></em>' attribute.
+	 * Returns the value of the '<em><b>Block Cash Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Time Sync Block Ref Index</em>' attribute.
-	 * @see #isSetTimeSyncBlockRefIndex()
-	 * @see #unsetTimeSyncBlockRefIndex()
-	 * @see #setTimeSyncBlockRefIndex(int)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointType_TimeSyncBlockRefIndex()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
-	 *        extendedMetaData="kind='element' name='timeSyncBlockRefIndex' namespace='##targetNamespace'"
+	 * @return the value of the '<em>Block Cash Name</em>' attribute.
+	 * @see #setBlockCashName(String)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointType_BlockCashName()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+	 *        extendedMetaData="kind='element' name='blockCashName' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	int getTimeSyncBlockRefIndex();
+	String getBlockCashName();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeSyncBlockRefIndex <em>Time Sync Block Ref Index</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getBlockCashName <em>Block Cash Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Time Sync Block Ref Index</em>' attribute.
-	 * @see #isSetTimeSyncBlockRefIndex()
-	 * @see #unsetTimeSyncBlockRefIndex()
-	 * @see #getTimeSyncBlockRefIndex()
+	 * @param value the new value of the '<em>Block Cash Name</em>' attribute.
+	 * @see #getBlockCashName()
 	 * @generated
 	 */
-	void setTimeSyncBlockRefIndex(int value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeSyncBlockRefIndex <em>Time Sync Block Ref Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetTimeSyncBlockRefIndex()
-	 * @see #getTimeSyncBlockRefIndex()
-	 * @see #setTimeSyncBlockRefIndex(int)
-	 * @generated
-	 */
-	void unsetTimeSyncBlockRefIndex();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointType#getTimeSyncBlockRefIndex <em>Time Sync Block Ref Index</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Time Sync Block Ref Index</em>' attribute is set.
-	 * @see #unsetTimeSyncBlockRefIndex()
-	 * @see #getTimeSyncBlockRefIndex()
-	 * @see #setTimeSyncBlockRefIndex(int)
-	 * @generated
-	 */
-	boolean isSetTimeSyncBlockRefIndex();
+	void setBlockCashName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Modbus Attr</b></em>' containment reference list.
