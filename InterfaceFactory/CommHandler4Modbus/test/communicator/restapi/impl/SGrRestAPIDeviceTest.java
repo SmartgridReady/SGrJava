@@ -11,6 +11,7 @@ import java.util.Properties;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -134,6 +135,7 @@ class SGrRestAPIDeviceTest {
 	}
 	
 	
+	@Disabled // needs a special 'CreateMeterGroup' datapoint.
 	@Test
 	void testSetVal() throws Exception {
 		

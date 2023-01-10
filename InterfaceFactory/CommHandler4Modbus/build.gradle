@@ -23,9 +23,9 @@ apply plugin: 'maven-publish'
 
 
 sourceSets {
-        main.java.srcDirs = ['src', 'src-gen' ]
-        main.resources.srcDirs = ['resources' ] 
-        test.java.srcDirs = ['test']               
+        main.java.srcDirs = ['src']
+        main.resources.srcDirs = ['resources']
+        test.java.srcDirs = ['test']
 }
 
 java {
@@ -59,9 +59,9 @@ dependencies {
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.19.0'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.19.0'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.19.0'
-    
-		
-			
+
+    implementation group: 'io.reactivex.rxjava3', name: 'rxjava', version: '3.1.5'
+
 	testImplementation group: 'org.yaml', name: 'snakeyaml', version: '1.27'
 	testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.10.0'
 	testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.10.0'
@@ -69,6 +69,10 @@ dependencies {
 	
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1' 
+}
+
+test {
+    useJUnitPlatform()
 }
 
 jar {
@@ -90,9 +94,6 @@ jar {
         }
     }
 }
-
-
-
 
 tasks."compileJava".dependsOn ':InterfaceFactory:emfEI4Modbus:publishToMavenLocal'
 
