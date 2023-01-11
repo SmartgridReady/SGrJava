@@ -168,6 +168,12 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case V0Package.SGR_BITMAPPER_LIST_TYPE: {
+				SGrBitmapperListType sGrBitmapperListType = (SGrBitmapperListType)theEObject;
+				T result = caseSGrBitmapperListType(sGrBitmapperListType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case V0Package.SGR_CHANGE_LOG: {
 				SGrChangeLog sGrChangeLog = (SGrChangeLog)theEObject;
 				T result = caseSGrChangeLog(sGrChangeLog);
@@ -704,6 +710,21 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSGrBasicGenDataPointTypeType(SGrBasicGenDataPointTypeType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Bitmapper List Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Bitmapper List Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrBitmapperListType(SGrBitmapperListType object) {
 		return null;
 	}
 

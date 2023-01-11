@@ -132,6 +132,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrAttr4RestAPIType((SGrAttr4RestAPIType)value, diagnostics, context);
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE:
 				return validateSGrBasicGenDataPointTypeType((SGrBasicGenDataPointTypeType)value, diagnostics, context);
+			case V0Package.SGR_BITMAPPER_LIST_TYPE:
+				return validateSGrBitmapperListType((SGrBitmapperListType)value, diagnostics, context);
 			case V0Package.SGR_CHANGE_LOG:
 				return validateSGrChangeLog((SGrChangeLog)value, diagnostics, context);
 			case V0Package.SGR_CONTACT_API_DEVICE_FRAME:
@@ -600,6 +602,15 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateSGrBasicGenDataPointTypeType(SGrBasicGenDataPointTypeType sGrBasicGenDataPointTypeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrBasicGenDataPointTypeType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrBitmapperListType(SGrBitmapperListType sGrBitmapperListType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrBitmapperListType, diagnostics, context);
 	}
 
 	/**

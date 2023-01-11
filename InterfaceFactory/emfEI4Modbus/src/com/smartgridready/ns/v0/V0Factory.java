@@ -175,6 +175,15 @@ public interface V0Factory extends EFactory {
 	SGrBasicGenDataPointTypeType createSGrBasicGenDataPointTypeType();
 
 	/**
+	 * Returns a new object of class '<em>SGr Bitmapper List Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Bitmapper List Type</em>'.
+	 * @generated
+	 */
+	SGrBitmapperListType createSGrBitmapperListType();
+
+	/**
 	 * Returns a new object of class '<em>SGr Change Log</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -58,13 +58,13 @@ public interface SGrBasicGenDataPointTypeType extends EObject {
 	 *           
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Enum2bitmap Index</em>' containment reference.
-	 * @see #setEnum2bitmapIndex(SGrEnumListType)
+	 * @see #setEnum2bitmapIndex(SGrBitmapperListType)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenDataPointTypeType_Enum2bitmapIndex()
 	 * @model containment="true"
 	 *        extendedMetaData="kind='element' name='enum2bitmapIndex' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrEnumListType getEnum2bitmapIndex();
+	SGrBitmapperListType getEnum2bitmapIndex();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}' containment reference.
@@ -74,7 +74,7 @@ public interface SGrBasicGenDataPointTypeType extends EObject {
 	 * @see #getEnum2bitmapIndex()
 	 * @generated
 	 */
-	void setEnum2bitmapIndex(SGrEnumListType value);
+	void setEnum2bitmapIndex(SGrBitmapperListType value);
 
 	/**
 	 * Returns the value of the '<em><b>Boolean</b></em>' attribute.

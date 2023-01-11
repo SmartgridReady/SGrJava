@@ -136,6 +136,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrBasicGenDataPointTypeTypeAdapter();
 			}
 			@Override
+			public Adapter caseSGrBitmapperListType(SGrBitmapperListType object) {
+				return createSGrBitmapperListTypeAdapter();
+			}
+			@Override
 			public Adapter caseSGrChangeLog(SGrChangeLog object) {
 				return createSGrChangeLogAdapter();
 			}
@@ -570,6 +574,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSGrBasicGenDataPointTypeTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrBitmapperListType <em>SGr Bitmapper List Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrBitmapperListType
+	 * @generated
+	 */
+	public Adapter createSGrBitmapperListTypeAdapter() {
 		return null;
 	}
 

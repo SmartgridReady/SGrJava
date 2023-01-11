@@ -79,6 +79,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_ATTR4_MODBUS_TYPE: return createSGrAttr4ModbusType();
 			case V0Package.SGR_ATTR4_REST_API_TYPE: return createSGrAttr4RestAPIType();
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE: return createSGrBasicGenDataPointTypeType();
+			case V0Package.SGR_BITMAPPER_LIST_TYPE: return createSGrBitmapperListType();
 			case V0Package.SGR_CHANGE_LOG: return createSGrChangeLog();
 			case V0Package.SGR_CONTACT_API_DEVICE_FRAME: return createSGrContactAPIDeviceFrame();
 			case V0Package.SGR_CONTACT_API_FUNCTIONAL_PROFILE_TYPE: return createSGrContactAPIFunctionalProfileType();
@@ -784,6 +785,17 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public SGrBasicGenDataPointTypeType createSGrBasicGenDataPointTypeType() {
 		SGrBasicGenDataPointTypeTypeImpl sGrBasicGenDataPointTypeType = new SGrBasicGenDataPointTypeTypeImpl();
 		return sGrBasicGenDataPointTypeType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SGrBitmapperListType createSGrBitmapperListType() {
+		SGrBitmapperListTypeImpl sGrBitmapperListType = new SGrBitmapperListTypeImpl();
+		return sGrBitmapperListType;
 	}
 
 	/**

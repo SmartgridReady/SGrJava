@@ -3,6 +3,7 @@
 package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
+import com.smartgridready.ns.v0.SGrBitmapperListType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.V0Package;
 
@@ -55,7 +56,7 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 * @ordered
 	 */
-	protected SGrEnumListType enum2bitmapIndex;
+	protected SGrBitmapperListType enum2bitmapIndex;
 
 	/**
 	 * The default value of the '{@link #isBoolean() <em>Boolean</em>}' attribute.
@@ -433,7 +434,7 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public SGrEnumListType getEnum2bitmapIndex() {
+	public SGrBitmapperListType getEnum2bitmapIndex() {
 		return enum2bitmapIndex;
 	}
 
@@ -442,8 +443,8 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEnum2bitmapIndex(SGrEnumListType newEnum2bitmapIndex, NotificationChain msgs) {
-		SGrEnumListType oldEnum2bitmapIndex = enum2bitmapIndex;
+	public NotificationChain basicSetEnum2bitmapIndex(SGrBitmapperListType newEnum2bitmapIndex, NotificationChain msgs) {
+		SGrBitmapperListType oldEnum2bitmapIndex = enum2bitmapIndex;
 		enum2bitmapIndex = newEnum2bitmapIndex;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM2BITMAP_INDEX, oldEnum2bitmapIndex, newEnum2bitmapIndex);
@@ -458,7 +459,7 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	 * @generated
 	 */
 	@Override
-	public void setEnum2bitmapIndex(SGrEnumListType newEnum2bitmapIndex) {
+	public void setEnum2bitmapIndex(SGrBitmapperListType newEnum2bitmapIndex) {
 		if (newEnum2bitmapIndex != enum2bitmapIndex) {
 			NotificationChain msgs = null;
 			if (enum2bitmapIndex != null)
@@ -1126,7 +1127,7 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM2BITMAP_INDEX:
-				setEnum2bitmapIndex((SGrEnumListType)newValue);
+				setEnum2bitmapIndex((SGrBitmapperListType)newValue);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
 				setBoolean((Boolean)newValue);
@@ -1183,7 +1184,7 @@ public class SGrBasicGenDataPointTypeTypeImpl extends MinimalEObjectImpl.Contain
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM2BITMAP_INDEX:
-				setEnum2bitmapIndex((SGrEnumListType)null);
+				setEnum2bitmapIndex((SGrBitmapperListType)null);
 				return;
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN:
 				unsetBoolean();
