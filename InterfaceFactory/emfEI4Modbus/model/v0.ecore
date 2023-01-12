@@ -1495,6 +1495,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrBitmapperListType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="BM0001:&#xA;     Field of enumeration where endum index is used as bitmap flag&#xA;     Unsigned int value  [and]  ( 1 [2 *  shift left] enum_index_value means bit is set&#xA;&#x9;"/>
+    </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrBitmapperListType"/>
       <details key="kind" value="elementOnly"/>
@@ -1510,7 +1513,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrBool2BitRankType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="E0017:&#xA;     BitRank map for bitfiedl32&#xA;&#x9;"/>
+      <details key="documentation" value="BM0001:&#xA;     BitRank map for bitfiedl32&#xA;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrBool2BitRankType"/>

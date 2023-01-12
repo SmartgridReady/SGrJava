@@ -22,23 +22,26 @@ check for "EI-Modbus" and "Generic" directories in our Namespace http://www.smar
 package communicator.impl;
 
 import java.math.BigInteger;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
-import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
-import com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusDataPointType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.SGrModbusFunctionalProfileType;
@@ -54,16 +57,18 @@ import com.smartgridready.ns.v0.SGrSGCPServiceType;
 import com.smartgridready.ns.v0.SGrScalingType;
 import com.smartgridready.ns.v0.SGrSunspStateCodesType;
 import com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType;
-import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.TEnumConversionFct;
 import com.smartgridready.ns.v0.TEnumObjectType;
 import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
 import com.smartgridready.ns.v0.V0Factory;
+import com.smartgridready.ns.v0.impl.V0FactoryImpl;
 
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
+import communicator.helper.CacheRecord;
+import communicator.helper.GenTypeToStringFormatter;
 import communicator.helper.ModbusHlpr;
 
 /**
@@ -72,10 +77,14 @@ import communicator.helper.ModbusHlpr;
  *
  */
 public class SGrModbusDevice {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(SGrModbusDevice.class);
 
 	private final GenDriverAPI4Modbus drv4Modbus;
 
 	private final SGrModbusDeviceFrame myDeviceDescription;
+	
+	private final Map<SGrModbusDataPointType, CacheRecord<List<SGrBasicGenDataPointTypeType>>> myReadCache = new HashMap<>();			
 
 	public SGrModbusDevice(SGrModbusDeviceFrame aDeviceDescription, GenDriverAPI4Modbus aRtuDriver) {
 		myDeviceDescription = aDeviceDescription;
@@ -120,60 +129,9 @@ public class SGrModbusDevice {
 
 	private String readValue(SGrModbusFunctionalProfileType aProfile, SGrModbusDataPointType aDataPoint)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
-
-		String retval = "-";
-
-		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();
-
-		if (dGenType.isSetBoolean()) {
-			boolean bVal = getValByGDPType(aProfile, aDataPoint).isBoolean();
-			retval = String.format("%b", bVal);
-		} else if (dGenType.getEnum() != null) {
-			SGrEnumListType oVal = dGenType.getEnum();
-			if (oVal.isSetSgrEVState()) {
-				SGrEnumListType en = getValByGDPType(aProfile, aDataPoint).getEnum();
-				retval = Enum2StringConversion(en);
-			}
-		} else if (dGenType.isSetFloat32()) {
-			float fVal = getValByGDPType(aProfile, aDataPoint).getFloat32();
-			retval = String.format("%10.3f", fVal);
-		} else if (dGenType.isSetFloat64()) {
-			double dVal = getValByGDPType(aProfile, aDataPoint).getFloat64();
-			retval = String.format("%10.3f", dVal);
-		} else if (dGenType.isSetInt16()) {
-			short shVal = getValByGDPType(aProfile, aDataPoint).getInt16();
-			retval = String.format("%d", shVal);
-		} else if (dGenType.isSetInt16U()) {
-			int iVal = getValByGDPType(aProfile, aDataPoint).getInt16U();
-			retval = String.format("%d", iVal);
-		} else if (dGenType.getInt32() != null) {
-			BigInteger bgVal = getValByGDPType(aProfile, aDataPoint).getInt32();
-			retval = String.format(bgVal.toString());
-		} else if (dGenType.isSetInt32U()) {
-			long lVal = getValByGDPType(aProfile, aDataPoint).getInt32U();
-			retval = String.format("%d", lVal);
-		} else if (dGenType.isSetInt64()) {
-			long lVal = getValByGDPType(aProfile, aDataPoint).getInt64();
-			retval = String.format("%d", lVal);
-		} else if (dGenType.getInt64U() != null) {
-			BigInteger bgVal = getValByGDPType(aProfile, aDataPoint).getInt64U();
-			retval = String.format("%d", bgVal);
-		} else if (dGenType.isSetInt8()) {
-			byte btVal = getValByGDPType(aProfile, aDataPoint).getInt8();
-			retval = String.format("%d", btVal);
-		} else if (dGenType.isSetInt8U()) {
-			short shVal = getValByGDPType(aProfile, aDataPoint).getInt8U();
-			retval = String.format("%d", shVal);
-		} else if (dGenType.getString() != null) {
-			retval = getValByGDPType(aProfile, aDataPoint).getString();
-		} else if (dGenType.getDateTime() != null) {
-			//
-			// TODO: apply gregorian calendar library
-			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-			retval = String.format("readValue DateTime: not yet supported%n");
-		} else
-			retval = String.format("readValue else: data type not yet supported%n");
-		return retval;
+		
+		SGrBasicGenDataPointTypeType dGenType = getValByGDPType(aProfile, aDataPoint);		
+		return GenTypeToStringFormatter.format(dGenType);			
 	}
 
 	public SGrBasicGenDataPointTypeType getValByGDPType(SGrModbusFunctionalProfileType aProfile,
@@ -199,19 +157,24 @@ public class SGrModbusDevice {
 		return retval;
 	}
 
-
 	// Read a single value
 	private SGrBasicGenDataPointTypeType prv_getValByGDPType(
 			SGrModbusFunctionalProfileType aProfile,
 			SGrModbusDataPointType aDataPoint) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 				
+		// Use array length and use first element.
 		return prv_getValByGDPType(aProfile, aDataPoint, 1)[0];
 		
 	}
-
+	
+	public String[] getValArr(String sProfileName, String sDataPointName) 
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {		
+		return GenTypeToStringFormatter.format(getValArrByGDPType(sProfileName, sDataPointName)); 		
+	}
 	
 	// Get array of values
-	public SGrBasicGenDataPointTypeType[] getValArrByGDPType(String sProfileName, String sDataPointName) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+	public SGrBasicGenDataPointTypeType[] getValArrByGDPType(String sProfileName, String sDataPointName) 
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);	
 		
@@ -219,8 +182,11 @@ public class SGrModbusDevice {
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				
-				int arrLen = dataPoint.get().getDataPoint().getArrLen();
-				
+				if (!dataPoint.get().getDataPoint().isSetArrLen()) {
+					throw new GenDriverException(String.format("getValArrByGDPType(): Datapoint %s-%s is not an array.", sProfileName, sDataPointName ));
+				}
+									
+				int arrLen = dataPoint.get().getDataPoint().getArrLen();								
 				return prv_getValByGDPType(profile.get(), dataPoint.get(), arrLen);
 			}
 		}
@@ -243,35 +209,37 @@ public class SGrModbusDevice {
 		boolean bGotRegisters = false;
 		boolean bGotDiscrete = false;
 		
-		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
+		TSGrModbusRegisterRef mbRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 
-		BigInteger regad = MBRegRef.getAddr();
+		BigInteger regad = mbRegRef.getAddr();
 		 boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
 		if (bMBfirstRegOne)
 			regad = regad.subtract(BigInteger.ONE);
 		
-		int mbArrayLen = arrayLen;
+		int mbArrayLen = arrayLen;		
 		
-
-		//check time to live data cashing: TODO/hf: add cashing for arrays 
-		//if ((! aDataPoint.isSetTimeToLive())  
-		//|| (System.currentTimeMillis() > (aDataPoint.getLastAccessTime() + aDataPoint.getTimeToLive()) ))
-		//{
+		CacheRecord<List<SGrBasicGenDataPointTypeType>> resultRecord = myReadCache.get(aDataPoint);
+		
+		if (resultRecord == null || resultRecord.isExpired(aDataPoint.getTimeToLive())) {
+			
+			LOG.debug("Reading value from modbus device.");
+			
 			int size = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();		
 		
-			if (MBRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER) {
+			if (mbRegRef.getRegisterType() == TEnumObjectType.HOLD_REGISTER) {
 				mbregresp = drv4Modbus.ReadHoldingRegisters(regad.intValue(), size * mbArrayLen);
 				bGotRegisters = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER) {
+			} else if (mbRegRef.getRegisterType() == TEnumObjectType.INPUT_REGISTER) {
 				mbregresp = drv4Modbus.ReadInputRegisters(regad.intValue(), size * mbArrayLen);
 				bGotRegisters = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.DISCRETE_INPUT) {
+			} else if (mbRegRef.getRegisterType() == TEnumObjectType.DISCRETE_INPUT) {
 				mbbitresp = drv4Modbus.ReadDiscreteInputs(regad.intValue(), size * mbArrayLen);
 				bGotDiscrete = true;
-			} else if (MBRegRef.getRegisterType() == TEnumObjectType.COIL) {
+			} else if (mbRegRef.getRegisterType() == TEnumObjectType.COIL) {
 				mbbitresp = drv4Modbus.ReadCoils(regad.intValue(), size * mbArrayLen);
 				bGotDiscrete = true;
-			}
+			}			
+			
 		    // modbus OSI Layer 6 to generic OSI layer 6 conversion
 			List<SGrBasicGenDataPointTypeType> resultList = new ArrayList<>();		
 			for (int arrIdx = 0; arrIdx < arrayLen; arrIdx++) {						
@@ -283,23 +251,22 @@ public class SGrModbusDevice {
 						mbbitresp, // response bits[]
 						bGotRegisters, 
 						bGotDiscrete, 
-						MBRegRef,	// register address SGrV0
+						mbRegRef,	// register address SGrV0
 						regad, 		// register address BigInteger
 						size,
 						arrIdx,
 						arrayLen));
 			}
-			if (aDataPoint.isSetTimeToLive())
-			   aDataPoint.setLastAccessTime(System.currentTimeMillis());
-			//get just polled data value
-			return resultList.toArray(new SGrBasicGenDataPointTypeType[0]);	
-	/*	}   
-		// get cashed data value
-		// TODO/hf organize cashing  & type conversion from aDataPoint arrays.
-		List<SGrBasicGenDataPointTypeType> CashedList = new ArrayList<>();
-		CashedList.add(aDataPoint.getDataPoint().getBasicDataType());
-		return CashedList.toArray(new SGrBasicGenDataPointTypeType[0]);	 */
-}
+			
+			resultRecord = new CacheRecord<>(resultList, Instant.now());			
+			if (aDataPoint.isSetTimeToLive()) {				
+				myReadCache.put(aDataPoint, resultRecord);
+			}
+		} else {
+			LOG.debug("Reading value from chache.");
+		}
+		return resultRecord.getValue().toArray(new SGrBasicGenDataPointTypeType[0]);				
+	}
 
 
 	private SGrBasicGenDataPointTypeType doConversion(SGrModbusDataPointType aDataPoint,
@@ -313,7 +280,6 @@ public class SGrModbusDevice {
 		double dVal = 0.0;
 		float fVal = (float) 0.0;
 
-		//SGrBasicGenDataPointTypeType RetVal = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();   ;	
 		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
 		
@@ -323,7 +289,7 @@ public class SGrModbusDevice {
 		  dMBType  = evalModbusDataType(aDataPoint,arrayLen);
         */
 		
-// TODO/cb DEBUG Workflow:  get array Datapoint type if arrlen > 1
+		// TODO/cb DEBUG Workflow:  get array Datapoint type if arrlen > 1
 		// make special threatmend for bitmap registers
 		
 		// Data format adaption		
@@ -354,18 +320,19 @@ public class SGrModbusDevice {
 		int[] singleResp = new int[2];
 		int[] doubleResp = new int[4];
 		if (bGotRegisters) {
-			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN))
+			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 				// TODO: rethink Blocktransfer here
 				mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
+			}
 			// do we have Layer 6 deviations ?
-	        if (l6dev >= 0  )   mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
-
-
-			
+	        if (l6dev >= 0  ) {
+	        	mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
+	        }
+		
             for (int u = 0; u < size; u++) {
-            	if (u == 0)
-					RegRes = mbregresp[u + arrOffset*size];
-				else {
+            	if (u == 0) {
+					RegRes = mbregresp[u + arrOffset * size];
+				} else {
 					RegRes = RegRes << 16;
 					RegRes = RegRes | (mbregresp[u + arrOffset*size] & 0x0000ffff);
 				}
@@ -385,7 +352,7 @@ public class SGrModbusDevice {
 			    }
 			    else if (size > 2)
 			    {
-			    	
+			    	// 3, 5-unbounded?
 			    }
 	        }
 	    }
@@ -397,20 +364,22 @@ public class SGrModbusDevice {
 	    // generic type expected as API return type
 		// TODO: Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
+
+		SGrBasicGenDataPointTypeType retVal = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 		
 		if (dGenType.getEnum2bitmapIndex()!=null)
 		{
 			RegRes = ((long) Math.abs(mbregresp[0] &0xff));
 			short shVal = (byte) Math.abs(RegRes);
-			dGenType.setInt8U(shVal);
+			retVal.setInt8U(shVal);
 
 			int iVal = (int) Math.abs(RegRes);
-			dGenType.setInt16U(iVal);
+			retVal.setInt16U(iVal);
 			RegRes =  (((long) mbregresp[1])<<16) & ((long) 0xffff0000);
 			RegRes = (long) Math.abs(RegRes + (long) mbregresp[0]);
 			// DEBUG
 			RegRes = 0xaaaaaaaa;
-			dGenType.setInt32U(RegRes);
+			retVal.setInt32U(RegRes);
 		}
 		else if (dGenType.isSetBoolean()) {
 			// TODO: add bus data
@@ -421,7 +390,7 @@ public class SGrModbusDevice {
 			} else if (bGotDiscrete) {
 				bVal = mbbitresp[0 + arrOffset*size];
 			}
-			dGenType.setBoolean(bVal);
+			retVal.setBoolean(bVal);
 		}
 		else if (dGenType.isSetFloat32()) {
 			if (bGotRegisters) {
@@ -448,7 +417,7 @@ public class SGrModbusDevice {
 			    	fVal = (float) dVal;
 				}
 			}
-			dGenType.setFloat32(fVal);
+			retVal.setFloat32(fVal);
 		}
 		else if (dGenType.isSetFloat64()) {
 			if (bGotRegisters) {
@@ -458,64 +427,64 @@ public class SGrModbusDevice {
 					dVal = (double) RegRes;
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
-					dGenType.setFloat64(dVal);
+					retVal.setFloat64(dVal);
 				} else if ((dMBType.isSetInt16U())
 						|| (dMBType.isSetInt32U())
 						|| (dMBType.getInt64U()!=null)) {
 					dVal = (double) Math.abs(RegRes);
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
-					dGenType.setFloat64(dVal);
+					retVal.setFloat64(dVal);
 				} else if (dMBType.isSetFloat32()) {
 					fVal = (float) RegRes;
-					dGenType.setFloat64((double) fVal);
+					retVal.setFloat64((double) fVal);
 				}
 			}
 		}
 		else if (dGenType.isSetInt16()) {
 			short shVal = (short) RegRes;
-			dGenType.setInt16(shVal);
+			retVal.setInt16(shVal);
 		}
 		else if (dGenType.isSetInt16U()) {
 			int iVal = (int) Math.abs(RegRes);
-			dGenType.setInt16U(iVal);
+			retVal.setInt16U(iVal);
 		}
 		else if (dGenType.isSetInt32U()) {
 			long lVal = (long) Math.abs(RegRes);
-			dGenType.setInt32U(lVal);
+			retVal.setInt32U(lVal);
 		}
 		else if (dGenType.isSetInt64()) {
 			long lVal = (long) RegRes;
-			dGenType.setInt64(lVal);
+			retVal.setInt64(lVal);
 		}
 		else if (dGenType.isSetInt8()) {
 			byte btVal = (byte) RegRes;
-			dGenType.setInt8(btVal);
+			retVal.setInt8(btVal);
 		}
 		else if (dGenType.isSetInt8U()) {
 			short shVal = (byte) Math.abs(RegRes);
-			dGenType.setInt8U(shVal);
+			retVal.setInt8U(shVal);
 		}
 		else if (dGenType.getEnum()!=null) {
 			SGrEnumListType tt = RegRes2EnumConversion(RegRes, dGenType.getEnum());  
-			dGenType.setEnum(tt);    
+			retVal.setEnum(tt);    
 		}
 		else if (dGenType.getInt32()!=null) {
 			BigInteger bgVal = BigInteger.valueOf(RegRes);  
-			dGenType.setInt32(bgVal);
+			retVal.setInt32(bgVal);
 		}
 		else if (dGenType.getInt64U()!=null) {
 			BigInteger bgVal = BigInteger.valueOf((long) Math.abs(RegRes));
-			dGenType.setInt64U(bgVal);
+			retVal.setInt64U(bgVal);
 		}
-		 else if(dGenType.getDateTime()!=null) {
+		else if(dGenType.getDateTime()!=null) {
 		 // TODO: apply gregorian calendar library
 		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
 		// TODO: apply dGenType
 		 }
 		 else if( dGenType.getString()!=null) {
 			    String sValue= ModbusHlpr.ConvRegistersToString(mbregresp, 0, size*2);
-			    dGenType.setString(sValue);
+			    retVal.setString(sValue);
 		 }
 		else
 		{ // error handling for missing instance
@@ -528,9 +497,7 @@ public class SGrModbusDevice {
 		// RetVal.*
 		// Not yet supported types
 		// unit scaling
-		return dGenType;
-		
-		
+		return retVal;				
 	}
 	
 	
@@ -1099,47 +1066,8 @@ public class SGrModbusDevice {
 		return retval;
 	}
 
-	// convert enumeration into string
-	String Enum2StringConversion(SGrEnumListType oGenVal) {
-		String rval = "-";
-
-		// TODO(ongoing): extend this list manually for EACH enumeration being added to
-		// the system
-		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
-			rval = oGenVal.getSgrMeasValueSource().toString();
-		} else if (oGenVal.isSetSgrPowerSource()) { // E0002
-			rval = oGenVal.getSgrPowerSource().toString();
-		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0003
-			rval = oGenVal.getSgreadyStateLv2().toString();
-		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0004
-			rval = oGenVal.getSgreadyStateLv1().toString();
-		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0005
-			rval = oGenVal.getSgrSunspStateCodes().toString();
-		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0006
-			rval = oGenVal.getSgrEVSEStateLv2().toString();
-		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0007
-			rval = oGenVal.getSgrEVSEStateLv1().toString();
-		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0008
-			rval = oGenVal.getSgrSGCPLoadStateLv2().toString();
-		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0009
-			rval = oGenVal.getSgrSGCPFeedInStateLv2().toString();
-		} else if (oGenVal.isSetSgrEVState()) { // E0010
-			rval = oGenVal.getSgrEVState().toString();
-		} else if (oGenVal.isSetSgrSGCPService()) { // E0011
-			rval = oGenVal.getSgrSGCPService().toString();
-		} else if (oGenVal.isSetSgrObligLvl()) { // E0012
-			rval = oGenVal.getSgrObligLvl().toString();
-		} else if (oGenVal.isSetSgrOCPPState()) {// E0013
-			rval = oGenVal.getSgrOCPPState().toString();
-		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
-			rval = oGenVal.getSgrHPOpMode().toString();
-		}
-
-		return rval;
-	}
-
 	// convert RegRes from Modbus into enumeration
-	SGrEnumListType RegRes2EnumConversion(long RegRes, SGrEnumListType oGenVal) {
+	private SGrEnumListType RegRes2EnumConversion(long RegRes, SGrEnumListType oGenVal) {
 		SGrEnumListType rval = V0Factory.eINSTANCE.createSGrEnumListType();
 
 		// TODO(ongoing): extend this list manually for EACH enumeration being added to
@@ -1173,8 +1101,6 @@ public class SGrModbusDevice {
 		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
 			rval.setSgrHPOpMode(SGrHPOpModeType.get((int) RegRes));
 		}
-
 		return rval;
 	}
-
 }

@@ -5,7 +5,6 @@ package com.smartgridready.ns.v0;
 import java.math.BigInteger;
 
 import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
