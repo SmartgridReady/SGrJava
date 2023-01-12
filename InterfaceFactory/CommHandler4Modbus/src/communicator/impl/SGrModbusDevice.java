@@ -323,9 +323,6 @@ public class SGrModbusDevice {
 		  dMBType  = evalModbusDataType(aDataPoint,arrayLen);
         */
 		
-// TODO/cb DEBUG Workflow:  get array Datapoint type if arrlen > 1
-		// make special threatmend for bitmap registers
-		
 		// Data format adaption		
 		//dGenType = aDataPoint.getDataPoint()
 		//		.getBasicDataType();
@@ -408,8 +405,6 @@ public class SGrModbusDevice {
 			dGenType.setInt16U(iVal);
 			RegRes =  (((long) mbregresp[1])<<16) & ((long) 0xffff0000);
 			RegRes = (long) Math.abs(RegRes + (long) mbregresp[0]);
-			// DEBUG
-			RegRes = 0xaaaaaaaa;
 			dGenType.setInt32U(RegRes);
 		}
 		else if (dGenType.isSetBoolean()) {
