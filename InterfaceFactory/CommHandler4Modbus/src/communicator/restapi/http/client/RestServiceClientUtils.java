@@ -4,7 +4,6 @@ import org.eclipse.emf.common.util.EList;
 
 import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.RestServiceCall;
-import com.smartgridready.ns.v0.impl.RestServiceCallImpl;
 
 public class RestServiceClientUtils {
 	

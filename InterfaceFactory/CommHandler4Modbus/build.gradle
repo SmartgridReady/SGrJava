@@ -49,9 +49,7 @@ dependencies {
     implementation group: 'io.burt', name: 'jmespath-jackson', version: '0.5.1'
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
     implementation group: 'io.vavr', name: 'vavr', version: '0.10.4'
-    
-    
-    
+
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.ecore', version: '2.24.0'
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.ecore.xmi', version: '2.16.0'	
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.common', version: '2.24.0'

@@ -70,7 +70,7 @@ public class GetValArrayTester {
 				System.out.println( "Error reading value from device. " + e);
 				e.printStackTrace();
 			}
-		}
+		}		
 		catch ( Exception e )
 		{
 			System.out.println( "Error loading device description. " + e);

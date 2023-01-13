@@ -92,7 +92,11 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
-		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));		
+		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
+		
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
+				deviceFrame.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
+		
 		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
 		
 		// when
