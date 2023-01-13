@@ -21,7 +21,7 @@ public class GetValBlockTransferTester {
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		URL deviceDesc = classloader.getResource("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-Blocktransfer.xml");
 		
-	try {						
+	try {
 			DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
 			SGrModbusDeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc.getPath());
 			
