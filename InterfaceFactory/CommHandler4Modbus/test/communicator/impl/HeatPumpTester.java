@@ -26,8 +26,10 @@ package communicator.impl;
 
 
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
+import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
+import com.smartgridready.ns.v0.SGrHPOpstateStiebelType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.V0Factory;
 
@@ -318,16 +320,18 @@ public class HeatPumpTester {
 				// control by HPOpMode enum
 				oEnumList.setSgrHPOpMode(SGrHPOpModeType.WPPROGOP);
 				SGrBasicGenDataPointTypeType  hpval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-				//hpval.setEnum(oEnumList);
+				hpval.setEnum(oEnumList);
 				//devStiebelISG.setValByGDPType("HeatPumpBase", "HPOpModeCmd", hpval);	
 				
-				// control by SG Ready
+				// control by SG-Ready by contacts
 				hpval.setBoolean(false);  
 				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON", hpval);	
 				hpval.setBoolean(false);  
 				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON", hpval);
 				hpval.setBoolean(false);  
 				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled", hpval);
+				
+				// control by SG-Ready by enum
 					
 				}
 				// testing getters
@@ -339,7 +343,24 @@ public class HeatPumpTester {
 				fVal3=devStiebelISG.getValByGDPType("HeatPumpBase", "BackFlowWaterTemp").getFloat32();
 				fVal4=devStiebelISG.getValByGDPType("HeatPumpBase", "SourceTemp").getFloat32();		
 				System.out.printf("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, FlowWaterTemp=" + fVal2 +  "°C,  BackFlowWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C %n");     	
-
+				if (iVal2 != 0)  
+				{
+					System.out.printf("    HPOpState bits set: "); 
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HP1PUMPON_VALUE))) != 0) System.out.printf("HP_1_ON, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HP2PUMPON_VALUE))) != 0) System.out.printf("HP_2_ON, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HPINDHWMODE_VALUE))) != 0) System.out.printf("DHW ON, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HPINHEATINGMODE_VALUE))) != 0) System.out.printf("HEAT ON, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.COMPRESSORRUNNING_VALUE))) != 0) System.out.printf("Compressor ON, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.COOLINGMODEACTIVE_VALUE))) != 0) System.out.printf("COOLING ON, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HEATUPPROGRAM_VALUE))) != 0) System.out.printf("HEAT PRORGRAMM, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.NHZSTAGESRUNNING_VALUE))) != 0) System.out.printf("NHZ Stage ON, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.MINONEIWSINDEFROSTMODE_VALUE))) != 0) System.out.printf("DEFROSTING, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.SILENTMODE1ACTIVE_VALUE))) != 0) System.out.printf("Silent 1 Mode, ");
+					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.SILENTMODE2ACTIVE_VALUE))) != 0) System.out.printf("Silent 2 Mode (HP is off) ");
+					System.out.printf("%n");
+				}
+				
+				
 				fVal1=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptComf").getFloat32();
 				fVal2=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptEco").getFloat32();							
 				fVal3=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptFb").getFloat32();
@@ -376,7 +397,7 @@ public class HeatPumpTester {
 //             TBC: launches illegal address @31 , no other start data found
 // 				lVal=devStiebelISG.getValByGDPType("EnergyMonitor", "NrOfStartupsCompressor").getInt16U();
 
-				System.out.printf("  EnergyMonitor ThermalEnergyHeat="+ dVal1 + " MWh,  ThermalEnergyDomHotWater="+ dVal2 + " MWh,RuntimeCompressor=" + fVal3 + " h,  NrOfStartupsCompressor="  + lVal+" times%n");  
+				System.out.printf("  EnergyMonitor ThermalEnergyHeat="+ dVal1 + " kWh,  ThermalEnergyDomHotWater="+ dVal2 + " kWh,R untimeCompressor=" + fVal3 + " h,  NrOfStartupsCompressor="  + lVal+" times%n");  
 				System.out.println(); 
 				
 				

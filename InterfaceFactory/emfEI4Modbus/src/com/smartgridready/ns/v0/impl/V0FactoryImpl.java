@@ -172,6 +172,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrEVStateTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_HP_OP_MODE_TYPE:
 				return createSGrHPOpModeTypeFromString(eDataType, initialValue);
+			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE:
+				return createSGrHPOpstateStiebelTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_LANGUAGE_TYPE:
 				return createSGrLanguageTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE:
@@ -292,6 +294,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrEVStateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_HP_OP_MODE_TYPE_OBJECT:
 				return createSGrHPOpModeTypeObjectFromString(eDataType, initialValue);
+			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
+				return createSGrHPOpstateStiebelTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
 				return createSGrLanguageTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE_OBJECT:
@@ -407,6 +411,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrEVStateTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_HP_OP_MODE_TYPE:
 				return convertSGrHPOpModeTypeToString(eDataType, instanceValue);
+			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE:
+				return convertSGrHPOpstateStiebelTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_LANGUAGE_TYPE:
 				return convertSGrLanguageTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE:
@@ -527,6 +533,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrEVStateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_HP_OP_MODE_TYPE_OBJECT:
 				return convertSGrHPOpModeTypeObjectToString(eDataType, instanceValue);
+			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
+				return convertSGrHPOpstateStiebelTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
 				return convertSGrLanguageTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE_OBJECT:
@@ -1630,6 +1638,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertSGrHPOpModeTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrHPOpstateStiebelType createSGrHPOpstateStiebelTypeFromString(EDataType eDataType, String initialValue) {
+		SGrHPOpstateStiebelType result = SGrHPOpstateStiebelType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrHPOpstateStiebelTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2759,6 +2787,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrHPOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrHPOpModeTypeToString(V0Package.eINSTANCE.getSGrHPOpModeType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrHPOpstateStiebelType createSGrHPOpstateStiebelTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrHPOpstateStiebelTypeFromString(V0Package.eINSTANCE.getSGrHPOpstateStiebelType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrHPOpstateStiebelTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrHPOpstateStiebelTypeToString(V0Package.eINSTANCE.getSGrHPOpstateStiebelType(), instanceValue);
 	}
 
 	/**

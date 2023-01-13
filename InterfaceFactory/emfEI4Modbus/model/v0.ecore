@@ -1510,6 +1510,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHPOpstateStiebel" eType="#//SGrHPOpstateStiebelType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrHPOpstateStiebel"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrBool2BitRankType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2395,6 +2403,32 @@
       <details key="baseType" value="SGrHPOpModeType"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrHPOpstateStiebelType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="BM0002:&#xA;     BitRank map for Heat Pump Stiebel-Eltron&#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrHPOpstateStiebelType"/>
+    </eAnnotations>
+    <eLiterals name="HP1PUMPON" literal="HP_1_PUMP_ON"/>
+    <eLiterals name="HP2PUMPON" value="1" literal="HP_2_PUMP_ON"/>
+    <eLiterals name="HEATUPPROGRAM" value="2" literal="HEATUP_PROGRAM"/>
+    <eLiterals name="NHZSTAGESRUNNING" value="3" literal="NHZ_STAGES_RUNNING"/>
+    <eLiterals name="HPINHEATINGMODE" value="4" literal="HP_IN_HEATING_MODE"/>
+    <eLiterals name="HPINDHWMODE" value="5" literal="HP_IN_DHW_MODE"/>
+    <eLiterals name="COMPRESSORRUNNING" value="6" literal="COMPRESSOR_RUNNING"/>
+    <eLiterals name="SUMMERMODEACTIVE" value="7" literal="SUMMER_MODE_ACTIVE"/>
+    <eLiterals name="COOLINGMODEACTIVE" value="8" literal="COOLING_MODE_ACTIVE"/>
+    <eLiterals name="MINONEIWSINDEFROSTMODE" value="9" literal="MIN_ONE_IWS_IN_DEFROST_MODE"/>
+    <eLiterals name="SILENTMODE1ACTIVE" value="10" literal="SILENT_MODE_1_ACTIVE"/>
+    <eLiterals name="SILENTMODE2ACTIVE" value="11" literal="SILENT_MODE_2_ACTIVE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrHPOpstateStiebelTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrHPOpstateStiebelType:Object"/>
+      <details key="baseType" value="SGrHPOpstateStiebelType"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrLanguageType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="this is the identification of the language for&#xA;&#x9;&#x9;&#x9;&#x9;information to be published. So far en, de, fr and it is possible&#xA;&#x9;&#x9;&#x9;"/>
@@ -2959,6 +2993,16 @@
     <eLiterals name="_2RegBase1000H2L" value="1" literal="2RegBase1000_H2L">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xD;&#xA;            &#xD;&#xA;  &lt;documentation>2 Registers show a combined value, as example in kWh and MWh beginning with lower range @ higher address&lt;/documentation>&#xD;&#xA;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SGReadyEnum2IOH2L" value="2" literal="SGReadyEnum2IO_H2L">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&#xD;&#xA;            &#xD;&#xA;  &lt;documentation>2 Registers combine SGready IO1 and IO2 into the sgreadyStateLv2 enum  beginning with IO1 @ higher address&lt;/documentation>&#xD;&#xA;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SGReadyEnum2IOL2H" value="3" literal="SGReadyEnum2IO_L2H">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&#xD;&#xA;            &#xD;&#xA;  &lt;documentation>2 Registers combine SGready IO1 and IO2 into the sgreadyStateLv2 enum  beginning with IO1 @ lower address&lt;/documentation>&#xD;&#xA;"/>
       </eAnnotations>
     </eLiterals>
   </eClassifiers>
