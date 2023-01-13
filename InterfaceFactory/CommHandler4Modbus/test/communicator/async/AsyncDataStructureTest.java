@@ -138,6 +138,29 @@ class AsyncDataStructureTest {
             assertNull(garo_wallbox_B_hems_curr_lim.getExecThrowable());
             assertEquals("220V",  wago_voltageAC_l1.getReadValue());
             assertEquals("20kWh", clemap_actPowerAC_tot.getReadValue());
+            
+            // Sequential read stuff
+            // Timing
+            Instant start = wago_voltageAC_l1.getRequestTime();
+            assertTrue(start.plusMillis(500).isBefore(wago_voltageAC_l1.getResponseTime()));
+            assertTrue(start.plusMillis(600).isAfter(wago_voltageAC_l1.getResponseTime()));
+            assertTrue(start.plusMillis(1000).isBefore(wago_voltageAC_l2.getResponseTime()));
+            assertTrue(start.plusMillis(1100).isAfter(wago_voltageAC_l2.getResponseTime()));
+            assertTrue(start.plusMillis(1500).isBefore(wago_voltageAC_l3.getResponseTime()));
+            assertTrue(start.plusMillis(1600).isAfter(wago_voltageAC_l3.getResponseTime()));
+            // Parallel read stuff
+            assertTrue(start.plusMillis(750).isBefore(clemap_actPowerAC_tot.getResponseTime()));
+            assertTrue(start.plusMillis(1000).isAfter(clemap_actPowerAC_tot.getResponseTime()));
+            LOG.info("Clemap duration={}", clemap_actPowerAC_tot.getResponseTime().toEpochMilli() - clemap_actPowerAC_tot.getRequestTime().toEpochMilli());
+
+            // Parallel write stuff (sequential after read stuff)
+            // Assert that writeCycle is performed after readCycle (await works...)
+            assertTrue(start.plusMillis(1500).isBefore(garo_wallbox_A_hems_curr_lim.getRequestTime()));
+
+            start = garo_wallbox_A_hems_curr_lim.getRequestTime();
+            assertTrue(start.plusMillis(500).isBefore(garo_wallbox_A_hems_curr_lim.getResponseTime()));
+            assertTrue(start.plusMillis(250).isBefore(garo_wallbox_B_hems_curr_lim.getResponseTime()));           
+            
         } else {
             assertEquals( expectedExceptionMessage, wago_voltageAC_l1.getExecThrowable().getMessage());
             assertEquals( expectedExceptionMessage, wago_voltageAC_l2.getExecThrowable().getMessage());
@@ -150,27 +173,6 @@ class AsyncDataStructureTest {
             assertTrue( garo_wallbox_A_hems_curr_lim.getExecThrowable() instanceof GenDriverModbusException);
         }
 
-        // Sequential read stuff
-        // Timing
-        Instant start = wago_voltageAC_l1.getRequestTime();
-        assertTrue(start.plusMillis(500).isBefore(wago_voltageAC_l1.getResponseTime()));
-        assertTrue(start.plusMillis(600).isAfter(wago_voltageAC_l1.getResponseTime()));
-        assertTrue(start.plusMillis(1000).isBefore(wago_voltageAC_l2.getResponseTime()));
-        assertTrue(start.plusMillis(1100).isAfter(wago_voltageAC_l2.getResponseTime()));
-        assertTrue(start.plusMillis(1500).isBefore(wago_voltageAC_l3.getResponseTime()));
-        assertTrue(start.plusMillis(1600).isAfter(wago_voltageAC_l3.getResponseTime()));
-        // Parallel read stuff
-        assertTrue(start.plusMillis(750).isBefore(clemap_actPowerAC_tot.getResponseTime()));
-        assertTrue(start.plusMillis(1000).isAfter(clemap_actPowerAC_tot.getResponseTime()));
-        LOG.info("Clemap duration={}", clemap_actPowerAC_tot.getResponseTime().toEpochMilli() - clemap_actPowerAC_tot.getRequestTime().toEpochMilli());
-
-        // Parallel write stuff (sequential after read stuff)
-        // Assert that writeCycle is performed after readCycle (await works...)
-        assertTrue(start.plusMillis(1500).isBefore(garo_wallbox_A_hems_curr_lim.getRequestTime()));
-
-        start = garo_wallbox_A_hems_curr_lim.getRequestTime();
-        assertTrue(start.plusMillis(500).isBefore(garo_wallbox_A_hems_curr_lim.getResponseTime()));
-        assertTrue(start.plusMillis(250).isBefore(garo_wallbox_B_hems_curr_lim.getResponseTime()));
 
         wago_voltageAC_l1.cleanup();
         wago_voltageAC_l2.cleanup();
