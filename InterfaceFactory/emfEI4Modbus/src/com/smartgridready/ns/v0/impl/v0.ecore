@@ -3418,6 +3418,25 @@
     <eLiterals name="ph77" value="77"/>
     <eLiterals name="ph78" value="78"/>
     <eLiterals name="ph79" value="79"/>
+    <eLiterals name="SunspCommon001" value="80"/>
+    <eLiterals name="SunspInverter101" value="81"/>
+    <eLiterals name="SunspInverter102" value="82"/>
+    <eLiterals name="SunspInverter103" value="83"/>
+    <eLiterals name="SunspInverter111" value="84"/>
+    <eLiterals name="SunspInverter112" value="85"/>
+    <eLiterals name="SunspInverter113" value="86"/>
+    <eLiterals name="SunspNameplate120" value="87"/>
+    <eLiterals name="SunspBasicSettings121" value="88"/>
+    <eLiterals name="SunspMeasurementStatus122" value="89"/>
+    <eLiterals name="SunspImmControl123" value="90"/>
+    <eLiterals name="SunspBasicStorage124" value="91"/>
+    <eLiterals name="SunspMultMPP160" value="92"/>
+    <eLiterals name="SunspStaticVoltVar126" value="93"/>
+    <eLiterals name="SunspFreqWattParam127" value="94"/>
+    <eLiterals name="SunspWattPF131" value="95"/>
+    <eLiterals name="SunspVoltWatt132" value="96"/>
+    <eLiterals name="SunspFreqWattCrv134" value="97"/>
+    <eLiterals name="SunspBatteryBaseModel802" value="98"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SubProfileTypeEnumTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
