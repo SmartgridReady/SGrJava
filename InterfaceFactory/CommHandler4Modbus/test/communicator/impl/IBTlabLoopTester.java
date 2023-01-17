@@ -757,13 +757,31 @@ public class IBTlabLoopTester {
 											
 							try {	
 								 System.out.printf("%n@:Testing FroniusSymo:%n");
-								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "SunspecID");
+								 
+								 // check Sunsoec Common Model Information
+								 l = devFroniusSymo.getValByGDPType("SunspCommonModel", "SunspecID").getInt32U();
+								 Thread.sleep(25);
+								 sVal1 = devFroniusSymo.getVal("SunspCommonModel", "SunspCommonModelID");
+								 Thread.sleep(25);
+								 sVal2 = devFroniusSymo.getVal("SunspCommonModel", "CommonModelBlockLen");
+								 Thread.sleep(25); 
+								 System.out.printf("  SunspCommonModel: SspID , CommonModeID ,CommonModeBlockLen " + sVal1  + ",     " + sVal2 + ",  "	+ sVal3 + " %n");
+
+								 Thread.sleep(25);
+								 sVal1 = devFroniusSymo.getVal("SunspCommonModel", "ManufName"); 
+								 Thread.sleep(25);
+								 sVal2 = devFroniusSymo.getVal("SunspCommonModel", "DeviceName");;
+								 
+								 System.out.printf("  SunspCommonModel:  "  + sVal1 + ",  "	+ sVal2 + " %n");	
+								 
+								 // check Sunsoec Inverter Model 
+								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "SunspInvModelID");
 								 Thread.sleep(25);
 								 sVal2 = devFroniusSymo.getVal("SunspInvModel", "InvModelBlockLen");
 								 Thread.sleep(25);
 								 sVal3 = devFroniusSymo.getVal("SunspInvModel", "CurrentACtot");
 								 Thread.sleep(25);
-								 System.out.printf("  SunspInvModel, SspID.len CurrACtot[A]:  " + sVal1 + ",     " + sVal2 + ",  "	+ sVal3 + " %n");
+								 System.out.printf("  SunspInvModel,SunspInvModelID,  CurrACtot[A]:  " + sVal1 + ",  " + sVal2 + ",  "	+ sVal3 + " %n");
 								 Thread.sleep(25);
 								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "CurrentACL1");
 								 Thread.sleep(25);
@@ -771,7 +789,7 @@ public class IBTlabLoopTester {
 								 Thread.sleep(25);
 								 sVal3 = devFroniusSymo.getVal("SunspInvModel", "CurrentACL3");
 								 Thread.sleep(25);
-								 System.out.printf("  SunspInvModel CurrentAC [A]:          " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");	
+								 System.out.printf("  SunspInvModel: CurrentAC [A]:          " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");	
 								 Thread.sleep(25);		
 									
 								 
