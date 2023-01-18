@@ -206,7 +206,7 @@ public class SGrModbusDevice {
 			ModbusReaderResponse mbResponse;
 			if (mbCacheRecord == null || mbCacheRecord.isExpired(blockNotificationType.getTimeToLive())) {
 
-				LOG.info("Reading time sync block from modbus device");
+				LOG.debug("Reading time sync block from modbus device");
 				mbResponse = ModbusReader.read(
 						drv4Modbus,
 						blockNotificationType.getRegisterType(),
@@ -218,7 +218,7 @@ public class SGrModbusDevice {
 					myTimeSyncBlockReadCache.put(blockNotificationType, new CacheRecord<>(mbResponse, Instant.now()));
 				}
 			} else {
-				LOG.info("Reading time sync block from cache.");
+				LOG.debug("Reading time sync block from cache.");
 				mbResponse = mbCacheRecord.getValue();
 			}			
 		

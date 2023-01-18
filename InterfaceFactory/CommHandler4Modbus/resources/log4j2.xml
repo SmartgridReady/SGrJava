@@ -6,9 +6,21 @@
     </Console>
   </Appenders>
   <Loggers>
-    <Root level="debug">
+    <Root level="info">
+    <!--  setzt tiefsten level fuer output -->
         <AppenderRef ref="Console"/>
     </Root>
     <logger name="org.apache.hc" level="info" />   
   </Loggers>    
 </Configuration>
+<!--  levels:  
+      "off", 
+      "trace", 
+      "debug", 
+      "info", 
+      "warn", 
+      "error", 
+      "fatal", and "all"
+      
+       https://logging.apache.org/log4j/2.x/manual/configuration.html Configuring Log4j 2      
+-->
