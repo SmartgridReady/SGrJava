@@ -401,9 +401,15 @@ public class SGrModbusDevice {
 
 			int iVal = (int) Math.abs(RegRes);
 			retVal.setInt16U(iVal);
-			RegRes =  (((long) mbregresp[1])<<16) & ((long) 0xffff0000);
-			RegRes = (long) Math.abs(RegRes + (long) mbregresp[0]);
-			retVal.setInt32U(RegRes);
+			if (size > 1) 
+			{
+			   RegRes =  (((long) mbregresp[1])<<16) & ((long) 0xffff0000);
+			   RegRes = (long) Math.abs(RegRes + (long) mbregresp[0]);
+			   retVal.setInt32U(RegRes);
+			}
+			else
+				retVal.setInt32U((long) iVal);
+				
 		}
 		else if (dGenType.isSetBoolean()) {
 			// TODO: add bus data

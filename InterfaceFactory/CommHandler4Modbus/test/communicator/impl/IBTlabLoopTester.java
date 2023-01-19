@@ -79,10 +79,10 @@ public class IBTlabLoopTester {
 	private static int devOMCCIWallboxExceptions = 0;
 	
 	// device selection
-	private static boolean  devABBMeterTestIsOn = false; 
-	private static boolean  devVGT_SGCPTestIsOn = false; 
+	private static boolean  devABBMeterTestIsOn = true; 
+	private static boolean  devVGT_SGCPTestIsOn = true; 
 	private static boolean  devFroniusSymoTestIsOn = true; 
-	private static boolean  devGaroWallboxTestIsOn = false; 
+	private static boolean  devGaroWallboxTestIsOn = true; 
 	// TestBox
 	private static boolean  devTB_ABBMeterTestIsOn = false; 
 	private static boolean  devWagoMeterTestIsOn = false; 
