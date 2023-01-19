@@ -707,6 +707,25 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph77"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph78"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ph79"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspCommon001"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspInverter101"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspInverter102"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspInverter103"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspInverter111"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspInverter112"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspInverter113"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspNameplate120"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspBasicSettings121"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspMeasurementStatus122"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspImmControl123"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspBasicStorage124"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspMultMPP160"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspStaticVoltVar126"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspFreqWattParam127"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspWattPF131"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspVoltWatt132"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspFreqWattCrv134"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspBatteryBaseModel802"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//TEnumConversionFct">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//TEnumConversionFct/BigEndian"/>

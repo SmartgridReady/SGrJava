@@ -38,10 +38,15 @@ import communicator.common.runtime.Parity;
 import communicator.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
+// debug an logger classes
+import org.eclipse.emf.common.util.EList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IBTlabLoopTester {
 	
 	private static final String XML_BASE_DIR = "../../../SGrSpecifications/XMLInstances/ExtInterfaces/"; 
+	private static final Logger LOG = LoggerFactory.getLogger(IBTlabLoopTester.class);
 	
 	// we need static definitions for performance reason
 	//------------------------------------------------------
@@ -99,29 +104,29 @@ public class IBTlabLoopTester {
 			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface		
 			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
 			if (devABBMeterTestIsOn)  {
-				System.out.printf("%n-init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ "%n");initABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
+				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
 			}
 			if (devVGT_SGCPTestIsOn)   {
-				System.out.printf("%n-init devVGT_SGCPTest @:" + dtf.format(LocalDateTime.now())+ "%n");initVGT_SGCP (XML_BASE_DIR,"SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml");
+				LOG.info(" -init devVGT_SGCPTest @:" + dtf.format(LocalDateTime.now())+ " ");initVGT_SGCP (XML_BASE_DIR,"SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml");
 			}
 			if (devGaroWallboxTestIsOn) {
-				System.out.printf("%n-init devGaroWallboxTest @:" + dtf.format(LocalDateTime.now())+ "%n"); initGaroWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
+				LOG.info(" -init devGaroWallboxTest @:" + dtf.format(LocalDateTime.now())+ " "); initGaroWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
 			}
 			if (devFroniusSymoTestIsOn) {
-				System.out.printf("%n-init FroniusSymoTest @:" + dtf.format(LocalDateTime.now()) + "%n"); initFroniusSymo(XML_BASE_DIR,"SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml");
+				LOG.info(" -init FroniusSymoTest @:" + dtf.format(LocalDateTime.now()) + " "); initFroniusSymo(XML_BASE_DIR,"SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml");
 			}	
 
 			// TestBox
 			if (devTB_ABBMeterTestIsOn)  {
-				System.out.printf("%n-init TestBox: devTB_ABBMeterTest @:" + dtf.format(LocalDateTime.now())+ "%n");initTB_ABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
+				LOG.info(" -init TestBox: devTB_ABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initTB_ABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
 			}
 			if (devWagoMeterTestIsOn) {
-				System.out.printf("%n-init TestBox: devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ "%n");
+				LOG.info(" -init TestBox: devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ " ");
 				initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 			}
 			if (devOMCCIWallboxTestIsOn) {
 				//TODO: complete and use OMCCI EI.xml
-				System.out.printf("%n-init devOMCCIWallboxTest @:" + dtf.format(LocalDateTime.now())+ "%n"); initOMCCIWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
+				LOG.info(" -init devOMCCIWallboxTest @:" + dtf.format(LocalDateTime.now())+ " "); initOMCCIWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
 			}
 
  
@@ -135,17 +140,17 @@ public class IBTlabLoopTester {
 				{
 					
 				   // loop data & test reporting
-			        System.out.printf("%n" + dtf.format(LocalDateTime.now()));			        
-					System.out.printf("  ------> LOOP=" +	runtimeCnt + "  Exceptions:");		
-					if (devABBMeterTestIsOn)    System.out.printf(" ABBMeter=" +  devABBMeterExcpetions+ ",");
-					if (devVGT_SGCPTestIsOn)    System.out.printf(" VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
-				    if (devGaroWallboxTestIsOn) System.out.printf(" GaroWallbox=" + devGaroWallboxExceptions+ ",");
-					if (devFroniusSymoTestIsOn) System.out.printf(" FroniusSymo=" + devFroniusSymoExceptions + ",");
+			        LOG.info(" " + dtf.format(LocalDateTime.now()));			        
+					LOG.info("  ------> LOOP=" +	runtimeCnt + "  Exceptions:");		
+					if (devABBMeterTestIsOn)    LOG.info(" ABBMeter=" +  devABBMeterExcpetions+ ",");
+					if (devVGT_SGCPTestIsOn)    LOG.info(" VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
+				    if (devGaroWallboxTestIsOn) LOG.info(" GaroWallbox=" + devGaroWallboxExceptions+ ",");
+					if (devFroniusSymoTestIsOn) LOG.info(" FroniusSymo=" + devFroniusSymoExceptions + ",");
 					// TestBox
-					if (devTB_ABBMeterTestIsOn)    System.out.printf(" TestBox ABBMeter=" +  devTB_ABBMeterExcpetions+ ",");
-				  if (devOMCCIWallboxTestIsOn) System.out.printf(" TestBox OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
-					if (devWagoMeterTestIsOn)   System.out.printf(" TestBox WagoMeter=" + devWagoMeterExceptions + ",");
-					System.out.println(" <------");
+					if (devTB_ABBMeterTestIsOn)    LOG.info(" TestBox ABBMeter=" +  devTB_ABBMeterExcpetions+ ",");
+				  if (devOMCCIWallboxTestIsOn) LOG.info(" TestBox OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
+					if (devWagoMeterTestIsOn)   LOG.info(" TestBox WagoMeter=" + devWagoMeterExceptions + ",");
+					LOG.info(" <------");
 					
 				    //_____Next loop 
 					if (devABBMeterTestIsOn)    tstABBMeter();					
@@ -163,14 +168,14 @@ public class IBTlabLoopTester {
 
 		    catch ( Exception e)
 	 	   {
-				System.out.println( "Error reading value from device " + e);
+				LOG.info( "Error reading value from device " + e);
 				e.printStackTrace();
 		   }
 	   }
 	 
 	   catch ( Exception e )
 	   {
-		  	 System.out.println( "Error loading device description. " + e);
+		  	 LOG.info( "Error loading device description. " + e);
 	   }									
  
 	}
@@ -190,7 +195,7 @@ public class IBTlabLoopTester {
 		
 		catch ( Exception e )
 		{
-			System.out.println( "Error loading device description devWagoMeter:" + e);
+			LOG.info( "Error loading device description devWagoMeter:" + e);
 		}		
 	}
 	
@@ -201,8 +206,8 @@ public class IBTlabLoopTester {
 		
 			try {							
 				mbRTU.setUnitIdentifier((byte) 7);
-			    System.out.println();
-				System.out.println("@:Testing TestBox: WAGO Meter");
+			    LOG.info(" ");
+				LOG.info("@:Testing TestBox: WAGO Meter");
 				Thread.sleep(25);
 				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
 				Thread.sleep(10);            
@@ -211,24 +216,24 @@ public class IBTlabLoopTester {
 				fVal3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL3").getFloat32();
 				Thread.sleep(10);
 				fVal4 = devWagoMeter.getValByGDPType("Frequency", "Frequency").getFloat32();
-				System.out.printf("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
-						+ fVal3 + ",  " + fVal4 + " %n");
+				LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
+						+ fVal3 + ",  " + fVal4 + "  ");
 				Thread.sleep(10);
 				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getFloat32();
 				Thread.sleep(10);
 				fVal2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getFloat32();
 				Thread.sleep(10);
 				fVal3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getFloat32();
-				System.out.printf("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
-						+ fVal3 + " %n");
+				LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
+						+ fVal3 + "  ");
 				Thread.sleep(10);
 				fVal1 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
 				Thread.sleep(10);
 				fVal2 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
 				Thread.sleep(10);
 				fVal3 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
-				System.out.printf("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
-						+ fVal3 + " %n");
+				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
+						+ fVal3 + "  ");
 				Thread.sleep(10);
 				fVal1 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactor").getFloat32();
 				Thread.sleep(10);
@@ -237,8 +242,8 @@ public class IBTlabLoopTester {
 				fVal3 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getFloat32();
 				Thread.sleep(10);
 				fVal4 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getFloat32();
-				System.out.printf("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
-						+ fVal3 + ",  " + fVal4 + " %n");
+				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
+						+ fVal3 + ",  " + fVal4 + "  ");
 				Thread.sleep(10); 
 				sVal1 = devWagoMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot");
 				Thread.sleep(10);
@@ -247,8 +252,8 @@ public class IBTlabLoopTester {
 				sVal3 = devWagoMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL2");
 				Thread.sleep(10);
 				sVal4 = devWagoMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL3");
-				System.out.printf("  ActiveEnergyAC [kWh]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3
-						+ ",  " + sVal4 + " %n");
+				LOG.info("  ActiveEnergyAC [kWh]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3
+						+ ",  " + sVal4 + "  ");
 				Thread.sleep(10);
 				sVal1 = devWagoMeter.getVal("ActivePowerAC", "ActivePowerACtot");
 				Thread.sleep(10);
@@ -257,8 +262,8 @@ public class IBTlabLoopTester {
 				sVal3 = devWagoMeter.getVal("ActivePowerAC", "ActivePowerACL2");
 				Thread.sleep(10);
 				sVal4 = devWagoMeter.getVal("ActivePowerAC", "ActivePowerACL3");
-				System.out.printf("  ActivePowerAC [kW]:           " + sVal1 + ", " + sVal2 + ",  " + sVal3
-						+ ",  " + sVal4 + " %n");
+				LOG.info("  ActivePowerAC [kW]:           " + sVal1 + ", " + sVal2 + ",  " + sVal3
+						+ ",  " + sVal4 + "  ");
 				Thread.sleep(10);
 				sVal1 = devWagoMeter.getVal("ReactivePowerAC", "ReactivePowerACtot");
 				Thread.sleep(10);
@@ -267,8 +272,8 @@ public class IBTlabLoopTester {
 				sVal3 = devWagoMeter.getVal("ReactivePowerAC", "ReactivePowerACL2");
 				Thread.sleep(10);
 				sVal4 = devWagoMeter.getVal("ReactivePowerAC", "ReactivePowerACL3");
-				System.out.printf("  ReactivePowerAC [kvar]:       " + sVal1 + ", " + sVal2 + ",  " + sVal3
-						+ ",  " + sVal4 + " %n");
+				LOG.info("  ReactivePowerAC [kvar]:       " + sVal1 + ", " + sVal2 + ",  " + sVal3
+						+ ",  " + sVal4 + "  ");
 				Thread.sleep(10);
 				sVal1 = devWagoMeter.getVal("ApparentPowerAC", "ApparentPowerACtot");
 				Thread.sleep(10);
@@ -277,15 +282,15 @@ public class IBTlabLoopTester {
 				sVal3 = devWagoMeter.getVal("ApparentPowerAC", "ApparentPowerACL2");
 				Thread.sleep(10);
 				sVal4 = devWagoMeter.getVal("ApparentPowerAC", "ApparentPowerACL3");
-				System.out.printf("  ApparentPowerAC [kva]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
-						+ ",  " + sVal4 + " %n");
+				LOG.info("  ApparentPowerAC [kva]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
+						+ ",  " + sVal4 + "  ");
 				Thread.sleep(10);
 				sVal1 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
 				Thread.sleep(10);
 				sVal2 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
 				Thread.sleep(10);
 				sVal3 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
-				System.out.printf("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");
+				LOG.info("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
 
 				Thread.sleep(10);
 				sVal1 = devWagoMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC");
@@ -293,7 +298,7 @@ public class IBTlabLoopTester {
 				sVal2 = devWagoMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC");
 				Thread.sleep(10);
 				sVal3 = devWagoMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC");
-				System.out.printf("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + " %n");
+				LOG.info("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
 				
 				Thread.sleep(10);
 				sVal1 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACtot");
@@ -303,8 +308,8 @@ public class IBTlabLoopTester {
 				sVal3 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACL2");
 				Thread.sleep(10);
 				sVal4 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACL3");
-				System.out.printf("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
-						+ ",  " + sVal4 + " %n");
+				LOG.info("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
+						+ ",  " + sVal4 + "  ");
 
 				Thread.sleep(10);
 				sVal1 = devWagoMeter.getVal("CurrentDirection", "CurrentDirL1");
@@ -312,14 +317,14 @@ public class IBTlabLoopTester {
 				sVal2 = devWagoMeter.getVal("CurrentDirection", "CurrentDirL2");
 				Thread.sleep(10);
 				sVal3 = devWagoMeter.getVal("CurrentDirection", "CurrentDirL3");
-				System.out.printf("  CurrentDirection  L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ",  " + sVal3
-						+  " %n"); 
+				LOG.info("  CurrentDirection  L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ",  " + sVal3
+						+  "  "); 
 
 			}
 			catch ( Exception e)
 			{
 				devWagoMeterExceptions++;
-				System.out.println( "Error reading value from device devWagoMeter:" + e);
+				LOG.info( "Error reading value from device devWagoMeter:" + e);
 				e.printStackTrace();
 			}
 		}
@@ -342,7 +347,7 @@ public class IBTlabLoopTester {
 			
 			catch ( Exception e )
 			{
-				System.out.println( "Error loading device description. " + e);
+				LOG.info( "Error loading device description. " + e);
 			}		
 		}
 		
@@ -353,7 +358,7 @@ public class IBTlabLoopTester {
 			
 				try {
 	 				  mbRTU.setUnitIdentifier((byte) 11);	
-	  				  System.out.printf("%n@:Testing ABBMeter:%n");
+	  				  LOG.info(" @:Testing ABBMeter: ");
 					  Thread.sleep(50);
 					  sVal1 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
 					  Thread.sleep(10);
@@ -361,7 +366,7 @@ public class IBTlabLoopTester {
 					  Thread.sleep(10);
 					  sVal3 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
 					  Thread.sleep(10);
-					  System.out.printf(" ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + " %n");	
+					  LOG.info(" ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + "  ");	
 	 
 					  sVal1 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACtot");
 					  Thread.sleep(10);
@@ -371,7 +376,7 @@ public class IBTlabLoopTester {
 					  Thread.sleep(10);
 					  sVal4 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL3");
 					  Thread.sleep(10);
-					  System.out.printf(" ActivePowerAC [KW]:           " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + " %n");	
+					  LOG.info(" ActivePowerAC [KW]:           " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + "  ");	
 	 	
 					  sVal1 = devABBMeter.getVal("CurrentAC", "CurrentACL1");
 					  Thread.sleep(10);
@@ -381,14 +386,14 @@ public class IBTlabLoopTester {
 					  Thread.sleep(10);
 					  sVal4 = devABBMeter.getVal("CurrentAC", "CurrentACN");
 					  Thread.sleep(10);
-					  System.out.printf(" CurrentAC [A]:             " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + " %n");	
+					  LOG.info(" CurrentAC [A]:             " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + "  ");	
 		
 					
 				}
 				catch ( Exception e)
 				{
 					devABBMeterExcpetions++;
-					System.out.println( "Error reading value from device devABBMeter:" +  e);
+					LOG.info( "Error reading value from device devABBMeter:" +  e);
 					e.printStackTrace();
 				}
 			}
@@ -409,7 +414,7 @@ public class IBTlabLoopTester {
 			
 			catch ( Exception e )
 			{
-				System.out.println( "Error loading device description. " + e);
+				LOG.info( "Error loading device description. " + e);
 			}		
 		}
 		
@@ -420,7 +425,7 @@ public class IBTlabLoopTester {
 			
 				try {
 	 				  mbRTU.setUnitIdentifier((byte) 1 );	
-	  				  System.out.printf("%n@:Testing TestBox: ABBMeter:%n");
+	  				  LOG.info(" @:Testing TestBox: ABBMeter: ");
 					  Thread.sleep(50);
 					  sVal1 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
 					  Thread.sleep(10);
@@ -428,7 +433,7 @@ public class IBTlabLoopTester {
 					  Thread.sleep(10);
 					  sVal3 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
 					  Thread.sleep(10);
-					  System.out.printf(" ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + " %n");	
+					  LOG.info(" ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + "  ");	
 	 
 					  sVal1 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACtot");
 					  Thread.sleep(10);
@@ -438,7 +443,7 @@ public class IBTlabLoopTester {
 					  Thread.sleep(10);
 					  sVal4 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL3");
 					  Thread.sleep(10);
-					  System.out.printf(" ActivePowerAC [KW]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + " %n");	
+					  LOG.info(" ActivePowerAC [KW]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + "  ");	
 	 	
 					  sVal1 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACL1");
 					  Thread.sleep(10);
@@ -448,14 +453,14 @@ public class IBTlabLoopTester {
 					  Thread.sleep(10);
 					  sVal4 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACN");
 					  Thread.sleep(10);
-					  System.out.printf(" CurrentAC [A]:              " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + " %n");	
+					  LOG.info(" CurrentAC [A]:              " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + "  ");	
 		
 					
 				}
 				catch ( Exception e)
 				{
 					devTB_ABBMeterExcpetions++;
-					System.out.println( "Error reading value from device devABBMeter:" +  e);
+					LOG.info( "Error reading value from device devABBMeter:" +  e);
 					e.printStackTrace();
 				}
 			}
@@ -483,7 +488,7 @@ public class IBTlabLoopTester {
 				
 				catch ( Exception e )
 				{
-					System.out.println( "Error loading device description mbVGT_SGCP: " + e);
+					LOG.info( "Error loading device description mbVGT_SGCP: " + e);
 				}		
 			}
 			
@@ -493,8 +498,8 @@ public class IBTlabLoopTester {
 				String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
 				
 					try {	
-					    System.out.println();
-						System.out.println("@:Testing devVGT_SGCP");
+						LOG.info(" ");
+						LOG.info("@:Testing devVGT_SGCP");
 						Thread.sleep(25);
 
 						  sVal1 = devVGT_SGCP.getVal("BiDirFlexMgmt", "ReadinessState");
@@ -505,14 +510,14 @@ public class IBTlabLoopTester {
 						  else
 							  devVGT_SGCP.setVal("BiDirFlexMgmt", "ActivePowerActivation", "true");
 
-						System.out.printf(" ReadinessState / RunState / ActualActivePower: " + sVal1 + ", "
-								+ sVal2 + sVal3 + " %n");
+						LOG.info(" ReadinessState / RunState / ActualActivePower: " + sVal1 + ", "
+								+ sVal2 + sVal3 + "  ");
 						
 					}
 					catch ( Exception e)
 					{
 						devVGT_SGCPExceptions++;
-						System.out.println( "Error reading value from device devVGT_SGCP :" + e);
+						LOG.info( "Error reading value from device devVGT_SGCP :" + e);
 						e.printStackTrace();
 					}
 				}
@@ -539,7 +544,7 @@ public class IBTlabLoopTester {
 					
 					catch ( Exception e )
 					{
-						System.out.println( "Error loading device description. " + e);
+						LOG.info( "Error loading device description. " + e);
 					}		
 				}
 				
@@ -555,12 +560,12 @@ public class IBTlabLoopTester {
 					
 					
 						try {	
-							 System.out.printf("%n@:Testing GaroWallbox:%n");							
+							 LOG.info(" @:Testing GaroWallbox: ");							
 							 if ((runtimeCnt%60)== 0)
 							 {
 								 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
 								 devGaroWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
-								 System.out.printf("  Setting HemsCurrentLimit to :     " + CurtailCurrent + " %n");
+								 LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");
 							 }
 							 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
 							 Thread.sleep(200);
@@ -571,13 +576,13 @@ public class IBTlabLoopTester {
 							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 							 Thread.sleep(200);
 							 sgrEVState = oEnumList.getSgrEVState();
-							 System.out.printf("  EV-StatusCode:                    " + sgrEVState+ " %n");
+							 LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
 							 
 							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
 							 Thread.sleep(200);
 							 sgrOCPPState = oEnumList.getSgrOCPPState();
-							 System.out.printf("  OCPP-StatusCode:                  " + sgrOCPPState + " %n");
-							 System.out.printf("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + " %n");		 
+							 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
+							 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
 							 fVal1 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
 							 Thread.sleep(200);
@@ -585,7 +590,7 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
 							 Thread.sleep(200);
-							 System.out.printf("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + " %n");	
+							 LOG.info("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + "  ");	
 								 
 							 fVal1 = devGaroWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
 							 Thread.sleep(200);
@@ -593,13 +598,13 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
 							 Thread.sleep(200);
-							 System.out.printf("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + " %n");	
+							 LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");	
 								
 							 //sVal1 = devGaroWallbox.getVal("EVState", "isSmartEV15118");
 							 //Thread.sleep(200);
 							 //??? sVal2 = devGaroWallbox.getVal("EVState", "EVCCID");
 							 Thread.sleep(200);
-							 System.out.printf("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + " %n");
+							 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + "  ");
 							 
 							 fVal1 = devGaroWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat32();
 							 Thread.sleep(200);
@@ -609,14 +614,14 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 iVal1 = devGaroWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
 							 Thread.sleep(200);
-							 System.out.printf("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +" %n");
+							 LOG.info("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +"  ");
 							 
 							
 						}
 						catch ( Exception e)
 						{
 							devGaroWallboxExceptions++;
-							System.out.println( "Error reading value from device devGaroWallbox:" + e);
+							LOG.info( "Error reading value from device devGaroWallbox:" + e);
 							e.printStackTrace();
 						}
 					}
@@ -643,7 +648,7 @@ public class IBTlabLoopTester {
 						
 						catch ( Exception e )
 						{
-							System.out.println( "Error loading device description. " + e);
+							LOG.info( "Error loading device description. " + e);
 						}		
 					}
 					
@@ -659,12 +664,12 @@ public class IBTlabLoopTester {
 						
 						
 							try {	
-								 System.out.printf("%n@:Testing TestBox: OMCCIWallbox:%n");							
+								 LOG.info(" @:Testing TestBox: OMCCIWallbox: ");							
 								 if ((runtimeCnt%60)== 0)
 								 {
 									 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
 									 devOMCCIWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
-									 System.out.printf("  Setting HemsCurrentLimit to :     " + CurtailCurrent + " %n");
+									 LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");
 								 }
 								 fVal1 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
 								 Thread.sleep(200);
@@ -675,13 +680,13 @@ public class IBTlabLoopTester {
 								 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 								 Thread.sleep(200);
 								 sgrEVState = oEnumList.getSgrEVState();
-								 System.out.printf("  EV-StatusCode:                    " + sgrEVState+ " %n");
+								 LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
 								 
 								 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
 								 Thread.sleep(200);
 								 sgrOCPPState = oEnumList.getSgrOCPPState();
-								 System.out.printf("  OCPP-StatusCode:                  " + sgrOCPPState + " %n");
-								 System.out.printf("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + " %n");		 
+								 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
+								 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
 								 fVal1 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
 								 Thread.sleep(200);
@@ -689,7 +694,7 @@ public class IBTlabLoopTester {
 								 Thread.sleep(200);
 								 fVal3 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
 								 Thread.sleep(200);
-								 System.out.printf("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + " %n");	
+								 LOG.info("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + "  ");	
 									 
 								 fVal1 = devOMCCIWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
 								 Thread.sleep(200);
@@ -697,13 +702,13 @@ public class IBTlabLoopTester {
 								 Thread.sleep(200);
 								 fVal3 = devOMCCIWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
 								 Thread.sleep(200);
-								 System.out.printf("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + " %n");	
+								 LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");	
 									
 								 //sVal1 = devOMCCIWallbox.getVal("EVState", "isSmartEV15118");
 								 //Thread.sleep(200);
 								 //??? sVal2 = devOMCCIWallbox.getVal("EVState", "EVCCID");
 								 Thread.sleep(200);
-								 System.out.printf("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + " %n");
+								 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + "  ");
 								 
 								 fVal1 = devOMCCIWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat32();
 								 Thread.sleep(200);
@@ -713,13 +718,13 @@ public class IBTlabLoopTester {
 								 Thread.sleep(200);
 								 iVal1 = devOMCCIWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
 								 Thread.sleep(200);
-								 System.out.printf("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +" %n");
+								 LOG.info("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +"  ");
 								 
 							}
 							catch ( Exception e)
 							{
 								devOMCCIWallboxExceptions++;
-								System.out.println( "Error reading value from device devOMCCIWallbox:" + e);
+								LOG.info( "Error reading value from device devOMCCIWallbox:" + e);
 								e.printStackTrace();
 							}
 						}
@@ -744,7 +749,7 @@ public class IBTlabLoopTester {
 						
 						catch ( Exception e )
 						{
-							System.out.println( "Error loading device description. " + e);
+							LOG.info( "Error loading device description. " + e);
 						}		
 					}
 					
@@ -756,14 +761,40 @@ public class IBTlabLoopTester {
 						long l;
 											
 							try {	
-								 System.out.printf("%n@:Testing FroniusSymo:%n");
-								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "SunspecID");
+								 LOG.info(" @:Testing FroniusSymo: ");
+								 
+								 // check Sunsoec Common Model Information
+								 l = devFroniusSymo.getValByGDPType("SunspCommonModel", "SunspecID").getInt32U();
+								 sVal1 = String.format("0x%x", l);
+								 Thread.sleep(25);
+								 sVal2 = devFroniusSymo.getVal("SunspCommonModel", "SunspCommonModelID");
+								 Thread.sleep(25);
+								 sVal3 = devFroniusSymo.getVal("SunspCommonModel", "CommonModelBlockLen");
+								 Thread.sleep(25); 
+								 LOG.info("  SunspCommonModel: SspID , CommonModeID ,CommonModeBlockLen " + sVal1  + ",     " + sVal2 + ",  "	+ sVal3 );
+
+								 Thread.sleep(25);
+								 sVal1 = devFroniusSymo.getVal("SunspCommonModel", "ManufName"); 
+								 Thread.sleep(25);
+								 sVal2 = devFroniusSymo.getVal("SunspCommonModel", "DeviceName");;
+								 LOG.info("  SunspCommonModel:  "  + sVal1 + ",  "	+ sVal2 + "  ");						 
+
+								 Thread.sleep(25);
+								 sVal1 = devFroniusSymo.getVal("SunspCommonModel", "Options"); 
+								 Thread.sleep(25);
+								 sVal2 = devFroniusSymo.getVal("SunspCommonModel", "SWVersion");
+								 Thread.sleep(25);
+								 sVal3 = devFroniusSymo.getVal("SunspCommonModel", "SerialNumber");
+								 LOG.info("  SunspCommonModel:  "  + sVal1 + ",  "	+ sVal2 + ",  "	+ sVal3 +  "  ");	
+								 
+								 // check Sunsoec Inverter Model 
+								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "SunspInvModelID");
 								 Thread.sleep(25);
 								 sVal2 = devFroniusSymo.getVal("SunspInvModel", "InvModelBlockLen");
 								 Thread.sleep(25);
 								 sVal3 = devFroniusSymo.getVal("SunspInvModel", "CurrentACtot");
 								 Thread.sleep(25);
-								 System.out.printf("  SunspInvModel, SspID.len CurrACtot[A]:  " + sVal1 + ",     " + sVal2 + ",  "	+ sVal3 + " %n");
+								 LOG.info("  SunspInvModel: SunspInvModelID, BlockLen,  CurrACtot[A]:  " + sVal1 + ",  " + sVal2 + ",  "	+ sVal3 + "  ");
 								 Thread.sleep(25);
 								 sVal1 = devFroniusSymo.getVal("SunspInvModel", "CurrentACL1");
 								 Thread.sleep(25);
@@ -771,91 +802,91 @@ public class IBTlabLoopTester {
 								 Thread.sleep(25);
 								 sVal3 = devFroniusSymo.getVal("SunspInvModel", "CurrentACL3");
 								 Thread.sleep(25);
-								 System.out.printf("  SunspInvModel CurrentAC [A]:          " + sVal1 + ", " + sVal2 + ",  " + sVal3 + " %n");	
+								 LOG.info("  SunspInvModel: CurrentAC [A]:          " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");	
 								 Thread.sleep(25);		
 									
 								 
-								 System.out.printf("  Status  EvenList1 %n");
+								 LOG.info("  Status  EvenList1  ");
 								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList1").getInt32U();
-								 System.out.printf("   StatusRegister :         " + l + " %n");
+								 LOG.info("   StatusRegister :         " + l + "  ");
 							     Thread.sleep(25);
-								 System.out.printf("    EventList 1: isTrue =  ");
+								 LOG.info("    EventList 1: isTrue =  ");
 
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT0_VALUE)))!=0) System.out.printf("BIT0, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT1_VALUE)))!=0) System.out.printf("BIT1, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT2_VALUE)))!=0) System.out.printf("BIT2, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT3_VALUE)))!=0) System.out.printf("BIT3, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT4_VALUE)))!=0) System.out.printf("BIT4, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT5_VALUE)))!=0) System.out.printf("BIT5, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT6_VALUE)))!=0) System.out.printf("BIT6, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT7_VALUE)))!=0) System.out.printf("BIT7, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT8_VALUE)))!=0) System.out.printf("BIT8, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT9_VALUE)))!=0) System.out.printf("BIT9, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT10_VALUE)))!=0) System.out.printf("BIT10, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT11_VALUE)))!=0) System.out.printf("BIT11, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT12_VALUE)))!=0) System.out.printf("BIT12, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT13_VALUE)))!=0) System.out.printf("BIT13, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT14_VALUE)))!=0) System.out.printf("BIT14, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT15_VALUE)))!=0) System.out.printf("BIT15, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT16_VALUE)))!=0) System.out.printf("BIT16, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT17_VALUE)))!=0) System.out.printf("BIT17, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT18_VALUE)))!=0) System.out.printf("BIT18, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT19_VALUE)))!=0) System.out.printf("BIT19, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT20_VALUE)))!=0) System.out.printf("BIT20, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT21_VALUE)))!=0) System.out.printf("BIT21, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT22_VALUE)))!=0) System.out.printf("BIT22, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT23_VALUE)))!=0) System.out.printf("BIT23, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT24_VALUE)))!=0) System.out.printf("BIT24, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT25_VALUE)))!=0) System.out.printf("BIT25, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT26_VALUE)))!=0) System.out.printf("BIT26, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT27_VALUE)))!=0) System.out.printf("BIT27, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT28_VALUE)))!=0) System.out.printf("BIT28, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT29_VALUE)))!=0) System.out.printf("BIT29, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT30_VALUE)))!=0) System.out.printf("BIT30, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT31_VALUE)))!=0) System.out.printf("BIT31, ");
-								 System.out.printf("%n");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT3_VALUE)))!=0) LOG.info("BIT3, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT4_VALUE)))!=0) LOG.info("BIT4, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT5_VALUE)))!=0) LOG.info("BIT5, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT6_VALUE)))!=0) LOG.info("BIT6, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT7_VALUE)))!=0) LOG.info("BIT7, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT8_VALUE)))!=0) LOG.info("BIT8, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT9_VALUE)))!=0) LOG.info("BIT9, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT10_VALUE)))!=0) LOG.info("BIT10, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT11_VALUE)))!=0) LOG.info("BIT11, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT12_VALUE)))!=0) LOG.info("BIT12, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT13_VALUE)))!=0) LOG.info("BIT13, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT14_VALUE)))!=0) LOG.info("BIT14, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT15_VALUE)))!=0) LOG.info("BIT15, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT16_VALUE)))!=0) LOG.info("BIT16, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT17_VALUE)))!=0) LOG.info("BIT17, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT18_VALUE)))!=0) LOG.info("BIT18, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT19_VALUE)))!=0) LOG.info("BIT19, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT20_VALUE)))!=0) LOG.info("BIT20, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT21_VALUE)))!=0) LOG.info("BIT21, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT22_VALUE)))!=0) LOG.info("BIT22, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT23_VALUE)))!=0) LOG.info("BIT23, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT24_VALUE)))!=0) LOG.info("BIT24, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT25_VALUE)))!=0) LOG.info("BIT25, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT26_VALUE)))!=0) LOG.info("BIT26, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT27_VALUE)))!=0) LOG.info("BIT27, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT28_VALUE)))!=0) LOG.info("BIT28, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
+								 LOG.info(" ");
 			
-								 System.out.printf("  Status EvenList2 %n");
+								 LOG.info("  Status EvenList2  ");
 								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList2").getInt32U();
-								 System.out.printf("   StatusRegister :         " + l + " %n");
-								 System.out.printf("   EventList 2: isTrue =  ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT0_VALUE)))!=0) System.out.printf("BIT0, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT1_VALUE)))!=0) System.out.printf("BIT1, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT2_VALUE)))!=0) System.out.printf("BIT2, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT3_VALUE)))!=0) System.out.printf("BIT3, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT4_VALUE)))!=0) System.out.printf("BIT4, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT5_VALUE)))!=0) System.out.printf("BIT5, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT6_VALUE)))!=0) System.out.printf("BIT6, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT7_VALUE)))!=0) System.out.printf("BIT7, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT8_VALUE)))!=0) System.out.printf("BIT8, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT9_VALUE)))!=0) System.out.printf("BIT9, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT10_VALUE)))!=0) System.out.printf("BIT10, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT11_VALUE)))!=0) System.out.printf("BIT11, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT12_VALUE)))!=0) System.out.printf("BIT12, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT13_VALUE)))!=0) System.out.printf("BIT13, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT14_VALUE)))!=0) System.out.printf("BIT14, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT15_VALUE)))!=0) System.out.printf("BIT15, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT16_VALUE)))!=0) System.out.printf("BIT16, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT17_VALUE)))!=0) System.out.printf("BIT17, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT18_VALUE)))!=0) System.out.printf("BIT18, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT19_VALUE)))!=0) System.out.printf("BIT19, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT20_VALUE)))!=0) System.out.printf("BIT20, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT21_VALUE)))!=0) System.out.printf("BIT21, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT22_VALUE)))!=0) System.out.printf("BIT22, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT23_VALUE)))!=0) System.out.printf("BIT23, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT24_VALUE)))!=0) System.out.printf("BIT24, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT25_VALUE)))!=0) System.out.printf("BIT25, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT26_VALUE)))!=0) System.out.printf("BIT26, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT27_VALUE)))!=0) System.out.printf("BIT27, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT28_VALUE)))!=0) System.out.printf("BIT28, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT29_VALUE)))!=0) System.out.printf("BIT29, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT30_VALUE)))!=0) System.out.printf("BIT30, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT31_VALUE)))!=0) System.out.printf("BIT31, ");
+								 LOG.info("   StatusRegister :         " + l + "  ");
+								 LOG.info("   EventList 2: isTrue =  ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT3_VALUE)))!=0) LOG.info("BIT3, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT4_VALUE)))!=0) LOG.info("BIT4, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT5_VALUE)))!=0) LOG.info("BIT5, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT6_VALUE)))!=0) LOG.info("BIT6, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT7_VALUE)))!=0) LOG.info("BIT7, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT8_VALUE)))!=0) LOG.info("BIT8, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT9_VALUE)))!=0) LOG.info("BIT9, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT10_VALUE)))!=0) LOG.info("BIT10, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT11_VALUE)))!=0) LOG.info("BIT11, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT12_VALUE)))!=0) LOG.info("BIT12, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT13_VALUE)))!=0) LOG.info("BIT13, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT14_VALUE)))!=0) LOG.info("BIT14, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT15_VALUE)))!=0) LOG.info("BIT15, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT16_VALUE)))!=0) LOG.info("BIT16, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT17_VALUE)))!=0) LOG.info("BIT17, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT18_VALUE)))!=0) LOG.info("BIT18, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT19_VALUE)))!=0) LOG.info("BIT19, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT20_VALUE)))!=0) LOG.info("BIT20, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT21_VALUE)))!=0) LOG.info("BIT21, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT22_VALUE)))!=0) LOG.info("BIT22, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT23_VALUE)))!=0) LOG.info("BIT23, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT24_VALUE)))!=0) LOG.info("BIT24, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT25_VALUE)))!=0) LOG.info("BIT25, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT26_VALUE)))!=0) LOG.info("BIT26, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT27_VALUE)))!=0) LOG.info("BIT27, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT28_VALUE)))!=0) LOG.info("BIT28, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
+						     	 if(((l&(1<<SGrBool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
 							 }
 							 catch ( Exception e)
 							 {
 								devFroniusSymoExceptions++;
-								System.out.println( "Error reading value from device: "+ devFroniusSymo.getClass().getName() + e);
+								LOG.info( "Error reading value from device: "+ devFroniusSymo.getClass().getName() + e);
 								e.printStackTrace();
 							}
 						}
@@ -885,7 +916,7 @@ public class IBTlabLoopTester {
 			
 			catch ( Exception e )
 			{
-				System.out.println( "Error loading device description. " + e);
+				LOG.info( "Error loading device description. " + e);
 			}		
 		}
 		
@@ -897,8 +928,8 @@ public class IBTlabLoopTester {
 				try {	
 					// if RTU is used, set address here
 					// mbRTU.setUnitIdentifier((byte) 7);
-				    System.out.println();
-					System.out.println("@:Testing   xxxxx");
+					LOG.info(" ");
+					LOG.info("@:Testing   xxxxx");
 					Thread.sleep(25);
 					
 					// Add test getters and setters for binary interface
@@ -913,7 +944,7 @@ public class IBTlabLoopTester {
 				}
 				catch ( Exception e)
 				{
-					System.out.println( "Error reading value from device: "+ devFroniusSymo.getClass().getName() + e);
+					LOG.info( "Error reading value from device: "+ devFroniusSymo.getClass().getName() + e);
 					e.printStackTrace();
 					// add Exception counter here
 				}

@@ -58,6 +58,25 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/R48"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/R49"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/R50"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspCommon001"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspInverter101"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspInverter102"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspInverter103"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspInverter111"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspInverter112"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspInverter113"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspNameplate120"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspBasicSettings121"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspMeasurementStatus122"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspImmControl123"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspBasicStorage124"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspMultMPP160"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspStaticVoltVar126"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspFreqWattParam127"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspWattPF131"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspVoltWatt132"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspFreqWattCrv134"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ProfileTypeEnumType/SunspBatteryBaseModel802"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrBool2BitRankType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrBool2BitRankType/Bit0"/>

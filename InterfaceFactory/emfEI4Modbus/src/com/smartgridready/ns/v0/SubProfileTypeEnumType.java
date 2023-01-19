@@ -1056,7 +1056,254 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PH79(79, "ph79", "ph79");
+	PH79(79, "ph79", "ph79"),
+
+	/**
+	 * The '<em><b>Sunsp Common001</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: All SunSpec compliant devices must include this as the first model 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_COMMON001_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_COMMON001(80, "SunspCommon001", "SunspCommon001"),
+
+	/**
+	 * The '<em><b>Sunsp Inverter101</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for single phase inverter monitoring (Int and SF) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER101_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_INVERTER101(81, "SunspInverter101", "SunspInverter101"),
+
+	/**
+	 * The '<em><b>Sunsp Inverter102</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for split phase inverter monitoring (Int and SF) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER102_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_INVERTER102(82, "SunspInverter102", "SunspInverter102"),
+
+	/**
+	 * The '<em><b>Sunsp Inverter103</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for 3 phase inverter monitoring (Int and SF)  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER103_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_INVERTER103(83, "SunspInverter103", "SunspInverter103"),
+
+	/**
+	 * The '<em><b>Sunsp Inverter111</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for single phase inverter monitoring using float values 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER111_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_INVERTER111(84, "SunspInverter111", "SunspInverter111"),
+
+	/**
+	 * The '<em><b>Sunsp Inverter112</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for split phase inverter monitoring using float values 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER112_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_INVERTER112(85, "SunspInverter112", "SunspInverter112"),
+
+	/**
+	 * The '<em><b>Sunsp Inverter113</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for s3 phase inverter monitoring using float values 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER113_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_INVERTER113(86, "SunspInverter113", "SunspInverter113"),
+
+	/**
+	 * The '<em><b>Sunsp Nameplate120</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Inverter Controls Nameplate Ratings  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_NAMEPLATE120_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_NAMEPLATE120(87, "SunspNameplate120", "SunspNameplate120"),
+
+	/**
+	 * The '<em><b>Sunsp Basic Settings121</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Inverter Controls Basic Settings 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_BASIC_SETTINGS121_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_BASIC_SETTINGS121(88, "SunspBasicSettings121", "SunspBasicSettings121"),
+
+	/**
+	 * The '<em><b>Sunsp Measurement Status122</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Inverter Controls Extended Measurements and Status  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_MEASUREMENT_STATUS122_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_MEASUREMENT_STATUS122(89, "SunspMeasurementStatus122", "SunspMeasurementStatus122"),
+
+	/**
+	 * The '<em><b>Sunsp Imm Control123</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Immediate Inverter Controls  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_IMM_CONTROL123_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_IMM_CONTROL123(90, "SunspImmControl123", "SunspImmControl123"),
+
+	/**
+	 * The '<em><b>Sunsp Basic Storage124</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: SunspBasicStorage124 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_BASIC_STORAGE124_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_BASIC_STORAGE124(91, "SunspBasicStorage124", "SunspBasicStorage124"),
+
+	/**
+	 * The '<em><b>Sunsp Mult MPP160</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Model for multiple Maximum Power Point Trackers
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_MULT_MPP160_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_MULT_MPP160(92, "SunspMultMPP160", "SunspMultMPP160"),
+
+	/**
+	 * The '<em><b>Sunsp Static Volt Var126</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Static Volt-VAR Arrays for Q = f (U/Uref) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_STATIC_VOLT_VAR126_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_STATIC_VOLT_VAR126(93, "SunspStaticVoltVar126", "SunspStaticVoltVar126"),
+
+	/**
+	 * The '<em><b>Sunsp Freq Watt Param127</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Parameterized Frequency-Watt compensation 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_FREQ_WATT_PARAM127_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_FREQ_WATT_PARAM127(94, "SunspFreqWattParam127", "SunspFreqWattParam127"),
+
+	/**
+	 * The '<em><b>Sunsp Watt PF131</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Parameterized Watt-Power Factor Crv   PF = f (P/Pmax) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_WATT_PF131_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_WATT_PF131(95, "SunspWattPF131", "SunspWattPF131"),
+
+	/**
+	 * The '<em><b>Sunsp Volt Watt132</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Parameterized Voltage-Power Factor Crv   P = f (U/Uref) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_VOLT_WATT132_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_VOLT_WATT132(96, "SunspVoltWatt132", "SunspVoltWatt132"),
+
+	/**
+	 * The '<em><b>Sunsp Freq Watt Crv134</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Curve-Based Frequency-Watt curve P =  f (F/Fref)  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_FREQ_WATT_CRV134_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_FREQ_WATT_CRV134(97, "SunspFreqWattCrv134", "SunspFreqWattCrv134"),
+
+	/**
+	 * The '<em><b>Sunsp Battery Base Model802</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Battery SOC management 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_BATTERY_BASE_MODEL802_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SUNSP_BATTERY_BASE_MODEL802(98, "SunspBatteryBaseModel802", "SunspBatteryBaseModel802");
 
 	/**
 	 * The '<em><b>UNDEF</b></em>' literal value.
@@ -2179,6 +2426,272 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	public static final int PH79_VALUE = 79;
 
 	/**
+	 * The '<em><b>Sunsp Common001</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: All SunSpec compliant devices must include this as the first model 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_COMMON001
+	 * @model name="SunspCommon001"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_COMMON001_VALUE = 80;
+
+	/**
+	 * The '<em><b>Sunsp Inverter101</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for single phase inverter monitoring (Int and SF) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER101
+	 * @model name="SunspInverter101"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_INVERTER101_VALUE = 81;
+
+	/**
+	 * The '<em><b>Sunsp Inverter102</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for split phase inverter monitoring (Int and SF) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER102
+	 * @model name="SunspInverter102"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_INVERTER102_VALUE = 82;
+
+	/**
+	 * The '<em><b>Sunsp Inverter103</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for 3 phase inverter monitoring (Int and SF)  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER103
+	 * @model name="SunspInverter103"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_INVERTER103_VALUE = 83;
+
+	/**
+	 * The '<em><b>Sunsp Inverter111</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for single phase inverter monitoring using float values 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER111
+	 * @model name="SunspInverter111"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_INVERTER111_VALUE = 84;
+
+	/**
+	 * The '<em><b>Sunsp Inverter112</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for split phase inverter monitoring using float values 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER112
+	 * @model name="SunspInverter112"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_INVERTER112_VALUE = 85;
+
+	/**
+	 * The '<em><b>Sunsp Inverter113</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: model for s3 phase inverter monitoring using float values 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_INVERTER113
+	 * @model name="SunspInverter113"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_INVERTER113_VALUE = 86;
+
+	/**
+	 * The '<em><b>Sunsp Nameplate120</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Inverter Controls Nameplate Ratings  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_NAMEPLATE120
+	 * @model name="SunspNameplate120"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_NAMEPLATE120_VALUE = 87;
+
+	/**
+	 * The '<em><b>Sunsp Basic Settings121</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Inverter Controls Basic Settings 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_BASIC_SETTINGS121
+	 * @model name="SunspBasicSettings121"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_BASIC_SETTINGS121_VALUE = 88;
+
+	/**
+	 * The '<em><b>Sunsp Measurement Status122</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Inverter Controls Extended Measurements and Status  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_MEASUREMENT_STATUS122
+	 * @model name="SunspMeasurementStatus122"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_MEASUREMENT_STATUS122_VALUE = 89;
+
+	/**
+	 * The '<em><b>Sunsp Imm Control123</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Immediate Inverter Controls  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_IMM_CONTROL123
+	 * @model name="SunspImmControl123"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_IMM_CONTROL123_VALUE = 90;
+
+	/**
+	 * The '<em><b>Sunsp Basic Storage124</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: SunspBasicStorage124 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_BASIC_STORAGE124
+	 * @model name="SunspBasicStorage124"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_BASIC_STORAGE124_VALUE = 91;
+
+	/**
+	 * The '<em><b>Sunsp Mult MPP160</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Model for multiple Maximum Power Point Trackers
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_MULT_MPP160
+	 * @model name="SunspMultMPP160"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_MULT_MPP160_VALUE = 92;
+
+	/**
+	 * The '<em><b>Sunsp Static Volt Var126</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Static Volt-VAR Arrays for Q = f (U/Uref) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_STATIC_VOLT_VAR126
+	 * @model name="SunspStaticVoltVar126"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_STATIC_VOLT_VAR126_VALUE = 93;
+
+	/**
+	 * The '<em><b>Sunsp Freq Watt Param127</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Parameterized Frequency-Watt compensation 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_FREQ_WATT_PARAM127
+	 * @model name="SunspFreqWattParam127"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_FREQ_WATT_PARAM127_VALUE = 94;
+
+	/**
+	 * The '<em><b>Sunsp Watt PF131</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Parameterized Watt-Power Factor Crv   PF = f (P/Pmax) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_WATT_PF131
+	 * @model name="SunspWattPF131"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_WATT_PF131_VALUE = 95;
+
+	/**
+	 * The '<em><b>Sunsp Volt Watt132</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Parameterized Voltage-Power Factor Crv   P = f (U/Uref) 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_VOLT_WATT132
+	 * @model name="SunspVoltWatt132"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_VOLT_WATT132_VALUE = 96;
+
+	/**
+	 * The '<em><b>Sunsp Freq Watt Crv134</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Curve-Based Frequency-Watt curve P =  f (F/Fref)  
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_FREQ_WATT_CRV134
+	 * @model name="SunspFreqWattCrv134"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_FREQ_WATT_CRV134_VALUE = 97;
+
+	/**
+	 * The '<em><b>Sunsp Battery Base Model802</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sunspec: Battery SOC management 
+	 * <!-- end-model-doc -->
+	 * @see #SUNSP_BATTERY_BASE_MODEL802
+	 * @model name="SunspBatteryBaseModel802"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SUNSP_BATTERY_BASE_MODEL802_VALUE = 98;
+
+	/**
 	 * An array of all the '<em><b>Sub Profile Type Enum Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2266,6 +2779,25 @@ public enum SubProfileTypeEnumType implements Enumerator {
 			PH77,
 			PH78,
 			PH79,
+			SUNSP_COMMON001,
+			SUNSP_INVERTER101,
+			SUNSP_INVERTER102,
+			SUNSP_INVERTER103,
+			SUNSP_INVERTER111,
+			SUNSP_INVERTER112,
+			SUNSP_INVERTER113,
+			SUNSP_NAMEPLATE120,
+			SUNSP_BASIC_SETTINGS121,
+			SUNSP_MEASUREMENT_STATUS122,
+			SUNSP_IMM_CONTROL123,
+			SUNSP_BASIC_STORAGE124,
+			SUNSP_MULT_MPP160,
+			SUNSP_STATIC_VOLT_VAR126,
+			SUNSP_FREQ_WATT_PARAM127,
+			SUNSP_WATT_PF131,
+			SUNSP_VOLT_WATT132,
+			SUNSP_FREQ_WATT_CRV134,
+			SUNSP_BATTERY_BASE_MODEL802,
 		};
 
 	/**
@@ -2402,6 +2934,25 @@ public enum SubProfileTypeEnumType implements Enumerator {
 			case PH77_VALUE: return PH77;
 			case PH78_VALUE: return PH78;
 			case PH79_VALUE: return PH79;
+			case SUNSP_COMMON001_VALUE: return SUNSP_COMMON001;
+			case SUNSP_INVERTER101_VALUE: return SUNSP_INVERTER101;
+			case SUNSP_INVERTER102_VALUE: return SUNSP_INVERTER102;
+			case SUNSP_INVERTER103_VALUE: return SUNSP_INVERTER103;
+			case SUNSP_INVERTER111_VALUE: return SUNSP_INVERTER111;
+			case SUNSP_INVERTER112_VALUE: return SUNSP_INVERTER112;
+			case SUNSP_INVERTER113_VALUE: return SUNSP_INVERTER113;
+			case SUNSP_NAMEPLATE120_VALUE: return SUNSP_NAMEPLATE120;
+			case SUNSP_BASIC_SETTINGS121_VALUE: return SUNSP_BASIC_SETTINGS121;
+			case SUNSP_MEASUREMENT_STATUS122_VALUE: return SUNSP_MEASUREMENT_STATUS122;
+			case SUNSP_IMM_CONTROL123_VALUE: return SUNSP_IMM_CONTROL123;
+			case SUNSP_BASIC_STORAGE124_VALUE: return SUNSP_BASIC_STORAGE124;
+			case SUNSP_MULT_MPP160_VALUE: return SUNSP_MULT_MPP160;
+			case SUNSP_STATIC_VOLT_VAR126_VALUE: return SUNSP_STATIC_VOLT_VAR126;
+			case SUNSP_FREQ_WATT_PARAM127_VALUE: return SUNSP_FREQ_WATT_PARAM127;
+			case SUNSP_WATT_PF131_VALUE: return SUNSP_WATT_PF131;
+			case SUNSP_VOLT_WATT132_VALUE: return SUNSP_VOLT_WATT132;
+			case SUNSP_FREQ_WATT_CRV134_VALUE: return SUNSP_FREQ_WATT_CRV134;
+			case SUNSP_BATTERY_BASE_MODEL802_VALUE: return SUNSP_BATTERY_BASE_MODEL802;
 		}
 		return null;
 	}
