@@ -1,6 +1,12 @@
 package communicator.async;
 
 
+import communicator.async.process.Parallel;
+import communicator.async.process.ExecStatus;
+import communicator.async.process.Processor;
+import communicator.async.process.ReadExec;
+import communicator.async.process.Sequence;
+import communicator.async.process.WriteExec;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.impl.SGrModbusDevice;
 import communicator.restapi.exception.RestApiAuthenticationException;
@@ -78,11 +84,9 @@ class AsyncDataStructureTest {
                         wago_voltageAC_l3,
                         clemap_actPowerAC_tot);
 
-        Processor writeChain = new Sequence()
-                .add(garo_wallbox_A_hems_curr_lim)
-                .add(new Parallel()
+        Processor writeChain = new Parallel()
                         .add(garo_wallbox_A_hems_curr_lim)
-                        .add(garo_wallbox_B_hems_curr_lim))
+                        .add(garo_wallbox_B_hems_curr_lim)
                 .await(garo_wallbox_A_hems_curr_lim,
                         garo_wallbox_B_hems_curr_lim);
 
@@ -91,8 +95,8 @@ class AsyncDataStructureTest {
         // Get results from read-chain.
         // Example: wago_voltageAC_l1.getReadValue();
         // Do some calculations and determine new control values:
-        garo_wallbox_A_hems_curr_lim.setValue("10A");
-        garo_wallbox_B_hems_curr_lim.setValue("5A");
+        garo_wallbox_A_hems_curr_lim.setWriteValue("10A");
+        garo_wallbox_B_hems_curr_lim.setWriteValue("5A");
         // Process the write-chain:
         writeChain.process();
 
@@ -122,7 +126,14 @@ class AsyncDataStructureTest {
         garo_wallbox_B_hems_curr_lim.cleanup();
     }
 
-    private static void verifyResultsAndTiming(ExecStatus expectedStatus, String expectedExceptionMessage, ReadExec<String> wago_voltageAC_l1, ReadExec<String> wago_voltageAC_l2, ReadExec<String> wago_voltageAC_l3, ReadExec<String> clemap_actPowerAC_tot, WriteExec<String> garo_wallbox_A_hems_curr_lim, WriteExec<String> garo_wallbox_B_hems_curr_lim) {
+    private static void verifyResultsAndTiming(ExecStatus expectedStatus,
+                                               String expectedExceptionMessage,
+                                               ReadExec<String> wago_voltageAC_l1,
+                                               ReadExec<String> wago_voltageAC_l2,
+                                               ReadExec<String> wago_voltageAC_l3,
+                                               ReadExec<String> clemap_actPowerAC_tot,
+                                               WriteExec<String> garo_wallbox_A_hems_curr_lim,
+                                               WriteExec<String> garo_wallbox_B_hems_curr_lim) {
         // Status
         assertEquals(expectedStatus, wago_voltageAC_l1.getExecStatus());
         assertEquals(expectedStatus, wago_voltageAC_l2.getExecStatus());
@@ -131,8 +142,8 @@ class AsyncDataStructureTest {
         assertEquals(expectedStatus, garo_wallbox_A_hems_curr_lim.getExecStatus());
 
 
-        // Exception
         if (expectedExceptionMessage== null) {
+            // Happy case
             assertNull(wago_voltageAC_l1.getExecThrowable());
             assertNull(wago_voltageAC_l2.getExecThrowable());
             assertNull(wago_voltageAC_l3.getExecThrowable());
@@ -165,6 +176,7 @@ class AsyncDataStructureTest {
             assertTrue(start.plusMillis(250).isBefore(garo_wallbox_B_hems_curr_lim.getResponseTime()));
 
         } else {
+            // Exception case
             assertEquals(expectedExceptionMessage, wago_voltageAC_l1.getExecThrowable().getMessage());
             assertEquals(expectedExceptionMessage, wago_voltageAC_l2.getExecThrowable().getMessage());
             assertEquals(expectedExceptionMessage, wago_voltageAC_l3.getExecThrowable().getMessage());

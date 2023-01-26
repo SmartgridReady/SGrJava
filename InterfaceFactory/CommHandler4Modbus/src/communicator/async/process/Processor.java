@@ -1,4 +1,4 @@
-package communicator.async;
+package communicator.async.process;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,9 +14,9 @@ public abstract class Processor {
 
     private final List<Executable> awaitList = new ArrayList<>();
 
-    abstract void process(ProcessingType processingType);
+    public abstract void process(ProcessingType processingType);
 
-    void process() {
+    public void process() {
         process(ProcessingType.PARALLEL);
         handleAwait();
     }

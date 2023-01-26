@@ -1,6 +1,8 @@
 
 package communicator.async;
 
+import communicator.async.callable.DeviceReadCallable;
+import communicator.async.callable.AsyncResult;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
@@ -21,8 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.util.concurrent.Callable;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -51,56 +51,6 @@ public class RxJavaDataStructureTest {
     }
 
 
-    public static class SGrDeviceResult<T> {
-        public String profileName;
-        public String datapointName;
-        public Throwable throwable;
-        public T value;
-        public Instant requestTime;
-        public Instant responseTime;
-
-        ExecStatus execStatus;
-
-        @Override
-        public String toString() {
-            return String.format("%s - %s = %s : status=%s - error=%s, requestTime=%s, responseTime=%s",
-                    profileName, datapointName, value, execStatus.name(), throwable, requestTime, responseTime);
-
-        }
-    }
-
-    public static class SGrDeviceCallable<T> implements Callable<SGrDeviceResult<T>> {
-        private final ReadFunction<T> readFunction;
-        private final String profileName;
-        private final String datapointName;
-
-        public SGrDeviceCallable(ReadFunction<T> readFunction, String profileName, String datapointName) {
-            this.readFunction = readFunction;
-            this.profileName = profileName;
-            this.datapointName = datapointName;
-        }
-
-        @Override
-        public SGrDeviceResult<T> call() {
-
-            SGrDeviceResult<T> result = new SGrDeviceResult<>();
-            result.profileName = profileName;
-            result.datapointName = datapointName;
-            result.execStatus = ExecStatus.PROCESSING;
-            try {
-                result.requestTime = Instant.now();
-                result.value = readFunction.apply(profileName, datapointName);
-                result.execStatus = ExecStatus.SUCCESS;
-                result.responseTime = Instant.now();
-            } catch (Throwable t) {
-                result.responseTime = Instant.now();
-                result.execStatus = ExecStatus.ERROR;
-                result.throwable = t;
-            }
-            return result;
-        }
-    }
-
     private String withDelay(long delay, String value) throws Exception {
         Thread.sleep(delay);
         LOG.debug("Delay {}ms is over.", delay);
@@ -112,24 +62,24 @@ public class RxJavaDataStructureTest {
 
         initStubs();
 
-        Observable<SGrDeviceResult<String>> clemap_actPowerAC_tot =
+        Observable<AsyncResult<String>> clemap_actPowerAC_tot =
                 Observable.fromCallable(
-                        new SGrDeviceCallable<>(clemapRestApiDevice::getVal, "ActivePowerAC", "ActivePowerACtot"))
+                        new DeviceReadCallable<>(clemapRestApiDevice::getVal, "ActivePowerAC", "ActivePowerACtot"))
                 .subscribeOn(Schedulers.io());
 
-        Observable<SGrDeviceResult<String>> wago_voltage_L1 =
+        Observable<AsyncResult<String>> wago_voltage_L1 =
                 Observable.fromCallable(
-                        new SGrDeviceCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL1"));
+                        new DeviceReadCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL1"));
 
-        Observable<SGrDeviceResult<String>> wago_voltage_L2 =
+        Observable<AsyncResult<String>> wago_voltage_L2 =
                 Observable.fromCallable(
-                        new SGrDeviceCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL1"));
+                        new DeviceReadCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL1"));
 
-        Observable<SGrDeviceResult<String>> wago_voltage_L3 =
+        Observable<AsyncResult<String>> wago_voltage_L3 =
                 Observable.fromCallable(
-                        new SGrDeviceCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL1"));
+                        new DeviceReadCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL1"));
 
-        Observable<SGrDeviceResult<String>> wago_all =
+        Observable<AsyncResult<String>> wago_all =
                 wago_voltage_L1.mergeWith(wago_voltage_L2).mergeWith(wago_voltage_L3)
                 .subscribeOn(Schedulers.io());
 
@@ -140,7 +90,7 @@ public class RxJavaDataStructureTest {
         disposable.dispose();
     }
 
-    private void onResult(SGrDeviceResult<?> results) {
+    private void onResult(AsyncResult<?> results) {
         LOG.info("Received {}", results);
     }
 }

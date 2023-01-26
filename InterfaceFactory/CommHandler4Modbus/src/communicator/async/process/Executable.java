@@ -1,4 +1,4 @@
-package communicator.async;
+package communicator.async.process;
 
 public interface Executable {
     ExecStatus getExecStatus();

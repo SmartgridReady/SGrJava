@@ -2,6 +2,10 @@ package communicator.async;
 
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
+import communicator.async.process.Parallel;
+import communicator.async.process.Processor;
+import communicator.async.process.ReadExec;
+import communicator.async.process.Sequence;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.helper.DeviceDescriptionLoader;
 import communicator.impl.SGrModbusDevice;

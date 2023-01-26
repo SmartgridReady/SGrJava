@@ -1,4 +1,4 @@
-package communicator.async;
+package communicator.async.callable;
 
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
@@ -9,8 +9,9 @@ import communicator.restapi.exception.RestApiServiceCallException;
 
 import java.io.IOException;
 
-public interface ReadFunction<R> {
-    R apply(String functionalProfile, String dataPoint) throws
+@FunctionalInterface
+public interface WriteFunction<V> {
+    void apply(String functionalProfile, String dataPoint, V value) throws
             GenDriverException, GenDriverModbusException, GenDriverSocketException, IOException,
             RestApiServiceCallException, RestApiAuthenticationException, RestApiResponseParseException;
 }
