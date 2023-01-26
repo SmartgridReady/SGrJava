@@ -46,8 +46,6 @@ public class DeviceDescriptionLoaderTest {
 			} catch ( Exception e) {
 				System.out.println( "Unable to load file: " + desc.file + "\n");
 			}
-			
-			
 		});				
 	}
 	

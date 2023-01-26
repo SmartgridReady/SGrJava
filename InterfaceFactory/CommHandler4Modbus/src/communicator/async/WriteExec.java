@@ -42,6 +42,7 @@ public class WriteExec<V> extends Processor implements Executable {
     public WriteExec(String functionalProfileName, String datapointName, WriteFunction<V> writeFunction) {
         this.functionalProfileName = functionalProfileName;
         this.datapointName = datapointName;
+        // We need to convert the write function to a function that returns a value.
         this.writeFunction = (profileName, dataPointName, value) -> {
             writeFunction.apply(functionalProfileName, datapointName, value);
             return "OK";
