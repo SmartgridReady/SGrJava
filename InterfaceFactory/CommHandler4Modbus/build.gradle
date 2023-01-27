@@ -96,7 +96,9 @@ jar {
     }
 }
 
-
+test { // needed that JUnit5 is used for tests.
+    useJUnitPlatform()
+}
 
 
 tasks."compileJava".dependsOn ':InterfaceFactory:emfEI4Modbus:publishToMavenLocal'
