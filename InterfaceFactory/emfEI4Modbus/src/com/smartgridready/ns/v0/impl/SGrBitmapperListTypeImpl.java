@@ -5,6 +5,7 @@ package com.smartgridready.ns.v0.impl;
 import com.smartgridready.ns.v0.SGrBitmapperListType;
 import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.SGrHPOpstateStiebelType;
+import com.smartgridready.ns.v0.SGrHPOpstateType;
 import com.smartgridready.ns.v0.V0Package;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrBitmapperListTypeImpl#getSgrBool2BitRank <em>Sgr Bool2 Bit Rank</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrBitmapperListTypeImpl#getSgrHPOpstate <em>Sgr HP Opstate</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrBitmapperListTypeImpl#getSgrHPOpstateStiebel <em>Sgr HP Opstate Stiebel</em>}</li>
  * </ul>
  *
@@ -57,6 +59,35 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected boolean sgrBool2BitRankESet;
+
+	/**
+	 * The default value of the '{@link #getSgrHPOpstate() <em>Sgr HP Opstate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSgrHPOpstate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SGrHPOpstateType SGR_HP_OPSTATE_EDEFAULT = SGrHPOpstateType.HPPUMPON;
+
+	/**
+	 * The cached value of the '{@link #getSgrHPOpstate() <em>Sgr HP Opstate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSgrHPOpstate()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrHPOpstateType sgrHPOpstate = SGR_HP_OPSTATE_EDEFAULT;
+
+	/**
+	 * This is true if the Sgr HP Opstate attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sgrHPOpstateESet;
 
 	/**
 	 * The default value of the '{@link #getSgrHPOpstateStiebel() <em>Sgr HP Opstate Stiebel</em>}' attribute.
@@ -162,6 +193,56 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
+	public SGrHPOpstateType getSgrHPOpstate() {
+		return sgrHPOpstate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSgrHPOpstate(SGrHPOpstateType newSgrHPOpstate) {
+		SGrHPOpstateType oldSgrHPOpstate = sgrHPOpstate;
+		sgrHPOpstate = newSgrHPOpstate == null ? SGR_HP_OPSTATE_EDEFAULT : newSgrHPOpstate;
+		boolean oldSgrHPOpstateESet = sgrHPOpstateESet;
+		sgrHPOpstateESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE, oldSgrHPOpstate, sgrHPOpstate, !oldSgrHPOpstateESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetSgrHPOpstate() {
+		SGrHPOpstateType oldSgrHPOpstate = sgrHPOpstate;
+		boolean oldSgrHPOpstateESet = sgrHPOpstateESet;
+		sgrHPOpstate = SGR_HP_OPSTATE_EDEFAULT;
+		sgrHPOpstateESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE, oldSgrHPOpstate, SGR_HP_OPSTATE_EDEFAULT, oldSgrHPOpstateESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetSgrHPOpstate() {
+		return sgrHPOpstateESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SGrHPOpstateStiebelType getSgrHPOpstateStiebel() {
 		return sgrHPOpstateStiebel;
 	}
@@ -216,6 +297,8 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 		switch (featureID) {
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_BOOL2_BIT_RANK:
 				return getSgrBool2BitRank();
+			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE:
+				return getSgrHPOpstate();
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE_STIEBEL:
 				return getSgrHPOpstateStiebel();
 		}
@@ -232,6 +315,9 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 		switch (featureID) {
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_BOOL2_BIT_RANK:
 				setSgrBool2BitRank((SGrBool2BitRankType)newValue);
+				return;
+			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE:
+				setSgrHPOpstate((SGrHPOpstateType)newValue);
 				return;
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE_STIEBEL:
 				setSgrHPOpstateStiebel((SGrHPOpstateStiebelType)newValue);
@@ -251,6 +337,9 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_BOOL2_BIT_RANK:
 				unsetSgrBool2BitRank();
 				return;
+			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE:
+				unsetSgrHPOpstate();
+				return;
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE_STIEBEL:
 				unsetSgrHPOpstateStiebel();
 				return;
@@ -268,6 +357,8 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 		switch (featureID) {
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_BOOL2_BIT_RANK:
 				return isSetSgrBool2BitRank();
+			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE:
+				return isSetSgrHPOpstate();
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HP_OPSTATE_STIEBEL:
 				return isSetSgrHPOpstateStiebel();
 		}
@@ -286,6 +377,8 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (sgrBool2BitRank: ");
 		if (sgrBool2BitRankESet) result.append(sgrBool2BitRank); else result.append("<unset>");
+		result.append(", sgrHPOpstate: ");
+		if (sgrHPOpstateESet) result.append(sgrHPOpstate); else result.append("<unset>");
 		result.append(", sgrHPOpstateStiebel: ");
 		if (sgrHPOpstateStiebelESet) result.append(sgrHPOpstateStiebel); else result.append("<unset>");
 		result.append(')');

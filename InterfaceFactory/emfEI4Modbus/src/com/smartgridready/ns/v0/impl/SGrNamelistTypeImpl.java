@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSEEBUSName <em>SEEBUS Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSSUNSPECName <em>SSUNSPEC Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSHPbwpName <em>SH Pbwp Name</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrNamelistTypeImpl#getSEN17609Name <em>SEN17609 Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -192,6 +193,26 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected String sHPbwpName = SH_PBWP_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSEN17609Name() <em>SEN17609 Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSEN17609Name()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SEN17609_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSEN17609Name() <em>SEN17609 Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSEN17609Name()
+	 * @generated
+	 * @ordered
+	 */
+	protected String sEN17609Name = SEN17609_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -402,6 +423,29 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public String getSEN17609Name() {
+		return sEN17609Name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSEN17609Name(String newSEN17609Name) {
+		String oldSEN17609Name = sEN17609Name;
+		sEN17609Name = newSEN17609Name;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_NAMELIST_TYPE__SEN17609_NAME, oldSEN17609Name, sEN17609Name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case V0Package.SGR_NAMELIST_TYPE__SLV1_NAME:
@@ -420,6 +464,8 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 				return getSSUNSPECName();
 			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
 				return getSHPbwpName();
+			case V0Package.SGR_NAMELIST_TYPE__SEN17609_NAME:
+				return getSEN17609Name();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -455,6 +501,9 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
 				setSHPbwpName((String)newValue);
+				return;
+			case V0Package.SGR_NAMELIST_TYPE__SEN17609_NAME:
+				setSEN17609Name((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -492,6 +541,9 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
 				setSHPbwpName(SH_PBWP_NAME_EDEFAULT);
 				return;
+			case V0Package.SGR_NAMELIST_TYPE__SEN17609_NAME:
+				setSEN17609Name(SEN17609_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -520,6 +572,8 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 				return SSUNSPEC_NAME_EDEFAULT == null ? sSUNSPECName != null : !SSUNSPEC_NAME_EDEFAULT.equals(sSUNSPECName);
 			case V0Package.SGR_NAMELIST_TYPE__SH_PBWP_NAME:
 				return SH_PBWP_NAME_EDEFAULT == null ? sHPbwpName != null : !SH_PBWP_NAME_EDEFAULT.equals(sHPbwpName);
+			case V0Package.SGR_NAMELIST_TYPE__SEN17609_NAME:
+				return SEN17609_NAME_EDEFAULT == null ? sEN17609Name != null : !SEN17609_NAME_EDEFAULT.equals(sEN17609Name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -550,6 +604,8 @@ public class SGrNamelistTypeImpl extends MinimalEObjectImpl.Container implements
 		result.append(sSUNSPECName);
 		result.append(", sHPbwpName: ");
 		result.append(sHPbwpName);
+		result.append(", sEN17609Name: ");
+		result.append(sEN17609Name);
 		result.append(')');
 		return result.toString();
 	}

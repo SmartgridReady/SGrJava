@@ -262,6 +262,15 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/SILENTMODE1ACTIVE"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/SILENTMODE2ACTIVE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrHPOpstateType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/HPPUMPON"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/HPINHEATINGMODE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/HPINDHWMODE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/COMPRESSORRUNNING"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/SUMMERMODEACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/COOLINGMODEACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/INDEFROSTMODE"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrLanguageType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrLanguageType/de"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrLanguageType/en"/>
@@ -523,7 +532,9 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOMETERSPERHOUR"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOPASCALS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTAMPEREHOURS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTAMPERESREACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTAMPERESREACTIVEHOURS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOWATTHOURS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOWATTS"/>
@@ -789,6 +800,7 @@
     <genDataTypes ecoreDataType="v0.ecore#//SGrEVStateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrHPOpModeTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrHPOpstateStiebelTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//SGrHPOpstateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrLanguageTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrManufacturerIDTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrMeasValueSourceTypeObject"/>
@@ -904,7 +916,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/stabilityFallback"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/smoothTransition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxLatencyTimeMs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/timeStampLog"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/sampleRate"/>
@@ -945,6 +956,7 @@
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrBitmapperListType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBitmapperListType/sgrBool2BitRank"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBitmapperListType/sgrHPOpstate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBitmapperListType/sgrHPOpstateStiebel"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrChangeLog">
@@ -976,6 +988,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDataPointDescriptionType/unit"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrDeviceBaseType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceBaseType/releaseNotes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceBaseType/deviceProfile"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceBaseType/genAttribute"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceBaseType/deviceName"/>
@@ -1084,6 +1097,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sEEBUSName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sSUNSPECName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sHPbwpName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrNamelistType/sEN17609Name"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrProfileDescriptionType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrProfileDescriptionType/profileNumber"/>

@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSEEBUSName <em>SEEBUS Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSSUNSPECName <em>SSUNSPEC Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSHPbwpName <em>SH Pbwp Name</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrNamelistType#getSEN17609Name <em>SEN17609 Name</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrNamelistType()
@@ -48,9 +49,10 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * names used for SGr label V1 used to secure legacy
-	 * 						compatibility
-	 * 					
+	 * 
+	 *     				names used for SGr label V1 used to secure legacy
+	 *     				compatibility
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SLV1 Name</em>' attribute.
 	 * @see #setSLV1Name(String)
@@ -76,7 +78,9 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * work names for temporary use
+	 * 
+	 *     				work names for temporary use
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SWork Name</em>' attribute.
 	 * @see #setSWorkName(String)
@@ -102,8 +106,9 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * manufacturers may use an internal wording
-	 * 					
+	 * 
+	 *     				manufacturers may use an internal wording
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SManuf Name</em>' attribute.
 	 * @see #setSManufName(String)
@@ -129,9 +134,10 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * IEC 61850 termonoligy place to add the 61850
-	 * 						abreviatuions if an overlap exists
-	 * 					
+	 * 
+	 *     				IEC 61850 termonoligy place to add the 61850
+	 *     				abreviatuions if an overlap exists
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SIEC61850 Name</em>' attribute.
 	 * @see #setSIEC61850Name(String)
@@ -157,9 +163,10 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * SAREF for ENER termonoligy place to add the SAREF
-	 * 						abreviations if an overlap exists
-	 * 					
+	 * 
+	 *     				SAREF for ENER termonoligy place to add the SAREF
+	 *     				abreviations if an overlap exists
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SSAREF Name</em>' attribute.
 	 * @see #setSSAREFName(String)
@@ -185,9 +192,10 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * EEBUS for terminology place to add the EEBUS
-	 * 						abreviations if an overlap exists
-	 * 					
+	 * 
+	 *     				EEBUS for terminology place to add the EEBUS
+	 *     				abreviations if an overlap exists
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SEEBUS Name</em>' attribute.
 	 * @see #setSEEBUSName(String)
@@ -213,9 +221,10 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * sSUNSPEC for terminology place to add the www.sunspec.org
-	 * 						abreviations if an overlap exists
-	 * 					
+	 * 
+	 *     				sSUNSPEC for terminology place to add the
+	 *     				www.sunspec.org abreviations if an overlap exists
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SSUNSPEC Name</em>' attribute.
 	 * @see #setSSUNSPECName(String)
@@ -241,9 +250,11 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * bwp (German Heat Pump Association) for terminology place to add the bwp
-	 * 						naming for HVAC if an overlap exists
-	 * 		  
+	 * 
+	 *     				bwp (German Heat Pump Association) for terminology
+	 *     				place to add the bwp naming for HVAC if an overlap
+	 *     				exists
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SH Pbwp Name</em>' attribute.
 	 * @see #setSHPbwpName(String)
@@ -263,5 +274,28 @@ public interface SGrNamelistType extends EObject {
 	 * @generated
 	 */
 	void setSHPbwpName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>SEN17609 Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>SEN17609 Name</em>' attribute.
+	 * @see #setSEN17609Name(String)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrNamelistType_SEN17609Name()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+	 *        extendedMetaData="kind='element' name='sEN17609Name' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	String getSEN17609Name();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrNamelistType#getSEN17609Name <em>SEN17609 Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>SEN17609 Name</em>' attribute.
+	 * @see #getSEN17609Name()
+	 * @generated
+	 */
+	void setSEN17609Name(String value);
 
 } // SGrNamelistType

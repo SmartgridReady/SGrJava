@@ -260,6 +260,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrHPOpModeType((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE:
 				return validateSGrHPOpstateStiebelType((SGrHPOpstateStiebelType)value, diagnostics, context);
+			case V0Package.SGR_HP_OPSTATE_TYPE:
+				return validateSGrHPOpstateType((SGrHPOpstateType)value, diagnostics, context);
 			case V0Package.SGR_LANGUAGE_TYPE:
 				return validateSGrLanguageType((SGrLanguageType)value, diagnostics, context);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE:
@@ -382,6 +384,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrHPOpModeTypeObject((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
 				return validateSGrHPOpstateStiebelTypeObject((SGrHPOpstateStiebelType)value, diagnostics, context);
+			case V0Package.SGR_HP_OPSTATE_TYPE_OBJECT:
+				return validateSGrHPOpstateTypeObject((SGrHPOpstateType)value, diagnostics, context);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
 				return validateSGrLanguageTypeObject((SGrLanguageType)value, diagnostics, context);
 			case V0Package.SGR_MANUFACTURER_ID_TYPE_OBJECT:
@@ -1181,6 +1185,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrHPOpstateStiebelType(SGrHPOpstateStiebelType sGrHPOpstateStiebelType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHPOpstateType(SGrHPOpstateType sGrHPOpstateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2086,6 +2099,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrHPOpstateStiebelTypeObject(SGrHPOpstateStiebelType sGrHPOpstateStiebelTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHPOpstateTypeObject(SGrHPOpstateType sGrHPOpstateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrBool2BitRank <em>Sgr Bool2 Bit Rank</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstate <em>Sgr HP Opstate</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstateStiebel <em>Sgr HP Opstate Stiebel</em>}</li>
  * </ul>
  *
@@ -81,6 +82,59 @@ public interface SGrBitmapperListType extends EObject {
 	 * @generated
 	 */
 	boolean isSetSgrBool2BitRank();
+
+	/**
+	 * Returns the value of the '<em><b>Sgr HP Opstate</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrHPOpstateType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sgr HP Opstate</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHPOpstateType
+	 * @see #isSetSgrHPOpstate()
+	 * @see #unsetSgrHPOpstate()
+	 * @see #setSgrHPOpstate(SGrHPOpstateType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBitmapperListType_SgrHPOpstate()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='sgrHPOpstate' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrHPOpstateType getSgrHPOpstate();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstate <em>Sgr HP Opstate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sgr HP Opstate</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHPOpstateType
+	 * @see #isSetSgrHPOpstate()
+	 * @see #unsetSgrHPOpstate()
+	 * @see #getSgrHPOpstate()
+	 * @generated
+	 */
+	void setSgrHPOpstate(SGrHPOpstateType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstate <em>Sgr HP Opstate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSgrHPOpstate()
+	 * @see #getSgrHPOpstate()
+	 * @see #setSgrHPOpstate(SGrHPOpstateType)
+	 * @generated
+	 */
+	void unsetSgrHPOpstate();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstate <em>Sgr HP Opstate</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Sgr HP Opstate</em>' attribute is set.
+	 * @see #unsetSgrHPOpstate()
+	 * @see #getSgrHPOpstate()
+	 * @see #setSgrHPOpstate(SGrHPOpstateType)
+	 * @generated
+	 */
+	boolean isSetSgrHPOpstate();
 
 	/**
 	 * Returns the value of the '<em><b>Sgr HP Opstate Stiebel</b></em>' attribute.

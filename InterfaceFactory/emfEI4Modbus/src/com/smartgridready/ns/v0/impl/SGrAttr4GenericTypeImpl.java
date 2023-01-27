@@ -12,8 +12,6 @@ import com.smartgridready.ns.v0.V0Package;
 
 import java.math.BigInteger;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -38,7 +36,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getStabilityFallback <em>Stability Fallback</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getSmoothTransition <em>Smooth Transition</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMaxLatencyTimeMs <em>Max Latency Time Ms</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getTimeStampLog <em>Time Stamp Log</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueType <em>Value Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueSource <em>Value Source</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getSampleRate <em>Sample Rate</em>}</li>
@@ -199,26 +196,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected BigInteger maxLatencyTimeMs = MAX_LATENCY_TIME_MS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getTimeStampLog() <em>Time Stamp Log</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTimeStampLog()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final XMLGregorianCalendar TIME_STAMP_LOG_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTimeStampLog() <em>Time Stamp Log</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTimeStampLog()
-	 * @generated
-	 * @ordered
-	 */
-	protected XMLGregorianCalendar timeStampLog = TIME_STAMP_LOG_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getValueType() <em>Value Type</em>}' attribute.
@@ -764,29 +741,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public XMLGregorianCalendar getTimeStampLog() {
-		return timeStampLog;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTimeStampLog(XMLGregorianCalendar newTimeStampLog) {
-		XMLGregorianCalendar oldTimeStampLog = timeStampLog;
-		timeStampLog = newTimeStampLog;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG, oldTimeStampLog, timeStampLog));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public SGrMeasValueType getValueType() {
 		return valueType;
 	}
@@ -1239,8 +1193,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return getSmoothTransition();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
 				return getMaxLatencyTimeMs();
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
-				return getTimeStampLog();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
 				return getValueType();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE:
@@ -1291,9 +1243,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
 				setMaxLatencyTimeMs((BigInteger)newValue);
-				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
-				setTimeStampLog((XMLGregorianCalendar)newValue);
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
 				setValueType((SGrMeasValueType)newValue);
@@ -1355,9 +1304,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
 				setMaxLatencyTimeMs(MAX_LATENCY_TIME_MS_EDEFAULT);
 				return;
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
-				setTimeStampLog(TIME_STAMP_LOG_EDEFAULT);
-				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
 				unsetValueType();
 				return;
@@ -1411,8 +1357,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return smoothTransition != null;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS:
 				return MAX_LATENCY_TIME_MS_EDEFAULT == null ? maxLatencyTimeMs != null : !MAX_LATENCY_TIME_MS_EDEFAULT.equals(maxLatencyTimeMs);
-			case V0Package.SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG:
-				return TIME_STAMP_LOG_EDEFAULT == null ? timeStampLog != null : !TIME_STAMP_LOG_EDEFAULT.equals(timeStampLog);
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE:
 				return isSetValueType();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE:
@@ -1455,8 +1399,6 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 		if (precisionESet) result.append(precision); else result.append("<unset>");
 		result.append(", maxLatencyTimeMs: ");
 		result.append(maxLatencyTimeMs);
-		result.append(", timeStampLog: ");
-		result.append(timeStampLog);
 		result.append(", valueType: ");
 		if (valueTypeESet) result.append(valueType); else result.append("<unset>");
 		result.append(", valueSource: ");
