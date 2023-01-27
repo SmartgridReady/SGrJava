@@ -20,6 +20,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 import java.nio.ByteBuffer;
 
+import com.smartgridready.ns.v0.SGrEnumListType;
 import de.re.easymodbus.datatypes.RegisterOrder;
 
 public class ModbusHlpr {
@@ -354,10 +355,11 @@ public class ModbusHlpr {
 		return returnarray;
 	}
 
+	// Chaged IBT: Byte NOT swapped
 	public static byte[] toByteArray(int value) {
 		byte[] result = new byte[2];
-		result[1] = (byte) (value >> 8);
-		result[0] = (byte) (value);
+		result[0] = (byte) (value >> 8);
+		result[1] = (byte) (value);
 		return result;
 	}
 
@@ -377,4 +379,41 @@ public class ModbusHlpr {
 		return ByteBuffer.allocate(4).putFloat(value).array();
 	}
 
+	public static String enum2StringConversion(SGrEnumListType oGenVal) {
+		String rval = "-";
+
+		// Ongoing: extend this list manually for EACH enumeration being added to
+		// the system
+		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
+			rval = oGenVal.getSgrMeasValueSource().toString();
+		} else if (oGenVal.isSetSgrPowerSource()) { // E0002
+			rval = oGenVal.getSgrPowerSource().toString();
+		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0003
+			rval = oGenVal.getSgreadyStateLv2().toString();
+		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0004
+			rval = oGenVal.getSgreadyStateLv1().toString();
+		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0005
+			rval = oGenVal.getSgrSunspStateCodes().toString();
+		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0006
+			rval = oGenVal.getSgrEVSEStateLv2().toString();
+		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0007
+			rval = oGenVal.getSgrEVSEStateLv1().toString();
+		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0008
+			rval = oGenVal.getSgrSGCPLoadStateLv2().toString();
+		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0009
+			rval = oGenVal.getSgrSGCPFeedInStateLv2().toString();
+		} else if (oGenVal.isSetSgrEVState()) { // E0010
+			rval = oGenVal.getSgrEVState().toString();
+		} else if (oGenVal.isSetSgrSGCPService()) { // E0011
+			rval = oGenVal.getSgrSGCPService().toString();
+		} else if (oGenVal.isSetSgrObligLvl()) { // E0012
+			rval = oGenVal.getSgrObligLvl().toString();
+		} else if (oGenVal.isSetSgrOCPPState()) {// E0013
+			rval = oGenVal.getSgrOCPPState().toString();
+		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
+			rval = oGenVal.getSgrHPOpMode().toString();
+		}
+
+		return rval;
+	}
 }

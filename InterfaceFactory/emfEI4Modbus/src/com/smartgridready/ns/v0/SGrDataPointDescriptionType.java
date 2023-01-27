@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicDataType <em>Basic Data Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicArrayDataType <em>Basic Array Data Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getArrLen <em>Arr Len</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpNameList <em>Dp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpLegibDesc <em>Dp Legib Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getDpPrgDesc <em>Dp Prg Desc</em>}</li>
@@ -66,27 +66,54 @@ public interface SGrDataPointDescriptionType extends EObject {
 	void setBasicDataType(SGrBasicGenDataPointTypeType value);
 
 	/**
-	 * Returns the value of the '<em><b>Basic Array Data Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Arr Len</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Basic Array Data Type</em>' containment reference.
-	 * @see #setBasicArrayDataType(SGrBasicGenArrayDPTypeType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_BasicArrayDataType()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='basicArrayDataType' namespace='##targetNamespace'"
+	 * @return the value of the '<em>Arr Len</em>' attribute.
+	 * @see #isSetArrLen()
+	 * @see #unsetArrLen()
+	 * @see #setArrLen(int)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_ArrLen()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+	 *        extendedMetaData="kind='element' name='arrLen' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrBasicGenArrayDPTypeType getBasicArrayDataType();
+	int getArrLen();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getBasicArrayDataType <em>Basic Array Data Type</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getArrLen <em>Arr Len</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Basic Array Data Type</em>' containment reference.
-	 * @see #getBasicArrayDataType()
+	 * @param value the new value of the '<em>Arr Len</em>' attribute.
+	 * @see #isSetArrLen()
+	 * @see #unsetArrLen()
+	 * @see #getArrLen()
 	 * @generated
 	 */
-	void setBasicArrayDataType(SGrBasicGenArrayDPTypeType value);
+	void setArrLen(int value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getArrLen <em>Arr Len</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetArrLen()
+	 * @see #getArrLen()
+	 * @see #setArrLen(int)
+	 * @generated
+	 */
+	void unsetArrLen();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrDataPointDescriptionType#getArrLen <em>Arr Len</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Arr Len</em>' attribute is set.
+	 * @see #unsetArrLen()
+	 * @see #getArrLen()
+	 * @see #setArrLen(int)
+	 * @generated
+	 */
+	boolean isSetArrLen();
 
 	/**
 	 * Returns the value of the '<em><b>Dp Name List</b></em>' containment reference.

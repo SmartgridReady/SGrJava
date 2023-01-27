@@ -28,10 +28,10 @@ import io.vavr.control.Either;
 
 @ExtendWith(value = MockitoExtension.class)
 class SGrRestAPIDeviceTest {
-		
+
 	@Mock
 	Authenticator authenticator;
-	
+
 	@Mock
 	RestServiceClientFactory restServiceClientFactory;
 	
@@ -93,7 +93,8 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
-		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));		
+		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
+				
 		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
 		
 		// when
@@ -135,8 +136,9 @@ class SGrRestAPIDeviceTest {
 	}
 	
 	
-	@Disabled // needs a special 'CreateMeterGroup' datapoint.
 	@Test
+	@Disabled // setVal has been tested with an inofficial 'Create-Metergroup' EI-XML
+	          // using the CLEMAP cloud API.
 	void testSetVal() throws Exception {
 		
 		// given					

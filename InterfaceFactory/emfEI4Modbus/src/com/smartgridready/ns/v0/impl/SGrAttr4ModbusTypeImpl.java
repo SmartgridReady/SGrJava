@@ -6,7 +6,6 @@ import com.smartgridready.ns.v0.SGrAccessProtectionEnabledType;
 import com.smartgridready.ns.v0.SGrAttr4ModbusType;
 import com.smartgridready.ns.v0.SGrModbusLayer6DeviationType;
 import com.smartgridready.ns.v0.SGrScalingType;
-import com.smartgridready.ns.v0.TimeSyncBlockNotificationType;
 import com.smartgridready.ns.v0.V0Package;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -30,7 +29,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getStepByIncrement <em>Step By Increment</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getSunssf <em>Sunssf</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getPollLatencyMS <em>Poll Latency MS</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getAccessProtection <em>Access Protection</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getLayer6Deviation <em>Layer6 Deviation</em>}</li>
  * </ul>
@@ -134,16 +132,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected boolean pollLatencyMSESet;
-
-	/**
-	 * The cached value of the '{@link #getTimeSyncBlockNotification() <em>Time Sync Block Notification</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTimeSyncBlockNotification()
-	 * @generated
-	 * @ordered
-	 */
-	protected TimeSyncBlockNotificationType timeSyncBlockNotification;
 
 	/**
 	 * The cached value of the '{@link #getAccessProtection() <em>Access Protection</em>}' containment reference.
@@ -404,51 +392,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public TimeSyncBlockNotificationType getTimeSyncBlockNotification() {
-		return timeSyncBlockNotification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTimeSyncBlockNotification(TimeSyncBlockNotificationType newTimeSyncBlockNotification, NotificationChain msgs) {
-		TimeSyncBlockNotificationType oldTimeSyncBlockNotification = timeSyncBlockNotification;
-		timeSyncBlockNotification = newTimeSyncBlockNotification;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION, oldTimeSyncBlockNotification, newTimeSyncBlockNotification);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTimeSyncBlockNotification(TimeSyncBlockNotificationType newTimeSyncBlockNotification) {
-		if (newTimeSyncBlockNotification != timeSyncBlockNotification) {
-			NotificationChain msgs = null;
-			if (timeSyncBlockNotification != null)
-				msgs = ((InternalEObject)timeSyncBlockNotification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION, null, msgs);
-			if (newTimeSyncBlockNotification != null)
-				msgs = ((InternalEObject)newTimeSyncBlockNotification).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION, null, msgs);
-			msgs = basicSetTimeSyncBlockNotification(newTimeSyncBlockNotification, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION, newTimeSyncBlockNotification, newTimeSyncBlockNotification));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public SGrAccessProtectionEnabledType getAccessProtection() {
 		return accessProtection;
 	}
@@ -548,8 +491,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__SCALING_BY_MUL_PWR:
 				return basicSetScalingByMulPwr(null, msgs);
-			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
-				return basicSetTimeSyncBlockNotification(null, msgs);
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
 				return basicSetAccessProtection(null, msgs);
 		}
@@ -572,8 +513,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return getSunssf();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__POLL_LATENCY_MS:
 				return getPollLatencyMS();
-			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
-				return getTimeSyncBlockNotification();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
 				return getAccessProtection();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION:
@@ -601,9 +540,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__POLL_LATENCY_MS:
 				setPollLatencyMS((Long)newValue);
-				return;
-			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
-				setTimeSyncBlockNotification((TimeSyncBlockNotificationType)newValue);
 				return;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
 				setAccessProtection((SGrAccessProtectionEnabledType)newValue);
@@ -635,9 +571,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__POLL_LATENCY_MS:
 				unsetPollLatencyMS();
 				return;
-			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
-				setTimeSyncBlockNotification((TimeSyncBlockNotificationType)null);
-				return;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
 				setAccessProtection((SGrAccessProtectionEnabledType)null);
 				return;
@@ -664,8 +597,6 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return isSetSunssf();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__POLL_LATENCY_MS:
 				return isSetPollLatencyMS();
-			case V0Package.SGR_ATTR4_MODBUS_TYPE__TIME_SYNC_BLOCK_NOTIFICATION:
-				return timeSyncBlockNotification != null;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__ACCESS_PROTECTION:
 				return accessProtection != null;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__LAYER6_DEVIATION:

@@ -9,12 +9,15 @@ import com.smartgridready.ns.v0.V0Package;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -28,6 +31,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getModbusDataPoint <em>Modbus Data Point</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getLastAccessTime <em>Last Access Time</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getTimeToLive <em>Time To Live</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getBlockCashName <em>Block Cash Name</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeImpl#getModbusAttr <em>Modbus Attr</em>}</li>
  * </ul>
  *
@@ -43,6 +49,84 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * @ordered
 	 */
 	protected EList<SGrModbusDataPointDescriptionType> modbusDataPoint;
+
+	/**
+	 * The default value of the '{@link #getLastAccessTime() <em>Last Access Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastAccessTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long LAST_ACCESS_TIME_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getLastAccessTime() <em>Last Access Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLastAccessTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected long lastAccessTime = LAST_ACCESS_TIME_EDEFAULT;
+
+	/**
+	 * This is true if the Last Access Time attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean lastAccessTimeESet;
+
+	/**
+	 * The default value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeToLive()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long TIME_TO_LIVE_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeToLive()
+	 * @generated
+	 * @ordered
+	 */
+	protected long timeToLive = TIME_TO_LIVE_EDEFAULT;
+
+	/**
+	 * This is true if the Time To Live attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean timeToLiveESet;
+
+	/**
+	 * The default value of the '{@link #getBlockCashName() <em>Block Cash Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlockCashName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String BLOCK_CASH_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getBlockCashName() <em>Block Cash Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlockCashName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String blockCashName = BLOCK_CASH_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getModbusAttr() <em>Modbus Attr</em>}' containment reference list.
@@ -92,6 +176,129 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 	 * @generated
 	 */
 	@Override
+	public long getLastAccessTime() {
+		return lastAccessTime;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLastAccessTime(long newLastAccessTime) {
+		long oldLastAccessTime = lastAccessTime;
+		lastAccessTime = newLastAccessTime;
+		boolean oldLastAccessTimeESet = lastAccessTimeESet;
+		lastAccessTimeESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__LAST_ACCESS_TIME, oldLastAccessTime, lastAccessTime, !oldLastAccessTimeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetLastAccessTime() {
+		long oldLastAccessTime = lastAccessTime;
+		boolean oldLastAccessTimeESet = lastAccessTimeESet;
+		lastAccessTime = LAST_ACCESS_TIME_EDEFAULT;
+		lastAccessTimeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__LAST_ACCESS_TIME, oldLastAccessTime, LAST_ACCESS_TIME_EDEFAULT, oldLastAccessTimeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetLastAccessTime() {
+		return lastAccessTimeESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public long getTimeToLive() {
+		return timeToLive;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTimeToLive(long newTimeToLive) {
+		long oldTimeToLive = timeToLive;
+		timeToLive = newTimeToLive;
+		boolean oldTimeToLiveESet = timeToLiveESet;
+		timeToLiveESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE, oldTimeToLive, timeToLive, !oldTimeToLiveESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetTimeToLive() {
+		long oldTimeToLive = timeToLive;
+		boolean oldTimeToLiveESet = timeToLiveESet;
+		timeToLive = TIME_TO_LIVE_EDEFAULT;
+		timeToLiveESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE, oldTimeToLive, TIME_TO_LIVE_EDEFAULT, oldTimeToLiveESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetTimeToLive() {
+		return timeToLiveESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getBlockCashName() {
+		return blockCashName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBlockCashName(String newBlockCashName) {
+		String oldBlockCashName = blockCashName;
+		blockCashName = newBlockCashName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME, oldBlockCashName, blockCashName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<SGrAttr4ModbusType> getModbusAttr() {
 		if (modbusAttr == null) {
 			modbusAttr = new EObjectContainmentEList<SGrAttr4ModbusType>(SGrAttr4ModbusType.class, this, V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR);
@@ -125,6 +332,12 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_DATA_POINT:
 				return getModbusDataPoint();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__LAST_ACCESS_TIME:
+				return getLastAccessTime();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
+				return getTimeToLive();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME:
+				return getBlockCashName();
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				return getModbusAttr();
 		}
@@ -143,6 +356,15 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_DATA_POINT:
 				getModbusDataPoint().clear();
 				getModbusDataPoint().addAll((Collection<? extends SGrModbusDataPointDescriptionType>)newValue);
+				return;
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__LAST_ACCESS_TIME:
+				setLastAccessTime((Long)newValue);
+				return;
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
+				setTimeToLive((Long)newValue);
+				return;
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME:
+				setBlockCashName((String)newValue);
 				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				getModbusAttr().clear();
@@ -163,6 +385,15 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_DATA_POINT:
 				getModbusDataPoint().clear();
 				return;
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__LAST_ACCESS_TIME:
+				unsetLastAccessTime();
+				return;
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
+				unsetTimeToLive();
+				return;
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME:
+				setBlockCashName(BLOCK_CASH_NAME_EDEFAULT);
+				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				getModbusAttr().clear();
 				return;
@@ -180,10 +411,36 @@ public class SGrModbusDataPointTypeImpl extends SGrDataPointBaseTypeImpl impleme
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_DATA_POINT:
 				return modbusDataPoint != null && !modbusDataPoint.isEmpty();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__LAST_ACCESS_TIME:
+				return isSetLastAccessTime();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__TIME_TO_LIVE:
+				return isSetTimeToLive();
+			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__BLOCK_CASH_NAME:
+				return BLOCK_CASH_NAME_EDEFAULT == null ? blockCashName != null : !BLOCK_CASH_NAME_EDEFAULT.equals(blockCashName);
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE__MODBUS_ATTR:
 				return modbusAttr != null && !modbusAttr.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (lastAccessTime: ");
+		if (lastAccessTimeESet) result.append(lastAccessTime); else result.append("<unset>");
+		result.append(", timeToLive: ");
+		if (timeToLiveESet) result.append(timeToLive); else result.append("<unset>");
+		result.append(", blockCashName: ");
+		result.append(blockCashName);
+		result.append(')');
+		return result.toString();
 	}
 
 } //SGrModbusDataPointTypeImpl

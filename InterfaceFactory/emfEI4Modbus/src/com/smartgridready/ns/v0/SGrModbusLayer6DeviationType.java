@@ -48,7 +48,39 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	_2REG_BASE1000_H2L(1, "_2RegBase1000H2L", "2RegBase1000_H2L");
+	_2REG_BASE1000_H2L(1, "_2RegBase1000H2L", "2RegBase1000_H2L"),
+
+	/**
+	 * The '<em><b>SG Ready Enum2 IOH2L</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * 
+	 *             
+	 *   <documentation>2 Registers combine SGready IO1 and IO2 into the sgreadyStateLv2 enum  beginning with IO1 @ higher address</documentation>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @see #SG_READY_ENUM2_IOH2L_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SG_READY_ENUM2_IOH2L(2, "SGReadyEnum2IOH2L", "SGReadyEnum2IO_H2L"),
+
+	/**
+	 * The '<em><b>SG Ready Enum2 IOL2H</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * 
+	 *             
+	 *   <documentation>2 Registers combine SGready IO1 and IO2 into the sgreadyStateLv2 enum  beginning with IO1 @ lower address</documentation>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @see #SG_READY_ENUM2_IOL2H_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SG_READY_ENUM2_IOL2H(3, "SGReadyEnum2IOL2H", "SGReadyEnum2IO_L2H");
 
 	/**
 	 * The '<em><b>2Reg Base1000 L2H</b></em>' literal value.
@@ -82,6 +114,40 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 	public static final int _2REG_BASE1000_H2L_VALUE = 1;
 
 	/**
+	 * The '<em><b>SG Ready Enum2 IOH2L</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * 
+	 *             
+	 *   <documentation>2 Registers combine SGready IO1 and IO2 into the sgreadyStateLv2 enum  beginning with IO1 @ higher address</documentation>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @see #SG_READY_ENUM2_IOH2L
+	 * @model name="SGReadyEnum2IOH2L" literal="SGReadyEnum2IO_H2L"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SG_READY_ENUM2_IOH2L_VALUE = 2;
+
+	/**
+	 * The '<em><b>SG Ready Enum2 IOL2H</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * 
+	 *             
+	 *   <documentation>2 Registers combine SGready IO1 and IO2 into the sgreadyStateLv2 enum  beginning with IO1 @ lower address</documentation>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @see #SG_READY_ENUM2_IOL2H
+	 * @model name="SGReadyEnum2IOL2H" literal="SGReadyEnum2IO_L2H"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SG_READY_ENUM2_IOL2H_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>SGr Modbus Layer6 Deviation Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,6 +157,8 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 		new SGrModbusLayer6DeviationType[] {
 			_2REG_BASE1000_L2H,
 			_2REG_BASE1000_H2L,
+			SG_READY_ENUM2_IOH2L,
+			SG_READY_ENUM2_IOL2H,
 		};
 
 	/**
@@ -149,6 +217,8 @@ public enum SGrModbusLayer6DeviationType implements Enumerator {
 		switch (value) {
 			case _2REG_BASE1000_L2H_VALUE: return _2REG_BASE1000_L2H;
 			case _2REG_BASE1000_H2L_VALUE: return _2REG_BASE1000_H2L;
+			case SG_READY_ENUM2_IOH2L_VALUE: return SG_READY_ENUM2_IOH2L;
+			case SG_READY_ENUM2_IOL2H_VALUE: return SG_READY_ENUM2_IOL2H;
 		}
 		return null;
 	}

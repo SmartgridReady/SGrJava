@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#isBoolean <em>Boolean</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getInt8 <em>Int8</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getInt16 <em>Int16</em>}</li>
@@ -48,6 +49,33 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface SGrBasicGenDataPointTypeType extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Enum2bitmap Index</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * bitmap for Registers (typical: Status Bits). For to be visible as generic boolean array or unsigned integer mapped in parallel towards one data single point definition. Depending on the TransportService,  this requires specialized sw coding.
+	 *           
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Enum2bitmap Index</em>' containment reference.
+	 * @see #setEnum2bitmapIndex(SGrBitmapperListType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBasicGenDataPointTypeType_Enum2bitmapIndex()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='enum2bitmapIndex' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrBitmapperListType getEnum2bitmapIndex();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType#getEnum2bitmapIndex <em>Enum2bitmap Index</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enum2bitmap Index</em>' containment reference.
+	 * @see #getEnum2bitmapIndex()
+	 * @generated
+	 */
+	void setEnum2bitmapIndex(SGrBitmapperListType value);
+
 	/**
 	 * Returns the value of the '<em><b>Boolean</b></em>' attribute.
 	 * <!-- begin-user-doc -->

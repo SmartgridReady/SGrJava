@@ -166,15 +166,6 @@ public interface V0Factory extends EFactory {
 	SGrAttr4RestAPIType createSGrAttr4RestAPIType();
 
 	/**
-	 * Returns a new object of class '<em>SGr Basic Gen Array DP Type Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SGr Basic Gen Array DP Type Type</em>'.
-	 * @generated
-	 */
-	SGrBasicGenArrayDPTypeType createSGrBasicGenArrayDPTypeType();
-
-	/**
 	 * Returns a new object of class '<em>SGr Basic Gen Data Point Type Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,6 +173,15 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	SGrBasicGenDataPointTypeType createSGrBasicGenDataPointTypeType();
+
+	/**
+	 * Returns a new object of class '<em>SGr Bitmapper List Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Bitmapper List Type</em>'.
+	 * @generated
+	 */
+	SGrBitmapperListType createSGrBitmapperListType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Change Log</em>'.
@@ -490,6 +490,15 @@ public interface V0Factory extends EFactory {
 	SGrStabilityFallbackType createSGrStabilityFallbackType();
 
 	/**
+	 * Returns a new object of class '<em>SGr Time Sync Block Notification Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Time Sync Block Notification Type</em>'.
+	 * @generated
+	 */
+	SGrTimeSyncBlockNotificationType createSGrTimeSyncBlockNotificationType();
+
+	/**
 	 * Returns a new object of class '<em>SGr Version Number Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -524,15 +533,6 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	TCPType createTCPType();
-
-	/**
-	 * Returns a new object of class '<em>Time Sync Block Notification Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Time Sync Block Notification Type</em>'.
-	 * @generated
-	 */
-	TimeSyncBlockNotificationType createTimeSyncBlockNotificationType();
 
 	/**
 	 * Returns a new object of class '<em>TPIP Modbus</em>'.

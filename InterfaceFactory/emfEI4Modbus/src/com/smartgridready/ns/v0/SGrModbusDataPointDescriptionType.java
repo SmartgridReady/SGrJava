@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusDataType <em>Modbus Data Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusArrayDataType <em>Modbus Array Data Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen <em>Arr Len</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusFirstRegisterReference <em>Modbus First Register Reference</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getDpSizeNrRegisters <em>Dp Size Nr Registers</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getBitmask <em>Bitmask</em>}</li>
@@ -53,27 +53,54 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	void setModbusDataType(SGrBasicGenDataPointTypeType value);
 
 	/**
-	 * Returns the value of the '<em><b>Modbus Array Data Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Arr Len</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modbus Array Data Type</em>' containment reference.
-	 * @see #setModbusArrayDataType(SGrBasicGenArrayDPTypeType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_ModbusArrayDataType()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='modbusArrayDataType' namespace='##targetNamespace'"
+	 * @return the value of the '<em>Arr Len</em>' attribute.
+	 * @see #isSetArrLen()
+	 * @see #unsetArrLen()
+	 * @see #setArrLen(int)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_ArrLen()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+	 *        extendedMetaData="kind='element' name='arrLen' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrBasicGenArrayDPTypeType getModbusArrayDataType();
+	int getArrLen();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getModbusArrayDataType <em>Modbus Array Data Type</em>}' containment reference.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen <em>Arr Len</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Modbus Array Data Type</em>' containment reference.
-	 * @see #getModbusArrayDataType()
+	 * @param value the new value of the '<em>Arr Len</em>' attribute.
+	 * @see #isSetArrLen()
+	 * @see #unsetArrLen()
+	 * @see #getArrLen()
 	 * @generated
 	 */
-	void setModbusArrayDataType(SGrBasicGenArrayDPTypeType value);
+	void setArrLen(int value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen <em>Arr Len</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetArrLen()
+	 * @see #getArrLen()
+	 * @see #setArrLen(int)
+	 * @generated
+	 */
+	void unsetArrLen();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType#getArrLen <em>Arr Len</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Arr Len</em>' attribute is set.
+	 * @see #unsetArrLen()
+	 * @see #getArrLen()
+	 * @see #setArrLen(int)
+	 * @generated
+	 */
+	boolean isSetArrLen();
 
 	/**
 	 * Returns the value of the '<em><b>Modbus First Register Reference</b></em>' containment reference.

@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getModbusAttr <em>Modbus Attr</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getModbusInterfaceDesc <em>Modbus Interface Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getFpListElement <em>Fp List Element</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusDeviceFrame#getNetworkConnectionState <em>Network Connection State</em>}</li>
  * </ul>
  *
@@ -86,6 +87,26 @@ public interface SGrModbusDeviceFrame extends SGrDeviceBaseType {
 	 * @generated
 	 */
 	EList<SGrModbusFunctionalProfileType> getFpListElement();
+
+	/**
+	 * Returns the value of the '<em><b>Time Sync Block Notification</b></em>' containment reference list.
+	 * The list contents are of type {@link com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * 
+	 *     				       a transaction number for a sequence of Registeres
+	 *     				       (usually transmitted by Blocktransfers) to be
+	 *     				      transferred together
+	 *     			        
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Time Sync Block Notification</em>' containment reference list.
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDeviceFrame_TimeSyncBlockNotification()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='timeSyncBlockNotification' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SGrTimeSyncBlockNotificationType> getTimeSyncBlockNotification();
 
 	/**
 	 * Returns the value of the '<em><b>Network Connection State</b></em>' containment reference.

@@ -919,6 +919,16 @@ public enum SGrUnits implements Enumerator {
 	KILOVOLTAMPERES(89, "KILOVOLTAMPERES", "KILOVOLT_AMPERES"),
 
 	/**
+	 * The '<em><b>KILOVOLTAMPEREHOURS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KILOVOLTAMPEREHOURS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	KILOVOLTAMPEREHOURS(90, "KILOVOLTAMPEREHOURS", "KILOVOLT_AMPERE_HOURS"),
+
+	/**
 	 * The '<em><b>KILOVOLTAMPERESREACTIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -926,7 +936,17 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	KILOVOLTAMPERESREACTIVE(90, "KILOVOLTAMPERESREACTIVE", "KILOVOLT_AMPERES_REACTIVE"),
+	KILOVOLTAMPERESREACTIVE(91, "KILOVOLTAMPERESREACTIVE", "KILOVOLT_AMPERES_REACTIVE"),
+
+	/**
+	 * The '<em><b>KILOVOLTAMPERESREACTIVEHOURS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KILOVOLTAMPERESREACTIVEHOURS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	KILOVOLTAMPERESREACTIVEHOURS(92, "KILOVOLTAMPERESREACTIVEHOURS", "KILOVOLT_AMPERES_REACTIVE_HOURS"),
 
 	/**
 	 * The '<em><b>KILOVOLTS</b></em>' literal object.
@@ -936,7 +956,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	KILOVOLTS(91, "KILOVOLTS", "KILOVOLTS"),
+	KILOVOLTS(93, "KILOVOLTS", "KILOVOLTS"),
 
 	/**
 	 * The '<em><b>KILOWATTHOURS</b></em>' literal object.
@@ -946,7 +966,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	KILOWATTHOURS(92, "KILOWATTHOURS", "KILOWATT_HOURS"),
+	KILOWATTHOURS(94, "KILOWATTHOURS", "KILOWATT_HOURS"),
 
 	/**
 	 * The '<em><b>KILOWATTS</b></em>' literal object.
@@ -956,7 +976,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	KILOWATTS(93, "KILOWATTS", "KILOWATTS"),
+	KILOWATTS(95, "KILOWATTS", "KILOWATTS"),
 
 	/**
 	 * The '<em><b>KWHOURSPERSQUAREFOOT</b></em>' literal object.
@@ -966,7 +986,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	KWHOURSPERSQUAREFOOT(94, "KWHOURSPERSQUAREFOOT", "KW_HOURS_PER_SQUARE_FOOT"),
+	KWHOURSPERSQUAREFOOT(96, "KWHOURSPERSQUAREFOOT", "KW_HOURS_PER_SQUARE_FOOT"),
 
 	/**
 	 * The '<em><b>KWHOURSPERSQUAREMETER</b></em>' literal object.
@@ -976,7 +996,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	KWHOURSPERSQUAREMETER(95, "KWHOURSPERSQUAREMETER", "KW_HOURS_PER_SQUARE_METER"),
+	KWHOURSPERSQUAREMETER(97, "KWHOURSPERSQUAREMETER", "KW_HOURS_PER_SQUARE_METER"),
 
 	/**
 	 * The '<em><b>LITERS</b></em>' literal object.
@@ -986,7 +1006,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LITERS(96, "LITERS", "LITERS"),
+	LITERS(98, "LITERS", "LITERS"),
 
 	/**
 	 * The '<em><b>LITERSPERHOUR</b></em>' literal object.
@@ -996,7 +1016,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LITERSPERHOUR(97, "LITERSPERHOUR", "LITERS_PER_HOUR"),
+	LITERSPERHOUR(99, "LITERSPERHOUR", "LITERS_PER_HOUR"),
 
 	/**
 	 * The '<em><b>LITERSPERMINUTE</b></em>' literal object.
@@ -1006,7 +1026,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LITERSPERMINUTE(98, "LITERSPERMINUTE", "LITERS_PER_MINUTE"),
+	LITERSPERMINUTE(100, "LITERSPERMINUTE", "LITERS_PER_MINUTE"),
 
 	/**
 	 * The '<em><b>LITERSPERSECOND</b></em>' literal object.
@@ -1016,7 +1036,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LITERSPERSECOND(99, "LITERSPERSECOND", "LITERS_PER_SECOND"),
+	LITERSPERSECOND(101, "LITERSPERSECOND", "LITERS_PER_SECOND"),
 
 	/**
 	 * The '<em><b>LUMENS</b></em>' literal object.
@@ -1026,7 +1046,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LUMENS(100, "LUMENS", "LUMENS"),
+	LUMENS(102, "LUMENS", "LUMENS"),
 
 	/**
 	 * The '<em><b>LUXES</b></em>' literal object.
@@ -1036,7 +1056,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LUXES(101, "LUXES", "LUXES"),
+	LUXES(103, "LUXES", "LUXES"),
 
 	/**
 	 * The '<em><b>MEGABTUS</b></em>' literal object.
@@ -1046,7 +1066,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGABTUS(102, "MEGABTUS", "MEGA_BTUS"),
+	MEGABTUS(104, "MEGABTUS", "MEGA_BTUS"),
 
 	/**
 	 * The '<em><b>MEGAHERTZ</b></em>' literal object.
@@ -1056,7 +1076,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAHERTZ(103, "MEGAHERTZ", "MEGAHERTZ"),
+	MEGAHERTZ(105, "MEGAHERTZ", "MEGAHERTZ"),
 
 	/**
 	 * The '<em><b>MEGAJOULES</b></em>' literal object.
@@ -1066,7 +1086,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAJOULES(104, "MEGAJOULES", "MEGAJOULES"),
+	MEGAJOULES(106, "MEGAJOULES", "MEGAJOULES"),
 
 	/**
 	 * The '<em><b>MEGAJOULESPERDEGREEKELVIN</b></em>' literal object.
@@ -1076,7 +1096,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAJOULESPERDEGREEKELVIN(105, "MEGAJOULESPERDEGREEKELVIN", "MEGAJOULES_PER_DEGREE_KELVIN"),
+	MEGAJOULESPERDEGREEKELVIN(107, "MEGAJOULESPERDEGREEKELVIN", "MEGAJOULES_PER_DEGREE_KELVIN"),
 
 	/**
 	 * The '<em><b>MEGAJOULESPERKILOGRAMDRYAIR</b></em>' literal object.
@@ -1086,7 +1106,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAJOULESPERKILOGRAMDRYAIR(106, "MEGAJOULESPERKILOGRAMDRYAIR", "MEGAJOULES_PER_KILOGRAM_DRY_AIR"),
+	MEGAJOULESPERKILOGRAMDRYAIR(108, "MEGAJOULESPERKILOGRAMDRYAIR", "MEGAJOULES_PER_KILOGRAM_DRY_AIR"),
 
 	/**
 	 * The '<em><b>MEGAJOULESPERSQUAREFOOT</b></em>' literal object.
@@ -1096,7 +1116,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAJOULESPERSQUAREFOOT(107, "MEGAJOULESPERSQUAREFOOT", "MEGAJOULES_PER_SQUARE_FOOT"),
+	MEGAJOULESPERSQUAREFOOT(109, "MEGAJOULESPERSQUAREFOOT", "MEGAJOULES_PER_SQUARE_FOOT"),
 
 	/**
 	 * The '<em><b>MEGAJOULESPERSQUAREMETER</b></em>' literal object.
@@ -1106,7 +1126,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAJOULESPERSQUAREMETER(108, "MEGAJOULESPERSQUAREMETER", "MEGAJOULES_PER_SQUARE_METER"),
+	MEGAJOULESPERSQUAREMETER(110, "MEGAJOULESPERSQUAREMETER", "MEGAJOULES_PER_SQUARE_METER"),
 
 	/**
 	 * The '<em><b>MEGAVOLTAMPERES</b></em>' literal object.
@@ -1116,7 +1136,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAVOLTAMPERES(109, "MEGAVOLTAMPERES", "MEGAVOLT_AMPERES"),
+	MEGAVOLTAMPERES(111, "MEGAVOLTAMPERES", "MEGAVOLT_AMPERES"),
 
 	/**
 	 * The '<em><b>MEGAVOLTAMPERESREACTIVE</b></em>' literal object.
@@ -1126,7 +1146,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAVOLTAMPERESREACTIVE(110, "MEGAVOLTAMPERESREACTIVE", "MEGAVOLT_AMPERES_REACTIVE"),
+	MEGAVOLTAMPERESREACTIVE(112, "MEGAVOLTAMPERESREACTIVE", "MEGAVOLT_AMPERES_REACTIVE"),
 
 	/**
 	 * The '<em><b>MEGAVOLTS</b></em>' literal object.
@@ -1136,7 +1156,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAVOLTS(111, "MEGAVOLTS", "MEGAVOLTS"),
+	MEGAVOLTS(113, "MEGAVOLTS", "MEGAVOLTS"),
 
 	/**
 	 * The '<em><b>MEGAWATTHOURS</b></em>' literal object.
@@ -1146,7 +1166,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAWATTHOURS(112, "MEGAWATTHOURS", "MEGAWATT_HOURS"),
+	MEGAWATTHOURS(114, "MEGAWATTHOURS", "MEGAWATT_HOURS"),
 
 	/**
 	 * The '<em><b>MEGAWATTS</b></em>' literal object.
@@ -1156,7 +1176,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGAWATTS(113, "MEGAWATTS", "MEGAWATTS"),
+	MEGAWATTS(115, "MEGAWATTS", "MEGAWATTS"),
 
 	/**
 	 * The '<em><b>MEGOHMS</b></em>' literal object.
@@ -1166,7 +1186,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MEGOHMS(114, "MEGOHMS", "MEGOHMS"),
+	MEGOHMS(116, "MEGOHMS", "MEGOHMS"),
 
 	/**
 	 * The '<em><b>METERS</b></em>' literal object.
@@ -1176,7 +1196,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	METERS(115, "METERS", "METERS"),
+	METERS(117, "METERS", "METERS"),
 
 	/**
 	 * The '<em><b>METERSPERHOUR</b></em>' literal object.
@@ -1186,7 +1206,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	METERSPERHOUR(116, "METERSPERHOUR", "METERS_PER_HOUR"),
+	METERSPERHOUR(118, "METERSPERHOUR", "METERS_PER_HOUR"),
 
 	/**
 	 * The '<em><b>METERSPERMINUTE</b></em>' literal object.
@@ -1196,7 +1216,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	METERSPERMINUTE(117, "METERSPERMINUTE", "METERS_PER_MINUTE"),
+	METERSPERMINUTE(119, "METERSPERMINUTE", "METERS_PER_MINUTE"),
 
 	/**
 	 * The '<em><b>METERSPERSECOND</b></em>' literal object.
@@ -1206,7 +1226,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	METERSPERSECOND(118, "METERSPERSECOND", "METERS_PER_SECOND"),
+	METERSPERSECOND(120, "METERSPERSECOND", "METERS_PER_SECOND"),
 
 	/**
 	 * The '<em><b>METERSPERSECONDPERSECOND</b></em>' literal object.
@@ -1216,7 +1236,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	METERSPERSECONDPERSECOND(119, "METERSPERSECONDPERSECOND", "METERS_PER_SECOND_PER_SECOND"),
+	METERSPERSECONDPERSECOND(121, "METERSPERSECONDPERSECOND", "METERS_PER_SECOND_PER_SECOND"),
 
 	/**
 	 * The '<em><b>MILESPERHOUR</b></em>' literal object.
@@ -1226,7 +1246,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILESPERHOUR(120, "MILESPERHOUR", "MILES_PER_HOUR"),
+	MILESPERHOUR(122, "MILESPERHOUR", "MILES_PER_HOUR"),
 
 	/**
 	 * The '<em><b>MILLIAMPERES</b></em>' literal object.
@@ -1236,7 +1256,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLIAMPERES(121, "MILLIAMPERES", "MILLIAMPERES"),
+	MILLIAMPERES(123, "MILLIAMPERES", "MILLIAMPERES"),
 
 	/**
 	 * The '<em><b>MILLIBARS</b></em>' literal object.
@@ -1246,7 +1266,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLIBARS(122, "MILLIBARS", "MILLIBARS"),
+	MILLIBARS(124, "MILLIBARS", "MILLIBARS"),
 
 	/**
 	 * The '<em><b>MILLIMETERS</b></em>' literal object.
@@ -1256,7 +1276,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLIMETERS(123, "MILLIMETERS", "MILLIMETERS"),
+	MILLIMETERS(125, "MILLIMETERS", "MILLIMETERS"),
 
 	/**
 	 * The '<em><b>MILLIMETERSOFMERCURY</b></em>' literal object.
@@ -1266,7 +1286,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLIMETERSOFMERCURY(124, "MILLIMETERSOFMERCURY", "MILLIMETERS_OF_MERCURY"),
+	MILLIMETERSOFMERCURY(126, "MILLIMETERSOFMERCURY", "MILLIMETERS_OF_MERCURY"),
 
 	/**
 	 * The '<em><b>MILLIMETERSPERMINUTE</b></em>' literal object.
@@ -1276,7 +1296,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLIMETERSPERMINUTE(125, "MILLIMETERSPERMINUTE", "MILLIMETERS_PER_MINUTE"),
+	MILLIMETERSPERMINUTE(127, "MILLIMETERSPERMINUTE", "MILLIMETERS_PER_MINUTE"),
 
 	/**
 	 * The '<em><b>MILLIMETERSPERSECOND</b></em>' literal object.
@@ -1286,7 +1306,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLIMETERSPERSECOND(126, "MILLIMETERSPERSECOND", "MILLIMETERS_PER_SECOND"),
+	MILLIMETERSPERSECOND(128, "MILLIMETERSPERSECOND", "MILLIMETERS_PER_SECOND"),
 
 	/**
 	 * The '<em><b>MILLIOHMS</b></em>' literal object.
@@ -1296,7 +1316,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLIOHMS(127, "MILLIOHMS", "MILLIOHMS"),
+	MILLIOHMS(129, "MILLIOHMS", "MILLIOHMS"),
 
 	/**
 	 * The '<em><b>MILLISECONDS</b></em>' literal object.
@@ -1306,7 +1326,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLISECONDS(128, "MILLISECONDS", "MILLISECONDS"),
+	MILLISECONDS(130, "MILLISECONDS", "MILLISECONDS"),
 
 	/**
 	 * The '<em><b>MILLIVOLTS</b></em>' literal object.
@@ -1316,7 +1336,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLIVOLTS(129, "MILLIVOLTS", "MILLIVOLTS"),
+	MILLIVOLTS(131, "MILLIVOLTS", "MILLIVOLTS"),
 
 	/**
 	 * The '<em><b>MILLIWATTS</b></em>' literal object.
@@ -1326,7 +1346,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MILLIWATTS(130, "MILLIWATTS", "MILLIWATTS"),
+	MILLIWATTS(132, "MILLIWATTS", "MILLIWATTS"),
 
 	/**
 	 * The '<em><b>MINUTES</b></em>' literal object.
@@ -1336,7 +1356,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MINUTES(131, "MINUTES", "MINUTES"),
+	MINUTES(133, "MINUTES", "MINUTES"),
 
 	/**
 	 * The '<em><b>MONTHS</b></em>' literal object.
@@ -1346,7 +1366,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MONTHS(132, "MONTHS", "MONTHS"),
+	MONTHS(134, "MONTHS", "MONTHS"),
 
 	/**
 	 * The '<em><b>NEWTON</b></em>' literal object.
@@ -1356,7 +1376,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NEWTON(133, "NEWTON", "NEWTON"),
+	NEWTON(135, "NEWTON", "NEWTON"),
 
 	/**
 	 * The '<em><b>NEWTONMETERS</b></em>' literal object.
@@ -1366,7 +1386,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NEWTONMETERS(134, "NEWTONMETERS", "NEWTON_METERS"),
+	NEWTONMETERS(136, "NEWTONMETERS", "NEWTON_METERS"),
 
 	/**
 	 * The '<em><b>NEWTONSECONDS</b></em>' literal object.
@@ -1376,7 +1396,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NEWTONSECONDS(135, "NEWTONSECONDS", "NEWTON_SECONDS"),
+	NEWTONSECONDS(137, "NEWTONSECONDS", "NEWTON_SECONDS"),
 
 	/**
 	 * The '<em><b>NEWTONSPERMETER</b></em>' literal object.
@@ -1386,7 +1406,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NEWTONSPERMETER(136, "NEWTONSPERMETER", "NEWTONS_PER_METER"),
+	NEWTONSPERMETER(138, "NEWTONSPERMETER", "NEWTONS_PER_METER"),
 
 	/**
 	 * The '<em><b>NOUNITS</b></em>' literal object.
@@ -1396,7 +1416,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOUNITS(137, "NOUNITS", "NO_UNITS"),
+	NOUNITS(139, "NOUNITS", "NO_UNITS"),
 
 	/**
 	 * The '<em><b>OHMMETERS</b></em>' literal object.
@@ -1406,7 +1426,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OHMMETERS(138, "OHMMETERS", "OHM_METERS"),
+	OHMMETERS(140, "OHMMETERS", "OHM_METERS"),
 
 	/**
 	 * The '<em><b>OHMS</b></em>' literal object.
@@ -1416,7 +1436,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OHMS(139, "OHMS", "OHMS"),
+	OHMS(141, "OHMS", "OHMS"),
 
 	/**
 	 * The '<em><b>PARTSPERBILLION</b></em>' literal object.
@@ -1426,7 +1446,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PARTSPERBILLION(140, "PARTSPERBILLION", "PARTS_PER_BILLION"),
+	PARTSPERBILLION(142, "PARTSPERBILLION", "PARTS_PER_BILLION"),
 
 	/**
 	 * The '<em><b>PARTSPERMILLION</b></em>' literal object.
@@ -1436,7 +1456,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PARTSPERMILLION(141, "PARTSPERMILLION", "PARTS_PER_MILLION"),
+	PARTSPERMILLION(143, "PARTSPERMILLION", "PARTS_PER_MILLION"),
 
 	/**
 	 * The '<em><b>PASCALS</b></em>' literal object.
@@ -1446,7 +1466,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PASCALS(142, "PASCALS", "PASCALS"),
+	PASCALS(144, "PASCALS", "PASCALS"),
 
 	/**
 	 * The '<em><b>PERHOUR</b></em>' literal object.
@@ -1456,7 +1476,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERHOUR(143, "PERHOUR", "PER_HOUR"),
+	PERHOUR(145, "PERHOUR", "PER_HOUR"),
 
 	/**
 	 * The '<em><b>PERMINUTE</b></em>' literal object.
@@ -1466,7 +1486,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERMINUTE(144, "PERMINUTE", "PER_MINUTE"),
+	PERMINUTE(146, "PERMINUTE", "PER_MINUTE"),
 
 	/**
 	 * The '<em><b>PERSECOND</b></em>' literal object.
@@ -1476,7 +1496,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERSECOND(145, "PERSECOND", "PER_SECOND"),
+	PERSECOND(147, "PERSECOND", "PER_SECOND"),
 
 	/**
 	 * The '<em><b>PERCENT</b></em>' literal object.
@@ -1486,7 +1506,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERCENT(146, "PERCENT", "PERCENT"),
+	PERCENT(148, "PERCENT", "PERCENT"),
 
 	/**
 	 * The '<em><b>PERCENTOBSCURATIONPERFOOT</b></em>' literal object.
@@ -1496,7 +1516,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERCENTOBSCURATIONPERFOOT(147, "PERCENTOBSCURATIONPERFOOT", "PERCENT_OBSCURATION_PER_FOOT"),
+	PERCENTOBSCURATIONPERFOOT(149, "PERCENTOBSCURATIONPERFOOT", "PERCENT_OBSCURATION_PER_FOOT"),
 
 	/**
 	 * The '<em><b>PERCENTOBSCURATIONPERMETER</b></em>' literal object.
@@ -1506,7 +1526,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERCENTOBSCURATIONPERMETER(148, "PERCENTOBSCURATIONPERMETER", "PERCENT_OBSCURATION_PER_METER"),
+	PERCENTOBSCURATIONPERMETER(150, "PERCENTOBSCURATIONPERMETER", "PERCENT_OBSCURATION_PER_METER"),
 
 	/**
 	 * The '<em><b>PERCENTPERSECOND</b></em>' literal object.
@@ -1516,7 +1536,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERCENTPERSECOND(149, "PERCENTPERSECOND", "PERCENT_PER_SECOND"),
+	PERCENTPERSECOND(151, "PERCENTPERSECOND", "PERCENT_PER_SECOND"),
 
 	/**
 	 * The '<em><b>PERCENTRELATIVEHUMIDITY</b></em>' literal object.
@@ -1526,7 +1546,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PERCENTRELATIVEHUMIDITY(150, "PERCENTRELATIVEHUMIDITY", "PERCENT_RELATIVE_HUMIDITY"),
+	PERCENTRELATIVEHUMIDITY(152, "PERCENTRELATIVEHUMIDITY", "PERCENT_RELATIVE_HUMIDITY"),
 
 	/**
 	 * The '<em><b>POUNDSFORCEPERSQUAREINCH</b></em>' literal object.
@@ -1536,7 +1556,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POUNDSFORCEPERSQUAREINCH(151, "POUNDSFORCEPERSQUAREINCH", "POUNDS_FORCE_PER_SQUARE_INCH"),
+	POUNDSFORCEPERSQUAREINCH(153, "POUNDSFORCEPERSQUAREINCH", "POUNDS_FORCE_PER_SQUARE_INCH"),
 
 	/**
 	 * The '<em><b>POUNDSMASS</b></em>' literal object.
@@ -1546,7 +1566,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POUNDSMASS(152, "POUNDSMASS", "POUNDS_MASS"),
+	POUNDSMASS(154, "POUNDSMASS", "POUNDS_MASS"),
 
 	/**
 	 * The '<em><b>POUNDSMASSPERHOUR</b></em>' literal object.
@@ -1556,7 +1576,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POUNDSMASSPERHOUR(153, "POUNDSMASSPERHOUR", "POUNDS_MASS_PER_HOUR"),
+	POUNDSMASSPERHOUR(155, "POUNDSMASSPERHOUR", "POUNDS_MASS_PER_HOUR"),
 
 	/**
 	 * The '<em><b>POUNDSMASSPERMINUTE</b></em>' literal object.
@@ -1566,7 +1586,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POUNDSMASSPERMINUTE(154, "POUNDSMASSPERMINUTE", "POUNDS_MASS_PER_MINUTE"),
+	POUNDSMASSPERMINUTE(156, "POUNDSMASSPERMINUTE", "POUNDS_MASS_PER_MINUTE"),
 
 	/**
 	 * The '<em><b>POUNDSMASSPERSECOND</b></em>' literal object.
@@ -1576,7 +1596,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POUNDSMASSPERSECOND(155, "POUNDSMASSPERSECOND", "POUNDS_MASS_PER_SECOND"),
+	POUNDSMASSPERSECOND(157, "POUNDSMASSPERSECOND", "POUNDS_MASS_PER_SECOND"),
 
 	/**
 	 * The '<em><b>POWERFACTOR</b></em>' literal object.
@@ -1586,7 +1606,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POWERFACTOR(156, "POWERFACTOR", "POWER_FACTOR"),
+	POWERFACTOR(158, "POWERFACTOR", "POWER_FACTOR"),
 
 	/**
 	 * The '<em><b>PSIPERDEGREEFAHRENHEIT</b></em>' literal object.
@@ -1596,7 +1616,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PSIPERDEGREEFAHRENHEIT(157, "PSIPERDEGREEFAHRENHEIT", "PSI_PER_DEGREE_FAHRENHEIT"),
+	PSIPERDEGREEFAHRENHEIT(159, "PSIPERDEGREEFAHRENHEIT", "PSI_PER_DEGREE_FAHRENHEIT"),
 
 	/**
 	 * The '<em><b>RADIANS</b></em>' literal object.
@@ -1606,7 +1626,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RADIANS(158, "RADIANS", "RADIANS"),
+	RADIANS(160, "RADIANS", "RADIANS"),
 
 	/**
 	 * The '<em><b>RADIANSPERSECOND</b></em>' literal object.
@@ -1616,7 +1636,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RADIANSPERSECOND(159, "RADIANSPERSECOND", "RADIANS_PER_SECOND"),
+	RADIANSPERSECOND(161, "RADIANSPERSECOND", "RADIANS_PER_SECOND"),
 
 	/**
 	 * The '<em><b>REVOLUTIONSPERMINUTE</b></em>' literal object.
@@ -1626,7 +1646,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	REVOLUTIONSPERMINUTE(160, "REVOLUTIONSPERMINUTE", "REVOLUTIONS_PER_MINUTE"),
+	REVOLUTIONSPERMINUTE(162, "REVOLUTIONSPERMINUTE", "REVOLUTIONS_PER_MINUTE"),
 
 	/**
 	 * The '<em><b>SECONDS</b></em>' literal object.
@@ -1636,7 +1656,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SECONDS(161, "SECONDS", "SECONDS"),
+	SECONDS(163, "SECONDS", "SECONDS"),
 
 	/**
 	 * The '<em><b>SIEMENS</b></em>' literal object.
@@ -1646,7 +1666,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SIEMENS(162, "SIEMENS", "SIEMENS"),
+	SIEMENS(164, "SIEMENS", "SIEMENS"),
 
 	/**
 	 * The '<em><b>SIEMENSPERMETER</b></em>' literal object.
@@ -1656,7 +1676,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SIEMENSPERMETER(163, "SIEMENSPERMETER", "SIEMENS_PER_METER"),
+	SIEMENSPERMETER(165, "SIEMENSPERMETER", "SIEMENS_PER_METER"),
 
 	/**
 	 * The '<em><b>SQUARECENTIMETERS</b></em>' literal object.
@@ -1666,7 +1686,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SQUARECENTIMETERS(164, "SQUARECENTIMETERS", "SQUARE_CENTIMETERS"),
+	SQUARECENTIMETERS(166, "SQUARECENTIMETERS", "SQUARE_CENTIMETERS"),
 
 	/**
 	 * The '<em><b>SQUAREFEET</b></em>' literal object.
@@ -1676,7 +1696,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SQUAREFEET(165, "SQUAREFEET", "SQUARE_FEET"),
+	SQUAREFEET(167, "SQUAREFEET", "SQUARE_FEET"),
 
 	/**
 	 * The '<em><b>SQUAREINCHES</b></em>' literal object.
@@ -1686,7 +1706,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SQUAREINCHES(166, "SQUAREINCHES", "SQUARE_INCHES"),
+	SQUAREINCHES(168, "SQUAREINCHES", "SQUARE_INCHES"),
 
 	/**
 	 * The '<em><b>SQUAREMETERS</b></em>' literal object.
@@ -1696,7 +1716,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SQUAREMETERS(167, "SQUAREMETERS", "SQUARE_METERS"),
+	SQUAREMETERS(169, "SQUAREMETERS", "SQUARE_METERS"),
 
 	/**
 	 * The '<em><b>SQUAREMETERSPERNEWTON</b></em>' literal object.
@@ -1706,7 +1726,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SQUAREMETERSPERNEWTON(168, "SQUAREMETERSPERNEWTON", "SQUARE_METERS_PER_NEWTON"),
+	SQUAREMETERSPERNEWTON(170, "SQUAREMETERSPERNEWTON", "SQUARE_METERS_PER_NEWTON"),
 
 	/**
 	 * The '<em><b>TESLAS</b></em>' literal object.
@@ -1716,7 +1736,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TESLAS(169, "TESLAS", "TESLAS"),
+	TESLAS(171, "TESLAS", "TESLAS"),
 
 	/**
 	 * The '<em><b>THERMS</b></em>' literal object.
@@ -1726,7 +1746,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THERMS(170, "THERMS", "THERMS"),
+	THERMS(172, "THERMS", "THERMS"),
 
 	/**
 	 * The '<em><b>TONHOURS</b></em>' literal object.
@@ -1736,7 +1756,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TONHOURS(171, "TONHOURS", "TON_HOURS"),
+	TONHOURS(173, "TONHOURS", "TON_HOURS"),
 
 	/**
 	 * The '<em><b>TONS</b></em>' literal object.
@@ -1746,7 +1766,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TONS(172, "TONS", "TONS"),
+	TONS(174, "TONS", "TONS"),
 
 	/**
 	 * The '<em><b>TONSPERHOUR</b></em>' literal object.
@@ -1756,7 +1776,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TONSPERHOUR(173, "TONSPERHOUR", "TONS_PER_HOUR"),
+	TONSPERHOUR(175, "TONSPERHOUR", "TONS_PER_HOUR"),
 
 	/**
 	 * The '<em><b>TONSREFRIGERATION</b></em>' literal object.
@@ -1766,7 +1786,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TONSREFRIGERATION(174, "TONSREFRIGERATION", "TONS_REFRIGERATION"),
+	TONSREFRIGERATION(176, "TONSREFRIGERATION", "TONS_REFRIGERATION"),
 
 	/**
 	 * The '<em><b>USGALLONS</b></em>' literal object.
@@ -1776,7 +1796,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USGALLONS(175, "USGALLONS", "US_GALLONS"),
+	USGALLONS(177, "USGALLONS", "US_GALLONS"),
 
 	/**
 	 * The '<em><b>USGALLONSPERMINUTE</b></em>' literal object.
@@ -1786,7 +1806,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USGALLONSPERMINUTE(176, "USGALLONSPERMINUTE", "US_GALLONS_PER_MINUTE"),
+	USGALLONSPERMINUTE(178, "USGALLONSPERMINUTE", "US_GALLONS_PER_MINUTE"),
 
 	/**
 	 * The '<em><b>VOLTAMPERES</b></em>' literal object.
@@ -1796,7 +1816,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VOLTAMPERES(177, "VOLTAMPERES", "VOLT_AMPERES"),
+	VOLTAMPERES(179, "VOLTAMPERES", "VOLT_AMPERES"),
 
 	/**
 	 * The '<em><b>VOLTAMPERESREACTIVE</b></em>' literal object.
@@ -1806,7 +1826,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VOLTAMPERESREACTIVE(178, "VOLTAMPERESREACTIVE", "VOLT_AMPERES_REACTIVE"),
+	VOLTAMPERESREACTIVE(180, "VOLTAMPERESREACTIVE", "VOLT_AMPERES_REACTIVE"),
 
 	/**
 	 * The '<em><b>VOLTS</b></em>' literal object.
@@ -1816,7 +1836,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VOLTS(179, "VOLTS", "VOLTS"),
+	VOLTS(181, "VOLTS", "VOLTS"),
 
 	/**
 	 * The '<em><b>VOLTSPERDEGREEKELVIN</b></em>' literal object.
@@ -1826,7 +1846,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VOLTSPERDEGREEKELVIN(180, "VOLTSPERDEGREEKELVIN", "VOLTS_PER_DEGREE_KELVIN"),
+	VOLTSPERDEGREEKELVIN(182, "VOLTSPERDEGREEKELVIN", "VOLTS_PER_DEGREE_KELVIN"),
 
 	/**
 	 * The '<em><b>VOLTSPERMETER</b></em>' literal object.
@@ -1836,7 +1856,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VOLTSPERMETER(181, "VOLTSPERMETER", "VOLTS_PER_METER"),
+	VOLTSPERMETER(183, "VOLTSPERMETER", "VOLTS_PER_METER"),
 
 	/**
 	 * The '<em><b>WATTHOURS</b></em>' literal object.
@@ -1846,7 +1866,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATTHOURS(182, "WATTHOURS", "WATT_HOURS"),
+	WATTHOURS(184, "WATTHOURS", "WATT_HOURS"),
 
 	/**
 	 * The '<em><b>WATTS</b></em>' literal object.
@@ -1856,7 +1876,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATTS(183, "WATTS", "WATTS"),
+	WATTS(185, "WATTS", "WATTS"),
 
 	/**
 	 * The '<em><b>WATTSPERMETERPERDEGREEKELVIN</b></em>' literal object.
@@ -1866,7 +1886,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATTSPERMETERPERDEGREEKELVIN(184, "WATTSPERMETERPERDEGREEKELVIN", "WATTS_PER_METER_PER_DEGREE_KELVIN"),
+	WATTSPERMETERPERDEGREEKELVIN(186, "WATTSPERMETERPERDEGREEKELVIN", "WATTS_PER_METER_PER_DEGREE_KELVIN"),
 
 	/**
 	 * The '<em><b>WATTSPERSQUAREFOOT</b></em>' literal object.
@@ -1876,7 +1896,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATTSPERSQUAREFOOT(185, "WATTSPERSQUAREFOOT", "WATTS_PER_SQUARE_FOOT"),
+	WATTSPERSQUAREFOOT(187, "WATTSPERSQUAREFOOT", "WATTS_PER_SQUARE_FOOT"),
 
 	/**
 	 * The '<em><b>WATTSPERSQUAREMETER</b></em>' literal object.
@@ -1886,7 +1906,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATTSPERSQUAREMETER(186, "WATTSPERSQUAREMETER", "WATTS_PER_SQUARE_METER"),
+	WATTSPERSQUAREMETER(188, "WATTSPERSQUAREMETER", "WATTS_PER_SQUARE_METER"),
 
 	/**
 	 * The '<em><b>WATTSPERSQUAREMETERDEGREEKELVIN</b></em>' literal object.
@@ -1896,7 +1916,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATTSPERSQUAREMETERDEGREEKELVIN(187, "WATTSPERSQUAREMETERDEGREEKELVIN", "WATTS_PER_SQUARE_METER_DEGREE_KELVIN"),
+	WATTSPERSQUAREMETERDEGREEKELVIN(189, "WATTSPERSQUAREMETERDEGREEKELVIN", "WATTS_PER_SQUARE_METER_DEGREE_KELVIN"),
 
 	/**
 	 * The '<em><b>WEBERS</b></em>' literal object.
@@ -1906,7 +1926,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WEBERS(188, "WEBERS", "WEBERS"),
+	WEBERS(190, "WEBERS", "WEBERS"),
 
 	/**
 	 * The '<em><b>WEEKS</b></em>' literal object.
@@ -1916,7 +1936,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WEEKS(189, "WEEKS", "WEEKS"),
+	WEEKS(191, "WEEKS", "WEEKS"),
 
 	/**
 	 * The '<em><b>YEARS</b></em>' literal object.
@@ -1926,7 +1946,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	YEARS(190, "YEARS", "YEARS"),
+	YEARS(192, "YEARS", "YEARS"),
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -1936,7 +1956,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NONE(191, "NONE", "NONE");
+	NONE(193, "NONE", "NONE");
 
 	/**
 	 * The '<em><b>AMPERESQUAREMETERS</b></em>' literal value.
@@ -2929,6 +2949,17 @@ public enum SGrUnits implements Enumerator {
 	public static final int KILOVOLTAMPERES_VALUE = 89;
 
 	/**
+	 * The '<em><b>KILOVOLTAMPEREHOURS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KILOVOLTAMPEREHOURS
+	 * @model literal="KILOVOLT_AMPERE_HOURS"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int KILOVOLTAMPEREHOURS_VALUE = 90;
+
+	/**
 	 * The '<em><b>KILOVOLTAMPERESREACTIVE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2937,7 +2968,18 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KILOVOLTAMPERESREACTIVE_VALUE = 90;
+	public static final int KILOVOLTAMPERESREACTIVE_VALUE = 91;
+
+	/**
+	 * The '<em><b>KILOVOLTAMPERESREACTIVEHOURS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KILOVOLTAMPERESREACTIVEHOURS
+	 * @model literal="KILOVOLT_AMPERES_REACTIVE_HOURS"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int KILOVOLTAMPERESREACTIVEHOURS_VALUE = 92;
 
 	/**
 	 * The '<em><b>KILOVOLTS</b></em>' literal value.
@@ -2948,7 +2990,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KILOVOLTS_VALUE = 91;
+	public static final int KILOVOLTS_VALUE = 93;
 
 	/**
 	 * The '<em><b>KILOWATTHOURS</b></em>' literal value.
@@ -2959,7 +3001,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KILOWATTHOURS_VALUE = 92;
+	public static final int KILOWATTHOURS_VALUE = 94;
 
 	/**
 	 * The '<em><b>KILOWATTS</b></em>' literal value.
@@ -2970,7 +3012,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KILOWATTS_VALUE = 93;
+	public static final int KILOWATTS_VALUE = 95;
 
 	/**
 	 * The '<em><b>KWHOURSPERSQUAREFOOT</b></em>' literal value.
@@ -2981,7 +3023,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KWHOURSPERSQUAREFOOT_VALUE = 94;
+	public static final int KWHOURSPERSQUAREFOOT_VALUE = 96;
 
 	/**
 	 * The '<em><b>KWHOURSPERSQUAREMETER</b></em>' literal value.
@@ -2992,7 +3034,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int KWHOURSPERSQUAREMETER_VALUE = 95;
+	public static final int KWHOURSPERSQUAREMETER_VALUE = 97;
 
 	/**
 	 * The '<em><b>LITERS</b></em>' literal value.
@@ -3003,7 +3045,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LITERS_VALUE = 96;
+	public static final int LITERS_VALUE = 98;
 
 	/**
 	 * The '<em><b>LITERSPERHOUR</b></em>' literal value.
@@ -3014,7 +3056,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LITERSPERHOUR_VALUE = 97;
+	public static final int LITERSPERHOUR_VALUE = 99;
 
 	/**
 	 * The '<em><b>LITERSPERMINUTE</b></em>' literal value.
@@ -3025,7 +3067,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LITERSPERMINUTE_VALUE = 98;
+	public static final int LITERSPERMINUTE_VALUE = 100;
 
 	/**
 	 * The '<em><b>LITERSPERSECOND</b></em>' literal value.
@@ -3036,7 +3078,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LITERSPERSECOND_VALUE = 99;
+	public static final int LITERSPERSECOND_VALUE = 101;
 
 	/**
 	 * The '<em><b>LUMENS</b></em>' literal value.
@@ -3047,7 +3089,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LUMENS_VALUE = 100;
+	public static final int LUMENS_VALUE = 102;
 
 	/**
 	 * The '<em><b>LUXES</b></em>' literal value.
@@ -3058,7 +3100,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LUXES_VALUE = 101;
+	public static final int LUXES_VALUE = 103;
 
 	/**
 	 * The '<em><b>MEGABTUS</b></em>' literal value.
@@ -3069,7 +3111,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGABTUS_VALUE = 102;
+	public static final int MEGABTUS_VALUE = 104;
 
 	/**
 	 * The '<em><b>MEGAHERTZ</b></em>' literal value.
@@ -3080,7 +3122,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAHERTZ_VALUE = 103;
+	public static final int MEGAHERTZ_VALUE = 105;
 
 	/**
 	 * The '<em><b>MEGAJOULES</b></em>' literal value.
@@ -3091,7 +3133,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAJOULES_VALUE = 104;
+	public static final int MEGAJOULES_VALUE = 106;
 
 	/**
 	 * The '<em><b>MEGAJOULESPERDEGREEKELVIN</b></em>' literal value.
@@ -3102,7 +3144,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAJOULESPERDEGREEKELVIN_VALUE = 105;
+	public static final int MEGAJOULESPERDEGREEKELVIN_VALUE = 107;
 
 	/**
 	 * The '<em><b>MEGAJOULESPERKILOGRAMDRYAIR</b></em>' literal value.
@@ -3113,7 +3155,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAJOULESPERKILOGRAMDRYAIR_VALUE = 106;
+	public static final int MEGAJOULESPERKILOGRAMDRYAIR_VALUE = 108;
 
 	/**
 	 * The '<em><b>MEGAJOULESPERSQUAREFOOT</b></em>' literal value.
@@ -3124,7 +3166,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAJOULESPERSQUAREFOOT_VALUE = 107;
+	public static final int MEGAJOULESPERSQUAREFOOT_VALUE = 109;
 
 	/**
 	 * The '<em><b>MEGAJOULESPERSQUAREMETER</b></em>' literal value.
@@ -3135,7 +3177,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAJOULESPERSQUAREMETER_VALUE = 108;
+	public static final int MEGAJOULESPERSQUAREMETER_VALUE = 110;
 
 	/**
 	 * The '<em><b>MEGAVOLTAMPERES</b></em>' literal value.
@@ -3146,7 +3188,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAVOLTAMPERES_VALUE = 109;
+	public static final int MEGAVOLTAMPERES_VALUE = 111;
 
 	/**
 	 * The '<em><b>MEGAVOLTAMPERESREACTIVE</b></em>' literal value.
@@ -3157,7 +3199,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAVOLTAMPERESREACTIVE_VALUE = 110;
+	public static final int MEGAVOLTAMPERESREACTIVE_VALUE = 112;
 
 	/**
 	 * The '<em><b>MEGAVOLTS</b></em>' literal value.
@@ -3168,7 +3210,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAVOLTS_VALUE = 111;
+	public static final int MEGAVOLTS_VALUE = 113;
 
 	/**
 	 * The '<em><b>MEGAWATTHOURS</b></em>' literal value.
@@ -3179,7 +3221,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAWATTHOURS_VALUE = 112;
+	public static final int MEGAWATTHOURS_VALUE = 114;
 
 	/**
 	 * The '<em><b>MEGAWATTS</b></em>' literal value.
@@ -3190,7 +3232,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGAWATTS_VALUE = 113;
+	public static final int MEGAWATTS_VALUE = 115;
 
 	/**
 	 * The '<em><b>MEGOHMS</b></em>' literal value.
@@ -3201,7 +3243,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MEGOHMS_VALUE = 114;
+	public static final int MEGOHMS_VALUE = 116;
 
 	/**
 	 * The '<em><b>METERS</b></em>' literal value.
@@ -3212,7 +3254,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int METERS_VALUE = 115;
+	public static final int METERS_VALUE = 117;
 
 	/**
 	 * The '<em><b>METERSPERHOUR</b></em>' literal value.
@@ -3223,7 +3265,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int METERSPERHOUR_VALUE = 116;
+	public static final int METERSPERHOUR_VALUE = 118;
 
 	/**
 	 * The '<em><b>METERSPERMINUTE</b></em>' literal value.
@@ -3234,7 +3276,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int METERSPERMINUTE_VALUE = 117;
+	public static final int METERSPERMINUTE_VALUE = 119;
 
 	/**
 	 * The '<em><b>METERSPERSECOND</b></em>' literal value.
@@ -3245,7 +3287,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int METERSPERSECOND_VALUE = 118;
+	public static final int METERSPERSECOND_VALUE = 120;
 
 	/**
 	 * The '<em><b>METERSPERSECONDPERSECOND</b></em>' literal value.
@@ -3256,7 +3298,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int METERSPERSECONDPERSECOND_VALUE = 119;
+	public static final int METERSPERSECONDPERSECOND_VALUE = 121;
 
 	/**
 	 * The '<em><b>MILESPERHOUR</b></em>' literal value.
@@ -3267,7 +3309,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILESPERHOUR_VALUE = 120;
+	public static final int MILESPERHOUR_VALUE = 122;
 
 	/**
 	 * The '<em><b>MILLIAMPERES</b></em>' literal value.
@@ -3278,7 +3320,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLIAMPERES_VALUE = 121;
+	public static final int MILLIAMPERES_VALUE = 123;
 
 	/**
 	 * The '<em><b>MILLIBARS</b></em>' literal value.
@@ -3289,7 +3331,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLIBARS_VALUE = 122;
+	public static final int MILLIBARS_VALUE = 124;
 
 	/**
 	 * The '<em><b>MILLIMETERS</b></em>' literal value.
@@ -3300,7 +3342,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLIMETERS_VALUE = 123;
+	public static final int MILLIMETERS_VALUE = 125;
 
 	/**
 	 * The '<em><b>MILLIMETERSOFMERCURY</b></em>' literal value.
@@ -3311,7 +3353,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLIMETERSOFMERCURY_VALUE = 124;
+	public static final int MILLIMETERSOFMERCURY_VALUE = 126;
 
 	/**
 	 * The '<em><b>MILLIMETERSPERMINUTE</b></em>' literal value.
@@ -3322,7 +3364,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLIMETERSPERMINUTE_VALUE = 125;
+	public static final int MILLIMETERSPERMINUTE_VALUE = 127;
 
 	/**
 	 * The '<em><b>MILLIMETERSPERSECOND</b></em>' literal value.
@@ -3333,7 +3375,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLIMETERSPERSECOND_VALUE = 126;
+	public static final int MILLIMETERSPERSECOND_VALUE = 128;
 
 	/**
 	 * The '<em><b>MILLIOHMS</b></em>' literal value.
@@ -3344,7 +3386,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLIOHMS_VALUE = 127;
+	public static final int MILLIOHMS_VALUE = 129;
 
 	/**
 	 * The '<em><b>MILLISECONDS</b></em>' literal value.
@@ -3355,7 +3397,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLISECONDS_VALUE = 128;
+	public static final int MILLISECONDS_VALUE = 130;
 
 	/**
 	 * The '<em><b>MILLIVOLTS</b></em>' literal value.
@@ -3366,7 +3408,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLIVOLTS_VALUE = 129;
+	public static final int MILLIVOLTS_VALUE = 131;
 
 	/**
 	 * The '<em><b>MILLIWATTS</b></em>' literal value.
@@ -3377,7 +3419,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MILLIWATTS_VALUE = 130;
+	public static final int MILLIWATTS_VALUE = 132;
 
 	/**
 	 * The '<em><b>MINUTES</b></em>' literal value.
@@ -3388,7 +3430,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MINUTES_VALUE = 131;
+	public static final int MINUTES_VALUE = 133;
 
 	/**
 	 * The '<em><b>MONTHS</b></em>' literal value.
@@ -3399,7 +3441,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONTHS_VALUE = 132;
+	public static final int MONTHS_VALUE = 134;
 
 	/**
 	 * The '<em><b>NEWTON</b></em>' literal value.
@@ -3410,7 +3452,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NEWTON_VALUE = 133;
+	public static final int NEWTON_VALUE = 135;
 
 	/**
 	 * The '<em><b>NEWTONMETERS</b></em>' literal value.
@@ -3421,7 +3463,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NEWTONMETERS_VALUE = 134;
+	public static final int NEWTONMETERS_VALUE = 136;
 
 	/**
 	 * The '<em><b>NEWTONSECONDS</b></em>' literal value.
@@ -3432,7 +3474,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NEWTONSECONDS_VALUE = 135;
+	public static final int NEWTONSECONDS_VALUE = 137;
 
 	/**
 	 * The '<em><b>NEWTONSPERMETER</b></em>' literal value.
@@ -3443,7 +3485,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NEWTONSPERMETER_VALUE = 136;
+	public static final int NEWTONSPERMETER_VALUE = 138;
 
 	/**
 	 * The '<em><b>NOUNITS</b></em>' literal value.
@@ -3454,7 +3496,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOUNITS_VALUE = 137;
+	public static final int NOUNITS_VALUE = 139;
 
 	/**
 	 * The '<em><b>OHMMETERS</b></em>' literal value.
@@ -3465,7 +3507,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OHMMETERS_VALUE = 138;
+	public static final int OHMMETERS_VALUE = 140;
 
 	/**
 	 * The '<em><b>OHMS</b></em>' literal value.
@@ -3476,7 +3518,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OHMS_VALUE = 139;
+	public static final int OHMS_VALUE = 141;
 
 	/**
 	 * The '<em><b>PARTSPERBILLION</b></em>' literal value.
@@ -3487,7 +3529,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PARTSPERBILLION_VALUE = 140;
+	public static final int PARTSPERBILLION_VALUE = 142;
 
 	/**
 	 * The '<em><b>PARTSPERMILLION</b></em>' literal value.
@@ -3498,7 +3540,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PARTSPERMILLION_VALUE = 141;
+	public static final int PARTSPERMILLION_VALUE = 143;
 
 	/**
 	 * The '<em><b>PASCALS</b></em>' literal value.
@@ -3509,7 +3551,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PASCALS_VALUE = 142;
+	public static final int PASCALS_VALUE = 144;
 
 	/**
 	 * The '<em><b>PERHOUR</b></em>' literal value.
@@ -3520,7 +3562,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PERHOUR_VALUE = 143;
+	public static final int PERHOUR_VALUE = 145;
 
 	/**
 	 * The '<em><b>PERMINUTE</b></em>' literal value.
@@ -3531,7 +3573,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PERMINUTE_VALUE = 144;
+	public static final int PERMINUTE_VALUE = 146;
 
 	/**
 	 * The '<em><b>PERSECOND</b></em>' literal value.
@@ -3542,7 +3584,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PERSECOND_VALUE = 145;
+	public static final int PERSECOND_VALUE = 147;
 
 	/**
 	 * The '<em><b>PERCENT</b></em>' literal value.
@@ -3553,7 +3595,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PERCENT_VALUE = 146;
+	public static final int PERCENT_VALUE = 148;
 
 	/**
 	 * The '<em><b>PERCENTOBSCURATIONPERFOOT</b></em>' literal value.
@@ -3564,7 +3606,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PERCENTOBSCURATIONPERFOOT_VALUE = 147;
+	public static final int PERCENTOBSCURATIONPERFOOT_VALUE = 149;
 
 	/**
 	 * The '<em><b>PERCENTOBSCURATIONPERMETER</b></em>' literal value.
@@ -3575,7 +3617,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PERCENTOBSCURATIONPERMETER_VALUE = 148;
+	public static final int PERCENTOBSCURATIONPERMETER_VALUE = 150;
 
 	/**
 	 * The '<em><b>PERCENTPERSECOND</b></em>' literal value.
@@ -3586,7 +3628,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PERCENTPERSECOND_VALUE = 149;
+	public static final int PERCENTPERSECOND_VALUE = 151;
 
 	/**
 	 * The '<em><b>PERCENTRELATIVEHUMIDITY</b></em>' literal value.
@@ -3597,7 +3639,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PERCENTRELATIVEHUMIDITY_VALUE = 150;
+	public static final int PERCENTRELATIVEHUMIDITY_VALUE = 152;
 
 	/**
 	 * The '<em><b>POUNDSFORCEPERSQUAREINCH</b></em>' literal value.
@@ -3608,7 +3650,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POUNDSFORCEPERSQUAREINCH_VALUE = 151;
+	public static final int POUNDSFORCEPERSQUAREINCH_VALUE = 153;
 
 	/**
 	 * The '<em><b>POUNDSMASS</b></em>' literal value.
@@ -3619,7 +3661,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POUNDSMASS_VALUE = 152;
+	public static final int POUNDSMASS_VALUE = 154;
 
 	/**
 	 * The '<em><b>POUNDSMASSPERHOUR</b></em>' literal value.
@@ -3630,7 +3672,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POUNDSMASSPERHOUR_VALUE = 153;
+	public static final int POUNDSMASSPERHOUR_VALUE = 155;
 
 	/**
 	 * The '<em><b>POUNDSMASSPERMINUTE</b></em>' literal value.
@@ -3641,7 +3683,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POUNDSMASSPERMINUTE_VALUE = 154;
+	public static final int POUNDSMASSPERMINUTE_VALUE = 156;
 
 	/**
 	 * The '<em><b>POUNDSMASSPERSECOND</b></em>' literal value.
@@ -3652,7 +3694,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POUNDSMASSPERSECOND_VALUE = 155;
+	public static final int POUNDSMASSPERSECOND_VALUE = 157;
 
 	/**
 	 * The '<em><b>POWERFACTOR</b></em>' literal value.
@@ -3663,7 +3705,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int POWERFACTOR_VALUE = 156;
+	public static final int POWERFACTOR_VALUE = 158;
 
 	/**
 	 * The '<em><b>PSIPERDEGREEFAHRENHEIT</b></em>' literal value.
@@ -3674,7 +3716,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PSIPERDEGREEFAHRENHEIT_VALUE = 157;
+	public static final int PSIPERDEGREEFAHRENHEIT_VALUE = 159;
 
 	/**
 	 * The '<em><b>RADIANS</b></em>' literal value.
@@ -3685,7 +3727,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RADIANS_VALUE = 158;
+	public static final int RADIANS_VALUE = 160;
 
 	/**
 	 * The '<em><b>RADIANSPERSECOND</b></em>' literal value.
@@ -3696,7 +3738,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RADIANSPERSECOND_VALUE = 159;
+	public static final int RADIANSPERSECOND_VALUE = 161;
 
 	/**
 	 * The '<em><b>REVOLUTIONSPERMINUTE</b></em>' literal value.
@@ -3707,7 +3749,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REVOLUTIONSPERMINUTE_VALUE = 160;
+	public static final int REVOLUTIONSPERMINUTE_VALUE = 162;
 
 	/**
 	 * The '<em><b>SECONDS</b></em>' literal value.
@@ -3718,7 +3760,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SECONDS_VALUE = 161;
+	public static final int SECONDS_VALUE = 163;
 
 	/**
 	 * The '<em><b>SIEMENS</b></em>' literal value.
@@ -3729,7 +3771,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SIEMENS_VALUE = 162;
+	public static final int SIEMENS_VALUE = 164;
 
 	/**
 	 * The '<em><b>SIEMENSPERMETER</b></em>' literal value.
@@ -3740,7 +3782,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SIEMENSPERMETER_VALUE = 163;
+	public static final int SIEMENSPERMETER_VALUE = 165;
 
 	/**
 	 * The '<em><b>SQUARECENTIMETERS</b></em>' literal value.
@@ -3751,7 +3793,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SQUARECENTIMETERS_VALUE = 164;
+	public static final int SQUARECENTIMETERS_VALUE = 166;
 
 	/**
 	 * The '<em><b>SQUAREFEET</b></em>' literal value.
@@ -3762,7 +3804,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SQUAREFEET_VALUE = 165;
+	public static final int SQUAREFEET_VALUE = 167;
 
 	/**
 	 * The '<em><b>SQUAREINCHES</b></em>' literal value.
@@ -3773,7 +3815,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SQUAREINCHES_VALUE = 166;
+	public static final int SQUAREINCHES_VALUE = 168;
 
 	/**
 	 * The '<em><b>SQUAREMETERS</b></em>' literal value.
@@ -3784,7 +3826,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SQUAREMETERS_VALUE = 167;
+	public static final int SQUAREMETERS_VALUE = 169;
 
 	/**
 	 * The '<em><b>SQUAREMETERSPERNEWTON</b></em>' literal value.
@@ -3795,7 +3837,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SQUAREMETERSPERNEWTON_VALUE = 168;
+	public static final int SQUAREMETERSPERNEWTON_VALUE = 170;
 
 	/**
 	 * The '<em><b>TESLAS</b></em>' literal value.
@@ -3806,7 +3848,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TESLAS_VALUE = 169;
+	public static final int TESLAS_VALUE = 171;
 
 	/**
 	 * The '<em><b>THERMS</b></em>' literal value.
@@ -3817,7 +3859,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int THERMS_VALUE = 170;
+	public static final int THERMS_VALUE = 172;
 
 	/**
 	 * The '<em><b>TONHOURS</b></em>' literal value.
@@ -3828,7 +3870,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TONHOURS_VALUE = 171;
+	public static final int TONHOURS_VALUE = 173;
 
 	/**
 	 * The '<em><b>TONS</b></em>' literal value.
@@ -3839,7 +3881,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TONS_VALUE = 172;
+	public static final int TONS_VALUE = 174;
 
 	/**
 	 * The '<em><b>TONSPERHOUR</b></em>' literal value.
@@ -3850,7 +3892,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TONSPERHOUR_VALUE = 173;
+	public static final int TONSPERHOUR_VALUE = 175;
 
 	/**
 	 * The '<em><b>TONSREFRIGERATION</b></em>' literal value.
@@ -3861,7 +3903,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TONSREFRIGERATION_VALUE = 174;
+	public static final int TONSREFRIGERATION_VALUE = 176;
 
 	/**
 	 * The '<em><b>USGALLONS</b></em>' literal value.
@@ -3872,7 +3914,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USGALLONS_VALUE = 175;
+	public static final int USGALLONS_VALUE = 177;
 
 	/**
 	 * The '<em><b>USGALLONSPERMINUTE</b></em>' literal value.
@@ -3883,7 +3925,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int USGALLONSPERMINUTE_VALUE = 176;
+	public static final int USGALLONSPERMINUTE_VALUE = 178;
 
 	/**
 	 * The '<em><b>VOLTAMPERES</b></em>' literal value.
@@ -3894,7 +3936,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLTAMPERES_VALUE = 177;
+	public static final int VOLTAMPERES_VALUE = 179;
 
 	/**
 	 * The '<em><b>VOLTAMPERESREACTIVE</b></em>' literal value.
@@ -3905,7 +3947,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLTAMPERESREACTIVE_VALUE = 178;
+	public static final int VOLTAMPERESREACTIVE_VALUE = 180;
 
 	/**
 	 * The '<em><b>VOLTS</b></em>' literal value.
@@ -3916,7 +3958,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLTS_VALUE = 179;
+	public static final int VOLTS_VALUE = 181;
 
 	/**
 	 * The '<em><b>VOLTSPERDEGREEKELVIN</b></em>' literal value.
@@ -3927,7 +3969,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLTSPERDEGREEKELVIN_VALUE = 180;
+	public static final int VOLTSPERDEGREEKELVIN_VALUE = 182;
 
 	/**
 	 * The '<em><b>VOLTSPERMETER</b></em>' literal value.
@@ -3938,7 +3980,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VOLTSPERMETER_VALUE = 181;
+	public static final int VOLTSPERMETER_VALUE = 183;
 
 	/**
 	 * The '<em><b>WATTHOURS</b></em>' literal value.
@@ -3949,7 +3991,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATTHOURS_VALUE = 182;
+	public static final int WATTHOURS_VALUE = 184;
 
 	/**
 	 * The '<em><b>WATTS</b></em>' literal value.
@@ -3960,7 +4002,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATTS_VALUE = 183;
+	public static final int WATTS_VALUE = 185;
 
 	/**
 	 * The '<em><b>WATTSPERMETERPERDEGREEKELVIN</b></em>' literal value.
@@ -3971,7 +4013,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATTSPERMETERPERDEGREEKELVIN_VALUE = 184;
+	public static final int WATTSPERMETERPERDEGREEKELVIN_VALUE = 186;
 
 	/**
 	 * The '<em><b>WATTSPERSQUAREFOOT</b></em>' literal value.
@@ -3982,7 +4024,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATTSPERSQUAREFOOT_VALUE = 185;
+	public static final int WATTSPERSQUAREFOOT_VALUE = 187;
 
 	/**
 	 * The '<em><b>WATTSPERSQUAREMETER</b></em>' literal value.
@@ -3993,7 +4035,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATTSPERSQUAREMETER_VALUE = 186;
+	public static final int WATTSPERSQUAREMETER_VALUE = 188;
 
 	/**
 	 * The '<em><b>WATTSPERSQUAREMETERDEGREEKELVIN</b></em>' literal value.
@@ -4004,7 +4046,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WATTSPERSQUAREMETERDEGREEKELVIN_VALUE = 187;
+	public static final int WATTSPERSQUAREMETERDEGREEKELVIN_VALUE = 189;
 
 	/**
 	 * The '<em><b>WEBERS</b></em>' literal value.
@@ -4015,7 +4057,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WEBERS_VALUE = 188;
+	public static final int WEBERS_VALUE = 190;
 
 	/**
 	 * The '<em><b>WEEKS</b></em>' literal value.
@@ -4026,7 +4068,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WEEKS_VALUE = 189;
+	public static final int WEEKS_VALUE = 191;
 
 	/**
 	 * The '<em><b>YEARS</b></em>' literal value.
@@ -4037,7 +4079,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int YEARS_VALUE = 190;
+	public static final int YEARS_VALUE = 192;
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal value.
@@ -4048,7 +4090,7 @@ public enum SGrUnits implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NONE_VALUE = 191;
+	public static final int NONE_VALUE = 193;
 
 	/**
 	 * An array of all the '<em><b>SGr Units</b></em>' enumerators.
@@ -4148,7 +4190,9 @@ public enum SGrUnits implements Enumerator {
 			KILOMETERSPERHOUR,
 			KILOPASCALS,
 			KILOVOLTAMPERES,
+			KILOVOLTAMPEREHOURS,
 			KILOVOLTAMPERESREACTIVE,
+			KILOVOLTAMPERESREACTIVEHOURS,
 			KILOVOLTS,
 			KILOWATTHOURS,
 			KILOWATTS,
@@ -4396,7 +4440,9 @@ public enum SGrUnits implements Enumerator {
 			case KILOMETERSPERHOUR_VALUE: return KILOMETERSPERHOUR;
 			case KILOPASCALS_VALUE: return KILOPASCALS;
 			case KILOVOLTAMPERES_VALUE: return KILOVOLTAMPERES;
+			case KILOVOLTAMPEREHOURS_VALUE: return KILOVOLTAMPEREHOURS;
 			case KILOVOLTAMPERESREACTIVE_VALUE: return KILOVOLTAMPERESREACTIVE;
+			case KILOVOLTAMPERESREACTIVEHOURS_VALUE: return KILOVOLTAMPERESREACTIVEHOURS;
 			case KILOVOLTS_VALUE: return KILOVOLTS;
 			case KILOWATTHOURS_VALUE: return KILOWATTHOURS;
 			case KILOWATTS_VALUE: return KILOWATTS;

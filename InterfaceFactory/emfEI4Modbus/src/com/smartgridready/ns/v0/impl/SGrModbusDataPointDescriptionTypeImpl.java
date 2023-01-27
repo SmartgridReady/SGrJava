@@ -4,7 +4,6 @@ package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.MasterFunctionsSupportedType;
 import com.smartgridready.ns.v0.ModbusJMESPathType;
-import com.smartgridready.ns.v0.SGrBasicGenArrayDPTypeType;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType;
 import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
@@ -34,7 +33,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * </p>
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getModbusDataType <em>Modbus Data Type</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getModbusArrayDataType <em>Modbus Array Data Type</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getArrLen <em>Arr Len</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getModbusFirstRegisterReference <em>Modbus First Register Reference</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getDpSizeNrRegisters <em>Dp Size Nr Registers</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusDataPointDescriptionTypeImpl#getBitmask <em>Bitmask</em>}</li>
@@ -56,14 +55,33 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	protected SGrBasicGenDataPointTypeType modbusDataType;
 
 	/**
-	 * The cached value of the '{@link #getModbusArrayDataType() <em>Modbus Array Data Type</em>}' containment reference.
+	 * The default value of the '{@link #getArrLen() <em>Arr Len</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModbusArrayDataType()
+	 * @see #getArrLen()
 	 * @generated
 	 * @ordered
 	 */
-	protected SGrBasicGenArrayDPTypeType modbusArrayDataType;
+	protected static final int ARR_LEN_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getArrLen() <em>Arr Len</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArrLen()
+	 * @generated
+	 * @ordered
+	 */
+	protected int arrLen = ARR_LEN_EDEFAULT;
+
+	/**
+	 * This is true if the Arr Len attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean arrLenESet;
 
 	/**
 	 * The cached value of the '{@link #getModbusFirstRegisterReference() <em>Modbus First Register Reference</em>}' containment reference.
@@ -214,23 +232,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 */
 	@Override
-	public SGrBasicGenArrayDPTypeType getModbusArrayDataType() {
-		return modbusArrayDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetModbusArrayDataType(SGrBasicGenArrayDPTypeType newModbusArrayDataType, NotificationChain msgs) {
-		SGrBasicGenArrayDPTypeType oldModbusArrayDataType = modbusArrayDataType;
-		modbusArrayDataType = newModbusArrayDataType;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_ARRAY_DATA_TYPE, oldModbusArrayDataType, newModbusArrayDataType);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public int getArrLen() {
+		return arrLen;
 	}
 
 	/**
@@ -239,18 +242,38 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 */
 	@Override
-	public void setModbusArrayDataType(SGrBasicGenArrayDPTypeType newModbusArrayDataType) {
-		if (newModbusArrayDataType != modbusArrayDataType) {
-			NotificationChain msgs = null;
-			if (modbusArrayDataType != null)
-				msgs = ((InternalEObject)modbusArrayDataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_ARRAY_DATA_TYPE, null, msgs);
-			if (newModbusArrayDataType != null)
-				msgs = ((InternalEObject)newModbusArrayDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_ARRAY_DATA_TYPE, null, msgs);
-			msgs = basicSetModbusArrayDataType(newModbusArrayDataType, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_ARRAY_DATA_TYPE, newModbusArrayDataType, newModbusArrayDataType));
+	public void setArrLen(int newArrLen) {
+		int oldArrLen = arrLen;
+		arrLen = newArrLen;
+		boolean oldArrLenESet = arrLenESet;
+		arrLenESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN, oldArrLen, arrLen, !oldArrLenESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetArrLen() {
+		int oldArrLen = arrLen;
+		boolean oldArrLenESet = arrLenESet;
+		arrLen = ARR_LEN_EDEFAULT;
+		arrLenESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN, oldArrLen, ARR_LEN_EDEFAULT, oldArrLenESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetArrLen() {
+		return arrLenESet;
 	}
 
 	/**
@@ -439,8 +462,6 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				return basicSetModbusDataType(null, msgs);
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_ARRAY_DATA_TYPE:
-				return basicSetModbusArrayDataType(null, msgs);
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				return basicSetModbusFirstRegisterReference(null, msgs);
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_JMES_PATH:
@@ -459,8 +480,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				return getModbusDataType();
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_ARRAY_DATA_TYPE:
-				return getModbusArrayDataType();
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
+				return getArrLen();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				return getModbusFirstRegisterReference();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_SIZE_NR_REGISTERS:
@@ -487,8 +508,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				setModbusDataType((SGrBasicGenDataPointTypeType)newValue);
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_ARRAY_DATA_TYPE:
-				setModbusArrayDataType((SGrBasicGenArrayDPTypeType)newValue);
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
+				setArrLen((Integer)newValue);
 				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				setModbusFirstRegisterReference((TSGrModbusRegisterRef)newValue);
@@ -521,8 +542,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				setModbusDataType((SGrBasicGenDataPointTypeType)null);
 				return;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_ARRAY_DATA_TYPE:
-				setModbusArrayDataType((SGrBasicGenArrayDPTypeType)null);
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
+				unsetArrLen();
 				return;
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				setModbusFirstRegisterReference((TSGrModbusRegisterRef)null);
@@ -553,8 +574,8 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 		switch (featureID) {
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_DATA_TYPE:
 				return modbusDataType != null;
-			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_ARRAY_DATA_TYPE:
-				return modbusArrayDataType != null;
+			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__ARR_LEN:
+				return isSetArrLen();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__MODBUS_FIRST_REGISTER_REFERENCE:
 				return modbusFirstRegisterReference != null;
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE__DP_SIZE_NR_REGISTERS:
@@ -579,7 +600,9 @@ public class SGrModbusDataPointDescriptionTypeImpl extends MinimalEObjectImpl.Co
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (dpSizeNrRegisters: ");
+		result.append(" (arrLen: ");
+		if (arrLenESet) result.append(arrLen); else result.append("<unset>");
+		result.append(", dpSizeNrRegisters: ");
 		if (dpSizeNrRegistersESet) result.append(dpSizeNrRegisters); else result.append("<unset>");
 		result.append(", bitmask: ");
 		result.append(bitmask);

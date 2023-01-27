@@ -162,15 +162,15 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.SGR_BASIC_GEN_ARRAY_DP_TYPE_TYPE: {
-				SGrBasicGenArrayDPTypeType sGrBasicGenArrayDPTypeType = (SGrBasicGenArrayDPTypeType)theEObject;
-				T result = caseSGrBasicGenArrayDPTypeType(sGrBasicGenArrayDPTypeType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE: {
 				SGrBasicGenDataPointTypeType sGrBasicGenDataPointTypeType = (SGrBasicGenDataPointTypeType)theEObject;
 				T result = caseSGrBasicGenDataPointTypeType(sGrBasicGenDataPointTypeType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case V0Package.SGR_BITMAPPER_LIST_TYPE: {
+				SGrBitmapperListType sGrBitmapperListType = (SGrBitmapperListType)theEObject;
+				T result = caseSGrBitmapperListType(sGrBitmapperListType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -388,6 +388,12 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case V0Package.SGR_TIME_SYNC_BLOCK_NOTIFICATION_TYPE: {
+				SGrTimeSyncBlockNotificationType sGrTimeSyncBlockNotificationType = (SGrTimeSyncBlockNotificationType)theEObject;
+				T result = caseSGrTimeSyncBlockNotificationType(sGrTimeSyncBlockNotificationType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case V0Package.SGR_VERSION_NUMBER_TYPE: {
 				SGrVersionNumberType sGrVersionNumberType = (SGrVersionNumberType)theEObject;
 				T result = caseSGrVersionNumberType(sGrVersionNumberType);
@@ -409,12 +415,6 @@ public class V0Switch<T> extends Switch<T> {
 			case V0Package.TCP_TYPE: {
 				TCPType tcpType = (TCPType)theEObject;
 				T result = caseTCPType(tcpType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case V0Package.TIME_SYNC_BLOCK_NOTIFICATION_TYPE: {
-				TimeSyncBlockNotificationType timeSyncBlockNotificationType = (TimeSyncBlockNotificationType)theEObject;
-				T result = caseTimeSyncBlockNotificationType(timeSyncBlockNotificationType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -699,21 +699,6 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SGr Basic Gen Array DP Type Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SGr Basic Gen Array DP Type Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSGrBasicGenArrayDPTypeType(SGrBasicGenArrayDPTypeType object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>SGr Basic Gen Data Point Type Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -725,6 +710,21 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSGrBasicGenDataPointTypeType(SGrBasicGenDataPointTypeType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Bitmapper List Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Bitmapper List Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrBitmapperListType(SGrBitmapperListType object) {
 		return null;
 	}
 
@@ -1239,6 +1239,21 @@ public class V0Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Time Sync Block Notification Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Time Sync Block Notification Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrTimeSyncBlockNotificationType(SGrTimeSyncBlockNotificationType object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>SGr Version Number Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1295,21 +1310,6 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTCPType(TCPType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Time Sync Block Notification Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Time Sync Block Notification Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTimeSyncBlockNotificationType(TimeSyncBlockNotificationType object) {
 		return null;
 	}
 

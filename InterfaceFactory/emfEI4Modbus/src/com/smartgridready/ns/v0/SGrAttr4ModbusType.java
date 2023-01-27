@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getStepByIncrement <em>Step By Increment</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getSunssf <em>Sunssf</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getPollLatencyMS <em>Poll Latency MS</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getAccessProtection <em>Access Protection</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getLayer6Deviation <em>Layer6 Deviation</em>}</li>
  * </ul>
@@ -226,36 +225,6 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * @generated
 	 */
 	boolean isSetPollLatencyMS();
-
-	/**
-	 * Returns the value of the '<em><b>Time Sync Block Notification</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * 
-	 *     				a transaction number for a sequence of Regsisteres
-	 *     				(usually transmitted by Blocktransfers) to be
-	 *     				transferred together
-	 *     			
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Time Sync Block Notification</em>' containment reference.
-	 * @see #setTimeSyncBlockNotification(TimeSyncBlockNotificationType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType_TimeSyncBlockNotification()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='timeSyncBlockNotification' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	TimeSyncBlockNotificationType getTimeSyncBlockNotification();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getTimeSyncBlockNotification <em>Time Sync Block Notification</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Time Sync Block Notification</em>' containment reference.
-	 * @see #getTimeSyncBlockNotification()
-	 * @generated
-	 */
-	void setTimeSyncBlockNotification(TimeSyncBlockNotificationType value);
 
 	/**
 	 * Returns the value of the '<em><b>Access Protection</b></em>' containment reference.

@@ -338,7 +338,7 @@ public interface DocumentRoot extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  RPT Root Point for Modbux Device External Interface.
+	 *  RPT Root Point for Modbus Device External Interface.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SGr Modbus Device Frame</em>' containment reference.
 	 * @see #setSGrModbusDeviceFrame(SGrModbusDeviceFrame)
