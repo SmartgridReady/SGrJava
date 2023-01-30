@@ -114,7 +114,7 @@ public interface SGrReleaseNotes extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Changelog</em>' containment reference list.
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrReleaseNotes_Changelog()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 *        extendedMetaData="kind='element' name='changelog' namespace='##targetNamespace'"
 	 * @generated
 	 */

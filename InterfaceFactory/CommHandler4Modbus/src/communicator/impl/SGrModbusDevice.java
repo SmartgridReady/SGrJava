@@ -1054,7 +1054,7 @@ public class SGrModbusDevice {
 	}
 
 	// ===================================== code to be maintained frequently ==============================================
-	// Manually adopted enumeration handling: needs 3 enrties for each enumerated
+	// Manually adopted enumeration handling: needs 3 entries for each enumerated
 	// type
 	// convert from enumeration into Modbus RegRes number
 	int Enum2RegResConversion(SGrEnumListType oGenVal) { // TODO(ongoing): extend this list manually for EACH

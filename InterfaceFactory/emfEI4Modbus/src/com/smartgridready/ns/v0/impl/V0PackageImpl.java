@@ -2091,7 +2091,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrAttr4GenericType_ValueType() {
+	public EAttribute getSGrAttr4GenericType_TimeStampLog() {
         return (EAttribute)getSGrAttr4GenericType().getEStructuralFeatures().get(7);
 	}
 
@@ -2101,7 +2101,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrAttr4GenericType_ValueSource() {
+	public EAttribute getSGrAttr4GenericType_ValueType() {
         return (EAttribute)getSGrAttr4GenericType().getEStructuralFeatures().get(8);
 	}
 
@@ -2111,7 +2111,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrAttr4GenericType_SampleRate() {
+	public EAttribute getSGrAttr4GenericType_ValueSource() {
         return (EAttribute)getSGrAttr4GenericType().getEStructuralFeatures().get(9);
 	}
 
@@ -2121,7 +2121,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrAttr4GenericType_Curtailment() {
+	public EAttribute getSGrAttr4GenericType_SampleRate() {
         return (EAttribute)getSGrAttr4GenericType().getEStructuralFeatures().get(10);
 	}
 
@@ -2131,7 +2131,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrAttr4GenericType_MinLoad() {
+	public EAttribute getSGrAttr4GenericType_Curtailment() {
         return (EAttribute)getSGrAttr4GenericType().getEStructuralFeatures().get(11);
 	}
 
@@ -2141,7 +2141,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrAttr4GenericType_MaxLockTimeMinutes() {
+	public EAttribute getSGrAttr4GenericType_MinLoad() {
         return (EAttribute)getSGrAttr4GenericType().getEStructuralFeatures().get(12);
 	}
 
@@ -2151,7 +2151,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrAttr4GenericType_MinRunTimeMinutes() {
+	public EAttribute getSGrAttr4GenericType_MaxLockTimeMinutes() {
         return (EAttribute)getSGrAttr4GenericType().getEStructuralFeatures().get(13);
 	}
 
@@ -2161,7 +2161,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrAttr4GenericType_ValueByTimeTableMinutes() {
+	public EAttribute getSGrAttr4GenericType_MinRunTimeMinutes() {
         return (EAttribute)getSGrAttr4GenericType().getEStructuralFeatures().get(14);
 	}
 
@@ -2171,8 +2171,18 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getSGrAttr4GenericType_ValueByTimeTableMinutes() {
+        return (EAttribute)getSGrAttr4GenericType().getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getSGrAttr4GenericType_FlexAssistance() {
-        return (EReference)getSGrAttr4GenericType().getEStructuralFeatures().get(15);
+        return (EReference)getSGrAttr4GenericType().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -2741,7 +2751,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrDeviceBaseType_ReleaseNotes() {
+	public EReference getSGrDeviceBaseType_DeviceProfile() {
         return (EReference)getSGrDeviceBaseType().getEStructuralFeatures().get(0);
 	}
 
@@ -2751,7 +2761,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrDeviceBaseType_DeviceProfile() {
+	public EReference getSGrDeviceBaseType_GenAttribute() {
         return (EReference)getSGrDeviceBaseType().getEStructuralFeatures().get(1);
 	}
 
@@ -2761,18 +2771,8 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EReference getSGrDeviceBaseType_GenAttribute() {
-        return (EReference)getSGrDeviceBaseType().getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getSGrDeviceBaseType_DeviceName() {
-        return (EAttribute)getSGrDeviceBaseType().getEStructuralFeatures().get(3);
+        return (EAttribute)getSGrDeviceBaseType().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -2782,7 +2782,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	@Override
 	public EAttribute getSGrDeviceBaseType_IsLocalControl() {
-        return (EAttribute)getSGrDeviceBaseType().getEStructuralFeatures().get(4);
+        return (EAttribute)getSGrDeviceBaseType().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -2792,7 +2792,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	@Override
 	public EAttribute getSGrDeviceBaseType_ManufacturerID() {
-        return (EAttribute)getSGrDeviceBaseType().getEStructuralFeatures().get(5);
+        return (EAttribute)getSGrDeviceBaseType().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -2802,7 +2802,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	@Override
 	public EAttribute getSGrDeviceBaseType_ManufacturerName() {
-        return (EAttribute)getSGrDeviceBaseType().getEStructuralFeatures().get(6);
+        return (EAttribute)getSGrDeviceBaseType().getEStructuralFeatures().get(5);
 	}
 
 	/**

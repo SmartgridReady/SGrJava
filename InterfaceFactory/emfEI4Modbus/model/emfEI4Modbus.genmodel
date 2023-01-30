@@ -532,9 +532,7 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOMETERSPERHOUR"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOPASCALS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTAMPERES"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTAMPEREHOURS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTAMPERESREACTIVE"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTAMPERESREACTIVEHOURS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOVOLTS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOWATTHOURS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/KILOWATTS"/>
@@ -916,6 +914,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/stabilityFallback"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4GenericType/smoothTransition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/maxLatencyTimeMs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/timeStampLog"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/valueSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4GenericType/sampleRate"/>
@@ -988,7 +987,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDataPointDescriptionType/unit"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrDeviceBaseType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceBaseType/releaseNotes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceBaseType/deviceProfile"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrDeviceBaseType/genAttribute"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrDeviceBaseType/deviceName"/>

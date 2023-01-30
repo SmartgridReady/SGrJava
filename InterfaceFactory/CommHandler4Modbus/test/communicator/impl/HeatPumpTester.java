@@ -39,6 +39,8 @@ import communicator.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
 
+
+
 public class HeatPumpTester {
 
 	
@@ -74,10 +76,8 @@ public class HeatPumpTester {
 	private static boolean  devTCP_IOPIsOn=false; 
 	private static boolean  devStiebelISGIsOn=true; 
 	
-	
 	// shell for enumerations
-	private static SGrEnumListType oEnumList1=null;
-	private static SGrEnumListType oEnumList2=null;
+	private static SGrEnumListType oEnumList = null;
 	
 	public static void main( String argv[] ) {	
 		
@@ -307,10 +307,7 @@ public class HeatPumpTester {
 			long lVal=0;
 			boolean bVal1=false,bVal2=false,bVal3=false;
 			String  sVal1="0.0", sVal2="0.0", sVal3="0.0", sVal4 ="0.0";
-			SGrEnumListType oEnumList1=V0Factory.eINSTANCE.createSGrEnumListType();
-			oEnumList1.setSgrHPOpMode(SGrHPOpModeType.WPEMERGOP); 		
-			SGrEnumListType oEnumList2=V0Factory.eINSTANCE.createSGrEnumListType();   
-			oEnumList2.setSgrEVState(SGrEVStateType.EVSTANDBY);         
+
 				
 			try {	
 
@@ -323,9 +320,9 @@ public class HeatPumpTester {
 				  // testing setters: one setting for a test run only recommended
 				  // read the device manual carefully before testing any setpoint
 				// control by HPOpMode enum
-				oEnumList1.setSgrHPOpMode(SGrHPOpModeType.WPPROGOP);
+				oEnumList.setSgrHPOpMode(SGrHPOpModeType.WPPROGOP);
 				SGrBasicGenDataPointTypeType  hpval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-				hpval.setEnum(oEnumList1);
+				hpval.setEnum(oEnumList);
 				
 				// control operation Mode of Heat Pump
 				hpval.setBoolean(false);  
@@ -334,11 +331,11 @@ public class HeatPumpTester {
 				// enable or disable SG-Ready
 				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled", hpval);
 				
-				/// control by SG-Ready by enum
-                oEnumList2.setSgreadyStateLv2(SGReadyStateLv2Type.HPNORMAL);
+				/// control SG-Ready by enum SGReadyStateLv2Type
+                oEnumList.setSgreadyStateLv2(SGReadyStateLv2Type.HPNORMAL);
 				SGrBasicGenDataPointTypeType  bwpCmd = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-				bwpCmd.setEnum(oEnumList2);
-				//devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd", bwpCmd);
+				bwpCmd.setEnum(oEnumList);
+				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd", bwpCmd);
 				
 				/*
 				// control SG-Ready by contacts
@@ -350,14 +347,14 @@ public class HeatPumpTester {
 					
 				}
 				// testing getters
-				oEnumList1.setSgrHPOpMode(devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpModeCmd").getEnum().getSgrHPOpMode());
+				oEnumList.setSgrHPOpMode(devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpModeCmd").getEnum().getSgrHPOpMode());
 				iVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpState").getInt16U();            
 				bVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "ErrorNrSGr").isBoolean();
 				fVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFloat32();			
 				fVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "FlowWaterTemp").getFloat32();
 				fVal3=devStiebelISG.getValByGDPType("HeatPumpBase", "BackFlowWaterTemp").getFloat32();
 				fVal4=devStiebelISG.getValByGDPType("HeatPumpBase", "SourceTemp").getFloat32();		
-				System.out.printf("  HeatPumpBase:      HPOpModeCmd=" + oEnumList1.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, FlowWaterTemp=" + fVal2 +  "°C,  BackFlowWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C %n");     	
+				System.out.printf("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, FlowWaterTemp=" + fVal2 +  "°C,  BackFlowWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C %n");     	
 				if (iVal2 != 0)  
 				{
 					System.out.printf("    HPOpState bits set: "); 
@@ -378,7 +375,7 @@ public class HeatPumpTester {
 				bVal1 = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled").isBoolean();
 				bVal2 = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON").isBoolean();	
 				bVal3 = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON").isBoolean();	  	
-				//bVal3 = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyState").getEnum();	
+				// bVal3 = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyState").getEnum();	
 				
 				
 				
@@ -404,11 +401,11 @@ public class HeatPumpTester {
 				fVal4=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "FlowWaterTemp").getFloat32();
 				System.out.printf("  HeatCoolCtrl_2:    FlowWaterTempStptComf=" + fVal1 + " °C,  FlowWaterTempStptEco=" + fVal2 +  " °C,  FlowWaterTempStptFb=" + fVal3 + " °C,  FlowWaterTemp=" + fVal4 + " °C %n");  
  
-				oEnumList1.setSgreadyStateLv2(devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyState").getEnum().getSgreadyStateLv2());
+				oEnumList.setSgreadyStateLv2(devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyState").getEnum().getSgreadyStateLv2());
 				bVal1=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled").isBoolean(); 
 				bVal2=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON").isBoolean();               
 				bVal3=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON").isBoolean();                             
-				System.out.printf("  SGReady-bwp:      SGReadyState=" + oEnumList1.getSgreadyStateLv2().getLiteral() + ",  SGReadyEnabled=" + bVal1 + ",  SGReadyInp1isON=" + bVal2 + ",  SGReadyInp2isON=" + bVal3 + "%n");
+				System.out.printf("  SGReady-bwp:      SGReadyState=" + oEnumList.getSgreadyStateLv2().getLiteral() + ",  SGReadyEnabled=" + bVal1 + ",  SGReadyInp1isON=" + bVal2 + ",  SGReadyInp2isON=" + bVal3 + "%n");
 
 				fVal1=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat").getFloat32();
 				fVal2=devStiebelISG.getValByGDPType("EnergyMonitor", "ActiveEnergyACheat").getFloat32();

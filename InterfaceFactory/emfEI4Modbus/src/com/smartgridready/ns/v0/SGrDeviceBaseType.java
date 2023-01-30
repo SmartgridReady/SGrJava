@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getReleaseNotes <em>Release Notes</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceProfile <em>Device Profile</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getGenAttribute <em>Gen Attribute</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceName <em>Device Name</em>}</li>
@@ -31,29 +30,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface SGrDeviceBaseType extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Release Notes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Release Notes</em>' containment reference.
-	 * @see #setReleaseNotes(SGrReleaseNotes)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrDeviceBaseType_ReleaseNotes()
-	 * @model containment="true" required="true"
-	 *        extendedMetaData="kind='element' name='releaseNotes' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	SGrReleaseNotes getReleaseNotes();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getReleaseNotes <em>Release Notes</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Release Notes</em>' containment reference.
-	 * @see #getReleaseNotes()
-	 * @generated
-	 */
-	void setReleaseNotes(SGrReleaseNotes value);
-
 	/**
 	 * Returns the value of the '<em><b>Device Profile</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

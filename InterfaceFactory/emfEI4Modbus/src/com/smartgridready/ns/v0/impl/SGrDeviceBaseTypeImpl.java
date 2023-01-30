@@ -6,7 +6,6 @@ import com.smartgridready.ns.v0.SGrAttr4GenericType;
 import com.smartgridready.ns.v0.SGrDeviceBaseType;
 import com.smartgridready.ns.v0.SGrDeviceProfileType;
 import com.smartgridready.ns.v0.SGrManufacturerIDType;
-import com.smartgridready.ns.v0.SGrReleaseNotes;
 import com.smartgridready.ns.v0.V0Package;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -26,7 +25,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#getReleaseNotes <em>Release Notes</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#getDeviceProfile <em>Device Profile</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#getGenAttribute <em>Gen Attribute</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrDeviceBaseTypeImpl#getDeviceName <em>Device Name</em>}</li>
@@ -38,16 +36,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * @generated
  */
 public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implements SGrDeviceBaseType {
-	/**
-	 * The cached value of the '{@link #getReleaseNotes() <em>Release Notes</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReleaseNotes()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrReleaseNotes releaseNotes;
-
 	/**
 	 * The cached value of the '{@link #getDeviceProfile() <em>Device Profile</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -183,51 +171,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	protected EClass eStaticClass() {
 		return V0Package.eINSTANCE.getSGrDeviceBaseType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SGrReleaseNotes getReleaseNotes() {
-		return releaseNotes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetReleaseNotes(SGrReleaseNotes newReleaseNotes, NotificationChain msgs) {
-		SGrReleaseNotes oldReleaseNotes = releaseNotes;
-		releaseNotes = newReleaseNotes;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__RELEASE_NOTES, oldReleaseNotes, newReleaseNotes);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setReleaseNotes(SGrReleaseNotes newReleaseNotes) {
-		if (newReleaseNotes != releaseNotes) {
-			NotificationChain msgs = null;
-			if (releaseNotes != null)
-				msgs = ((InternalEObject)releaseNotes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DEVICE_BASE_TYPE__RELEASE_NOTES, null, msgs);
-			if (newReleaseNotes != null)
-				msgs = ((InternalEObject)newReleaseNotes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_DEVICE_BASE_TYPE__RELEASE_NOTES, null, msgs);
-			msgs = basicSetReleaseNotes(newReleaseNotes, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_DEVICE_BASE_TYPE__RELEASE_NOTES, newReleaseNotes, newReleaseNotes));
 	}
 
 	/**
@@ -474,8 +417,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case V0Package.SGR_DEVICE_BASE_TYPE__RELEASE_NOTES:
-				return basicSetReleaseNotes(null, msgs);
 			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				return basicSetDeviceProfile(null, msgs);
 			case V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE:
@@ -492,8 +433,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_DEVICE_BASE_TYPE__RELEASE_NOTES:
-				return getReleaseNotes();
 			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				return getDeviceProfile();
 			case V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE:
@@ -518,9 +457,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_DEVICE_BASE_TYPE__RELEASE_NOTES:
-				setReleaseNotes((SGrReleaseNotes)newValue);
-				return;
 			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)newValue);
 				return;
@@ -551,9 +487,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_DEVICE_BASE_TYPE__RELEASE_NOTES:
-				setReleaseNotes((SGrReleaseNotes)null);
-				return;
 			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				setDeviceProfile((SGrDeviceProfileType)null);
 				return;
@@ -584,8 +517,6 @@ public class SGrDeviceBaseTypeImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_DEVICE_BASE_TYPE__RELEASE_NOTES:
-				return releaseNotes != null;
 			case V0Package.SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE:
 				return deviceProfile != null;
 			case V0Package.SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE:

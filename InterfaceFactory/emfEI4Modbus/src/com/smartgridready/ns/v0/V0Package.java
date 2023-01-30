@@ -919,13 +919,22 @@ public interface V0Package extends EPackage {
 	int SGR_ATTR4_GENERIC_TYPE__MAX_LATENCY_TIME_MS = 6;
 
 	/**
+	 * The feature id for the '<em><b>Time Stamp Log</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ATTR4_GENERIC_TYPE__TIME_STAMP_LOG = 7;
+
+	/**
 	 * The feature id for the '<em><b>Value Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE = 7;
+	int SGR_ATTR4_GENERIC_TYPE__VALUE_TYPE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Value Source</b></em>' attribute.
@@ -934,7 +943,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE = 8;
+	int SGR_ATTR4_GENERIC_TYPE__VALUE_SOURCE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Sample Rate</b></em>' attribute.
@@ -943,7 +952,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE = 9;
+	int SGR_ATTR4_GENERIC_TYPE__SAMPLE_RATE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Curtailment</b></em>' attribute.
@@ -952,7 +961,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__CURTAILMENT = 10;
+	int SGR_ATTR4_GENERIC_TYPE__CURTAILMENT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Min Load</b></em>' attribute.
@@ -961,7 +970,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__MIN_LOAD = 11;
+	int SGR_ATTR4_GENERIC_TYPE__MIN_LOAD = 12;
 
 	/**
 	 * The feature id for the '<em><b>Max Lock Time Minutes</b></em>' attribute.
@@ -970,7 +979,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__MAX_LOCK_TIME_MINUTES = 12;
+	int SGR_ATTR4_GENERIC_TYPE__MAX_LOCK_TIME_MINUTES = 13;
 
 	/**
 	 * The feature id for the '<em><b>Min Run Time Minutes</b></em>' attribute.
@@ -979,7 +988,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__MIN_RUN_TIME_MINUTES = 13;
+	int SGR_ATTR4_GENERIC_TYPE__MIN_RUN_TIME_MINUTES = 14;
 
 	/**
 	 * The feature id for the '<em><b>Value By Time Table Minutes</b></em>' attribute.
@@ -988,7 +997,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__VALUE_BY_TIME_TABLE_MINUTES = 14;
+	int SGR_ATTR4_GENERIC_TYPE__VALUE_BY_TIME_TABLE_MINUTES = 15;
 
 	/**
 	 * The feature id for the '<em><b>Flex Assistance</b></em>' containment reference.
@@ -997,7 +1006,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE = 15;
+	int SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE = 16;
 
 	/**
 	 * The number of structural features of the '<em>SGr Attr4 Generic Type</em>' class.
@@ -1006,7 +1015,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE_FEATURE_COUNT = 16;
+	int SGR_ATTR4_GENERIC_TYPE_FEATURE_COUNT = 17;
 
 	/**
 	 * The number of operations of the '<em>SGr Attr4 Generic Type</em>' class.
@@ -1429,22 +1438,13 @@ public interface V0Package extends EPackage {
 	int SGR_DEVICE_BASE_TYPE = 23;
 
 	/**
-	 * The feature id for the '<em><b>Release Notes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_DEVICE_BASE_TYPE__RELEASE_NOTES = 0;
-
-	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE = 1;
+	int SGR_DEVICE_BASE_TYPE__DEVICE_PROFILE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Gen Attribute</b></em>' containment reference.
@@ -1453,7 +1453,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE = 2;
+	int SGR_DEVICE_BASE_TYPE__GEN_ATTRIBUTE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Device Name</b></em>' attribute.
@@ -1462,7 +1462,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DEVICE_BASE_TYPE__DEVICE_NAME = 3;
+	int SGR_DEVICE_BASE_TYPE__DEVICE_NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Is Local Control</b></em>' attribute.
@@ -1471,7 +1471,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL = 4;
+	int SGR_DEVICE_BASE_TYPE__IS_LOCAL_CONTROL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Manufacturer ID</b></em>' attribute.
@@ -1480,7 +1480,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID = 5;
+	int SGR_DEVICE_BASE_TYPE__MANUFACTURER_ID = 4;
 
 	/**
 	 * The feature id for the '<em><b>Manufacturer Name</b></em>' attribute.
@@ -1489,7 +1489,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME = 6;
+	int SGR_DEVICE_BASE_TYPE__MANUFACTURER_NAME = 5;
 
 	/**
 	 * The number of structural features of the '<em>SGr Device Base Type</em>' class.
@@ -1498,7 +1498,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_DEVICE_BASE_TYPE_FEATURE_COUNT = 7;
+	int SGR_DEVICE_BASE_TYPE_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>SGr Device Base Type</em>' class.
@@ -1518,15 +1518,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	int SGR_CONTACT_API_DEVICE_FRAME = 19;
-
-	/**
-	 * The feature id for the '<em><b>Release Notes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_CONTACT_API_DEVICE_FRAME__RELEASE_NOTES = SGR_DEVICE_BASE_TYPE__RELEASE_NOTES;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -2312,15 +2303,6 @@ public interface V0Package extends EPackage {
 	int SGR_GEN_DEVICE_FRAME = 29;
 
 	/**
-	 * The feature id for the '<em><b>Release Notes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_GEN_DEVICE_FRAME__RELEASE_NOTES = SGR_DEVICE_BASE_TYPE__RELEASE_NOTES;
-
-	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2702,15 +2684,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	int SGR_MODBUS_DEVICE_FRAME = 34;
-
-	/**
-	 * The feature id for the '<em><b>Release Notes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_MODBUS_DEVICE_FRAME__RELEASE_NOTES = SGR_DEVICE_BASE_TYPE__RELEASE_NOTES;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -3441,15 +3414,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	int SGR_REST_API_DEVICE_FRAME = 44;
-
-	/**
-	 * The feature id for the '<em><b>Release Notes</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_REST_API_DEVICE_FRAME__RELEASE_NOTES = SGR_DEVICE_BASE_TYPE__RELEASE_NOTES;
 
 	/**
 	 * The feature id for the '<em><b>Device Profile</b></em>' containment reference.
@@ -6455,6 +6419,17 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrAttr4GenericType_MaxLatencyTimeMs();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeStampLog <em>Time Stamp Log</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Stamp Log</em>'.
+	 * @see com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeStampLog()
+	 * @see #getSGrAttr4GenericType()
+	 * @generated
+	 */
+	EAttribute getSGrAttr4GenericType_TimeStampLog();
+
+	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType <em>Value Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7125,17 +7100,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EClass getSGrDeviceBaseType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getReleaseNotes <em>Release Notes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Release Notes</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDeviceBaseType#getReleaseNotes()
-	 * @see #getSGrDeviceBaseType()
-	 * @generated
-	 */
-	EReference getSGrDeviceBaseType_ReleaseNotes();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.smartgridready.ns.v0.SGrDeviceBaseType#getDeviceProfile <em>Device Profile</em>}'.
