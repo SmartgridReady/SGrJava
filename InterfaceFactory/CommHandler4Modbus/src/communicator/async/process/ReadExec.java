@@ -16,6 +16,8 @@ public class ReadExec<R> extends Processor implements Executable {
     private static final Logger LOG = LoggerFactory.getLogger(ReadExec.class);
     private final DeviceReadCallable<R> deviceCallable;
 
+    private Object finishedNotificationReceiver;
+
     private Disposable disposable;
     public ReadExec(String functionalProfileName, String datapointName, ReadFunction<R> readFunction) {
 
@@ -28,7 +30,7 @@ public class ReadExec<R> extends Processor implements Executable {
         try {
             if (ProcessingType.PARALLEL == processingType) {
                 LOG.info("ReadExec PARALLEL: {}", deviceCallable);
-                Observable<AsyncResult<R>> observable = Observable.just(deviceCallable.call());
+                Observable<AsyncResult<R>> observable = Observable.fromCallable(deviceCallable);
                 disposable = observable.subscribeOn(Schedulers.io()).subscribe(this::handleSuccess, this::handleError);
             } else {
                 LOG.info("ReadExec SEQUENTIAL: {}", deviceCallable);
@@ -41,10 +43,12 @@ public class ReadExec<R> extends Processor implements Executable {
 
     public void handleSuccess(AsyncResult<R> result) {
         LOG.info("ReadExec RESULT {} - {} SUCCESS, value={}", result.getProfileName(), result.getDatapointName(), result.getValue());
+        notifyFinished();
     }
     
     public void handleError(Throwable t) {
-    	 LOG.error("ReadExec RESULT {} - {} ERROR", deviceCallable.getResult().getProfileName(), deviceCallable.getResult().getDatapointName());
+        LOG.error("ReadExec RESULT {} - {} ERROR", deviceCallable.getResult().getProfileName(), deviceCallable.getResult().getDatapointName());
+        notifyFinished();
     }
 
     public AsyncResult<R> getResult() {
@@ -78,5 +82,22 @@ public class ReadExec<R> extends Processor implements Executable {
     @Override
     public String toString() {
         return getResult().toString();
+    }
+
+    @Override
+    public void setFinishedNotificationReceiver(Object notificationReceiver) {
+        if (this.finishedNotificationReceiver == null) {
+            this.finishedNotificationReceiver = notificationReceiver;
+        } else {
+            throw new IllegalStateException("Attempt to set finishedNotification receiver twice.");
+        }
+    }
+
+    private void notifyFinished() {
+        if (finishedNotificationReceiver != null) {
+            synchronized (finishedNotificationReceiver) {
+                finishedNotificationReceiver.notify();
+            }
+        }
     }
 }

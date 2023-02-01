@@ -17,6 +17,8 @@ public class WriteExec<V> extends Processor implements Executable {
 
     private final DeviceWriteCallable<V> writeCallable;
 
+    private Object finishedNotificationReceiver;
+
     private Disposable disposable;
 
     public WriteExec(String functionalProfileName, String datapointName, WriteFunction<V> writeFunction) {
@@ -28,7 +30,7 @@ public class WriteExec<V> extends Processor implements Executable {
     	  try {
               if (ProcessingType.PARALLEL == processingType) {
                   LOG.info("WriteExec PARALLEL: {} - {}", writeCallable.getProfileName(), writeCallable.getProfileName());
-                  Observable<AsyncResult<V>> observable = Observable.just(writeCallable.call());
+                  Observable<AsyncResult<V>> observable = Observable.fromCallable(writeCallable);
                   disposable = observable.subscribeOn(Schedulers.io()).subscribe(this::handleSuccess, this::handleError);
               } else {
                   LOG.info("WriteExec SEQUENTIAL: {} - {}", writeCallable.getProfileName(), writeCallable.getDatapointName());
@@ -44,6 +46,7 @@ public class WriteExec<V> extends Processor implements Executable {
     
     private void handleSuccess(AsyncResult<V> result) {
         LOG.info("WriteExec RESULT {} - {} SUCCESS", result.getProfileName(), result.getDatapointName());
+        notifyFinished();
     }
     
     private void handleError(Throwable t) {
@@ -51,7 +54,8 @@ public class WriteExec<V> extends Processor implements Executable {
         result.setResponseTime(Instant.now());
         result.setExecStatus(ExecStatus.ERROR);
         result.setThrowable(t);
-    	 LOG.error("WriteExec RESULT - ERROR {}", result);
+        LOG.error("WriteExec RESULT - ERROR {}", result);
+        notifyFinished();
     }
 
     public AsyncResult<V> getResult() {
@@ -82,5 +86,22 @@ public class WriteExec<V> extends Processor implements Executable {
     @Override
     public String toString() {
         return getResult().toString();
+    }
+
+    @Override
+    public void setFinishedNotificationReceiver(Object notificationReceiver) {
+        if (this.finishedNotificationReceiver == null) {
+            this.finishedNotificationReceiver = notificationReceiver;
+        } else {
+            throw new IllegalStateException("Attempt to set finishedNotification receiver twice.");
+        }
+    }
+
+    private void notifyFinished() {
+        if (finishedNotificationReceiver != null) {
+            synchronized (finishedNotificationReceiver) {
+                finishedNotificationReceiver.notify();
+            }
+        }
     }
 }

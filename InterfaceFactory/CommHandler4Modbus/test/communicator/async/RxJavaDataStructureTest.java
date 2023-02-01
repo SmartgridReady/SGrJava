@@ -1,15 +1,9 @@
 
 package communicator.async;
 
-import communicator.async.callable.DeviceReadCallable;
 import communicator.async.callable.AsyncResult;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.GenDriverModbusException;
-import communicator.common.runtime.GenDriverSocketException;
+import communicator.async.callable.DeviceReadCallable;
 import communicator.impl.SGrModbusDevice;
-import communicator.restapi.exception.RestApiAuthenticationException;
-import communicator.restapi.exception.RestApiResponseParseException;
-import communicator.restapi.exception.RestApiServiceCallException;
 import communicator.restapi.impl.SGrRestApiDevice;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -21,8 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -43,13 +35,6 @@ public class RxJavaDataStructureTest {
         when(clemapRestApiDevice.getVal(any(), any())).thenAnswer(
                 (Answer<String>) invocation -> withDelay(750, "20kWh"));
     }
-
-    public interface ReadFunction<R> {
-        R apply(String functionalProfile, String dataPoint) throws
-                GenDriverException, GenDriverModbusException, GenDriverSocketException, IOException,
-                RestApiServiceCallException, RestApiAuthenticationException, RestApiResponseParseException;
-    }
-
 
     private String withDelay(long delay, String value) throws Exception {
         Thread.sleep(delay);

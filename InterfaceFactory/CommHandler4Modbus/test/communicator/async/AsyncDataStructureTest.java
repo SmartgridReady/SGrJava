@@ -35,6 +35,10 @@ class AsyncDataStructureTest {
     SGrModbusDevice wagoModbusDevice;
     @Mock
     SGrRestApiDevice clemapRestApiDevice;
+
+    @Mock
+    SGrRestApiDevice clemapRestApiDevice_2;
+
     @Mock
     SGrModbusDevice garoModbusDevice_A;
     @Mock
@@ -62,27 +66,30 @@ class AsyncDataStructureTest {
     private void doBuildAndRunDatstructureTest(ExecStatus expectedStatus, String expectedExceptionMessage) {
 
         // Setup READ tasks
-        ReadExec<String> wago_voltageAC_l1 = new ReadExec<>( "VoltageAC", "VoltageL1",  wagoModbusDevice::getVal);
-        ReadExec<String> wago_voltageAC_l2 = new ReadExec<>( "VoltageAC", "VoltageL2",  wagoModbusDevice::getVal);
-        ReadExec<String> wago_voltageAC_l3 = new ReadExec<>( "VoltageAC", "VoltageL3",  wagoModbusDevice::getVal);
-        ReadExec<String> clemap_actPowerAC_tot = new ReadExec<>( "ActivePowerAC", "ActivePowerACtot", clemapRestApiDevice::getVal);
+        ReadExec<String> wago_voltageAC_l1       = new ReadExec<>( "VoltageAC", "VoltageL1",  wagoModbusDevice::getVal);
+        ReadExec<String> wago_voltageAC_l2       = new ReadExec<>( "VoltageAC", "VoltageL2",  wagoModbusDevice::getVal);
+        ReadExec<String> wago_voltageAC_l3       = new ReadExec<>( "VoltageAC", "VoltageL3",  wagoModbusDevice::getVal);
+        ReadExec<String> clemap_actPowerAC_tot   = new ReadExec<>( "ActivePowerAC", "ActivePowerACtot", clemapRestApiDevice::getVal);
+        ReadExec<String> clemap_actPowerAC_tot_2 = new ReadExec<>("ActivePowerAC", "ActivePowerACtot",       clemapRestApiDevice_2::getVal);
 
         // Setup WRITE tasks
         WriteExec<String> garo_wallbox_A_hems_curr_lim = new WriteExec<>("Curtailment", "HemsCurrentLimit", garoModbusDevice_A::setVal);
         WriteExec<String> garo_wallbox_B_hems_curr_lim = new WriteExec<>("Curtailment", "HemsCurrentLimit", garoModbusDevice_B::setVal);
 
         // Wire tasks
-        Processor readChain = new Parallel()        // 1500
+        Processor readChain = new Parallel()        // 2000
                 .add( new Sequence()                // 1500
                         .add(wago_voltageAC_l1)
                         .add(wago_voltageAC_l2)
                         .add(wago_voltageAC_l3))
-                .add( new Parallel()                //  750
-                        .add(clemap_actPowerAC_tot))
+                .add( new Parallel()                    // 2000
+                        .add(clemap_actPowerAC_tot)     // 750
+                        .add(clemap_actPowerAC_tot_2))  // 2000
                 .await( wago_voltageAC_l1,
                         wago_voltageAC_l2,
                         wago_voltageAC_l3,
-                        clemap_actPowerAC_tot);
+                        clemap_actPowerAC_tot,
+                        clemap_actPowerAC_tot_2);
 
         Processor writeChain = new Parallel()
                         .add(garo_wallbox_A_hems_curr_lim)
@@ -92,6 +99,7 @@ class AsyncDataStructureTest {
 
         // Run readChain
         readChain.process();
+
         // Get results from read-chain.
         // Example: wago_voltageAC_l1.getReadValue();
         // Do some calculations and determine new control values:
@@ -105,6 +113,7 @@ class AsyncDataStructureTest {
         LOG.info(wago_voltageAC_l2.toString());
         LOG.info(wago_voltageAC_l3.toString());
         LOG.info(clemap_actPowerAC_tot.toString());
+        LOG.info(clemap_actPowerAC_tot_2.toString());
         LOG.info(garo_wallbox_A_hems_curr_lim.toString());
         LOG.info(garo_wallbox_B_hems_curr_lim.toString());
 
@@ -115,6 +124,7 @@ class AsyncDataStructureTest {
                 wago_voltageAC_l2,
                 wago_voltageAC_l3,
                 clemap_actPowerAC_tot,
+                clemap_actPowerAC_tot_2,
                 garo_wallbox_A_hems_curr_lim,
                 garo_wallbox_B_hems_curr_lim);
 
@@ -132,6 +142,7 @@ class AsyncDataStructureTest {
                                                ReadExec<String> wago_voltageAC_l2,
                                                ReadExec<String> wago_voltageAC_l3,
                                                ReadExec<String> clemap_actPowerAC_tot,
+                                               ReadExec<String> clemap_actPowerAC_tot_2,
                                                WriteExec<String> garo_wallbox_A_hems_curr_lim,
                                                WriteExec<String> garo_wallbox_B_hems_curr_lim) {
         // Status
@@ -139,6 +150,7 @@ class AsyncDataStructureTest {
         assertEquals(expectedStatus, wago_voltageAC_l2.getExecStatus());
         assertEquals(expectedStatus, wago_voltageAC_l3.getExecStatus());
         assertEquals(expectedStatus, clemap_actPowerAC_tot.getExecStatus());
+        assertEquals(expectedStatus, clemap_actPowerAC_tot_2.getExecStatus());
         assertEquals(expectedStatus, garo_wallbox_A_hems_curr_lim.getExecStatus());
 
 
@@ -152,6 +164,7 @@ class AsyncDataStructureTest {
             assertNull(garo_wallbox_B_hems_curr_lim.getExecThrowable());
             assertEquals("220V",  wago_voltageAC_l1.getReadValue());
             assertEquals("20kWh", clemap_actPowerAC_tot.getReadValue());
+            assertEquals("50kWh", clemap_actPowerAC_tot_2.getReadValue());
 
             // Sequential read stuff
             // Timing
@@ -165,13 +178,14 @@ class AsyncDataStructureTest {
             // Parallel read stuff
             assertTrue(start.plusMillis(750).isBefore(clemap_actPowerAC_tot.getResponseTime()));
             assertTrue(start.plusMillis(1000).isAfter(clemap_actPowerAC_tot.getResponseTime()));
-            LOG.info("Clemap duration={}", clemap_actPowerAC_tot.getResponseTime().toEpochMilli() - clemap_actPowerAC_tot.getRequestTime().toEpochMilli());
+            assertTrue(start.plusMillis( 2000).isBefore(clemap_actPowerAC_tot_2.getResponseTime()));
+            assertTrue(start.plusMillis(2200).isAfter(clemap_actPowerAC_tot_2.getResponseTime()));
 
             // Parallel write stuff (sequential after read stuff)
             // Assert that writeCycle is performed after readCycle (await works...)
-            assertTrue(start.plusMillis(1500).isBefore(garo_wallbox_A_hems_curr_lim.getRequestTime()));
+            assertTrue(start.plusMillis(2000).isBefore(garo_wallbox_A_hems_curr_lim.getRequestTime()));
 
-            start = garo_wallbox_A_hems_curr_lim.getRequestTime();
+            start = garo_wallbox_B_hems_curr_lim.getRequestTime();
             assertTrue(start.plusMillis(500).isBefore(garo_wallbox_A_hems_curr_lim.getResponseTime()));
             assertTrue(start.plusMillis(250).isBefore(garo_wallbox_B_hems_curr_lim.getResponseTime()));
 
@@ -196,6 +210,9 @@ class AsyncDataStructureTest {
         when(clemapRestApiDevice.getVal(any(), any())).thenAnswer(
                 (Answer<String>) invocation -> withDelay(750, "20kWh"));
 
+        when(clemapRestApiDevice_2.getVal(any(), any())).thenAnswer(
+                (Answer<String>) invocation -> withDelay(2000, "50kWh"));
+
         when(garoModbusDevice_A.setVal(any(), any(), any())).thenAnswer(
                 (Answer<String>) invocation ->  withDelay(500, "OK"));
 
@@ -210,6 +227,9 @@ class AsyncDataStructureTest {
 
         when(clemapRestApiDevice.getVal(any(), any())).thenAnswer(
                 (Answer<String>) invocation -> { withDelay(750, "20kWh"); throw new RestApiAuthenticationException(errorMessage);});
+
+        when(clemapRestApiDevice_2.getVal(any(), any())).thenAnswer(
+                (Answer<String>) invocation -> { withDelay(2000, "50kWh"); throw new RestApiAuthenticationException(errorMessage);});
 
         when(garoModbusDevice_A.setVal(any(), any(), any())).thenAnswer(
                 (Answer<String>) invocation ->  { withDelay(1000, "OK"); throw new GenDriverModbusException(errorMessage);});

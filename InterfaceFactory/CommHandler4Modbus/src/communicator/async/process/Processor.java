@@ -21,27 +21,32 @@ public abstract class Processor {
         handleAwait();
     }
 
-    public Processor await(Executable ... readExecs ) {
-        awaitList.addAll(Arrays.asList(readExecs));
+    public Processor await(Executable ... executables) {
+        Arrays.stream(executables).forEach(exec -> exec.setFinishedNotificationReceiver(awaitList));
+        awaitList.addAll(Arrays.asList(executables));
         return this;
     }
 
     private void handleAwait() {
+        long noOfProcessing = Integer.MAX_VALUE;
+        while (noOfProcessing > 0) {
+            try {
+                noOfProcessing = awaitList.stream().filter(
+                        readExec -> readExec.getExecStatus() == ExecStatus.PROCESSING).count();
 
-        boolean isProcessing = true;
-        while (isProcessing) {
-            isProcessing = awaitList.stream()
-                    .map(readExec -> readExec.getExecStatus()==ExecStatus.PROCESSING)
-                    .collect(Collectors.toSet()).contains(true);
-            if(isProcessing) {
-                try {
-                	LOG.debug("Thread [{}] waiting for response. ", Thread.currentThread().getName());
-                    Thread.sleep(50);                    
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    isProcessing = false;
+                if (noOfProcessing > 0) {
+                    if (LOG.isDebugEnabled()) {
+                        LOG.debug("Waiting for {} requests to be finished.", noOfProcessing);
+                    }
+                    synchronized (awaitList) {
+                        awaitList.wait();
+                    }
                 }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                noOfProcessing = 0;
             }
         }
+        LOG.debug("All requests processed. Terminating await().");
     }
 }

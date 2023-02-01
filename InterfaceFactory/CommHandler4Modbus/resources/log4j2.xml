@@ -2,11 +2,11 @@
 <Configuration>
   <Appenders>
     <Console name="Console">
-      <PatternLayout pattern="[%t] %-5level %c{1.} - %msg%n"/>
+      <PatternLayout pattern="%d{mm:ss,SSS} [%t] %-5level %c{1.} - %msg%n"/>
     </Console>
   </Appenders>
   <Loggers>
-    <Root level="info">
+    <Root level="debug">
     <!--  setzt tiefsten level fuer output -->
         <AppenderRef ref="Console"/>
     </Root>
