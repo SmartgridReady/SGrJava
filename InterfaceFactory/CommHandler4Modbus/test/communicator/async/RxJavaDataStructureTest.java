@@ -58,11 +58,11 @@ public class RxJavaDataStructureTest {
 
         Observable<AsyncResult<String>> wago_voltage_L2 =
                 Observable.fromCallable(
-                        new DeviceReadCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL1"));
+                        new DeviceReadCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL2"));
 
         Observable<AsyncResult<String>> wago_voltage_L3 =
                 Observable.fromCallable(
-                        new DeviceReadCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL1"));
+                        new DeviceReadCallable<>(wagoModbusDevice::getVal, "VoltageAC", "VoltageL3"));
 
         Observable<AsyncResult<String>> wago_all =
                 wago_voltage_L1.mergeWith(wago_voltage_L2).mergeWith(wago_voltage_L3)
