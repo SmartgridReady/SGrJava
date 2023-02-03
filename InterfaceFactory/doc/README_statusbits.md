@@ -32,7 +32,7 @@ XML-Schema. For example "sgr:sgrHPOpStateStiebel" in SGrGenTypeDefinitions.xsd:
     </restriction>
 
 ```
-Beginnint with HP_1_PUMP_ON=0, HP_2_PUMP_ON=1, HEAT_UP_PROGRAM=3 and so on....
+Starts with HP_1_PUMP_ON=0, HP_2_PUMP_ON=1, HEAT_UP_PROGRAM=3 and so on....
 
 ## Usage in the communicator code
 The evaluation of the status bits is done within
