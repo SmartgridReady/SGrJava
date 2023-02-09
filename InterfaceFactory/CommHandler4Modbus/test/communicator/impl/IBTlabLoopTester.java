@@ -34,6 +34,7 @@ import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.SGrOCPPStateType;
 import com.smartgridready.ns.v0.SGrBool2BitRankType;
+import communicator.api.GenDeviceApi4Modbus;
 import communicator.common.runtime.Parity;
 import communicator.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
@@ -52,17 +53,17 @@ public class IBTlabLoopTester {
 	//------------------------------------------------------
 	
 	// Modbus RTU devices
-	private static SGrModbusDevice devWagoMeter = null;
-	private static SGrModbusDevice devABBMeter = null;
-	private static SGrModbusDevice devTB_ABBMeter = null;
+	private static GenDeviceApi4Modbus devWagoMeter = null;
+	private static GenDeviceApi4Modbus devABBMeter = null;
+	private static GenDeviceApi4Modbus devTB_ABBMeter = null;
 	// we need a single driver instance for RTU and separate these by device addres
 	private static GenDriverAPI4ModbusRTU mbRTU = null;
 	
 	// Modbus TCP devices
-	private static SGrModbusDevice devVGT_SGCP = null;
-	private static SGrModbusDevice devGaroWallbox = null;
-	private static SGrModbusDevice devOMCCIWallbox = null;
-	private static SGrModbusDevice devFroniusSymo = null;
+	private static GenDeviceApi4Modbus devVGT_SGCP = null;
+	private static GenDeviceApi4Modbus devGaroWallbox = null;
+	private static GenDeviceApi4Modbus devOMCCIWallbox = null;
+	private static GenDeviceApi4Modbus devFroniusSymo = null;
 	
 	// test loop parameters
 	private static int runtimeCnt = 0;

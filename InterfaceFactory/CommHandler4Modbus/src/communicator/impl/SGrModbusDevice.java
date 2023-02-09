@@ -1,6 +1,6 @@
 /**
-*Copyright(c) 2021 Verein SmartGridready Switzerland
-* 
+Copyright(c) 2021 Verein SmartGridready Switzerland
+ 
 This Open Source Software is BSD 3 clause licensed:
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import communicator.api.GenDeviceApi4Modbus;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +78,7 @@ import communicator.helper.ModbusReaderResponse;
  * @author furrer / IBT,cb
  *
  */
-public class SGrModbusDevice {
+public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrModbusDevice.class);
 
@@ -94,6 +95,7 @@ public class SGrModbusDevice {
 		drv4Modbus = aRtuDriver;
 	}
 
+	@Override
 	public String getVal(String sProfileName, String sDataPointName) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);
@@ -127,6 +129,7 @@ public class SGrModbusDevice {
 		return GenTypeToStringFormatter.format(dGenType);			
 	}
 
+	@Override
 	public SGrBasicGenDataPointTypeType getValByGDPType(String sProfileName, String sDataPointName)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);
@@ -155,13 +158,14 @@ public class SGrModbusDevice {
 		// Use array length and use first element.
 		return prv_getValArrByGDPType(aProfile, aDataPoint, 1)[0];		
 	}
-	
+
+	@Override
 	public String[] getValArr(String sProfileName, String sDataPointName) 
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {		
 		return GenTypeToStringFormatter.format(getValArrByGDPType(sProfileName, sDataPointName)); 		
 	}
 	
-	// Get array of values
+	@Override
 	public SGrBasicGenDataPointTypeType[] getValArrByGDPType(String sProfileName, String sDataPointName) 
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
@@ -616,6 +620,7 @@ public class SGrModbusDevice {
 		return mbregconv;
 	}
 
+	@Override
 	public String setVal(String sProfileName, String sDataPointName, String sValue) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);
@@ -629,6 +634,21 @@ public class SGrModbusDevice {
 		}
 		return "Profile/access-point " + sProfileName + "/" + sDataPointName + " not found!";
 	}
+
+	@Override
+	public void setValArr(String profileName, String dataPointName, String[] values)
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+
+		throw new UnsupportedOperationException("Operation not yet supported.");
+	}
+
+	@Override
+	public void setValArrByGDPType(String profileName, String dataPointName, String[] values)
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+
+		throw new UnsupportedOperationException("Operation not yet supported.");
+	}
+
 
 	private void writeValue(SGrModbusFunctionalProfileType aProfile, SGrModbusDataPointType aDataPoint, String sValue)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
@@ -694,28 +714,20 @@ public class SGrModbusDevice {
 			dGenType.setString(sValue);
 		} else { // error handling
 		}
-		setValByGDPType(aProfile, aDataPoint, dGenType);
+		prv_setValByGDPType(aProfile, aDataPoint, dGenType);
 	}
 
-// generic class API using SGrBasicGenDataPointTypeType
-	public void setValByGDPType(SGrModbusFunctionalProfileType aProfile, SGrModbusDataPointType aDataPoint,
-			SGrBasicGenDataPointTypeType sgrValue) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
-
-		prv_setValByGDPType(aProfile, aDataPoint, sgrValue);
-
-	}
-
-	public void setValByGDPType(String sProfileName, String sDataPointName, SGrBasicGenDataPointTypeType sgrValue)
+	@Override
+	public void setValByGDPType(String sProfileName, String sDataPointName, SGrBasicGenDataPointTypeType value)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);
 
 		if (profile.isPresent()) {
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
-				prv_setValByGDPType(profile.get(), dataPoint.get(), sgrValue);
+				prv_setValByGDPType(profile.get(), dataPoint.get(), value);
 			}
 		}
-
 	}
 
 	private void prv_setValByGDPType(SGrModbusFunctionalProfileType aProfile, SGrModbusDataPointType aDataPoint,
@@ -733,12 +745,8 @@ public class SGrModbusDevice {
 
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
 
-		SGrBasicGenDataPointTypeType dGenType = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-		SGrBasicGenDataPointTypeType dMBType = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-
 		// Data format adaption
-		dGenType = aDataPoint.getDataPoint().getBasicDataType();
-		dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
+		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
 
 		// Data Direction ctrl
 		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();

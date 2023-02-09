@@ -3,6 +3,7 @@ package communicator.restapi.impl;
 import java.io.IOException;
 import java.util.Properties;
 
+import communicator.api.GenDeviceApi4Rest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +46,8 @@ class ClemapRestApiTest {
 	
 		DeviceDescriptionLoader<SGrRestAPIDeviceFrame> loader = new DeviceDescriptionLoader<>();						
 		
-		SGrRestAPIDeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);	
-		SGrRestApiDevice clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
+		SGrRestAPIDeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
+		GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
  
 		try {
 			clemapMonitor.authenticate();
