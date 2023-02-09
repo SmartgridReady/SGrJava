@@ -79,14 +79,15 @@ public class IBTlabLoopTester {
 	private static int devOMCCIWallboxExceptions = 0;
 	
 	// device selection
-	private static boolean  devABBMeterTestIsOn = false; 
-	private static boolean  devVGT_SGCPTestIsOn = false; 
-	private static boolean  devFroniusSymoTestIsOn = false; 
+	private static boolean  devABBMeterTestIsOn = true; 
+	private static boolean  devVGT_SGCPTestIsOn = true; 
+	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
 	// TestBox
+	private static boolean  devWagoMeterTestIsOn = true; 
+	private static boolean  devOMCCIWallboxTestIsOn = true; 
+	// !! Schalter in Box umlegen für Test !!
 	private static boolean  devTB_ABBMeterTestIsOn = false; 
-	private static boolean  devWagoMeterTestIsOn = false; 
-	private static boolean  devOMCCIWallboxTestIsOn = false; 
 	
 	// shell for enumerations
 	private static SGrEnumListType oEnumList = null;

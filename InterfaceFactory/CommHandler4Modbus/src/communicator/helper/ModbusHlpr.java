@@ -78,7 +78,7 @@ public class ModbusHlpr {
 	 * @param registers     16 Bit Registers
 	 * @param registerOrder High Register first or low Register first
 	 * @return 64 bit double value NOT USED SO FAR AS REGISTER ALIGNEMT IS DONE WITH
-	 *         INCMING BUFFER DATA IBT/cb 22.01.22 public static double
+	 *         INCOMING BUFFER DATA IBT/cb 22.01.22 public static double
 	 *         ConvRegistersToDouble(int[] registers, RegisterOrder registerOrder)
 	 *         throws IllegalArgumentException { if (registers.length != 4) throw
 	 *         new IllegalArgumentException("Input Array length invalid"); int[]
@@ -355,11 +355,11 @@ public class ModbusHlpr {
 		return returnarray;
 	}
 
-	// Chaged IBT: Byte NOT swapped
+	// Changed IBT/note: Byte NOT swapped Jan 23, ==> created problems with MB float toG Gen float,back to original lib
 	public static byte[] toByteArray(int value) {
 		byte[] result = new byte[2];
-		result[0] = (byte) (value >> 8);
-		result[1] = (byte) (value);
+		result[1] = (byte) (value >> 8);
+		result[0] = (byte) (value);
 		return result;
 	}
 

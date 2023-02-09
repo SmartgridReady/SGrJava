@@ -309,7 +309,7 @@ public class SGrModbusDevice {
 		double dVal = 0.0;
 		float fVal = (float) 0.0;
 
-		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();   ;	
+		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();  	
 		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
 		
 		//if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
@@ -319,8 +319,8 @@ public class SGrModbusDevice {
         */
 		
 		// Data format adaption		
-		//dGenType = aDataPoint.getDataPoint()
-		//		.getBasicDataType();
+		dGenType = aDataPoint.getDataPoint()
+				.getBasicDataType();
 		//dMBType = aDataPoint.getModbusDataPoint()
 		//		.get(0).getModbusDataType();
 		// Data Direction ctrl
