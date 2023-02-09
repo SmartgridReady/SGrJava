@@ -1,15 +1,22 @@
+/**
+Copyright(c) 2022 Verein SmartGridready Switzerland
+
+This Open Source Software is BSD 3 clause licensed:
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in
+the documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 package communicator.restapi.impl;
-
-import java.io.IOException;
-import java.util.Optional;
-import java.util.Properties;
-
-import org.apache.commons.codec.binary.StringUtils;
-import org.apache.hc.core5.http.HttpHeaders;
-import org.apache.hc.core5.http.HttpResponse;
-import org.apache.hc.core5.http.HttpStatus;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +26,7 @@ import com.smartgridready.ns.v0.SGrRestAPIDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrRestAPIDataPointType;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 import com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType;
-
+import communicator.api.GenDeviceApi4Rest;
 import communicator.restapi.exception.RestApiAuthenticationException;
 import communicator.restapi.exception.RestApiResponseParseException;
 import communicator.restapi.exception.RestApiServiceCallException;
@@ -33,14 +40,23 @@ import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
 import io.vavr.control.Either;
+import org.apache.hc.core5.http.HttpHeaders;
+import org.apache.hc.core5.http.HttpResponse;
+import org.apache.hc.core5.http.HttpStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class SGrRestApiDevice {
+import java.io.IOException;
+import java.util.Optional;
+import java.util.Properties;
+
+public class SGrRestApiDevice implements GenDeviceApi4Rest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrRestApiDevice.class);
 	
 	private final SGrRestAPIDeviceFrame deviceDescription;
 	private Authenticator httpAuthenticator;
-	private RestServiceClientFactory restServiceClientFactory;
+	private final RestServiceClientFactory restServiceClientFactory;
 	
 	public SGrRestApiDevice(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
 		this.deviceDescription = deviceDescription;
@@ -51,11 +67,12 @@ public class SGrRestApiDevice {
 	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
 		SGrRestAPIAuthenticationEnumMethodType authMethod = 
 				deviceDescription.getRestAPIInterfaceDesc().getRestAPIAuthenticationMethod();
-				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);		
+				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
 				httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
 	}
 		
-	public String getVal(String profileName, String dataPointName) throws IOException, RestApiServiceCallException, RestApiResponseParseException {		
+	@Override
+	public String getVal(String profileName, String dataPointName) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
 		Optional<ProfileDataPoint> profileDpOpt = findProfileDataPoint(profileName, dataPointName);	
 		if (profileDpOpt.isPresent()) {
 			return doReadWriteVal(profileDpOpt.get(), Optional.empty());
@@ -63,7 +80,8 @@ public class SGrRestApiDevice {
 			return "Profile/access-point " + profileName + "/" + dataPointName + " not found!";
 		}
 	}
-	
+
+	@Override
 	public String setVal(String profileName, String dataPointName, String value) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
 		Optional<ProfileDataPoint> profileDpOpt = findProfileDataPoint(profileName, dataPointName);	
 		if (profileDpOpt.isPresent()) {
@@ -83,9 +101,7 @@ public class SGrRestApiDevice {
 		if (dpDescriptionOpt.isPresent()) {
 			
 			Properties substitutions = new Properties();
-			if (value.isPresent()) {
-				substitutions.put("value", value.get());
-			}
+			value.ifPresent(s -> substitutions.put("value", s));
 			
 			SGrRestAPIDataPointDescriptionType dpDescription = dpDescriptionOpt.get();
 			RestServiceCall serviceCall = dpDescription.getRestServiceCall();
