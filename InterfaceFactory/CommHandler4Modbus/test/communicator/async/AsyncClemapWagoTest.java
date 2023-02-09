@@ -11,6 +11,9 @@ import communicator.impl.SGrModbusDevice;
 import communicator.restapi.http.client.ApacheRestServiceClientFactory;
 import communicator.restapi.impl.SGrRestApiDevice;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.internal.schedulers.IoScheduler;
+import io.reactivex.rxjava3.internal.schedulers.RxThreadFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -45,12 +48,14 @@ public class AsyncClemapWagoTest {
     @Test
     void asyncRealClemapWago() {
 
+        Scheduler schedulerMaxPrio = new IoScheduler(new RxThreadFactory("MAX_PRIO_SCHEDULER", Thread.MAX_PRIORITY));
+
         // Setup tasks
         ReadExec<String> wago_voltageAC_l1 = new ReadExec<>( "VoltageAC", "VoltageL1",  wagoDevice::getVal);
         ReadExec<String> wago_voltageAC_l2 = new ReadExec<>( "VoltageAC", "VoltageL2",  wagoDevice::getVal);
         ReadExec<String> wago_voltageAC_l3 = new ReadExec<>( "VoltageAC", "VoltageL3",  wagoDevice::getVal);
-        ReadExec<String> clemap_actPowerAC_tot = new ReadExec<>( "ActivePowerAC", "ActivePowerACtot", clemapDevice::getVal);
-        ReadExec<String> clemap_actPowerAC_L1  = new ReadExec<>( "ActivePowerAC", "ActivePowerACL1", clemapDevice::getVal);
+        ReadExec<String> clemap_actPowerAC_tot = new ReadExec<>( "ActivePowerAC", "ActivePowerACtot", clemapDevice::getVal, schedulerMaxPrio);
+        ReadExec<String> clemap_actPowerAC_L1  = new ReadExec<>( "ActivePowerAC", "ActivePowerACL1", clemapDevice::getVal, schedulerMaxPrio);
 
         // Wire tasks
         Processor readChain = new Parallel()        // 1500

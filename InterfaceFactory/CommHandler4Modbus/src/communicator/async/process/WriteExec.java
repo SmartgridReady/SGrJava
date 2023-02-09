@@ -4,6 +4,7 @@ import communicator.async.callable.AsyncResult;
 import communicator.async.callable.DeviceWriteCallable;
 import communicator.async.callable.WriteFunction;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import org.slf4j.Logger;
@@ -17,24 +18,32 @@ public class WriteExec<V> extends Processor implements Executable {
 
     private final DeviceWriteCallable<V> writeCallable;
 
+    private final Scheduler scheduler;
+
     private Object finishedNotificationReceiver;
 
     private Disposable disposable;
 
+
     public WriteExec(String functionalProfileName, String datapointName, WriteFunction<V> writeFunction) {
+       this(functionalProfileName, datapointName, writeFunction, Schedulers.io());
+    }
+
+    public WriteExec(String functionalProfileName, String datapointName, WriteFunction<V> writeFunction, Scheduler scheduler) {
+        this.scheduler = scheduler;
         this.writeCallable = new DeviceWriteCallable<>(writeFunction, functionalProfileName, datapointName);
     }
 
     @Override
     public void process(ProcessingType processingType) {
     	  try {
+              Observable<AsyncResult<V>> observable = Observable.fromCallable(writeCallable);
               if (ProcessingType.PARALLEL == processingType) {
                   LOG.info("WriteExec PARALLEL: {} - {}", writeCallable.getProfileName(), writeCallable.getProfileName());
-                  Observable<AsyncResult<V>> observable = Observable.fromCallable(writeCallable);
-                  disposable = observable.subscribeOn(Schedulers.io()).subscribe(this::handleSuccess, this::handleError);
+                  disposable = observable.subscribeOn(scheduler).subscribe(this::handleSuccess, this::handleError);
               } else {
                   LOG.info("WriteExec SEQUENTIAL: {} - {}", writeCallable.getProfileName(), writeCallable.getDatapointName());
-                  handleSuccess(writeCallable.call());
+                  disposable = observable.subscribe(this::handleSuccess, this::handleError);
               }
           } catch (Exception e) {
             handleError(e);

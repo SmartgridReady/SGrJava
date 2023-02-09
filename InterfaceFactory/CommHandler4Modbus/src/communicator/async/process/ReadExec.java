@@ -4,6 +4,7 @@ import communicator.async.callable.AsyncResult;
 import communicator.async.callable.ReadFunction;
 import communicator.async.callable.DeviceReadCallable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import org.slf4j.Logger;
@@ -16,11 +17,17 @@ public class ReadExec<R> extends Processor implements Executable {
     private static final Logger LOG = LoggerFactory.getLogger(ReadExec.class);
     private final DeviceReadCallable<R> deviceCallable;
 
+    private final Scheduler scheduler;
+
     private Object finishedNotificationReceiver;
 
     private Disposable disposable;
     public ReadExec(String functionalProfileName, String datapointName, ReadFunction<R> readFunction) {
+        this(functionalProfileName, datapointName, readFunction, Schedulers.io());
+    }
 
+    public ReadExec(String functionalProfileName, String datapointName, ReadFunction<R> readFunction, Scheduler scheduler) {
+        this.scheduler = scheduler;
         this.deviceCallable = new DeviceReadCallable<>(readFunction, functionalProfileName, datapointName);
     }
 
@@ -28,13 +35,13 @@ public class ReadExec<R> extends Processor implements Executable {
     public void process(ProcessingType processingType) {
 
         try {
+            Observable<AsyncResult<R>> observable = Observable.fromCallable(deviceCallable);
             if (ProcessingType.PARALLEL == processingType) {
                 LOG.info("ReadExec PARALLEL: {}", deviceCallable);
-                Observable<AsyncResult<R>> observable = Observable.fromCallable(deviceCallable);
-                disposable = observable.subscribeOn(Schedulers.io()).subscribe(this::handleSuccess, this::handleError);
+                disposable = observable.subscribeOn(scheduler).subscribe(this::handleSuccess, this::handleError);
             } else {
                 LOG.info("ReadExec SEQUENTIAL: {}", deviceCallable);
-                handleSuccess(deviceCallable.call());
+                disposable = observable.subscribe(this::handleSuccess, this::handleError);
             }
         } catch (Exception e) {
            handleError(e);
