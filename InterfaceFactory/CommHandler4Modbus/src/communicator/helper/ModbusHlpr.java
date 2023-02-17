@@ -19,11 +19,21 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
  */
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 
 import com.smartgridready.ns.v0.SGrEnumListType;
 import de.re.easymodbus.datatypes.RegisterOrder;
 
 public class ModbusHlpr {
+
+	public static ByteBuffer ByteBufFromIntArr(int[] intArr) {
+		ByteBuffer bbuf = ByteBuffer.allocate(intArr.length*2);
+		for (int i= 0; i<intArr.length; i++) {
+			bbuf.putShort((short)intArr[i]);
+		}
+		bbuf.rewind(); // to get values from...
+		return bbuf;
+	}
 
 	/**
 	 * Convert two 16 Bit Registers to 32 Bit real value
@@ -54,8 +64,10 @@ public class ModbusHlpr {
 	 * @return 64 bit double value
 	 */
 	public static double ConvRegistersToDouble(int[] registers) throws IllegalArgumentException {
-		if (registers.length != 4)
+		if (registers.length != 4) {
 			throw new IllegalArgumentException("Input Array length invalid");
+		}
+
 		byte[] highRegisterBytes = toByteArray(registers[3]);
 		byte[] highLowRegisterBytes = toByteArray(registers[2]);
 		byte[] lowHighRegisterBytes = toByteArray(registers[1]);

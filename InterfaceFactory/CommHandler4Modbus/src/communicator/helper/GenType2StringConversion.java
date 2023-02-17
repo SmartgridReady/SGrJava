@@ -28,10 +28,11 @@ import java.util.Locale;
 
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrEnumListType;
+import communicator.common.runtime.GenDriverException;
 
-public class GenTypeToStringFormatter {		
+public class GenType2StringConversion {
 	
-	private GenTypeToStringFormatter() {
+	private GenType2StringConversion() {
 		// utility class
 	}
 	
@@ -96,8 +97,76 @@ public class GenTypeToStringFormatter {
 		} else if (dGenType.getDateTime() != null) {			
 			Date date = dGenType.getDateTime().toGregorianCalendar().getTime();			
 			retval = DateTimeFormatter.ISO_DATE_TIME.format(date.toInstant());
-		}		
+		} else {
+			throw new IllegalArgumentException("Unhandled generic type given for SGrBasicGenDataPointTypeType to String conversion.");
+		}
 		
 		return retval;
 	}
+
+	public static SGrBasicGenDataPointTypeType format(String value, SGrBasicGenDataPointTypeType dGenType) {
+
+		if (dGenType.isSetBoolean()) {
+			boolean bVal = false;
+			if (value.equals("true") || value.equals("TRUE")) {
+				bVal = true;
+			}
+			dGenType.setBoolean(bVal);
+		}
+		/*
+		 * else if (dGenType.eIsSet(enum) { // TODO: SGrBasicGenDataPointTypeType, apply
+		 * SGrEnumListType family of enumerationss inDpTT.setEnum(0); }
+		 */
+		else if (dGenType.isSetFloat32()) {
+			float fVal;
+			fVal = Float.parseFloat(value);
+			dGenType.setFloat32(fVal);
+			dGenType.setFloat32(fVal);
+		} else if (dGenType.isSetFloat64()) {
+			double dVal;
+			dVal = Double.parseDouble(value);
+			dGenType.setFloat64(dVal);
+		} else if (dGenType.isSetInt16()) {
+			short shVal;
+			shVal = Short.parseShort(value);
+			dGenType.setInt16(shVal);
+		} else if (dGenType.isSetInt16U()) {
+			int iVal;
+			iVal = Integer.parseInt(value);
+			dGenType.setInt16U(iVal);
+		} else if (dGenType.getInt32() != null) {
+			BigInteger bgVal = new BigInteger(value);
+			dGenType.setInt32(bgVal);
+		} else if (dGenType.isSetInt32U()) {
+			long lVal = Long.parseLong(value);
+			dGenType.setInt32U(lVal);
+		} else if (dGenType.isSetInt64()) {
+			long lVal = Long.parseLong(value);
+			dGenType.setInt64(lVal);
+		} else if (dGenType.getInt64U() != null) {
+			// TODO: SGrBasicGenDataPointTypeType, isSetInt64U Funktion wurde vom Modeler
+			// nicht generiert
+			BigInteger bgVal1 = new BigInteger(value);
+			dGenType.setInt64U(bgVal1);
+		} else if (dGenType.isSetInt8()) {
+			byte btVal;
+			btVal = Byte.parseByte(value);
+			dGenType.setInt8(btVal);
+		} else if (dGenType.isSetInt8U()) {
+			Short shVal = Short.parseShort(value);
+			dGenType.setInt8U(shVal);
+		} else if (dGenType.getDateTime() != null) {
+			// TODO: apply gregorian calendar library
+			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
+			// TODO: apply dGenType
+		} else if (dGenType.getString() != null) {
+			// TODO:parameter conversion
+			value = String.format("TODO:parameter conversion");
+			dGenType.setString(value);
+		} else { // error handling
+			throw new IllegalArgumentException("Unhandled generic type given for String to SGrBasicGenDataPointTypeType conversion.");
+		}
+		return dGenType;
+	}
+
 }
