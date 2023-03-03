@@ -65,8 +65,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -358,6 +356,11 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	        if (l6dev >= 0  ) {
 	        	mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
 	        }
+
+			// Most significant int as returned from modbus can have the wrong sign:
+			// - after change byte order
+			// - if the modbus value is an unsigned number and MSB is set
+			mbregresp[0] = adjustSign(dMBType, mbregresp[0]);
 		
             for (int u = 0; u < size; u++) {
             	if (u == 0) {
@@ -561,7 +564,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retVal.setEnum(tt);    
 		}
 		else if (dGenType.getInt32()!=null) {
-			BigInteger bgVal = BigInteger.valueOf(RegRes);  
+			BigInteger bgVal = BigInteger.valueOf(RegRes);
 			retVal.setInt32(bgVal);
 		}
 		else if (dGenType.getInt64U()!=null) {
@@ -589,6 +592,18 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		// Not yet supported types
 		// unit scaling
 		return retVal;				
+	}
+
+	private BigInteger twosComplement(BigInteger val) {
+		byte[] contents = val.toByteArray();
+
+		// prepend byte of opposite sign
+		byte[] result = new byte[contents.length + 1];
+		System.arraycopy(contents, 0, result, 1, contents.length);
+		result[0] = (contents[0] < 0) ? 0 : (byte)-1;
+
+		// this will be two's complement
+		return new BigInteger(result);
 	}
 	
 	
@@ -648,8 +663,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					// TODO implement
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_BYTE_ORDER)) {
 					for (c = 0; c < size; c++) {
-
-						LOG.debug("mbregresp: {}", mbregresp);
+						LOG.debug("mbregresp: {} ", mbregresp);
+						LOG.debug("mbregresp[0]: {} ", String.format("%08x",mbregresp[0]));
 						byte[] result = new byte[2];
 						result[1] = (byte) (mbregresp[c] >> 8 );
 						result[0] = (byte)  mbregresp[c];
@@ -659,6 +674,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 						LOG.debug(String.format("CHANGE_BYTE_ORDER converted %d: %02x, %02x, %08x", c, result[1], result[0], mbregconv[c]));
 						LOG.debug("mbregconv: {}", mbregconv);
+						LOG.debug("mbregconv[0]: {} ", String.format("%08x",mbregconv[0]));
 					}
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_WORD_ORDER)) {
 					if ((size % 2) > 0)
@@ -1230,5 +1246,23 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	private Optional<SGrTimeSyncBlockNotificationType> findTimeSyncBlockNotificationType(String aName) {
 		return myDeviceDescription.getTimeSyncBlockNotification().stream()
 				.filter(tSyncBlock -> tSyncBlock.getBlockCashName().equals(aName)).findFirst();
+	}
+
+	private static int adjustSign(SGrBasicGenDataPointTypeType type, int register) {
+		if ( (register & 0x8000) != 0) {
+			if (isUnsignedType(type)) {
+				return register & 0x0000FFFF;
+			} else {
+				return register | 0xFFFF0000;
+			}
+		}
+		return register;
+	}
+
+	private static boolean isUnsignedType(SGrBasicGenDataPointTypeType dataPointType) {
+		return (dataPointType.getInt64U() != null) ||
+				dataPointType.isSetInt32U() ||
+				dataPointType.isSetInt16U() ||
+				dataPointType.isSetInt8U();
 	}
 }
