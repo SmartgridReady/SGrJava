@@ -1063,7 +1063,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: All SunSpec compliant devices must include this as the first model 
+	 * 80 Sunspec: All SunSpec compliant devices must include this as the first model 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_COMMON001_VALUE
 	 * @generated
@@ -1076,7 +1076,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for single phase inverter monitoring (Int and SF) 
+	 * 81 Sunspec: model for single phase inverter monitoring (Int and SF) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER101_VALUE
 	 * @generated
@@ -1089,7 +1089,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for split phase inverter monitoring (Int and SF) 
+	 * 82 Sunspec: model for split phase inverter monitoring (Int and SF) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER102_VALUE
 	 * @generated
@@ -1102,7 +1102,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for 3 phase inverter monitoring (Int and SF)  
+	 * 83 Sunspec: model for 3 phase inverter monitoring (Int and SF)  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER103_VALUE
 	 * @generated
@@ -1115,7 +1115,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for single phase inverter monitoring using float values 
+	 * 84 Sunspec: model for single phase inverter monitoring using float values 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER111_VALUE
 	 * @generated
@@ -1128,7 +1128,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for split phase inverter monitoring using float values 
+	 * 85 Sunspec: model for split phase inverter monitoring using float values 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER112_VALUE
 	 * @generated
@@ -1141,7 +1141,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for s3 phase inverter monitoring using float values 
+	 * 86 Sunspec: model for s3 phase inverter monitoring using float values 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER113_VALUE
 	 * @generated
@@ -1154,7 +1154,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Inverter Controls Nameplate Ratings  
+	 * 87 Sunspec: Inverter Controls Nameplate Ratings  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_NAMEPLATE120_VALUE
 	 * @generated
@@ -1167,7 +1167,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Inverter Controls Basic Settings 
+	 * 88 Sunspec: Inverter Controls Basic Settings 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_BASIC_SETTINGS121_VALUE
 	 * @generated
@@ -1180,7 +1180,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Inverter Controls Extended Measurements and Status  
+	 *  89 Sunspec: Inverter Controls Extended Measurements and Status  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_MEASUREMENT_STATUS122_VALUE
 	 * @generated
@@ -1193,7 +1193,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Immediate Inverter Controls  
+	 * 90 Sunspec: Immediate Inverter Controls  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_IMM_CONTROL123_VALUE
 	 * @generated
@@ -1206,7 +1206,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: SunspBasicStorage124 
+	 * 91 Sunspec: SunspBasicStorage124 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_BASIC_STORAGE124_VALUE
 	 * @generated
@@ -1219,7 +1219,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Model for multiple Maximum Power Point Trackers
+	 * 92 Sunspec: Model for multiple Maximum Power Point Trackers
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_MULT_MPP160_VALUE
 	 * @generated
@@ -1232,7 +1232,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Static Volt-VAR Arrays for Q = f (U/Uref) 
+	 * 93 Sunspec: Static Volt-VAR Arrays for Q = f (U/Uref) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_STATIC_VOLT_VAR126_VALUE
 	 * @generated
@@ -1245,7 +1245,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Parameterized Frequency-Watt compensation 
+	 * 94 Sunspec: Parameterized Frequency-Watt compensation 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_FREQ_WATT_PARAM127_VALUE
 	 * @generated
@@ -1258,7 +1258,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Parameterized Watt-Power Factor Crv   PF = f (P/Pmax) 
+	 * 95 Sunspec: Parameterized Watt-Power Factor Crv   PF = f (P/Pmax) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_WATT_PF131_VALUE
 	 * @generated
@@ -1271,7 +1271,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Parameterized Voltage-Power Factor Crv   P = f (U/Uref) 
+	 * 96 Sunspec: Parameterized Voltage-Power Factor Crv   P = f (U/Uref) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_VOLT_WATT132_VALUE
 	 * @generated
@@ -1284,7 +1284,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Curve-Based Frequency-Watt curve P =  f (F/Fref)  
+	 * 97 Sunspec: Curve-Based Frequency-Watt curve P =  f (F/Fref)  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_FREQ_WATT_CRV134_VALUE
 	 * @generated
@@ -1297,7 +1297,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Battery SOC management 
+	 * 98 Sunspec: Battery SOC management 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_BATTERY_BASE_MODEL802_VALUE
 	 * @generated
@@ -2430,7 +2430,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: All SunSpec compliant devices must include this as the first model 
+	 * 80 Sunspec: All SunSpec compliant devices must include this as the first model 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_COMMON001
 	 * @model name="SunspCommon001"
@@ -2444,7 +2444,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for single phase inverter monitoring (Int and SF) 
+	 * 81 Sunspec: model for single phase inverter monitoring (Int and SF) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER101
 	 * @model name="SunspInverter101"
@@ -2458,7 +2458,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for split phase inverter monitoring (Int and SF) 
+	 * 82 Sunspec: model for split phase inverter monitoring (Int and SF) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER102
 	 * @model name="SunspInverter102"
@@ -2472,7 +2472,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for 3 phase inverter monitoring (Int and SF)  
+	 * 83 Sunspec: model for 3 phase inverter monitoring (Int and SF)  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER103
 	 * @model name="SunspInverter103"
@@ -2486,7 +2486,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for single phase inverter monitoring using float values 
+	 * 84 Sunspec: model for single phase inverter monitoring using float values 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER111
 	 * @model name="SunspInverter111"
@@ -2500,7 +2500,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for split phase inverter monitoring using float values 
+	 * 85 Sunspec: model for split phase inverter monitoring using float values 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER112
 	 * @model name="SunspInverter112"
@@ -2514,7 +2514,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: model for s3 phase inverter monitoring using float values 
+	 * 86 Sunspec: model for s3 phase inverter monitoring using float values 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_INVERTER113
 	 * @model name="SunspInverter113"
@@ -2528,7 +2528,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Inverter Controls Nameplate Ratings  
+	 * 87 Sunspec: Inverter Controls Nameplate Ratings  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_NAMEPLATE120
 	 * @model name="SunspNameplate120"
@@ -2542,7 +2542,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Inverter Controls Basic Settings 
+	 * 88 Sunspec: Inverter Controls Basic Settings 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_BASIC_SETTINGS121
 	 * @model name="SunspBasicSettings121"
@@ -2556,7 +2556,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Inverter Controls Extended Measurements and Status  
+	 *  89 Sunspec: Inverter Controls Extended Measurements and Status  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_MEASUREMENT_STATUS122
 	 * @model name="SunspMeasurementStatus122"
@@ -2570,7 +2570,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Immediate Inverter Controls  
+	 * 90 Sunspec: Immediate Inverter Controls  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_IMM_CONTROL123
 	 * @model name="SunspImmControl123"
@@ -2584,7 +2584,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: SunspBasicStorage124 
+	 * 91 Sunspec: SunspBasicStorage124 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_BASIC_STORAGE124
 	 * @model name="SunspBasicStorage124"
@@ -2598,7 +2598,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Model for multiple Maximum Power Point Trackers
+	 * 92 Sunspec: Model for multiple Maximum Power Point Trackers
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_MULT_MPP160
 	 * @model name="SunspMultMPP160"
@@ -2612,7 +2612,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Static Volt-VAR Arrays for Q = f (U/Uref) 
+	 * 93 Sunspec: Static Volt-VAR Arrays for Q = f (U/Uref) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_STATIC_VOLT_VAR126
 	 * @model name="SunspStaticVoltVar126"
@@ -2626,7 +2626,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Parameterized Frequency-Watt compensation 
+	 * 94 Sunspec: Parameterized Frequency-Watt compensation 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_FREQ_WATT_PARAM127
 	 * @model name="SunspFreqWattParam127"
@@ -2640,7 +2640,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Parameterized Watt-Power Factor Crv   PF = f (P/Pmax) 
+	 * 95 Sunspec: Parameterized Watt-Power Factor Crv   PF = f (P/Pmax) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_WATT_PF131
 	 * @model name="SunspWattPF131"
@@ -2654,7 +2654,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Parameterized Voltage-Power Factor Crv   P = f (U/Uref) 
+	 * 96 Sunspec: Parameterized Voltage-Power Factor Crv   P = f (U/Uref) 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_VOLT_WATT132
 	 * @model name="SunspVoltWatt132"
@@ -2668,7 +2668,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Curve-Based Frequency-Watt curve P =  f (F/Fref)  
+	 * 97 Sunspec: Curve-Based Frequency-Watt curve P =  f (F/Fref)  
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_FREQ_WATT_CRV134
 	 * @model name="SunspFreqWattCrv134"
@@ -2682,7 +2682,7 @@ public enum SubProfileTypeEnumType implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Sunspec: Battery SOC management 
+	 * 98 Sunspec: Battery SOC management 
 	 * <!-- end-model-doc -->
 	 * @see #SUNSP_BATTERY_BASE_MODEL802
 	 * @model name="SunspBatteryBaseModel802"

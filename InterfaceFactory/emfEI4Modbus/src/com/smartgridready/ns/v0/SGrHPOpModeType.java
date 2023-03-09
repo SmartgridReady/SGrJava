@@ -82,7 +82,27 @@ public enum SGrHPOpModeType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WPDOMWATEROP(5, "WPDOMWATEROP", "WP_DOM_WATER_OP");
+	WPDOMWATEROP(5, "WPDOMWATEROP", "WP_DOM_WATER_OP"),
+
+	/**
+	 * The '<em><b>WPCOOLACTIVEOP</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WPCOOLACTIVEOP_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	WPCOOLACTIVEOP(6, "WPCOOLACTIVEOP", "WP_COOL_ACTIVE_OP"),
+
+	/**
+	 * The '<em><b>WPCOOLPASSIVEOP</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WPCOOLPASSIVEOP_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	WPCOOLPASSIVEOP(7, "WPCOOLPASSIVEOP", "WP_COOL_PASSIVE_OP");
 
 	/**
 	 * The '<em><b>WPEMERGOP</b></em>' literal value.
@@ -151,6 +171,28 @@ public enum SGrHPOpModeType implements Enumerator {
 	public static final int WPDOMWATEROP_VALUE = 5;
 
 	/**
+	 * The '<em><b>WPCOOLACTIVEOP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WPCOOLACTIVEOP
+	 * @model literal="WP_COOL_ACTIVE_OP"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WPCOOLACTIVEOP_VALUE = 6;
+
+	/**
+	 * The '<em><b>WPCOOLPASSIVEOP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WPCOOLPASSIVEOP
+	 * @model literal="WP_COOL_PASSIVE_OP"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WPCOOLPASSIVEOP_VALUE = 7;
+
+	/**
 	 * An array of all the '<em><b>SGr HP Op Mode Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -164,6 +206,8 @@ public enum SGrHPOpModeType implements Enumerator {
 			WPCOMFORTOP,
 			WPECOOP,
 			WPDOMWATEROP,
+			WPCOOLACTIVEOP,
+			WPCOOLPASSIVEOP,
 		};
 
 	/**
@@ -226,6 +270,8 @@ public enum SGrHPOpModeType implements Enumerator {
 			case WPCOMFORTOP_VALUE: return WPCOMFORTOP;
 			case WPECOOP_VALUE: return WPECOOP;
 			case WPDOMWATEROP_VALUE: return WPDOMWATEROP;
+			case WPCOOLACTIVEOP_VALUE: return WPCOOLACTIVEOP;
+			case WPCOOLPASSIVEOP_VALUE: return WPCOOLPASSIVEOP;
 		}
 		return null;
 	}

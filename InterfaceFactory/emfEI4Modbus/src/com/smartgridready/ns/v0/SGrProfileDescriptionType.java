@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getFpNameList <em>Fp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getFpLegibDesc <em>Fp Legib Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getFpPrgDesc <em>Fp Prg Desc</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getMroVisibilityIndicator <em>Mro Visibility Indicator</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getProfileName <em>Profile Name</em>}</li>
  * </ul>
  *
@@ -116,59 +115,6 @@ public interface SGrProfileDescriptionType extends EObject {
 	 * @generated
 	 */
 	EList<SGrLegibDocumentationType> getFpPrgDesc();
-
-	/**
-	 * Returns the value of the '<em><b>Mro Visibility Indicator</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrMROPresenceLevelIndicationType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mro Visibility Indicator</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMROPresenceLevelIndicationType
-	 * @see #isSetMroVisibilityIndicator()
-	 * @see #unsetMroVisibilityIndicator()
-	 * @see #setMroVisibilityIndicator(SGrMROPresenceLevelIndicationType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfileDescriptionType_MroVisibilityIndicator()
-	 * @model unsettable="true"
-	 *        extendedMetaData="kind='attribute' name='mroVisibilityIndicator'"
-	 * @generated
-	 */
-	SGrMROPresenceLevelIndicationType getMroVisibilityIndicator();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getMroVisibilityIndicator <em>Mro Visibility Indicator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mro Visibility Indicator</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrMROPresenceLevelIndicationType
-	 * @see #isSetMroVisibilityIndicator()
-	 * @see #unsetMroVisibilityIndicator()
-	 * @see #getMroVisibilityIndicator()
-	 * @generated
-	 */
-	void setMroVisibilityIndicator(SGrMROPresenceLevelIndicationType value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getMroVisibilityIndicator <em>Mro Visibility Indicator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetMroVisibilityIndicator()
-	 * @see #getMroVisibilityIndicator()
-	 * @see #setMroVisibilityIndicator(SGrMROPresenceLevelIndicationType)
-	 * @generated
-	 */
-	void unsetMroVisibilityIndicator();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrProfileDescriptionType#getMroVisibilityIndicator <em>Mro Visibility Indicator</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Mro Visibility Indicator</em>' attribute is set.
-	 * @see #unsetMroVisibilityIndicator()
-	 * @see #getMroVisibilityIndicator()
-	 * @see #setMroVisibilityIndicator(SGrMROPresenceLevelIndicationType)
-	 * @generated
-	 */
-	boolean isSetMroVisibilityIndicator();
 
 	/**
 	 * Returns the value of the '<em><b>Profile Name</b></em>' attribute.

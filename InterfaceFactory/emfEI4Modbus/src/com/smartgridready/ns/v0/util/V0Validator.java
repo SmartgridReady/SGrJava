@@ -234,6 +234,8 @@ public class V0Validator extends EObjectValidator {
 				return validateEStopBitLenType((EStopBitLenType)value, diagnostics, context);
 			case V0Package.HTTP_METHOD:
 				return validateHttpMethod((HttpMethod)value, diagnostics, context);
+			case V0Package.LEVEL_OF_OPERATION_TYPE:
+				return validateLevelOfOperationType((LevelOfOperationType)value, diagnostics, context);
 			case V0Package.MASTER_FUNCTIONS_SUPPORTED_TYPE:
 				return validateMasterFunctionsSupportedType((MasterFunctionsSupportedType)value, diagnostics, context);
 			case V0Package.MODBUS_INTERFACE_SELECTION_TYPE:
@@ -246,6 +248,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrBool2BitRankType((SGrBool2BitRankType)value, diagnostics, context);
 			case V0Package.SGR_DEVICE_KIND_TYPE:
 				return validateSGrDeviceKindType((SGrDeviceKindType)value, diagnostics, context);
+			case V0Package.SGR_DHW_OP_MODE_TYPE:
+				return validateSGrDHWOpModeType((SGrDHWOpModeType)value, diagnostics, context);
 			case V0Package.SG_READY_STATE_LV1_TYPE:
 				return validateSGReadyStateLv1Type((SGReadyStateLv1Type)value, diagnostics, context);
 			case V0Package.SG_READY_STATE_LV2_TYPE:
@@ -256,6 +260,12 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrEVSEStateLv2Type((SGrEVSEStateLv2Type)value, diagnostics, context);
 			case V0Package.SGR_EV_STATE_TYPE:
 				return validateSGrEVStateType((SGrEVStateType)value, diagnostics, context);
+			case V0Package.SGR_HC_OP_MODE_TYPE:
+				return validateSGrHCOpModeType((SGrHCOpModeType)value, diagnostics, context);
+			case V0Package.SGR_HC_OP_STATE_TYPE:
+				return validateSGrHCOpStateType((SGrHCOpStateType)value, diagnostics, context);
+			case V0Package.SGR_HP_ACT_BUFFER_STATE_TYPE:
+				return validateSGrHPActBufferStateType((SGrHPActBufferStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_OP_MODE_TYPE:
 				return validateSGrHPOpModeType((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE:
@@ -346,6 +356,8 @@ public class V0Validator extends EObjectValidator {
 				return validateIpV4portNrType((Long)value, diagnostics, context);
 			case V0Package.IP_V4PORT_NR_TYPE_OBJECT:
 				return validateIpV4portNrTypeObject((Long)value, diagnostics, context);
+			case V0Package.LEVEL_OF_OPERATION_TYPE_OBJECT:
+				return validateLevelOfOperationTypeObject((LevelOfOperationType)value, diagnostics, context);
 			case V0Package.MASTER_FUNCTIONS_SUPPORTED_TYPE_OBJECT:
 				return validateMasterFunctionsSupportedTypeObject((MasterFunctionsSupportedType)value, diagnostics, context);
 			case V0Package.MODBUS_INTERFACE_SELECTION_TYPE_OBJECT:
@@ -370,6 +382,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrBool2BitRankTypeObject((SGrBool2BitRankType)value, diagnostics, context);
 			case V0Package.SGR_DEVICE_KIND_TYPE_OBJECT:
 				return validateSGrDeviceKindTypeObject((SGrDeviceKindType)value, diagnostics, context);
+			case V0Package.SGR_DHW_OP_MODE_TYPE_OBJECT:
+				return validateSGrDHWOpModeTypeObject((SGrDHWOpModeType)value, diagnostics, context);
 			case V0Package.SG_READY_STATE_LV1_TYPE_OBJECT:
 				return validateSGReadyStateLv1TypeObject((SGReadyStateLv1Type)value, diagnostics, context);
 			case V0Package.SG_READY_STATE_LV2_TYPE_OBJECT:
@@ -380,6 +394,12 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrEVSEStateLv2TypeObject((SGrEVSEStateLv2Type)value, diagnostics, context);
 			case V0Package.SGR_EV_STATE_TYPE_OBJECT:
 				return validateSGrEVStateTypeObject((SGrEVStateType)value, diagnostics, context);
+			case V0Package.SGR_HC_OP_MODE_TYPE_OBJECT:
+				return validateSGrHCOpModeTypeObject((SGrHCOpModeType)value, diagnostics, context);
+			case V0Package.SGR_HC_OP_STATE_TYPE_OBJECT:
+				return validateSGrHCOpStateTypeObject((SGrHCOpStateType)value, diagnostics, context);
+			case V0Package.SGR_HP_ACT_BUFFER_STATE_TYPE_OBJECT:
+				return validateSGrHPActBufferStateTypeObject((SGrHPActBufferStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_OP_MODE_TYPE_OBJECT:
 				return validateSGrHPOpModeTypeObject((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
@@ -1076,6 +1096,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateLevelOfOperationType(LevelOfOperationType levelOfOperationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMasterFunctionsSupportedType(MasterFunctionsSupportedType masterFunctionsSupportedType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1130,6 +1159,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSGrDHWOpModeType(SGrDHWOpModeType sGrDHWOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSGReadyStateLv1Type(SGReadyStateLv1Type sgReadyStateLv1Type, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1167,6 +1205,33 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrEVStateType(SGrEVStateType sGrEVStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHCOpModeType(SGrHCOpModeType sGrHCOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHCOpStateType(SGrHCOpStateType sGrHCOpStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHPActBufferStateType(SGrHPActBufferStateType sGrHPActBufferStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1936,6 +2001,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateLevelOfOperationTypeObject(LevelOfOperationType levelOfOperationTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMasterFunctionsSupportedTypeObject(MasterFunctionsSupportedType masterFunctionsSupportedTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -2044,6 +2118,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSGrDHWOpModeTypeObject(SGrDHWOpModeType sGrDHWOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSGReadyStateLv1TypeObject(SGReadyStateLv1Type sgReadyStateLv1TypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -2081,6 +2164,33 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrEVStateTypeObject(SGrEVStateType sGrEVStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHCOpModeTypeObject(SGrHCOpModeType sGrHCOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHCOpStateTypeObject(SGrHCOpStateType sGrHCOpStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrHPActBufferStateTypeObject(SGrHPActBufferStateType sGrHPActBufferStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

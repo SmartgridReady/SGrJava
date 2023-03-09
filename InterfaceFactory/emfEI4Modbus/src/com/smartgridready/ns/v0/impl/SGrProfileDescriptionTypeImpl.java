@@ -3,7 +3,6 @@
 package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.SGrLegibDocumentationType;
-import com.smartgridready.ns.v0.SGrMROPresenceLevelIndicationType;
 import com.smartgridready.ns.v0.SGrNamelistType;
 import com.smartgridready.ns.v0.SGrProfileDescriptionType;
 import com.smartgridready.ns.v0.SGrProfilenumberType;
@@ -37,7 +36,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getFpNameList <em>Fp Name List</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getFpLegibDesc <em>Fp Legib Desc</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getFpPrgDesc <em>Fp Prg Desc</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getMroVisibilityIndicator <em>Mro Visibility Indicator</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrProfileDescriptionTypeImpl#getProfileName <em>Profile Name</em>}</li>
  * </ul>
  *
@@ -83,35 +81,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected EList<SGrLegibDocumentationType> fpPrgDesc;
-
-	/**
-	 * The default value of the '{@link #getMroVisibilityIndicator() <em>Mro Visibility Indicator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMroVisibilityIndicator()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final SGrMROPresenceLevelIndicationType MRO_VISIBILITY_INDICATOR_EDEFAULT = SGrMROPresenceLevelIndicationType.M;
-
-	/**
-	 * The cached value of the '{@link #getMroVisibilityIndicator() <em>Mro Visibility Indicator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMroVisibilityIndicator()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrMROPresenceLevelIndicationType mroVisibilityIndicator = MRO_VISIBILITY_INDICATOR_EDEFAULT;
-
-	/**
-	 * This is true if the Mro Visibility Indicator attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean mroVisibilityIndicatorESet;
 
 	/**
 	 * The default value of the '{@link #getProfileName() <em>Profile Name</em>}' attribute.
@@ -274,56 +243,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public SGrMROPresenceLevelIndicationType getMroVisibilityIndicator() {
-		return mroVisibilityIndicator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMroVisibilityIndicator(SGrMROPresenceLevelIndicationType newMroVisibilityIndicator) {
-		SGrMROPresenceLevelIndicationType oldMroVisibilityIndicator = mroVisibilityIndicator;
-		mroVisibilityIndicator = newMroVisibilityIndicator == null ? MRO_VISIBILITY_INDICATOR_EDEFAULT : newMroVisibilityIndicator;
-		boolean oldMroVisibilityIndicatorESet = mroVisibilityIndicatorESet;
-		mroVisibilityIndicatorESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR, oldMroVisibilityIndicator, mroVisibilityIndicator, !oldMroVisibilityIndicatorESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetMroVisibilityIndicator() {
-		SGrMROPresenceLevelIndicationType oldMroVisibilityIndicator = mroVisibilityIndicator;
-		boolean oldMroVisibilityIndicatorESet = mroVisibilityIndicatorESet;
-		mroVisibilityIndicator = MRO_VISIBILITY_INDICATOR_EDEFAULT;
-		mroVisibilityIndicatorESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR, oldMroVisibilityIndicator, MRO_VISIBILITY_INDICATOR_EDEFAULT, oldMroVisibilityIndicatorESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetMroVisibilityIndicator() {
-		return mroVisibilityIndicatorESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String getProfileName() {
 		return profileName;
 	}
@@ -377,8 +296,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 				return getFpLegibDesc();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC:
 				return getFpPrgDesc();
-			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:
-				return getMroVisibilityIndicator();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__PROFILE_NAME:
 				return getProfileName();
 		}
@@ -408,9 +325,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 				getFpPrgDesc().clear();
 				getFpPrgDesc().addAll((Collection<? extends SGrLegibDocumentationType>)newValue);
 				return;
-			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:
-				setMroVisibilityIndicator((SGrMROPresenceLevelIndicationType)newValue);
-				return;
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__PROFILE_NAME:
 				setProfileName((String)newValue);
 				return;
@@ -438,9 +352,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC:
 				getFpPrgDesc().clear();
 				return;
-			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:
-				unsetMroVisibilityIndicator();
-				return;
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__PROFILE_NAME:
 				setProfileName(PROFILE_NAME_EDEFAULT);
 				return;
@@ -464,8 +375,6 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 				return fpLegibDesc != null && !fpLegibDesc.isEmpty();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__FP_PRG_DESC:
 				return fpPrgDesc != null && !fpPrgDesc.isEmpty();
-			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__MRO_VISIBILITY_INDICATOR:
-				return isSetMroVisibilityIndicator();
 			case V0Package.SGR_PROFILE_DESCRIPTION_TYPE__PROFILE_NAME:
 				return PROFILE_NAME_EDEFAULT == null ? profileName != null : !PROFILE_NAME_EDEFAULT.equals(profileName);
 		}
@@ -482,9 +391,7 @@ public class SGrProfileDescriptionTypeImpl extends MinimalEObjectImpl.Container 
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (mroVisibilityIndicator: ");
-		if (mroVisibilityIndicatorESet) result.append(mroVisibilityIndicator); else result.append("<unset>");
-		result.append(", profileName: ");
+		result.append(" (profileName: ");
 		result.append(profileName);
 		result.append(')');
 		return result.toString();

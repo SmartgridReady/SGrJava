@@ -87,7 +87,7 @@ public class IBTlabLoopTester {
 	private static boolean  devWagoMeterTestIsOn = true; 
 	private static boolean  devOMCCIWallboxTestIsOn = true; 
 	// !! Schalter in Box umlegen für Test !!
-	private static boolean  devTB_ABBMeterTestIsOn = false; 
+	private static boolean  devTB_ABBMeterTestIsOn = true; 
 	
 	// shell for enumerations
 	private static SGrEnumListType oEnumList = null;

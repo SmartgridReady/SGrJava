@@ -4,8 +4,6 @@ package com.smartgridready.ns.v0;
 
 import java.math.BigInteger;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -31,7 +29,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getStabilityFallback <em>Stability Fallback</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getSmoothTransition <em>Smooth Transition</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMaxLatencyTimeMs <em>Max Latency Time Ms</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeStampLog <em>Time Stamp Log</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueType <em>Value Type</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueSource <em>Value Source</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getSampleRate <em>Sample Rate</em>}</li>
@@ -327,36 +324,6 @@ public interface SGrAttr4GenericType extends EObject {
 	 * @generated
 	 */
 	void setMaxLatencyTimeMs(BigInteger value);
-
-	/**
-	 * Returns the value of the '<em><b>Time Stamp Log</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  This is the date Time Value indicates that any
-	 * 						value generation must be paired with the time of either a
-	 * 						measuement was taken or where a higher controls software level
-	 * 						indicates when it got the value
-	 * 		
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Time Stamp Log</em>' attribute.
-	 * @see #setTimeStampLog(XMLGregorianCalendar)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_TimeStampLog()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.DateTime"
-	 *        extendedMetaData="kind='element' name='timeStampLog' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	XMLGregorianCalendar getTimeStampLog();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getTimeStampLog <em>Time Stamp Log</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Time Stamp Log</em>' attribute.
-	 * @see #getTimeStampLog()
-	 * @generated
-	 */
-	void setTimeStampLog(XMLGregorianCalendar value);
 
 	/**
 	 * Returns the value of the '<em><b>Value Type</b></em>' attribute.

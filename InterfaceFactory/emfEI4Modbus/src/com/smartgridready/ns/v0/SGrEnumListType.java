@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrObligLvl <em>Sgr Oblig Lvl</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrOCPPState <em>Sgr OCPP State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHPOpMode <em>Sgr HP Op Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHCOpMode <em>Sgr HC Op Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType()
@@ -775,5 +777,111 @@ public interface SGrEnumListType extends EObject {
 	 * @generated
 	 */
 	boolean isSetSgrHPOpMode();
+
+	/**
+	 * Returns the value of the '<em><b>Sgr HC Op Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrHCOpModeType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sgr HC Op Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHCOpModeType
+	 * @see #isSetSgrHCOpMode()
+	 * @see #unsetSgrHCOpMode()
+	 * @see #setSgrHCOpMode(SGrHCOpModeType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_SgrHCOpMode()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='sgrHCOpMode' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrHCOpModeType getSgrHCOpMode();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHCOpMode <em>Sgr HC Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sgr HC Op Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHCOpModeType
+	 * @see #isSetSgrHCOpMode()
+	 * @see #unsetSgrHCOpMode()
+	 * @see #getSgrHCOpMode()
+	 * @generated
+	 */
+	void setSgrHCOpMode(SGrHCOpModeType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHCOpMode <em>Sgr HC Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSgrHCOpMode()
+	 * @see #getSgrHCOpMode()
+	 * @see #setSgrHCOpMode(SGrHCOpModeType)
+	 * @generated
+	 */
+	void unsetSgrHCOpMode();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHCOpMode <em>Sgr HC Op Mode</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Sgr HC Op Mode</em>' attribute is set.
+	 * @see #unsetSgrHCOpMode()
+	 * @see #getSgrHCOpMode()
+	 * @see #setSgrHCOpMode(SGrHCOpModeType)
+	 * @generated
+	 */
+	boolean isSetSgrHCOpMode();
+
+	/**
+	 * Returns the value of the '<em><b>Sgr DHW Op Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrDHWOpModeType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sgr DHW Op Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrDHWOpModeType
+	 * @see #isSetSgrDHWOpMode()
+	 * @see #unsetSgrDHWOpMode()
+	 * @see #setSgrDHWOpMode(SGrDHWOpModeType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_SgrDHWOpMode()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='sgrDHWOpMode' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrDHWOpModeType getSgrDHWOpMode();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sgr DHW Op Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrDHWOpModeType
+	 * @see #isSetSgrDHWOpMode()
+	 * @see #unsetSgrDHWOpMode()
+	 * @see #getSgrDHWOpMode()
+	 * @generated
+	 */
+	void setSgrDHWOpMode(SGrDHWOpModeType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSgrDHWOpMode()
+	 * @see #getSgrDHWOpMode()
+	 * @see #setSgrDHWOpMode(SGrDHWOpModeType)
+	 * @generated
+	 */
+	void unsetSgrDHWOpMode();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Sgr DHW Op Mode</em>' attribute is set.
+	 * @see #unsetSgrDHWOpMode()
+	 * @see #getSgrDHWOpMode()
+	 * @see #setSgrDHWOpMode(SGrDHWOpModeType)
+	 * @generated
+	 */
+	boolean isSetSgrDHWOpMode();
 
 } // SGrEnumListType

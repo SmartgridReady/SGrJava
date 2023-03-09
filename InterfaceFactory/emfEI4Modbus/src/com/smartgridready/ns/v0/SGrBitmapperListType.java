@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * BM0001:
+ * BMxxxx:
  *      Field of enumeration where endum index is used as bitmap flag
  *      Unsigned int value  [and]  ( 1 [2 *  shift left] enum_index_value means bit is set
  * 	
@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrBool2BitRank <em>Sgr Bool2 Bit Rank</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstate <em>Sgr HP Opstate</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstateStiebel <em>Sgr HP Opstate Stiebel</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHCOpstate <em>Sgr HC Opstate</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPActBufferState <em>Sgr HP Act Buffer State</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrBitmapperListType()
@@ -188,5 +190,111 @@ public interface SGrBitmapperListType extends EObject {
 	 * @generated
 	 */
 	boolean isSetSgrHPOpstateStiebel();
+
+	/**
+	 * Returns the value of the '<em><b>Sgr HC Opstate</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrHCOpStateType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sgr HC Opstate</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHCOpStateType
+	 * @see #isSetSgrHCOpstate()
+	 * @see #unsetSgrHCOpstate()
+	 * @see #setSgrHCOpstate(SGrHCOpStateType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBitmapperListType_SgrHCOpstate()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='sgrHCOpstate' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrHCOpStateType getSgrHCOpstate();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHCOpstate <em>Sgr HC Opstate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sgr HC Opstate</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHCOpStateType
+	 * @see #isSetSgrHCOpstate()
+	 * @see #unsetSgrHCOpstate()
+	 * @see #getSgrHCOpstate()
+	 * @generated
+	 */
+	void setSgrHCOpstate(SGrHCOpStateType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHCOpstate <em>Sgr HC Opstate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSgrHCOpstate()
+	 * @see #getSgrHCOpstate()
+	 * @see #setSgrHCOpstate(SGrHCOpStateType)
+	 * @generated
+	 */
+	void unsetSgrHCOpstate();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHCOpstate <em>Sgr HC Opstate</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Sgr HC Opstate</em>' attribute is set.
+	 * @see #unsetSgrHCOpstate()
+	 * @see #getSgrHCOpstate()
+	 * @see #setSgrHCOpstate(SGrHCOpStateType)
+	 * @generated
+	 */
+	boolean isSetSgrHCOpstate();
+
+	/**
+	 * Returns the value of the '<em><b>Sgr HP Act Buffer State</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrHPActBufferStateType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sgr HP Act Buffer State</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHPActBufferStateType
+	 * @see #isSetSgrHPActBufferState()
+	 * @see #unsetSgrHPActBufferState()
+	 * @see #setSgrHPActBufferState(SGrHPActBufferStateType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBitmapperListType_SgrHPActBufferState()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='sgrHPActBufferState' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrHPActBufferStateType getSgrHPActBufferState();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPActBufferState <em>Sgr HP Act Buffer State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sgr HP Act Buffer State</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHPActBufferStateType
+	 * @see #isSetSgrHPActBufferState()
+	 * @see #unsetSgrHPActBufferState()
+	 * @see #getSgrHPActBufferState()
+	 * @generated
+	 */
+	void setSgrHPActBufferState(SGrHPActBufferStateType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPActBufferState <em>Sgr HP Act Buffer State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSgrHPActBufferState()
+	 * @see #getSgrHPActBufferState()
+	 * @see #setSgrHPActBufferState(SGrHPActBufferStateType)
+	 * @generated
+	 */
+	void unsetSgrHPActBufferState();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPActBufferState <em>Sgr HP Act Buffer State</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Sgr HP Act Buffer State</em>' attribute is set.
+	 * @see #unsetSgrHPActBufferState()
+	 * @see #getSgrHPActBufferState()
+	 * @see #setSgrHPActBufferState(SGrHPActBufferStateType)
+	 * @generated
+	 */
+	boolean isSetSgrHPActBufferState();
 
 } // SGrBitmapperListType

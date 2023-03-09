@@ -2,6 +2,7 @@
  */
 package com.smartgridready.ns.v0.impl;
 
+import com.smartgridready.ns.v0.LevelOfOperationType;
 import com.smartgridready.ns.v0.ProfileTypeEnumType;
 import com.smartgridready.ns.v0.SGrProfilenumberType;
 import com.smartgridready.ns.v0.SGrVersionNumberType;
@@ -130,7 +131,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SGR_LEVEL_OF_OPERATION_EDEFAULT = 0;
+	protected static final LevelOfOperationType SGR_LEVEL_OF_OPERATION_EDEFAULT = LevelOfOperationType.M;
 
 	/**
 	 * The cached value of the '{@link #getSgrLevelOfOperation() <em>Sgr Level Of Operation</em>}' attribute.
@@ -140,7 +141,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected int sgrLevelOfOperation = SGR_LEVEL_OF_OPERATION_EDEFAULT;
+	protected LevelOfOperationType sgrLevelOfOperation = SGR_LEVEL_OF_OPERATION_EDEFAULT;
 
 	/**
 	 * This is true if the Sgr Level Of Operation attribute has been set.
@@ -336,7 +337,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public int getSgrLevelOfOperation() {
+	public LevelOfOperationType getSgrLevelOfOperation() {
 		return sgrLevelOfOperation;
 	}
 
@@ -346,9 +347,9 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public void setSgrLevelOfOperation(int newSgrLevelOfOperation) {
-		int oldSgrLevelOfOperation = sgrLevelOfOperation;
-		sgrLevelOfOperation = newSgrLevelOfOperation;
+	public void setSgrLevelOfOperation(LevelOfOperationType newSgrLevelOfOperation) {
+		LevelOfOperationType oldSgrLevelOfOperation = sgrLevelOfOperation;
+		sgrLevelOfOperation = newSgrLevelOfOperation == null ? SGR_LEVEL_OF_OPERATION_EDEFAULT : newSgrLevelOfOperation;
 		boolean oldSgrLevelOfOperationESet = sgrLevelOfOperationESet;
 		sgrLevelOfOperationESet = true;
 		if (eNotificationRequired())
@@ -362,7 +363,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 	 */
 	@Override
 	public void unsetSgrLevelOfOperation() {
-		int oldSgrLevelOfOperation = sgrLevelOfOperation;
+		LevelOfOperationType oldSgrLevelOfOperation = sgrLevelOfOperation;
 		boolean oldSgrLevelOfOperationESet = sgrLevelOfOperationESet;
 		sgrLevelOfOperation = SGR_LEVEL_OF_OPERATION_EDEFAULT;
 		sgrLevelOfOperationESet = false;
@@ -479,7 +480,7 @@ public class SGrProfilenumberTypeImpl extends MinimalEObjectImpl.Container imple
 				setSubProfileIdent((SubProfileTypeEnumType)newValue);
 				return;
 			case V0Package.SGR_PROFILENUMBER_TYPE__SGR_LEVEL_OF_OPERATION:
-				setSgrLevelOfOperation((Integer)newValue);
+				setSgrLevelOfOperation((LevelOfOperationType)newValue);
 				return;
 			case V0Package.SGR_PROFILENUMBER_TYPE__VERSION_NUMBER:
 				setVersionNumber((SGrVersionNumberType)newValue);

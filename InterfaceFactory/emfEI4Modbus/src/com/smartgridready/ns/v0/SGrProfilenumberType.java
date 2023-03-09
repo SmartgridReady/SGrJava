@@ -207,11 +207,13 @@ public interface SGrProfilenumberType extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Sgr Level Of Operation</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.LevelOfOperationType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * SGrLevelOfOperation defines a controls complexity
-	 * 						level 1) single contact 2) 2 or more contacts /state controlled
+	 * 					  level m) for read-only monitoring dat points
+	 *             level 1) single contact 2) 2 or more contacts /state controlled
 	 * 						interface 3) statical defined characteristics tables 4) dynamic
 	 * 						realtime control combined with statical defined characteristics
 	 * 						tables 5) dynamic realtime control combined with dynamic
@@ -219,27 +221,29 @@ public interface SGrProfilenumberType extends EObject {
 	 * 					
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Sgr Level Of Operation</em>' attribute.
+	 * @see com.smartgridready.ns.v0.LevelOfOperationType
 	 * @see #isSetSgrLevelOfOperation()
 	 * @see #unsetSgrLevelOfOperation()
-	 * @see #setSgrLevelOfOperation(int)
+	 * @see #setSgrLevelOfOperation(LevelOfOperationType)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrProfilenumberType_SgrLevelOfOperation()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+	 * @model unsettable="true" required="true"
 	 *        extendedMetaData="kind='element' name='sgrLevelOfOperation' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	int getSgrLevelOfOperation();
+	LevelOfOperationType getSgrLevelOfOperation();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrProfilenumberType#getSgrLevelOfOperation <em>Sgr Level Of Operation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Sgr Level Of Operation</em>' attribute.
+	 * @see com.smartgridready.ns.v0.LevelOfOperationType
 	 * @see #isSetSgrLevelOfOperation()
 	 * @see #unsetSgrLevelOfOperation()
 	 * @see #getSgrLevelOfOperation()
 	 * @generated
 	 */
-	void setSgrLevelOfOperation(int value);
+	void setSgrLevelOfOperation(LevelOfOperationType value);
 
 	/**
 	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrProfilenumberType#getSgrLevelOfOperation <em>Sgr Level Of Operation</em>}' attribute.
@@ -247,7 +251,7 @@ public interface SGrProfilenumberType extends EObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSgrLevelOfOperation()
 	 * @see #getSgrLevelOfOperation()
-	 * @see #setSgrLevelOfOperation(int)
+	 * @see #setSgrLevelOfOperation(LevelOfOperationType)
 	 * @generated
 	 */
 	void unsetSgrLevelOfOperation();
@@ -259,7 +263,7 @@ public interface SGrProfilenumberType extends EObject {
 	 * @return whether the value of the '<em>Sgr Level Of Operation</em>' attribute is set.
 	 * @see #unsetSgrLevelOfOperation()
 	 * @see #getSgrLevelOfOperation()
-	 * @see #setSgrLevelOfOperation(int)
+	 * @see #setSgrLevelOfOperation(LevelOfOperationType)
 	 * @generated
 	 */
 	boolean isSetSgrLevelOfOperation();

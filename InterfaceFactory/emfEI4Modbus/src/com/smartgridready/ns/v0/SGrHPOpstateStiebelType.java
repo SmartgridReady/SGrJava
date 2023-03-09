@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * BM000r:
+ * BM0003:
  *      BitRank map for Heat Pump Stiebel-Eltron
  * 	
  * <!-- end-model-doc -->
