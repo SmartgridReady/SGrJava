@@ -55,11 +55,10 @@ import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
 import communicator.helper.CacheRecord;
+import communicator.helper.ConversionHelper;
 import communicator.helper.GenType2StringConversion;
-import communicator.helper.ModbusHlpr;
 import communicator.helper.ModbusReader;
 import communicator.helper.ModbusReaderResponse;
-import de.re.easymodbus.datatypes.RegisterOrder;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -447,10 +446,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					dVal = dVal * mul;
 					fVal = (float) dVal;
 				} else if (dMBType.isSetFloat32()) {
-					fVal = ModbusHlpr.ConvRegistersToFloat(singleResp);
+					fVal = ConversionHelper.byteBufFromRegisters(singleResp).getFloat();
 				} 
 			    else if (dMBType.isSetFloat64()) {
-			    	dVal = ModbusHlpr.ConvRegistersToDouble(doubleResp);
+					dVal = ConversionHelper.byteBufFromRegisters(doubleResp).getDouble();
 			    	fVal = (float) dVal;
 				}
 			}
@@ -473,19 +472,19 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					dVal = dVal * mul;
 					retVal.setFloat64(dVal);
 				} else if (dMBType.isSetFloat32()) {
-					dVal = Double.valueOf(ModbusHlpr.ConvRegistersToFloat(singleResp));
+					dVal = ConversionHelper.byteBufFromRegisters(singleResp).getFloat();
 					retVal.setFloat64(dVal);
 				} else if (dMBType.isSetFloat64()) {
-					dVal = ModbusHlpr.ConvRegistersToDouble(doubleResp);
+					dVal = ConversionHelper.byteBufFromRegisters(doubleResp).getDouble();
 					retVal.setFloat64(dVal);
 				}
 			}
 		}
 		else if (dGenType.isSetInt16()) {
 			if (dMBType.isSetFloat32()) {
-				retVal.setInt16((short)ModbusHlpr.ByteBufFromIntArr(singleResp).getFloat());
+				retVal.setInt16((short)ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
 			} else if (dMBType.isSetFloat64()) {
-				retVal.setInt16((short)ModbusHlpr.ByteBufFromIntArr(doubleResp).getDouble());
+				retVal.setInt16((short)ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				short shVal = (short) RegRes;
 				retVal.setInt16(shVal);
@@ -493,18 +492,18 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}
 		else if (dGenType.getInt32() != null) {
 			if (dMBType.isSetFloat32()) {
-				retVal.setInt32(BigInteger.valueOf((int)ModbusHlpr.ByteBufFromIntArr(singleResp).getFloat()));
+				retVal.setInt32(BigInteger.valueOf((int)ConversionHelper.byteBufFromRegisters(singleResp).getFloat()));
 			} else if (dMBType.isSetFloat64()) {
-				retVal.setInt32(BigInteger.valueOf((int)ModbusHlpr.ByteBufFromIntArr(doubleResp).getDouble()));
+				retVal.setInt32(BigInteger.valueOf((int)ConversionHelper.byteBufFromRegisters(doubleResp).getDouble()));
 			} else {
 				retVal.setInt32(BigInteger.valueOf((int)RegRes));
 			}
 		}
 		else if (dGenType.isSetInt16U()) {
 			if (dMBType.isSetFloat32()) {
-				retVal.setInt16U((int) ModbusHlpr.ByteBufFromIntArr(singleResp).getFloat());
+				retVal.setInt16U((int) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
 			} else if (dMBType.isSetFloat64()){
-				retVal.setInt16U((int) ModbusHlpr.ByteBufFromIntArr(doubleResp).getDouble());
+				retVal.setInt16U((int) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				int iVal = (int) Math.abs(RegRes);
 				retVal.setInt16U(iVal);
@@ -512,9 +511,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}
 		else if (dGenType.isSetInt32U()) {
 			if (dMBType.isSetFloat32()) {
-				retVal.setInt32U((long) ModbusHlpr.ByteBufFromIntArr(singleResp).getFloat());
+				retVal.setInt32U((long) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
 			} else if (dMBType.isSetFloat64()){
-				retVal.setInt32U((long) ModbusHlpr.ByteBufFromIntArr(doubleResp).getDouble());
+				retVal.setInt32U((long) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				long lVal = (long) Math.abs(RegRes);
 				retVal.setInt32U(lVal);
@@ -522,18 +521,18 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}
 		else if (dGenType.isSetInt64()) {
 			if (dMBType.isSetFloat32()) {
-				retVal.setInt64((long) ModbusHlpr.ByteBufFromIntArr(singleResp).getFloat());
+				retVal.setInt64((long) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
 			} else if (dMBType.isSetFloat64()){
-				retVal.setInt64((long) ModbusHlpr.ByteBufFromIntArr(doubleResp).getDouble());
+				retVal.setInt64((long) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				retVal.setInt64(RegRes);
 			}
 		}
 		else if (dGenType.getInt64U() != null) {
 			if (dMBType.isSetFloat32()) {
-				retVal.setInt64U(BigInteger.valueOf((long)ModbusHlpr.ByteBufFromIntArr(singleResp).getFloat()));
+				retVal.setInt64U(BigInteger.valueOf((long)ConversionHelper.byteBufFromRegisters(singleResp).getFloat()));
 			} else if (dMBType.isSetFloat64()){
-				retVal.setInt64U(BigInteger.valueOf((long)ModbusHlpr.ByteBufFromIntArr(doubleResp).getDouble()));
+				retVal.setInt64U(BigInteger.valueOf((long)ConversionHelper.byteBufFromRegisters(doubleResp).getDouble()));
 			} else {
 				long lVal = (long) RegRes;
 				retVal.setInt64U(BigInteger.valueOf(lVal));
@@ -541,9 +540,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}
 		else if (dGenType.isSetInt8()) {
 			if (dMBType.isSetFloat32()) {
-				retVal.setInt8((byte) ModbusHlpr.ByteBufFromIntArr(singleResp).getFloat());
+				retVal.setInt8((byte) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
 			} else if (dMBType.isSetFloat64()){
-				retVal.setInt8((byte) ModbusHlpr.ByteBufFromIntArr(doubleResp).getDouble());
+				retVal.setInt8((byte) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				byte btVal = (byte) RegRes;
 				retVal.setInt8(btVal);
@@ -551,9 +550,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}
 		else if (dGenType.isSetInt8U()) {
 			if (dMBType.isSetFloat32()) {
-				retVal.setInt8U((byte) ModbusHlpr.ByteBufFromIntArr(singleResp).getFloat());
+				retVal.setInt8U((byte) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
 			} else if (dMBType.isSetFloat64()){
-				retVal.setInt8U((byte) ModbusHlpr.ByteBufFromIntArr(doubleResp).getDouble());
+				retVal.setInt8U((byte) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				short shVal = (byte) Math.abs(RegRes);
 				retVal.setInt8U(shVal);
@@ -577,7 +576,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		// TODO: apply dGenType
 		 }
 		 else if( dGenType.getString()!=null) {
-			    String sValue= ModbusHlpr.ConvRegistersToString(mbregresp, 0, size*2);
+			    // String sValue= ModbusHlpr.ConvRegistersToString(mbregresp, 0, size*2);
+				String sValue = ConversionHelper.byteBufFromRegisters(mbregresp).asCharBuffer().toString();
 			    retVal.setString(sValue);
 		 }
 		else
@@ -923,7 +923,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					fVal = sgrValue.getFloat32();
 				if (sgrValue.isSetFloat64())
 					fVal = (float) sgrValue.getFloat64();
-				mbregsnd = ModbusHlpr.ConvFloatToRegisters(fVal, RegisterOrder.HighLow);
+				// mbregsnd = ModbusHlpr.ConvFloatToRegisters(fVal, RegisterOrder.HighLow);
+				mbregsnd = ConversionHelper.floatToRegisters(fVal);
 			}
 
 		} else if (dMBType.isSetFloat64()) {
@@ -950,7 +951,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				if (sgrValue.getInt64U() != null)
 					dVal = (double) sgrValue.getInt64U().doubleValue();
 
-				mbregsnd = ModbusHlpr.ConvDoubleToRegisters(dVal, RegisterOrder.HighLow);
+				// mbregsnd = ModbusHlpr.ConvDoubleToRegisters(dVal, RegisterOrder.HighLow);
+				mbregsnd = ConversionHelper.doubleToRegisters(dVal);
 			}
 		} else if (dMBType.isSetInt16()) {
 			if (bRegisterCMDs) {
