@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
+import communicator.api.GenDeviceApi4Rest;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.junit.jupiter.api.BeforeAll;
@@ -98,7 +99,7 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
 		
 		// when
-		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
 		String res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
@@ -157,5 +158,4 @@ class SGrRestAPIDeviceTest {
 		// then		
 		assertEquals("6380bbd5200d8506be9b7c10", res);				
 	}
-
 }

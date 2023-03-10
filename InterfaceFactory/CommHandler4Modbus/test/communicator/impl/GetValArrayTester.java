@@ -2,6 +2,7 @@ package communicator.impl;
 
 import java.net.URL;
 
+import communicator.api.GenDeviceApi4Modbus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +31,7 @@ public class GetValArrayTester {
 			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
 			mbRTU.initTrspService("COM3", 19200);	
 			
-			SGrModbusDevice devWagoMeter = new SGrModbusDevice(tstMeter, mbRTU );				
+			GenDeviceApi4Modbus devWagoMeter = new SGrModbusDevice(tstMeter, mbRTU );
 			
 			try {	
 				// set device address of devWagoMeter
