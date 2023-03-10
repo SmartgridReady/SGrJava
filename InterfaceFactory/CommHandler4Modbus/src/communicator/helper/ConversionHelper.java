@@ -60,13 +60,13 @@ public class ConversionHelper {
      */
     public static String convRegistersToString(int[] registers, int offset, int stringLength) {
         byte[] result = new byte[stringLength];
-        byte[] registerResult = new byte[2];
+        byte[] registerResult;
 
         for (int i = 0; i < stringLength / 2 + stringLength % 2; i++) {
             registerResult = toByteArray(registers[offset + i]);
-            result[i * 2] = registerResult[0];
+            result[i * 2] = registerResult[1];
             if (i*2 + 1 < stringLength) {
-                result[i * 2 + 1] = registerResult[1];
+                result[i * 2 + 1] = registerResult[0];
             }
         }
         return new String(result);
@@ -82,11 +82,9 @@ public class ConversionHelper {
         byte[] array = stringToConvert.getBytes(Charset.forName("ASCII"));
         int[] returnarray = new int[stringToConvert.length() / 2 + stringToConvert.length() % 2];
         for (int i = 0; i < returnarray.length; i++) {
-            returnarray[i] = array[i * 2]; // 'Hello' -> 'H' 'l' 'o'
-            System.out.println(String.format("1. %04x", returnarray[i]));
+            returnarray[i] = array[i * 2] << 8;
             if (i * 2 + 1 < array.length) {
-                returnarray[i] = returnarray[i] | ( (array[i * 2 + 1] << 8)); // 'e', 'l', 0x00
-                System.out.println(String.format("2. %04x", returnarray[i]));
+                returnarray[i] = returnarray[i] | (array[i * 2 + 1]);
             }
         }
 
@@ -94,8 +92,6 @@ public class ConversionHelper {
         Arrays.stream(returnarray).forEach(iVal ->
                 sb.append(String.format(" %08x", iVal))
         );
-
-        System.out.println("REGs: " + sb);
         return returnarray;
     }
 

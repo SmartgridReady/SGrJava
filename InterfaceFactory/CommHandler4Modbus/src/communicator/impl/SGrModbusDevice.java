@@ -574,12 +574,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		 // TODO: apply gregorian calendar library
 		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
 		// TODO: apply dGenType
-		 }
-		 else if( dGenType.getString()!=null) {
-			    // String sValue= ModbusHlpr.ConvRegistersToString(mbregresp, 0, size*2);
-				String sValue = ConversionHelper.byteBufFromRegisters(mbregresp).asCharBuffer().toString();
-			    retVal.setString(sValue);
-		 }
+		}
+		else if( dGenType.getString()!=null) {
+			    retVal.setString(ConversionHelper.convRegistersToString(mbregresp, 0, size*2));
+		}
 		else
 		{ // error handling for missing instance
 		}		
@@ -801,7 +799,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			// TODO: apply dGenType
 		} else if (dGenType.getString() != null) {
 			// TODO:parameter conversion
-			sValue = String.format("TODO:parameter conversion");
 			dGenType.setString(sValue);
 		} else { // error handling
 		}
@@ -1079,10 +1076,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			}
 		} else if (dMBType.getString() != null) {
 			if (bRegisterCMDs) {
-				String strVal = sgrValue.getString();
-				size = strVal.length();
-				for (int i = 1; i < size; i++)
-					mbregsnd[i] = (int) strVal.charAt(i);
+				mbregsnd = ConversionHelper.convStringToRegisters(sgrValue.getString());
 			}
 
 		} else if (dMBType.getDateTime() != null) {

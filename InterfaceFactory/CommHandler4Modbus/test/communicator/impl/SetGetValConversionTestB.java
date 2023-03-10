@@ -44,14 +44,18 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64;
+import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U;
+import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U;
+import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -156,7 +160,7 @@ public class SetGetValConversionTestB {
     static {
         // TODO V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U,
         NUMBER_FORMATS.put(
-                V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16,
+                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16,
                 ValueProvider.of(Short.valueOf((short) 0), () -> java.lang.String.valueOf(RANDOM.nextInt(Short.MAX_VALUE))));
 
         NUMBER_FORMATS.put(
@@ -364,6 +368,45 @@ public class SetGetValConversionTestB {
         assertEquals(fixture.getReadValue(), res.trim());
     }
 
+    @Test
+    void testConvertString() throws Exception{
+
+        Fixture<String, String>fixture =
+                new Fixture<>("Hello@SGr", "Hello@SGr", new int[]{0x4865, 0x6C6C, 0x6F40,0x5347, 0x7200},
+                        deviceFrame(true, TEnumConversionFct.BIG_ENDIAN,
+                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING, "",
+                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING, ""));
+
+        when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(fixture.expectedModbusValue);
+
+        SGrModbusDevice modbusDevice = new SGrModbusDevice(
+                fixture.getModbusDeviceFrame(),           // model
+                genDriverAPI4Modbus);                     // mock
+
+        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", fixture.getWriteValue());
+        verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
+        verify(genDriverAPI4Modbus, atLeast(0)).WriteSingleRegister(anyInt(), intCaptor.capture());
+        LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayCaptor.getValue());
+        LOG.info("Modbus write single   register : {}", intCaptor.getAllValues().isEmpty() ? "-" : intCaptor.getValue());
+
+        if (!intArrayCaptor.getAllValues().isEmpty()) {
+            int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, fixture.getExpectedModbusValue().length);
+            modbusreg = adjustSign(modbusreg);
+            LOG.info("Modbus read registers: {}", modbusreg);
+            //assertArrayEquals(fixture.getExpectedModbusValue(), modbusreg);
+            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
+        } else if (!intCaptor.getAllValues().isEmpty()){
+            int val = adjustSign(intCaptor.getValue());
+            LOG.info("Modbus read single register: {}", val);
+            assertEquals(fixture.getExpectedModbusValue()[0], val);
+            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(new int[]{val});
+        }
+
+        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
+        LOG.info("Modbus read value: {}", res);
+        assertEquals(fixture.getReadValue(), res.trim());
+    }
+
     private static SGrModbusDeviceFrame deviceFrame(boolean firstRegOne,
                                                     TEnumConversionFct conversionFct,
                                                     int genericType, Object genericValue,
@@ -446,11 +489,13 @@ public class SetGetValConversionTestB {
                 || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64 )
         {
             return 4;
-        } else if (   modbusType == V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8
-                   || modbusType == V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U
-                   || modbusType == V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16
+        } else if (   modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8
+                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U
+                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16
                    || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U) {
             return 1;
+        } else if ( modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING) {
+            return 5;
         }
         return 2;
     }
@@ -493,5 +538,4 @@ public class SetGetValConversionTestB {
 
         assertEquals(ByteBuffer.wrap(regNegExpect).getInt(),  adjustSign(ByteBuffer.wrap(regNeg).getInt()));
     }
-
 }
