@@ -70,7 +70,7 @@ public class IBTlabLoopTester {
 	private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     
 	// Exception Counters
-	private static int devABBMeterExcpetions = 0;
+	private static int devABBMeterExceptions = 0;
 	private static int devVGT_SGCPExceptions = 0;
 	private static int devGaroWallboxExceptions = 0;
 	private static int devFroniusSymoExceptions = 0;
@@ -80,15 +80,15 @@ public class IBTlabLoopTester {
 	private static int devOMCCIWallboxExceptions = 0;
 	
 	// device selection
-	private static boolean  devABBMeterTestIsOn = false; 
-	private static boolean  devVGT_SGCPTestIsOn = false; 
+	private static boolean  devABBMeterTestIsOn = true; 
+	private static boolean  devVGT_SGCPTestIsOn = true; 
 	private static boolean  devFroniusSymoTestIsOn = true; 
-	private static boolean  devGaroWallboxTestIsOn = false; 
+	private static boolean  devGaroWallboxTestIsOn = true; 
 	// TestBox
-	private static boolean  devWagoMeterTestIsOn = false; 
-	private static boolean  devOMCCIWallboxTestIsOn = false; 
+	private static boolean  devWagoMeterTestIsOn = true; 
+	private static boolean  devOMCCIWallboxTestIsOn = true; 
 	// !! Schalter in Box umlegen für Test !!
-	private static boolean  devTB_ABBMeterTestIsOn = false; 
+	private static boolean  devTB_ABBMeterTestIsOn = true; 
 	
 	// shell for enumerations
 	private static SGrEnumListType oEnumList = null;
@@ -144,7 +144,7 @@ public class IBTlabLoopTester {
 				   // loop data & test reporting
 			        LOG.info(" " + dtf.format(LocalDateTime.now()));			        
 					LOG.info("  ------> LOOP=" +	runtimeCnt + "  Exceptions:");		
-					if (devABBMeterTestIsOn)    LOG.info(" ABBMeter=" +  devABBMeterExcpetions+ ",");
+					if (devABBMeterTestIsOn)    LOG.info(" ABBMeter=" +  devABBMeterExceptions+ ",");
 					if (devVGT_SGCPTestIsOn)    LOG.info(" VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
 				    if (devGaroWallboxTestIsOn) LOG.info(" GaroWallbox=" + devGaroWallboxExceptions+ ",");
 					if (devFroniusSymoTestIsOn) LOG.info(" FroniusSymo=" + devFroniusSymoExceptions + ",");
@@ -394,7 +394,7 @@ public class IBTlabLoopTester {
 				}
 				catch ( Exception e)
 				{
-					devABBMeterExcpetions++;
+					devABBMeterExceptions++;
 					LOG.info( "Error reading value from device devABBMeter:" +  e);
 					e.printStackTrace();
 				}
