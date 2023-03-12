@@ -484,9 +484,63 @@ public class HeatPumpTester {
 						//Thread.sleep(10);   
 
 
-						// Add test getters and setters for String interfaces
-						//sVal1=devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
-						//Thread.sleep(10);
+						// test setters 
+						/*
+						gdtValue.setFLOAT32(fValStpt+(float)10.0);
+						// read only ! sgrHeatPumpCTA.setValByGDPType("BufferStorageCtrl", "HeatBufferTempStptOffset",gdtValue);
+						//gdtValue.setFLOAT32(fValStpt+(float)20.0);8
+						//sgrHeatPumpCTA.setValByGDPType("BufferStorageCtrl", "CoolBufferTempStptOffset",gdtValue);
+						//gdtValue.setFLOAT32(fValStpt*(float)10.0);
+						// read only ! sgrHeatPumpCTA.setValByGDPType("CompressorPwrCtrl", "SpeedCtrlSetpt",gdtValue);
+
+			            // testing getters
+						iVal1 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "HPOpModeCmd").getINT16();
+						lVal2 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "HPOpState").getINT32().longValue();
+						iVal3 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "ErrorNrSGr").getINT16();
+						fVal1 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFLOAT32();
+						fVal2 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "FlowWaterTemp").getFLOAT32();	
+						fVal3 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "BackFlowWaterTemp").getFLOAT32();	
+						System.out.printf("  HeatPumpBase: HPOpModeCmd, HPOpState, ErrorNrSGr, OutsideAir, FlowWaterTemp, BackFlowWaterTemp : " + iVal1 + ",  " + lVal2 + ",  " + iVal3 + ",  " + fVal1 +" °C,  " + fVal2 + "°C  ," + fVal3 +  "°C %n");     
+						
+						
+						lVal1 = sgrHeatPumpCTA.getValByGDPType("DomHotWaterCtrl", "DomHotWOpMode").getINT32U();
+						fVal1 = sgrHeatPumpCTA.getValByGDPType("DomHotWaterCtrl", "ActDomHotWaterTemp").getFLOAT32();
+						fVal2 = sgrHeatPumpCTA.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt").getFLOAT32();
+						System.out.printf("  DomHotWaterCtrl DomHotWOpMode ActDomHotWaterTemp DomHotWTempStpt  : "+lVal1 + ", "  + fVal1 + " °C,  " + fVal2 + " °C %n");  
+						
+
+						fVal1 = sgrHeatPumpCTA.getValByGDPType("CompressorPwrCtrl", "ActSpeed").getFLOAT32();
+						fVal2 = sgrHeatPumpCTA.getValByGDPType("CompressorPwrCtrl", "ActPowerACtot").getFLOAT32();
+						fVal3 = sgrHeatPumpCTA.getValByGDPType("CompressorPwrCtrl","SpeedCtrlSetpt").getFLOAT32();
+						System.out.printf("  CompressorPwrCtrl  ActSpeed ActPowerACtot SpeedCtrlSetpt : "  + fVal1 + " %% rpm,  " + fVal2 + " %% kW,  " + fVal3 + " %% rpm %n");  
+						
+
+						fVal1 = sgrHeatPumpCTA.getValByGDPType("BufferStorageCtrl", "HeatWTempStptOffset").getFLOAT32();
+						fVal2 = sgrHeatPumpCTA.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempUpper").getFLOAT32();
+						fVal3 = sgrHeatPumpCTA.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempLower").getFLOAT32();
+						System.out.printf("  BufferStorageCtrl : " + fVal1 + " °C,  " + fVal2 + " °C,  " + fVal3  + " °C %n");  
+						
+						
+						iVal1 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "HeatCoolCtrlOpModeCmd").getINT16();
+						iVal2 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "HeatCoolOpState").getINT16();
+						System.out.printf("  HeatCoolCtrl HeatCoolCtrlOpModeCmd,  HeatCoolOpState: " + iVal1 + " ,  " + iVal2 + " %n");   
+
+						fVal1 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "FlowWaterTempStpt").getFLOAT32();
+						fVal2 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "FlowWaterTemp").getFLOAT32();
+						// not yet supported fVal4 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "BackFlowWaterTemp").getFLOAT32();
+						System.out.printf("  HeatCoolCtrl FlowWaterTempStpt,  FlowWaterTemp  : " + fVal1 + " °C,  " + fVal2 + " °C %n");  			
+
+						fVal1 = sgrHeatPumpCTA.getValByGDPType("RoomTempCtrl", "RoomZoneTempSetpt").getFLOAT32();
+						fVal2 = sgrHeatPumpCTA.getValByGDPType("RoomTempCtrl", "RoomZoneTemp").getFLOAT32();			
+						System.out.printf("  RoomZoneTemp Stpt, Val   :  " + fVal1 + " °C,  " + fVal2 + "  °C %n");       
+						
+						
+						//fVal1 = sgrHeatPumpCTA.getValByGDPType("Monitoring", "ThermalEnergyHeat").getFLOAT32();
+						//fVal2 = sgrHeatPumpCTA.getValByGDPType("Monitoring", "ThermalEnergyCool").getFLOAT32();
+						//fVal3 = sgrHeatPumpCTA.getValByGDPType("Monitoring", "RuntimeCompressor").getFLOAT32();
+						//long lVal = sgrHeatPumpCTA.getValByGDPType("Monitoring", "NrOfStartupsCompressor").getINT32U();
+						//System.out.printf("  Monitoring ThermalEnergyHeat, ThermalEnergyCool, RuntimeCompressor, NrOfStartupsCompressor  : " + fVal1 + " kWh,  " + fVal2 + " kWh,  " + fVal3 + " h,  " + lVal+"  times%n");  
+						*/
 						
 					}
 					catch ( Exception e)
