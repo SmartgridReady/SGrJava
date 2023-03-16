@@ -1769,8 +1769,8 @@
       <details key="name" value="SGrDataPointDescriptionType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="basicDataType" eType="#//SGrBasicGenDataPointTypeType"
-        containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="basicDataType" lowerBound="1"
+        eType="#//SGrBasicGenDataPointTypeType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="basicDataType"/>
@@ -2176,7 +2176,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGReadyStateLv2Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="E0005 SG-Ready states according the German heatpump&#xA;&#x9;&#x9;&#x9;&#x9;association bwp normal, intensivied, EVU_LOCK, forced&#xA;&#x9;&#x9;&#x9;&#x9;https://www.waermepumpe.de/normen-technik/sg-ready/&#xA;&#x9;&#x9;&#x9;"/>
+      <details key="documentation" value="E0005 SG-Ready states according the German heatpump&#xA;&#x9;&#x9;&#x9;&#x9;association bwp normal, intensified, EVU_LOCK, forced&#xA;&#x9;&#x9;&#x9;&#x9;https://www.waermepumpe.de/normen-technik/sg-ready/&#xA;&#x9;&#x9;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGReadyStateLv2Type"/>
@@ -2186,7 +2186,7 @@
         <details key="documentation" value="Normal operation, optimized according to customer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;requirements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="HPINTENSIVIED" value="1" literal="HP_INTENSIVIED">
+    <eLiterals name="HPINTENSIFIED" value="1" literal="HP_INTENSIFIED">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Increased operation"/>
       </eAnnotations>
@@ -2968,8 +2968,8 @@
       <details key="name" value="SGrModbusDataPointDescriptionType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modbusDataType" eType="#//SGrBasicGenDataPointTypeType"
-        containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modbusDataType" lowerBound="1"
+        eType="#//SGrBasicGenDataPointTypeType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="modbusDataType"/>

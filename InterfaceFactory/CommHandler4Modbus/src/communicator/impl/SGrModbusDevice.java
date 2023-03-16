@@ -334,10 +334,13 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		{ // there are Modbus attributes available
 			
 			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
-			} else {
+			} else 
+			{  if (aDataPoint.getModbusAttr().get(0).getScalingByMulPwr()!=null)
+			  {
 				SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0).getScalingByMulPwr();
 				mul = attrScaling.getMultiplicator();
 				pwof10 = attrScaling.getPowerof10();
+			  }
 			}
 			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
 		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
@@ -614,8 +617,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		mbregconv[0] = 0;
 		
 		//switch(aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0).getLayer6Deviation().getLiteral()  )
-		switch (mBlayer6Scheme)
-    	{
+ 
+		  switch (mBlayer6Scheme)
+          {
     		case SGrModbusLayer6DeviationType._2REG_BASE1000_H2L_VALUE:
     			if (size == 2)
     			{
@@ -625,19 +629,50 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
     				mbregconv[0] =  (int) ((lv>>16) & 0xffff);	
     				mbregresp = mbregconv;
     			}
-    			break;
-    		case SGrModbusLayer6DeviationType._2REG_BASE1000_L2H_VALUE:
-    			if (size == 2)
-    			{
-    				lv =  ((long) mbregresp[1]) *1000;
-    				lv = lv + (long) mbregresp[0];
-    				mbregconv[1] =  (int) (lv & 0xffff);	
-    				mbregconv[0] =  (int) ((lv>>16) & 0xffff);	
-    				mbregresp = mbregconv;
-    			}
-    			break;
-    	}
-	  
+    		break;
+	    	case SGrModbusLayer6DeviationType._2REG_BASE1000_L2H_VALUE:
+				switch (mbregresp[0])
+				{
+					case 0:
+						mbregresp[0] = 0 ;
+						mbregresp[1] = 0;
+					break;
+					case 1:
+						mbregresp[0] = 0 ;
+						mbregresp[1] = 1;
+					break;
+					case 2:
+						mbregresp[0] = 1 ;
+						mbregresp[1] = 0;
+					break;
+					case 3:
+						mbregresp[0] = 1 ;
+						mbregresp[1] = 1;
+					break;
+				}
+			break;
+    		case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOL2H_VALUE:
+				switch (mbregresp[0])
+				{
+					case 0:
+						mbregresp[1] = 0 ;
+						mbregresp[0] = 0;
+					break;
+					case 1:
+						mbregresp[1] = 0 ;
+						mbregresp[0] = 1;
+					break;
+					case 2:
+						mbregresp[1] = 1 ;
+						mbregresp[0] = 0;
+					break;
+					case 3:
+						mbregresp[1] = 1 ;
+						mbregresp[0] = 1;
+					break;
+				}
+			break;
+		}  
 		return mbregresp;
 	}
 
@@ -826,7 +861,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		int res = 0, size = 0;
 		boolean[] mbbitsnd = new boolean[64];
 		boolean bRegisterCMDs = false, bDiscreteCMDs = false;
-		int mul = 1;
+		int mul = 1, l6dev = -1;
 		int powof10 = 0;
 		float fVal = (float) 0.0;
 		double dVal = 0.0;
@@ -847,12 +882,16 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		// datapoints & Modbus based datapoints
 		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available
 			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
-			} else {
-				SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0)
-						.getScalingByMulPwr();
+			} else
+			{  if (aDataPoint.getModbusAttr().get(0).getScalingByMulPwr()!=null)
+			  {
+				SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0).getScalingByMulPwr();
 				mul = attrScaling.getMultiplicator();
 				powof10 = attrScaling.getPowerof10();
+			  }
 			}
+			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
+		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
 		}
 
 		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();

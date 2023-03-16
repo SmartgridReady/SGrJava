@@ -1205,7 +1205,7 @@ public interface V0Package extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @orderedfffffff
+	 * @ordered
 	 */
 	int SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U = 6;
 

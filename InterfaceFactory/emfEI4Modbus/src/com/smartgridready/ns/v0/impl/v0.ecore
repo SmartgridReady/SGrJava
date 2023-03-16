@@ -1335,8 +1335,8 @@
       <details key="name" value="SGrDataPointDescriptionType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="basicDataType" eType="#//SGrBasicGenDataPointTypeType"
-        containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="basicDataType" lowerBound="1"
+        eType="#//SGrBasicGenDataPointTypeType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="basicDataType"/>
@@ -1666,7 +1666,7 @@
       <details key="name" value="SGReadyStateLv2Type"/>
     </eAnnotations>
     <eLiterals name="HPNORMAL" literal="HP_NORMAL"/>
-    <eLiterals name="HPINTENSIVIED" value="1" literal="HP_INTENSIVIED"/>
+    <eLiterals name="HPINTENSIFIED" value="1" literal="HP_INTENSIFIED"/>
     <eLiterals name="HPLOCKED" value="2" literal="HP_LOCKED"/>
     <eLiterals name="HPFORCED" value="3" literal="HP_FORCED"/>
   </eClassifiers>
@@ -2226,8 +2226,8 @@
       <details key="name" value="SGrModbusDataPointDescriptionType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modbusDataType" eType="#//SGrBasicGenDataPointTypeType"
-        containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modbusDataType" lowerBound="1"
+        eType="#//SGrBasicGenDataPointTypeType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="modbusDataType"/>

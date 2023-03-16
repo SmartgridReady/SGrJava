@@ -46,7 +46,7 @@ import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
 
 public class HeatPumpTester {
 
-	private static final Logger LOG = LoggerFactory.getLogger(IBTlabLoopTester.class);
+	private static final Logger LOG = LoggerFactory.getLogger(HeatPumpTester.class);
 	
 	
 	private static final String XML_BASE_DIR="../../../SGrSpecifications/XMLInstances/ExtInterfaces/"; 
@@ -77,8 +77,9 @@ public class HeatPumpTester {
 	private static int devCTA_Exceptions=0;
 	// device selection
 	private static boolean  devRTU_IOPIsOn=false; 
-	private static boolean  devTCP_IOPIsOn=false; 
+	private static boolean  devTCP_IOPIsOn=true; 
 	private static boolean  devStiebelISGIsOn=true; 
+	private static boolean  devCTAoptiHeatIsOn=false; 
 	
 	// shell for enumerations
 	private static SGrEnumListType oEnumList = null;
@@ -104,14 +105,15 @@ public class HeatPumpTester {
 			// **************************   Start device Testing   **********************************						
    			
 			try {
-				  				   
+				SGrEnumListType oEnumList=V0Factory.eINSTANCE.createSGrEnumListType();
+				
 				for (runtimeCnt=0;runtimeCnt<30000;runtimeCnt++)
 				{
 					
 				   // loop data & test reporting
 				   Thread.sleep(5000);  // show last block for ccc  milliseconds
 					
-					 LOG.info("%n------> LOOP=" +	runtimeCnt + "  Exceptions:");		
+					 LOG.info("------> LOOP=" +	runtimeCnt + "  Exceptions:");		
 					if (devStiebelISGIsOn)    LOG.info(" StiebelISG=" + devStiebel_ISGExcpetions + ",");
 					 LOG.info(" <------");
 
@@ -200,12 +202,12 @@ public class HeatPumpTester {
 		gdtValue.setFloat32(fValStpt+(float)40.0);
 		//sgrHeatPumpHovalDev.setValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt",gdtValue);
 		gdtValue.setFloat32(fValStpt+(float)50.0);  
-		// Adresse FlowWaterTempStptOffset Stufe Modbus falsch  (Wie FlowWaterTempStpt) 
-		//sgrHeatPumpHovalDev.setValByGDPType("HeatCoolCtrl_1", "FlowWaterTempStpt",gdtValue);
+		// Adresse SupplyWaterTempStptOffset Stufe Modbus falsch  (Wie SupplyWaterTempStpt) 
+		//sgrHeatPumpHovalDev.setValByGDPType("HeatCoolCtrl_1", "SupplyWaterTempStpt",gdtValue);
 		gdtValue.setFloat32(fValStpt+(float)60.0);
-		//sgrHeatPumpHovalDev.setValByGDPType("HeatCoolCtrl_2", "FlowWaterTempStpt",gdtValue);
+		//sgrHeatPumpHovalDev.setValByGDPType("HeatCoolCtrl_2", "SupplyWaterTempStpt",gdtValue);
 		gdtValue.setFloat32(fValStpt+(float)70.0);
-		//sgrHeatPumpHovalDev.setValByGDPType("HeatCoolCtrl_3", "FlowWaterTempStpt",gdtValue);
+		//sgrHeatPumpHovalDev.setValByGDPType("HeatCoolCtrl_3", "SupplyWaterTempStpt",gdtValue);
 		
 		gdtValue.setFloat32(fValStpt*(float)10.0);
 		//sgrHeatPumpHovalDev.setValByGDPType("CompressorPwrCtrl", "SpeedCtrlSetpt",gdtValue);
@@ -216,11 +218,11 @@ public class HeatPumpTester {
 		iVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "HPOpState").getInt16();               
 		iVal3=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "ErrorNrSGr").getInt16();
 		fVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFloat32();
-		fVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "FlowWaterTempStpt").getFloat32();
-		fVal3=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "FlowWaterTempStptFb").getFloat32();					
-		fVal4=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "FlowWaterTemp").getFloat32();	
-		fVal5=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "BackFlowWaterTemp").getFloat32();	
-		 LOG.info("  HeatPumpBase:      HPOpModeCmd=" + iVal1 + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + iVal3 + ",  OutsideAir=" + fVal1 +" °C,  FlowWaterTempStp(Handbetrieb Heizen,4)=" + fVal2 +" °C,  FlowWaterTempStpFb=" + fVal3 + "°C, FlowWaterTemp=" + fVal4 +  "°C,  BackFlowWaterTemp=" + fVal5 +  " °C %n");     
+		fVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "SupplyWaterTempStpt").getFloat32();
+		fVal3=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "SupplyWaterTempStptFb").getFloat32();					
+		fVal4=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "SupplyWaterTemp").getFloat32();	
+		fVal5=sgrHeatPumpHovalDev.getValByGDPType("HeatPumpBase", "ReturnSupplyWaterTemp").getFloat32();	
+		 LOG.info("  HeatPumpBase:      HPOpModeCmd=" + iVal1 + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + iVal3 + ",  OutsideAir=" + fVal1 +" °C,  SupplyWaterTempStp(Handbetrieb Heizen,4)=" + fVal2 +" °C,  SupplyWaterTempStpFb=" + fVal3 + "°C, SupplyWaterTemp=" + fVal4 +  "°C,  ReturnSupplyWaterTemp=" + fVal5 +  " °C ");     
 		 
 		
 		iVal1=sgrHeatPumpHovalDev.getValByGDPType("DomHotWaterCtrl", "DomHotWOpMode").getInt16();
@@ -228,11 +230,11 @@ public class HeatPumpTester {
 		fVal1=sgrHeatPumpHovalDev.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt").getFloat32();
 		fVal2=sgrHeatPumpHovalDev.getValByGDPType("DomHotWaterCtrl", "ActDomHotWaterTemp").getFloat32();
 		fVal3=sgrHeatPumpHovalDev.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptFb").getFloat32();
-		 LOG.info("  DomHotWaterCtrl:  DomHotWOpMode=" + iVal1 + ",  DomHotWState=" +  iVal2 + ",  DomHotWTempStpt (Kontstant,4)=" + fVal1 + " °C,   ActDomHotWaterTemp=" + fVal2 + " °C,  DomHotWTempStptFb=" + fVal3 + " °C %n");  
+		 LOG.info("  DomHotWaterCtrl:  DomHotWOpMode=" + iVal1 + ",  DomHotWState=" +  iVal2 + ",  DomHotWTempStpt (Kontstant,4)=" + fVal1 + " °C,   ActDomHotWaterTemp=" + fVal2 + " °C,  DomHotWTempStptFb=" + fVal3 + " °C ");  
 		 
 
 		fVal1=sgrHeatPumpHovalDev.getValByGDPType("CompressorPwrCtrl", "ActSpeed").getFloat32();
-		 LOG.info("  CompressorPwrCtrl: ActSpeed="  + fVal1 + "%%  %n");  
+		 LOG.info("  CompressorPwrCtrl: ActSpeed="  + fVal1");  
 		 
 		
 
@@ -242,38 +244,38 @@ public class HeatPumpTester {
 		fVal3=sgrHeatPumpHovalDev.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempLower").getFloat32();
 		fVal4=sgrHeatPumpHovalDev.getValByGDPType("BufferStorageCtrl", "ActCoolBufferTempUpper").getFloat32();
 		fVal5=sgrHeatPumpHovalDev.getValByGDPType("BufferStorageCtrl", "ActCoolBufferTempLower").getFloat32();
-		 LOG.info("  BufferStorageCtrl: ActBufferWaterTempStpFb=" + fVal1 + ",  BufferState="+ iVal1 + ",  ActHeatBufferTempUpper="  + fVal2 +  " °C,  ActHeatBufferTempLower=" + fVal3 + " °C,  ActCoolBufferTempUpper=" + fVal4 + " °C,  ActCoolBufferTempLower=" + fVal5 + " °C %n%n");  
+		 LOG.info("  BufferStorageCtrl: ActBufferWaterTempStpFb=" + fVal1 + ",  BufferState="+ iVal1 + ",  ActHeatBufferTempUpper="  + fVal2 +  " °C,  ActHeatBufferTempLower=" + fVal3 + " °C,  ActCoolBufferTempUpper=" + fVal4 + " °C,  ActCoolBufferTempLower=" + fVal5 + " °C ");  
 		
 		
 		iVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_1", "HeatCoolCtrlOpModeCmd").getInt16();
 		iVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_1", "HeatCoolOpState").getInt16(); 				
-		fVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_1", "FlowWaterTemp").getFloat32();
-		fVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_1", "FlowWaterTempStpt").getFloat32();
-		fVal3=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl", "BackFlowWaterTemp").getFloat32();
-		 LOG.info("  HeatCoolCtrl_1:    HeatCoolCtrlOpModeCmd=" + iVal1 +" ,  HeatCoolOpState: "  + iVal2 + " FlowWaterTemp=" + fVal1 + " °C,  FlowWaterTempStpt=" + fVal2 + " °C,  BackFlowWaterTemp=" + fVal3 + " °C %n");  
+		fVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_1", "SupplyWaterTemp").getFloat32();
+		fVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_1", "SupplyWaterTempStpt").getFloat32();
+		fVal3=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat32();
+		 LOG.info("  HeatCoolCtrl_1:    HeatCoolCtrlOpModeCmd=" + iVal1 +" ,  HeatCoolOpState: "  + iVal2 + " SupplyWaterTemp=" + fVal1 + " °C,  SupplyWaterTempStpt=" + fVal2 + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C ");  
 
 		 
 		iVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_2", "HeatCoolCtrlOpModeCmd").getInt16();
 		iVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_2", "HeatCoolOpState").getInt16();
-		fVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_2", "FlowWaterTemp").getFloat32();
-		fVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_2", "FlowWaterTempStpt").getFloat32();
-		fVal3=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl", "BackFlowWaterTemp").getFloat32();
-		 LOG.info("  HeatCoolCtrl_2:    HeatCoolCtrlOpModeCmd=" + iVal1 +" ,  HeatCoolOpState: "  + iVal2 + " FlowWaterTemp=" + fVal1 + " °C,  FlowWaterTempStpt=" + fVal2 + " °C,  BackFlowWaterTemp=" + fVal3 + " °C %n");  
+		fVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTemp").getFloat32();
+		fVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTempStpt").getFloat32();
+		fVal3=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat32();
+		 LOG.info("  HeatCoolCtrl_2:    HeatCoolCtrlOpModeCmd=" + iVal1 +" ,  HeatCoolOpState: "  + iVal2 + " SupplyWaterTemp=" + fVal1 + " °C,  SupplyWaterTempStpt=" + fVal2 + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C ");  
 
 		 
 		iVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_3", "HeatCoolCtrlOpModeCmd").getInt16();
 		iVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_3", "HeatCoolOpState").getInt16();
-		fVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_3", "FlowWaterTemp").getFloat32();
-		fVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_3", "FlowWaterTempStpt").getFloat32();
-		fVal3=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl", "BackFlowWaterTemp").getFloat32();
-		 LOG.info("  HeatCoolCtrl_3:    HeatCoolCtrlOpModeCmd=" + iVal1 +" ,  HeatCoolOpState: "  + iVal2 + " FlowWaterTemp=" + fVal1 + " °C,  FlowWaterTempStpt=" + fVal2 + " °C,  BackFlowWaterTemp=" + fVal3 + " °C %n");  
+		fVal1=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_3", "SupplyWaterTemp").getFloat32();
+		fVal2=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl_3", "SupplyWaterTempStpt").getFloat32();
+		fVal3=sgrHeatPumpHovalDev.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat32();
+		 LOG.info("  HeatCoolCtrl_3:    HeatCoolCtrlOpModeCmd=" + iVal1 +" ,  HeatCoolOpState: "  + iVal2 + " SupplyWaterTemp=" + fVal1 + " °C,  SupplyWaterTempStpt=" + fVal2 + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C ");  
 		 
 		
 		fVal1=sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat").getFloat32();
 		fVal2=sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitor", "ThermalEnergyCool").getFloat32();
 		fVal3=sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitor", "RuntimeCompressor").getFloat32();
 		long lVal=sgrHeatPumpHovalDev.getValByGDPType("EnergyMonitor", "NrOfStartupsCompressor").getInt32U();
-		 LOG.info("  EnergyMonitor ThermalEnergyHeat, ThermalEnergyCool, RuntimeCompressor, NrOfStartupsCompressor  : " + fVal1 + " kWh,  " + fVal2 + " kWh,  " + fVal3 + " h,  " + lVal+"  times%n");  
+		 LOG.info("  EnergyMonitor ThermalEnergyHeat, ThermalEnergyCool, RuntimeCompressor, NrOfStartupsCompressor  : " + fVal1 + " kWh,  " + fVal2 + " kWh,  " + fVal3 + " h,  " + lVal+"  times");  
 		  
 		
 */			
@@ -328,7 +330,7 @@ public class HeatPumpTester {
 				SGrBasicGenDataPointTypeType  hpval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 				hpval.setEnum(oEnumList);
 				
-				// control operation Mode of Heat Pump
+// control operation Mode of Heat Pump
 				hpval.setBoolean(false);  
 				devStiebelISG.setValByGDPType("HeatPumpBase", "HPOpModeCmd", hpval);	
 				
@@ -350,15 +352,15 @@ public class HeatPumpTester {
 				 */		
 					
 				}
-				// testing getters
-				oEnumList.setSgrHPOpMode(devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpModeCmd").getEnum().getSgrHPOpMode());
+				// testing 
+				oEnumList= devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpModeCmd").getEnum();
 				iVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpState").getInt16U();            
 				bVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "ErrorNrSGr").isBoolean();
 				fVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFloat32();			
-				fVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "FlowWaterTemp").getFloat32();
-				fVal3=devStiebelISG.getValByGDPType("HeatPumpBase", "BackFlowWaterTemp").getFloat32();
+				fVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "SupplyWaterTemp").getFloat32();
+				fVal3=devStiebelISG.getValByGDPType("HeatPumpBase", "ReturnSupplyWaterTemp").getFloat32();
 				fVal4=devStiebelISG.getValByGDPType("HeatPumpBase", "SourceTemp").getFloat32();		
-				 LOG.info("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, FlowWaterTemp=" + fVal2 +  "°C,  BackFlowWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C %n");     	
+				 LOG.info("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, SupplyWaterTemp=" + fVal2 +  "°C,  ReturnSupplyWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C ");     	
 				if (iVal2 != 0)  
 				{
 					 LOG.info("    HPOpState bits set: "); 
@@ -373,7 +375,7 @@ public class HeatPumpTester {
 					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.MINONEIWSINDEFROSTMODE_VALUE))) != 0)  LOG.info("DEFROSTING, ");
 					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.SILENTMODE1ACTIVE_VALUE))) != 0)  LOG.info("Silent 1 Mode, ");
 					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.SILENTMODE2ACTIVE_VALUE))) != 0)  LOG.info("Silent 2 Mode (HP is off) ");
-					 LOG.info("%n");
+					 LOG.info("");
 				}
 				
 				bVal1 = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled").isBoolean();
@@ -387,41 +389,41 @@ public class HeatPumpTester {
 				fVal2=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptEco").getFloat32();							
 				fVal3=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptFb").getFloat32();
 				fVal4=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "ActDomHotWaterTemp").getFloat32();
-				 LOG.info("  DomHotWaterCtrl:  DomHotWTempStptComf=" + fVal1 + " °C,  DomHotWTempStptEco=" + + fVal2 + " °C,  DomHotWTempStptFb=" + fVal3 + " °C,  ActDomHotWaterTemp=" + fVal4 + " °C %n");  
+				 LOG.info("  DomHotWaterCtrl:  DomHotWTempStptComf=" + fVal1 + " °C,  DomHotWTempStptEco=" + + fVal2 + " °C,  DomHotWTempStptFb=" + fVal3 + " °C,  ActDomHotWaterTemp=" + fVal4 + " °C ");  
 
 				fVal1=devStiebelISG.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempStpFb").getFloat32();
 				fVal2=devStiebelISG.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTemp").getFloat32();
-				 LOG.info("  BufferStorageCtrl: ActBufferWaterTempStpFb=" + fVal1 + " °C,    ActHeatBufferTemp="  + fVal2 +  " °C%n");  
+				 LOG.info("  BufferStorageCtrl: ActBufferWaterTempStpFb=" + fVal1 + " °C,    ActHeatBufferTemp="  + fVal2 +  " °C");  
 				
-				fVal1=devStiebelISG.getValByGDPType("HeatCoolCtrl_1", "FlowWaterTempStptComf").getFloat32();	
-				fVal2=devStiebelISG.getValByGDPType("HeatCoolCtrl_1", "FlowWaterTempStptEco").getFloat32();	
-				fVal3=devStiebelISG.getValByGDPType("HeatCoolCtrl_1", "FlowWaterTempStptFb").getFloat32();			
-				fVal4=devStiebelISG.getValByGDPType("HeatCoolCtrl_1", "FlowWaterTemp").getFloat32();
-				 LOG.info("  HeatCoolCtrl_1:    FlowWaterTempStptComf=" + fVal1 + " °C,  FlowWaterTempStptEco=" + fVal2 +  " °C,  FlowWaterTempStptFb=" + fVal3 + " °C,  FlowWaterTemp=" + fVal4 + " °C %n");  
+				fVal1=devStiebelISG.getValByGDPType("HeatCoolCtrl_1", "SupplyWaterTempStptComf").getFloat32();	
+				fVal2=devStiebelISG.getValByGDPType("HeatCoolCtrl_1", "SupplyWaterTempStptEco").getFloat32();	
+				fVal3=devStiebelISG.getValByGDPType("HeatCoolCtrl_1", "SupplyWaterTempStptFb").getFloat32();			
+				fVal4=devStiebelISG.getValByGDPType("HeatCoolCtrl_1", "SupplyWaterTemp").getFloat32();
+				 LOG.info("  HeatCoolCtrl_1:    SupplyWaterTempStptComf=" + fVal1 + " °C,  SupplyWaterTempStptEco=" + fVal2 +  " °C,  SupplyWaterTempStptFb=" + fVal3 + " °C,  SupplyWaterTemp=" + fVal4 + " °C ");  
 			
-				fVal1=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "FlowWaterTempStptComf").getFloat32();	
-				fVal2=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "FlowWaterTempStptEco").getFloat32();	
-				fVal3=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "FlowWaterTempStptFb").getFloat32();			
-				fVal4=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "FlowWaterTemp").getFloat32();
-				 LOG.info("  HeatCoolCtrl_2:    FlowWaterTempStptComf=" + fVal1 + " °C,  FlowWaterTempStptEco=" + fVal2 +  " °C,  FlowWaterTempStptFb=" + fVal3 + " °C,  FlowWaterTemp=" + fVal4 + " °C %n");  
- 
-				oEnumList.setSgreadyStateLv2(devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyState").getEnum().getSgreadyStateLv2());
+				fVal1=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTempStptComf").getFloat32();	
+				fVal2=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTempStptEco").getFloat32();	
+				fVal3=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTempStptFb").getFloat32();			
+				fVal4=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTemp").getFloat32();
+				 LOG.info("  HeatCoolCtrl_2:    SupplyWaterTempStptComf=" + fVal1 + " °C,  SupplyWaterTempStptEco=" + fVal2 +  " °C,  SupplyWaterTempStptFb=" + fVal3 + " °C,  SupplyWaterTemp=" + fVal4 + " °C ");  
+                
+				oEnumList = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyState").getEnum();
 				bVal1=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled").isBoolean(); 
 				bVal2=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON").isBoolean();               
 				bVal3=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON").isBoolean();                             
-				 LOG.info("  SGReady-bwp:      SGReadyState=" + oEnumList.getSgreadyStateLv2().getLiteral() + ",  SGReadyEnabled=" + bVal1 + ",  SGReadyInp1isON=" + bVal2 + ",  SGReadyInp2isON=" + bVal3 + "%n");
+				LOG.info("  SGReady-bwp:      SGReadyState=" + oEnumList.getSgreadyStateLv2().getLiteral() + ",  SGReadyEnabled=" + bVal1 + ",  SGReadyInp1isON=" + bVal2 + ",  SGReadyInp2isON=" + bVal3 );
 
 				fVal1=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat").getFloat32();
 				fVal2=devStiebelISG.getValByGDPType("EnergyMonitor", "ActiveEnergyACheat").getFloat32();
 				fVal3=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyDomHotWater").getFloat32();
 				fVal4=devStiebelISG.getValByGDPType("EnergyMonitor", "ActivelEnergyACdomWater").getFloat32();			
 
-				 LOG.info("  EnergyMonitor ThermalEnergyHeat=" + fVal1 + " kWh,  ActiveEnergyACheat="+ fVal2 + " kWh,  ThermalEnergyDomHotWater="+ fVal3 + " kWh,  ActivelEnergyACdomWater="+ fVal4 + " kWh%n");  
+				 LOG.info("  EnergyMonitor ThermalEnergyHeat=" + fVal1 + " kWh,  ActiveEnergyACheat="+ fVal2 + " kWh,  ThermalEnergyDomHotWater="+ fVal3 + " kWh,  ActivelEnergyACdomWater="+ fVal4 + " kWh");  
 				  
 				
 				fVal1=devStiebelISG.getValByGDPType("EnergyMonitor", "RuntimeHeating").getFloat32();
 				fVal2=devStiebelISG.getValByGDPType("EnergyMonitor", "RuntimeDomHotWater").getFloat32();
-				 LOG.info("  EnergyMonitor RuntimeHeating=" + fVal1 + " h,  RuntimeDomHotWater="+ fVal2 + " h%n");  
+				 LOG.info("  EnergyMonitor RuntimeHeating=" + fVal1 + " h,  RuntimeDomHotWater="+ fVal2 + " h");  
 				 				
 //	             TBC: launches illegal address @31 , no other start data found
 //	 				lVal=devStiebelISG.getValByGDPType("EnergyMonitor", "NrOfStartupsCompressor").getInt16U();
@@ -498,48 +500,48 @@ public class HeatPumpTester {
 						lVal2 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "HPOpState").getINT32().longValue();
 						iVal3 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "ErrorNrSGr").getINT16();
 						fVal1 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFLOAT32();
-						fVal2 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "FlowWaterTemp").getFLOAT32();	
-						fVal3 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "BackFlowWaterTemp").getFLOAT32();	
-						System.out.printf("  HeatPumpBase: HPOpModeCmd, HPOpState, ErrorNrSGr, OutsideAir, FlowWaterTemp, BackFlowWaterTemp : " + iVal1 + ",  " + lVal2 + ",  " + iVal3 + ",  " + fVal1 +" °C,  " + fVal2 + "°C  ," + fVal3 +  "°C %n");     
+						fVal2 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "SupplyWaterTemp").getFLOAT32();	
+						fVal3 = sgrHeatPumpCTA.getValByGDPType("HeatPumpBase", "ReturnSupplyWaterTemp").getFLOAT32();	
+						System.out.printf("  HeatPumpBase: HPOpModeCmd, HPOpState, ErrorNrSGr, OutsideAir, SupplyWaterTemp, ReturnSupplyWaterTemp : " + iVal1 + ",  " + lVal2 + ",  " + iVal3 + ",  " + fVal1 +" °C,  " + fVal2 + "°C  ," + fVal3 +  "°C ");     
 						
 						
 						lVal1 = sgrHeatPumpCTA.getValByGDPType("DomHotWaterCtrl", "DomHotWOpMode").getINT32U();
 						fVal1 = sgrHeatPumpCTA.getValByGDPType("DomHotWaterCtrl", "ActDomHotWaterTemp").getFLOAT32();
 						fVal2 = sgrHeatPumpCTA.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt").getFLOAT32();
-						System.out.printf("  DomHotWaterCtrl DomHotWOpMode ActDomHotWaterTemp DomHotWTempStpt  : "+lVal1 + ", "  + fVal1 + " °C,  " + fVal2 + " °C %n");  
+						System.out.printf("  DomHotWaterCtrl DomHotWOpMode ActDomHotWaterTemp DomHotWTempStpt  : "+lVal1 + ", "  + fVal1 + " °C,  " + fVal2 + " °C ");  
 						
 
 						fVal1 = sgrHeatPumpCTA.getValByGDPType("CompressorPwrCtrl", "ActSpeed").getFLOAT32();
 						fVal2 = sgrHeatPumpCTA.getValByGDPType("CompressorPwrCtrl", "ActPowerACtot").getFLOAT32();
 						fVal3 = sgrHeatPumpCTA.getValByGDPType("CompressorPwrCtrl","SpeedCtrlSetpt").getFLOAT32();
-						System.out.printf("  CompressorPwrCtrl  ActSpeed ActPowerACtot SpeedCtrlSetpt : "  + fVal1 + " %% rpm,  " + fVal2 + " %% kW,  " + fVal3 + " %% rpm %n");  
+						System.out.printf("  CompressorPwrCtrl  ActSpeed ActPowerACtot SpeedCtrlSetpt : "  + fVal1 + " %% rpm,  " + fVal2 + " %% kW,  " + fVal3 + " %% rpm ");  
 						
 
 						fVal1 = sgrHeatPumpCTA.getValByGDPType("BufferStorageCtrl", "HeatWTempStptOffset").getFLOAT32();
 						fVal2 = sgrHeatPumpCTA.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempUpper").getFLOAT32();
 						fVal3 = sgrHeatPumpCTA.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempLower").getFLOAT32();
-						System.out.printf("  BufferStorageCtrl : " + fVal1 + " °C,  " + fVal2 + " °C,  " + fVal3  + " °C %n");  
+						System.out.printf("  BufferStorageCtrl : " + fVal1 + " °C,  " + fVal2 + " °C,  " + fVal3  + " °C ");  
 						
 						
 						iVal1 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "HeatCoolCtrlOpModeCmd").getINT16();
 						iVal2 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "HeatCoolOpState").getINT16();
-						System.out.printf("  HeatCoolCtrl HeatCoolCtrlOpModeCmd,  HeatCoolOpState: " + iVal1 + " ,  " + iVal2 + " %n");   
+						System.out.printf("  HeatCoolCtrl HeatCoolCtrlOpModeCmd,  HeatCoolOpState: " + iVal1 + " ,  " + iVal2 + " ");   
 
-						fVal1 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "FlowWaterTempStpt").getFLOAT32();
-						fVal2 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "FlowWaterTemp").getFLOAT32();
-						// not yet supported fVal4 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "BackFlowWaterTemp").getFLOAT32();
-						System.out.printf("  HeatCoolCtrl FlowWaterTempStpt,  FlowWaterTemp  : " + fVal1 + " °C,  " + fVal2 + " °C %n");  			
+						fVal1 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "SupplyWaterTempStpt").getFLOAT32();
+						fVal2 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "SupplyWaterTemp").getFLOAT32();
+						// not yet supported fVal4 = sgrHeatPumpCTA.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFLOAT32();
+						System.out.printf("  HeatCoolCtrl SupplyWaterTempStpt,  SupplyWaterTemp  : " + fVal1 + " °C,  " + fVal2 + " °C ");  			
 
 						fVal1 = sgrHeatPumpCTA.getValByGDPType("RoomTempCtrl", "RoomZoneTempSetpt").getFLOAT32();
 						fVal2 = sgrHeatPumpCTA.getValByGDPType("RoomTempCtrl", "RoomZoneTemp").getFLOAT32();			
-						System.out.printf("  RoomZoneTemp Stpt, Val   :  " + fVal1 + " °C,  " + fVal2 + "  °C %n");       
+						System.out.printf("  RoomZoneTemp Stpt, Val   :  " + fVal1 + " °C,  " + fVal2 + "  °C ");       
 						
 						
 						//fVal1 = sgrHeatPumpCTA.getValByGDPType("Monitoring", "ThermalEnergyHeat").getFLOAT32();
 						//fVal2 = sgrHeatPumpCTA.getValByGDPType("Monitoring", "ThermalEnergyCool").getFLOAT32();
 						//fVal3 = sgrHeatPumpCTA.getValByGDPType("Monitoring", "RuntimeCompressor").getFLOAT32();
 						//long lVal = sgrHeatPumpCTA.getValByGDPType("Monitoring", "NrOfStartupsCompressor").getINT32U();
-						//System.out.printf("  Monitoring ThermalEnergyHeat, ThermalEnergyCool, RuntimeCompressor, NrOfStartupsCompressor  : " + fVal1 + " kWh,  " + fVal2 + " kWh,  " + fVal3 + " h,  " + lVal+"  times%n");  
+						//System.out.printf("  Monitoring ThermalEnergyHeat, ThermalEnergyCool, RuntimeCompressor, NrOfStartupsCompressor  : " + fVal1 + " kWh,  " + fVal2 + " kWh,  " + fVal3 + " h,  " + lVal+"  times");  
 						*/
 						
 					}

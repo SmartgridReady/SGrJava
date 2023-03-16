@@ -36,7 +36,7 @@ public interface SGrModbusDataPointDescriptionType extends EObject {
 	 * @return the value of the '<em>Modbus Data Type</em>' containment reference.
 	 * @see #setModbusDataType(SGrBasicGenDataPointTypeType)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusDataPointDescriptionType_ModbusDataType()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 *        extendedMetaData="kind='element' name='modbusDataType' namespace='##targetNamespace'"
 	 * @generated
 	 */

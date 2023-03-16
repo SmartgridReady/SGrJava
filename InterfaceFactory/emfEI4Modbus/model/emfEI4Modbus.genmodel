@@ -239,7 +239,7 @@
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGReadyStateLv2Type">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPNORMAL"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPINTENSIVIED"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPINTENSIFIED"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPLOCKED"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPFORCED"/>
     </genEnums>
