@@ -7,6 +7,14 @@
   <foreignModel>../../SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
   <genPackages prefix="V0" basePackage="com.smartgridready.ns" resource="XML" disposableProviderFactory="true"
       loadInitialization="true" literalsInterface="false" ecorePackage="v0.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CtaDHWOpModeType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWUNDEF"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWON"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWOFF"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWPUSH"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWTMPOFF"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWEMERGENCY"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//EBaudRateType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//EBaudRateType/_300"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//EBaudRateType/_600"/>
@@ -832,6 +840,7 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//TEnumObjectType/HoldRegister"/>
     </genEnums>
     <genDataTypes ecoreDataType="v0.ecore#//BitmaskType"/>
+    <genDataTypes ecoreDataType="v0.ecore#//CtaDHWOpModeTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//DpSizeNrRegistersType"/>
     <genDataTypes ecoreDataType="v0.ecore#//DpSizeNrRegistersTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//EBaudRateTypeObject"/>
@@ -931,6 +940,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrSerialInterfaceCapability"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/stopBitLenSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/trspServiceModbus"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//FunctionalProfileType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/profileNumber"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/fpNameList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/fpLegibDesc"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/fpPrgDesc"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//HeaderEntry">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//HeaderEntry/headerName"/>
@@ -1105,6 +1120,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrHPOpMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrHCOpMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrDHWOpMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaDHWOpMode"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrFlexAssistanceType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrFlexAssistanceType/assists"/>

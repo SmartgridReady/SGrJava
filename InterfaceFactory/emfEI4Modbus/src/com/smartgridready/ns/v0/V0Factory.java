@@ -40,6 +40,15 @@ public interface V0Factory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+	 * Returns a new object of class '<em>Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Functional Profile Type</em>'.
+	 * @generated
+	 */
+	FunctionalProfileType createFunctionalProfileType();
+
+	/**
 	 * Returns a new object of class '<em>Header Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

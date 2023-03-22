@@ -102,6 +102,8 @@ public class V0Validator extends EObjectValidator {
 				return validateContactAPIInterfaceDescType((ContactAPIInterfaceDescType)value, diagnostics, context);
 			case V0Package.DOCUMENT_ROOT:
 				return validateDocumentRoot((DocumentRoot)value, diagnostics, context);
+			case V0Package.FUNCTIONAL_PROFILE_TYPE:
+				return validateFunctionalProfileType((FunctionalProfileType)value, diagnostics, context);
 			case V0Package.HEADER_ENTRY:
 				return validateHeaderEntry((HeaderEntry)value, diagnostics, context);
 			case V0Package.HEADER_LIST:
@@ -224,6 +226,8 @@ public class V0Validator extends EObjectValidator {
 				return validateTrspServiceModbusType((TrspServiceModbusType)value, diagnostics, context);
 			case V0Package.TS_GR_MODBUS_REGISTER_REF:
 				return validateTSGrModbusRegisterRef((TSGrModbusRegisterRef)value, diagnostics, context);
+			case V0Package.CTA_DHW_OP_MODE_TYPE:
+				return validateCtaDHWOpModeType((CtaDHWOpModeType)value, diagnostics, context);
 			case V0Package.EBAUD_RATE_TYPE:
 				return validateEBaudRateType((EBaudRateType)value, diagnostics, context);
 			case V0Package.EBYTE_LEN_TYPE:
@@ -322,6 +326,8 @@ public class V0Validator extends EObjectValidator {
 				return validateTEnumObjectType((TEnumObjectType)value, diagnostics, context);
 			case V0Package.BITMASK_TYPE:
 				return validateBitmaskType((byte[])value, diagnostics, context);
+			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
+				return validateCtaDHWOpModeTypeObject((CtaDHWOpModeType)value, diagnostics, context);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE:
 				return validateDpSizeNrRegistersType((Integer)value, diagnostics, context);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE_OBJECT:
@@ -495,6 +501,15 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateDocumentRoot(DocumentRoot documentRoot, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(documentRoot, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFunctionalProfileType(FunctionalProfileType functionalProfileType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(functionalProfileType, diagnostics, context);
 	}
 
 	/**
@@ -1051,6 +1066,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateCtaDHWOpModeType(CtaDHWOpModeType ctaDHWOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateEBaudRateType(EBaudRateType eBaudRateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -1484,6 +1508,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateBitmaskType(byte[] bitmaskType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCtaDHWOpModeTypeObject(CtaDHWOpModeType ctaDHWOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

@@ -21,13 +21,16 @@ check for "EI-Modbus" and "Generic" directories in our Namespace http://www.smar
 */
 package communicator.impl;
 
+import com.smartgridready.ns.v0.CtaDHWOpModeType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
+import com.smartgridready.ns.v0.SGrDHWOpModeType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrHCOpModeType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
 import com.smartgridready.ns.v0.SGrModbusDataPointType;
@@ -352,7 +355,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		int[] doubleResp = new int[4];
 		if (bGotRegisters) {
 			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
-				mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
+				mbregresp = ConvertEndians(MBconvScheme, mbregresp, size);
 			}
 			// do we have Layer 6 deviations ?
 	        if (l6dev >= 0  ) {
@@ -676,10 +679,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		return mbregresp;
 	}
 
-	private int[] ConvertStream(EList<TEnumConversionFct> mBconvScheme, int[] mbregresp, int size) {
+	private int[] ConvertEndians(EList<TEnumConversionFct> mBconvScheme, int[] mbregresp, int size) {
 
 		/*
-		LOG.debug("ConvertStream mbregesp:");
+		LOG.debug("ConvertEndians mbregesp:");
 		for (int i=0; i<mbregresp.length;i++) {
 			LOG.debug(String.format("int16: %d - %04x", mbregresp[i], mbregresp[i] ));
 		}
@@ -710,15 +713,31 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 						LOG.debug("mbregconv[0]: {} ", String.format("%08x",mbregconv[0]));
 					}
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_WORD_ORDER)) {
-					if ((size % 2) > 0)
-						throw new IllegalArgumentException("CHANGE_WORD_ORDER: Input Array length invalid");
-					for (c = 0; c < size; c = c + 2) {
-						mbregconv[c] = mbregresp[c + 1];
-						mbregconv[c + 1] = mbregresp[c];
+					if ((size % 2) == 0)
+					{
+
+						for (c = 0; c < size-1; c = c + 2) {
+							mbregconv[c] = mbregresp[c + 1];
+							mbregconv[c + 1] = mbregresp[c];
+						}
 					}
+					else
+					{   
+						for (c = 0; c < size-1; c++) 
+							mbregconv[c] = mbregresp[c];
+					}
+					for (int i=0; i<size-1;i++) 
+						LOG.debug(String.format("CHANGE_WORD_ORDER converted %d: %08x, %08x", i, mbregresp[i], mbregconv[i]));
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_DWORD_ORDER)) {
 					if ((size % 4) > 0)
-						throw new IllegalArgumentException("CHANGE_DWORD_ORDER: Input Array length invalid");
+					{
+						//throw new IllegalArgumentException("CHANGE_DWORD_ORDER: Input Array length invalid");
+						LOG.info("CHANGE_DWORD_ORDER: Input Array length does not match");
+					    //rem/cb: check is DWORD change needed in case of (size % 4) > 0
+				        mbregconv = mbregresp; 
+					}
+					else
+					{   //rem/cb:  check array of WORDS: is DWORD change needed in case of size > 4
 					for (c = 0; c < size; c = c + 4) {
 						mbregconv[c + 1] = mbregresp[c + 3];
 						mbregconv[c + 0] = mbregresp[c + 2];
@@ -728,10 +747,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 							LOG.debug(String.format("CHANGE_DWORD_ORDER converted %d: %08x, %08x", i, mbregresp[i], mbregconv[i]));
 						}
 					}
+					}
 				}
 			}
-			// prepare fpr next adjustment (if any)
-			mbregresp = mbregconv;
+			// prepare for next adjustment (if any)
 		}
 
 		catch (IllegalArgumentException e1) {
@@ -932,7 +951,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			} else if (bDiscreteCMDs)
 				mbbitsnd[0] = bVal;
 		} else if (dMBType.getEnum() != null) {
-			size = 1;
+			// size = 1;
 			mbregsnd[0] = Enum2RegResConversion(sgrValue.getEnum());
 		} else if (dMBType.isSetFloat32()) {
 			if (bRegisterCMDs) {
@@ -1137,9 +1156,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				// for (int l = 0; l < mbsize; l++) {
 				//	res = (res * 65536) + mbregsnd[l];
 				//	// TODO: rethink Blocktransfer here
-				//	mbregsnd = ConvertStream(MBconvScheme, mbregsnd, mbsize);
+				//	mbregsnd = ConvertEndians(MBconvScheme, mbregsnd, mbsize);
 				//}
-				mbregsnd = ConvertStream(MBconvScheme, mbregsnd, mbsize);
+				mbregsnd = ConvertEndians(MBconvScheme, mbregsnd, mbsize);
 			}
 			if (bDiscreteCMDs) {
 				// TODO: add management for multiple booleans
@@ -1229,14 +1248,18 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retval = oGenVal.getSgrSGCPService().getValue();
 		} else if (oGenVal.isSetSgrObligLvl()) { // E0015
 			retval = oGenVal.getSgrObligLvl().getValue();
-		} else if (oGenVal.isSetSgrOCPPState()) {
-			// E0015
+		} else if (oGenVal.isSetSgrOCPPState()) { // E0015			
 			retval = oGenVal.getSgrOCPPState().getValue();
-		} else if (oGenVal.isSetSgrHPOpMode()) {
-			// E0016
+		} else if (oGenVal.isSetSgrHPOpMode()) { // E0016			
 			retval = oGenVal.getSgrHPOpMode().getValue();
-		}
-
+		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
+			retval = oGenVal.getSgrHCOpMode().getValue();
+		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
+			retval = oGenVal.getCtaDHWOpMode().getValue();
+		} else if (oGenVal.isSetCtaDHWOpMode()) {// E0019
+			retval = oGenVal.getCtaDHWOpMode().getValue();
+		} 
+		
 		return retval;
 	}
 
@@ -1274,7 +1297,17 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			rval.setSgrOCPPState(SGrOCPPStateType.get((int) RegRes));
 		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
 			rval.setSgrHPOpMode(SGrHPOpModeType.get((int) RegRes));
-		}
+		} else if (oGenVal.isSetSgrOCPPState()) {// E0015
+			rval.setSgrOCPPState(SGrOCPPStateType.get((int)RegRes));
+		} else if (oGenVal.isSetSgrHPOpMode() ) {// E0016
+			rval.setSgrHPOpMode(SGrHPOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
+			rval.setSgrHCOpMode(SGrHCOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
+			rval.setSgrDHWOpMode(SGrDHWOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaDHWOpMode()) {// E0019
+			rval.setCtaDHWOpMode(CtaDHWOpModeType.get((int)RegRes));
+		} 
 		return rval;
 	}
 

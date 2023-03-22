@@ -64,6 +64,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 		switch (eClass.getClassifierID()) {
 			case V0Package.CONTACT_API_INTERFACE_DESC_TYPE: return createContactAPIInterfaceDescType();
 			case V0Package.DOCUMENT_ROOT: return createDocumentRoot();
+			case V0Package.FUNCTIONAL_PROFILE_TYPE: return createFunctionalProfileType();
 			case V0Package.HEADER_ENTRY: return createHeaderEntry();
 			case V0Package.HEADER_LIST: return createHeaderList();
 			case V0Package.IP_ADDR_TYPE: return createIpADDRType();
@@ -138,6 +139,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case V0Package.CTA_DHW_OP_MODE_TYPE:
+				return createCtaDHWOpModeTypeFromString(eDataType, initialValue);
 			case V0Package.EBAUD_RATE_TYPE:
 				return createEBaudRateTypeFromString(eDataType, initialValue);
 			case V0Package.EBYTE_LEN_TYPE:
@@ -236,6 +239,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createTEnumObjectTypeFromString(eDataType, initialValue);
 			case V0Package.BITMASK_TYPE:
 				return createBitmaskTypeFromString(eDataType, initialValue);
+			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
+				return createCtaDHWOpModeTypeObjectFromString(eDataType, initialValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE:
 				return createDpSizeNrRegistersTypeFromString(eDataType, initialValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE_OBJECT:
@@ -401,6 +406,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case V0Package.CTA_DHW_OP_MODE_TYPE:
+				return convertCtaDHWOpModeTypeToString(eDataType, instanceValue);
 			case V0Package.EBAUD_RATE_TYPE:
 				return convertEBaudRateTypeToString(eDataType, instanceValue);
 			case V0Package.EBYTE_LEN_TYPE:
@@ -499,6 +506,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertTEnumObjectTypeToString(eDataType, instanceValue);
 			case V0Package.BITMASK_TYPE:
 				return convertBitmaskTypeToString(eDataType, instanceValue);
+			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
+				return convertCtaDHWOpModeTypeObjectToString(eDataType, instanceValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE:
 				return convertDpSizeNrRegistersTypeToString(eDataType, instanceValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE_OBJECT:
@@ -676,6 +685,17 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public DocumentRoot createDocumentRoot() {
 		DocumentRootImpl documentRoot = new DocumentRootImpl();
 		return documentRoot;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FunctionalProfileType createFunctionalProfileType() {
+		FunctionalProfileTypeImpl functionalProfileType = new FunctionalProfileTypeImpl();
+		return functionalProfileType;
 	}
 
 	/**
@@ -1347,6 +1367,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public TSGrModbusRegisterRef createTSGrModbusRegisterRef() {
 		TSGrModbusRegisterRefImpl tsGrModbusRegisterRef = new TSGrModbusRegisterRefImpl();
 		return tsGrModbusRegisterRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CtaDHWOpModeType createCtaDHWOpModeTypeFromString(EDataType eDataType, String initialValue) {
+		CtaDHWOpModeType result = CtaDHWOpModeType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCtaDHWOpModeTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
@@ -2325,6 +2365,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertBitmaskTypeToString(EDataType eDataType, Object instanceValue) {
 		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.HEX_BINARY, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CtaDHWOpModeType createCtaDHWOpModeTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createCtaDHWOpModeTypeFromString(V0Package.eINSTANCE.getCtaDHWOpModeType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCtaDHWOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertCtaDHWOpModeTypeToString(V0Package.eINSTANCE.getCtaDHWOpModeType(), instanceValue);
 	}
 
 	/**
