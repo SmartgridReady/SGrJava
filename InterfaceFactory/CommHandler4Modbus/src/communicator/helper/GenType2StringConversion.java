@@ -18,6 +18,23 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.helper;
 
+import com.smartgridready.ns.v0.SGReadyStateLv1Type;
+import com.smartgridready.ns.v0.SGReadyStateLv2Type;
+import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
+import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
+import com.smartgridready.ns.v0.SGrEVStateType;
+import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrHPOpModeType;
+import com.smartgridready.ns.v0.SGrMeasValueSourceType;
+import com.smartgridready.ns.v0.SGrOCPPStateType;
+import com.smartgridready.ns.v0.SGrObligLvlType;
+import com.smartgridready.ns.v0.SGrPowerSourceType;
+import com.smartgridready.ns.v0.SGrSGCPFeedInStateLv2Type;
+import com.smartgridready.ns.v0.SGrSGCPLoadStateLv2Type;
+import com.smartgridready.ns.v0.SGrSGCPServiceType;
+import com.smartgridready.ns.v0.SGrSunspStateCodesType;
+import com.smartgridready.ns.v0.V0Factory;
+
 import java.math.BigInteger;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -25,12 +42,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
-import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.SGrModbusDataPointType;
-import com.smartgridready.ns.v0.V0Factory;
-import communicator.common.runtime.GenDriverException;
 
 public class GenType2StringConversion {
 	
@@ -59,11 +70,8 @@ public class GenType2StringConversion {
 		if (dGenType.isSetBoolean()) {
 			retval = String.format("%b", dGenType.isBoolean());
 		} else if (dGenType.getEnum() != null) {
-			SGrEnumListType oVal = dGenType.getEnum();
-			if (oVal.isSetSgrEVState()) {
-				SGrEnumListType en = dGenType.getEnum();
-				retval = enum2StringConversion(en);
-			}			
+			SGrEnumListType eVal = dGenType.getEnum();
+			retval = enum2StringConversion(eVal);
 		} else if (dGenType.isSetFloat32()) {
 			float fVal = dGenType.getFloat32();
 			retval = String.format(locale, "%10.3f", fVal);
@@ -96,8 +104,8 @@ public class GenType2StringConversion {
 			retval = String.format(locale, "%d", shVal);
 		} else if (dGenType.getString() != null) {
 			retval = dGenType.getString();
-		} else if (dGenType.getDateTime() != null) {			
-			Date date = dGenType.getDateTime().toGregorianCalendar().getTime();			
+		} else if (dGenType.getDateTime() != null) {
+			Date date = dGenType.getDateTime().toGregorianCalendar().getTime();
 			retval = DateTimeFormatter.ISO_DATE_TIME.format(date.toInstant());
 		} else {
 			throw new IllegalArgumentException("Unhandled generic type given for SGrBasicGenDataPointTypeType to String conversion.");
@@ -171,6 +179,8 @@ public class GenType2StringConversion {
 			// TODO: apply dGenType
 		} else if (dGenType.getString() != null) {
 			retval.setString(value);
+		} else if (dGenType.getEnum() != null) {
+			retval.setEnum(string2EnumConversion(value, dGenType.getEnum()));
 		} else { // error handling
 			throw new IllegalArgumentException("Unhandled generic type given for String to SGrBasicGenDataPointTypeType conversion.");
 		}
@@ -210,8 +220,49 @@ public class GenType2StringConversion {
 			rval = oGenVal.getSgrOCPPState().toString();
 		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
 			rval = oGenVal.getSgrHPOpMode().toString();
+		} else {
+			throw new IllegalArgumentException("Given SGrEnumListType is not set OR not handled by the current implementation.");
 		}
+		return rval;
+	}
 
+	public static SGrEnumListType string2EnumConversion(String val, SGrEnumListType oGenVal) {
+
+		SGrEnumListType rval = V0Factory.eINSTANCE.createSGrEnumListType();
+
+		// Ongoing: extend this list manually for EACH enumeration being added to
+		// the system
+		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
+			rval.setSgrMeasValueSource(SGrMeasValueSourceType.getByName(val));
+		} else if (oGenVal.isSetSgrPowerSource()) { // E0002
+			rval.setSgrPowerSource(SGrPowerSourceType.getByName(val));
+		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0003
+			rval.setSgreadyStateLv2(SGReadyStateLv2Type.getByName(val));
+		} else if (oGenVal.isSetSgreadyStateLv1()) { // E0004
+			rval.setSgreadyStateLv1(SGReadyStateLv1Type.getByName(val));
+		} else if (oGenVal.isSetSgrSunspStateCodes()) {// E0005
+			rval.setSgrSunspStateCodes(SGrSunspStateCodesType.getByName(val));
+		} else if (oGenVal.isSetSgrEVSEStateLv2()) { // E0006
+			rval.setSgrEVSEStateLv2(SGrEVSEStateLv2Type.getByName(val));
+		} else if (oGenVal.isSetSgrEVSEStateLv1()) { // E0007
+			rval.setSgreadyStateLv1(SGReadyStateLv1Type.getByName(val));
+		} else if (oGenVal.isSetSgrSGCPLoadStateLv2()) { // E0008
+			rval.setSgrSGCPLoadStateLv2(SGrSGCPLoadStateLv2Type.getByName(val));
+		} else if (oGenVal.isSetSgrSGCPFeedInStateLv2()) { // E0009
+			rval.setSgrSGCPFeedInStateLv2(SGrSGCPFeedInStateLv2Type.getByName(val));
+		} else if (oGenVal.isSetSgrEVState()) { // E0010
+			rval.setSgrEVState(SGrEVStateType.getByName(val));
+		} else if (oGenVal.isSetSgrSGCPService()) { // E0011
+			rval.setSgrSGCPService(SGrSGCPServiceType.getByName(val));
+		} else if (oGenVal.isSetSgrObligLvl()) { // E0012
+			rval.setSgrObligLvl(SGrObligLvlType.getByName(val));
+		} else if (oGenVal.isSetSgrOCPPState()) {// E0013
+			rval.setSgrOCPPState(SGrOCPPStateType.getByName(val));
+		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
+			rval.setSgrHPOpMode(SGrHPOpModeType.getByName(val));
+		} else {
+			throw new IllegalArgumentException("Given SGrEnumListType is not set OR not handled by the current implementation.");
+		}
 		return rval;
 	}
 }

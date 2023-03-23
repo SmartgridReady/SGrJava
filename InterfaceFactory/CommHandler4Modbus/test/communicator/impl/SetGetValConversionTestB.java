@@ -2,11 +2,13 @@ package communicator.impl;
 
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
+import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusDataPointType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.SGrModbusFunctionalProfileType;
 import com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType;
+import com.smartgridready.ns.v0.SGrPowerSourceType;
 import com.smartgridready.ns.v0.SGrProfileDescriptionType;
 import com.smartgridready.ns.v0.SGrRWPType;
 import com.smartgridready.ns.v0.TEnumConversionFct;
@@ -46,6 +48,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN;
+import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64;
 import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16;
@@ -89,6 +92,8 @@ public class SetGetValConversionTestB {
 
     @Captor
     ArgumentCaptor<Integer> intCaptor = ArgumentCaptor.forClass(int.class);
+
+    ArgumentCaptor<boolean[]> boolArrayCaptor = ArgumentCaptor.forClass(boolean[].class);
     
     private static class Fixture<W,R,M> {
 
@@ -333,9 +338,6 @@ public class SetGetValConversionTestB {
                                 SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64, Long.valueOf(0),
                                 SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32, BigInteger.valueOf(0)));
 
-
-        when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(fixture.expectedModbusValue);
-
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
                 fixture.getModbusDeviceFrame(),           // model
                 genDriverAPI4Modbus);                     // mock
@@ -372,8 +374,6 @@ public class SetGetValConversionTestB {
                         deviceFrame(true, TEnumConversionFct.BIG_ENDIAN,
                                 SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING, "",
                                 SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING, ""));
-
-        when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(fixture.expectedModbusValue);
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
                 fixture.getModbusDeviceFrame(),           // model
@@ -412,7 +412,6 @@ public class SetGetValConversionTestB {
                                 SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.valueOf(false),
                                 SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.valueOf(false)));
 
-        when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(fixture.expectedModbusValue);
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
                 fixture.getModbusDeviceFrame(),           // model
@@ -440,7 +439,6 @@ public class SetGetValConversionTestB {
         String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
         LOG.info("Modbus read value: {}", res);
         assertEquals(fixture.getReadValue(), res.trim());
-
     }
 
     static Stream<Tuple2<TEnumConversionFct, Boolean>> booleanConversions() {
@@ -500,6 +498,40 @@ public class SetGetValConversionTestB {
     }
 
     @Test
+    void testEnumConversion() throws Exception {
+
+        SGrEnumListType genType = V0Factory.eINSTANCE.createSGrEnumListType();
+        genType.setSgrPowerSource(SGrPowerSourceType.BATTERY);
+
+        SGrEnumListType modbType = V0Factory.eINSTANCE.createSGrEnumListType();
+        genType.setSgrPowerSource(SGrPowerSourceType.BATTERY);
+
+        SGrModbusDeviceFrame deviceFrame = deviceFrame(false, TEnumConversionFct.BIG_ENDIAN,
+                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM, genType,
+                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM, modbType);
+
+        String expectedValue = SGrPowerSourceType.BATTERY.getName();
+        int[] expectedModbusValue = new int[]{SGrPowerSourceType.BATTERY.getValue()};
+
+        SGrModbusDevice modbusDevice = new SGrModbusDevice(
+                deviceFrame,
+                genDriverAPI4Modbus);
+
+        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", expectedValue);
+        verify(genDriverAPI4Modbus).WriteSingleRegister(anyInt(), intCaptor.capture());
+
+        if (!intCaptor.getAllValues().isEmpty()) {
+            LOG.info("Modbus read enum: {}", SGrPowerSourceType.get(intCaptor.getValue()).getName());
+            assertEquals(SGrPowerSourceType.BATTERY.getValue(), intCaptor.getValue());
+            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(),anyInt())).thenReturn(new int[]{intCaptor.getValue()});
+        }
+
+        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
+        LOG.info("Modbus read value: {}", res);
+        assertEquals(expectedValue, res.trim());
+    }
+
+    @Test
     void testSetValGetValArray() throws Exception {
 
         SGrModbusDeviceFrame deviceFrame =
@@ -511,7 +543,6 @@ public class SetGetValConversionTestB {
         int[] expectedModbusValues = new int[]{0,0,0,0,0,0};
 
 
-
         when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(expectedModbusValues);
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
@@ -520,9 +551,7 @@ public class SetGetValConversionTestB {
 
         modbusDevice.setValArr("ActivePowerAC", "ActivePowerAC-L1L2L3", expectedValues);
         verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteSingleRegister(anyInt(), intCaptor.capture());
         LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayCaptor.getValue());
-        LOG.info("Modbus write single   register : {}", intCaptor.getAllValues().isEmpty() ? "-" : intCaptor.getValue());
 
         if (!intArrayCaptor.getAllValues().isEmpty()) {
             int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, expectedModbusValues.length);
@@ -536,6 +565,7 @@ public class SetGetValConversionTestB {
         LOG.info("Modbus read value: {}", res.toString());
         assertArrayEquals(expectedValues, Arrays.stream(res).map(String::trim).toArray());
     }
+
 
     private static SGrModbusDeviceFrame deviceFrame(boolean firstRegOne,
                                                     TEnumConversionFct conversionFct,
@@ -555,7 +585,9 @@ public class SetGetValConversionTestB {
         functionalProfileType.setFunctionalProfile(profileDescriptionType);
 
         functionalProfileType.getDpListElement().add(modbDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerACL1", 1));
-        functionalProfileType.getDpListElement().add(modbDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerAC-L1L2L3", 3));
+        if (genericType != SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM) {
+            functionalProfileType.getDpListElement().add(modbDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerAC-L1L2L3", 3));
+        }
         deviceFrame.getFpListElement().add(functionalProfileType);
         return deviceFrame;
     }
@@ -624,7 +656,8 @@ public class SetGetValConversionTestB {
                    || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U
                    || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16
                    || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U
-                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN) {
+                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN
+                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM) {
             return 1;
         } else if ( modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING) {
             return 5;

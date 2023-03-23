@@ -38,7 +38,6 @@ import com.smartgridready.ns.v0.SGrModbusLayer6DeviationType;
 import com.smartgridready.ns.v0.SGrOCPPStateType;
 import com.smartgridready.ns.v0.SGrObligLvlType;
 import com.smartgridready.ns.v0.SGrPowerSourceType;
-import com.smartgridready.ns.v0.SGrRWPType;
 import com.smartgridready.ns.v0.SGrSGCPFeedInStateLv2Type;
 import com.smartgridready.ns.v0.SGrSGCPLoadStateLv2Type;
 import com.smartgridready.ns.v0.SGrSGCPServiceType;
