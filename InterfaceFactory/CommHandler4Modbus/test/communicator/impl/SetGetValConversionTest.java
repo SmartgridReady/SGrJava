@@ -11,12 +11,12 @@ import com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType;
 import com.smartgridready.ns.v0.SGrPowerSourceType;
 import com.smartgridready.ns.v0.SGrProfileDescriptionType;
 import com.smartgridready.ns.v0.SGrRWPType;
+import com.smartgridready.ns.v0.SGrTimeSyncBlockNotificationType;
 import com.smartgridready.ns.v0.TEnumConversionFct;
 import com.smartgridready.ns.v0.TEnumObjectType;
 import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.impl.SGrBasicGenDataPointTypeTypeImpl;
-import communicator.api.GenDeviceApi4Modbus;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import io.vavr.Tuple2;
 import org.junit.jupiter.api.Test;
@@ -80,9 +80,9 @@ import static org.mockito.Mockito.when;
  *
  */
 @ExtendWith(MockitoExtension.class)
-public class SetGetValConversionTestB {
+public class SetGetValConversionTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SetGetValConversionTestB.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SetGetValConversionTest.class);
 
     @Mock
     GenDriverAPI4Modbus genDriverAPI4Modbus;
@@ -159,6 +159,12 @@ public class SetGetValConversionTestB {
     static final Map<Integer, ValueProvider> NUMBER_FORMATS = new HashMap<>();
     static {
         // TODO V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U,
+
+        NUMBER_FORMATS.put(
+                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8,
+                ValueProvider.of(Byte.valueOf((byte) 0),
+                        () -> java.lang.String.valueOf(RANDOM.nextInt(1)==1 ? RANDOM.nextInt(127):-RANDOM.nextInt(127))));
+
         NUMBER_FORMATS.put(
                 SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16,
                 ValueProvider.of(Short.valueOf((short) 0), () -> java.lang.String.valueOf(RANDOM.nextInt(Short.MAX_VALUE))));
@@ -497,6 +503,8 @@ public class SetGetValConversionTestB {
         assertEquals(fixture.getReadValue(), res.trim());
     }
 
+
+
     @Test
     void testEnumConversion() throws Exception {
 
@@ -535,12 +543,12 @@ public class SetGetValConversionTestB {
     void testSetValGetValArray() throws Exception {
 
         SGrModbusDeviceFrame deviceFrame =
-                        deviceFrame(true, TEnumConversionFct.CHANGE_BYTE_ORDER,
+                        deviceFrame(false, TEnumConversionFct.CHANGE_BYTE_ORDER,
                                 SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64, Double.valueOf(0),
                                 SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32, Float.valueOf(0));
 
         String[] expectedValues = new String[]{"219.923","220.000","220.128"};
-        int[] expectedModbusValues = new int[]{0,0,0,0,0,0};
+        int[] expectedModbusValues = new int[]{23363, 19180, 23619, 0, 23619, -15072};
 
 
         when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(expectedModbusValues);
@@ -549,7 +557,7 @@ public class SetGetValConversionTestB {
                 deviceFrame,                              // model
                 genDriverAPI4Modbus);                     // mock
 
-        modbusDevice.setValArr("ActivePowerAC", "ActivePowerAC-L1L2L3", expectedValues);
+        modbusDevice.setValArr("ActivePowerAC", "ActivePowerAC-ARRAY", expectedValues);
         verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
         LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayCaptor.getValue());
 
@@ -557,13 +565,47 @@ public class SetGetValConversionTestB {
             int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, expectedModbusValues.length);
             modbusreg = adjustSign(modbusreg);
             LOG.info("Modbus read registers: {}", modbusreg);
-            //assertArrayEquals(fixture.getExpectedModbusValue(), modbusreg);
+            assertArrayEquals(expectedModbusValues, modbusreg);
             when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
         }
 
-        String[] res = modbusDevice.getValArr("ActivePowerAC", "ActivePowerAC-L1L2L3");
+        String[] res = modbusDevice.getValArr("ActivePowerAC", "ActivePowerAC-ARRAY");
         LOG.info("Modbus read value: {}", res.toString());
         assertArrayEquals(expectedValues, Arrays.stream(res).map(String::trim).toArray());
+    }
+
+    @Test
+    void testSetValGetValBlocktransfer() throws Exception {
+
+        SGrModbusDeviceFrame deviceFrame =
+                deviceFrame(false, TEnumConversionFct.CHANGE_BYTE_ORDER,
+                        SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32, Float.valueOf(0),
+                        SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32, Float.valueOf(0));
+
+        String expectedValue = "220.220";
+        int[] expectedModbusValues = new int[]{23619, 21048, 23619, 21048, 23619, 21048};
+
+
+        SGrModbusDevice modbusDevice = new SGrModbusDevice(
+                deviceFrame,                              // model
+                genDriverAPI4Modbus);                     // mock
+
+        modbusDevice.setVal("ActivePowerAC", "ActivePowerAC-BLOCK", expectedValue);
+        verify(genDriverAPI4Modbus).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
+        LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayCaptor.getValue());
+
+        if (!intArrayCaptor.getAllValues().isEmpty()) {
+            int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, expectedModbusValues.length);
+            modbusreg = adjustSign(modbusreg);
+            LOG.info("Modbus read registers: {}", modbusreg);
+            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
+        }
+
+        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerAC-BLOCK");
+        verify(genDriverAPI4Modbus).ReadHoldingRegisters(2000, 6); // Blocktransfer will read 3 blocks à 2 registers
+        LOG.info("Modbus read value: {}", res);
+        assertEquals(expectedValue, res.trim());
+
     }
 
 
@@ -586,7 +628,10 @@ public class SetGetValConversionTestB {
 
         functionalProfileType.getDpListElement().add(modbDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerACL1", 1));
         if (genericType != SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM) {
-            functionalProfileType.getDpListElement().add(modbDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerAC-L1L2L3", 3));
+            // This does not work with enums. The genericValue and modbusValue of the previous datapoint will be set to <null>
+            functionalProfileType.getDpListElement().add(modbDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerAC-ARRAY", 3));
+            functionalProfileType.getDpListElement().add(blockDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerAC-BLOCK", "ActivePowerAC-BLOCK", 1));
+            deviceFrame.getTimeSyncBlockNotification().add(timeSyncBlock("ActivePowerAC-BLOCK"));
         }
         deviceFrame.getFpListElement().add(functionalProfileType);
         return deviceFrame;
@@ -611,6 +656,13 @@ public class SetGetValConversionTestB {
         modbDp.setDataPoint(genDpDesc(genericType, genValue, dpName, arrLen));
         modbDp.getModbusDataPoint().add(dpModbDesc(modbusType, modbValue));
         return modbDp;
+    }
+
+    private static SGrModbusDataPointType blockDp(int genericType, Object genValue, int modbusType, Object modbValue,
+                                                  String dpName, String blockName, int arrLen) {
+        SGrModbusDataPointType blockDp = modbDp(genericType, genValue, modbusType, modbValue, dpName, arrLen);
+        blockDp.setBlockCashName(blockName);
+        return blockDp;
     }
 
     private static SGrModbusDataPointDescriptionType dpModbDesc(int modbusType, Object modbValue) {
@@ -643,6 +695,17 @@ public class SetGetValConversionTestB {
         SGrBasicGenDataPointTypeTypeImpl dp = (SGrBasicGenDataPointTypeTypeImpl) V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
         dp.eSet(v0PackageType, genValue);
         return dp;
+    }
+
+    private static SGrTimeSyncBlockNotificationType timeSyncBlock(String blockName) {
+
+        SGrTimeSyncBlockNotificationType tsBlock = V0Factory.eINSTANCE.createSGrTimeSyncBlockNotificationType();
+        tsBlock.setFirstAddr(BigInteger.valueOf(2000));
+        tsBlock.setBlockCashName(blockName);
+        tsBlock.setRegisterType(TEnumObjectType.HOLD_REGISTER);
+        tsBlock.setTimeToLive(200);
+        tsBlock.setSize(6);
+        return tsBlock;
     }
 
     private static int getModbusBufferSize(int modbusType) {

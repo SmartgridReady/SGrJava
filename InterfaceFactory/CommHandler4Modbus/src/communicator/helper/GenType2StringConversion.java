@@ -64,9 +64,8 @@ public class GenType2StringConversion {
 		if (dGenType == null) {
 			return "-";
 		}
-		
-		String retval = String.format("GenTypeToStringFormatter: data type not yet supported%n");
-		
+
+		String retval;
 		if (dGenType.isSetBoolean()) {
 			retval = String.format("%b", dGenType.isBoolean());
 		} else if (dGenType.getEnum() != null) {
@@ -77,9 +76,15 @@ public class GenType2StringConversion {
 			retval = String.format(locale, "%10.3f", fVal);
 		} else if (dGenType.isSetFloat64()) {
 			double dVal = dGenType.getFloat64();
-			retval = String.format(locale,"%10.3f", dVal);
+			retval = String.format(locale, "%10.3f", dVal);
+		} else if (dGenType.isSetInt8()){
+			byte bVal = dGenType.getInt8();
+			retval = String.format(locale, "%d", bVal);
 		} else if (dGenType.isSetInt16()) {
 			short shVal = dGenType.getInt16();
+			retval = String.format(locale, "%d", shVal);
+		} else if (dGenType.isSetInt8U()) {
+			short shVal = dGenType.getInt8U();
 			retval = String.format(locale, "%d", shVal);
 		} else if (dGenType.isSetInt16U()) {
 			int iVal = dGenType.getInt16U();

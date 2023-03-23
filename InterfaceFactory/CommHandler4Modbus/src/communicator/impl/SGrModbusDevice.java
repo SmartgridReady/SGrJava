@@ -103,18 +103,11 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
-				return readValue(profile.get(), dataPoint.get());
+				SGrBasicGenDataPointTypeType dGenType = prv_getValByGDPType(dataPoint.get());
+				return GenType2StringConversion.format(dGenType);
 			}
 		}
 		return "Profile/access-point " + sProfileName + "/" + sDataPointName + " not found!";
-	}
-
-
-	private String readValue(SGrModbusFunctionalProfileType aProfile, SGrModbusDataPointType aDataPoint)
-			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
-		
-		SGrBasicGenDataPointTypeType dGenType = prv_getValByGDPType(aDataPoint);
-		return GenType2StringConversion.format(dGenType);
 	}
 
 	@Override
@@ -408,14 +401,16 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		else if (dGenType.isSetFloat32()) {
 			if (bGotRegisters) {
 
-				if ((dMBType.isSetInt16())
-						|| (dMBType.getInt32()!=null)
-						|| (dMBType.isSetInt64() )) {
+				if (    dMBType.isSetInt8()
+						|| dMBType.isSetInt16()
+						|| dMBType.getInt32()!=null
+						|| dMBType.isSetInt64() ) {
 					dVal = (double) RegRes;
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
 					fVal = (float) dVal;
-				} else if ((dMBType.isSetInt16U())
+				} else if (dMBType.isSetInt8U()
+						|| dMBType.isSetInt16U()
 						|| (dMBType.isSetInt32U())
 						|| (dMBType.getInt64U()!=null)) {
 					dVal = (double) Math.abs(RegRes);
@@ -434,14 +429,16 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}
 		else if (dGenType.isSetFloat64()) {
 			if (bGotRegisters) {
-				if ((dMBType.isSetInt16())
+				if ((dMBType.isSetInt8())
+						|| (dMBType.isSetInt16())
 						|| (dMBType.getInt32()!=null)
 						|| (dMBType.isSetInt64())) {
 					dVal = (double) RegRes;
 					dVal = (dVal * Math.pow(10.0, pwof10));
 					dVal = dVal * mul;
 					retVal.setFloat64(dVal);
-				} else if ((dMBType.isSetInt16U())
+				} else if ( dMBType.isSetInt8U()
+						|| (dMBType.isSetInt16U())
 						|| (dMBType.isSetInt32U())
 						|| (dMBType.getInt64U()!=null)) {
 					dVal = (double) Math.abs(RegRes);
@@ -626,6 +623,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 						}
 					}
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_WORD_ORDER)) {
+					if (size == 1) {
+						return mbregresp; // just one word, no conversion
+					}
 					if ((size % 2) > 0)
 						throw new IllegalArgumentException("CHANGE_WORD_ORDER: Input Array length invalid");
 					for (c = 0; c < size; c = c + 2) {
@@ -633,6 +633,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 						mbregconv[c + 1] = mbregresp[c];
 					}
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_DWORD_ORDER)) {
+					if (size < 4) {
+						return mbregresp; // just one DWORD, no conversion
+					}
 					if ((size % 4) > 0)
 						throw new IllegalArgumentException("CHANGE_DWORD_ORDER: Input Array length invalid");
 					for (c = 0; c < size; c = c + 4) {
