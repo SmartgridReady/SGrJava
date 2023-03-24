@@ -623,17 +623,27 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
  
 		  switch (mBlayer6Scheme)
           {
-    		case SGrModbusLayer6DeviationType._2REG_BASE1000_H2L_VALUE:
-    			if (size == 2)
-    			{
-    				lv =  ((long) mbregresp[0]) *1000;
-    				lv = lv + (long) mbregresp[1];
-    				mbregconv[1] =  (int) (lv & 0xffff);	
-    				mbregconv[0] =  (int) ((lv>>16) & 0xffff);	
-    				mbregresp = mbregconv;
-    			}
-    		break;
-	    	case SGrModbusLayer6DeviationType._2REG_BASE1000_L2H_VALUE:
+  		    case SGrModbusLayer6DeviationType._2REG_BASE1000_H2L_VALUE:
+			  if (size == 2)
+			  {
+				lv =  ((long) mbregresp[0]) *1000;
+				lv = lv + (long) mbregresp[1];
+				mbregconv[1] =  (int) (lv & 0xffff);	
+				mbregconv[0] =  (int) ((lv>>16) & 0xffff);	
+				mbregresp = mbregconv;
+			  }
+			break;
+		    case SGrModbusLayer6DeviationType._2REG_BASE1000_L2H_VALUE:
+			  if (size == 2)
+			  {
+				lv =  ((long) mbregresp[1]) *1000;
+				lv = lv + (long) mbregresp[0];
+				mbregconv[1] =  (int) (lv & 0xffff);	
+				mbregconv[0] =  (int) ((lv>>16) & 0xffff);	
+				mbregresp = mbregconv;
+			  }
+			break;
+	    	case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOH2L_VALUE:
 				switch (mbregresp[0])
 				{
 					case 0:

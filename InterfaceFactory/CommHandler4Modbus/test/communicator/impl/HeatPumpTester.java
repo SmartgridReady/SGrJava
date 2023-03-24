@@ -112,7 +112,7 @@ public class HeatPumpTester {
 				{
 					
 				   // loop data & test reporting
-				   Thread.sleep(5000);  // show last block for ccc  milliseconds
+				   Thread.sleep(10000);  // show last block for ccc  milliseconds
 					
 					 LOG.info(String.format("------> LOOP=" +	runtimeCnt + "  Exceptions:"));		
 					if (devStiebelISGIsOn)  LOG.info(String.format(" StiebelISG=" + devStiebel_ISGExcpetions + ","));
@@ -289,23 +289,37 @@ public class HeatPumpTester {
 	   // -----------------------------------------------------------------------------------------------------------------------------	
 		static void initStiebelISG(String aBaseDir, String aDescriptionFile ) {				
 			
+			SGrModbusDeviceFrame tmpDesc=null;
 			try {	
 				
 				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
-				SGrModbusDeviceFrame tmpDesc=loader.load(aBaseDir, aDescriptionFile);	
-				
-				// // replace device specific for TCP  (easymodus uses Driver instance per device)						
-				GenDriverAPI4ModbusTCP mbStiebelISG= new GenDriverAPI4ModbusTCP();
-				devStiebelISG=new SGrModbusDevice(tmpDesc, mbStiebelISG);							
-				mbStiebelISG.initDevice("192.168.1.55",502);
-
-				
+				tmpDesc=loader.load(aBaseDir, aDescriptionFile);	
 			}
 			
 			catch ( Exception e )
 			{
+				 devStiebelISGIsOn = false;
 				 LOG.info(String.format("Error loading device description. " + e));
 			}		
+			
+			if (tmpDesc != null)
+			{
+			  try {
+				
+				  // // replace device specific for TCP  (easymodus uses Driver instance per device)						
+				  GenDriverAPI4ModbusTCP mbStiebelISG= new GenDriverAPI4ModbusTCP();
+				  devStiebelISG=new SGrModbusDevice(tmpDesc, mbStiebelISG);							
+				  mbStiebelISG.initDevice("192.168.1.55",502);
+			   }
+			
+			  catch ( Exception e )
+			  {
+				 devStiebelISGIsOn = false;
+				 LOG.info(String.format("Error while connecting device. " + e));
+			  }	
+				
+			}
+			
 		}
 		
 		static void tstStiebelISG()
@@ -324,7 +338,7 @@ public class HeatPumpTester {
 				 LOG.info(String.format("HeatPump Stiebel-Eltron"));
 				Thread.sleep(25);
 				
-				if (runtimeCnt == 3)
+				if (runtimeCnt == 2)
 				{
 				  // testing setters: one setting for a test run only recommended
 				  // read the device manual carefully before testing any setpoint
@@ -332,21 +346,25 @@ public class HeatPumpTester {
 				oEnumList.setSgrHPOpMode(SGrHPOpModeType.WPPROGOP);
 				SGrBasicGenDataPointTypeType  hpval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 				hpval.setEnum(oEnumList);
-				
-// control operation Mode of Heat Pump
-				hpval.setBoolean(false);  
 				devStiebelISG.setValByGDPType("HeatPumpBase", "HPOpModeCmd", hpval);	
+				LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyCmd="+ oEnumList.getSgrHPOpMode().getLiteral()));
+				oEnumList.unsetSgrHPOpMode();
 				
+				/*
 				// enable or disable SG-Ready
+				hpval.setBoolean(true);
+				LOG.info(String.format("  Setting ReadyStates_bwp:SGReadyEnabled=" + hpval));
 				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled", hpval);
 				
 				/// control SG-Ready by enum SGReadyStateLv2Type
-                oEnumList.setSgreadyStateLv2(SGReadyStateLv2Type.HPNORMAL);
+                oEnumList.setSgreadyStateLv2(SGReadyStateLv2Type.HPINTENSIFIED);
 				SGrBasicGenDataPointTypeType  bwpCmd = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 				bwpCmd.setEnum(oEnumList);
 				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd", bwpCmd);
+				LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));
+				oEnumList.unsetSgreadyStateLv2();
 				
-				/*
+				
 				// control SG-Ready by contacts
 				hpval.setBoolean(false);  
 				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON", hpval);	
@@ -363,7 +381,9 @@ public class HeatPumpTester {
 				fVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "SupplyWaterTemp").getFloat32();
 				fVal3=devStiebelISG.getValByGDPType("HeatPumpBase", "ReturnSupplyWaterTemp").getFloat32();
 				fVal4=devStiebelISG.getValByGDPType("HeatPumpBase", "SourceTemp").getFloat32();		
-				 LOG.info(String.format("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, SupplyWaterTemp=" + fVal2 +  "°C,  ReturnSupplyWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C "));     	
+				 LOG.info(String.format("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, SupplyWaterTemp=" + fVal2 +  "°C,  ReturnSupplyWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C "));  
+				 oEnumList.unsetSgrHPOpMode();
+				 
 				if (iVal2 != 0)  
 				{
 					 LOG.info(String.format("    HPOpState bits set: ")); 
@@ -414,7 +434,8 @@ public class HeatPumpTester {
 				bVal2=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON").isBoolean();               
 				bVal3=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON").isBoolean();                             
 				LOG.info(String.format("  SGReady-bwp:      SGReadyState=" + oEnumList.getSgreadyStateLv2().getLiteral() + ",  SGReadyEnabled=" + bVal1 + ",  SGReadyInp1isON=" + bVal2 + ",  SGReadyInp2isON=" + bVal3 ));
-
+				oEnumList.unsetSgreadyStateLv2();
+				
 				fVal1=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyHeat").getFloat32();
 				fVal2=devStiebelISG.getValByGDPType("EnergyMonitor", "ActiveEnergyACheat").getFloat32();
 				fVal3=devStiebelISG.getValByGDPType("EnergyMonitor", "ThermalEnergyDomHotWater").getFloat32();
