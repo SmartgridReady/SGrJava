@@ -27,7 +27,7 @@ package communicator.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+// SmartGridready definitions
 import com.smartgridready.ns.v0.CtaDHWOpModeType;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
@@ -35,9 +35,12 @@ import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
-import com.smartgridready.ns.v0.SGrHPOpstateStiebelType;
+import com.smartgridready.ns.v0.SGrHPOpstateType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.V0Factory;
+
+//proprietary definitions
+import com.smartgridready.ns.v0.StiHPOpstateStiebelType;
 
 import communicator.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
@@ -375,7 +378,8 @@ public class HeatPumpTester {
 				}
 				// testing 
 				oEnumList= devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpModeCmd").getEnum();
-				iVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpState").getInt16U();            
+				iVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpState").getInt16U();     
+				iVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpStateStiebel").getInt16U();          
 				bVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "ErrorNrSGr").isBoolean();
 				fVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFloat32();			
 				fVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "SupplyWaterTemp").getFloat32();
@@ -384,22 +388,32 @@ public class HeatPumpTester {
 				 LOG.info(String.format("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, SupplyWaterTemp=" + fVal2 +  "°C,  ReturnSupplyWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C "));  
 				 oEnumList.unsetSgrHPOpMode();
 				 
-				if (iVal2 != 0)  
+				if (iVal1 != 0)  
 				{
 					 LOG.info(String.format("    HPOpState bits set: ")); 
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HP1PUMPON_VALUE))) != 0)  LOG.info(String.format("HP_1_ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HP2PUMPON_VALUE))) != 0)  LOG.info(String.format("HP_2_ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DHW ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HEAT ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.HEATUPPROGRAM_VALUE))) != 0)  LOG.info(String.format("HEAT PRORGRAMM, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.NHZSTAGESRUNNING_VALUE))) != 0)  LOG.info(String.format("NHZ Stage ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.MINONEIWSINDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.SILENTMODE1ACTIVE_VALUE))) != 0)  LOG.info(String.format("Silent 1 Mode, "));
-					if(( (iVal2 & (1<<SGrHPOpstateStiebelType.SILENTMODE2ACTIVE_VALUE))) != 0)  LOG.info(String.format("Silent 2 Mode (HP is off) "));
+					if(( (iVal2 & (1<<SGrHPOpstateType.HPPUMPON_VALUE))) != 0)  LOG.info(String.format("HP_PUMP_ON, "));
+					if(( (iVal2 & (1<<SGrHPOpstateType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HP_IN_HEATING_MODE, "));
+					if(( (iVal2 & (1<<SGrHPOpstateType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DWH ON, "));
+					if(( (iVal2 & (1<<SGrHPOpstateType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
+					if(( (iVal2 & (1<<SGrHPOpstateType.SUMMERMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("SUMMER_MODE_ACTIVE, "));
+					if(( (iVal2 & (1<<SGrHPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING_MODE_ACTIVE, "));
+					if(( (iVal2 & (1<<SGrHPOpstateType.INDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
 				}
-				
+				if (iVal2 != 0)  
+				{
+					 LOG.info(String.format("    HPOpStateStiebel bits set: ")); 
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.HP1PUMPON_VALUE))) != 0)  LOG.info(String.format("HP_1_ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.HP2PUMPON_VALUE))) != 0)  LOG.info(String.format("HP_2_ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DHW ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HEAT ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.HEATUPPROGRAM_VALUE))) != 0)  LOG.info(String.format("HEAT PRORGRAMM, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.NHZSTAGESRUNNING_VALUE))) != 0)  LOG.info(String.format("NHZ Stage ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.MINONEIWSINDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.SILENTMODE1ACTIVE_VALUE))) != 0)  LOG.info(String.format("Silent 1 Mode, "));
+					if(( (iVal2 & (1<<StiHPOpstateStiebelType.SILENTMODE2ACTIVE_VALUE))) != 0)  LOG.info(String.format("Silent 2 Mode (HP is off) "));
+				}
 				bVal1 = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled").isBoolean();
 				bVal2 = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON").isBoolean();	
 				bVal3 = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON").isBoolean();	  	

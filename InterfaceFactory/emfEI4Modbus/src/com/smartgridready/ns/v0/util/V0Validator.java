@@ -164,12 +164,16 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrGenFunctionalProfileType((SGrGenFunctionalProfileType)value, diagnostics, context);
 			case V0Package.SGR_LEGIB_DOCUMENTATION_TYPE:
 				return validateSGrLegibDocumentationType((SGrLegibDocumentationType)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_BITMAP_MAPPER_TYPE:
+				return validateSGrModbusBitmapMapperType((SGrModbusBitmapMapperType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE:
 				return validateSGrModbusDataPointDescriptionType((SGrModbusDataPointDescriptionType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE:
 				return validateSGrModbusDataPointType((SGrModbusDataPointType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_DEVICE_FRAME:
 				return validateSGrModbusDeviceFrame((SGrModbusDeviceFrame)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_ENUM_MAPPER_TYPE:
+				return validateSGrModbusEnumMapperType((SGrModbusEnumMapperType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_FUNCTIONAL_PROFILE_TYPE:
 				return validateSGrModbusFunctionalProfileType((SGrModbusFunctionalProfileType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_INTERFACE_DESCRIPTION_TYPE:
@@ -267,13 +271,11 @@ public class V0Validator extends EObjectValidator {
 			case V0Package.SGR_HC_OP_MODE_TYPE:
 				return validateSGrHCOpModeType((SGrHCOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HC_OP_STATE_TYPE:
-				return validateSGrHCOpStateType((SGrHCOpStateType)value, diagnostics, context);
+				return validateSgrHCOpStateType((SgrHCOpStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_ACT_BUFFER_STATE_TYPE:
 				return validateSGrHPActBufferStateType((SGrHPActBufferStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_OP_MODE_TYPE:
 				return validateSGrHPOpModeType((SGrHPOpModeType)value, diagnostics, context);
-			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE:
-				return validateSGrHPOpstateStiebelType((SGrHPOpstateStiebelType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_TYPE:
 				return validateSGrHPOpstateType((SGrHPOpstateType)value, diagnostics, context);
 			case V0Package.SGR_LANGUAGE_TYPE:
@@ -316,6 +318,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrTransportServicesUsedListType((SGrTransportServicesUsedListType)value, diagnostics, context);
 			case V0Package.SGR_UNITS:
 				return validateSGrUnits((SGrUnits)value, diagnostics, context);
+			case V0Package.STI_HP_OPSTATE_STIEBEL_TYPE:
+				return validateStiHPOpstateStiebelType((StiHPOpstateStiebelType)value, diagnostics, context);
 			case V0Package.SUB_PROFILE_TYPE_ENUM_TYPE:
 				return validateSubProfileTypeEnumType((SubProfileTypeEnumType)value, diagnostics, context);
 			case V0Package.TENUM_CONVERSION_FCT:
@@ -403,13 +407,11 @@ public class V0Validator extends EObjectValidator {
 			case V0Package.SGR_HC_OP_MODE_TYPE_OBJECT:
 				return validateSGrHCOpModeTypeObject((SGrHCOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HC_OP_STATE_TYPE_OBJECT:
-				return validateSGrHCOpStateTypeObject((SGrHCOpStateType)value, diagnostics, context);
+				return validateSgrHCOpStateTypeObject((SgrHCOpStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_ACT_BUFFER_STATE_TYPE_OBJECT:
 				return validateSGrHPActBufferStateTypeObject((SGrHPActBufferStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_OP_MODE_TYPE_OBJECT:
 				return validateSGrHPOpModeTypeObject((SGrHPOpModeType)value, diagnostics, context);
-			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
-				return validateSGrHPOpstateStiebelTypeObject((SGrHPOpstateStiebelType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_TYPE_OBJECT:
 				return validateSGrHPOpstateTypeObject((SGrHPOpstateType)value, diagnostics, context);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
@@ -458,6 +460,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrTransportServicesUsedListTypeObject((SGrTransportServicesUsedListType)value, diagnostics, context);
 			case V0Package.SGR_UNITS_OBJECT:
 				return validateSGrUnitsObject((SGrUnits)value, diagnostics, context);
+			case V0Package.STI_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
+				return validateStiHPOpstateStiebelTypeObject((StiHPOpstateStiebelType)value, diagnostics, context);
 			case V0Package.SUB_PROFILE_TYPE_ENUM_TYPE_OBJECT:
 				return validateSubProfileTypeEnumTypeObject((SubProfileTypeEnumType)value, diagnostics, context);
 			case V0Package.TBIT_RANK:
@@ -787,6 +791,15 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSGrModbusBitmapMapperType(SGrModbusBitmapMapperType sGrModbusBitmapMapperType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrModbusBitmapMapperType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSGrModbusDataPointDescriptionType(SGrModbusDataPointDescriptionType sGrModbusDataPointDescriptionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrModbusDataPointDescriptionType, diagnostics, context);
 	}
@@ -807,6 +820,15 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateSGrModbusDeviceFrame(SGrModbusDeviceFrame sGrModbusDeviceFrame, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrModbusDeviceFrame, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrModbusEnumMapperType(SGrModbusEnumMapperType sGrModbusEnumMapperType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrModbusEnumMapperType, diagnostics, context);
 	}
 
 	/**
@@ -1246,7 +1268,7 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrHCOpStateType(SGrHCOpStateType sGrHCOpStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSgrHCOpStateType(SgrHCOpStateType sgrHCOpStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1265,15 +1287,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrHPOpModeType(SGrHPOpModeType sGrHPOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrHPOpstateStiebelType(SGrHPOpstateStiebelType sGrHPOpstateStiebelType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1463,6 +1476,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrUnits(SGrUnits sGrUnits, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStiHPOpstateStiebelType(StiHPOpstateStiebelType stiHPOpstateStiebelType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2214,7 +2236,7 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSGrHCOpStateTypeObject(SGrHCOpStateType sGrHCOpStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSgrHCOpStateTypeObject(SgrHCOpStateType sgrHCOpStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2233,15 +2255,6 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrHPOpModeTypeObject(SGrHPOpModeType sGrHPOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSGrHPOpstateStiebelTypeObject(SGrHPOpstateStiebelType sGrHPOpstateStiebelTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2504,6 +2517,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSGrUnitsObject(SGrUnits sGrUnitsObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStiHPOpstateStiebelTypeObject(StiHPOpstateStiebelType stiHPOpstateStiebelTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
