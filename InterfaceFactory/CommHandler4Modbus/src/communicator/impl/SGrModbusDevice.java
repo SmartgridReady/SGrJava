@@ -330,24 +330,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		//		.get(0).getModbusDataType();
 		// Data Direction ctrl
 		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
-		// Attributes
-		//WIP/cb TODO: Workout instance of attributes, differentiate in between local XML
-		// datapoints & Modbus based datapoints
-		if (aDataPoint.getModbusAttr().size() > 0) 
-		{ // there are Modbus attributes available
-			
-			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
-			} else 
-			{  if (aDataPoint.getModbusAttr().get(0).getScalingByMulPwr()!=null)
-			  {
-				SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0).getScalingByMulPwr();
-				mul = attrScaling.getMultiplicator();
-				pwof10 = attrScaling.getPowerof10();
-			  }
-			}
-			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
-		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
-		}
 		
 		EList<TEnumConversionFct> MBconvScheme = modbusInterfaceDesc.getConversionScheme();
 
@@ -357,10 +339,37 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 				mbregresp = ConvertEndians(MBconvScheme, mbregresp, size);
 			}
-			// do we have Layer 6 deviations ?
-	        if (l6dev >= 0  ) {
-	        	mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
-	        }
+
+			// Attributes
+			//WIP/cb TODO: Workout instance of attributes, differentiate in between local XML
+			// datapoints & Modbus based datapoints
+			if (aDataPoint.getModbusAttr().size() > 0) 
+			{ // there are Modbus attributes available
+				
+				if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
+				} else 
+				{  if (aDataPoint.getModbusAttr().get(0).getScalingByMulPwr()!=null)
+				  {
+					SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0).getScalingByMulPwr();
+					mul = attrScaling.getMultiplicator();
+					pwof10 = attrScaling.getPowerof10();
+				  }
+				}
+				if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation() )
+				{   // do we have Layer 6 deviations ?
+			       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
+			       	mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
+				}
+				if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper()!=null )
+				{   // modbus value to generic value conversion
+					mbregresp[0] = aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().get(mbregresp[0]).intValue();
+				}
+				if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper()!=null )
+				{   // modbus value to generic value conversion
+					mbregresp[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getGenEnumMapper().get(mbregresp[0]).intValue();
+				}
+			}
+			
 
 			// Most significant int as returned from modbus can have the wrong sign:
 			// - after change byte order
@@ -906,9 +915,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		// Attributes
 
 		// TODO: fehlende Instanz von attributen
-		// Attributes
-		// TODO: Workout instance of attributes, differentiate in between local XML
-		// datapoints & Modbus based datapoints
+		// Attributes for pre-register load conversion
+
 		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available
 			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
 			} else
@@ -921,6 +929,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			}
 			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
 		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
+			
 		}
 
 		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
@@ -1159,7 +1168,20 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}
 		else { // TODO: Default behaviour
 		}
-
+		
+		// Attributes for post-register load conversion
+		if (aDataPoint.getModbusAttr().size() > 0)
+		{
+		  if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper()!=null )
+		  {   // modbus value to generic value conversion
+			  mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getModbusBitMapper().get(mbregsnd[0]).intValue();
+		  }
+		  if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper()!=null )
+		  {   // modbus value to generic value conversion
+			 mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getModbusEnumMapper().get(mbregsnd[0]).intValue();
+		  }
+		}
+		
 		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 			if (bRegisterCMDs) {
 				// TODO (HF) : was like this. Is this really needed or was it thought for blocktransfer?
