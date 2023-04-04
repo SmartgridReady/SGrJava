@@ -34,7 +34,7 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="ctaDHWOpModeType"/>
     </eAnnotations>
-    <eLiterals name="DHWUNDEF" literal="DHW_UNDEF"/>
+    <eLiterals name="DHWNUL" literal="DHW_NUL"/>
     <eLiterals name="DHWON" value="1" literal="DHW_ON"/>
     <eLiterals name="DHWOFF" value="2" literal="DHW_OFF"/>
     <eLiterals name="DHWPUSH" value="3" literal="DHW_PUSH"/>
@@ -45,6 +45,63 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="ctaDHWOpModeType:Object"/>
       <details key="baseType" value="ctaDHWOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaHPOpModeType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHPOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HPNUL" literal="HP_NUL"/>
+    <eLiterals name="HPSTANDBY" value="1" literal="HP_STANDBY"/>
+    <eLiterals name="HPHEATINGOP" value="2" literal="HP_HEATING_OP"/>
+    <eLiterals name="HPEMERGHEATINGACTIVE" value="3" literal="HP_EMERG_HEATING_ACTIVE"/>
+    <eLiterals name="HPDOMHWACTIVE" value="4" literal="HP_DOMHW_ACTIVE"/>
+    <eLiterals name="HPOMHWEMERGACTIVE" value="5" literal="HP_OMHW_EMERG_ACTIVE"/>
+    <eLiterals name="HPACTIVECOOLINGOP" value="6" literal="HP_ACTIVE_COOLING_OP"/>
+    <eLiterals name="HPMANUALOP" value="7" literal="HP_MANUAL_OP"/>
+    <eLiterals name="HPBUFFERLOADACTIVE" value="8" literal="HP_BUFFER_LOAD_ACTIVE"/>
+    <eLiterals name="HPEXTERNALCTRL" value="9" literal="HP_EXTERNAL_CTRL"/>
+    <eLiterals name="HPDIRECTDISTRIBUTION" value="10" literal="HP_DIRECT_DISTRIBUTION"/>
+    <eLiterals name="HPDEFROSTACTIVE" value="11" literal="HP_DEFROST_ACTIVE"/>
+    <eLiterals name="HPPASSIVECOOLINGOP" value="12" literal="HP_PASSIVE_COOLING_OP"/>
+    <eLiterals name="HPRESERVE" value="13" literal="HP_RESERVE"/>
+    <eLiterals name="HPCOMBINDEDBUFFERLOADING" value="14" literal="HP_COMBINDED_BUFFER_LOADING"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaHPOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHPOpModeType:Object"/>
+      <details key="baseType" value="ctaHPOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaHPOpStateType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHPOpStateType"/>
+    </eAnnotations>
+    <eLiterals name="HPNUL" literal="HP_NUL"/>
+    <eLiterals name="HPSTANDBY" value="1" literal="HP_STANDBY"/>
+    <eLiterals name="HPALARMOFF" value="2" literal="HP_ALARM_OFF"/>
+    <eLiterals name="HPEXTERNALOFF" value="3" literal="HP_EXTERNAL_OFF"/>
+    <eLiterals name="HPTIMEOUTOFF" value="4" literal="HP_TIMEOUT_OFF"/>
+    <eLiterals name="HPDSOOFF" value="5" literal="HP_DSO_OFF"/>
+    <eLiterals name="HPMANUALOFF" value="6" literal="HP_MANUAL_OFF"/>
+    <eLiterals name="HPMANUALOP" value="7" literal="HP_MANUAL_OP"/>
+    <eLiterals name="HPSTARTING" value="8" literal="HP_STARTING"/>
+    <eLiterals name="HPSTOPPING" value="9" literal="HP_STOPPING"/>
+    <eLiterals name="HPSECUREOFF" value="10" literal="HP_SECURE_OFF"/>
+    <eLiterals name="HPSTARTDEFROST" value="11" literal="HP_START_DEFROST"/>
+    <eLiterals name="HPDEFROSTING" value="12" literal="HP_DEFROSTING"/>
+    <eLiterals name="HPDEFROSTEND" value="13" literal="HP_DEFROST_END"/>
+    <eLiterals name="HPPRESSUREDIFF" value="14" literal="HP_PRESSURE_DIFF"/>
+    <eLiterals name="HPCOOLING" value="15" literal="HP_COOLING"/>
+    <eLiterals name="HPHEATING" value="16" literal="HP_HEATING"/>
+    <eLiterals name="HPCOMPSTARTERR" value="17" literal="HP_COMP_START_ERR"/>
+    <eLiterals name="HPOFFOUTOFLIMITS" value="18" literal="HP_OFF_OUT_OF_LIMITS"/>
+    <eLiterals name="HPOILRECIRCULACTIVE" value="19" literal="HP_OIL_RECIRCUL_ACTIVE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaHPOpStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHPOpStateType:Object"/>
+      <details key="baseType" value="ctaHPOpStateType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
@@ -359,6 +416,27 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovHPActBufferStateType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPActBufferStateType"/>
+    </eAnnotations>
+    <eLiterals name="HPBOFF" literal="HPB_OFF"/>
+    <eLiterals name="HPBTEMPLOW" value="1" literal="HPB_TEMP_LOW"/>
+    <eLiterals name="HPBRUNNING" value="2" literal="HPB_RUNNING"/>
+    <eLiterals name="HPBRUNHOLD" value="3" literal="HPB_RUN_HOLD"/>
+    <eLiterals name="HPBONTARGET" value="4" literal="HPB_ON_TARGET"/>
+    <eLiterals name="HPBRESERVE" value="5" literal="HPB_RESERVE"/>
+    <eLiterals name="HPBENERCOMPULSION" value="6" literal="HPB_ENER_COMPULSION"/>
+    <eLiterals name="HPBSKIMMING" value="7" literal="HPB_SKIMMING"/>
+    <eLiterals name="HPBSGRINTENSIVIED" value="8" literal="HPB_SGR_INTENSIVIED"/>
+    <eLiterals name="HPBSGRFORCED" value="9" literal="HPB_SGR_FORCED_"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovHPActBufferStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPActBufferStateType:Object"/>
+      <details key="baseType" value="hovHPActBufferStateType"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="HttpMethod">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1236,14 +1314,6 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stiHPOpstateStiebel" eType="#//StiHPOpstateStiebelType"
-        unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="stiHPOpstateStiebel"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHCOpstate" eType="#//SgrHCOpStateType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1252,11 +1322,19 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHPActBufferState" eType="#//SGrHPActBufferStateType"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovHPActBufferState" eType="#//HovHPActBufferStateType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="sgrHPActBufferState"/>
+        <details key="name" value="hovHPActBufferState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stiHPOpstate" eType="#//StiHPOpstateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="stiHPOpstate"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1888,6 +1966,22 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaHPOpState" eType="#//CtaHPOpStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ctaHPOpState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaHPOpMode" eType="#//CtaHPOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ctaHPOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrEVSEStateLv1Type">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1921,7 +2015,7 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrEVStateType"/>
     </eAnnotations>
-    <eLiterals name="EVSTATEUNDEF" literal="EV_STATE_UNDEF"/>
+    <eLiterals name="EVSTATENUL" literal="EV_STATE_NUL"/>
     <eLiterals name="EVSTANDBY" value="1" literal="EV_STANDBY"/>
     <eLiterals name="EVDETECTED" value="2" literal="EV_DETECTED"/>
     <eLiterals name="EVREADY4CHARGING" value="3" literal="EV_READY4CHARGING"/>
@@ -2093,27 +2187,6 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="sgrHCOpStateType:Object"/>
       <details key="baseType" value="sgrHCOpStateType"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="SGrHPActBufferStateType">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrHPActBufferStateType"/>
-    </eAnnotations>
-    <eLiterals name="HPBOFF" literal="HPB_OFF"/>
-    <eLiterals name="HPBTEMPLOW" value="1" literal="HPB_TEMP_LOW"/>
-    <eLiterals name="HPBRUNNING" value="2" literal="HPB_RUNNING"/>
-    <eLiterals name="HPBRUNHOLD" value="3" literal="HPB_RUN_HOLD"/>
-    <eLiterals name="HPBONTARGET" value="4" literal="HPB_ON_TARGET"/>
-    <eLiterals name="HPBRESERVE" value="5" literal="HPB_RESERVE"/>
-    <eLiterals name="HPBENERCOMPULSION" value="6" literal="HPB_ENER_COMPULSION"/>
-    <eLiterals name="HPBSKIMMING" value="7" literal="HPB_SKIMMING"/>
-    <eLiterals name="HPBSGRINTENSIVIED" value="8" literal="HPB_SGR_INTENSIVIED"/>
-    <eLiterals name="HPBSGRFORCED" value="9" literal="HPB_SGR_FORCED_"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="SGrHPActBufferStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrHPActBufferStateType:Object"/>
-      <details key="baseType" value="SGrHPActBufferStateType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrHPOpModeType">
@@ -3608,9 +3681,9 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="StiHPOpstateStiebelType">
+  <eClassifiers xsi:type="ecore:EEnum" name="StiHPOpstateType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="stiHPOpstateStiebelType"/>
+      <details key="name" value="stiHPOpstateType"/>
     </eAnnotations>
     <eLiterals name="HP1PUMPON" literal="HP_1_PUMP_ON"/>
     <eLiterals name="HP2PUMPON" value="1" literal="HP_2_PUMP_ON"/>
@@ -3625,10 +3698,10 @@
     <eLiterals name="SILENTMODE1ACTIVE" value="10" literal="SILENT_MODE_1_ACTIVE"/>
     <eLiterals name="SILENTMODE2ACTIVE" value="11" literal="SILENT_MODE_2_ACTIVE"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="StiHPOpstateStiebelTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+  <eClassifiers xsi:type="ecore:EDataType" name="StiHPOpstateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="stiHPOpstateStiebelType:Object"/>
-      <details key="baseType" value="stiHPOpstateStiebelType"/>
+      <details key="name" value="stiHPOpstateType:Object"/>
+      <details key="baseType" value="stiHPOpstateType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SubProfileTypeEnumType">

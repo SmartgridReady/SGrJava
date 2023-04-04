@@ -3,6 +3,8 @@
 package com.smartgridready.ns.v0.impl;
 
 import com.smartgridready.ns.v0.CtaDHWOpModeType;
+import com.smartgridready.ns.v0.CtaHPOpModeType;
+import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrDHWOpModeType;
@@ -54,6 +56,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrHCOpMode <em>Sgr HC Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaHPOpState <em>Cta HP Op State</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaHPOpMode <em>Cta HP Op Mode</em>}</li>
  * </ul>
  *
  * @generated
@@ -328,7 +332,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected static final SGrEVStateType SGR_EV_STATE_EDEFAULT = SGrEVStateType.EVSTATEUNDEF;
+	protected static final SGrEVStateType SGR_EV_STATE_EDEFAULT = SGrEVStateType.EVSTATENUL;
 
 	/**
 	 * The cached value of the '{@link #getSgrEVState() <em>Sgr EV State</em>}' attribute.
@@ -531,7 +535,7 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected static final CtaDHWOpModeType CTA_DHW_OP_MODE_EDEFAULT = CtaDHWOpModeType.DHWUNDEF;
+	protected static final CtaDHWOpModeType CTA_DHW_OP_MODE_EDEFAULT = CtaDHWOpModeType.DHWNUL;
 
 	/**
 	 * The cached value of the '{@link #getCtaDHWOpMode() <em>Cta DHW Op Mode</em>}' attribute.
@@ -551,6 +555,64 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected boolean ctaDHWOpModeESet;
+
+	/**
+	 * The default value of the '{@link #getCtaHPOpState() <em>Cta HP Op State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCtaHPOpState()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final CtaHPOpStateType CTA_HP_OP_STATE_EDEFAULT = CtaHPOpStateType.HPNUL;
+
+	/**
+	 * The cached value of the '{@link #getCtaHPOpState() <em>Cta HP Op State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCtaHPOpState()
+	 * @generated
+	 * @ordered
+	 */
+	protected CtaHPOpStateType ctaHPOpState = CTA_HP_OP_STATE_EDEFAULT;
+
+	/**
+	 * This is true if the Cta HP Op State attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean ctaHPOpStateESet;
+
+	/**
+	 * The default value of the '{@link #getCtaHPOpMode() <em>Cta HP Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCtaHPOpMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final CtaHPOpModeType CTA_HP_OP_MODE_EDEFAULT = CtaHPOpModeType.HPNUL;
+
+	/**
+	 * The cached value of the '{@link #getCtaHPOpMode() <em>Cta HP Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCtaHPOpMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected CtaHPOpModeType ctaHPOpMode = CTA_HP_OP_MODE_EDEFAULT;
+
+	/**
+	 * This is true if the Cta HP Op Mode attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean ctaHPOpModeESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1427,6 +1489,106 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
+	public CtaHPOpStateType getCtaHPOpState() {
+		return ctaHPOpState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCtaHPOpState(CtaHPOpStateType newCtaHPOpState) {
+		CtaHPOpStateType oldCtaHPOpState = ctaHPOpState;
+		ctaHPOpState = newCtaHPOpState == null ? CTA_HP_OP_STATE_EDEFAULT : newCtaHPOpState;
+		boolean oldCtaHPOpStateESet = ctaHPOpStateESet;
+		ctaHPOpStateESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE, oldCtaHPOpState, ctaHPOpState, !oldCtaHPOpStateESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetCtaHPOpState() {
+		CtaHPOpStateType oldCtaHPOpState = ctaHPOpState;
+		boolean oldCtaHPOpStateESet = ctaHPOpStateESet;
+		ctaHPOpState = CTA_HP_OP_STATE_EDEFAULT;
+		ctaHPOpStateESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE, oldCtaHPOpState, CTA_HP_OP_STATE_EDEFAULT, oldCtaHPOpStateESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetCtaHPOpState() {
+		return ctaHPOpStateESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CtaHPOpModeType getCtaHPOpMode() {
+		return ctaHPOpMode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCtaHPOpMode(CtaHPOpModeType newCtaHPOpMode) {
+		CtaHPOpModeType oldCtaHPOpMode = ctaHPOpMode;
+		ctaHPOpMode = newCtaHPOpMode == null ? CTA_HP_OP_MODE_EDEFAULT : newCtaHPOpMode;
+		boolean oldCtaHPOpModeESet = ctaHPOpModeESet;
+		ctaHPOpModeESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE, oldCtaHPOpMode, ctaHPOpMode, !oldCtaHPOpModeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetCtaHPOpMode() {
+		CtaHPOpModeType oldCtaHPOpMode = ctaHPOpMode;
+		boolean oldCtaHPOpModeESet = ctaHPOpModeESet;
+		ctaHPOpMode = CTA_HP_OP_MODE_EDEFAULT;
+		ctaHPOpModeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE, oldCtaHPOpMode, CTA_HP_OP_MODE_EDEFAULT, oldCtaHPOpModeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetCtaHPOpMode() {
+		return ctaHPOpModeESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_MEAS_VALUE_SOURCE:
@@ -1463,6 +1625,10 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return getSgrDHWOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
 				return getCtaDHWOpMode();
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
+				return getCtaHPOpState();
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE:
+				return getCtaHPOpMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1525,6 +1691,12 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
 				setCtaDHWOpMode((CtaDHWOpModeType)newValue);
+				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
+				setCtaHPOpState((CtaHPOpStateType)newValue);
+				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE:
+				setCtaHPOpMode((CtaHPOpModeType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1589,6 +1761,12 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
 				unsetCtaDHWOpMode();
 				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
+				unsetCtaHPOpState();
+				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE:
+				unsetCtaHPOpMode();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1635,6 +1813,10 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return isSetSgrDHWOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
 				return isSetCtaDHWOpMode();
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
+				return isSetCtaHPOpState();
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE:
+				return isSetCtaHPOpMode();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1683,6 +1865,10 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 		if (sgrDHWOpModeESet) result.append(sgrDHWOpMode); else result.append("<unset>");
 		result.append(", ctaDHWOpMode: ");
 		if (ctaDHWOpModeESet) result.append(ctaDHWOpMode); else result.append("<unset>");
+		result.append(", ctaHPOpState: ");
+		if (ctaHPOpStateESet) result.append(ctaHPOpState); else result.append("<unset>");
+		result.append(", ctaHPOpMode: ");
+		if (ctaHPOpModeESet) result.append(ctaHPOpMode); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

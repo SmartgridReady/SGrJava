@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * BM0004:
+ * BM0003:
  *      BitRank map for HeatPump HeatCoolState
  * 	
  * <!-- end-model-doc -->

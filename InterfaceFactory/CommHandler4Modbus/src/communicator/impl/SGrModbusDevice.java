@@ -22,6 +22,8 @@ check for "EI-Modbus" and "Generic" directories in our Namespace http://www.smar
 package communicator.impl;
 
 import com.smartgridready.ns.v0.CtaDHWOpModeType;
+import com.smartgridready.ns.v0.CtaHPOpModeType;
+import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
@@ -317,17 +319,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();  	
 		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
 		
-		//if (aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue()==SGrModbusLayer6DeviationType.BITMAP_REGISTER_VALUE)
-		/*  dMBType  =  aDataPoint.getModbusDataPoint().get(0);
-		else
-		  dMBType  = evalModbusDataType(aDataPoint,arrayLen);
-        */
-		
 		// Data format adaption		
 		dGenType = aDataPoint.getDataPoint()
 				.getBasicDataType();
-		//dMBType = aDataPoint.getModbusDataPoint()
-		//		.get(0).getModbusDataType();
 		// Data Direction ctrl
 		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
 		
@@ -341,8 +335,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			}
 
 			// Attributes
-			//WIP/cb TODO: Workout instance of attributes, differentiate in between local XML
-			// datapoints & Modbus based datapoints
 			if (aDataPoint.getModbusAttr().size() > 0) 
 			{ // there are Modbus attributes available
 				
@@ -362,7 +354,15 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				}
 				if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper()!=null )
 				{   // modbus value to generic value conversion
-					mbregresp[0] = aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().get(mbregresp[0]).intValue();
+					
+					int[] zwi= null; 
+					int lp,gen;
+					for (lp=0;lp<aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().size();lp++)
+					{
+						gen = aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().get(lp).intValue();	
+						if (((1<<(lp%16)) & mbregresp[lp/16]) !=0) zwi[lp/16] =  zwi[lp/16] | 1<<gen;
+					}
+					mbregresp = zwi;
 				}
 				if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper()!=null )
 				{   // modbus value to generic value conversion
@@ -424,8 +424,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retVal.setInt16U(iVal);
 			if (size > 1) 
 			{
-			   RegRes =  (((long) mbregresp[1])<<16) & ((long) 0xffff0000);
-			   RegRes = (long) Math.abs(RegRes + (long) mbregresp[0]);
+			   RegRes =  (((long) mbregresp[0])<<16) & ((long) 0xffff0000);
+			   RegRes = (long) Math.abs(RegRes + (long) mbregresp[1]);
 			   retVal.setInt32U(RegRes);
 			}
 			else
@@ -742,7 +742,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					}
 					else
 					{   
-						for (c = 0; c < size-1; c++) 
+						for (c = 0; c < size; c++) 
 							mbregconv[c] = mbregresp[c];
 					}
 					for (int i=0; i<size-1;i++) 
@@ -1184,12 +1184,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		
 		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 			if (bRegisterCMDs) {
-				// TODO (HF) : was like this. Is this really needed or was it thought for blocktransfer?
-				// for (int l = 0; l < mbsize; l++) {
-				//	res = (res * 65536) + mbregsnd[l];
-				//	// TODO: rethink Blocktransfer here
-				//	mbregsnd = ConvertEndians(MBconvScheme, mbregsnd, mbsize);
-				//}
 				mbregsnd = ConvertEndians(MBconvScheme, mbregsnd, mbsize);
 			}
 			if (bDiscreteCMDs) {
@@ -1290,6 +1284,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retval = oGenVal.getCtaDHWOpMode().getValue();
 		} else if (oGenVal.isSetCtaDHWOpMode()) {// E0019
 			retval = oGenVal.getCtaDHWOpMode().getValue();
+		} else if (oGenVal.isSetCtaHPOpMode()) {// E0020
+			retval = oGenVal.getCtaHPOpMode().getValue();
+		} else if (oGenVal.isSetCtaHPOpState()) {// E0021
+			retval = oGenVal.getCtaHPOpState().getValue();
 		} 
 		
 		return retval;
@@ -1339,7 +1337,11 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			rval.setSgrDHWOpMode(SGrDHWOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetCtaDHWOpMode()) {// E0019
 			rval.setCtaDHWOpMode(CtaDHWOpModeType.get((int)RegRes));
-		} 
+		} else if (oGenVal.isSetCtaHPOpMode()) {// E0020
+			rval.setCtaHPOpMode(CtaHPOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaHPOpState()) {// E0021
+			rval.setCtaHPOpState(CtaHPOpStateType.get((int)RegRes));
+		}
 		return rval;
 	}
 

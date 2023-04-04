@@ -25,14 +25,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum CtaDHWOpModeType implements Enumerator {
 	/**
-	 * The '<em><b>DHWUNDEF</b></em>' literal object.
+	 * The '<em><b>DHWNUL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DHWUNDEF_VALUE
+	 * @see #DHWNUL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DHWUNDEF(0, "DHWUNDEF", "DHW_UNDEF"),
+	DHWNUL(0, "DHWNUL", "DHW_NUL"),
 
 	/**
 	 * The '<em><b>DHWON</b></em>' literal object.
@@ -85,15 +85,15 @@ public enum CtaDHWOpModeType implements Enumerator {
 	DHWEMERGENCY(5, "DHWEMERGENCY", "DHW_EMERGENCY");
 
 	/**
-	 * The '<em><b>DHWUNDEF</b></em>' literal value.
+	 * The '<em><b>DHWNUL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DHWUNDEF
-	 * @model literal="DHW_UNDEF"
+	 * @see #DHWNUL
+	 * @model literal="DHW_NUL"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DHWUNDEF_VALUE = 0;
+	public static final int DHWNUL_VALUE = 0;
 
 	/**
 	 * The '<em><b>DHWON</b></em>' literal value.
@@ -158,7 +158,7 @@ public enum CtaDHWOpModeType implements Enumerator {
 	 */
 	private static final CtaDHWOpModeType[] VALUES_ARRAY =
 		new CtaDHWOpModeType[] {
-			DHWUNDEF,
+			DHWNUL,
 			DHWON,
 			DHWOFF,
 			DHWPUSH,
@@ -220,7 +220,7 @@ public enum CtaDHWOpModeType implements Enumerator {
 	 */
 	public static CtaDHWOpModeType get(int value) {
 		switch (value) {
-			case DHWUNDEF_VALUE: return DHWUNDEF;
+			case DHWNUL_VALUE: return DHWNUL;
 			case DHWON_VALUE: return DHWON;
 			case DHWOFF_VALUE: return DHWOFF;
 			case DHWPUSH_VALUE: return DHWPUSH;

@@ -82,7 +82,7 @@ public class IBTlabLoopTester {
 	// device selection
 	private static boolean  devABBMeterTestIsOn = true; 
 	private static boolean  devVGT_SGCPTestIsOn = true; 
-	private static boolean  devFroniusSymoTestIsOn = false; 
+	private static boolean  devFroniusSymoTestIsOn = true; 
 	private static boolean  devGaroWallboxTestIsOn = true; 
 	// TestBox
 	private static boolean  devWagoMeterTestIsOn = true; 
