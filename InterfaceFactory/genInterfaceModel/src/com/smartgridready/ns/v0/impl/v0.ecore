@@ -5,7 +5,7 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="ctaDHWOpModeType"/>
     </eAnnotations>
-    <eLiterals name="DHWNUL" literal="DHW_NUL"/>
+    <eLiterals name="DHWNULL" literal="DHW_NULL"/>
     <eLiterals name="DHWON" value="1" literal="DHW_ON"/>
     <eLiterals name="DHWOFF" value="2" literal="DHW_OFF"/>
     <eLiterals name="DHWPUSH" value="3" literal="DHW_PUSH"/>
@@ -18,11 +18,27 @@
       <details key="baseType" value="ctaDHWOpModeType"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaHCOpModeType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHCOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
+    <eLiterals name="HPCOMFORT" value="1" literal="HP_COMFORT"/>
+    <eLiterals name="HPECO" value="2" literal="HP_ECO"/>
+    <eLiterals name="HPDEFROST" value="3" literal="HP_DEFROST"/>
+    <eLiterals name="HPEMERGENCYOP" value="4" literal="HP_EMERGENCY_OP"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaHCOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHCOpModeType:Object"/>
+      <details key="baseType" value="ctaHCOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CtaHPOpModeType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="ctaHPOpModeType"/>
     </eAnnotations>
-    <eLiterals name="HPNUL" literal="HP_NUL"/>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
     <eLiterals name="HPSTANDBY" value="1" literal="HP_STANDBY"/>
     <eLiterals name="HPHEATINGOP" value="2" literal="HP_HEATING_OP"/>
     <eLiterals name="HPEMERGHEATINGACTIVE" value="3" literal="HP_EMERG_HEATING_ACTIVE"/>
@@ -48,7 +64,7 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="ctaHPOpStateType"/>
     </eAnnotations>
-    <eLiterals name="HPNUL" literal="HP_NUL"/>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
     <eLiterals name="HPSTANDBY" value="1" literal="HP_STANDBY"/>
     <eLiterals name="HPALARMOFF" value="2" literal="HP_ALARM_OFF"/>
     <eLiterals name="HPEXTERNALOFF" value="3" literal="HP_EXTERNAL_OFF"/>
@@ -956,10 +972,11 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGReadyStateLv2Type"/>
     </eAnnotations>
-    <eLiterals name="HPNORMAL" literal="HP_NORMAL"/>
-    <eLiterals name="HPINTENSIFIED" value="1" literal="HP_INTENSIFIED"/>
-    <eLiterals name="HPLOCKED" value="2" literal="HP_LOCKED"/>
-    <eLiterals name="HPFORCED" value="3" literal="HP_FORCED"/>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
+    <eLiterals name="HPLOCKED" value="1" literal="HP_LOCKED"/>
+    <eLiterals name="HPNORMAL" value="2" literal="HP_NORMAL"/>
+    <eLiterals name="HPINTENSIFIED" value="3" literal="HP_INTENSIFIED"/>
+    <eLiterals name="HPFORCED" value="4" literal="HP_FORCED"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGReadyStateLv2TypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1124,6 +1141,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaHCOpMode" eType="#//CtaHCOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ctaHCOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrEVSEStateLv1Type">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1157,7 +1182,7 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrEVStateType"/>
     </eAnnotations>
-    <eLiterals name="EVSTATENUL" literal="EV_STATE_NUL"/>
+    <eLiterals name="EVSTATENULL" literal="EV_STATE_NULL"/>
     <eLiterals name="EVSTANDBY" value="1" literal="EV_STANDBY"/>
     <eLiterals name="EVDETECTED" value="2" literal="EV_DETECTED"/>
     <eLiterals name="EVREADY4CHARGING" value="3" literal="EV_READY4CHARGING"/>

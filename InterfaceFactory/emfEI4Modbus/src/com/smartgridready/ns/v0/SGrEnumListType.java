@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHPOpState <em>Cta HP Op State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHPOpMode <em>Cta HP Op Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHCOpMode <em>Cta HC Op Mode</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType()
@@ -1045,5 +1046,58 @@ public interface SGrEnumListType extends EObject {
 	 * @generated
 	 */
 	boolean isSetCtaHPOpMode();
+
+	/**
+	 * Returns the value of the '<em><b>Cta HC Op Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.CtaHCOpModeType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cta HC Op Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.CtaHCOpModeType
+	 * @see #isSetCtaHCOpMode()
+	 * @see #unsetCtaHCOpMode()
+	 * @see #setCtaHCOpMode(CtaHCOpModeType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_CtaHCOpMode()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='ctaHCOpMode' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	CtaHCOpModeType getCtaHCOpMode();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHCOpMode <em>Cta HC Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cta HC Op Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.CtaHCOpModeType
+	 * @see #isSetCtaHCOpMode()
+	 * @see #unsetCtaHCOpMode()
+	 * @see #getCtaHCOpMode()
+	 * @generated
+	 */
+	void setCtaHCOpMode(CtaHCOpModeType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHCOpMode <em>Cta HC Op Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCtaHCOpMode()
+	 * @see #getCtaHCOpMode()
+	 * @see #setCtaHCOpMode(CtaHCOpModeType)
+	 * @generated
+	 */
+	void unsetCtaHCOpMode();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHCOpMode <em>Cta HC Op Mode</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Cta HC Op Mode</em>' attribute is set.
+	 * @see #unsetCtaHCOpMode()
+	 * @see #getCtaHCOpMode()
+	 * @see #setCtaHCOpMode(CtaHCOpModeType)
+	 * @generated
+	 */
+	boolean isSetCtaHCOpMode();
 
 } // SGrEnumListType

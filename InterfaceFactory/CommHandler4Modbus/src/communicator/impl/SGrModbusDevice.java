@@ -355,7 +355,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper()!=null )
 				{   // modbus value to generic value conversion
 					
-					int[] zwi= null; 
+					int[] zwi= {0,0,0,0,0,0,0,0}; 
 					int lp,gen;
 					for (lp=0;lp<aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().size();lp++)
 					{

@@ -14,9 +14,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * BMcta002:
- *      BitRank (or enum?) map for CTA Heatpump status information
- *      Register address 2204 Size 1 (int16U, Input Register)
+ * Ecta003:
+ *      map for CTA Heatpump HeatCool modes information
  * #1 =	WP in Stand by Modus
  * #2 =	Heizbetrieb aktiv
  * #3 =	Notbetrieb Heizen aktiv
@@ -39,14 +38,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum CtaHPOpModeType implements Enumerator {
 	/**
-	 * The '<em><b>HPNUL</b></em>' literal object.
+	 * The '<em><b>HPNULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HPNUL_VALUE
+	 * @see #HPNULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HPNUL(0, "HPNUL", "HP_NUL"),
+	HPNULL(0, "HPNULL", "HP_NULL"),
 
 	/**
 	 * The '<em><b>HPSTANDBY</b></em>' literal object.
@@ -189,15 +188,15 @@ public enum CtaHPOpModeType implements Enumerator {
 	HPCOMBINDEDBUFFERLOADING(14, "HPCOMBINDEDBUFFERLOADING", "HP_COMBINDED_BUFFER_LOADING");
 
 	/**
-	 * The '<em><b>HPNUL</b></em>' literal value.
+	 * The '<em><b>HPNULL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HPNUL
-	 * @model literal="HP_NUL"
+	 * @see #HPNULL
+	 * @model literal="HP_NULL"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HPNUL_VALUE = 0;
+	public static final int HPNULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>HPSTANDBY</b></em>' literal value.
@@ -361,7 +360,7 @@ public enum CtaHPOpModeType implements Enumerator {
 	 */
 	private static final CtaHPOpModeType[] VALUES_ARRAY =
 		new CtaHPOpModeType[] {
-			HPNUL,
+			HPNULL,
 			HPSTANDBY,
 			HPHEATINGOP,
 			HPEMERGHEATINGACTIVE,
@@ -432,7 +431,7 @@ public enum CtaHPOpModeType implements Enumerator {
 	 */
 	public static CtaHPOpModeType get(int value) {
 		switch (value) {
-			case HPNUL_VALUE: return HPNUL;
+			case HPNULL_VALUE: return HPNULL;
 			case HPSTANDBY_VALUE: return HPSTANDBY;
 			case HPHEATINGOP_VALUE: return HPHEATINGOP;
 			case HPEMERGHEATINGACTIVE_VALUE: return HPEMERGHEATINGACTIVE;

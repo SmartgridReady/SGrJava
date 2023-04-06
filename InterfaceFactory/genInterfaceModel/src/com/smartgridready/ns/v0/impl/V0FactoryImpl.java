@@ -98,6 +98,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 		switch (eDataType.getClassifierID()) {
 			case V0Package.CTA_DHW_OP_MODE_TYPE:
 				return createCtaDHWOpModeTypeFromString(eDataType, initialValue);
+			case V0Package.CTA_HC_OP_MODE_TYPE:
+				return createCtaHCOpModeTypeFromString(eDataType, initialValue);
 			case V0Package.CTA_HP_OP_MODE_TYPE:
 				return createCtaHPOpModeTypeFromString(eDataType, initialValue);
 			case V0Package.CTA_HP_OP_STATE_TYPE:
@@ -170,6 +172,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSubProfileTypeEnumTypeFromString(eDataType, initialValue);
 			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
 				return createCtaDHWOpModeTypeObjectFromString(eDataType, initialValue);
+			case V0Package.CTA_HC_OP_MODE_TYPE_OBJECT:
+				return createCtaHCOpModeTypeObjectFromString(eDataType, initialValue);
 			case V0Package.CTA_HP_OP_MODE_TYPE_OBJECT:
 				return createCtaHPOpModeTypeObjectFromString(eDataType, initialValue);
 			case V0Package.CTA_HP_OP_STATE_TYPE_OBJECT:
@@ -263,6 +267,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 		switch (eDataType.getClassifierID()) {
 			case V0Package.CTA_DHW_OP_MODE_TYPE:
 				return convertCtaDHWOpModeTypeToString(eDataType, instanceValue);
+			case V0Package.CTA_HC_OP_MODE_TYPE:
+				return convertCtaHCOpModeTypeToString(eDataType, instanceValue);
 			case V0Package.CTA_HP_OP_MODE_TYPE:
 				return convertCtaHPOpModeTypeToString(eDataType, instanceValue);
 			case V0Package.CTA_HP_OP_STATE_TYPE:
@@ -335,6 +341,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSubProfileTypeEnumTypeToString(eDataType, instanceValue);
 			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
 				return convertCtaDHWOpModeTypeObjectToString(eDataType, instanceValue);
+			case V0Package.CTA_HC_OP_MODE_TYPE_OBJECT:
+				return convertCtaHCOpModeTypeObjectToString(eDataType, instanceValue);
 			case V0Package.CTA_HP_OP_MODE_TYPE_OBJECT:
 				return convertCtaHPOpModeTypeObjectToString(eDataType, instanceValue);
 			case V0Package.CTA_HP_OP_STATE_TYPE_OBJECT:
@@ -665,6 +673,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertCtaDHWOpModeTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CtaHCOpModeType createCtaHCOpModeTypeFromString(EDataType eDataType, String initialValue) {
+		CtaHCOpModeType result = CtaHCOpModeType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCtaHCOpModeTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -1384,6 +1412,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertCtaDHWOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertCtaDHWOpModeTypeToString(V0Package.eINSTANCE.getCtaDHWOpModeType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CtaHCOpModeType createCtaHCOpModeTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createCtaHCOpModeTypeFromString(V0Package.eINSTANCE.getCtaHCOpModeType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCtaHCOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertCtaHCOpModeTypeToString(V0Package.eINSTANCE.getCtaHCOpModeType(), instanceValue);
 	}
 
 	/**

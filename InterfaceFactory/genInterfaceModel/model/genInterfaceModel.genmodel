@@ -8,15 +8,22 @@
   <genPackages prefix="V0" basePackage="com.smartgridready.ns" resource="XML" disposableProviderFactory="true"
       loadInitialization="true" literalsInterface="false" ecorePackage="v0.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CtaDHWOpModeType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWNUL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWNULL"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWON"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWOFF"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWPUSH"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWTMPOFF"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWEMERGENCY"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CtaHCOpModeType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHCOpModeType/HPNULL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHCOpModeType/HPCOMFORT"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHCOpModeType/HPECO"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHCOpModeType/HPDEFROST"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHCOpModeType/HPEMERGENCYOP"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CtaHPOpModeType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpModeType/HPNUL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpModeType/HPNULL"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpModeType/HPSTANDBY"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpModeType/HPHEATINGOP"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpModeType/HPEMERGHEATINGACTIVE"/>
@@ -33,7 +40,7 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpModeType/HPCOMBINDEDBUFFERLOADING"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CtaHPOpStateType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpStateType/HPNUL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpStateType/HPNULL"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpStateType/HPSTANDBY"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpStateType/HPALARMOFF"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHPOpStateType/HPEXTERNALOFF"/>
@@ -223,9 +230,10 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv1Type/HPLOCK"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGReadyStateLv2Type">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPNULL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPLOCKED"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPNORMAL"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPINTENSIFIED"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPLOCKED"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPFORCED"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrEVSEStateLv1Type">
@@ -239,7 +247,7 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrEVSEStateLv2Type/EVNONEORFEEDIN"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrEVStateType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrEVStateType/EVSTATENUL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrEVStateType/EVSTATENULL"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrEVStateType/EVSTANDBY"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrEVStateType/EVDETECTED"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrEVStateType/EVREADY4CHARGING"/>
@@ -747,6 +755,7 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/SunspBatteryBaseModel802"/>
     </genEnums>
     <genDataTypes ecoreDataType="v0.ecore#//CtaDHWOpModeTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//CtaHCOpModeTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//CtaHPOpModeTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//CtaHPOpStateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//HovHPActBufferStateTypeObject"/>
@@ -901,6 +910,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaDHWOpMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaHPOpState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaHPOpMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaHCOpMode"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrFlexAssistanceType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrFlexAssistanceType/assists"/>

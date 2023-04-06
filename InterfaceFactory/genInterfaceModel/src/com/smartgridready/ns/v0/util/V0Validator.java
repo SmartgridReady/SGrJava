@@ -144,6 +144,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrVersionNumberType((SGrVersionNumberType)value, diagnostics, context);
 			case V0Package.CTA_DHW_OP_MODE_TYPE:
 				return validateCtaDHWOpModeType((CtaDHWOpModeType)value, diagnostics, context);
+			case V0Package.CTA_HC_OP_MODE_TYPE:
+				return validateCtaHCOpModeType((CtaHCOpModeType)value, diagnostics, context);
 			case V0Package.CTA_HP_OP_MODE_TYPE:
 				return validateCtaHPOpModeType((CtaHPOpModeType)value, diagnostics, context);
 			case V0Package.CTA_HP_OP_STATE_TYPE:
@@ -216,6 +218,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSubProfileTypeEnumType((SubProfileTypeEnumType)value, diagnostics, context);
 			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
 				return validateCtaDHWOpModeTypeObject((CtaDHWOpModeType)value, diagnostics, context);
+			case V0Package.CTA_HC_OP_MODE_TYPE_OBJECT:
+				return validateCtaHCOpModeTypeObject((CtaHCOpModeType)value, diagnostics, context);
 			case V0Package.CTA_HP_OP_MODE_TYPE_OBJECT:
 				return validateCtaHPOpModeTypeObject((CtaHPOpModeType)value, diagnostics, context);
 			case V0Package.CTA_HP_OP_STATE_TYPE_OBJECT:
@@ -512,6 +516,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCtaDHWOpModeType(CtaDHWOpModeType ctaDHWOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCtaHCOpModeType(CtaHCOpModeType ctaHCOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -836,6 +849,15 @@ public class V0Validator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCtaDHWOpModeTypeObject(CtaDHWOpModeType ctaDHWOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCtaHCOpModeTypeObject(CtaHCOpModeType ctaHCOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

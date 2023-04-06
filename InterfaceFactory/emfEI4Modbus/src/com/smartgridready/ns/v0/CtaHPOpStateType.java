@@ -14,9 +14,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * BMcta001:
+ * Ecta002:
  *      BitRank (or enum?) map for CTA Heatpump status information
- *      Register address 2202 Size 2 (int32U, Input Register)
  * #1 =   Stand by
  * #2 =   Alarm Aus
  * #3 =   Ext. aus
@@ -44,14 +43,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum CtaHPOpStateType implements Enumerator {
 	/**
-	 * The '<em><b>HPNUL</b></em>' literal object.
+	 * The '<em><b>HPNULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HPNUL_VALUE
+	 * @see #HPNULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HPNUL(0, "HPNUL", "HP_NUL"),
+	HPNULL(0, "HPNULL", "HP_NULL"),
 
 	/**
 	 * The '<em><b>HPSTANDBY</b></em>' literal object.
@@ -244,15 +243,15 @@ public enum CtaHPOpStateType implements Enumerator {
 	HPOILRECIRCULACTIVE(19, "HPOILRECIRCULACTIVE", "HP_OIL_RECIRCUL_ACTIVE");
 
 	/**
-	 * The '<em><b>HPNUL</b></em>' literal value.
+	 * The '<em><b>HPNULL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #HPNUL
-	 * @model literal="HP_NUL"
+	 * @see #HPNULL
+	 * @model literal="HP_NULL"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HPNUL_VALUE = 0;
+	public static final int HPNULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>HPSTANDBY</b></em>' literal value.
@@ -471,7 +470,7 @@ public enum CtaHPOpStateType implements Enumerator {
 	 */
 	private static final CtaHPOpStateType[] VALUES_ARRAY =
 		new CtaHPOpStateType[] {
-			HPNUL,
+			HPNULL,
 			HPSTANDBY,
 			HPALARMOFF,
 			HPEXTERNALOFF,
@@ -547,7 +546,7 @@ public enum CtaHPOpStateType implements Enumerator {
 	 */
 	public static CtaHPOpStateType get(int value) {
 		switch (value) {
-			case HPNUL_VALUE: return HPNUL;
+			case HPNULL_VALUE: return HPNULL;
 			case HPSTANDBY_VALUE: return HPSTANDBY;
 			case HPALARMOFF_VALUE: return HPALARMOFF;
 			case HPEXTERNALOFF_VALUE: return HPEXTERNALOFF;

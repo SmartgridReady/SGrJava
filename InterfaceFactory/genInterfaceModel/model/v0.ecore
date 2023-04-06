@@ -3,12 +3,12 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="v0" nsURI="http://www.smartgridready.com/ns/V0/" nsPrefix="v0">
   <eClassifiers xsi:type="ecore:EEnum" name="CtaDHWOpModeType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="E0019:&#xA;     Basic operation type of CTA Domestic Hot Water Heat Pump operation mode&#xA;      &#x9;ON OFF Push  temporary-off emergency-op      &#xA;&#x9;"/>
+      <details key="documentation" value="Ecta001:&#xA;     Basic operation type of CTA Domestic Hot Water Heat Pump operation mode&#xA;      &#x9;ON OFF Push  temporary-off emergency-op      &#xA;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="ctaDHWOpModeType"/>
     </eAnnotations>
-    <eLiterals name="DHWNUL" literal="DHW_NUL"/>
+    <eLiterals name="DHWNULL" literal="DHW_NULL"/>
     <eLiterals name="DHWON" value="1" literal="DHW_ON"/>
     <eLiterals name="DHWOFF" value="2" literal="DHW_OFF"/>
     <eLiterals name="DHWPUSH" value="3" literal="DHW_PUSH"/>
@@ -21,14 +21,33 @@
       <details key="baseType" value="ctaDHWOpModeType"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaHCOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ecta004:&#xA;     map for CTA Heatpump HeatCool modes Automatik&#xA;#1 Komfort&#xA;#2 Reduziert&#xA;#3 Frostschutz/Aus&#xA;#4 Notbetrieb&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHCOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
+    <eLiterals name="HPCOMFORT" value="1" literal="HP_COMFORT"/>
+    <eLiterals name="HPECO" value="2" literal="HP_ECO"/>
+    <eLiterals name="HPDEFROST" value="3" literal="HP_DEFROST"/>
+    <eLiterals name="HPEMERGENCYOP" value="4" literal="HP_EMERGENCY_OP"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaHCOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHCOpModeType:Object"/>
+      <details key="baseType" value="ctaHCOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CtaHPOpModeType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="BMcta002:&#xA;     BitRank (or enum?) map for CTA Heatpump status information&#xA;     Register address 2204 Size 1 (int16U, Input Register)&#xA;#1 =&#x9;WP in Stand by Modus&#xA;#2 =&#x9;Heizbetrieb aktiv&#xA;#3 =&#x9;Notbetrieb Heizen aktiv&#xA;#4 =&#x9;TWW Ladung aktiv&#xA;#5 =&#x9;Notbetrieb TWW aktiv&#xA;#6 =&#x9;Aktivkühlbetrieb aktiv&#xA;#7 =&#x9;Manueller Betrieb&#xA;#8 =&#x9;Heizungsspeicher Ladebetrieb ein&#xA;#9 =&#x9;Externer Betrieb ein&#xA;#10 =&#x9;Verteilkreis-ohne Puffer Betrieb&#xA;#11 =&#x9;Abtaubetrieb aktiv&#xA;#12 =&#x9;Kältegeführter Betrieb (Prozesskühlen)&#x9;&#xA;#13 =&#x9;Reserve&#xA;#14 =&#x9;TWW Legio mit El. Einsatz K6 und parallel Heizungsbetrieb (Pufferladung)&#xA;"/>
+      <details key="documentation" value="Ecta003:&#xA;     map for CTA Heatpump HeatCool modes information&#xA;#1 =&#x9;WP in Stand by Modus&#xA;#2 =&#x9;Heizbetrieb aktiv&#xA;#3 =&#x9;Notbetrieb Heizen aktiv&#xA;#4 =&#x9;TWW Ladung aktiv&#xA;#5 =&#x9;Notbetrieb TWW aktiv&#xA;#6 =&#x9;Aktivkühlbetrieb aktiv&#xA;#7 =&#x9;Manueller Betrieb&#xA;#8 =&#x9;Heizungsspeicher Ladebetrieb ein&#xA;#9 =&#x9;Externer Betrieb ein&#xA;#10 =&#x9;Verteilkreis-ohne Puffer Betrieb&#xA;#11 =&#x9;Abtaubetrieb aktiv&#xA;#12 =&#x9;Kältegeführter Betrieb (Prozesskühlen)&#x9;&#xA;#13 =&#x9;Reserve&#xA;#14 =&#x9;TWW Legio mit El. Einsatz K6 und parallel Heizungsbetrieb (Pufferladung)&#xA;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="ctaHPOpModeType"/>
     </eAnnotations>
-    <eLiterals name="HPNUL" literal="HP_NUL"/>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
     <eLiterals name="HPSTANDBY" value="1" literal="HP_STANDBY"/>
     <eLiterals name="HPHEATINGOP" value="2" literal="HP_HEATING_OP"/>
     <eLiterals name="HPEMERGHEATINGACTIVE" value="3" literal="HP_EMERG_HEATING_ACTIVE"/>
@@ -52,12 +71,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CtaHPOpStateType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="BMcta001:&#xA;     BitRank (or enum?) map for CTA Heatpump status information&#xA;     Register address 2202 Size 2 (int32U, Input Register)&#xA;#1 =   Stand by&#xA;#2 =   Alarm Aus&#xA;#3 =   Ext. aus&#xA;#4 =   Aus Zeitlimite&#xA;#5 =   Aus Gesperrt (EW-Sperre)&#xA;#6 =   Manuell Aus&#xA;#7 =   Manueller Betrieb&#xA;#8 =   Startphase&#xA;#9 =   Stopp Phase&#xA;#10 = Sicherh. Abschaltung&#xA;#11 = Start Abtauphase&#xA;#12 = Abtauphase&#xA;#13 = Ende Abtauphase&#xA;#14 = Gesperrt Druckd. Bei Start&#xA;#15 = Kühlbetrieb aktiv&#xA;#16 = Heizbetrieb aktiv&#xA;#17 = Start nach VD Startfehler&#xA;#18 = Aus Begrenzung aktiv&#xA;#19 = Ol Rückführung aktiv     &#xA;&#x9;"/>
+      <details key="documentation" value="Ecta002:&#xA;     BitRank (or enum?) map for CTA Heatpump status information&#xA;#1 =   Stand by&#xA;#2 =   Alarm Aus&#xA;#3 =   Ext. aus&#xA;#4 =   Aus Zeitlimite&#xA;#5 =   Aus Gesperrt (EW-Sperre)&#xA;#6 =   Manuell Aus&#xA;#7 =   Manueller Betrieb&#xA;#8 =   Startphase&#xA;#9 =   Stopp Phase&#xA;#10 = Sicherh. Abschaltung&#xA;#11 = Start Abtauphase&#xA;#12 = Abtauphase&#xA;#13 = Ende Abtauphase&#xA;#14 = Gesperrt Druckd. Bei Start&#xA;#15 = Kühlbetrieb aktiv&#xA;#16 = Heizbetrieb aktiv&#xA;#17 = Start nach VD Startfehler&#xA;#18 = Aus Begrenzung aktiv&#xA;#19 = Ol Rückführung aktiv     &#xA;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="ctaHPOpStateType"/>
     </eAnnotations>
-    <eLiterals name="HPNUL" literal="HP_NUL"/>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
     <eLiterals name="HPSTANDBY" value="1" literal="HP_STANDBY"/>
     <eLiterals name="HPALARMOFF" value="2" literal="HP_ALARM_OFF"/>
     <eLiterals name="HPEXTERNALOFF" value="3" literal="HP_EXTERNAL_OFF"/>
@@ -1359,22 +1378,27 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGReadyStateLv2Type"/>
     </eAnnotations>
-    <eLiterals name="HPNORMAL" literal="HP_NORMAL">
+    <eLiterals name="HPNULL" literal="HP_NULL">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Normal operation, optimized according to customer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;requirements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value=" value 0 is not vslid&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="HPINTENSIFIED" value="1" literal="HP_INTENSIFIED">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Increased operation"/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="HPLOCKED" value="2" literal="HP_LOCKED">
+    <eLiterals name="HPLOCKED" value="1" literal="HP_LOCKED">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Locked operation for a maximum of 2 hours&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="HPFORCED" value="3" literal="HP_FORCED">
+    <eLiterals name="HPNORMAL" value="2" literal="HP_NORMAL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Normal operation, optimized according to customer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;requirements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HPINTENSIFIED" value="3" literal="HP_INTENSIFIED">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Increased operation"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HPFORCED" value="4" literal="HP_FORCED">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Start command"/>
       </eAnnotations>
@@ -1543,6 +1567,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaHCOpMode" eType="#//CtaHCOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ctaHCOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrEVSEStateLv1Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1585,7 +1617,7 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrEVStateType"/>
     </eAnnotations>
-    <eLiterals name="EVSTATENUL" literal="EV_STATE_NUL"/>
+    <eLiterals name="EVSTATENULL" literal="EV_STATE_NULL"/>
     <eLiterals name="EVSTANDBY" value="1" literal="EV_STANDBY"/>
     <eLiterals name="EVDETECTED" value="2" literal="EV_DETECTED"/>
     <eLiterals name="EVREADY4CHARGING" value="3" literal="EV_READY4CHARGING"/>

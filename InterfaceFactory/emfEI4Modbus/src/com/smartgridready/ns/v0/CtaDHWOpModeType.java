@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * E0019:
+ * Ecta001:
  *      Basic operation type of CTA Domestic Hot Water Heat Pump operation mode
  *       	ON OFF Push  temporary-off emergency-op      
  * 	
@@ -25,14 +25,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum CtaDHWOpModeType implements Enumerator {
 	/**
-	 * The '<em><b>DHWNUL</b></em>' literal object.
+	 * The '<em><b>DHWNULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DHWNUL_VALUE
+	 * @see #DHWNULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	DHWNUL(0, "DHWNUL", "DHW_NUL"),
+	DHWNULL(0, "DHWNULL", "DHW_NULL"),
 
 	/**
 	 * The '<em><b>DHWON</b></em>' literal object.
@@ -85,15 +85,15 @@ public enum CtaDHWOpModeType implements Enumerator {
 	DHWEMERGENCY(5, "DHWEMERGENCY", "DHW_EMERGENCY");
 
 	/**
-	 * The '<em><b>DHWNUL</b></em>' literal value.
+	 * The '<em><b>DHWNULL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DHWNUL
-	 * @model literal="DHW_NUL"
+	 * @see #DHWNULL
+	 * @model literal="DHW_NULL"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DHWNUL_VALUE = 0;
+	public static final int DHWNULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>DHWON</b></em>' literal value.
@@ -158,7 +158,7 @@ public enum CtaDHWOpModeType implements Enumerator {
 	 */
 	private static final CtaDHWOpModeType[] VALUES_ARRAY =
 		new CtaDHWOpModeType[] {
-			DHWNUL,
+			DHWNULL,
 			DHWON,
 			DHWOFF,
 			DHWPUSH,
@@ -220,7 +220,7 @@ public enum CtaDHWOpModeType implements Enumerator {
 	 */
 	public static CtaDHWOpModeType get(int value) {
 		switch (value) {
-			case DHWNUL_VALUE: return DHWNUL;
+			case DHWNULL_VALUE: return DHWNULL;
 			case DHWON_VALUE: return DHWON;
 			case DHWOFF_VALUE: return DHWOFF;
 			case DHWPUSH_VALUE: return DHWPUSH;
