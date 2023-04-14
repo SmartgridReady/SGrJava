@@ -249,8 +249,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	}
 
 
-
-	
 	// Read an array of values
 	private SGrBasicGenDataPointTypeType[] prv_getValArrByGDPType(
 		SGrModbusFunctionalProfileType aProfile,
@@ -655,20 +653,20 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	    	case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOH2L_VALUE:
 				switch (mbregresp[0])
 				{
-					case 0:
-						mbregresp[0] = 0 ;
+					case 1:
+						mbregresp[0] = 1 ;
 						mbregresp[1] = 0;
 					break;
-					case 1:
-						mbregresp[0] = 0 ;
-						mbregresp[1] = 1;
-					break;
 					case 2:
-						mbregresp[0] = 1 ;
+						mbregresp[0] = 0 ;
 						mbregresp[1] = 0;
 					break;
 					case 3:
 						mbregresp[0] = 1 ;
+						mbregresp[1] = 1;
+					break;
+					case 4:
+						mbregresp[0] = 0 ;
 						mbregresp[1] = 1;
 					break;
 				}
@@ -676,21 +674,21 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
     		case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOL2H_VALUE:
 				switch (mbregresp[0])
 				{
-					case 0:
-						mbregresp[1] = 0 ;
-						mbregresp[0] = 0;
-					break;
 					case 1:
-						mbregresp[1] = 0 ;
-						mbregresp[0] = 1;
+						mbregresp[0] = 0;
+						mbregresp[1] = 1 ;
 					break;
 					case 2:
-						mbregresp[1] = 1 ;
 						mbregresp[0] = 0;
+						mbregresp[1] = 0 ;
 					break;
 					case 3:
-						mbregresp[1] = 1 ;
 						mbregresp[0] = 1;
+						mbregresp[1] = 1 ;
+					break;
+					case 4:
+						mbregresp[0] = 1;
+						mbregresp[1] = 0 ;
 					break;
 				}
 			break;
@@ -928,10 +926,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			  }
 			}
 			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
-		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
-			
+		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();	
 		}
-
 		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 		BigInteger regad = MBRegRef.getAddr();
 
@@ -970,8 +966,17 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			} else if (bDiscreteCMDs)
 				mbbitsnd[0] = bVal;
 		} else if (dMBType.getEnum() != null) {
-			// size = 1;
 			mbregsnd[0] = Enum2RegResConversion(sgrValue.getEnum());
+			if (l6dev >=0)
+			{
+				mbregsnd = manageLayer6deviation(l6dev, mbregsnd, size);
+			}
+			else
+			{ 				
+			  size = 1;
+			  if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper()!= null)
+			    mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getModbusEnumMapper().get(mbregsnd[0]).intValue();
+			}
 		} else if (dMBType.isSetFloat32()) {
 			if (bRegisterCMDs) {
 				size = 2;
@@ -1178,7 +1183,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		  }
 		  if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper()!=null )
 		  {   // modbus value to generic value conversion
-			 mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getModbusEnumMapper().get(mbregsnd[0]).intValue();
+			 mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getGenEnumMapper().get(mbregsnd[0]).intValue();
 		  }
 		}
 		
