@@ -897,6 +897,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		int res = 0, size = 0;
 		boolean[] mbbitsnd = new boolean[64];
 		boolean bRegisterCMDs = false, bDiscreteCMDs = false;
+		boolean isSetIopEnum = false, isSetIopBitmap = false, isSetAccessProt = false;
 		int mul = 1, l6dev = -1;
 		int powof10 = 0;
 		float fVal = (float) 0.0;
@@ -927,6 +928,12 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			}
 			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
 		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();	
+			if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper() != null)
+				 isSetIopEnum = true;	
+			if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper() != null)
+				isSetIopBitmap = true;
+			if (aDataPoint.getModbusAttr().get(0).getAccessProtection() != null)
+				isSetAccessProt = true;
 		}
 		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 		BigInteger regad = MBRegRef.getAddr();
@@ -974,7 +981,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			else
 			{ 				
 			  size = 1;
-			  if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper()!= null)
+			  if (isSetIopEnum)  
 			    mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getModbusEnumMapper().get(mbregsnd[0]).intValue();
 			}
 		} else if (dMBType.isSetFloat32()) {
