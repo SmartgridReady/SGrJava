@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 // SmartGridready definitions
 import com.smartgridready.ns.v0.CtaDHWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
+import com.smartgridready.ns.v0.HovHPOpModeType;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrBool2BitRankType;
@@ -85,8 +86,8 @@ public class HeatPumpTester {
 	private static boolean  devRTU_IOPIsOn=false; 
 	private static boolean  devTCP_IOPIsOn=true; 
 	private static boolean  devStiebelISGIsOn=false; 
-	private static boolean  devCTAoptiHeatIsOn=true; 
-	private static boolean  devHovalTCPIsOn=false; 
+	private static boolean  devCTAoptiHeatIsOn=false; 
+	private static boolean  devHovalTCPIsOn=true; 
 	
 	// shell for enumerations
 	private static SGrEnumListType oEnumList = V0Factory.eINSTANCE.createSGrEnumListType();
@@ -174,8 +175,7 @@ public class HeatPumpTester {
 				// // replace device specific for TCP  (easymodus uses Driver instance per device)						
 				GenDriverAPI4ModbusTCP mbHovalTCP= new GenDriverAPI4ModbusTCP();
 				devHovalTCP=new SGrModbusDevice(tstDesc, mbHovalTCP);							
-				//mbHovalTCP.initDevice("192.168.1.55",502);
-				mbHovalTCP.initDevice("192.168.1.150",502);
+				mbHovalTCP.initDevice("192.168.1.55",502);
 			}
 			
 			catch ( Exception e )
@@ -216,10 +216,10 @@ public class HeatPumpTester {
 					// #4=Manueller Heizbetrieb
 					// #5=Manueller Kühlbetrieb 
 				   
-				  oEnumList.setSgrHPOpMode(SGrHPOpModeType.WPPROGOP);
+				  oEnumList.setSgrHPOpMode(HovHPOpModeType.HPAUTOMATIC);
 				  hpval.setEnum(oEnumList);
-				  devHovalTCP.setValByGDPType("HeatPumpBase", "HPOpModeCmd", hpval);	
-				  LOG.info(String.format("  Setting  HeatPumpBase:HPOpModeCmd="+ hpval.getEnum().getSgrHPOpMode().getLiteral()));
+				  devHovalTCP.setValByGDPType("HeatPumpBase", "hovHPOpModeType", hpval);	
+				  LOG.info(String.format("  Setting  HeatPumpBase:hovHPOpModeCmd="+ hpval.getEnum().getSgrHPOpMode().getLiteral()));
 				
 				 
 				  //Setpoints Comfort

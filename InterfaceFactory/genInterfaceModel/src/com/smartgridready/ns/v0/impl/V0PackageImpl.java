@@ -239,7 +239,56 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum hovBufferStateTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum hovDomHotWaterStateTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum hovHCOpModeTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum hovHCOpStateTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum hovHPActBufferStateTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum hovHPOpModeTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum hovSGReadySrcSelTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum hovTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -498,7 +547,56 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EDataType hovBufferStateTypeObjectEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType hovDomHotWaterStateTypeObjectEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType hovHCOpModeTypeObjectEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType hovHCOpStateTypeObjectEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType hovHPActBufferStateTypeObjectEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType hovHPOpModeTypeObjectEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType hovSGReadySrcSelTypeObjectEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType hovTypeObjectEDataType = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -878,7 +976,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrAttr4GenericType() {
 		if (sGrAttr4GenericTypeEClass == null) {
-			sGrAttr4GenericTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(15);
+			sGrAttr4GenericTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(29);
 		}
 		return sGrAttr4GenericTypeEClass;
 	}
@@ -1034,7 +1132,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrBasicGenDataPointTypeType() {
 		if (sGrBasicGenDataPointTypeTypeEClass == null) {
-			sGrBasicGenDataPointTypeTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(16);
+			sGrBasicGenDataPointTypeTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(30);
 		}
 		return sGrBasicGenDataPointTypeTypeEClass;
 	}
@@ -1181,7 +1279,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrBitmapperListType() {
 		if (sGrBitmapperListTypeEClass == null) {
-			sGrBitmapperListTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(17);
+			sGrBitmapperListTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(31);
 		}
 		return sGrBitmapperListTypeEClass;
 	}
@@ -1238,7 +1336,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrChangeLog() {
 		if (sGrChangeLogEClass == null) {
-			sGrChangeLogEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(20);
+			sGrChangeLogEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(34);
 		}
 		return sGrChangeLogEClass;
 	}
@@ -1286,7 +1384,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrDataPointBaseType() {
 		if (sGrDataPointBaseTypeEClass == null) {
-			sGrDataPointBaseTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(21);
+			sGrDataPointBaseTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(35);
 		}
 		return sGrDataPointBaseTypeEClass;
 	}
@@ -1316,7 +1414,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrDataPointDescriptionType() {
 		if (sGrDataPointDescriptionTypeEClass == null) {
-			sGrDataPointDescriptionTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(22);
+			sGrDataPointDescriptionTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(36);
 		}
 		return sGrDataPointDescriptionTypeEClass;
 	}
@@ -1409,7 +1507,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrDeviceBaseType() {
 		if (sGrDeviceBaseTypeEClass == null) {
-			sGrDeviceBaseTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(23);
+			sGrDeviceBaseTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(37);
 		}
 		return sGrDeviceBaseTypeEClass;
 	}
@@ -1484,7 +1582,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrDeviceProfileType() {
 		if (sGrDeviceProfileTypeEClass == null) {
-			sGrDeviceProfileTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(26);
+			sGrDeviceProfileTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(40);
 		}
 		return sGrDeviceProfileTypeEClass;
 	}
@@ -1631,7 +1729,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrEnumListType() {
 		if (sGrEnumListTypeEClass == null) {
-			sGrEnumListTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(33);
+			sGrEnumListTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(47);
 		}
 		return sGrEnumListTypeEClass;
 	}
@@ -1823,7 +1921,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrFlexAssistanceType() {
 		if (sGrFlexAssistanceTypeEClass == null) {
-			sGrFlexAssistanceTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(40);
+			sGrFlexAssistanceTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(54);
 		}
 		return sGrFlexAssistanceTypeEClass;
 	}
@@ -1853,7 +1951,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrFunctionalProfileBaseType() {
 		if (sGrFunctionalProfileBaseTypeEClass == null) {
-			sGrFunctionalProfileBaseTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(41);
+			sGrFunctionalProfileBaseTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(55);
 		}
 		return sGrFunctionalProfileBaseTypeEClass;
 	}
@@ -1883,7 +1981,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrGenDeviceFrame() {
 		if (sGrGenDeviceFrameEClass == null) {
-			sGrGenDeviceFrameEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(42);
+			sGrGenDeviceFrameEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(56);
 		}
 		return sGrGenDeviceFrameEClass;
 	}
@@ -1904,7 +2002,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrGenFunctionalProfileType() {
 		if (sGrGenFunctionalProfileTypeEClass == null) {
-			sGrGenFunctionalProfileTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(43);
+			sGrGenFunctionalProfileTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(57);
 		}
 		return sGrGenFunctionalProfileTypeEClass;
 	}
@@ -1925,7 +2023,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrLegibDocumentationType() {
 		if (sGrLegibDocumentationTypeEClass == null) {
-			sGrLegibDocumentationTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(54);
+			sGrLegibDocumentationTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(68);
 		}
 		return sGrLegibDocumentationTypeEClass;
 	}
@@ -1964,7 +2062,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrNamelistType() {
 		if (sGrNamelistTypeEClass == null) {
-			sGrNamelistTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(63);
+			sGrNamelistTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(77);
 		}
 		return sGrNamelistTypeEClass;
 	}
@@ -2057,7 +2155,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrProfileDescriptionType() {
 		if (sGrProfileDescriptionTypeEClass == null) {
-			sGrProfileDescriptionTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(72);
+			sGrProfileDescriptionTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(86);
 		}
 		return sGrProfileDescriptionTypeEClass;
 	}
@@ -2114,7 +2212,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrProfilenumberType() {
 		if (sGrProfilenumberTypeEClass == null) {
-			sGrProfilenumberTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(73);
+			sGrProfilenumberTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(87);
 		}
 		return sGrProfilenumberTypeEClass;
 	}
@@ -2171,7 +2269,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrReleaseNotes() {
 		if (sGrReleaseNotesEClass == null) {
-			sGrReleaseNotesEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(74);
+			sGrReleaseNotesEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(88);
 		}
 		return sGrReleaseNotesEClass;
 	}
@@ -2210,7 +2308,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrScalingType() {
 		if (sGrScalingTypeEClass == null) {
-			sGrScalingTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(79);
+			sGrScalingTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(93);
 		}
 		return sGrScalingTypeEClass;
 	}
@@ -2240,7 +2338,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrSmoothTransitionType() {
 		if (sGrSmoothTransitionTypeEClass == null) {
-			sGrSmoothTransitionTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(86);
+			sGrSmoothTransitionTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(100);
 		}
 		return sGrSmoothTransitionTypeEClass;
 	}
@@ -2279,7 +2377,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrStabilityFallbackType() {
 		if (sGrStabilityFallbackTypeEClass == null) {
-			sGrStabilityFallbackTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(88);
+			sGrStabilityFallbackTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(102);
 		}
 		return sGrStabilityFallbackTypeEClass;
 	}
@@ -2318,7 +2416,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EClass getSGrVersionNumberType() {
 		if (sGrVersionNumberTypeEClass == null) {
-			sGrVersionNumberTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(95);
+			sGrVersionNumberTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(109);
 		}
 		return sGrVersionNumberTypeEClass;
 	}
@@ -2403,9 +2501,57 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getHovBufferStateType() {
+		if (hovBufferStateTypeEEnum == null) {
+			hovBufferStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(9);
+		}
+		return hovBufferStateTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getHovDomHotWaterStateType() {
+		if (hovDomHotWaterStateTypeEEnum == null) {
+			hovDomHotWaterStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(11);
+		}
+		return hovDomHotWaterStateTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getHovHCOpModeType() {
+		if (hovHCOpModeTypeEEnum == null) {
+			hovHCOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(13);
+		}
+		return hovHCOpModeTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getHovHCOpStateType() {
+		if (hovHCOpStateTypeEEnum == null) {
+			hovHCOpStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(15);
+		}
+		return hovHCOpStateTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getHovHPActBufferStateType() {
 		if (hovHPActBufferStateTypeEEnum == null) {
-			hovHPActBufferStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(9);
+			hovHPActBufferStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(17);
 		}
 		return hovHPActBufferStateTypeEEnum;
 	}
@@ -2415,9 +2561,45 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getHovHPOpModeType() {
+		if (hovHPOpModeTypeEEnum == null) {
+			hovHPOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(19);
+		}
+		return hovHPOpModeTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getHovSGReadySrcSelType() {
+		if (hovSGReadySrcSelTypeEEnum == null) {
+			hovSGReadySrcSelTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(21);
+		}
+		return hovSGReadySrcSelTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getHovType() {
+		if (hovTypeEEnum == null) {
+			hovTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(23);
+		}
+		return hovTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getLevelOfOperationType() {
 		if (levelOfOperationTypeEEnum == null) {
-			levelOfOperationTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(11);
+			levelOfOperationTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(25);
 		}
 		return levelOfOperationTypeEEnum;
 	}
@@ -2429,7 +2611,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getProfileTypeEnumType() {
 		if (profileTypeEnumTypeEEnum == null) {
-			profileTypeEnumTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(13);
+			profileTypeEnumTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(27);
 		}
 		return profileTypeEnumTypeEEnum;
 	}
@@ -2441,7 +2623,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrBool2BitRankType() {
 		if (sGrBool2BitRankTypeEEnum == null) {
-			sGrBool2BitRankTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(18);
+			sGrBool2BitRankTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(32);
 		}
 		return sGrBool2BitRankTypeEEnum;
 	}
@@ -2453,7 +2635,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrDeviceKindType() {
 		if (sGrDeviceKindTypeEEnum == null) {
-			sGrDeviceKindTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(24);
+			sGrDeviceKindTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(38);
 		}
 		return sGrDeviceKindTypeEEnum;
 	}
@@ -2465,7 +2647,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrDHWOpModeType() {
 		if (sGrDHWOpModeTypeEEnum == null) {
-			sGrDHWOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(27);
+			sGrDHWOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(41);
 		}
 		return sGrDHWOpModeTypeEEnum;
 	}
@@ -2477,7 +2659,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGReadyStateLv1Type() {
 		if (sgReadyStateLv1TypeEEnum == null) {
-			sgReadyStateLv1TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(29);
+			sgReadyStateLv1TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(43);
 		}
 		return sgReadyStateLv1TypeEEnum;
 	}
@@ -2489,7 +2671,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGReadyStateLv2Type() {
 		if (sgReadyStateLv2TypeEEnum == null) {
-			sgReadyStateLv2TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(31);
+			sgReadyStateLv2TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(45);
 		}
 		return sgReadyStateLv2TypeEEnum;
 	}
@@ -2501,7 +2683,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrEVSEStateLv1Type() {
 		if (sGrEVSEStateLv1TypeEEnum == null) {
-			sGrEVSEStateLv1TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(34);
+			sGrEVSEStateLv1TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(48);
 		}
 		return sGrEVSEStateLv1TypeEEnum;
 	}
@@ -2513,7 +2695,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrEVSEStateLv2Type() {
 		if (sGrEVSEStateLv2TypeEEnum == null) {
-			sGrEVSEStateLv2TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(36);
+			sGrEVSEStateLv2TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(50);
 		}
 		return sGrEVSEStateLv2TypeEEnum;
 	}
@@ -2525,7 +2707,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrEVStateType() {
 		if (sGrEVStateTypeEEnum == null) {
-			sGrEVStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(38);
+			sGrEVStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(52);
 		}
 		return sGrEVStateTypeEEnum;
 	}
@@ -2537,7 +2719,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrHCOpModeType() {
 		if (sGrHCOpModeTypeEEnum == null) {
-			sGrHCOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(44);
+			sGrHCOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(58);
 		}
 		return sGrHCOpModeTypeEEnum;
 	}
@@ -2549,7 +2731,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSgrHCOpStateType() {
 		if (sgrHCOpStateTypeEEnum == null) {
-			sgrHCOpStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(46);
+			sgrHCOpStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(60);
 		}
 		return sgrHCOpStateTypeEEnum;
 	}
@@ -2561,7 +2743,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrHPOpModeType() {
 		if (sGrHPOpModeTypeEEnum == null) {
-			sGrHPOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(48);
+			sGrHPOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(62);
 		}
 		return sGrHPOpModeTypeEEnum;
 	}
@@ -2573,7 +2755,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrHPOpstateType() {
 		if (sGrHPOpstateTypeEEnum == null) {
-			sGrHPOpstateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(50);
+			sGrHPOpstateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(64);
 		}
 		return sGrHPOpstateTypeEEnum;
 	}
@@ -2585,7 +2767,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrLanguageType() {
 		if (sGrLanguageTypeEEnum == null) {
-			sGrLanguageTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(52);
+			sGrLanguageTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(66);
 		}
 		return sGrLanguageTypeEEnum;
 	}
@@ -2597,7 +2779,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrManufacturerIDType() {
 		if (sGrManufacturerIDTypeEEnum == null) {
-			sGrManufacturerIDTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(55);
+			sGrManufacturerIDTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(69);
 		}
 		return sGrManufacturerIDTypeEEnum;
 	}
@@ -2609,7 +2791,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrMeasValueSourceType() {
 		if (sGrMeasValueSourceTypeEEnum == null) {
-			sGrMeasValueSourceTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(57);
+			sGrMeasValueSourceTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(71);
 		}
 		return sGrMeasValueSourceTypeEEnum;
 	}
@@ -2621,7 +2803,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrMeasValueType() {
 		if (sGrMeasValueTypeEEnum == null) {
-			sGrMeasValueTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(59);
+			sGrMeasValueTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(73);
 		}
 		return sGrMeasValueTypeEEnum;
 	}
@@ -2633,7 +2815,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrMROPresenceLevelIndicationType() {
 		if (sGrMROPresenceLevelIndicationTypeEEnum == null) {
-			sGrMROPresenceLevelIndicationTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(61);
+			sGrMROPresenceLevelIndicationTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(75);
 		}
 		return sGrMROPresenceLevelIndicationTypeEEnum;
 	}
@@ -2645,7 +2827,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrObligLvlType() {
 		if (sGrObligLvlTypeEEnum == null) {
-			sGrObligLvlTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(64);
+			sGrObligLvlTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(78);
 		}
 		return sGrObligLvlTypeEEnum;
 	}
@@ -2657,7 +2839,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrOCPPStateType() {
 		if (sGrOCPPStateTypeEEnum == null) {
-			sGrOCPPStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(66);
+			sGrOCPPStateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(80);
 		}
 		return sGrOCPPStateTypeEEnum;
 	}
@@ -2669,7 +2851,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrPowerSourceType() {
 		if (sGrPowerSourceTypeEEnum == null) {
-			sGrPowerSourceTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(68);
+			sGrPowerSourceTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(82);
 		}
 		return sGrPowerSourceTypeEEnum;
 	}
@@ -2681,7 +2863,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrReleaseState() {
 		if (sGrReleaseStateEEnum == null) {
-			sGrReleaseStateEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(75);
+			sGrReleaseStateEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(89);
 		}
 		return sGrReleaseStateEEnum;
 	}
@@ -2693,7 +2875,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrRWPType() {
 		if (sGrRWPTypeEEnum == null) {
-			sGrRWPTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(77);
+			sGrRWPTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(91);
 		}
 		return sGrRWPTypeEEnum;
 	}
@@ -2705,7 +2887,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrSGCPFeedInStateLv2Type() {
 		if (sGrSGCPFeedInStateLv2TypeEEnum == null) {
-			sGrSGCPFeedInStateLv2TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(80);
+			sGrSGCPFeedInStateLv2TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(94);
 		}
 		return sGrSGCPFeedInStateLv2TypeEEnum;
 	}
@@ -2717,7 +2899,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrSGCPLoadStateLv2Type() {
 		if (sGrSGCPLoadStateLv2TypeEEnum == null) {
-			sGrSGCPLoadStateLv2TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(82);
+			sGrSGCPLoadStateLv2TypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(96);
 		}
 		return sGrSGCPLoadStateLv2TypeEEnum;
 	}
@@ -2729,7 +2911,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrSGCPServiceType() {
 		if (sGrSGCPServiceTypeEEnum == null) {
-			sGrSGCPServiceTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(84);
+			sGrSGCPServiceTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(98);
 		}
 		return sGrSGCPServiceTypeEEnum;
 	}
@@ -2741,7 +2923,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrSunspStateCodesType() {
 		if (sGrSunspStateCodesTypeEEnum == null) {
-			sGrSunspStateCodesTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(89);
+			sGrSunspStateCodesTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(103);
 		}
 		return sGrSunspStateCodesTypeEEnum;
 	}
@@ -2753,7 +2935,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrTransportServicesUsedListType() {
 		if (sGrTransportServicesUsedListTypeEEnum == null) {
-			sGrTransportServicesUsedListTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(91);
+			sGrTransportServicesUsedListTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(105);
 		}
 		return sGrTransportServicesUsedListTypeEEnum;
 	}
@@ -2765,7 +2947,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSGrUnits() {
 		if (sGrUnitsEEnum == null) {
-			sGrUnitsEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(93);
+			sGrUnitsEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(107);
 		}
 		return sGrUnitsEEnum;
 	}
@@ -2777,7 +2959,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getStiHPOpstateType() {
 		if (stiHPOpstateTypeEEnum == null) {
-			stiHPOpstateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(96);
+			stiHPOpstateTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(110);
 		}
 		return stiHPOpstateTypeEEnum;
 	}
@@ -2789,7 +2971,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EEnum getSubProfileTypeEnumType() {
 		if (subProfileTypeEnumTypeEEnum == null) {
-			subProfileTypeEnumTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(98);
+			subProfileTypeEnumTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(112);
 		}
 		return subProfileTypeEnumTypeEEnum;
 	}
@@ -2847,9 +3029,57 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getHovBufferStateTypeObject() {
+		if (hovBufferStateTypeObjectEDataType == null) {
+			hovBufferStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(10);
+		}
+		return hovBufferStateTypeObjectEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getHovDomHotWaterStateTypeObject() {
+		if (hovDomHotWaterStateTypeObjectEDataType == null) {
+			hovDomHotWaterStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(12);
+		}
+		return hovDomHotWaterStateTypeObjectEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getHovHCOpModeTypeObject() {
+		if (hovHCOpModeTypeObjectEDataType == null) {
+			hovHCOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(14);
+		}
+		return hovHCOpModeTypeObjectEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getHovHCOpStateTypeObject() {
+		if (hovHCOpStateTypeObjectEDataType == null) {
+			hovHCOpStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(16);
+		}
+		return hovHCOpStateTypeObjectEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getHovHPActBufferStateTypeObject() {
 		if (hovHPActBufferStateTypeObjectEDataType == null) {
-			hovHPActBufferStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(10);
+			hovHPActBufferStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(18);
 		}
 		return hovHPActBufferStateTypeObjectEDataType;
 	}
@@ -2859,9 +3089,45 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getHovHPOpModeTypeObject() {
+		if (hovHPOpModeTypeObjectEDataType == null) {
+			hovHPOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(20);
+		}
+		return hovHPOpModeTypeObjectEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getHovSGReadySrcSelTypeObject() {
+		if (hovSGReadySrcSelTypeObjectEDataType == null) {
+			hovSGReadySrcSelTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(22);
+		}
+		return hovSGReadySrcSelTypeObjectEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getHovTypeObject() {
+		if (hovTypeObjectEDataType == null) {
+			hovTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(24);
+		}
+		return hovTypeObjectEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getLevelOfOperationTypeObject() {
 		if (levelOfOperationTypeObjectEDataType == null) {
-			levelOfOperationTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(12);
+			levelOfOperationTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(26);
 		}
 		return levelOfOperationTypeObjectEDataType;
 	}
@@ -2873,7 +3139,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getProfileTypeEnumTypeObject() {
 		if (profileTypeEnumTypeObjectEDataType == null) {
-			profileTypeEnumTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(14);
+			profileTypeEnumTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(28);
 		}
 		return profileTypeEnumTypeObjectEDataType;
 	}
@@ -2885,7 +3151,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrBool2BitRankTypeObject() {
 		if (sGrBool2BitRankTypeObjectEDataType == null) {
-			sGrBool2BitRankTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(19);
+			sGrBool2BitRankTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(33);
 		}
 		return sGrBool2BitRankTypeObjectEDataType;
 	}
@@ -2897,7 +3163,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrDeviceKindTypeObject() {
 		if (sGrDeviceKindTypeObjectEDataType == null) {
-			sGrDeviceKindTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(25);
+			sGrDeviceKindTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(39);
 		}
 		return sGrDeviceKindTypeObjectEDataType;
 	}
@@ -2909,7 +3175,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrDHWOpModeTypeObject() {
 		if (sGrDHWOpModeTypeObjectEDataType == null) {
-			sGrDHWOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(28);
+			sGrDHWOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(42);
 		}
 		return sGrDHWOpModeTypeObjectEDataType;
 	}
@@ -2921,7 +3187,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGReadyStateLv1TypeObject() {
 		if (sgReadyStateLv1TypeObjectEDataType == null) {
-			sgReadyStateLv1TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(30);
+			sgReadyStateLv1TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(44);
 		}
 		return sgReadyStateLv1TypeObjectEDataType;
 	}
@@ -2933,7 +3199,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGReadyStateLv2TypeObject() {
 		if (sgReadyStateLv2TypeObjectEDataType == null) {
-			sgReadyStateLv2TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(32);
+			sgReadyStateLv2TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(46);
 		}
 		return sgReadyStateLv2TypeObjectEDataType;
 	}
@@ -2945,7 +3211,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrEVSEStateLv1TypeObject() {
 		if (sGrEVSEStateLv1TypeObjectEDataType == null) {
-			sGrEVSEStateLv1TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(35);
+			sGrEVSEStateLv1TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(49);
 		}
 		return sGrEVSEStateLv1TypeObjectEDataType;
 	}
@@ -2957,7 +3223,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrEVSEStateLv2TypeObject() {
 		if (sGrEVSEStateLv2TypeObjectEDataType == null) {
-			sGrEVSEStateLv2TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(37);
+			sGrEVSEStateLv2TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(51);
 		}
 		return sGrEVSEStateLv2TypeObjectEDataType;
 	}
@@ -2969,7 +3235,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrEVStateTypeObject() {
 		if (sGrEVStateTypeObjectEDataType == null) {
-			sGrEVStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(39);
+			sGrEVStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(53);
 		}
 		return sGrEVStateTypeObjectEDataType;
 	}
@@ -2981,7 +3247,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrHCOpModeTypeObject() {
 		if (sGrHCOpModeTypeObjectEDataType == null) {
-			sGrHCOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(45);
+			sGrHCOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(59);
 		}
 		return sGrHCOpModeTypeObjectEDataType;
 	}
@@ -2993,7 +3259,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSgrHCOpStateTypeObject() {
 		if (sgrHCOpStateTypeObjectEDataType == null) {
-			sgrHCOpStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(47);
+			sgrHCOpStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(61);
 		}
 		return sgrHCOpStateTypeObjectEDataType;
 	}
@@ -3005,7 +3271,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrHPOpModeTypeObject() {
 		if (sGrHPOpModeTypeObjectEDataType == null) {
-			sGrHPOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(49);
+			sGrHPOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(63);
 		}
 		return sGrHPOpModeTypeObjectEDataType;
 	}
@@ -3017,7 +3283,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrHPOpstateTypeObject() {
 		if (sGrHPOpstateTypeObjectEDataType == null) {
-			sGrHPOpstateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(51);
+			sGrHPOpstateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(65);
 		}
 		return sGrHPOpstateTypeObjectEDataType;
 	}
@@ -3029,7 +3295,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrLanguageTypeObject() {
 		if (sGrLanguageTypeObjectEDataType == null) {
-			sGrLanguageTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(53);
+			sGrLanguageTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(67);
 		}
 		return sGrLanguageTypeObjectEDataType;
 	}
@@ -3041,7 +3307,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrManufacturerIDTypeObject() {
 		if (sGrManufacturerIDTypeObjectEDataType == null) {
-			sGrManufacturerIDTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(56);
+			sGrManufacturerIDTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(70);
 		}
 		return sGrManufacturerIDTypeObjectEDataType;
 	}
@@ -3053,7 +3319,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrMeasValueSourceTypeObject() {
 		if (sGrMeasValueSourceTypeObjectEDataType == null) {
-			sGrMeasValueSourceTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(58);
+			sGrMeasValueSourceTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(72);
 		}
 		return sGrMeasValueSourceTypeObjectEDataType;
 	}
@@ -3065,7 +3331,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrMeasValueTypeObject() {
 		if (sGrMeasValueTypeObjectEDataType == null) {
-			sGrMeasValueTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(60);
+			sGrMeasValueTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(74);
 		}
 		return sGrMeasValueTypeObjectEDataType;
 	}
@@ -3077,7 +3343,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrMROPresenceLevelIndicationTypeObject() {
 		if (sGrMROPresenceLevelIndicationTypeObjectEDataType == null) {
-			sGrMROPresenceLevelIndicationTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(62);
+			sGrMROPresenceLevelIndicationTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(76);
 		}
 		return sGrMROPresenceLevelIndicationTypeObjectEDataType;
 	}
@@ -3089,7 +3355,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrObligLvlTypeObject() {
 		if (sGrObligLvlTypeObjectEDataType == null) {
-			sGrObligLvlTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(65);
+			sGrObligLvlTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(79);
 		}
 		return sGrObligLvlTypeObjectEDataType;
 	}
@@ -3101,7 +3367,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrOCPPStateTypeObject() {
 		if (sGrOCPPStateTypeObjectEDataType == null) {
-			sGrOCPPStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(67);
+			sGrOCPPStateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(81);
 		}
 		return sGrOCPPStateTypeObjectEDataType;
 	}
@@ -3113,7 +3379,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrPowerSourceTypeObject() {
 		if (sGrPowerSourceTypeObjectEDataType == null) {
-			sGrPowerSourceTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(69);
+			sGrPowerSourceTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(83);
 		}
 		return sGrPowerSourceTypeObjectEDataType;
 	}
@@ -3125,7 +3391,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrPrecisionType() {
 		if (sGrPrecisionTypeEDataType == null) {
-			sGrPrecisionTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(70);
+			sGrPrecisionTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(84);
 		}
 		return sGrPrecisionTypeEDataType;
 	}
@@ -3137,7 +3403,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrPrecisionTypeObject() {
 		if (sGrPrecisionTypeObjectEDataType == null) {
-			sGrPrecisionTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(71);
+			sGrPrecisionTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(85);
 		}
 		return sGrPrecisionTypeObjectEDataType;
 	}
@@ -3149,7 +3415,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrReleaseStateObject() {
 		if (sGrReleaseStateObjectEDataType == null) {
-			sGrReleaseStateObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(76);
+			sGrReleaseStateObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(90);
 		}
 		return sGrReleaseStateObjectEDataType;
 	}
@@ -3161,7 +3427,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrRWPTypeObject() {
 		if (sGrRWPTypeObjectEDataType == null) {
-			sGrRWPTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(78);
+			sGrRWPTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(92);
 		}
 		return sGrRWPTypeObjectEDataType;
 	}
@@ -3173,7 +3439,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrSGCPFeedInStateLv2TypeObject() {
 		if (sGrSGCPFeedInStateLv2TypeObjectEDataType == null) {
-			sGrSGCPFeedInStateLv2TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(81);
+			sGrSGCPFeedInStateLv2TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(95);
 		}
 		return sGrSGCPFeedInStateLv2TypeObjectEDataType;
 	}
@@ -3185,7 +3451,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrSGCPLoadStateLv2TypeObject() {
 		if (sGrSGCPLoadStateLv2TypeObjectEDataType == null) {
-			sGrSGCPLoadStateLv2TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(83);
+			sGrSGCPLoadStateLv2TypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(97);
 		}
 		return sGrSGCPLoadStateLv2TypeObjectEDataType;
 	}
@@ -3197,7 +3463,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrSGCPServiceTypeObject() {
 		if (sGrSGCPServiceTypeObjectEDataType == null) {
-			sGrSGCPServiceTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(85);
+			sGrSGCPServiceTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(99);
 		}
 		return sGrSGCPServiceTypeObjectEDataType;
 	}
@@ -3209,7 +3475,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrSpecialQualityReqType() {
 		if (sGrSpecialQualityReqTypeEDataType == null) {
-			sGrSpecialQualityReqTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(87);
+			sGrSpecialQualityReqTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(101);
 		}
 		return sGrSpecialQualityReqTypeEDataType;
 	}
@@ -3221,7 +3487,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrSunspStateCodesTypeObject() {
 		if (sGrSunspStateCodesTypeObjectEDataType == null) {
-			sGrSunspStateCodesTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(90);
+			sGrSunspStateCodesTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(104);
 		}
 		return sGrSunspStateCodesTypeObjectEDataType;
 	}
@@ -3233,7 +3499,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrTransportServicesUsedListTypeObject() {
 		if (sGrTransportServicesUsedListTypeObjectEDataType == null) {
-			sGrTransportServicesUsedListTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(92);
+			sGrTransportServicesUsedListTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(106);
 		}
 		return sGrTransportServicesUsedListTypeObjectEDataType;
 	}
@@ -3245,7 +3511,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSGrUnitsObject() {
 		if (sGrUnitsObjectEDataType == null) {
-			sGrUnitsObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(94);
+			sGrUnitsObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(108);
 		}
 		return sGrUnitsObjectEDataType;
 	}
@@ -3257,7 +3523,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getStiHPOpstateTypeObject() {
 		if (stiHPOpstateTypeObjectEDataType == null) {
-			stiHPOpstateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(97);
+			stiHPOpstateTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(111);
 		}
 		return stiHPOpstateTypeObjectEDataType;
 	}
@@ -3269,7 +3535,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getSubProfileTypeEnumTypeObject() {
 		if (subProfileTypeEnumTypeObjectEDataType == null) {
-			subProfileTypeEnumTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(99);
+			subProfileTypeEnumTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(113);
 		}
 		return subProfileTypeEnumTypeObjectEDataType;
 	}
@@ -3281,7 +3547,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 */
 	public EDataType getTextElementType() {
 		if (textElementTypeEDataType == null) {
-			textElementTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(100);
+			textElementTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(114);
 		}
 		return textElementTypeEDataType;
 	}

@@ -466,6 +466,117 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovBufferStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov: &#xA;&#x9;#0 = keine Anforderung, AUS&#xA;&#x9;#1 = Anforderung, Temp. tief, PLP aus (Entladeschutz)&#xA;&#x9;#2 = Anforderung, Ladung läuft&#xA;&#x9;#3 = Anforderung, Sollwert erfüllt, Nachlauf aktiv&#xA;&#x9;#4 = Anforderung, Sollwert erfüllt&#xA;&#x9;#6 = Energiezwang&#xA;&#x9;#7= Abschöpffunktion&#xA;&#x9;&#xA;&#x9;#Entladeregelung :&#xA;&#x9;#0 = keine Anforderung (WEZ-Freigabe)&#xA;&#x9;#2 = Anforderung, Sollwert nicht erfüllt, UPE steht Richtung WEZ bzw. YPEL regelt stetig auf PEF&#xA;&#x9;#3 = Anforderung UPE-Umschaltverzögerung, UPE/YPEL steht Richtung WEZ&#xA;&#x9;#4 = Anforderung, Sollwert erfüllt, UPE/YPEL steht Richtung Puffer&#xA;&#x9;#6 = Energiezwang&#xA;&#x9;#8 = Vorzugsbetrieb SmartGrid&#xA;&#x9;#9 = Abnahmezwang Smart Grid&#xA;&#x9;&#xA;&#x9;für Modi manuell heizen / kühlen&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovBufferStateType"/>
+    </eAnnotations>
+    <eLiterals name="BUFOFF" literal="BUF_OFF"/>
+    <eLiterals name="BUFREQPROTECTED" value="1" literal="BUF_REQ_PROTECTED"/>
+    <eLiterals name="BUFREQACTIVE" value="2" literal="BUF_REQ_ACTIVE"/>
+    <eLiterals name="BUFREQFINALIZING" value="3" literal="BUF_REQ_FINALIZING"/>
+    <eLiterals name="BUFREQDONE" value="4" literal="BUF_REQ_DONE"/>
+    <eLiterals name="BUFRES" value="5" literal="BUF_RES"/>
+    <eLiterals name="BUFFORCED" value="6" literal="BUF_FORCED"/>
+    <eLiterals name="BUFSKIMMING" value="7" literal="BUF_SKIMMING"/>
+    <eLiterals name="BUFINTENSIFIEDEXT" value="8" literal="BUF_INTENSIFIED_EXT"/>
+    <eLiterals name="BUFFORCEDEXT" value="9" literal="BUF_FORCED_EXT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovBufferStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovBufferStateType:Object"/>
+      <details key="baseType" value="hovBufferStateType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovDomHotWaterStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov: &#xA;     Zustand Warmwasserregelung:&#xA;     #0 = Abgeschaltet&#xA;     #1 = Normal Ladebetrieb&#xA;     #2 = Komfort Ladebetrieb&#xA;     #3 = Zwangsdrosselung (bei E-Zwang kleiner -50p)#4 = Zwangsladung  (bei E-Zwang groesser +50p)&#xA;     #5 = Stoerung&#xA;     #6 = WW-Entnahme (Entnahme von Trinkwarmwasser aktiv)&#xA;     #7 = Warnung&#xA;     #8 = Reduzierter Ladebetrieb&#xA;     #12 = Vorzugsbetrieb SmartGrid&#xA;     #13 = Abnahmezwang SmartGrid&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovDomHotWaterStateType"/>
+    </eAnnotations>
+    <eLiterals name="DHWOFF" literal="DHW_OFF"/>
+    <eLiterals name="DHWCHARGING" value="1" literal="DHW_CHARGING"/>
+    <eLiterals name="DHWCHARGECOMF" value="2" literal="DHW_CHARGE_COMF"/>
+    <eLiterals name="DHWFORCEDCURTAIL" value="3" literal="DHW_FORCED_CURTAIL"/>
+    <eLiterals name="DHWERROR" value="4" literal="DHW_ERROR"/>
+    <eLiterals name="DHWWITHDRAWING" value="5" literal="DHW_WITHDRAWING"/>
+    <eLiterals name="DHWWARNINGACTIVE" value="6" literal="DHW_WARNING_ACTIVE"/>
+    <eLiterals name="DHWREDUCED" value="7" literal="DHW_REDUCED"/>
+    <eLiterals name="DHWRES1" value="8" literal="DHW_RES1"/>
+    <eLiterals name="DHWRES2" value="9" literal="DHW_RES2"/>
+    <eLiterals name="DHWRES4" value="11" literal="DHW_RES4"/>
+    <eLiterals name="DHWINTENSIFIEDEXT" value="12" literal="DHW_INTENSIFIED_EXT"/>
+    <eLiterals name="DHWFORCEDEXT" value="13" literal="DHW_FORCED_EXT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovDomHotWaterStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovDomHotWaterStateType:Object"/>
+      <details key="baseType" value="hovDomHotWaterStateType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovHCOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov:&#xA;     map for Hoval H &#xA;     // #0=Standbybetrieb&#xA;&#x9; // #1=Woche 1&#xA;&#x9; // #2=Woche 2&#xA;&#x9; // #4=Konstant&#xA;&#x9; // #5=Sparbetrieb&#xA;&#x9; // #7=Handbetrieb Heizen&#xA;&#x9; // #8=Handbetrieb Kühlen&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHCOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HCSTANDBY" literal="HC_STANDBY"/>
+    <eLiterals name="HCPLANW1" value="1" literal="HC_PLAN_W1"/>
+    <eLiterals name="HCPLANW2" value="2" literal="HC_PLAN_W2"/>
+    <eLiterals name="HCCONSTANT" value="3" literal="HC_CONSTANT"/>
+    <eLiterals name="HCECO" value="4" literal="HC_ECO"/>
+    <eLiterals name="HCMANHEAT" value="5" literal="HC_MAN_HEAT"/>
+    <eLiterals name="HCMANCOOL" value="6" literal="HC_MAN_COOL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovHCOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHCOpModeType:Object"/>
+      <details key="baseType" value="hovHCOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovHCOpStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov: &#xA;     Zustand Heizkreisregelung&#xA;#0 = Abgeschaltet&#xA;#1 = Normal Heizbetrieb&#xA;#2 = Komfort Heizbetrieb&#xA;#3 = Spar Heizbetrieb&#xA;#4 = Frostbetrieb&#xA;#5 = Zwangsabnahme (bei Zwang groesser +50p)&#xA;#6 = Zwangsdrosselung  (bei Zwang kleiner -50p)&#xA;#7 = Ferienbetrieb&#xA;#8 = Partybetrieb&#xA;#9 = Normal Kuehlbetrieb&#xA;#10 = Komfort K?hlbetrieb&#xA;#11 = Spar Kuehlbetrieb&#xA;#12 = Stoerung&#xA;#13 = Handbetrieb&#xA;#14 = Schutz Kuehlbetrieb&#xA;#15 = Partybetrieb Kuehlen&#xA;#16 = Austrocknung Aufheizphase&#xA;#17 = Austrocknung Stationaerphase&#xA;#18 = Austrocknung Abkuehlphase&#xA;#19 = Austrocknung Endphase&#xA;#22 = Kuehlbetrieb Extern/Konstantanforderung&#xA;#23 = Heizbetrieb Extern/Konstantanforderung&#xA;#26 = Vorzugsbetrieb SmartGrid&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHCOpStateType"/>
+    </eAnnotations>
+    <eLiterals name="HCOFF" literal="HC_OFF"/>
+    <eLiterals name="HCNORMALHEATOP" value="1" literal="HC_NORMAL_HEAT_OP"/>
+    <eLiterals name="HCCOMFORTHEATOP" value="2" literal="HC_COMFORT_HEAT_OP"/>
+    <eLiterals name="HCECOHEATOP" value="3" literal="HC_ECO_HEAT_OP"/>
+    <eLiterals name="HCDEFROST" value="4" literal="HC_DEFROST"/>
+    <eLiterals name="HCFORCEDOP" value="5" literal="HC_FORCED_OP"/>
+    <eLiterals name="HCFORCECURTAIL" value="6" literal="HC_FORCE_CURTAIL"/>
+    <eLiterals name="HCVACATIONOP" value="7" literal="HC_VACATION_OP"/>
+    <eLiterals name="HCPARTYOP" value="8" literal="HC_PARTY_OP"/>
+    <eLiterals name="HCNORMALCOOLOP" value="9" literal="HC_NORMAL_COOL_OP"/>
+    <eLiterals name="HCCOMFORTCOOLOP" value="10" literal="HC_COMFORT_COOL_OP"/>
+    <eLiterals name="HCECOCOOLOP" value="11" literal="HC_ECO_COOL_OP"/>
+    <eLiterals name="HCERROR" value="12" literal="HC_ERROR"/>
+    <eLiterals name="HCMANUALOP" value="13" literal="HC_MANUAL_OP"/>
+    <eLiterals name="HCCOOLPROT" value="14" literal="HC_COOL_PROT"/>
+    <eLiterals name="HCPARTYCOOLOP" value="15" literal="HC_PARTY_COOL_OP"/>
+    <eLiterals name="HCDRYHEATING" value="16" literal="HC_DRY_HEATING"/>
+    <eLiterals name="HCDRYSTATIONARY" value="17" literal="HC_DRY_STATIONARY"/>
+    <eLiterals name="HCDRYCOOLING" value="18" literal="HC_DRY_COOLING"/>
+    <eLiterals name="HCDRYFINALIZING" value="19" literal="HC_DRY_FINALIZING"/>
+    <eLiterals name="HCRES1" value="20" literal="HC_RES1"/>
+    <eLiterals name="HCRES2" value="21" literal="HC_RES2"/>
+    <eLiterals name="HCCOOLINGEXTCMD" value="22" literal="HC_COOLING_EXT_CMD"/>
+    <eLiterals name="HCHEATINGEXTCMD" value="23" literal="HC_HEATING_EXT_CMD"/>
+    <eLiterals name="HCINTENSIFIEDEXT" value="24" literal="HC_INTENSIFIED_EXT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovHCOpStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHCOpStateType:Object"/>
+      <details key="baseType" value="hovHCOpStateType"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="HovHPActBufferStateType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="BMhov001:&#xA;     BitRank map for Heat Pump Buffer state &#xA;     source: Hoval  (ER) means &quot;Entladeregelung&quot;&#xA;     Bit0 = keine Anforderung, AUS&#xA;     Bit0 = (ER) keine Anforderung (WEZ-Freigabe)&#xA;     Bit1 = Anforderung, Temp. tief, PLP aus (Entladeschutz)&#xA;     Bit2 = Anforderung, Ladung läuft&#xA;     Bit2 = (ER) Anforderung, Sollwert nicht erfüllt, UPE steht Richtung WEZ bzw. YPEL regelt stetig auf PEF&#xA;     Bit3 = Anforderung, Sollwert erfüllt, Nachlauf aktiv&#xA;     Bit3 = (ER) Anforderung UPE-Umschaltverzögerung, UPE/YPEL steht Richtung WEZ&#xA;     Bit4 = Anforderung, Sollwert erfüllt&#xA;     Bit4 = (ER) Anforderung, Sollwert erfüllt, UPE/YPEL steht Richtung Puffer&#xA;     Bit6 = Energiezwang&#xA;     Bit7=  Abschöpffunktion&#xA;     Bit8 = (ER)Vorzugsbetrieb SmartGrid&#xA;     Bit9 = (ER)Abnahmezwang Smart Grid&#xA;&#x9;"/>
@@ -488,6 +599,57 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="hovHPActBufferStateType:Object"/>
       <details key="baseType" value="hovHPActBufferStateType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovHPOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov:&#xA;     map for Hoval H &#xA;     // #0=Wärmeerzeuger aus&#xA;&#x9; // #1=Automatikbetrieb&#xA;&#x9; // #4=Manueller Heizbetrieb&#xA;&#x9; // #5=Manueller Kühlbetrieb &#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HPOFF" literal="HP_OFF"/>
+    <eLiterals name="HPAUTOMATIC" value="1" literal="HP_AUTOMATIC"/>
+    <eLiterals name="HPMANHEAT" value="2" literal="HP_MAN_HEAT"/>
+    <eLiterals name="HPMANCOOL" value="3" literal="HP_MAN_COOL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovHPOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPOpModeType:Object"/>
+      <details key="baseType" value="hovHPOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovSGReadySrcSelType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov:&#xA;     map for Hoval H &#xA;     #0=AUS&#xA;     #1=Eingangskontakte&#xA;     #2=Systembus&#xA;     #3=Verfügbare Leistung gedämpft&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovSGReadySrcSelType"/>
+    </eAnnotations>
+    <eLiterals name="SGRSrcOFF" literal="SGR_src_OFF"/>
+    <eLiterals name="SRCSrcCONTACTS" value="1" literal="SRC_src_CONTACTS"/>
+    <eLiterals name="SRCSrcSysBUS" value="2" literal="SRC_src_SysBUS"/>
+    <eLiterals name="SRCSrcDAMPED" value="3" literal="SRC_src_DAMPED"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovSGReadySrcSelTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovSGReadySrcSelType:Object"/>
+      <details key="baseType" value="hovSGReadySrcSelType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov: &#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovType"/>
+    </eAnnotations>
+    <eLiterals name="tbd"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovType:Object"/>
+      <details key="baseType" value="hovType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="HttpMethod">

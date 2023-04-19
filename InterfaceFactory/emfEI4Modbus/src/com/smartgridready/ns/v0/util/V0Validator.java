@@ -246,8 +246,22 @@ public class V0Validator extends EObjectValidator {
 				return validateEParityType((EParityType)value, diagnostics, context);
 			case V0Package.ESTOP_BIT_LEN_TYPE:
 				return validateEStopBitLenType((EStopBitLenType)value, diagnostics, context);
+			case V0Package.HOV_BUFFER_STATE_TYPE:
+				return validateHovBufferStateType((HovBufferStateType)value, diagnostics, context);
+			case V0Package.HOV_DOM_HOT_WATER_STATE_TYPE:
+				return validateHovDomHotWaterStateType((HovDomHotWaterStateType)value, diagnostics, context);
+			case V0Package.HOV_HC_OP_MODE_TYPE:
+				return validateHovHCOpModeType((HovHCOpModeType)value, diagnostics, context);
+			case V0Package.HOV_HC_OP_STATE_TYPE:
+				return validateHovHCOpStateType((HovHCOpStateType)value, diagnostics, context);
 			case V0Package.HOV_HP_ACT_BUFFER_STATE_TYPE:
 				return validateHovHPActBufferStateType((HovHPActBufferStateType)value, diagnostics, context);
+			case V0Package.HOV_HP_OP_MODE_TYPE:
+				return validateHovHPOpModeType((HovHPOpModeType)value, diagnostics, context);
+			case V0Package.HOV_SG_READY_SRC_SEL_TYPE:
+				return validateHovSGReadySrcSelType((HovSGReadySrcSelType)value, diagnostics, context);
+			case V0Package.HOV_TYPE:
+				return validateHovType((HovType)value, diagnostics, context);
 			case V0Package.HTTP_METHOD:
 				return validateHttpMethod((HttpMethod)value, diagnostics, context);
 			case V0Package.LEVEL_OF_OPERATION_TYPE:
@@ -356,8 +370,22 @@ public class V0Validator extends EObjectValidator {
 				return validateEParityTypeObject((EParityType)value, diagnostics, context);
 			case V0Package.ESTOP_BIT_LEN_TYPE_OBJECT:
 				return validateEStopBitLenTypeObject((EStopBitLenType)value, diagnostics, context);
+			case V0Package.HOV_BUFFER_STATE_TYPE_OBJECT:
+				return validateHovBufferStateTypeObject((HovBufferStateType)value, diagnostics, context);
+			case V0Package.HOV_DOM_HOT_WATER_STATE_TYPE_OBJECT:
+				return validateHovDomHotWaterStateTypeObject((HovDomHotWaterStateType)value, diagnostics, context);
+			case V0Package.HOV_HC_OP_MODE_TYPE_OBJECT:
+				return validateHovHCOpModeTypeObject((HovHCOpModeType)value, diagnostics, context);
+			case V0Package.HOV_HC_OP_STATE_TYPE_OBJECT:
+				return validateHovHCOpStateTypeObject((HovHCOpStateType)value, diagnostics, context);
 			case V0Package.HOV_HP_ACT_BUFFER_STATE_TYPE_OBJECT:
 				return validateHovHPActBufferStateTypeObject((HovHPActBufferStateType)value, diagnostics, context);
+			case V0Package.HOV_HP_OP_MODE_TYPE_OBJECT:
+				return validateHovHPOpModeTypeObject((HovHPOpModeType)value, diagnostics, context);
+			case V0Package.HOV_SG_READY_SRC_SEL_TYPE_OBJECT:
+				return validateHovSGReadySrcSelTypeObject((HovSGReadySrcSelType)value, diagnostics, context);
+			case V0Package.HOV_TYPE_OBJECT:
+				return validateHovTypeObject((HovType)value, diagnostics, context);
 			case V0Package.HTTP_METHOD_OBJECT:
 				return validateHttpMethodObject((HttpMethod)value, diagnostics, context);
 			case V0Package.IP_V4N1_TYPE:
@@ -1172,7 +1200,70 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateHovBufferStateType(HovBufferStateType hovBufferStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovDomHotWaterStateType(HovDomHotWaterStateType hovDomHotWaterStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovHCOpModeType(HovHCOpModeType hovHCOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovHCOpStateType(HovHCOpStateType hovHCOpStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateHovHPActBufferStateType(HovHPActBufferStateType hovHPActBufferStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovHPOpModeType(HovHPOpModeType hovHPOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovSGReadySrcSelType(HovSGReadySrcSelType hovSGReadySrcSelType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovType(HovType hovType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -1667,7 +1758,70 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateHovBufferStateTypeObject(HovBufferStateType hovBufferStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovDomHotWaterStateTypeObject(HovDomHotWaterStateType hovDomHotWaterStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovHCOpModeTypeObject(HovHCOpModeType hovHCOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovHCOpStateTypeObject(HovHCOpStateType hovHCOpStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateHovHPActBufferStateTypeObject(HovHPActBufferStateType hovHPActBufferStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovHPOpModeTypeObject(HovHPOpModeType hovHPOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovSGReadySrcSelTypeObject(HovSGReadySrcSelType hovSGReadySrcSelTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateHovTypeObject(HovType hovTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
