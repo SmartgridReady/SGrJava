@@ -3525,6 +3525,66 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getSGrEnumListType_HovHPOpMode() {
+        return (EAttribute)getSGrEnumListType().getEStructuralFeatures().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrEnumListType_HovHCOpMode() {
+        return (EAttribute)getSGrEnumListType().getEStructuralFeatures().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrEnumListType_HovSGReadySrcSel() {
+        return (EAttribute)getSGrEnumListType().getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrEnumListType_HovBufferState() {
+        return (EAttribute)getSGrEnumListType().getEStructuralFeatures().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrEnumListType_HovHCOpState() {
+        return (EAttribute)getSGrEnumListType().getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSGrEnumListType_HovDomHotWaterState() {
+        return (EAttribute)getSGrEnumListType().getEStructuralFeatures().get(25);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSGrFlexAssistanceType() {
 		if (sGrFlexAssistanceTypeEClass == null) {
 			sGrFlexAssistanceTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(106);

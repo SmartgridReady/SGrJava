@@ -1292,14 +1292,26 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retval = oGenVal.getSgrHPOpMode().getValue();
 		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
 			retval = oGenVal.getSgrHCOpMode().getValue();
-		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
+		} else if (oGenVal.isSetSgrDHWOpMode()) {// cta00
 			retval = oGenVal.getCtaDHWOpMode().getValue();
-		} else if (oGenVal.isSetCtaDHWOpMode()) {// E0019
+		} else if (oGenVal.isSetCtaDHWOpMode()) {// cta00
 			retval = oGenVal.getCtaDHWOpMode().getValue();
-		} else if (oGenVal.isSetCtaHPOpMode()) {// E0020
+		} else if (oGenVal.isSetCtaHPOpMode()) {// cta00
 			retval = oGenVal.getCtaHPOpMode().getValue();
-		} else if (oGenVal.isSetCtaHPOpState()) {// E0021
+		} else if (oGenVal.isSetCtaHPOpState()) {// cta00
 			retval = oGenVal.getCtaHPOpState().getValue();
+		} else if (oGenVal.isSetHovHPOpMode()) {// hov001
+			retval = oGenVal.getHovHPOpMode().getValue();
+		} else if (oGenVal.isSetHovHCOpMode()) {// hov002
+			retval = oGenVal.getHovHCOpMode().getValue();
+		} else if (oGenVal.isSetHovSGReadySrcSel()) {// hov003
+			retval = oGenVal.getHovSGReadySrcSel().getValue();
+		} else if (oGenVal.isSetHovBufferState()) {// hov004
+			retval = oGenVal.getHovBufferState().getValue();
+		} else if (oGenVal.isSetHovHCOpState()) {// hov005
+			retval = oGenVal.getHovHCOpState().getValue();
+		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
+			retval = oGenVal.getHovDomHotWaterState().getValue();
 		} 
 		
 		return retval;
@@ -1347,12 +1359,24 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			rval.setSgrHCOpMode(SGrHCOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
 			rval.setSgrDHWOpMode(SGrDHWOpModeType.get((int)RegRes));
-		} else if (oGenVal.isSetCtaDHWOpMode()) {// E0019
+		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
 			rval.setCtaDHWOpMode(CtaDHWOpModeType.get((int)RegRes));
-		} else if (oGenVal.isSetCtaHPOpMode()) {// E0020
+		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
 			rval.setCtaHPOpMode(CtaHPOpModeType.get((int)RegRes));
-		} else if (oGenVal.isSetCtaHPOpState()) {// E0021
+		} else if (oGenVal.isSetCtaHPOpState()) {// Ecta002
 			rval.setCtaHPOpState(CtaHPOpStateType.get((int)RegRes));
+		} else if (oGenVal.isSetHovHPOpMode()) {// hov001
+			rval.setHovHPOpMode(HovHPOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetHovHCOpMode()) {// hov002
+			rval.setHovHCOpMode(HovHCOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetHovSGReadySrcSel()) {// hov003
+			rval.setHovSGReadySrcSel(HovSGReadySrcSelType.get((int)RegRes));
+		} else if (oGenVal.isSetHovBufferState()) {// hov004
+			rval.setHovBufferState(HovBufferStateType.get((int)RegRes));
+		} else if (oGenVal.isSetHovHCOpState()) {// hov005
+			rval.setHovHCOpState(HovHCOpStateType.get((int)RegRes));
+		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
+			rval.setHovDomHotWaterState(HovDomHotWaterStateType.get((int)RegRes));
 		}
 		return rval;
 	}

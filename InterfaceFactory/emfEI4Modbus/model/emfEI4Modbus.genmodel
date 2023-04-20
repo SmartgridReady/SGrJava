@@ -1261,6 +1261,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaHPOpState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaHPOpMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaHCOpMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/hovHPOpMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/hovHCOpMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/hovSGReadySrcSel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/hovBufferState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/hovHCOpState"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/hovDomHotWaterState"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrFlexAssistanceType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrFlexAssistanceType/assists"/>

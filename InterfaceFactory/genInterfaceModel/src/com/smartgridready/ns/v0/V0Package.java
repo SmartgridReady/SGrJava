@@ -1194,13 +1194,67 @@ public interface V0Package extends EPackage {
 	int SGR_ENUM_LIST_TYPE__CTA_HC_OP_MODE = 19;
 
 	/**
+	 * The feature id for the '<em><b>Hov HP Op Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ENUM_LIST_TYPE__HOV_HP_OP_MODE = 20;
+
+	/**
+	 * The feature id for the '<em><b>Hov HC Op Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ENUM_LIST_TYPE__HOV_HC_OP_MODE = 21;
+
+	/**
+	 * The feature id for the '<em><b>Hov SG Ready Src Sel</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ENUM_LIST_TYPE__HOV_SG_READY_SRC_SEL = 22;
+
+	/**
+	 * The feature id for the '<em><b>Hov Buffer State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ENUM_LIST_TYPE__HOV_BUFFER_STATE = 23;
+
+	/**
+	 * The feature id for the '<em><b>Hov HC Op State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ENUM_LIST_TYPE__HOV_HC_OP_STATE = 24;
+
+	/**
+	 * The feature id for the '<em><b>Hov Dom Hot Water State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WATER_STATE = 25;
+
+	/**
 	 * The number of structural features of the '<em>SGr Enum List Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE_FEATURE_COUNT = 20;
+	int SGR_ENUM_LIST_TYPE_FEATURE_COUNT = 26;
 
 	/**
 	 * The number of operations of the '<em>SGr Enum List Type</em>' class.
@@ -4120,6 +4174,72 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSGrEnumListType_CtaHCOpMode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovHPOpMode <em>Hov HP Op Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hov HP Op Mode</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovHPOpMode()
+	 * @see #getSGrEnumListType()
+	 * @generated
+	 */
+	EAttribute getSGrEnumListType_HovHPOpMode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovHCOpMode <em>Hov HC Op Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hov HC Op Mode</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovHCOpMode()
+	 * @see #getSGrEnumListType()
+	 * @generated
+	 */
+	EAttribute getSGrEnumListType_HovHCOpMode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovSGReadySrcSel <em>Hov SG Ready Src Sel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hov SG Ready Src Sel</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovSGReadySrcSel()
+	 * @see #getSGrEnumListType()
+	 * @generated
+	 */
+	EAttribute getSGrEnumListType_HovSGReadySrcSel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovBufferState <em>Hov Buffer State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hov Buffer State</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovBufferState()
+	 * @see #getSGrEnumListType()
+	 * @generated
+	 */
+	EAttribute getSGrEnumListType_HovBufferState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovHCOpState <em>Hov HC Op State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hov HC Op State</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovHCOpState()
+	 * @see #getSGrEnumListType()
+	 * @generated
+	 */
+	EAttribute getSGrEnumListType_HovHCOpState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWaterState <em>Hov Dom Hot Water State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hov Dom Hot Water State</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWaterState()
+	 * @see #getSGrEnumListType()
+	 * @generated
+	 */
+	EAttribute getSGrEnumListType_HovDomHotWaterState();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrFlexAssistanceType <em>SGr Flex Assistance Type</em>}'.
