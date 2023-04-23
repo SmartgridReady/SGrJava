@@ -24,6 +24,12 @@ package communicator.impl;
 import com.smartgridready.ns.v0.CtaDHWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
+import com.smartgridready.ns.v0.HovBufferStateType;
+import com.smartgridready.ns.v0.HovDomHotWaterStateType;
+import com.smartgridready.ns.v0.HovHCOpModeType;
+import com.smartgridready.ns.v0.HovHCOpStateType;
+import com.smartgridready.ns.v0.HovHPOpModeType;
+import com.smartgridready.ns.v0.HovSGReadySrcSelType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
@@ -1180,8 +1186,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}
 		else { // TODO: Default behaviour
 		}
-		
+
+		/*
 		// Attributes for post-register load conversion
+		// TODO: challenged 21.4, @Hoval
 		if (aDataPoint.getModbusAttr().size() > 0)
 		{
 		  if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper()!=null )
@@ -1193,7 +1201,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			 mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getGenEnumMapper().get(mbregsnd[0]).intValue();
 		  }
 		}
-		
+		*/
 		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 			if (bRegisterCMDs) {
 				mbregsnd = ConvertEndians(MBconvScheme, mbregsnd, mbsize);
