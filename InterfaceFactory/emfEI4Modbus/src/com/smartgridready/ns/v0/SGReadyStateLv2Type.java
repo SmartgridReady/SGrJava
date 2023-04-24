@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
  * E0005 SG-Ready states according the German heatpump
- * 				association bwp normal, intensivied, EVU_LOCK, forced
+ * 				association bwp normal, intensified, EVU_LOCK, forced
  * 				https://www.waermepumpe.de/normen-technik/sg-ready/
  * 			
  * <!-- end-model-doc -->
@@ -40,17 +40,17 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	HPNORMAL(0, "HPNORMAL", "HP_NORMAL"),
 
 	/**
-	 * The '<em><b>HPINTENSIVIED</b></em>' literal object.
+	 * The '<em><b>HPINTENSIFIED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Increased operation
 	 * <!-- end-model-doc -->
-	 * @see #HPINTENSIVIED_VALUE
+	 * @see #HPINTENSIFIED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HPINTENSIVIED(1, "HPINTENSIVIED", "HP_INTENSIVIED"),
+	HPINTENSIFIED(1, "HPINTENSIFIED", "HP_INTENSIFIED"),
 
 	/**
 	 * The '<em><b>HPLOCKED</b></em>' literal object.
@@ -96,18 +96,18 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	public static final int HPNORMAL_VALUE = 0;
 
 	/**
-	 * The '<em><b>HPINTENSIVIED</b></em>' literal value.
+	 * The '<em><b>HPINTENSIFIED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Increased operation
 	 * <!-- end-model-doc -->
-	 * @see #HPINTENSIVIED
-	 * @model literal="HP_INTENSIVIED"
+	 * @see #HPINTENSIFIED
+	 * @model literal="HP_INTENSIFIED"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HPINTENSIVIED_VALUE = 1;
+	public static final int HPINTENSIFIED_VALUE = 1;
 
 	/**
 	 * The '<em><b>HPLOCKED</b></em>' literal value.
@@ -147,7 +147,7 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	private static final SGReadyStateLv2Type[] VALUES_ARRAY =
 		new SGReadyStateLv2Type[] {
 			HPNORMAL,
-			HPINTENSIVIED,
+			HPINTENSIFIED,
 			HPLOCKED,
 			HPFORCED,
 		};
@@ -207,7 +207,7 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	public static SGReadyStateLv2Type get(int value) {
 		switch (value) {
 			case HPNORMAL_VALUE: return HPNORMAL;
-			case HPINTENSIVIED_VALUE: return HPINTENSIVIED;
+			case HPINTENSIFIED_VALUE: return HPINTENSIFIED;
 			case HPLOCKED_VALUE: return HPLOCKED;
 			case HPFORCED_VALUE: return HPFORCED;
 		}

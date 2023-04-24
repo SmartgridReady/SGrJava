@@ -30,6 +30,26 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaDHWOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="E0019:&#xA;     Basic operation type of CTA Domestic Hot Water Heat Pump operation mode&#xA;      &#x9;ON OFF Push  temporary-off emergency-op      &#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaDHWOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="DHWUNDEF" literal="DHW_UNDEF"/>
+    <eLiterals name="DHWON" value="1" literal="DHW_ON"/>
+    <eLiterals name="DHWOFF" value="2" literal="DHW_OFF"/>
+    <eLiterals name="DHWPUSH" value="3" literal="DHW_PUSH"/>
+    <eLiterals name="DHWTMPOFF" value="4" literal="DHW_TMP_OFF"/>
+    <eLiterals name="DHWEMERGENCY" value="5" literal="DHW_EMERGENCY"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaDHWOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaDHWOpModeType:Object"/>
+      <details key="baseType" value="ctaDHWOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value=""/>
@@ -135,7 +155,7 @@
         upperBound="-2" eType="#//SGrFunctionalProfileFrameType" volatile="true" transient="true"
         derived="true" containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" RPT Root Point for stand alone generic Functional&#xA;&#x9;&#x9;&#x9;&#x9;Profile description&#xA;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value=" RPT Root Point for stand alone generic Functional Profile description "/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -286,6 +306,50 @@
       <details key="name" value="eStopBitLenType:Object"/>
       <details key="baseType" value="eStopBitLenType"/>
     </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionalProfileType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=" Profile Element for to be used for the&#xA;                                generation of SGrGenericDevices and the Ecore modelling the&#xA;                                generation of the generic profile level interface class &#xD;&#xA; Profil Element zur Integration in&#xA;                                generische Gerätedefinitionen oder zur Erzeugung von&#xA;                                ecore-Modellierungen "/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="functionalProfile_._type"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="profileNumber" lowerBound="1"
+        eType="#//SGrProfilenumberType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="profileNumber"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fpNameList" eType="#//SGrNamelistType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fpNameList"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fpLegibDesc" upperBound="4"
+        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" this is the published information related to&#xA;                                        this functional profile "/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fpLegibDesc"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fpPrgDesc" upperBound="4"
+        eType="#//SGrLegibDocumentationType" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="fpPrgDesc"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HeaderEntry">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1584,15 +1648,15 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHPOpstateStiebel" eType="#//SGrHPOpstateStiebelType"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stiHPOpstateStiebel" eType="#//StiHPOpstateStiebelType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="sgrHPOpstateStiebel"/>
+        <details key="name" value="stiHPOpstateStiebel"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHCOpstate" eType="#//SGrHCOpStateType"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHCOpstate" eType="#//SgrHCOpStateType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1769,8 +1833,8 @@
       <details key="name" value="SGrDataPointDescriptionType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="basicDataType" eType="#//SGrBasicGenDataPointTypeType"
-        containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="basicDataType" lowerBound="1"
+        eType="#//SGrBasicGenDataPointTypeType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="basicDataType"/>
@@ -2176,7 +2240,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGReadyStateLv2Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="E0005 SG-Ready states according the German heatpump&#xA;&#x9;&#x9;&#x9;&#x9;association bwp normal, intensivied, EVU_LOCK, forced&#xA;&#x9;&#x9;&#x9;&#x9;https://www.waermepumpe.de/normen-technik/sg-ready/&#xA;&#x9;&#x9;&#x9;"/>
+      <details key="documentation" value="E0005 SG-Ready states according the German heatpump&#xA;&#x9;&#x9;&#x9;&#x9;association bwp normal, intensified, EVU_LOCK, forced&#xA;&#x9;&#x9;&#x9;&#x9;https://www.waermepumpe.de/normen-technik/sg-ready/&#xA;&#x9;&#x9;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGReadyStateLv2Type"/>
@@ -2186,7 +2250,7 @@
         <details key="documentation" value="Normal operation, optimized according to customer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;requirements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="HPINTENSIVIED" value="1" literal="HP_INTENSIVIED">
+    <eLiterals name="HPINTENSIFIED" value="1" literal="HP_INTENSIFIED">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Increased operation"/>
       </eAnnotations>
@@ -2341,6 +2405,14 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaDHWOpMode" eType="#//CtaDHWOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ctaDHWOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrEVSEStateLv1Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2458,7 +2530,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functionalProfile" lowerBound="1"
-        eType="#//SGrProfileDescriptionType" containment="true" resolveProxies="false">
+        eType="#//FunctionalProfileType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="functionalProfile"/>
@@ -2535,12 +2607,12 @@
       <details key="baseType" value="SGrHCOpModeType"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="SGrHCOpStateType">
+  <eClassifiers xsi:type="ecore:EEnum" name="SgrHCOpStateType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="BM0004:&#xA;     BitRank map for HeatPump HeatCoolState&#xA;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrHCOpStateType"/>
+      <details key="name" value="sgrHCOpStateType"/>
     </eAnnotations>
     <eLiterals name="HCOFF" literal="HC_OFF"/>
     <eLiterals name="HCHEAT" value="1" literal="HC_HEAT"/>
@@ -2566,10 +2638,10 @@
     <eLiterals name="HCHEATEXTERNALCMD" value="21" literal="HC_HEAT_EXTERNAL_CMD"/>
     <eLiterals name="HCSGRIDINTENSIVIED" value="22" literal="HC_SGRID_INTENSIVIED"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="SGrHCOpStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+  <eClassifiers xsi:type="ecore:EDataType" name="SgrHCOpStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrHCOpStateType:Object"/>
-      <details key="baseType" value="SGrHCOpStateType"/>
+      <details key="name" value="sgrHCOpStateType:Object"/>
+      <details key="baseType" value="sgrHCOpStateType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrHPActBufferStateType">
@@ -2616,32 +2688,6 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrHPOpModeType:Object"/>
       <details key="baseType" value="SGrHPOpModeType"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="SGrHPOpstateStiebelType">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="BM0003:&#xA;     BitRank map for Heat Pump Stiebel-Eltron&#xA;&#x9;"/>
-    </eAnnotations>
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrHPOpstateStiebelType"/>
-    </eAnnotations>
-    <eLiterals name="HP1PUMPON" literal="HP_1_PUMP_ON"/>
-    <eLiterals name="HP2PUMPON" value="1" literal="HP_2_PUMP_ON"/>
-    <eLiterals name="HEATUPPROGRAM" value="2" literal="HEATUP_PROGRAM"/>
-    <eLiterals name="NHZSTAGESRUNNING" value="3" literal="NHZ_STAGES_RUNNING"/>
-    <eLiterals name="HPINHEATINGMODE" value="4" literal="HP_IN_HEATING_MODE"/>
-    <eLiterals name="HPINDHWMODE" value="5" literal="HP_IN_DHW_MODE"/>
-    <eLiterals name="COMPRESSORRUNNING" value="6" literal="COMPRESSOR_RUNNING"/>
-    <eLiterals name="SUMMERMODEACTIVE" value="7" literal="SUMMER_MODE_ACTIVE"/>
-    <eLiterals name="COOLINGMODEACTIVE" value="8" literal="COOLING_MODE_ACTIVE"/>
-    <eLiterals name="MINONEIWSINDEFROSTMODE" value="9" literal="MIN_ONE_IWS_IN_DEFROST_MODE"/>
-    <eLiterals name="SILENTMODE1ACTIVE" value="10" literal="SILENT_MODE_1_ACTIVE"/>
-    <eLiterals name="SILENTMODE2ACTIVE" value="11" literal="SILENT_MODE_2_ACTIVE"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="SGrHPOpstateStiebelTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrHPOpstateStiebelType:Object"/>
-      <details key="baseType" value="SGrHPOpstateStiebelType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrHPOpstateType">
@@ -2968,8 +3014,8 @@
       <details key="name" value="SGrModbusDataPointDescriptionType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modbusDataType" eType="#//SGrBasicGenDataPointTypeType"
-        containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modbusDataType" lowerBound="1"
+        eType="#//SGrBasicGenDataPointTypeType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="modbusDataType"/>
@@ -3277,7 +3323,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sLV1Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;names used for SGr label V1 used to secure legacy&#xA;    &#x9;&#x9;&#x9;&#x9;compatibility&#xA;    &#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;            Currently not used. Reserved for the future to secure legacy compatibility one we start renaming in future SGr label versions&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -4415,6 +4461,32 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StiHPOpstateStiebelType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="BM0003:&#xA;     BitRank map for Heat Pump Stiebel-Eltron&#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="stiHPOpstateStiebelType"/>
+    </eAnnotations>
+    <eLiterals name="HP1PUMPON" literal="HP_1_PUMP_ON"/>
+    <eLiterals name="HP2PUMPON" value="1" literal="HP_2_PUMP_ON"/>
+    <eLiterals name="HEATUPPROGRAM" value="2" literal="HEATUP_PROGRAM"/>
+    <eLiterals name="NHZSTAGESRUNNING" value="3" literal="NHZ_STAGES_RUNNING"/>
+    <eLiterals name="HPINHEATINGMODE" value="4" literal="HP_IN_HEATING_MODE"/>
+    <eLiterals name="HPINDHWMODE" value="5" literal="HP_IN_DHW_MODE"/>
+    <eLiterals name="COMPRESSORRUNNING" value="6" literal="COMPRESSOR_RUNNING"/>
+    <eLiterals name="SUMMERMODEACTIVE" value="7" literal="SUMMER_MODE_ACTIVE"/>
+    <eLiterals name="COOLINGMODEACTIVE" value="8" literal="COOLING_MODE_ACTIVE"/>
+    <eLiterals name="MINONEIWSINDEFROSTMODE" value="9" literal="MIN_ONE_IWS_IN_DEFROST_MODE"/>
+    <eLiterals name="SILENTMODE1ACTIVE" value="10" literal="SILENT_MODE_1_ACTIVE"/>
+    <eLiterals name="SILENTMODE2ACTIVE" value="11" literal="SILENT_MODE_2_ACTIVE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="StiHPOpstateStiebelTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="stiHPOpstateStiebelType:Object"/>
+      <details key="baseType" value="stiHPOpstateStiebelType"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SubProfileTypeEnumType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">

@@ -2,10 +2,10 @@
  */
 package com.smartgridready.ns.v0.impl;
 
+import com.smartgridready.ns.v0.FunctionalProfileType;
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
 import com.smartgridready.ns.v0.SGrDataPointBaseType;
 import com.smartgridready.ns.v0.SGrFunctionalProfileFrameType;
-import com.smartgridready.ns.v0.SGrProfileDescriptionType;
 import com.smartgridready.ns.v0.SGrReleaseNotes;
 import com.smartgridready.ns.v0.V0Package;
 
@@ -60,7 +60,7 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 * @ordered
 	 */
-	protected SGrProfileDescriptionType functionalProfile;
+	protected FunctionalProfileType functionalProfile;
 
 	/**
 	 * The cached value of the '{@link #getGenAttribute() <em>Gen Attribute</em>}' containment reference list.
@@ -152,7 +152,7 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	@Override
-	public SGrProfileDescriptionType getFunctionalProfile() {
+	public FunctionalProfileType getFunctionalProfile() {
 		return functionalProfile;
 	}
 
@@ -161,8 +161,8 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFunctionalProfile(SGrProfileDescriptionType newFunctionalProfile, NotificationChain msgs) {
-		SGrProfileDescriptionType oldFunctionalProfile = functionalProfile;
+	public NotificationChain basicSetFunctionalProfile(FunctionalProfileType newFunctionalProfile, NotificationChain msgs) {
+		FunctionalProfileType oldFunctionalProfile = functionalProfile;
 		functionalProfile = newFunctionalProfile;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE, oldFunctionalProfile, newFunctionalProfile);
@@ -177,7 +177,7 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	@Override
-	public void setFunctionalProfile(SGrProfileDescriptionType newFunctionalProfile) {
+	public void setFunctionalProfile(FunctionalProfileType newFunctionalProfile) {
 		if (newFunctionalProfile != functionalProfile) {
 			NotificationChain msgs = null;
 			if (functionalProfile != null)
@@ -270,7 +270,7 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 				setReleaseNotes((SGrReleaseNotes)newValue);
 				return;
 			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE:
-				setFunctionalProfile((SGrProfileDescriptionType)newValue);
+				setFunctionalProfile((FunctionalProfileType)newValue);
 				return;
 			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE:
 				getGenAttribute().clear();
@@ -296,7 +296,7 @@ public class SGrFunctionalProfileFrameTypeImpl extends MinimalEObjectImpl.Contai
 				setReleaseNotes((SGrReleaseNotes)null);
 				return;
 			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__FUNCTIONAL_PROFILE:
-				setFunctionalProfile((SGrProfileDescriptionType)null);
+				setFunctionalProfile((FunctionalProfileType)null);
 				return;
 			case V0Package.SGR_FUNCTIONAL_PROFILE_FRAME_TYPE__GEN_ATTRIBUTE:
 				getGenAttribute().clear();
