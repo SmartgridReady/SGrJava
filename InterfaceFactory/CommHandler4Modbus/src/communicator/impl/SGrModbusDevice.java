@@ -387,7 +387,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					RegRes = RegRes << 16;
 					RegRes = RegRes | (mbregresp[u + arrOffset*size] & 0x0000ffff);
 				}
-				// TODO: finalize this. Is it really needed?
 				
 				if (size == 2)
 			    {
@@ -413,7 +412,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}		
 	    
 	    // generic type expected as API return type
-		// TODO: Check why the data type "long" does not create a 64 bit signed integer
+		// TODO:HF? Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
 
 		SGrBasicGenDataPointTypeType retVal = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
@@ -592,7 +591,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		else if(dGenType.getDateTime()!=null) {
 		 // TODO: apply gregorian calendar library
 		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-		// TODO: apply dGenType
+		// TODO:hf apply dGenType
 		}
 		else if( dGenType.getString()!=null) {
 			    retVal.setString(ConversionHelper.convRegistersToString(mbregresp, 0, size*2));
@@ -601,13 +600,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		{ // error handling for missing instance
 		}		
 
-		// TODO: other Modbus functions
-		// conversion schemes
-		// attribute management
-		// int res = mbregresp[size - 2] * 65536 + mbregresp[size- 1]
-		// RetVal.*
-		// Not yet supported types
-		// unit scaling
 		return retVal;				
 	}
 
@@ -657,6 +649,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			  }
 			break;
 	    	case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOH2L_VALUE:
+	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at higher adders
+	    		//  must follow follow the bwp definitions
 				switch (mbregresp[0])
 				{
 					case 1:
@@ -678,6 +672,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				}
 			break;
     		case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOL2H_VALUE:
+	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at lower adders
+	    		//  must follow follow the bwp definitions
 				switch (mbregresp[0])
 				{
 					case 1:
@@ -719,7 +715,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			n = mBconvScheme.size();
 			for (n = 0; n < mBconvScheme.size(); n++) {
 				if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_BIT_ORDER)) {
-					// TODO implement
+					// TODO implement CHANGE_BIT_ORDER
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_BYTE_ORDER)) {
 					for (c = 0; c < size; c++) {
 						LOG.debug("mbregresp: {} ", mbregresp);
@@ -827,15 +823,13 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				bVal = true;
 			}
 			dGenType.setBoolean(bVal);
-		}
-		/*
-		 * else if (dGenType.eIsSet(enum) { // TODO: SGrBasicGenDataPointTypeType, apply
-		 * SGrEnumListType family of enumerationss inDpTT.setEnum(0); }
-		 */
-		else if (dGenType.isSetFloat32()) {
+		} else if (dGenType.getEnum() != null) {
+			 /* TODO: serch & find SGrEnumListType dGenType to set enum type by literal from String sValue, apply
+			dGenType.getEnum().getCtaDHWOpMode().valueOf(sValue);
+			*/
+		} else if (dGenType.isSetFloat32()) {
 			float fVal;
 			fVal = Float.parseFloat(sValue);
-			dGenType.setFloat32(fVal);
 			dGenType.setFloat32(fVal);
 		} else if (dGenType.isSetFloat64()) {
 			double dVal;
@@ -919,8 +913,12 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
 		// Attributes
 
-		// TODO: fehlende Instanz von attributen
-		// Attributes for pre-register load conversion
+		// TODO: add attribute handling
+		if (aDataPoint.getGenAttribute().size() > 0) { 
+			/* there are generic attributes available	
+			 * place to add potential attribut setter API functionality
+			 */
+		}
 
 		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available
 			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
@@ -980,15 +978,11 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				mbbitsnd[0] = bVal;
 		} else if (dMBType.getEnum() != null) {
 			mbregsnd[0] = Enum2RegResConversion(sgrValue.getEnum());
+			if (isSetIopEnum)  
+				    mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getModbusEnumMapper().get(mbregsnd[0]).intValue();
 			if (l6dev >=0)
 			{
 				mbregsnd = manageLayer6deviation(l6dev, mbregsnd, size);
-			}
-			else
-			{ 				
-			  size = 1;
-			  if (isSetIopEnum)  
-			    mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getModbusEnumMapper().get(mbregsnd[0]).intValue();
 			}
 		} else if (dMBType.isSetFloat32()) {
 			if (bRegisterCMDs) {
@@ -1087,7 +1081,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		} else if (dMBType.isSetInt64()) {
 			if (bRegisterCMDs) {
 
-				// TODO converting (large) integers to double can cause floating point errors/deviations
+				// TODO:? converting (large) integers to double can cause floating point errors/deviations
 				dVal = getConvertedDouble(sgrValue, powof10, mul);
 				if ((dVal <= 9223372036854775807.0) && (dVal >= -9223372036854775808.0)) {
 					long l = (long) dVal;
@@ -1176,32 +1170,18 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 		} else if (dMBType.getDateTime() != null) {
 			/*
-			 * TODO: apply gregorian calendar library =>
+			 * TODO:hf apply gregorian calendar library =>
 			 * inDpTT.setTimestamp(TIMESTAMP_EDEFAULT); or better add simple Current Epoch
 			 * Unix Timestamp The current epoch translates to 01/10/2022 @ 7:31am (UTC)
 			 * 2022-01-10T07:31:09+00:00 (ISO 8601) Mon, 10 Jan 2022 07:31:09 (+0000 RFC
 			 * 822, 1036, 1123, 2822) Monday, 10-Jan-22 07:31:09 (UTC RFC 2822)
-			 * 2022-01-10T07:31:09+00:00 (RFC 3339) // TODO: mbregsnd setting
+			 * 2022-01-10T07:31:09+00:00 (RFC 3339) 
+			 * // TODO:hf mbregsnd setting
 			 */
 		}
 		else { // TODO: Default behaviour
 		}
 
-		/*
-		// Attributes for post-register load conversion
-		// TODO: challenged 21.4, @Hoval
-		if (aDataPoint.getModbusAttr().size() > 0)
-		{
-		  if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper()!=null )
-		  {   // modbus value to generic value conversion
-			  mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getModbusBitMapper().get(mbregsnd[0]).intValue();
-		  }
-		  if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper()!=null )
-		  {   // modbus value to generic value conversion
-			 mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getGenEnumMapper().get(mbregsnd[0]).intValue();
-		  }
-		}
-		*/
 		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 			if (bRegisterCMDs) {
 				mbregsnd = ConvertEndians(MBconvScheme, mbregsnd, mbsize);
@@ -1211,9 +1191,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			}
 		}
 
-		// accessing physical interface
-		// TODO: move physical interface selection to proper layer selection AFTER doing
-		// all the adjustment stuff
+
 		try {
 			if (bRegisterCMDs) {
 				if (mbsize > 1)

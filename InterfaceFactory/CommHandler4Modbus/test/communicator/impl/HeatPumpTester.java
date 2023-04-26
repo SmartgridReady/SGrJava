@@ -88,9 +88,9 @@ public class HeatPumpTester {
 	// device selection
 	private static boolean  devRTU_IOPIsOn=false; 
 	private static boolean  devTCP_IOPIsOn=true; 
-	private static boolean  devStiebelISGIsOn=false; 
+	private static boolean  devStiebelISGIsOn=true; 
 	private static boolean  devCTAoptiHeatIsOn=false; 
-	private static boolean  devHovalTCPIsOn=true; 
+	private static boolean  devHovalTCPIsOn=false; 
 	
 	// shell for enumerations
 	private static SGrEnumListType oEnumList = V0Factory.eINSTANCE.createSGrEnumListType();
