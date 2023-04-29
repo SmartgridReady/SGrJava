@@ -454,7 +454,6 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/HPINHEATINGMODE"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/HPINDHWMODE"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/COMPRESSORRUNNING"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/SUMMERMODEACTIVE"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/COOLINGMODEACTIVE"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/INDEFROSTMODE"/>
     </genEnums>

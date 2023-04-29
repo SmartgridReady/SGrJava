@@ -2430,9 +2430,8 @@
     <eLiterals name="HPINHEATINGMODE" value="1" literal="HP_IN_HEATING_MODE"/>
     <eLiterals name="HPINDHWMODE" value="2" literal="HP_IN_DHW_MODE"/>
     <eLiterals name="COMPRESSORRUNNING" value="3" literal="COMPRESSOR_RUNNING"/>
-    <eLiterals name="SUMMERMODEACTIVE" value="4" literal="SUMMER_MODE_ACTIVE"/>
-    <eLiterals name="COOLINGMODEACTIVE" value="5" literal="COOLING_MODE_ACTIVE"/>
-    <eLiterals name="INDEFROSTMODE" value="6" literal="IN_DEFROST_MODE"/>
+    <eLiterals name="COOLINGMODEACTIVE" value="4" literal="COOLING_MODE_ACTIVE"/>
+    <eLiterals name="INDEFROSTMODE" value="5" literal="IN_DEFROST_MODE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrHPOpstateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">

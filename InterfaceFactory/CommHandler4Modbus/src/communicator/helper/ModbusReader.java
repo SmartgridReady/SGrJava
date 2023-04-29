@@ -25,8 +25,10 @@ import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
 
-public class ModbusReader {
 
+
+public class ModbusReader {
+   
     public static ModbusReaderResponse read(GenDriverAPI4Modbus drv4Modbus,
     										TEnumObjectType regType,
     										int regAddr,
@@ -35,11 +37,10 @@ public class ModbusReader {
             throws GenDriverException, GenDriverModbusException, GenDriverSocketException {
 
         ModbusReaderResponse response= new ModbusReaderResponse();
-     
+  
         if (isFirstRegAddrOne) {
             regAddr = regAddr - 1;
         }
-
         if (TEnumObjectType.HOLD_REGISTER == regType) {
             response.setMbregresp(drv4Modbus.ReadHoldingRegisters(regAddr, length));
         } else if (TEnumObjectType.INPUT_REGISTER == regType) {
@@ -51,6 +52,7 @@ public class ModbusReader {
         } else {
             throw new GenDriverException("ModbusReader, unhandled register type requested.");
         }
+	    
         return response;
     }
 

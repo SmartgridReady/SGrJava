@@ -88,8 +88,8 @@ public class HeatPumpTester {
 	// device selection
 	private static boolean  devRTU_IOPIsOn=false; 
 	private static boolean  devTCP_IOPIsOn=true; 
-	private static boolean  devStiebelISGIsOn=true; 
-	private static boolean  devCTAoptiHeatIsOn=false; 
+	private static boolean  devStiebelISGIsOn=false; 
+	private static boolean  devCTAoptiHeatIsOn=true; 
 	private static boolean  devHovalTCPIsOn=false; 
 	
 	// shell for enumerations
@@ -118,13 +118,13 @@ public class HeatPumpTester {
    			
 			try {
 				
-				for (runtimeCnt=0;runtimeCnt<30000;runtimeCnt++)
+				for (runtimeCnt=0;runtimeCnt<3000;runtimeCnt++)
 				{
-					
+					LOG.info(String.format("\n------> LOOP=" +	runtimeCnt));
 				   // loop data & test reporting
 				   Thread.sleep(10000);  // show last block for ccc  milliseconds
 					
-					 LOG.info(String.format("\n------> LOOP=" +	runtimeCnt + "                     Exceptions:"));		
+					LOG.info(String.format("\n------> LOOP=" +	runtimeCnt + "                     Exceptions:"));		
 					if (devStiebelISGIsOn)  LOG.info(String.format(" StiebelISG=" + devStiebel_ISGExcpetions + ","));
 					if (devCTAoptiHeatIsOn) LOG.info(String.format(" CTAoptiHeat=" + devCTAoptiHeat_Exceptions + ","));
 					if (devHovalTCPIsOn)  LOG.info(String.format("=" + devHovalTCP_Exceptions + ","));
@@ -427,20 +427,20 @@ public class HeatPumpTester {
 
 				
 			try {			
-				 LOG.info(String.format("HeatPump Stiebel-Eltron"));
+				LOG.info(String.format("HeatPump Stiebel-Eltron"));
 				Thread.sleep(25);
 				
 				if (runtimeCnt == 2)
 				{
 
 				  SGrBasicGenDataPointTypeType  hpval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-					
+				  /*	
 				   LOG.info(String.format("######################  setting new values ######################"));
 				   // testing setters: one setting for a test run only recommended
 				   // read the device manual carefully before testing any setpoint
 				  // control by HPOpMode enum
 
-	/*			
+				
 				  oEnumList.setSgrHPOpMode(SGrHPOpModeType.WPPROGOP);
 				  hpval.setEnum(oEnumList);
 				  devStiebelISG.setValByGDPType("HeatPumpBase", "HPOpModeCmd", hpval);	
@@ -467,7 +467,7 @@ public class HeatPumpTester {
 				  hpval.setFloat32(fVal1); 
 				  devStiebelISG.setValByGDPType("HeatCoolCtrl_1", "SupplyWaterTempStptEco",hpval);
 				  LOG.info(String.format("  Setting HeatCoolCtrl_1: SupplyWaterTempStptEco=" + fVal1));
-				  fVal1= (float) 25.2;
+				  fVal1= (float) 25.8;
 				  hpval.setFloat32(fVal1); 
 				  devStiebelISG.setValByGDPType("HeatCoolCtrl_2", "SupplyWaterTempStptEco",hpval);
 				  LOG.info(String.format("  Setting HeatCoolCtrl_2: SupplyWaterTempStptEco=" + fVal1));
@@ -475,8 +475,8 @@ public class HeatPumpTester {
 				  hpval.setFloat32(fVal1); 
 				  devStiebelISG.setValByGDPType("DomHotWaterCtrl", "DomHotWTempStptEco",hpval);
 				  LOG.info(String.format("  Setting HeatCoolCtrl_2: DomHotWTempStptEco=" + fVal1));
-			 
-*/				 
+				 	 
+				 
 				 
 				
 				// enable or disable SG-Ready				   
@@ -484,7 +484,7 @@ public class HeatPumpTester {
 				LOG.info(String.format("  Setting ReadyStates_bwp:SGReadyEnabled=" + hpval.isBoolean()));
 				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled", hpval);
 				
-				
+							
 				/// control SG-Ready by enum SGReadyStateLv2Type
                 oEnumList.setSgreadyStateLv2(SGReadyStateLv2Type.HPNORMAL);
 				SGrBasicGenDataPointTypeType  bwpCmd = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
@@ -492,17 +492,16 @@ public class HeatPumpTester {
 				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd", bwpCmd);
 				LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));
 				oEnumList.unsetSgreadyStateLv2();
-				
-				
-			/*	// control SG-Ready by contacts
+			
+			
+				// control SG-Ready by contacts
 				hpval.setBoolean(false);  
-				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON", hpval);	
-				LOG.info(String.format("  Setting SG-ReadyStates_bwp:SGReadyInp1isON=" + hpval.isBoolean()));
+				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON", hpval);
+				LOG.info(String.format("  Setting SG-ReadyStates_bwp:SGReadyInp1isON=",hpval.isBoolean()));
 				hpval.setBoolean(false);  
-				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON", hpval);
-				LOG.info(String.format("  Setting SG-ReadyStates_bwp:SGReadyInp2isON=" + hpval.isBoolean()));
-		 */
-					
+                devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON", hpval);
+                LOG.info(String.format("  Setting SG-ReadyStates_bwp:SGReadyInp2isON=",hpval.isBoolean()));
+	*/				 	
 				}
 				
 				  
@@ -515,37 +514,36 @@ public class HeatPumpTester {
 				fVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "SupplyWaterTemp").getFloat32();
 				fVal3=devStiebelISG.getValByGDPType("HeatPumpBase", "ReturnSupplyWaterTemp").getFloat32();
 				fVal4=devStiebelISG.getValByGDPType("HeatPumpBase", "SourceTemp").getFloat32();		
-				 LOG.info(String.format("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, SupplyWaterTemp=" + fVal2 +  "°C,  ReturnSupplyWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C "));  
+				LOG.info(String.format("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getSgrHPOpMode().getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, SupplyWaterTemp=" + fVal2 +  "°C,  ReturnSupplyWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C "));  
 				 oEnumList.unsetSgrHPOpMode();
-				 
+
+				LOG.info(String.format("    HPOpState bits set: iop=" + Integer.toBinaryString(iVal1)));
 				if (iVal1 != 0)  
 				{
-					 LOG.info(String.format("    HPOpState bits set: ")); 
-					if(( (iVal2 & (1<<SGrHPOpstateType.HPPUMPON_VALUE))) != 0)  LOG.info(String.format("HP_PUMP_ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HP_IN_HEATING_MODE, "));
-					if(( (iVal2 & (1<<SGrHPOpstateType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DWH ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
-					if(( (iVal2 & (1<<SGrHPOpstateType.SUMMERMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("SUMMER_MODE_ACTIVE, "));
-					if(( (iVal2 & (1<<SGrHPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING_MODE_ACTIVE, "));
-					if(( (iVal2 & (1<<SGrHPOpstateType.INDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
+					if(( (iVal1 & (1<<SGrHPOpstateType.HPPUMPON_VALUE))) != 0)  LOG.info(String.format("HP_PUMP_ON, "));
+					if(( (iVal1 & (1<<SGrHPOpstateType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HP_IN_HEATING_MODE, "));
+					if(( (iVal1 & (1<<SGrHPOpstateType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DWH ON, "));
+					if(( (iVal1 & (1<<SGrHPOpstateType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
+					if(( (iVal1 & (1<<SGrHPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING_MODE_ACTIVE, "));
+					if(( (iVal1 & (1<<SGrHPOpstateType.INDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
 				}
+				 LOG.info(String.format("    HPOpStateStiebel bits set:iop=" +  Integer.toBinaryString(iVal2)));
 				if (iVal2 != 0)  
 				{
-					 LOG.info(String.format("    HPOpStateStiebel bits set: ")); 
 					if(( (iVal2 & (1<<StiHPOpstateType.HP1PUMPON_VALUE))) != 0)  LOG.info(String.format("HP_1_ON, "));
 					if(( (iVal2 & (1<<StiHPOpstateType.HP2PUMPON_VALUE))) != 0)  LOG.info(String.format("HP_2_ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DHW ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HEAT ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING ON, "));
 					if(( (iVal2 & (1<<StiHPOpstateType.HEATUPPROGRAM_VALUE))) != 0)  LOG.info(String.format("HEAT PRORGRAMM, "));
 					if(( (iVal2 & (1<<StiHPOpstateType.NHZSTAGESRUNNING_VALUE))) != 0)  LOG.info(String.format("NHZ Stage ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HEAT ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DHW ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateType.SUMMERMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("Summermode ON, "));
+					if(( (iVal2 & (1<<StiHPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING ON, "));
 					if(( (iVal2 & (1<<StiHPOpstateType.MINONEIWSINDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
 					if(( (iVal2 & (1<<StiHPOpstateType.SILENTMODE1ACTIVE_VALUE))) != 0)  LOG.info(String.format("Silent 1 Mode, "));
 					if(( (iVal2 & (1<<StiHPOpstateType.SILENTMODE2ACTIVE_VALUE))) != 0)  LOG.info(String.format("Silent 2 Mode (HP is off) "));
 				}
 				LOG.info(String.format(" "));	
-				
 				
 				fVal1=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptComf").getFloat32();
 				fVal2=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptEco").getFloat32();							
@@ -587,7 +585,7 @@ public class HeatPumpTester {
 				fVal1=devStiebelISG.getValByGDPType("EnergyMonitor", "RuntimeHeating").getFloat32();
 				fVal2=devStiebelISG.getValByGDPType("EnergyMonitor", "RuntimeDomHotWater").getFloat32();
 				 LOG.info(String.format("  EnergyMonitor RuntimeHeating=" + fVal1 + " h,  RuntimeDomHotWater="+ fVal2 + " h"));  
-				 				
+			 				
 //	             TBC: launches illegal address @31 , no other start data found
 //	 				lVal=devStiebelISG.getValByGDPType("EnergyMonitor", "NrOfStartupsCompressor").getInt16U();
 //				+ fVal3 + " h,  NrOfStartupsCompressor="  + lVal+" times

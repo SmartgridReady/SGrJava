@@ -174,6 +174,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		return GenType2StringConversion.format(getValArrByGDPType(sProfileName, sDataPointName));
 	}
 	
+
+	 
 	@Override
 	public SGrBasicGenDataPointTypeType[] getValArrByGDPType(String sProfileName, String sDataPointName) 
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
@@ -234,12 +236,13 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				LOG.debug("Reading time sync block from cache.");
 				mbResponse = mbCacheRecord.getValue();
 			}			
-		
+
 			// pick the correct value from the received block			
 			int size = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
 			int[] mbRegResp = mbResponse.getMbregresp(addrDiff.intValue(), size);
 			boolean[] mbBitResp = mbResponse.getMbbitresp(addrDiff.intValue(), size);
-			
+	
+		    
 			// do conversion of the read data
 			return doReadConversion(
 					aDataPoint,
@@ -253,7 +256,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					0,			// arrIdx: only one value
 					1);			// number of values									
 	}
-
 
 	// Read an array of values
 	private SGrBasicGenDataPointTypeType[] prv_getValArrByGDPType(
@@ -281,7 +283,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					mbRegRef.getAddr().intValue(),
 					bMBfirstRegOne,
 					size * mbArrayLen);
-
+		    
 		    // modbus OSI Layer 6 to generic OSI layer 6 conversion
 			List<SGrBasicGenDataPointTypeType> resultList = new ArrayList<>();		
 			for (int arrIdx = 0; arrIdx < arrayLen; arrIdx++) {						
@@ -364,7 +366,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					for (lp=0;lp<aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().size();lp++)
 					{
 						gen = aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().get(lp).intValue();	
-						if (((1<<(lp%16)) & mbregresp[lp/16]) !=0) zwi[lp/16] =  zwi[lp/16] | 1<<gen;
+						if ((gen != 65535) && (((1<<(lp%16)) & mbregresp[lp/16]) !=0))
+							zwi[lp/16] =  zwi[lp/16] | 1<<gen;
 					}
 					mbregresp = zwi;
 				}
@@ -419,10 +422,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		
 		if (dGenType.getEnum2bitmapIndex()!=null)
 		{
-			RegRes = ((long) Math.abs(mbregresp[0] &0xff));
 			short shVal = (byte) Math.abs(RegRes);
-			retVal.setInt8U(shVal);
-
+			retVal.setInt8U(shVal);  
+			
 			int iVal = (int) Math.abs(RegRes);
 			retVal.setInt16U(iVal);
 			if (size > 1) 
@@ -648,14 +650,14 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				mbregresp = mbregconv;
 			  }
 			break;
-	    	case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOH2L_VALUE:
+	    	case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOL2H_VALUE:
 	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at higher adders
 	    		//  must follow follow the bwp definitions
 				switch (mbregresp[0])
 				{
 					case 1:
-						mbregresp[0] = 1 ;
-						mbregresp[1] = 0;
+						mbregresp[0] = 0 ;
+						mbregresp[1] = 1;
 					break;
 					case 2:
 						mbregresp[0] = 0 ;
@@ -663,34 +665,34 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					break;
 					case 3:
 						mbregresp[0] = 1 ;
-						mbregresp[1] = 1;
+						mbregresp[1] = 0;
 					break;
 					case 4:
-						mbregresp[0] = 0 ;
+						mbregresp[0] = 1 ;
 						mbregresp[1] = 1;
 					break;
 				}
 			break;
-    		case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOL2H_VALUE:
+    		case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOH2L_VALUE:
 	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at lower adders
 	    		//  must follow follow the bwp definitions
 				switch (mbregresp[0])
 				{
 					case 1:
-						mbregresp[0] = 0;
-						mbregresp[1] = 1 ;
+						mbregresp[0] = 1;
+						mbregresp[1] = 0 ;
 					break;
 					case 2:
 						mbregresp[0] = 0;
 						mbregresp[1] = 0 ;
 					break;
 					case 3:
-						mbregresp[0] = 1;
-						mbregresp[1] = 1 ;
+						mbregresp[0] = 0;
+						mbregresp[1] = 1;
 					break;
 					case 4:
 						mbregresp[0] = 1;
-						mbregresp[1] = 0 ;
+						mbregresp[1] = 1;
 					break;
 				}
 			break;
