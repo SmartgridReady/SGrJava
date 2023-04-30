@@ -88,8 +88,8 @@ public class HeatPumpTester {
 	// device selection
 	private static boolean  devRTU_IOPIsOn=false; 
 	private static boolean  devTCP_IOPIsOn=true; 
-	private static boolean  devStiebelISGIsOn=false; 
-	private static boolean  devCTAoptiHeatIsOn=true; 
+	private static boolean  devStiebelISGIsOn=true; 
+	private static boolean  devCTAoptiHeatIsOn=false; 
 	private static boolean  devHovalTCPIsOn=false; 
 	
 	// shell for enumerations
@@ -120,7 +120,6 @@ public class HeatPumpTester {
 				
 				for (runtimeCnt=0;runtimeCnt<3000;runtimeCnt++)
 				{
-					LOG.info(String.format("\n------> LOOP=" +	runtimeCnt));
 				   // loop data & test reporting
 				   Thread.sleep(10000);  // show last block for ccc  milliseconds
 					
@@ -527,7 +526,7 @@ public class HeatPumpTester {
 					if(( (iVal1 & (1<<SGrHPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING_MODE_ACTIVE, "));
 					if(( (iVal1 & (1<<SGrHPOpstateType.INDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
 				}
-				 LOG.info(String.format("    HPOpStateStiebel bits set:iop=" +  Integer.toBinaryString(iVal2)));
+				 LOG.info(String.format("    stiHPOpState bits set:iop=" +  Integer.toBinaryString(iVal2)));
 				if (iVal2 != 0)  
 				{
 					if(( (iVal2 & (1<<StiHPOpstateType.HP1PUMPON_VALUE))) != 0)  LOG.info(String.format("HP_1_ON, "));
