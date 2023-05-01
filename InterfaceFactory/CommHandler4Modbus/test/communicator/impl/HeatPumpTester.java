@@ -67,7 +67,7 @@ public class HeatPumpTester {
 	private static SGrModbusDevice devRTU_IOP=null;
 	private static SGrModbusDevice devHovalRTU=null;
 	
-	// we need a single driver instance for RTU and separate these by device addres
+	// we need a single driver instance for RTU and separate these by device address
 	private static GenDriverAPI4ModbusRTU mbRTU=null;
 	
 	// Modbus TCP devices
@@ -88,8 +88,8 @@ public class HeatPumpTester {
 	// device selection
 	private static boolean  devRTU_IOPIsOn=false; 
 	private static boolean  devTCP_IOPIsOn=true; 
-	private static boolean  devStiebelISGIsOn=true; 
-	private static boolean  devCTAoptiHeatIsOn=false; 
+	private static boolean  devStiebelISGIsOn=false; 
+	private static boolean  devCTAoptiHeatIsOn=true; 
 	private static boolean  devHovalTCPIsOn=false; 
 	
 	// shell for enumerations

@@ -438,7 +438,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				
 		}
 		else if (dGenType.isSetBoolean()) {
-			// TODO: add bus data
+			// TODO:cb add & test modbusbus based conversion data
 			boolean bVal = false;
 			if (bGotRegisters) {
 				if (RegRes != 0)
@@ -591,9 +591,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retVal.setInt64U(bgVal);
 		}
 		else if(dGenType.getDateTime()!=null) {
-		 // TODO: apply gregorian calendar library
+		 // TODO:HF? apply gregorian calendar library
 		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-		// TODO:hf apply dGenType
 		}
 		else if( dGenType.getString()!=null) {
 			    retVal.setString(ConversionHelper.convRegistersToString(mbregresp, 0, size*2));
@@ -717,7 +716,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			n = mBconvScheme.size();
 			for (n = 0; n < mBconvScheme.size(); n++) {
 				if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_BIT_ORDER)) {
-					// TODO implement CHANGE_BIT_ORDER
+					// TODO:HF? implement CHANGE_BIT_ORDER, not yet observed in products, is part of IEC_TS_61850-80-5 
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_BYTE_ORDER)) {
 					for (c = 0; c < size; c++) {
 						LOG.debug("mbregresp: {} ", mbregresp);
@@ -817,8 +816,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();
 
-		// TODO dGenType = GenType2StringConversion.format(sValue, dGenType);
-
+	
 		if (dGenType.isSetBoolean()) {
 			boolean bVal = false;
 			if (sValue.equals("true") || sValue.equals("TRUE")) {
@@ -826,8 +824,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			}
 			dGenType.setBoolean(bVal);
 		} else if (dGenType.getEnum() != null) {
-			 /* TODO: serch & find SGrEnumListType dGenType to set enum type by literal from String sValue, apply
-			dGenType.getEnum().getCtaDHWOpMode().valueOf(sValue);
+			 /* TODO:HF? search & find SGrEnumListType dGenType to set enum type by literal from String sValue into GDType dGenType, apply
+			  *  dGenType.getEnum().getCtaDHWOpMode().valueOf(sValue);
 			*/
 		} else if (dGenType.isSetFloat32()) {
 			float fVal;
@@ -855,7 +853,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			long lVal = Long.parseLong(sValue);
 			dGenType.setInt64(lVal);
 		} else if (dGenType.getInt64U() != null) {
-			// TODO: SGrBasicGenDataPointTypeType, isSetInt64U Funktion wurde vom Modeler
+			// TODO:HF? SGrBasicGenDataPointTypeType, isSetInt64U Funktion wurde vom Modeler
 			// nicht generiert
 			BigInteger bgVal1 = new BigInteger(sValue);
 			dGenType.setInt64U(bgVal1);
@@ -867,11 +865,12 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			Short shVal = Short.parseShort(sValue);
 			dGenType.setInt8U(shVal);
 		} else if (dGenType.getDateTime() != null) {
-			// TODO: apply gregorian calendar library
+			// TODO:HF? apply gregorian calendar library
 			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-			// TODO: apply dGenType
+			// apply dGenType
 		} else if (dGenType.getString() != null) {
-			// TODO:parameter conversion
+			// TODO:HF? parameter conversion into GDType dGenType
+			//  dGenType = GenType2StringConversion.format(sValue, dGenType); ?
 			dGenType.setString(sValue);
 		} else { // error handling
 		}
@@ -915,7 +914,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
 		// Attributes
 
-		// TODO: add attribute handling
+		// TODO:HF?  add attribute handling
 		if (aDataPoint.getGenAttribute().size() > 0) { 
 			/* there are generic attributes available	
 			 * place to add potential attribut setter API functionality
@@ -961,15 +960,15 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			bDiscreteCMDs = true;
 
 		// generic type expected as API return type
-		// TODO: Check why the data type "long" does not create a 64 bit signed integer
+		// TODO:HF? GDType Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
-		// TODO: Block-Transfer handling
 
 		if (dMBType.isSetBoolean()) {
-			// TODO: add management for multiple booleans
-			// TODO: check for potential I/O signal inversion mechanism
+			// TODO:HF? GDType add management for multiple booleans
+			
 			boolean bVal = false;
 			if (sgrValue.isBoolean())
+				// TODO:cb add an test Modbus I/O signal inversion mechanism
 				bVal = true;
 			if (bRegisterCMDs) {
 				if (bVal)
@@ -1083,7 +1082,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		} else if (dMBType.isSetInt64()) {
 			if (bRegisterCMDs) {
 
-				// TODO:? converting (large) integers to double can cause floating point errors/deviations
+				// TODO:HF solved? converting (large) integers to double can cause floating point errors/deviations
 				dVal = getConvertedDouble(sgrValue, powof10, mul);
 				if ((dVal <= 9223372036854775807.0) && (dVal >= -9223372036854775808.0)) {
 					long l = (long) dVal;
@@ -1172,16 +1171,16 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 		} else if (dMBType.getDateTime() != null) {
 			/*
-			 * TODO:hf apply gregorian calendar library =>
+			 * TODO:HF? apply gregorian calendar library =>
 			 * inDpTT.setTimestamp(TIMESTAMP_EDEFAULT); or better add simple Current Epoch
 			 * Unix Timestamp The current epoch translates to 01/10/2022 @ 7:31am (UTC)
 			 * 2022-01-10T07:31:09+00:00 (ISO 8601) Mon, 10 Jan 2022 07:31:09 (+0000 RFC
 			 * 822, 1036, 1123, 2822) Monday, 10-Jan-22 07:31:09 (UTC RFC 2822)
 			 * 2022-01-10T07:31:09+00:00 (RFC 3339) 
-			 * // TODO:hf mbregsnd setting
+			 * // mbregsnd setting
 			 */
 		}
-		else { // TODO: Default behaviour
+		else { //Default behaviour
 		}
 
 		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
@@ -1189,7 +1188,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				mbregsnd = ConvertEndians(MBconvScheme, mbregsnd, mbsize);
 			}
 			if (bDiscreteCMDs) {
-				// TODO: add management for multiple booleans
+				// TODO: add discrete data type management
 			}
 		}
 
@@ -1246,7 +1245,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	// Manually adopted enumeration handling: needs 3 entries for each enumerated
 	// type
 	// convert from enumeration into Modbus RegRes number
-	int Enum2RegResConversion(SGrEnumListType oGenVal) { // TODO(ongoing): extend this list manually for EACH
+	int Enum2RegResConversion(SGrEnumListType oGenVal) { // TODO:(ongoing) extend this list manually for EACH
 														 // enumeration being added to the system
 		int retval = 0;
 
@@ -1309,7 +1308,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	private SGrEnumListType RegRes2EnumConversion(long RegRes, SGrEnumListType oGenVal) {
 		SGrEnumListType rval = V0Factory.eINSTANCE.createSGrEnumListType();
 
-		// TODO(ongoing): extend this list manually for EACH enumeration being added to
+		// TODO:(ongoing) extend this list manually for EACH enumeration being added to
 		// the system
 		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
 			rval.setSgrMeasValueSource(SGrMeasValueSourceType.get((int) RegRes));
