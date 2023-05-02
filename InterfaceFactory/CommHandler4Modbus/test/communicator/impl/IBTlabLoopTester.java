@@ -141,16 +141,16 @@ public class IBTlabLoopTester {
 				for (runtimeCnt = 0;runtimeCnt<30000;runtimeCnt++)
 				{
 					
-				   // loop data & test reporting
-			        LOG.info(" " + dtf.format(LocalDateTime.now()));			        
-					LOG.info("  ------> LOOP=" +	runtimeCnt + "  Exceptions:");		
+				   // loop data & test reporting 
+					LOG.info(" ");
+					LOG.info(dtf.format(LocalDateTime.now())+" ------> LOOP=" +	runtimeCnt + "  Exceptions:");	
 					if (devABBMeterTestIsOn)    LOG.info(" ABBMeter=" +  devABBMeterExceptions+ ",");
 					if (devVGT_SGCPTestIsOn)    LOG.info(" VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
 				    if (devGaroWallboxTestIsOn) LOG.info(" GaroWallbox=" + devGaroWallboxExceptions+ ",");
 					if (devFroniusSymoTestIsOn) LOG.info(" FroniusSymo=" + devFroniusSymoExceptions + ",");
 					// TestBox
 					if (devTB_ABBMeterTestIsOn)    LOG.info(" TestBox ABBMeter=" +  devTB_ABBMeterExcpetions+ ",");
-				  if (devOMCCIWallboxTestIsOn) LOG.info(" TestBox OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
+				    if (devOMCCIWallboxTestIsOn) LOG.info(" TestBox OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
 					if (devWagoMeterTestIsOn)   LOG.info(" TestBox WagoMeter=" + devWagoMeterExceptions + ",");
 					LOG.info(" <------");
 					
@@ -359,38 +359,112 @@ public class IBTlabLoopTester {
 			String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
 			
 				try {
-	 				  mbRTU.setUnitIdentifier((byte) 11);	
-	  				  LOG.info(" @:Testing ABBMeter: ");
-					  Thread.sleep(50);
-					  sVal1 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
-					  Thread.sleep(10);
-					  sVal2 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
-					  Thread.sleep(10);
-					  sVal3 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
-					  Thread.sleep(10);
-					  LOG.info(" ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + "  ");	
-	 
-					  sVal1 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACtot");
-					  Thread.sleep(10);
-					  sVal2 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL1");
-					  Thread.sleep(10);
-					  sVal3 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL2");
-					  Thread.sleep(10);
-					  sVal4 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL3");
-					  Thread.sleep(10);
-					  LOG.info(" ActivePowerAC [KW]:           " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + "  ");	
-	 	
-					  sVal1 = devABBMeter.getVal("CurrentAC", "CurrentACL1");
-					  Thread.sleep(10);
-					  sVal2 = devABBMeter.getVal("CurrentAC", "CurrentACL2");
-					  Thread.sleep(10);
-					  sVal3 = devABBMeter.getVal("CurrentAC", "CurrentACL3");
-					  Thread.sleep(10);
-					  sVal4 = devABBMeter.getVal("CurrentAC", "CurrentACN");
-					  Thread.sleep(10);
-					  LOG.info(" CurrentAC [A]:             " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + "  ");	
-		
-					
+				    LOG.info(" ");
+	 				mbRTU.setUnitIdentifier((byte) 11);	
+  				    LOG.info(" @:Testing ABBMeter: ");
+	  				Thread.sleep(25);
+	  				fVal1 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
+	  				Thread.sleep(10);            
+	  				fVal2 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL2").getFloat32(); 
+	  				Thread.sleep(10);
+	  				fVal3 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL3").getFloat32();
+	  				Thread.sleep(10);
+	  				fVal4 = devABBMeter.getValByGDPType("Frequency", "Frequency").getFloat32();
+	  				LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
+	  						+ fVal3 + ",  " + fVal4 + "  ");
+	  				Thread.sleep(10);
+	  				fVal1 = devABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getFloat32();
+	  				Thread.sleep(10);
+	  				fVal2 = devABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getFloat32();
+	  				Thread.sleep(10);
+	  				fVal3 = devABBMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getFloat32();
+	  				LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
+	  						+ fVal3 + "  ");
+	  				Thread.sleep(10);
+	  				fVal1 = devABBMeter.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+	  				Thread.sleep(10);
+	  				fVal2 = devABBMeter.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+	  				Thread.sleep(10);
+	  				fVal3 = devABBMeter.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+	  				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
+	  						+ fVal3 + "  ");
+	  				Thread.sleep(10);
+	  				fVal1 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactor").getFloat32();
+	  				Thread.sleep(10);
+	  				fVal2 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getFloat32();
+	  				Thread.sleep(10);
+	  				fVal3 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getFloat32();
+	  				Thread.sleep(10);
+	  				fVal4 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getFloat32();
+	  				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
+	  						+ fVal3 + ",  " + fVal4 + "  ");
+	  				Thread.sleep(10); 
+	  				sVal1 = devABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot");
+	  				Thread.sleep(10);
+	  				sVal2 = devABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL1");
+	  				Thread.sleep(10);
+	  				sVal3 = devABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL2");
+	  				Thread.sleep(10);
+	  				sVal4 = devABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL3");
+	  				LOG.info("  ActiveEnergyAC [kWh]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3
+	  						+ ",  " + sVal4 + "  ");
+	  				Thread.sleep(10);
+	  				sVal1 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACtot");
+	  				Thread.sleep(10);
+	  				sVal2 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL1");
+	  				Thread.sleep(10);
+	  				sVal3 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL2");
+	  				Thread.sleep(10);
+	  				sVal4 = devABBMeter.getVal("ActivePowerAC", "ActivePowerACL3");
+	  				LOG.info("  ActivePowerAC [W]:           " + sVal1 + ", " + sVal2 + ",  " + sVal3
+	  						+ ",  " + sVal4 + "  ");
+	  				Thread.sleep(10);
+	  				sVal1 = devABBMeter.getVal("ReactivePowerAC", "ReactivePowerACtot");
+	  				Thread.sleep(10);
+	  				sVal2 = devABBMeter.getVal("ReactivePowerAC", "ReactivePowerACL1");
+	  				Thread.sleep(10);
+	  				sVal3 = devABBMeter.getVal("ReactivePowerAC", "ReactivePowerACL2");
+	  				Thread.sleep(10);
+	  				sVal4 = devABBMeter.getVal("ReactivePowerAC", "ReactivePowerACL3");
+	  				LOG.info("  ReactivePowerAC [var]:       " + sVal1 + ", " + sVal2 + ",  " + sVal3
+	  						+ ",  " + sVal4 + "  ");
+	  				Thread.sleep(10);
+	  				sVal1 = devABBMeter.getVal("ApparentPowerAC", "ApparentPowerACtot");
+	  				Thread.sleep(10);
+	  				sVal2 = devABBMeter.getVal("ApparentPowerAC", "ApparentPowerACL1");
+	  				Thread.sleep(10);
+	  				sVal3 = devABBMeter.getVal("ApparentPowerAC", "ApparentPowerACL2");
+	  				Thread.sleep(10);
+	  				sVal4 = devABBMeter.getVal("ApparentPowerAC", "ApparentPowerACL3");
+	  				LOG.info("  ApparentPowerAC [va]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
+	  						+ ",  " + sVal4 + "  ");
+	  				Thread.sleep(10);
+	  				sVal1 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
+	  				Thread.sleep(10);
+	  				sVal2 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
+	  				Thread.sleep(10);
+	  				sVal3 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
+	  				LOG.info("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
+
+	  				Thread.sleep(10);
+	  				sVal1 = devABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC");
+	  				Thread.sleep(10);
+	  				sVal2 = devABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC");
+	  				Thread.sleep(10);
+	  				sVal3 = devABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC");
+	  				LOG.info("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
+	  				
+	  				Thread.sleep(10);
+	  				sVal1 = devABBMeter.getVal("PowerQuadrant", "PwrQuadACtot");
+	  				Thread.sleep(10);
+	  				sVal2 = devABBMeter.getVal("PowerQuadrant", "PwrQuadACL1");
+	  				Thread.sleep(10);
+	  				sVal3 = devABBMeter.getVal("PowerQuadrant", "PwrQuadACL2");
+	  				Thread.sleep(10);
+	  				sVal4 = devABBMeter.getVal("PowerQuadrant", "PwrQuadACL3");
+	  				LOG.info("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
+	  						+ ",  " + sVal4 + "  ");
+							
 				}
 				catch ( Exception e)
 				{
@@ -427,36 +501,112 @@ public class IBTlabLoopTester {
 			
 				try {
 	 				  mbRTU.setUnitIdentifier((byte) 1 );	
+  				      LOG.info(" ");
+  				      
 	  				  LOG.info(" @:Testing TestBox: ABBMeter: ");
 					  Thread.sleep(50);
-					  sVal1 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
-					  Thread.sleep(10);
-					  sVal2 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
-					  Thread.sleep(10);
-					  sVal3 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
-					  Thread.sleep(10);
-					  LOG.info(" ActiveEnerBalanceAC [KWh]:  " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + "  ");	
-	 
-					  sVal1 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACtot");
-					  Thread.sleep(10);
-					  sVal2 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL1");
-					  Thread.sleep(10);
-					  sVal3 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL2");
-					  Thread.sleep(10);
-					  sVal4 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL3");
-					  Thread.sleep(10);
-					  LOG.info(" ActivePowerAC [KW]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3 + ",  " + sVal4 + "  ");	
-	 	
-					  sVal1 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACL1");
-					  Thread.sleep(10);
-					  sVal2 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACL2");
-					  Thread.sleep(10);
-					  sVal3 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACL3");
-					  Thread.sleep(10);
-					  sVal4 = devTB_ABBMeter.getVal("CurrentAC", "CurrentACN");
-					  Thread.sleep(10);
-					  LOG.info(" CurrentAC [A]:              " + sVal1 + ",  " + sVal2 + ",  " + sVal3 +  ",  " + sVal4 + "  ");	
-		
+		  				fVal1 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
+		  				Thread.sleep(10);            
+		  				fVal2 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL2").getFloat32(); 
+		  				Thread.sleep(10);
+		  				fVal3 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL3").getFloat32();
+		  				Thread.sleep(10);
+		  				fVal4 = devTB_ABBMeter.getValByGDPType("Frequency", "Frequency").getFloat32();
+		  				LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
+		  						+ fVal3 + ",  " + fVal4 + "  ");
+		  				Thread.sleep(10);
+		  				fVal1 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getFloat32();
+		  				Thread.sleep(10);
+		  				fVal2 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getFloat32();
+		  				Thread.sleep(10);
+		  				fVal3 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getFloat32();
+		  				LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
+		  						+ fVal3 + "  ");
+		  				Thread.sleep(10);
+		  				fVal1 = devTB_ABBMeter.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+		  				Thread.sleep(10);
+		  				fVal2 = devTB_ABBMeter.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+		  				Thread.sleep(10);
+		  				fVal3 = devTB_ABBMeter.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+		  				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
+		  						+ fVal3 + "  ");
+		  				Thread.sleep(10);
+		  				fVal1 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactor").getFloat32();
+		  				Thread.sleep(10);
+		  				fVal2 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getFloat32();
+		  				Thread.sleep(10);
+		  				fVal3 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getFloat32();
+		  				Thread.sleep(10);
+		  				fVal4 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getFloat32();
+		  				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
+		  						+ fVal3 + ",  " + fVal4 + "  ");
+		  				Thread.sleep(10); 
+		  				sVal1 = devTB_ABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot");
+		  				Thread.sleep(10);
+		  				sVal2 = devTB_ABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL1");
+		  				Thread.sleep(10);
+		  				sVal3 = devTB_ABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL2");
+		  				Thread.sleep(10);
+		  				sVal4 = devTB_ABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL3");
+		  				LOG.info("  ActiveEnergyAC [kWh]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3
+		  						+ ",  " + sVal4 + "  ");
+		  				Thread.sleep(10);
+		  				sVal1 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACtot");
+		  				Thread.sleep(10);
+		  				sVal2 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL1");
+		  				Thread.sleep(10);
+		  				sVal3 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL2");
+		  				Thread.sleep(10);
+		  				sVal4 = devTB_ABBMeter.getVal("ActivePowerAC", "ActivePowerACL3");
+		  				LOG.info("  ActivePowerAC [W]:           " + sVal1 + ", " + sVal2 + ",  " + sVal3
+		  						+ ",  " + sVal4 + "  ");
+		  				Thread.sleep(10);
+		  				sVal1 = devTB_ABBMeter.getVal("ReactivePowerAC", "ReactivePowerACtot");
+		  				Thread.sleep(10);
+		  				sVal2 = devTB_ABBMeter.getVal("ReactivePowerAC", "ReactivePowerACL1");
+		  				Thread.sleep(10);
+		  				sVal3 = devTB_ABBMeter.getVal("ReactivePowerAC", "ReactivePowerACL2");
+		  				Thread.sleep(10);
+		  				sVal4 = devTB_ABBMeter.getVal("ReactivePowerAC", "ReactivePowerACL3");
+		  				LOG.info("  ReactivePowerAC [var]:       " + sVal1 + ", " + sVal2 + ",  " + sVal3
+		  						+ ",  " + sVal4 + "  ");
+		  				Thread.sleep(10);
+		  				sVal1 = devTB_ABBMeter.getVal("ApparentPowerAC", "ApparentPowerACtot");
+		  				Thread.sleep(10);
+		  				sVal2 = devTB_ABBMeter.getVal("ApparentPowerAC", "ApparentPowerACL1");
+		  				Thread.sleep(10);
+		  				sVal3 = devTB_ABBMeter.getVal("ApparentPowerAC", "ApparentPowerACL2");
+		  				Thread.sleep(10);
+		  				sVal4 = devTB_ABBMeter.getVal("ApparentPowerAC", "ApparentPowerACL3");
+		  				LOG.info("  ApparentPowerAC [va]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
+		  						+ ",  " + sVal4 + "  ");
+		  				Thread.sleep(10);
+		  				sVal1 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
+		  				Thread.sleep(10);
+		  				sVal2 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
+		  				Thread.sleep(10);
+		  				sVal3 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
+		  				LOG.info("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
+
+		  				Thread.sleep(10);
+		  				sVal1 = devTB_ABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC");
+		  				Thread.sleep(10);
+		  				sVal2 = devTB_ABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC");
+		  				Thread.sleep(10);
+		  				sVal3 = devTB_ABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC");
+		  				LOG.info("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
+		  				
+		  				Thread.sleep(10);
+		  				sVal1 = devTB_ABBMeter.getVal("PowerQuadrant", "PwrQuadACtot");
+		  				Thread.sleep(10);
+		  				sVal2 = devTB_ABBMeter.getVal("PowerQuadrant", "PwrQuadACL1");
+		  				Thread.sleep(10);
+		  				sVal3 = devTB_ABBMeter.getVal("PowerQuadrant", "PwrQuadACL2");
+		  				Thread.sleep(10);
+		  				sVal4 = devTB_ABBMeter.getVal("PowerQuadrant", "PwrQuadACL3");
+		  				LOG.info("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
+		  						+ ",  " + sVal4 + "  ");
+								
 					
 				}
 				catch ( Exception e)
@@ -562,6 +712,7 @@ public class IBTlabLoopTester {
 					
 					
 						try {	
+						     LOG.info(" ");
 							 LOG.info(" @:Testing GaroWallbox: ");							
 							 if ((runtimeCnt%60)== 0)
 							 {
@@ -665,7 +816,8 @@ public class IBTlabLoopTester {
 						float CurtailCurrent;
 						
 						
-							try {	
+							try {
+ 							     LOG.info(" ");
 								 LOG.info(" @:Testing TestBox: OMCCIWallbox: ");							
 								 if ((runtimeCnt%60)== 0)
 								 {
@@ -763,6 +915,7 @@ public class IBTlabLoopTester {
 						long l;
 											
 							try {	
+							     LOG.info(" ");
 								 LOG.info(" @:Testing FroniusSymo: ");
 								 
 								 // check Sunsoec Common Model Information

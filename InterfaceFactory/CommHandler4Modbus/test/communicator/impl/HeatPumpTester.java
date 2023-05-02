@@ -25,6 +25,9 @@ The purpose of this class is to offer a test with
 package communicator.impl;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 // SmartGridready definitions
@@ -77,6 +80,7 @@ public class HeatPumpTester {
 	private static SGrModbusDevice devHovalTCP = null;
 	
 	// test loop parameters
+	private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 	private static int runtimeCnt=0;
 	// Exception Counters
 	private static int devRTU_IOP_Exceptions=0;
@@ -122,8 +126,9 @@ public class HeatPumpTester {
 				{
 				   // loop data & test reporting
 				   Thread.sleep(10000);  // show last block for ccc  milliseconds
-					
-					LOG.info(String.format("\n------> LOOP=" +	runtimeCnt + "                     Exceptions:"));		
+
+			        LOG.info(" " + dtf.format(LocalDateTime.now()));	
+					LOG.info(String.format("------> LOOP=" +	runtimeCnt + "                     Exceptions:"));		
 					if (devStiebelISGIsOn)  LOG.info(String.format(" StiebelISG=" + devStiebel_ISGExcpetions + ","));
 					if (devCTAoptiHeatIsOn) LOG.info(String.format(" CTAoptiHeat=" + devCTAoptiHeat_Exceptions + ","));
 					if (devHovalTCPIsOn)  LOG.info(String.format("=" + devHovalTCP_Exceptions + ","));
