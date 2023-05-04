@@ -78,12 +78,6 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case V0Package.FUNCTIONAL_PROFILE_TYPE: {
-				FunctionalProfileType functionalProfileType = (FunctionalProfileType)theEObject;
-				T result = caseFunctionalProfileType(functionalProfileType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case V0Package.HEADER_ENTRY: {
 				HeaderEntry headerEntry = (HeaderEntry)theEObject;
 				T result = caseHeaderEntry(headerEntry);
@@ -491,21 +485,6 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDocumentRoot(DocumentRoot object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Functional Profile Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Functional Profile Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFunctionalProfileType(FunctionalProfileType object) {
 		return null;
 	}
 

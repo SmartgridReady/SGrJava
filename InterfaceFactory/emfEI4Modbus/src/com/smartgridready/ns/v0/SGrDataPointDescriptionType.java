@@ -49,7 +49,7 @@ public interface SGrDataPointDescriptionType extends EObject {
 	 * @return the value of the '<em>Basic Data Type</em>' containment reference.
 	 * @see #setBasicDataType(SGrBasicGenDataPointTypeType)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrDataPointDescriptionType_BasicDataType()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 *        extendedMetaData="kind='element' name='basicDataType' namespace='##targetNamespace'"
 	 * @generated
 	 */

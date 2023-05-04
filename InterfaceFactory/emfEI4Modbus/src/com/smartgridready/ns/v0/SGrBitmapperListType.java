@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrBool2BitRank <em>Sgr Bool2 Bit Rank</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstate <em>Sgr HP Opstate</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getStiHPOpstateStiebel <em>Sti HP Opstate Stiebel</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstateStiebel <em>Sgr HP Opstate Stiebel</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHCOpstate <em>Sgr HC Opstate</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPActBufferState <em>Sgr HP Act Buffer State</em>}</li>
  * </ul>
@@ -139,87 +139,87 @@ public interface SGrBitmapperListType extends EObject {
 	boolean isSetSgrHPOpstate();
 
 	/**
-	 * Returns the value of the '<em><b>Sti HP Opstate Stiebel</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.StiHPOpstateStiebelType}.
+	 * Returns the value of the '<em><b>Sgr HP Opstate Stiebel</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrHPOpstateStiebelType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sti HP Opstate Stiebel</em>' attribute.
-	 * @see com.smartgridready.ns.v0.StiHPOpstateStiebelType
-	 * @see #isSetStiHPOpstateStiebel()
-	 * @see #unsetStiHPOpstateStiebel()
-	 * @see #setStiHPOpstateStiebel(StiHPOpstateStiebelType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrBitmapperListType_StiHPOpstateStiebel()
+	 * @return the value of the '<em>Sgr HP Opstate Stiebel</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHPOpstateStiebelType
+	 * @see #isSetSgrHPOpstateStiebel()
+	 * @see #unsetSgrHPOpstateStiebel()
+	 * @see #setSgrHPOpstateStiebel(SGrHPOpstateStiebelType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrBitmapperListType_SgrHPOpstateStiebel()
 	 * @model unsettable="true"
-	 *        extendedMetaData="kind='element' name='stiHPOpstateStiebel' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='sgrHPOpstateStiebel' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	StiHPOpstateStiebelType getStiHPOpstateStiebel();
+	SGrHPOpstateStiebelType getSgrHPOpstateStiebel();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getStiHPOpstateStiebel <em>Sti HP Opstate Stiebel</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstateStiebel <em>Sgr HP Opstate Stiebel</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sti HP Opstate Stiebel</em>' attribute.
-	 * @see com.smartgridready.ns.v0.StiHPOpstateStiebelType
-	 * @see #isSetStiHPOpstateStiebel()
-	 * @see #unsetStiHPOpstateStiebel()
-	 * @see #getStiHPOpstateStiebel()
+	 * @param value the new value of the '<em>Sgr HP Opstate Stiebel</em>' attribute.
+	 * @see com.smartgridready.ns.v0.SGrHPOpstateStiebelType
+	 * @see #isSetSgrHPOpstateStiebel()
+	 * @see #unsetSgrHPOpstateStiebel()
+	 * @see #getSgrHPOpstateStiebel()
 	 * @generated
 	 */
-	void setStiHPOpstateStiebel(StiHPOpstateStiebelType value);
+	void setSgrHPOpstateStiebel(SGrHPOpstateStiebelType value);
 
 	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getStiHPOpstateStiebel <em>Sti HP Opstate Stiebel</em>}' attribute.
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstateStiebel <em>Sgr HP Opstate Stiebel</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetStiHPOpstateStiebel()
-	 * @see #getStiHPOpstateStiebel()
-	 * @see #setStiHPOpstateStiebel(StiHPOpstateStiebelType)
+	 * @see #isSetSgrHPOpstateStiebel()
+	 * @see #getSgrHPOpstateStiebel()
+	 * @see #setSgrHPOpstateStiebel(SGrHPOpstateStiebelType)
 	 * @generated
 	 */
-	void unsetStiHPOpstateStiebel();
+	void unsetSgrHPOpstateStiebel();
 
 	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getStiHPOpstateStiebel <em>Sti HP Opstate Stiebel</em>}' attribute is set.
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHPOpstateStiebel <em>Sgr HP Opstate Stiebel</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sti HP Opstate Stiebel</em>' attribute is set.
-	 * @see #unsetStiHPOpstateStiebel()
-	 * @see #getStiHPOpstateStiebel()
-	 * @see #setStiHPOpstateStiebel(StiHPOpstateStiebelType)
+	 * @return whether the value of the '<em>Sgr HP Opstate Stiebel</em>' attribute is set.
+	 * @see #unsetSgrHPOpstateStiebel()
+	 * @see #getSgrHPOpstateStiebel()
+	 * @see #setSgrHPOpstateStiebel(SGrHPOpstateStiebelType)
 	 * @generated
 	 */
-	boolean isSetStiHPOpstateStiebel();
+	boolean isSetSgrHPOpstateStiebel();
 
 	/**
 	 * Returns the value of the '<em><b>Sgr HC Opstate</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SgrHCOpStateType}.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrHCOpStateType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sgr HC Opstate</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SgrHCOpStateType
+	 * @see com.smartgridready.ns.v0.SGrHCOpStateType
 	 * @see #isSetSgrHCOpstate()
 	 * @see #unsetSgrHCOpstate()
-	 * @see #setSgrHCOpstate(SgrHCOpStateType)
+	 * @see #setSgrHCOpstate(SGrHCOpStateType)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrBitmapperListType_SgrHCOpstate()
 	 * @model unsettable="true"
 	 *        extendedMetaData="kind='element' name='sgrHCOpstate' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SgrHCOpStateType getSgrHCOpstate();
+	SGrHCOpStateType getSgrHCOpstate();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHCOpstate <em>Sgr HC Opstate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Sgr HC Opstate</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SgrHCOpStateType
+	 * @see com.smartgridready.ns.v0.SGrHCOpStateType
 	 * @see #isSetSgrHCOpstate()
 	 * @see #unsetSgrHCOpstate()
 	 * @see #getSgrHCOpstate()
 	 * @generated
 	 */
-	void setSgrHCOpstate(SgrHCOpStateType value);
+	void setSgrHCOpstate(SGrHCOpStateType value);
 
 	/**
 	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHCOpstate <em>Sgr HC Opstate</em>}' attribute.
@@ -227,7 +227,7 @@ public interface SGrBitmapperListType extends EObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSgrHCOpstate()
 	 * @see #getSgrHCOpstate()
-	 * @see #setSgrHCOpstate(SgrHCOpStateType)
+	 * @see #setSgrHCOpstate(SGrHCOpStateType)
 	 * @generated
 	 */
 	void unsetSgrHCOpstate();
@@ -239,7 +239,7 @@ public interface SGrBitmapperListType extends EObject {
 	 * @return whether the value of the '<em>Sgr HC Opstate</em>' attribute is set.
 	 * @see #unsetSgrHCOpstate()
 	 * @see #getSgrHCOpstate()
-	 * @see #setSgrHCOpstate(SgrHCOpStateType)
+	 * @see #setSgrHCOpstate(SGrHCOpStateType)
 	 * @generated
 	 */
 	boolean isSetSgrHCOpstate();

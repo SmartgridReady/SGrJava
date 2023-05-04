@@ -7,14 +7,6 @@
   <foreignModel>../../SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
   <genPackages prefix="V0" basePackage="com.smartgridready.ns" resource="XML" disposableProviderFactory="true"
       loadInitialization="true" literalsInterface="false" ecorePackage="v0.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CtaDHWOpModeType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWUNDEF"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWON"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWOFF"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWPUSH"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWTMPOFF"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWEMERGENCY"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//EBaudRateType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//EBaudRateType/_300"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//EBaudRateType/_600"/>
@@ -247,7 +239,7 @@
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGReadyStateLv2Type">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPNORMAL"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPINTENSIFIED"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPINTENSIVIED"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPLOCKED"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGReadyStateLv2Type/HPFORCED"/>
     </genEnums>
@@ -277,30 +269,30 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpModeType/HCCOMFORTOP"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpModeType/HCECOOP"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SgrHCOpStateType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCOFF"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCHEAT"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCHEATCOMFORT"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCHEATECO"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCDEFROST"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCINTESIVIED50p"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCREDUCED50p"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCHOLIDAY"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCPARTYHEAT"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCCOOL"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCCOOLCOMFORT"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCCOOLECO"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCERROR"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCMANUAL"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCPROTCOOL"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCPARTYCOOL"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCDRYINGHEATUP"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCDRYINGSTATIONARY"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCDRYINGCOOLDOWN"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCDRYINGFINAL"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCCOOLEXTERNALCMD"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCHEATEXTERNALCMD"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SgrHCOpStateType/HCSGRIDINTENSIVIED"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrHCOpStateType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCOFF"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCHEAT"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCHEATCOMFORT"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCHEATECO"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCDEFROST"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCINTESIVIED50p"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCREDUCED50p"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCHOLIDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCPARTYHEAT"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCCOOL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCCOOLCOMFORT"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCCOOLECO"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCERROR"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCMANUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCPROTCOOL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCPARTYCOOL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCDRYINGHEATUP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCDRYINGSTATIONARY"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCDRYINGCOOLDOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCDRYINGFINAL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCCOOLEXTERNALCMD"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCHEATEXTERNALCMD"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHCOpStateType/HCSGRIDINTENSIVIED"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrHPActBufferStateType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPActBufferStateType/HPBOFF"/>
@@ -323,6 +315,20 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpModeType/WPDOMWATEROP"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpModeType/WPCOOLACTIVEOP"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpModeType/WPCOOLPASSIVEOP"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrHPOpstateStiebelType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/HP1PUMPON"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/HP2PUMPON"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/HEATUPPROGRAM"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/NHZSTAGESRUNNING"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/HPINHEATINGMODE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/HPINDHWMODE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/COMPRESSORRUNNING"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/SUMMERMODEACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/COOLINGMODEACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/MINONEIWSINDEFROSTMODE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/SILENTMODE1ACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateStiebelType/SILENTMODE2ACTIVE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGrHPOpstateType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrHPOpstateType/HPPUMPON"/>
@@ -699,20 +705,6 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/YEARS"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGrUnits/NONE"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//StiHPOpstateStiebelType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/HP1PUMPON"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/HP2PUMPON"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/HEATUPPROGRAM"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/NHZSTAGESRUNNING"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/HPINHEATINGMODE"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/HPINDHWMODE"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/COMPRESSORRUNNING"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/SUMMERMODEACTIVE"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/COOLINGMODEACTIVE"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/MINONEIWSINDEFROSTMODE"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/SILENTMODE1ACTIVE"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StiHPOpstateStiebelType/SILENTMODE2ACTIVE"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SubProfileTypeEnumType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/UNDEF"/>
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SubProfileTypeEnumType/ActiveEnergyAC"/>
@@ -840,7 +832,6 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//TEnumObjectType/HoldRegister"/>
     </genEnums>
     <genDataTypes ecoreDataType="v0.ecore#//BitmaskType"/>
-    <genDataTypes ecoreDataType="v0.ecore#//CtaDHWOpModeTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//DpSizeNrRegistersType"/>
     <genDataTypes ecoreDataType="v0.ecore#//DpSizeNrRegistersTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//EBaudRateTypeObject"/>
@@ -878,9 +869,10 @@
     <genDataTypes ecoreDataType="v0.ecore#//SGrEVSEStateLv2TypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrEVStateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrHCOpModeTypeObject"/>
-    <genDataTypes ecoreDataType="v0.ecore#//SgrHCOpStateTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//SGrHCOpStateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrHPActBufferStateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrHPOpModeTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//SGrHPOpstateStiebelTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrHPOpstateTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrLanguageTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrManufacturerIDTypeObject"/>
@@ -905,7 +897,6 @@
     <genDataTypes ecoreDataType="v0.ecore#//SGrSunspStateCodesTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrTransportServicesUsedListTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SGrUnitsObject"/>
-    <genDataTypes ecoreDataType="v0.ecore#//StiHPOpstateStiebelTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//SubProfileTypeEnumTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//TBitRank"/>
     <genDataTypes ecoreDataType="v0.ecore#//TBitRankObject"/>
@@ -940,12 +931,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/sGrSerialInterfaceCapability"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/stopBitLenSupported"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/trspServiceModbus"/>
-    </genClasses>
-    <genClasses ecoreClass="v0.ecore#//FunctionalProfileType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/profileNumber"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/fpNameList"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/fpLegibDesc"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/fpPrgDesc"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//HeaderEntry">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//HeaderEntry/headerName"/>
@@ -1045,7 +1030,7 @@
     <genClasses ecoreClass="v0.ecore#//SGrBitmapperListType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBitmapperListType/sgrBool2BitRank"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBitmapperListType/sgrHPOpstate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBitmapperListType/stiHPOpstateStiebel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBitmapperListType/sgrHPOpstateStiebel"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBitmapperListType/sgrHCOpstate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrBitmapperListType/sgrHPActBufferState"/>
     </genClasses>
@@ -1120,7 +1105,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrHPOpMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrHCOpMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrDHWOpMode"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaDHWOpMode"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrFlexAssistanceType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrFlexAssistanceType/assists"/>

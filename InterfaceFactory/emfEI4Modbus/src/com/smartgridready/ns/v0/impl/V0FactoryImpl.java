@@ -64,7 +64,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 		switch (eClass.getClassifierID()) {
 			case V0Package.CONTACT_API_INTERFACE_DESC_TYPE: return createContactAPIInterfaceDescType();
 			case V0Package.DOCUMENT_ROOT: return createDocumentRoot();
-			case V0Package.FUNCTIONAL_PROFILE_TYPE: return createFunctionalProfileType();
 			case V0Package.HEADER_ENTRY: return createHeaderEntry();
 			case V0Package.HEADER_LIST: return createHeaderList();
 			case V0Package.IP_ADDR_TYPE: return createIpADDRType();
@@ -139,8 +138,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case V0Package.CTA_DHW_OP_MODE_TYPE:
-				return createCtaDHWOpModeTypeFromString(eDataType, initialValue);
 			case V0Package.EBAUD_RATE_TYPE:
 				return createEBaudRateTypeFromString(eDataType, initialValue);
 			case V0Package.EBYTE_LEN_TYPE:
@@ -180,11 +177,13 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_HC_OP_MODE_TYPE:
 				return createSGrHCOpModeTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_HC_OP_STATE_TYPE:
-				return createSgrHCOpStateTypeFromString(eDataType, initialValue);
+				return createSGrHCOpStateTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_HP_ACT_BUFFER_STATE_TYPE:
 				return createSGrHPActBufferStateTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_HP_OP_MODE_TYPE:
 				return createSGrHPOpModeTypeFromString(eDataType, initialValue);
+			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE:
+				return createSGrHPOpstateStiebelTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_HP_OPSTATE_TYPE:
 				return createSGrHPOpstateTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_LANGUAGE_TYPE:
@@ -227,8 +226,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrTransportServicesUsedListTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_UNITS:
 				return createSGrUnitsFromString(eDataType, initialValue);
-			case V0Package.STI_HP_OPSTATE_STIEBEL_TYPE:
-				return createStiHPOpstateStiebelTypeFromString(eDataType, initialValue);
 			case V0Package.SUB_PROFILE_TYPE_ENUM_TYPE:
 				return createSubProfileTypeEnumTypeFromString(eDataType, initialValue);
 			case V0Package.TENUM_CONVERSION_FCT:
@@ -239,8 +236,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createTEnumObjectTypeFromString(eDataType, initialValue);
 			case V0Package.BITMASK_TYPE:
 				return createBitmaskTypeFromString(eDataType, initialValue);
-			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
-				return createCtaDHWOpModeTypeObjectFromString(eDataType, initialValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE:
 				return createDpSizeNrRegistersTypeFromString(eDataType, initialValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE_OBJECT:
@@ -316,11 +311,13 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_HC_OP_MODE_TYPE_OBJECT:
 				return createSGrHCOpModeTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_HC_OP_STATE_TYPE_OBJECT:
-				return createSgrHCOpStateTypeObjectFromString(eDataType, initialValue);
+				return createSGrHCOpStateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_HP_ACT_BUFFER_STATE_TYPE_OBJECT:
 				return createSGrHPActBufferStateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_HP_OP_MODE_TYPE_OBJECT:
 				return createSGrHPOpModeTypeObjectFromString(eDataType, initialValue);
+			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
+				return createSGrHPOpstateStiebelTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_HP_OPSTATE_TYPE_OBJECT:
 				return createSGrHPOpstateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
@@ -369,8 +366,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrTransportServicesUsedListTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_UNITS_OBJECT:
 				return createSGrUnitsObjectFromString(eDataType, initialValue);
-			case V0Package.STI_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
-				return createStiHPOpstateStiebelTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SUB_PROFILE_TYPE_ENUM_TYPE_OBJECT:
 				return createSubProfileTypeEnumTypeObjectFromString(eDataType, initialValue);
 			case V0Package.TBIT_RANK:
@@ -406,8 +401,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case V0Package.CTA_DHW_OP_MODE_TYPE:
-				return convertCtaDHWOpModeTypeToString(eDataType, instanceValue);
 			case V0Package.EBAUD_RATE_TYPE:
 				return convertEBaudRateTypeToString(eDataType, instanceValue);
 			case V0Package.EBYTE_LEN_TYPE:
@@ -447,11 +440,13 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_HC_OP_MODE_TYPE:
 				return convertSGrHCOpModeTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_HC_OP_STATE_TYPE:
-				return convertSgrHCOpStateTypeToString(eDataType, instanceValue);
+				return convertSGrHCOpStateTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_HP_ACT_BUFFER_STATE_TYPE:
 				return convertSGrHPActBufferStateTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_HP_OP_MODE_TYPE:
 				return convertSGrHPOpModeTypeToString(eDataType, instanceValue);
+			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE:
+				return convertSGrHPOpstateStiebelTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_HP_OPSTATE_TYPE:
 				return convertSGrHPOpstateTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_LANGUAGE_TYPE:
@@ -494,8 +489,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrTransportServicesUsedListTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_UNITS:
 				return convertSGrUnitsToString(eDataType, instanceValue);
-			case V0Package.STI_HP_OPSTATE_STIEBEL_TYPE:
-				return convertStiHPOpstateStiebelTypeToString(eDataType, instanceValue);
 			case V0Package.SUB_PROFILE_TYPE_ENUM_TYPE:
 				return convertSubProfileTypeEnumTypeToString(eDataType, instanceValue);
 			case V0Package.TENUM_CONVERSION_FCT:
@@ -506,8 +499,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertTEnumObjectTypeToString(eDataType, instanceValue);
 			case V0Package.BITMASK_TYPE:
 				return convertBitmaskTypeToString(eDataType, instanceValue);
-			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
-				return convertCtaDHWOpModeTypeObjectToString(eDataType, instanceValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE:
 				return convertDpSizeNrRegistersTypeToString(eDataType, instanceValue);
 			case V0Package.DP_SIZE_NR_REGISTERS_TYPE_OBJECT:
@@ -583,11 +574,13 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_HC_OP_MODE_TYPE_OBJECT:
 				return convertSGrHCOpModeTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_HC_OP_STATE_TYPE_OBJECT:
-				return convertSgrHCOpStateTypeObjectToString(eDataType, instanceValue);
+				return convertSGrHCOpStateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_HP_ACT_BUFFER_STATE_TYPE_OBJECT:
 				return convertSGrHPActBufferStateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_HP_OP_MODE_TYPE_OBJECT:
 				return convertSGrHPOpModeTypeObjectToString(eDataType, instanceValue);
+			case V0Package.SGR_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
+				return convertSGrHPOpstateStiebelTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_HP_OPSTATE_TYPE_OBJECT:
 				return convertSGrHPOpstateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_LANGUAGE_TYPE_OBJECT:
@@ -636,8 +629,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrTransportServicesUsedListTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_UNITS_OBJECT:
 				return convertSGrUnitsObjectToString(eDataType, instanceValue);
-			case V0Package.STI_HP_OPSTATE_STIEBEL_TYPE_OBJECT:
-				return convertStiHPOpstateStiebelTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SUB_PROFILE_TYPE_ENUM_TYPE_OBJECT:
 				return convertSubProfileTypeEnumTypeObjectToString(eDataType, instanceValue);
 			case V0Package.TBIT_RANK:
@@ -685,17 +676,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	public DocumentRoot createDocumentRoot() {
 		DocumentRootImpl documentRoot = new DocumentRootImpl();
 		return documentRoot;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public FunctionalProfileType createFunctionalProfileType() {
-		FunctionalProfileTypeImpl functionalProfileType = new FunctionalProfileTypeImpl();
-		return functionalProfileType;
 	}
 
 	/**
@@ -1374,26 +1354,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CtaDHWOpModeType createCtaDHWOpModeTypeFromString(EDataType eDataType, String initialValue) {
-		CtaDHWOpModeType result = CtaDHWOpModeType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCtaDHWOpModeTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EBaudRateType createEBaudRateTypeFromString(EDataType eDataType, String initialValue) {
 		EBaudRateType result = EBaudRateType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -1774,8 +1734,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SgrHCOpStateType createSgrHCOpStateTypeFromString(EDataType eDataType, String initialValue) {
-		SgrHCOpStateType result = SgrHCOpStateType.get(initialValue);
+	public SGrHCOpStateType createSGrHCOpStateTypeFromString(EDataType eDataType, String initialValue) {
+		SGrHCOpStateType result = SGrHCOpStateType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -1785,7 +1745,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertSgrHCOpStateTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertSGrHCOpStateTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -1826,6 +1786,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertSGrHPOpModeTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrHPOpstateStiebelType createSGrHPOpstateStiebelTypeFromString(EDataType eDataType, String initialValue) {
+		SGrHPOpstateStiebelType result = SGrHPOpstateStiebelType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrHPOpstateStiebelTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2254,26 +2234,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StiHPOpstateStiebelType createStiHPOpstateStiebelTypeFromString(EDataType eDataType, String initialValue) {
-		StiHPOpstateStiebelType result = StiHPOpstateStiebelType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertStiHPOpstateStiebelTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public SubProfileTypeEnumType createSubProfileTypeEnumTypeFromString(EDataType eDataType, String initialValue) {
 		SubProfileTypeEnumType result = SubProfileTypeEnumType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -2365,24 +2325,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertBitmaskTypeToString(EDataType eDataType, Object instanceValue) {
 		return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.HEX_BINARY, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CtaDHWOpModeType createCtaDHWOpModeTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createCtaDHWOpModeTypeFromString(V0Package.eINSTANCE.getCtaDHWOpModeType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCtaDHWOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertCtaDHWOpModeTypeToString(V0Package.eINSTANCE.getCtaDHWOpModeType(), instanceValue);
 	}
 
 	/**
@@ -3056,8 +2998,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SgrHCOpStateType createSgrHCOpStateTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createSgrHCOpStateTypeFromString(V0Package.eINSTANCE.getSgrHCOpStateType(), initialValue);
+	public SGrHCOpStateType createSGrHCOpStateTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrHCOpStateTypeFromString(V0Package.eINSTANCE.getSGrHCOpStateType(), initialValue);
 	}
 
 	/**
@@ -3065,8 +3007,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertSgrHCOpStateTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertSgrHCOpStateTypeToString(V0Package.eINSTANCE.getSgrHCOpStateType(), instanceValue);
+	public String convertSGrHCOpStateTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrHCOpStateTypeToString(V0Package.eINSTANCE.getSGrHCOpStateType(), instanceValue);
 	}
 
 	/**
@@ -3103,6 +3045,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrHPOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrHPOpModeTypeToString(V0Package.eINSTANCE.getSGrHPOpModeType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SGrHPOpstateStiebelType createSGrHPOpstateStiebelTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createSGrHPOpstateStiebelTypeFromString(V0Package.eINSTANCE.getSGrHPOpstateStiebelType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSGrHPOpstateStiebelTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertSGrHPOpstateStiebelTypeToString(V0Package.eINSTANCE.getSGrHPOpstateStiebelType(), instanceValue);
 	}
 
 	/**
@@ -3535,24 +3495,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrUnitsObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrUnitsToString(V0Package.eINSTANCE.getSGrUnits(), instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StiHPOpstateStiebelType createStiHPOpstateStiebelTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createStiHPOpstateStiebelTypeFromString(V0Package.eINSTANCE.getStiHPOpstateStiebelType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertStiHPOpstateStiebelTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertStiHPOpstateStiebelTypeToString(V0Package.eINSTANCE.getStiHPOpstateStiebelType(), instanceValue);
 	}
 
 	/**

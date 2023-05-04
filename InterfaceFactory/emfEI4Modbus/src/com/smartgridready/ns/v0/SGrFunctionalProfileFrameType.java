@@ -54,13 +54,13 @@ public interface SGrFunctionalProfileFrameType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Functional Profile</em>' containment reference.
-	 * @see #setFunctionalProfile(FunctionalProfileType)
+	 * @see #setFunctionalProfile(SGrProfileDescriptionType)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrFunctionalProfileFrameType_FunctionalProfile()
 	 * @model containment="true" required="true"
 	 *        extendedMetaData="kind='element' name='functionalProfile' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	FunctionalProfileType getFunctionalProfile();
+	SGrProfileDescriptionType getFunctionalProfile();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrFunctionalProfileFrameType#getFunctionalProfile <em>Functional Profile</em>}' containment reference.
@@ -70,7 +70,7 @@ public interface SGrFunctionalProfileFrameType extends EObject {
 	 * @see #getFunctionalProfile()
 	 * @generated
 	 */
-	void setFunctionalProfile(FunctionalProfileType value);
+	void setFunctionalProfile(SGrProfileDescriptionType value);
 
 	/**
 	 * Returns the value of the '<em><b>Gen Attribute</b></em>' containment reference list.

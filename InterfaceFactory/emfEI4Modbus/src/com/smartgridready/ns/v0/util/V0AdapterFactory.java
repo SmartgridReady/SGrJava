@@ -76,10 +76,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createDocumentRootAdapter();
 			}
 			@Override
-			public Adapter caseFunctionalProfileType(FunctionalProfileType object) {
-				return createFunctionalProfileTypeAdapter();
-			}
-			@Override
 			public Adapter caseHeaderEntry(HeaderEntry object) {
 				return createHeaderEntryAdapter();
 			}
@@ -368,20 +364,6 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDocumentRootAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.FunctionalProfileType <em>Functional Profile Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.smartgridready.ns.v0.FunctionalProfileType
-	 * @generated
-	 */
-	public Adapter createFunctionalProfileTypeAdapter() {
 		return null;
 	}
 
