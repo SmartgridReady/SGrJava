@@ -10,19 +10,19 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>SGr HP Opstate Stiebel Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Sti HP Opstate Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * BM0003:
+ * BMsti001:
  *      BitRank map for Heat Pump Stiebel-Eltron
  * 	
  * <!-- end-model-doc -->
- * @see com.smartgridready.ns.v0.V0Package#getSGrHPOpstateStiebelType()
- * @model extendedMetaData="name='SGrHPOpstateStiebelType'"
+ * @see com.smartgridready.ns.v0.V0Package#getStiHPOpstateType()
+ * @model extendedMetaData="name='stiHPOpstateType'"
  * @generated
  */
-public enum SGrHPOpstateStiebelType implements Enumerator {
+public enum StiHPOpstateType implements Enumerator {
 	/**
 	 * The '<em><b>HP1PUMPON</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -276,13 +276,13 @@ public enum SGrHPOpstateStiebelType implements Enumerator {
 	public static final int SILENTMODE2ACTIVE_VALUE = 11;
 
 	/**
-	 * An array of all the '<em><b>SGr HP Opstate Stiebel Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Sti HP Opstate Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final SGrHPOpstateStiebelType[] VALUES_ARRAY =
-		new SGrHPOpstateStiebelType[] {
+	private static final StiHPOpstateType[] VALUES_ARRAY =
+		new StiHPOpstateType[] {
 			HP1PUMPON,
 			HP2PUMPON,
 			HEATUPPROGRAM,
@@ -298,24 +298,24 @@ public enum SGrHPOpstateStiebelType implements Enumerator {
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>SGr HP Opstate Stiebel Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Sti HP Opstate Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<SGrHPOpstateStiebelType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<StiHPOpstateType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>SGr HP Opstate Stiebel Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Sti HP Opstate Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static SGrHPOpstateStiebelType get(String literal) {
+	public static StiHPOpstateType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SGrHPOpstateStiebelType result = VALUES_ARRAY[i];
+			StiHPOpstateType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -324,16 +324,16 @@ public enum SGrHPOpstateStiebelType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>SGr HP Opstate Stiebel Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Sti HP Opstate Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static SGrHPOpstateStiebelType getByName(String name) {
+	public static StiHPOpstateType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SGrHPOpstateStiebelType result = VALUES_ARRAY[i];
+			StiHPOpstateType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -342,14 +342,14 @@ public enum SGrHPOpstateStiebelType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>SGr HP Opstate Stiebel Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Sti HP Opstate Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static SGrHPOpstateStiebelType get(int value) {
+	public static StiHPOpstateType get(int value) {
 		switch (value) {
 			case HP1PUMPON_VALUE: return HP1PUMPON;
 			case HP2PUMPON_VALUE: return HP2PUMPON;
@@ -394,7 +394,7 @@ public enum SGrHPOpstateStiebelType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private SGrHPOpstateStiebelType(int value, String name, String literal) {
+	private StiHPOpstateType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -441,4 +441,4 @@ public enum SGrHPOpstateStiebelType implements Enumerator {
 		return literal;
 	}
 	
-} //SGrHPOpstateStiebelType
+} //StiHPOpstateType

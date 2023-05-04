@@ -76,6 +76,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createDocumentRootAdapter();
 			}
 			@Override
+			public Adapter caseFunctionalProfileType(FunctionalProfileType object) {
+				return createFunctionalProfileTypeAdapter();
+			}
+			@Override
 			public Adapter caseHeaderEntry(HeaderEntry object) {
 				return createHeaderEntryAdapter();
 			}
@@ -196,6 +200,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrLegibDocumentationTypeAdapter();
 			}
 			@Override
+			public Adapter caseSGrModbusBitmapMapperType(SGrModbusBitmapMapperType object) {
+				return createSGrModbusBitmapMapperTypeAdapter();
+			}
+			@Override
 			public Adapter caseSGrModbusDataPointDescriptionType(SGrModbusDataPointDescriptionType object) {
 				return createSGrModbusDataPointDescriptionTypeAdapter();
 			}
@@ -206,6 +214,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseSGrModbusDeviceFrame(SGrModbusDeviceFrame object) {
 				return createSGrModbusDeviceFrameAdapter();
+			}
+			@Override
+			public Adapter caseSGrModbusEnumMapperType(SGrModbusEnumMapperType object) {
+				return createSGrModbusEnumMapperTypeAdapter();
 			}
 			@Override
 			public Adapter caseSGrModbusFunctionalProfileType(SGrModbusFunctionalProfileType object) {
@@ -364,6 +376,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDocumentRootAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.FunctionalProfileType <em>Functional Profile Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.FunctionalProfileType
+	 * @generated
+	 */
+	public Adapter createFunctionalProfileTypeAdapter() {
 		return null;
 	}
 
@@ -788,6 +814,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusBitmapMapperType <em>SGr Modbus Bitmap Mapper Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrModbusBitmapMapperType
+	 * @generated
+	 */
+	public Adapter createSGrModbusBitmapMapperTypeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType <em>SGr Modbus Data Point Description Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -826,6 +866,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSGrModbusDeviceFrameAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusEnumMapperType <em>SGr Modbus Enum Mapper Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrModbusEnumMapperType
+	 * @generated
+	 */
+	public Adapter createSGrModbusEnumMapperTypeAdapter() {
 		return null;
 	}
 

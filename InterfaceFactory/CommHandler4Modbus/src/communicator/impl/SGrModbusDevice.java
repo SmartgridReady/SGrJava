@@ -21,13 +21,24 @@ check for "EI-Modbus" and "Generic" directories in our Namespace http://www.smar
 */
 package communicator.impl;
 
+import com.smartgridready.ns.v0.CtaDHWOpModeType;
+import com.smartgridready.ns.v0.CtaHPOpModeType;
+import com.smartgridready.ns.v0.CtaHPOpStateType;
+import com.smartgridready.ns.v0.HovBufferStateType;
+import com.smartgridready.ns.v0.HovDomHotWaterStateType;
+import com.smartgridready.ns.v0.HovHCOpModeType;
+import com.smartgridready.ns.v0.HovHCOpStateType;
+import com.smartgridready.ns.v0.HovHPOpModeType;
+import com.smartgridready.ns.v0.HovSGReadySrcSelType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
+import com.smartgridready.ns.v0.SGrDHWOpModeType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrHCOpModeType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
 import com.smartgridready.ns.v0.SGrModbusDataPointType;
@@ -205,12 +216,13 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				LOG.debug("Reading time sync block from cache.");
 				mbResponse = mbCacheRecord.getValue();
 			}			
-		
+
 			// pick the correct value from the received block			
 			int size = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
 			int[] mbRegResp = mbResponse.getMbregresp(addrDiff.intValue(), size);
 			boolean[] mbBitResp = mbResponse.getMbbitresp(addrDiff.intValue(), size);
-			
+
+
 			// do conversion of the read data
 			return doReadConversion(
 					aDataPoint,
@@ -223,9 +235,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					0);			// number of values
 	}
 
-
-
-	
 	// Read an array of values
 	private SGrBasicGenDataPointTypeType[] prv_getValArrByGDPType(
 		SGrModbusDataPointType aDataPoint, int arrayLen)
@@ -295,36 +304,61 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		int[] mbregresp = Arrays.copyOfRange(mbregrespSrc, arrOffset*size, (arrOffset+1)*size);
 		boolean[] mbbitresp = Arrays.copyOfRange(mbbitrespSrc, arrOffset*size, (arrOffset+1)*size);
 
-		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();  	
-		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
-
-		//WIP/cb TODO: Workout instance of attributes, differentiate in between local XML
-		// datapoints & Modbus based datapoints
-		if (aDataPoint.getModbusAttr().size() > 0) 
-		{ // there are Modbus attributes available
-			
-			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
-			} else {
-				SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0).getScalingByMulPwr();
-				mul = attrScaling.getMultiplicator();
-				pwof10 = attrScaling.getPowerof10();
-			}
-			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
-		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
-		}
+		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();
+		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
 		
+		// Data format adaption
+		dGenType = aDataPoint.getDataPoint()
+				.getBasicDataType();
+		// Data Direction ctrl
+		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
+
 		EList<TEnumConversionFct> MBconvScheme = modbusInterfaceDesc.getConversionScheme();
 
 		int[] singleResp = new int[2];
 		int[] doubleResp = new int[4];
 		if (bGotRegisters) {
 			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
-				mbregresp = ConvertStream(MBconvScheme, mbregresp, size);
+				mbregresp = ConvertEndians(MBconvScheme, mbregresp, size);
 			}
-			// do we have Layer 6 deviations ?
-	        if (l6dev >= 0  ) {
-	        	mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
-	        }
+
+			// Attributes
+			if (aDataPoint.getModbusAttr().size() > 0)
+			{ // there are Modbus attributes available
+
+				if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
+				} else
+				{  if (aDataPoint.getModbusAttr().get(0).getScalingByMulPwr()!=null)
+				  {
+					SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0).getScalingByMulPwr();
+					mul = attrScaling.getMultiplicator();
+					pwof10 = attrScaling.getPowerof10();
+				  }
+				}
+				if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation() )
+				{   // do we have Layer 6 deviations ?
+			       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
+			       	mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
+				}
+				if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper()!=null )
+				{   // modbus value to generic value conversion
+
+					int[] zwi= {0,0,0,0,0,0,0,0};
+					int lp,gen;
+					for (lp=0;lp<aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().size();lp++)
+					{
+						gen = aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().get(lp).intValue();
+						if ((gen != 65535) && (((1<<(lp%16)) & mbregresp[lp/16]) !=0))
+							zwi[lp/16] =  zwi[lp/16] | 1<<gen;
+					}
+					mbregresp = zwi;
+				}
+				if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper()!=null )
+				{   // modbus value to generic value conversion
+					mbregresp[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getGenEnumMapper().get(mbregresp[0]).intValue();
+				}
+			}
+
 
 			// Most significant int as returned from modbus can have the wrong sign:
 			// - after change byte order
@@ -338,7 +372,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					RegRes = RegRes << 16;
 					RegRes = RegRes | (mbregresp[u] & 0x0000ffff);
 				}
-				// TODO: finalize this. Is it really needed?
 				
 				if (size == 2)
 			    {
@@ -364,14 +397,13 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}		
 	    
 	    // generic type expected as API return type
-		// TODO: Check why the data type "long" does not create a 64 bit signed integer
+		// TODO:HF? Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
 
 		SGrBasicGenDataPointTypeType retVal = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 		
 		if (dGenType.getEnum2bitmapIndex()!=null)
 		{
-			RegRes = ((long) Math.abs(mbregresp[0] &0xff));
 			short shVal = (byte) Math.abs(RegRes);
 			retVal.setInt8U(shVal);
 
@@ -379,8 +411,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retVal.setInt16U(iVal);
 			if (size > 1) 
 			{
-			   RegRes =  (((long) mbregresp[1])<<16) & ((long) 0xffff0000);
-			   RegRes = (long) Math.abs(RegRes + (long) mbregresp[0]);
+			   RegRes =  (((long) mbregresp[0])<<16) & ((long) 0xffff0000);
+			   RegRes = (long) Math.abs(RegRes + (long) mbregresp[1]);
 			   retVal.setInt32U(RegRes);
 			}
 			else
@@ -388,7 +420,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				
 		}
 		else if (dGenType.isSetBoolean()) {
-			// TODO: add bus data
+			// TODO:cb add & test modbusbus based conversion data
 			boolean bVal = false;
 			if (bGotRegisters) {
 				if (RegRes != 0)
@@ -537,9 +569,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retVal.setEnum(tt);
 		}
 		else if(dGenType.getDateTime()!=null) {
-		 // TODO: apply gregorian calendar library
-		// => inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-		// TODO: apply dGenType
+		 // TODO:HF? apply gregorian calendar library
+		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
 		}
 		else if( dGenType.getString()!=null) {
 			    retVal.setString(ConversionHelper.convRegistersToString(mbregresp, 0, size*2));
@@ -548,13 +579,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		{ // error handling for missing instance
 		}		
 
-		// TODO: other Modbus functions
-		// conversion schemes
-		// attribute management
-		// int res = mbregresp[size - 2] * 65536 + mbregresp[size- 1]
-		// RetVal.*
-		// Not yet supported types
-		// unit scaling
 		return retVal;				
 	}
 
@@ -564,38 +588,89 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		long lv;
 		
 		mbregconv[0] = 0;
+		
+		//switch(aDataPoint.getDpMbAttrReference().get(0).getModbusAttr().get(0).getLayer6Deviation().getLiteral()  )
 
-		switch (mBlayer6Scheme)
-    	{
-    		case SGrModbusLayer6DeviationType._2REG_BASE1000_H2L_VALUE:
-    			if (size == 2)
-    			{
-    				lv =  ((long) mbregresp[0]) *1000;
-    				lv = lv + (long) mbregresp[1];
-    				mbregconv[1] =  (int) (lv & 0xffff);	
-    				mbregconv[0] =  (int) ((lv>>16) & 0xffff);	
-    				mbregresp = mbregconv;
-    			}
-    			break;
-    		case SGrModbusLayer6DeviationType._2REG_BASE1000_L2H_VALUE:
-    			if (size == 2)
-    			{
-    				lv =  ((long) mbregresp[1]) *1000;
-    				lv = lv + (long) mbregresp[0];
-    				mbregconv[1] =  (int) (lv & 0xffff);	
-    				mbregconv[0] =  (int) ((lv>>16) & 0xffff);	
-    				mbregresp = mbregconv;
-    			}
-    			break;
-			default:
-				throw new IllegalArgumentException(
-						"Unsupported SGr SGrModbusLayer6DeviationType: " + mBlayer6Scheme);
-    	}
-	  
+		  switch (mBlayer6Scheme)
+          {
+  		    case SGrModbusLayer6DeviationType._2REG_BASE1000_H2L_VALUE:
+			  if (size == 2)
+			  {
+				lv =  ((long) mbregresp[0]) *1000;
+				lv = lv + (long) mbregresp[1];
+				mbregconv[1] =  (int) (lv & 0xffff);
+				mbregconv[0] =  (int) ((lv>>16) & 0xffff);
+				mbregresp = mbregconv;
+			  }
+			break;
+		    case SGrModbusLayer6DeviationType._2REG_BASE1000_L2H_VALUE:
+			  if (size == 2)
+			  {
+				lv =  ((long) mbregresp[1]) *1000;
+				lv = lv + (long) mbregresp[0];
+				mbregconv[1] =  (int) (lv & 0xffff);
+				mbregconv[0] =  (int) ((lv>>16) & 0xffff);
+				mbregresp = mbregconv;
+			  }
+			break;
+	    	case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOL2H_VALUE:
+	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at higher adders
+	    		//  must follow follow the bwp definitions
+				switch (mbregresp[0])
+				{
+					case 1:
+						mbregresp[0] = 0 ;
+						mbregresp[1] = 1;
+					break;
+					case 2:
+						mbregresp[0] = 0 ;
+						mbregresp[1] = 0;
+					break;
+					case 3:
+						mbregresp[0] = 1 ;
+						mbregresp[1] = 0;
+					break;
+					case 4:
+						mbregresp[0] = 1 ;
+						mbregresp[1] = 1;
+					break;
+				}
+			break;
+    		case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOH2L_VALUE:
+	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at lower adders
+	    		//  must follow follow the bwp definitions
+				switch (mbregresp[0])
+				{
+					case 1:
+						mbregresp[0] = 1;
+						mbregresp[1] = 0 ;
+					break;
+					case 2:
+						mbregresp[0] = 0;
+						mbregresp[1] = 0 ;
+					break;
+					case 3:
+						mbregresp[0] = 0;
+						mbregresp[1] = 1;
+					break;
+					case 4:
+						mbregresp[0] = 1;
+						mbregresp[1] = 1;
+					break;
+				}
+			break;
+		}
 		return mbregresp;
 	}
 
-	private int[] ConvertStream(EList<TEnumConversionFct> mBconvScheme, int[] mbregresp, int size) {
+	private int[] ConvertEndians(EList<TEnumConversionFct> mBconvScheme, int[] mbregresp, int size) {
+
+		/*
+		LOG.debug("ConvertEndians mbregesp:");
+		for (int i=0; i<mbregresp.length;i++) {
+			LOG.debug(String.format("int16: %d - %04x", mbregresp[i], mbregresp[i] ));
+		}
+		*/
 
 		int n, c;
 		int[] mbregconv = new int[32];
@@ -603,7 +678,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		try {
 			for (n = 0; n < mBconvScheme.size(); n++) {
 				if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_BIT_ORDER)) {
-					// TODO implement
+					// TODO:HF? implement CHANGE_BIT_ORDER, not yet observed in products, is part of IEC_TS_61850-80-5
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_BYTE_ORDER)) {
 					for (c = 0; c < size; c++) {
 						if (LOG.isDebugEnabled()) {
@@ -632,12 +707,23 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 						mbregconv[c] = mbregresp[c + 1];
 						mbregconv[c + 1] = mbregresp[c];
 					}
-				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_DWORD_ORDER)) {
-					if (size < 4) {
-						return mbregresp; // just one DWORD, no conversion
+					else
+					{
+						for (c = 0; c < size; c++)
+							mbregconv[c] = mbregresp[c];
 					}
+					for (int i=0; i<size-1;i++)
+						LOG.debug(String.format("CHANGE_WORD_ORDER converted %d: %08x, %08x", i, mbregresp[i], mbregconv[i]));
+				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_DWORD_ORDER)) {
 					if ((size % 4) > 0)
-						throw new IllegalArgumentException("CHANGE_DWORD_ORDER: Input Array length invalid");
+					{
+						//throw new IllegalArgumentException("CHANGE_DWORD_ORDER: Input Array length invalid");
+						LOG.info("CHANGE_DWORD_ORDER: Input Array length does not match");
+					    //rem/cb: check is DWORD change needed in case of (size % 4) > 0
+				        mbregconv = mbregresp;
+					}
+					else
+					{   //rem/cb:  check array of WORDS: is DWORD change needed in case of size > 4
 					for (c = 0; c < size; c = c + 4) {
 						mbregconv[c + 1] = mbregresp[c + 3];
 						mbregconv[c + 0] = mbregresp[c + 2];
@@ -649,8 +735,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 							}
 						}
 					}
+					}
 				}
 			}
+			// prepare for next adjustment (if any)
 		}
 
 		catch (IllegalArgumentException e1) {
@@ -695,32 +783,53 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			SGrModbusDataPointType aDataPoint,
 			SGrBasicGenDataPointTypeType[] sgrValues) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
-		int[] mbregsnd;
-		boolean[] mbbitsnd;
-		boolean bRegisterCMDs = false;
-		boolean	bDiscreteCMDs = false;
-		int mul = 1;
+
+		int[] mbregsnd = new int[120];
+		int res = 0, size = 0;
+		boolean[] mbbitsnd = new boolean[64];
+		boolean bRegisterCMDs = false, bDiscreteCMDs = false;
+		boolean isSetIopEnum = false, isSetIopBitmap = false, isSetAccessProt = false;
+		int mul = 1, l6dev = -1;
 		int powof10 = 0;
+		float fVal = (float) 0.0;
+		double dVal = 0.0;
+		BigInteger bgVal = BigInteger.ZERO;
 
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
 
 		// Data format adaption
 		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
 
-		// TODO: fehlende Instanz von attributen
+		// Data Direction ctrl
+		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
 		// Attributes
-		// TODO: Workout instance of attributes, differentiate in between local XML
-		// datapoints & Modbus based datapoints
-		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available
-			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
-			} else {
-				SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0)
-						.getScalingByMulPwr();
-				mul = attrScaling.getMultiplicator();
-				powof10 = attrScaling.getPowerof10();
-			}
+
+		// TODO:HF?  add attribute handling
+		if (aDataPoint.getGenAttribute().size() > 0) {
+			/* there are generic attributes available
+			 * place to add potential attribut setter API functionality
+			 */
 		}
 
+		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available
+			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
+			} else
+			{  if (aDataPoint.getModbusAttr().get(0).getScalingByMulPwr()!=null)
+			  {
+				SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0).getScalingByMulPwr();
+				mul = attrScaling.getMultiplicator();
+				powof10 = attrScaling.getPowerof10();
+			  }
+			}
+			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
+		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
+			if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper() != null)
+				 isSetIopEnum = true;
+			if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper() != null)
+				isSetIopBitmap = true;
+			if (aDataPoint.getModbusAttr().get(0).getAccessProtection() != null)
+				isSetAccessProt = true;
+		}
 		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 		BigInteger regad = MBRegRef.getAddr();
 
@@ -795,17 +904,17 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		double dVal = 0.0;
 
 		// generic type expected as API return type
-		// TODO: Check why the data type "long" does not create a 64 bit signed integer
+		// TODO:HF? GDType Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
-		// TODO: Block-Transfer handling
 
 		IntBuffer mbRegBuf = IntBuffer.allocate(32);
 
 		if (dMBType.isSetBoolean()) {
-			// TODO: add management for multiple booleans
-			// TODO: check for potential I/O signal inversion mechanism
+			// TODO:HF? GDType add management for multiple booleans
+
 			boolean bVal = false;
 			if (sgrValue.isBoolean())
+				// TODO:cb add an test Modbus I/O signal inversion mechanism
 				bVal = true;
 			if (bRegisterCMDs) {
 				if (bVal)
@@ -816,6 +925,13 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				mbBitBuf.put((byte)(bVal ? 1 : 0));
 		} else if (dMBType.getEnum() != null) {
 			mbRegBuf.put(enum2RegResConversion(sgrValue.getEnum()));
+			mbregsnd[0] = Enum2RegResConversion(sgrValue.getEnum());
+			if (isSetIopEnum)
+				    mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getModbusEnumMapper().get(mbregsnd[0]).intValue();
+			if (l6dev >=0)
+			{
+				mbregsnd = manageLayer6deviation(l6dev, mbregsnd, size);
+			}
 		} else if (dMBType.isSetFloat32()) {
 			if (bRegisterCMDs) {
 				if (sgrValue.isSetInt8())
@@ -979,24 +1095,26 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 		} else if (dMBType.getDateTime() != null) {
 			/*
-			 * TODO: apply gregorian calendar library =>
+			 * TODO:HF? apply gregorian calendar library =>
 			 * inDpTT.setTimestamp(TIMESTAMP_EDEFAULT); or better add simple Current Epoch
 			 * Unix Timestamp The current epoch translates to 01/10/2022 @ 7:31am (UTC)
 			 * 2022-01-10T07:31:09+00:00 (ISO 8601) Mon, 10 Jan 2022 07:31:09 (+0000 RFC
 			 * 822, 1036, 1123, 2822) Monday, 10-Jan-22 07:31:09 (UTC RFC 2822)
-			 * 2022-01-10T07:31:09+00:00 (RFC 3339) // TODO: mbregsnd setting
+			 * 2022-01-10T07:31:09+00:00 (RFC 3339)
+			 * // mbregsnd setting
 			 */
 		}
-		else { // TODO: Default behaviour
+		else { //Default behaviour
 		}
 
 		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 			if (bRegisterCMDs) {
+				mbregsnd = ConvertEndians(MBconvScheme, mbregsnd, mbsize);
 				int[] convStream = ConvertStream(MBconvScheme, mbRegBuf.array(), mbsize);
 				mbRegBufRes.put(Arrays.copyOfRange(convStream, 0, mbsize));
 			}
 			if (bDiscreteCMDs) {
-				// TODO: add management for multiple booleans
+				// TODO: add discrete data type management
 			}
 		} else {
 			mbRegBufRes.put(mbRegBuf.array());
@@ -1036,6 +1154,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	// Manually adopted enumeration handling: needs 3 entries for each enumerated
 	// type
 	// convert from enumeration into Modbus RegRes number
+	int Enum2RegResConversion(SGrEnumListType oGenVal) { // TODO:(ongoing) extend this list manually for EACH
 	int enum2RegResConversion(SGrEnumListType oGenVal) { // TODO(ongoing): extend this list manually for EACH
 														 // enumeration being added to the system
 		int retval = 0;
@@ -1064,12 +1183,32 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retval = oGenVal.getSgrSGCPService().getValue();
 		} else if (oGenVal.isSetSgrObligLvl()) { // E0015
 			retval = oGenVal.getSgrObligLvl().getValue();
-		} else if (oGenVal.isSetSgrOCPPState()) {
-			// E0015
+		} else if (oGenVal.isSetSgrOCPPState()) { // E0015
 			retval = oGenVal.getSgrOCPPState().getValue();
-		} else if (oGenVal.isSetSgrHPOpMode()) {
-			// E0016
+		} else if (oGenVal.isSetSgrHPOpMode()) { // E0016
 			retval = oGenVal.getSgrHPOpMode().getValue();
+		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
+			retval = oGenVal.getSgrHCOpMode().getValue();
+		} else if (oGenVal.isSetSgrDHWOpMode()) {// cta00
+			retval = oGenVal.getCtaDHWOpMode().getValue();
+		} else if (oGenVal.isSetCtaDHWOpMode()) {// cta00
+			retval = oGenVal.getCtaDHWOpMode().getValue();
+		} else if (oGenVal.isSetCtaHPOpMode()) {// cta00
+			retval = oGenVal.getCtaHPOpMode().getValue();
+		} else if (oGenVal.isSetCtaHPOpState()) {// cta00
+			retval = oGenVal.getCtaHPOpState().getValue();
+		} else if (oGenVal.isSetHovHPOpMode()) {// hov001
+			retval = oGenVal.getHovHPOpMode().getValue();
+		} else if (oGenVal.isSetHovHCOpMode()) {// hov002
+			retval = oGenVal.getHovHCOpMode().getValue();
+		} else if (oGenVal.isSetHovSGReadySrcSel()) {// hov003
+			retval = oGenVal.getHovSGReadySrcSel().getValue();
+		} else if (oGenVal.isSetHovBufferState()) {// hov004
+			retval = oGenVal.getHovBufferState().getValue();
+		} else if (oGenVal.isSetHovHCOpState()) {// hov005
+			retval = oGenVal.getHovHCOpState().getValue();
+		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
+			retval = oGenVal.getHovDomHotWaterState().getValue();
 		}
 
 		return retval;
@@ -1079,7 +1218,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	private SGrEnumListType regRes2EnumConversion(long RegRes, SGrEnumListType oGenVal) {
 		SGrEnumListType rval = V0Factory.eINSTANCE.createSGrEnumListType();
 
-		// TODO(ongoing): extend this list manually for EACH enumeration being added to
+		// TODO:(ongoing) extend this list manually for EACH enumeration being added to
 		// the system
 		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
 			rval.setSgrMeasValueSource(SGrMeasValueSourceType.get((int) RegRes));
@@ -1109,6 +1248,32 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			rval.setSgrOCPPState(SGrOCPPStateType.get((int) RegRes));
 		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
 			rval.setSgrHPOpMode(SGrHPOpModeType.get((int) RegRes));
+		} else if (oGenVal.isSetSgrOCPPState()) {// E0015
+			rval.setSgrOCPPState(SGrOCPPStateType.get((int)RegRes));
+		} else if (oGenVal.isSetSgrHPOpMode() ) {// E0016
+			rval.setSgrHPOpMode(SGrHPOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
+			rval.setSgrHCOpMode(SGrHCOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
+			rval.setSgrDHWOpMode(SGrDHWOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
+			rval.setCtaDHWOpMode(CtaDHWOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
+			rval.setCtaHPOpMode(CtaHPOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaHPOpState()) {// Ecta002
+			rval.setCtaHPOpState(CtaHPOpStateType.get((int)RegRes));
+		} else if (oGenVal.isSetHovHPOpMode()) {// hov001
+			rval.setHovHPOpMode(HovHPOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetHovHCOpMode()) {// hov002
+			rval.setHovHCOpMode(HovHCOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetHovSGReadySrcSel()) {// hov003
+			rval.setHovSGReadySrcSel(HovSGReadySrcSelType.get((int)RegRes));
+		} else if (oGenVal.isSetHovBufferState()) {// hov004
+			rval.setHovBufferState(HovBufferStateType.get((int)RegRes));
+		} else if (oGenVal.isSetHovHCOpState()) {// hov005
+			rval.setHovHCOpState(HovHCOpStateType.get((int)RegRes));
+		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
+			rval.setHovDomHotWaterState(HovDomHotWaterStateType.get((int)RegRes));
 		}
 		return rval;
 	}

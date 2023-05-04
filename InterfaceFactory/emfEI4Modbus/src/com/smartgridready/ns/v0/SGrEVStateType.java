@@ -29,14 +29,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum SGrEVStateType implements Enumerator {
 	/**
-	 * The '<em><b>EVSTATEUNDEF</b></em>' literal object.
+	 * The '<em><b>EVSTATENULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EVSTATEUNDEF_VALUE
+	 * @see #EVSTATENULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EVSTATEUNDEF(0, "EVSTATEUNDEF", "EV_STATE_UNDEF"),
+	EVSTATENULL(0, "EVSTATENULL", "EV_STATE_NULL"),
 
 	/**
 	 * The '<em><b>EVSTANDBY</b></em>' literal object.
@@ -99,15 +99,15 @@ public enum SGrEVStateType implements Enumerator {
 	EVERROR(6, "EVERROR", "EV_ERROR");
 
 	/**
-	 * The '<em><b>EVSTATEUNDEF</b></em>' literal value.
+	 * The '<em><b>EVSTATENULL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EVSTATEUNDEF
-	 * @model literal="EV_STATE_UNDEF"
+	 * @see #EVSTATENULL
+	 * @model literal="EV_STATE_NULL"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EVSTATEUNDEF_VALUE = 0;
+	public static final int EVSTATENULL_VALUE = 0;
 
 	/**
 	 * The '<em><b>EVSTANDBY</b></em>' literal value.
@@ -183,7 +183,7 @@ public enum SGrEVStateType implements Enumerator {
 	 */
 	private static final SGrEVStateType[] VALUES_ARRAY =
 		new SGrEVStateType[] {
-			EVSTATEUNDEF,
+			EVSTATENULL,
 			EVSTANDBY,
 			EVDETECTED,
 			EVREADY4CHARGING,
@@ -246,7 +246,7 @@ public enum SGrEVStateType implements Enumerator {
 	 */
 	public static SGrEVStateType get(int value) {
 		switch (value) {
-			case EVSTATEUNDEF_VALUE: return EVSTATEUNDEF;
+			case EVSTATENULL_VALUE: return EVSTATENULL;
 			case EVSTANDBY_VALUE: return EVSTANDBY;
 			case EVDETECTED_VALUE: return EVDETECTED;
 			case EVREADY4CHARGING_VALUE: return EVREADY4CHARGING;

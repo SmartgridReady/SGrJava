@@ -40,6 +40,15 @@ public interface V0Factory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+	 * Returns a new object of class '<em>Functional Profile Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Functional Profile Type</em>'.
+	 * @generated
+	 */
+	FunctionalProfileType createFunctionalProfileType();
+
+	/**
 	 * Returns a new object of class '<em>Header Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -310,6 +319,15 @@ public interface V0Factory extends EFactory {
 	SGrLegibDocumentationType createSGrLegibDocumentationType();
 
 	/**
+	 * Returns a new object of class '<em>SGr Modbus Bitmap Mapper Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Modbus Bitmap Mapper Type</em>'.
+	 * @generated
+	 */
+	SGrModbusBitmapMapperType createSGrModbusBitmapMapperType();
+
+	/**
 	 * Returns a new object of class '<em>SGr Modbus Data Point Description Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -335,6 +353,15 @@ public interface V0Factory extends EFactory {
 	 * @generated
 	 */
 	SGrModbusDeviceFrame createSGrModbusDeviceFrame();
+
+	/**
+	 * Returns a new object of class '<em>SGr Modbus Enum Mapper Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Modbus Enum Mapper Type</em>'.
+	 * @generated
+	 */
+	SGrModbusEnumMapperType createSGrModbusEnumMapperType();
 
 	/**
 	 * Returns a new object of class '<em>SGr Modbus Functional Profile Type</em>'.

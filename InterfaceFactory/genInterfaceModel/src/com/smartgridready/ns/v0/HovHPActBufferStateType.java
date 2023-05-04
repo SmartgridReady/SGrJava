@@ -10,11 +10,11 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>SGr HP Act Buffer State Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Hov HP Act Buffer State Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * BM0005:
+ * BMhov001:
  *      BitRank map for Heat Pump Buffer state 
  *      source: Hoval  (ER) means "Entladeregelung"
  *      Bit0 = keine Anforderung, AUS
@@ -32,11 +32,11 @@ import org.eclipse.emf.common.util.Enumerator;
  *      Bit9 = (ER)Abnahmezwang Smart Grid
  * 	
  * <!-- end-model-doc -->
- * @see com.smartgridready.ns.v0.V0Package#getSGrHPActBufferStateType()
- * @model extendedMetaData="name='SGrHPActBufferStateType'"
+ * @see com.smartgridready.ns.v0.V0Package#getHovHPActBufferStateType()
+ * @model extendedMetaData="name='hovHPActBufferStateType'"
  * @generated
  */
-public enum SGrHPActBufferStateType implements Enumerator {
+public enum HovHPActBufferStateType implements Enumerator {
 	/**
 	 * The '<em><b>HPBOFF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -248,13 +248,13 @@ public enum SGrHPActBufferStateType implements Enumerator {
 	public static final int HPBSGRFORCED_VALUE = 9;
 
 	/**
-	 * An array of all the '<em><b>SGr HP Act Buffer State Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Hov HP Act Buffer State Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final SGrHPActBufferStateType[] VALUES_ARRAY =
-		new SGrHPActBufferStateType[] {
+	private static final HovHPActBufferStateType[] VALUES_ARRAY =
+		new HovHPActBufferStateType[] {
 			HPBOFF,
 			HPBTEMPLOW,
 			HPBRUNNING,
@@ -268,24 +268,24 @@ public enum SGrHPActBufferStateType implements Enumerator {
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>SGr HP Act Buffer State Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Hov HP Act Buffer State Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<SGrHPActBufferStateType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<HovHPActBufferStateType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>SGr HP Act Buffer State Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Hov HP Act Buffer State Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static SGrHPActBufferStateType get(String literal) {
+	public static HovHPActBufferStateType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SGrHPActBufferStateType result = VALUES_ARRAY[i];
+			HovHPActBufferStateType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -294,16 +294,16 @@ public enum SGrHPActBufferStateType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>SGr HP Act Buffer State Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Hov HP Act Buffer State Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static SGrHPActBufferStateType getByName(String name) {
+	public static HovHPActBufferStateType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SGrHPActBufferStateType result = VALUES_ARRAY[i];
+			HovHPActBufferStateType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -312,14 +312,14 @@ public enum SGrHPActBufferStateType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>SGr HP Act Buffer State Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Hov HP Act Buffer State Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static SGrHPActBufferStateType get(int value) {
+	public static HovHPActBufferStateType get(int value) {
 		switch (value) {
 			case HPBOFF_VALUE: return HPBOFF;
 			case HPBTEMPLOW_VALUE: return HPBTEMPLOW;
@@ -362,7 +362,7 @@ public enum SGrHPActBufferStateType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private SGrHPActBufferStateType(int value, String name, String literal) {
+	private HovHPActBufferStateType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -373,7 +373,6 @@ public enum SGrHPActBufferStateType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getValue() {
 	  return value;
 	}
@@ -383,7 +382,6 @@ public enum SGrHPActBufferStateType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getName() {
 	  return name;
 	}
@@ -393,7 +391,6 @@ public enum SGrHPActBufferStateType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getLiteral() {
 	  return literal;
 	}
@@ -409,4 +406,4 @@ public enum SGrHPActBufferStateType implements Enumerator {
 		return literal;
 	}
 	
-} //SGrHPActBufferStateType
+} //HovHPActBufferStateType

@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getPollLatencyMS <em>Poll Latency MS</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getAccessProtection <em>Access Protection</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getLayer6Deviation <em>Layer6 Deviation</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getIopEnumMapper <em>Iop Enum Mapper</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getIopBitmapMapper <em>Iop Bitmap Mapper</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType()
@@ -38,8 +40,8 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 
-	 *     				generic value = dataPoint * m * 10^p
-	 *     			
+	 * 						generic value = dataPoint * m * 10^p
+	 * 					
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Scaling By Mul Pwr</em>' containment reference.
 	 * @see #setScalingByMulPwr(SGrScalingType)
@@ -119,11 +121,12 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 
-	 *     				a Sunpec specific attribute (scalefactor p -10 ...
-	 *     				+10) generic value = dataPoint * 10^p note: Sunspec
-	 *     				uses sunssf usually as Modbus Register with dynamic
-	 *     				values check attribute "timeAlignedNotification"
-	 *     			
+	 * 						a Sunpec specific attribute (scalefactor p -10
+	 * 						... +10) generic value = dataPoint * 10^p note:
+	 * 						Sunspec uses sunssf usually as Modbus Register
+	 * 						with dynamic values check attribute
+	 * 						"timeAlignedNotification"
+	 * 					
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Sunssf</em>' attribute.
 	 * @see #isSetSunssf()
@@ -177,8 +180,9 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 
-	 *     				the time for a master slave communication cycle in ms
-	 *     			
+	 * 						the time for a master slave communication cycle
+	 * 						in ms
+	 * 					
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Poll Latency MS</em>' attribute.
 	 * @see #isSetPollLatencyMS()
@@ -301,5 +305,51 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * @generated
 	 */
 	boolean isSetLayer6Deviation();
+
+	/**
+	 * Returns the value of the '<em><b>Iop Enum Mapper</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iop Enum Mapper</em>' containment reference.
+	 * @see #setIopEnumMapper(SGrModbusEnumMapperType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType_IopEnumMapper()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='iopEnumMapper' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrModbusEnumMapperType getIopEnumMapper();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getIopEnumMapper <em>Iop Enum Mapper</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Iop Enum Mapper</em>' containment reference.
+	 * @see #getIopEnumMapper()
+	 * @generated
+	 */
+	void setIopEnumMapper(SGrModbusEnumMapperType value);
+
+	/**
+	 * Returns the value of the '<em><b>Iop Bitmap Mapper</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iop Bitmap Mapper</em>' containment reference.
+	 * @see #setIopBitmapMapper(SGrModbusBitmapMapperType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType_IopBitmapMapper()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='iopBitmapMapper' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrModbusBitmapMapperType getIopBitmapMapper();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getIopBitmapMapper <em>Iop Bitmap Mapper</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Iop Bitmap Mapper</em>' containment reference.
+	 * @see #getIopBitmapMapper()
+	 * @generated
+	 */
+	void setIopBitmapMapper(SGrModbusBitmapMapperType value);
 
 } // SGrAttr4ModbusType
