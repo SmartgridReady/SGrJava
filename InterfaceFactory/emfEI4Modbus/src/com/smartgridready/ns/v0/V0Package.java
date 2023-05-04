@@ -5178,10 +5178,10 @@ public interface V0Package extends EPackage {
 	int SGR_HC_OP_MODE_TYPE = 96;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.SgrHCOpStateType <em>Sgr HC Op State Type</em>}' enum.
+	 * The meta object id for the '{@link SGrHCOpStateType <em>Sgr HC Op State Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.SgrHCOpStateType
+	 * @see SGrHCOpStateType
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSgrHCOpStateType()
 	 * @generated
 	 */
@@ -5958,7 +5958,7 @@ public interface V0Package extends EPackage {
 	 * The meta object id for the '<em>Sgr HC Op State Type Object</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.SgrHCOpStateType
+	 * @see SGrHCOpStateType
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSgrHCOpStateTypeObject()
 	 * @generated
 	 */
@@ -10481,11 +10481,11 @@ public interface V0Package extends EPackage {
 	EEnum getSGrHCOpModeType();
 
 	/**
-	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.SgrHCOpStateType <em>Sgr HC Op State Type</em>}'.
+	 * Returns the meta object for enum '{@link SGrHCOpStateType <em>Sgr HC Op State Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Sgr HC Op State Type</em>'.
-	 * @see com.smartgridready.ns.v0.SgrHCOpStateType
+	 * @see SGrHCOpStateType
 	 * @generated
 	 */
 	EEnum getSgrHCOpStateType();
@@ -11358,11 +11358,11 @@ public interface V0Package extends EPackage {
 	EDataType getSGrHCOpModeTypeObject();
 
 	/**
-	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.SgrHCOpStateType <em>Sgr HC Op State Type Object</em>}'.
+	 * Returns the meta object for data type '{@link SGrHCOpStateType <em>Sgr HC Op State Type Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Sgr HC Op State Type Object</em>'.
-	 * @see com.smartgridready.ns.v0.SgrHCOpStateType
+	 * @see SGrHCOpStateType
 	 * @model instanceClass="com.smartgridready.ns.v0.SgrHCOpStateType"
 	 *        extendedMetaData="name='sgrHCOpStateType:Object' baseType='sgrHCOpStateType'"
 	 * @generated

@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model extendedMetaData="name='sgrHCOpStateType'"
  * @generated
  */
-public enum SgrHCOpStateType implements Enumerator {
+public enum SGrHCOpStateType implements Enumerator {
 	/**
 	 * The '<em><b>HCOFF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -512,8 +512,8 @@ public enum SgrHCOpStateType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final SgrHCOpStateType[] VALUES_ARRAY =
-		new SgrHCOpStateType[] {
+	private static final SGrHCOpStateType[] VALUES_ARRAY =
+		new SGrHCOpStateType[] {
 			HCOFF,
 			HCHEAT,
 			HCHEATCOMFORT,
@@ -545,7 +545,7 @@ public enum SgrHCOpStateType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<SgrHCOpStateType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<SGrHCOpStateType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Sgr HC Op State Type</b></em>' literal with the specified literal value.
@@ -555,9 +555,9 @@ public enum SgrHCOpStateType implements Enumerator {
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static SgrHCOpStateType get(String literal) {
+	public static SGrHCOpStateType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SgrHCOpStateType result = VALUES_ARRAY[i];
+			SGrHCOpStateType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -573,9 +573,9 @@ public enum SgrHCOpStateType implements Enumerator {
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static SgrHCOpStateType getByName(String name) {
+	public static SGrHCOpStateType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SgrHCOpStateType result = VALUES_ARRAY[i];
+			SGrHCOpStateType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -591,7 +591,7 @@ public enum SgrHCOpStateType implements Enumerator {
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static SgrHCOpStateType get(int value) {
+	public static SGrHCOpStateType get(int value) {
 		switch (value) {
 			case HCOFF_VALUE: return HCOFF;
 			case HCHEAT_VALUE: return HCHEAT;
@@ -647,7 +647,7 @@ public enum SgrHCOpStateType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private SgrHCOpStateType(int value, String name, String literal) {
+	private SGrHCOpStateType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

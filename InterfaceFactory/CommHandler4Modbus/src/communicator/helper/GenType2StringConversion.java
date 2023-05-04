@@ -18,12 +18,23 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.helper;
 
+import com.smartgridready.ns.v0.CtaDHWOpModeType;
+import com.smartgridready.ns.v0.CtaHPOpModeType;
+import com.smartgridready.ns.v0.CtaHPOpStateType;
+import com.smartgridready.ns.v0.HovBufferStateType;
+import com.smartgridready.ns.v0.HovDomHotWaterStateType;
+import com.smartgridready.ns.v0.HovHCOpModeType;
+import com.smartgridready.ns.v0.HovHCOpStateType;
+import com.smartgridready.ns.v0.HovHPOpModeType;
+import com.smartgridready.ns.v0.HovSGReadySrcSelType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
+import com.smartgridready.ns.v0.SGrDHWOpModeType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrHCOpModeType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
 import com.smartgridready.ns.v0.SGrOCPPStateType;
@@ -136,12 +147,7 @@ public class GenType2StringConversion {
 				bVal = true;
 			}
 			retval.setBoolean(bVal);
-		}
-		/*
-		 * else if (dGenType.eIsSet(enum) { // TODO: SGrBasicGenDataPointTypeType, apply
-		 * SGrEnumListType family of enumerationss inDpTT.setEnum(0); }
-		 */
-		else if (dGenType.isSetFloat32()) {
+		}else if (dGenType.isSetFloat32()) {
 			float fVal;
 			fVal = Float.parseFloat(value);
 			retval.setFloat32(fVal);
@@ -167,7 +173,7 @@ public class GenType2StringConversion {
 			long lVal = Long.parseLong(value);
 			retval.setInt64(lVal);
 		} else if (dGenType.getInt64U() != null) {
-			// TODO: SGrBasicGenDataPointTypeType, isSetInt64U Funktion wurde vom Modeler
+			// TODO:HF? SGrBasicGenDataPointTypeType, isSetInt64U Funktion wurde vom Modeler
 			// nicht generiert
 			BigInteger bgVal1 = new BigInteger(value);
 			retval.setInt64U(bgVal1);
@@ -179,10 +185,12 @@ public class GenType2StringConversion {
 			Short shVal = Short.parseShort(value);
 			retval.setInt8U(shVal);
 		} else if (dGenType.getDateTime() != null) {
-			// TODO: apply gregorian calendar library
+			// TODO:HF? apply gregorian calendar library
 			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-			// TODO: apply dGenType
+			// apply dGenType
 		} else if (dGenType.getString() != null) {
+			// TODO:HF? parameter conversion into GDType dGenType
+			//  dGenType = GenType2StringConversion.format(sValue, dGenType); ?
 			retval.setString(value);
 		} else if (dGenType.getEnum() != null) {
 			retval.setEnum(string2EnumConversion(value, dGenType.getEnum()));
@@ -195,6 +203,7 @@ public class GenType2StringConversion {
 	public static String enum2StringConversion(SGrEnumListType oGenVal) {
 		String rval = "-";
 
+		// TODO HF add additional enums according CBTest
 		// Ongoing: extend this list manually for EACH enumeration being added to
 		// the system
 		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
@@ -225,6 +234,32 @@ public class GenType2StringConversion {
 			rval = oGenVal.getSgrOCPPState().toString();
 		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
 			rval = oGenVal.getSgrHPOpMode().toString();
+		} else if (oGenVal.isSetSgrOCPPState()) {// E0015
+			rval = oGenVal.getSgrOCPPState().toString();
+		} else if (oGenVal.isSetSgrHPOpMode() ) {// E0016
+			rval = oGenVal.getSgrHPOpMode().toString();
+		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
+			rval = oGenVal.getSgrHCOpMode().toString();
+		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
+			rval = oGenVal.getSgrDHWOpMode().toString();
+		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
+			rval = oGenVal.getCtaDHWOpMode().toString();
+		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
+			rval = oGenVal.getCtaHPOpMode().toString();
+		} else if (oGenVal.isSetCtaHPOpState()) {// Ecta002
+			rval = oGenVal.getCtaHPOpState().toString();
+		} else if (oGenVal.isSetHovHPOpMode()) {// hov001
+			rval = oGenVal.getHovHPOpMode().toString();
+		} else if (oGenVal.isSetHovHCOpMode()) {// hov002
+			rval = oGenVal.getHovHCOpMode().toString();
+		} else if (oGenVal.isSetHovSGReadySrcSel()) {// hov003
+			rval = oGenVal.getHovSGReadySrcSel().toString();
+		} else if (oGenVal.isSetHovBufferState()) {// hov004
+			rval = oGenVal.getHovBufferState().toString();
+		} else if (oGenVal.isSetHovHCOpState()) {// hov005
+			rval = oGenVal.getHovHCOpState().toString();
+		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
+			rval = oGenVal.getHovDomHotWaterState().toString();
 		} else {
 			throw new IllegalArgumentException("Given SGrEnumListType is not set OR not handled by the current implementation.");
 		}
@@ -235,6 +270,7 @@ public class GenType2StringConversion {
 
 		SGrEnumListType rval = V0Factory.eINSTANCE.createSGrEnumListType();
 
+		// TODO HF add additional enums according CBTest
 		// Ongoing: extend this list manually for EACH enumeration being added to
 		// the system
 		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
@@ -265,6 +301,32 @@ public class GenType2StringConversion {
 			rval.setSgrOCPPState(SGrOCPPStateType.getByName(val));
 		} else if (oGenVal.isSetSgrHPOpMode()) {// E0014
 			rval.setSgrHPOpMode(SGrHPOpModeType.getByName(val));
+		} else if (oGenVal.isSetSgrOCPPState()) {// E0015
+			rval.setSgrOCPPState(SGrOCPPStateType.getByName(val));
+		} else if (oGenVal.isSetSgrHPOpMode() ) {// E0016
+			rval.setSgrHPOpMode(SGrHPOpModeType.getByName(val));
+		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
+			rval.setSgrHCOpMode(SGrHCOpModeType.getByName(val));
+		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
+			rval.setSgrDHWOpMode(SGrDHWOpModeType.getByName(val));
+		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
+			rval.setCtaDHWOpMode(CtaDHWOpModeType.getByName(val));
+		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
+			rval.setCtaHPOpMode(CtaHPOpModeType.getByName(val));
+		} else if (oGenVal.isSetCtaHPOpState()) {// Ecta002
+			rval.setCtaHPOpState(CtaHPOpStateType.getByName(val));
+		} else if (oGenVal.isSetHovHPOpMode()) {// hov001
+			rval.setHovHPOpMode(HovHPOpModeType.getByName(val));
+		} else if (oGenVal.isSetHovHCOpMode()) {// hov002
+			rval.setHovHCOpMode(HovHCOpModeType.getByName(val));
+		} else if (oGenVal.isSetHovSGReadySrcSel()) {// hov003
+			rval.setHovSGReadySrcSel(HovSGReadySrcSelType.getByName(val));
+		} else if (oGenVal.isSetHovBufferState()) {// hov004
+			rval.setHovBufferState(HovBufferStateType.getByName(val));
+		} else if (oGenVal.isSetHovHCOpState()) {// hov005
+			rval.setHovHCOpState(HovHCOpStateType.getByName(val));
+		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
+			rval.setHovDomHotWaterState(HovDomHotWaterStateType.getByName(val));
 		} else {
 			throw new IllegalArgumentException("Given SGrEnumListType is not set OR not handled by the current implementation.");
 		}

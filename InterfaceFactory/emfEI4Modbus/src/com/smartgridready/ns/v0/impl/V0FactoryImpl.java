@@ -2098,8 +2098,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SgrHCOpStateType createSgrHCOpStateTypeFromString(EDataType eDataType, String initialValue) {
-		SgrHCOpStateType result = SgrHCOpStateType.get(initialValue);
+	public SGrHCOpStateType createSgrHCOpStateTypeFromString(EDataType eDataType, String initialValue) {
+		SGrHCOpStateType result = SGrHCOpStateType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -3558,7 +3558,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SgrHCOpStateType createSgrHCOpStateTypeObjectFromString(EDataType eDataType, String initialValue) {
+	public SGrHCOpStateType createSgrHCOpStateTypeObjectFromString(EDataType eDataType, String initialValue) {
 		return createSgrHCOpStateTypeFromString(V0Package.eINSTANCE.getSgrHCOpStateType(), initialValue);
 	}
 

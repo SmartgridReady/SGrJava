@@ -293,7 +293,7 @@ public class V0Validator extends EObjectValidator {
 			case V0Package.SGR_HC_OP_MODE_TYPE:
 				return validateSGrHCOpModeType((SGrHCOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HC_OP_STATE_TYPE:
-				return validateSgrHCOpStateType((SgrHCOpStateType)value, diagnostics, context);
+				return validateSgrHCOpStateType((SGrHCOpStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_OP_MODE_TYPE:
 				return validateSGrHPOpModeType((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_TYPE:
@@ -449,7 +449,7 @@ public class V0Validator extends EObjectValidator {
 			case V0Package.SGR_HC_OP_MODE_TYPE_OBJECT:
 				return validateSGrHCOpModeTypeObject((SGrHCOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HC_OP_STATE_TYPE_OBJECT:
-				return validateSgrHCOpStateTypeObject((SgrHCOpStateType)value, diagnostics, context);
+				return validateSgrHCOpStateTypeObject((SGrHCOpStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_OP_MODE_TYPE_OBJECT:
 				return validateSGrHPOpModeTypeObject((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_TYPE_OBJECT:
@@ -1407,7 +1407,7 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSgrHCOpStateType(SgrHCOpStateType sgrHCOpStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSgrHCOpStateType(SGrHCOpStateType sgrHCOpStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2465,7 +2465,7 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSgrHCOpStateTypeObject(SgrHCOpStateType sgrHCOpStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSgrHCOpStateTypeObject(SGrHCOpStateType sgrHCOpStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

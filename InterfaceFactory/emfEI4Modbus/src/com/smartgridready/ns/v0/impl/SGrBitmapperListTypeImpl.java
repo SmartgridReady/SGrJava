@@ -6,7 +6,7 @@ import com.smartgridready.ns.v0.HovHPActBufferStateType;
 import com.smartgridready.ns.v0.SGrBitmapperListType;
 import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.SGrHPOpstateType;
-import com.smartgridready.ns.v0.SgrHCOpStateType;
+import com.smartgridready.ns.v0.SGrHCOpStateType;
 import com.smartgridready.ns.v0.StiHPOpstateType;
 import com.smartgridready.ns.v0.V0Package;
 
@@ -101,7 +101,7 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected static final SgrHCOpStateType SGR_HC_OPSTATE_EDEFAULT = SgrHCOpStateType.HCOFF;
+	protected static final SGrHCOpStateType SGR_HC_OPSTATE_EDEFAULT = SGrHCOpStateType.HCOFF;
 
 	/**
 	 * The cached value of the '{@link #getSgrHCOpstate() <em>Sgr HC Opstate</em>}' attribute.
@@ -111,7 +111,7 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected SgrHCOpStateType sgrHCOpstate = SGR_HC_OPSTATE_EDEFAULT;
+	protected SGrHCOpStateType sgrHCOpstate = SGR_HC_OPSTATE_EDEFAULT;
 
 	/**
 	 * This is true if the Sgr HC Opstate attribute has been set.
@@ -305,7 +305,7 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public SgrHCOpStateType getSgrHCOpstate() {
+	public SGrHCOpStateType getSgrHCOpstate() {
 		return sgrHCOpstate;
 	}
 
@@ -315,8 +315,8 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
-	public void setSgrHCOpstate(SgrHCOpStateType newSgrHCOpstate) {
-		SgrHCOpStateType oldSgrHCOpstate = sgrHCOpstate;
+	public void setSgrHCOpstate(SGrHCOpStateType newSgrHCOpstate) {
+		SGrHCOpStateType oldSgrHCOpstate = sgrHCOpstate;
 		sgrHCOpstate = newSgrHCOpstate == null ? SGR_HC_OPSTATE_EDEFAULT : newSgrHCOpstate;
 		boolean oldSgrHCOpstateESet = sgrHCOpstateESet;
 		sgrHCOpstateESet = true;
@@ -331,7 +331,7 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 	 */
 	@Override
 	public void unsetSgrHCOpstate() {
-		SgrHCOpStateType oldSgrHCOpstate = sgrHCOpstate;
+		SGrHCOpStateType oldSgrHCOpstate = sgrHCOpstate;
 		boolean oldSgrHCOpstateESet = sgrHCOpstateESet;
 		sgrHCOpstate = SGR_HC_OPSTATE_EDEFAULT;
 		sgrHCOpstateESet = false;
@@ -486,7 +486,7 @@ public class SGrBitmapperListTypeImpl extends MinimalEObjectImpl.Container imple
 				setSgrHPOpstate((SGrHPOpstateType)newValue);
 				return;
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__SGR_HC_OPSTATE:
-				setSgrHCOpstate((SgrHCOpStateType)newValue);
+				setSgrHCOpstate((SGrHCOpStateType)newValue);
 				return;
 			case V0Package.SGR_BITMAPPER_LIST_TYPE__HOV_HP_ACT_BUFFER_STATE:
 				setHovHPActBufferState((HovHPActBufferStateType)newValue);

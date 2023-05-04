@@ -43,12 +43,14 @@ import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
 import com.smartgridready.ns.v0.SGrModbusDataPointType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
+import com.smartgridready.ns.v0.SGrModbusEnumMapperType;
 import com.smartgridready.ns.v0.SGrModbusFunctionalProfileType;
 import com.smartgridready.ns.v0.SGrModbusInterfaceDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusLayer6DeviationType;
 import com.smartgridready.ns.v0.SGrOCPPStateType;
 import com.smartgridready.ns.v0.SGrObligLvlType;
 import com.smartgridready.ns.v0.SGrPowerSourceType;
+import com.smartgridready.ns.v0.SGrRWPType;
 import com.smartgridready.ns.v0.SGrSGCPFeedInStateLv2Type;
 import com.smartgridready.ns.v0.SGrSGCPLoadStateLv2Type;
 import com.smartgridready.ns.v0.SGrSGCPServiceType;
@@ -69,6 +71,7 @@ import communicator.helper.ConversionHelper;
 import communicator.helper.GenType2StringConversion;
 import communicator.helper.ModbusReader;
 import communicator.helper.ModbusReaderResponse;
+import org.apache.hc.core5.http.MethodNotSupportedException;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -232,7 +235,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					mbResponse.isbGotRegisters(),
 					mbResponse.isbGotDiscrete(),
 					size,		// number of bytes read
-					0);			// number of values
+					0);			// array index/offset
 	}
 
 	// Read an array of values
@@ -246,7 +249,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
 
 		CacheRecord<List<SGrBasicGenDataPointTypeType>> resultRecord = myReadCache.get(aDataPoint);
-		int mbArrayLen = arrayLen;
 
 		if (resultRecord == null || resultRecord.isExpired(aDataPoint.getTimeToLive())) {
 			
@@ -259,7 +261,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					mbRegRef.getRegisterType(),
 					mbRegRef.getAddr().intValue(),
 					bMBfirstRegOne,
-					size * mbArrayLen);
+					size * arrayLen);
 
 		    // modbus OSI Layer 6 to generic OSI layer 6 conversion
 			List<SGrBasicGenDataPointTypeType> resultList = new ArrayList<>();		
@@ -399,6 +401,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	    // generic type expected as API return type
 		// TODO:HF? Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
+		// Q&A:CB could you explain the issue further. Not clear to me yet.
 
 		SGrBasicGenDataPointTypeType retVal = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 		
@@ -569,8 +572,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retVal.setEnum(tt);
 		}
 		else if(dGenType.getDateTime()!=null) {
-		 // TODO:HF? apply gregorian calendar library
-		// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
+			// TODO:HF? apply gregorian calendar library
+			// Q&A:CB can i assume that the value provided by MODBUS is a Unix timestamp in seconds? or millis?
+			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
 		}
 		else if( dGenType.getString()!=null) {
 			    retVal.setString(ConversionHelper.convRegistersToString(mbregresp, 0, size*2));
@@ -638,7 +642,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			break;
     		case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOH2L_VALUE:
 	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at lower adders
-	    		//  must follow follow the bwp definitions
+	    		// must follow follow the bwp definitions
 				switch (mbregresp[0])
 				{
 					case 1:
@@ -678,19 +682,20 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		try {
 			for (n = 0; n < mBconvScheme.size(); n++) {
 				if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_BIT_ORDER)) {
-					// TODO:HF? implement CHANGE_BIT_ORDER, not yet observed in products, is part of IEC_TS_61850-80-5
+					//  Not implemented: CHANGE_BIT_ORDER, not yet observed in products, is part of IEC_TS_61850-80-5
+					//  TODO throw new MethodNotSupportedException("CHANGE_BIT_ORDER is not supported yet. Check EID-XML.");
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_BYTE_ORDER)) {
 					for (c = 0; c < size; c++) {
 						if (LOG.isDebugEnabled()) {
 							LOG.debug("mbregresp: {} ", mbregresp);
-							LOG.debug("mbregresp[0]: {} ", String.format("%08x",mbregresp[0]));
+							LOG.debug("mbregresp[0]: {} ", String.format("%08x", mbregresp[0]));
 						}
 						byte[] result = new byte[2];
-						result[1] = (byte) (mbregresp[c] >> 8 );
-						result[0] = (byte)  mbregresp[c];
+						result[1] = (byte) (mbregresp[c] >> 8);
+						result[0] = (byte) mbregresp[c];
 
 						mbregconv[c] = Byte.toUnsignedInt(result[1])
-								    + (Byte.toUnsignedInt(result[0]) << 8);
+								+ (Byte.toUnsignedInt(result[0]) << 8);
 						if (LOG.isDebugEnabled()) {
 							LOG.debug(String.format("CHANGE_BYTE_ORDER converted %d: %02x, %02x, %08x", c, result[1], result[0], mbregconv[c]));
 							LOG.debug("mbregconv: {}", mbregconv);
@@ -698,22 +703,23 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 						}
 					}
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_WORD_ORDER)) {
-					if (size == 1) {
+					if (size==1) {
 						return mbregresp; // just one word, no conversion
 					}
-					if ((size % 2) > 0)
-						throw new IllegalArgumentException("CHANGE_WORD_ORDER: Input Array length invalid");
-					for (c = 0; c < size; c = c + 2) {
-						mbregconv[c] = mbregresp[c + 1];
-						mbregconv[c + 1] = mbregresp[c];
+					if ((size % 2) == 0) {
+						for (c = 0; c < size; c = c + 2) {
+							mbregconv[c] = mbregresp[c + 1];
+							mbregconv[c + 1] = mbregresp[c];
+						}
 					}
-					else
+					else  // Q&A:CB NO swap here: is this really intended?
 					{
-						for (c = 0; c < size; c++)
+						for (c = 0; c < size; c++) 
 							mbregconv[c] = mbregresp[c];
 					}
-					for (int i=0; i<size-1;i++)
+					for (int i = 0; i < size - 1; i++)
 						LOG.debug(String.format("CHANGE_WORD_ORDER converted %d: %08x, %08x", i, mbregresp[i], mbregconv[i]));
+
 				} else if (mBconvScheme.get(n).equals(TEnumConversionFct.CHANGE_DWORD_ORDER)) {
 					if ((size % 4) > 0)
 					{
@@ -794,6 +800,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		float fVal = (float) 0.0;
 		double dVal = 0.0;
 		BigInteger bgVal = BigInteger.ZERO;
+		SGrModbusEnumMapperType sgrEnumMapper = null;
 
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
 
@@ -824,11 +831,11 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation()   )
 		       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
 			if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper() != null)
-				 isSetIopEnum = true;
+				sgrEnumMapper = aDataPoint.getModbusAttr().get(0).getIopEnumMapper();
 			if (aDataPoint.getModbusAttr().get(0).getIopBitmapMapper() != null)
-				isSetIopBitmap = true;
+				isSetIopBitmap = true;  // for future use
 			if (aDataPoint.getModbusAttr().get(0).getAccessProtection() != null)
-				isSetAccessProt = true;
+				isSetAccessProt = true; // for future use
 		}
 		TSGrModbusRegisterRef MBRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 		BigInteger regad = MBRegRef.getAddr();
@@ -861,7 +868,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					powof10,
 					dMBType,
 					mbsize,
-					MBconvScheme);
+					MBconvScheme,
+					sgrEnumMapper,
+					l6dev);
 		}
 
 		mbregsnd = mbRegBuf.array();
@@ -897,7 +906,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			int powof10,
 			SGrBasicGenDataPointTypeType dMBType,
 			int mbsize,
-			EList<TEnumConversionFct> MBconvScheme) {
+			EList<TEnumConversionFct> MBconvScheme,
+			SGrModbusEnumMapperType sgrEnumMapper,
+			int l6dev
+			) {
 
 		int size;
 		float fVal = (float) 0.0;
@@ -906,6 +918,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		// generic type expected as API return type
 		// TODO:HF? GDType Check why the data type "long" does not create a 64 bit signed integer
 		// for all Java virtual machines
+		// Q&A:CB Please could you explain the problem. Not that clear to me...
 
 		IntBuffer mbRegBuf = IntBuffer.allocate(32);
 
@@ -924,13 +937,12 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			} else if (bDiscreteCMDs)
 				mbBitBuf.put((byte)(bVal ? 1 : 0));
 		} else if (dMBType.getEnum() != null) {
-			mbRegBuf.put(enum2RegResConversion(sgrValue.getEnum()));
-			mbregsnd[0] = Enum2RegResConversion(sgrValue.getEnum());
-			if (isSetIopEnum)
-				    mbregsnd[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getModbusEnumMapper().get(mbregsnd[0]).intValue();
-			if (l6dev >=0)
-			{
-				mbregsnd = manageLayer6deviation(l6dev, mbregsnd, size);
+			mbRegBuf.put(Enum2RegResConversion(sgrValue.getEnum()));
+			if (sgrEnumMapper != null) {
+				mbRegBuf.put(sgrEnumMapper.getModbusEnumMapper().get(mbRegBuf.get(0)).intValue());
+			}
+			if (l6dev >=0) {
+				mbRegBuf.put(manageLayer6deviation(l6dev, mbRegBuf.array(), mbsize));
 			}
 		} else if (dMBType.isSetFloat32()) {
 			if (bRegisterCMDs) {
@@ -1109,8 +1121,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 			if (bRegisterCMDs) {
-				mbregsnd = ConvertEndians(MBconvScheme, mbregsnd, mbsize);
-				int[] convStream = ConvertStream(MBconvScheme, mbRegBuf.array(), mbsize);
+				int[] convStream = ConvertEndians(MBconvScheme, mbRegBuf.array(), mbsize);
 				mbRegBufRes.put(Arrays.copyOfRange(convStream, 0, mbsize));
 			}
 			if (bDiscreteCMDs) {
@@ -1155,7 +1166,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	// type
 	// convert from enumeration into Modbus RegRes number
 	int Enum2RegResConversion(SGrEnumListType oGenVal) { // TODO:(ongoing) extend this list manually for EACH
-	int enum2RegResConversion(SGrEnumListType oGenVal) { // TODO(ongoing): extend this list manually for EACH
 														 // enumeration being added to the system
 		int retval = 0;
 
@@ -1325,7 +1335,4 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				.filter(datapoint -> datapoint.getDataPoint().getDatapointName().equals(aDataPointName))
 				.findFirst();
 	}
-
-
-
 }
