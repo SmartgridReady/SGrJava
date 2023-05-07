@@ -17,10 +17,10 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 author: IBT/cb 2023/5/2
-The purpose of this class is to offer a test environment to show  Device Interoperability (WAGO METER vs ABB NETER), Functional Profile Interperability (CurrentAC WAG
-WAGO METER vs ABB METER vs Bender Controller) and Protocol Interpeatbilty  ( Bender Controller Modbus/TCP  vs OCPP)
+The purpose of this class is to offer a test environment to show Device Interoperabil-ity (WAGO METER vs ABB METER), Functional Profile Interoperability 
+(CurrentAC WAGO METER vs ABB METER vs Bender Controller) and Protocol Interoperability ( Bender Con-troller Modbus/TCP  vs OCPP)
 
-so for, only device inerperability is implemented containg all interoperable Functional Profiles
+
  */
 
 package communicator.impl;
@@ -89,15 +89,15 @@ public class IOPdemoBOX {
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
-			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface		
-			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
+			mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface		
+			//mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
  
-			int IOPDeviceSelection = 1;
+			int IOPDeviceSelection = 2;
 
 			// TestBox
 			if (devIOPMeterTestIsOn)  {
 				
-				if (IOPDeviceSelection==2)
+				if (IOPDeviceSelection==1)
 				{
 					LOG.info(" -init WagoMeter as IOP demonstrator @: " + dtf.format(LocalDateTime.now())+ " ");
 					initIOPMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml",(byte)7);
