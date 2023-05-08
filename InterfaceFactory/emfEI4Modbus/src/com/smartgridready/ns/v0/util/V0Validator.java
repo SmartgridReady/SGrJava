@@ -166,6 +166,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrLegibDocumentationType((SGrLegibDocumentationType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_BITMAP_MAPPER_TYPE:
 				return validateSGrModbusBitmapMapperType((SGrModbusBitmapMapperType)value, diagnostics, context);
+			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE:
+				return validateSGrModbusBooleanMapperType((SGrModbusBooleanMapperType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE:
 				return validateSGrModbusDataPointDescriptionType((SGrModbusDataPointDescriptionType)value, diagnostics, context);
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE:
@@ -293,7 +295,7 @@ public class V0Validator extends EObjectValidator {
 			case V0Package.SGR_HC_OP_MODE_TYPE:
 				return validateSGrHCOpModeType((SGrHCOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HC_OP_STATE_TYPE:
-				return validateSgrHCOpStateType((SGrHCOpStateType)value, diagnostics, context);
+				return validateSgrHCOpStateType((SgrHCOpStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_OP_MODE_TYPE:
 				return validateSGrHPOpModeType((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_TYPE:
@@ -449,7 +451,7 @@ public class V0Validator extends EObjectValidator {
 			case V0Package.SGR_HC_OP_MODE_TYPE_OBJECT:
 				return validateSGrHCOpModeTypeObject((SGrHCOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HC_OP_STATE_TYPE_OBJECT:
-				return validateSgrHCOpStateTypeObject((SGrHCOpStateType)value, diagnostics, context);
+				return validateSgrHCOpStateTypeObject((SgrHCOpStateType)value, diagnostics, context);
 			case V0Package.SGR_HP_OP_MODE_TYPE_OBJECT:
 				return validateSGrHPOpModeTypeObject((SGrHPOpModeType)value, diagnostics, context);
 			case V0Package.SGR_HP_OPSTATE_TYPE_OBJECT:
@@ -833,6 +835,15 @@ public class V0Validator extends EObjectValidator {
 	 */
 	public boolean validateSGrModbusBitmapMapperType(SGrModbusBitmapMapperType sGrModbusBitmapMapperType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sGrModbusBitmapMapperType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSGrModbusBooleanMapperType(SGrModbusBooleanMapperType sGrModbusBooleanMapperType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sGrModbusBooleanMapperType, diagnostics, context);
 	}
 
 	/**
@@ -1407,7 +1418,7 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSgrHCOpStateType(SGrHCOpStateType sgrHCOpStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSgrHCOpStateType(SgrHCOpStateType sgrHCOpStateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -2465,7 +2476,7 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSgrHCOpStateTypeObject(SGrHCOpStateType sgrHCOpStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSgrHCOpStateTypeObject(SgrHCOpStateType sgrHCOpStateTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

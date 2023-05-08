@@ -5,6 +5,7 @@ package com.smartgridready.ns.v0.impl;
 import com.smartgridready.ns.v0.SGrAccessProtectionEnabledType;
 import com.smartgridready.ns.v0.SGrAttr4ModbusType;
 import com.smartgridready.ns.v0.SGrModbusBitmapMapperType;
+import com.smartgridready.ns.v0.SGrModbusBooleanMapperType;
 import com.smartgridready.ns.v0.SGrModbusEnumMapperType;
 import com.smartgridready.ns.v0.SGrModbusLayer6DeviationType;
 import com.smartgridready.ns.v0.SGrScalingType;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getLayer6Deviation <em>Layer6 Deviation</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getIopEnumMapper <em>Iop Enum Mapper</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getIopBitmapMapper <em>Iop Bitmap Mapper</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4ModbusTypeImpl#getIopBooleanMapper <em>Iop Boolean Mapper</em>}</li>
  * </ul>
  *
  * @generated
@@ -195,6 +197,16 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected SGrModbusBitmapMapperType iopBitmapMapper;
+
+	/**
+	 * The cached value of the '{@link #getIopBooleanMapper() <em>Iop Boolean Mapper</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIopBooleanMapper()
+	 * @generated
+	 * @ordered
+	 */
+	protected SGrModbusBooleanMapperType iopBooleanMapper;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -601,6 +613,51 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
+	public SGrModbusBooleanMapperType getIopBooleanMapper() {
+		return iopBooleanMapper;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetIopBooleanMapper(SGrModbusBooleanMapperType newIopBooleanMapper, NotificationChain msgs) {
+		SGrModbusBooleanMapperType oldIopBooleanMapper = iopBooleanMapper;
+		iopBooleanMapper = newIopBooleanMapper;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BOOLEAN_MAPPER, oldIopBooleanMapper, newIopBooleanMapper);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIopBooleanMapper(SGrModbusBooleanMapperType newIopBooleanMapper) {
+		if (newIopBooleanMapper != iopBooleanMapper) {
+			NotificationChain msgs = null;
+			if (iopBooleanMapper != null)
+				msgs = ((InternalEObject)iopBooleanMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BOOLEAN_MAPPER, null, msgs);
+			if (newIopBooleanMapper != null)
+				msgs = ((InternalEObject)newIopBooleanMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BOOLEAN_MAPPER, null, msgs);
+			msgs = basicSetIopBooleanMapper(newIopBooleanMapper, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BOOLEAN_MAPPER, newIopBooleanMapper, newIopBooleanMapper));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__SCALING_BY_MUL_PWR:
@@ -611,6 +668,8 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return basicSetIopEnumMapper(null, msgs);
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BITMAP_MAPPER:
 				return basicSetIopBitmapMapper(null, msgs);
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BOOLEAN_MAPPER:
+				return basicSetIopBooleanMapper(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -639,6 +698,8 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return getIopEnumMapper();
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BITMAP_MAPPER:
 				return getIopBitmapMapper();
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BOOLEAN_MAPPER:
+				return getIopBooleanMapper();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -674,6 +735,9 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BITMAP_MAPPER:
 				setIopBitmapMapper((SGrModbusBitmapMapperType)newValue);
+				return;
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BOOLEAN_MAPPER:
+				setIopBooleanMapper((SGrModbusBooleanMapperType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -711,6 +775,9 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BITMAP_MAPPER:
 				setIopBitmapMapper((SGrModbusBitmapMapperType)null);
 				return;
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BOOLEAN_MAPPER:
+				setIopBooleanMapper((SGrModbusBooleanMapperType)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -739,6 +806,8 @@ public class SGrAttr4ModbusTypeImpl extends MinimalEObjectImpl.Container impleme
 				return iopEnumMapper != null;
 			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BITMAP_MAPPER:
 				return iopBitmapMapper != null;
+			case V0Package.SGR_ATTR4_MODBUS_TYPE__IOP_BOOLEAN_MAPPER:
+				return iopBooleanMapper != null;
 		}
 		return super.eIsSet(featureID);
 	}

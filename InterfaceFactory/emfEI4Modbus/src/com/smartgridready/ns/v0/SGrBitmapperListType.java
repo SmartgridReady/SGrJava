@@ -140,33 +140,33 @@ public interface SGrBitmapperListType extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Sgr HC Opstate</b></em>' attribute.
-	 * The literals are from the enumeration {@link SGrHCOpStateType}.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SgrHCOpStateType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sgr HC Opstate</em>' attribute.
-	 * @see SGrHCOpStateType
+	 * @see com.smartgridready.ns.v0.SgrHCOpStateType
 	 * @see #isSetSgrHCOpstate()
 	 * @see #unsetSgrHCOpstate()
-	 * @see #setSgrHCOpstate(SGrHCOpStateType)
+	 * @see #setSgrHCOpstate(SgrHCOpStateType)
 	 * @see com.smartgridready.ns.v0.V0Package#getSGrBitmapperListType_SgrHCOpstate()
 	 * @model unsettable="true"
 	 *        extendedMetaData="kind='element' name='sgrHCOpstate' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrHCOpStateType getSgrHCOpstate();
+	SgrHCOpStateType getSgrHCOpstate();
 
 	/**
 	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHCOpstate <em>Sgr HC Opstate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Sgr HC Opstate</em>' attribute.
-	 * @see SGrHCOpStateType
+	 * @see com.smartgridready.ns.v0.SgrHCOpStateType
 	 * @see #isSetSgrHCOpstate()
 	 * @see #unsetSgrHCOpstate()
 	 * @see #getSgrHCOpstate()
 	 * @generated
 	 */
-	void setSgrHCOpstate(SGrHCOpStateType value);
+	void setSgrHCOpstate(SgrHCOpStateType value);
 
 	/**
 	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrBitmapperListType#getSgrHCOpstate <em>Sgr HC Opstate</em>}' attribute.
@@ -174,7 +174,7 @@ public interface SGrBitmapperListType extends EObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetSgrHCOpstate()
 	 * @see #getSgrHCOpstate()
-	 * @see #setSgrHCOpstate(SGrHCOpStateType)
+	 * @see #setSgrHCOpstate(SgrHCOpStateType)
 	 * @generated
 	 */
 	void unsetSgrHCOpstate();
@@ -186,7 +186,7 @@ public interface SGrBitmapperListType extends EObject {
 	 * @return whether the value of the '<em>Sgr HC Opstate</em>' attribute is set.
 	 * @see #unsetSgrHCOpstate()
 	 * @see #getSgrHCOpstate()
-	 * @see #setSgrHCOpstate(SGrHCOpStateType)
+	 * @see #setSgrHCOpstate(SgrHCOpStateType)
 	 * @generated
 	 */
 	boolean isSetSgrHCOpstate();

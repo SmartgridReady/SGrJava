@@ -328,6 +328,15 @@ public interface V0Factory extends EFactory {
 	SGrModbusBitmapMapperType createSGrModbusBitmapMapperType();
 
 	/**
+	 * Returns a new object of class '<em>SGr Modbus Boolean Mapper Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SGr Modbus Boolean Mapper Type</em>'.
+	 * @generated
+	 */
+	SGrModbusBooleanMapperType createSGrModbusBooleanMapperType();
+
+	/**
 	 * Returns a new object of class '<em>SGr Modbus Data Point Description Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
