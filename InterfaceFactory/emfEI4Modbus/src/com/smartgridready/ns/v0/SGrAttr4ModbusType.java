@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getLayer6Deviation <em>Layer6 Deviation</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getIopEnumMapper <em>Iop Enum Mapper</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getIopBitmapMapper <em>Iop Bitmap Mapper</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getIopBooleanMapper <em>Iop Boolean Mapper</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType()
@@ -351,5 +352,28 @@ public interface SGrAttr4ModbusType extends EObject {
 	 * @generated
 	 */
 	void setIopBitmapMapper(SGrModbusBitmapMapperType value);
+
+	/**
+	 * Returns the value of the '<em><b>Iop Boolean Mapper</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iop Boolean Mapper</em>' containment reference.
+	 * @see #setIopBooleanMapper(SGrModbusBooleanMapperType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4ModbusType_IopBooleanMapper()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='iopBooleanMapper' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	SGrModbusBooleanMapperType getIopBooleanMapper();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4ModbusType#getIopBooleanMapper <em>Iop Boolean Mapper</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Iop Boolean Mapper</em>' containment reference.
+	 * @see #getIopBooleanMapper()
+	 * @generated
+	 */
+	void setIopBooleanMapper(SGrModbusBooleanMapperType value);
 
 } // SGrAttr4ModbusType

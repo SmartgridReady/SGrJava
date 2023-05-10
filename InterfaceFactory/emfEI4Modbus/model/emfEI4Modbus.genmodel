@@ -1157,6 +1157,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4ModbusType/layer6Deviation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4ModbusType/iopEnumMapper"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4ModbusType/iopBitmapMapper"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrAttr4ModbusType/iopBooleanMapper"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrAttr4RestAPIType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrAttr4RestAPIType/placeHolder4futureExtensions"/>
@@ -1295,6 +1296,10 @@
     <genClasses ecoreClass="v0.ecore#//SGrModbusBitmapMapperType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusBitmapMapperType/modbusBitMapper"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusBitmapMapperType/genBitMapper"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SGrModbusBooleanMapperType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusBooleanMapperType/isPositiveLogic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusBooleanMapperType/value"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrModbusDataPointDescriptionType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//SGrModbusDataPointDescriptionType/modbusDataType"/>

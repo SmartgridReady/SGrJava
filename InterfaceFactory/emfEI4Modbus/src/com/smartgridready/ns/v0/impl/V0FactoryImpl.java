@@ -96,6 +96,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 			case V0Package.SGR_GEN_FUNCTIONAL_PROFILE_TYPE: return createSGrGenFunctionalProfileType();
 			case V0Package.SGR_LEGIB_DOCUMENTATION_TYPE: return createSGrLegibDocumentationType();
 			case V0Package.SGR_MODBUS_BITMAP_MAPPER_TYPE: return createSGrModbusBitmapMapperType();
+			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE: return createSGrModbusBooleanMapperType();
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE: return createSGrModbusDataPointDescriptionType();
 			case V0Package.SGR_MODBUS_DATA_POINT_TYPE: return createSGrModbusDataPointType();
 			case V0Package.SGR_MODBUS_DEVICE_FRAME: return createSGrModbusDeviceFrame();
@@ -1127,6 +1128,17 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	@Override
+	public SGrModbusBooleanMapperType createSGrModbusBooleanMapperType() {
+		SGrModbusBooleanMapperTypeImpl sGrModbusBooleanMapperType = new SGrModbusBooleanMapperTypeImpl();
+		return sGrModbusBooleanMapperType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SGrModbusDataPointDescriptionType createSGrModbusDataPointDescriptionType() {
 		SGrModbusDataPointDescriptionTypeImpl sGrModbusDataPointDescriptionType = new SGrModbusDataPointDescriptionTypeImpl();
 		return sGrModbusDataPointDescriptionType;
@@ -2098,8 +2110,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SGrHCOpStateType createSgrHCOpStateTypeFromString(EDataType eDataType, String initialValue) {
-		SGrHCOpStateType result = SGrHCOpStateType.get(initialValue);
+	public SgrHCOpStateType createSgrHCOpStateTypeFromString(EDataType eDataType, String initialValue) {
+		SgrHCOpStateType result = SgrHCOpStateType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -3558,7 +3570,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SGrHCOpStateType createSgrHCOpStateTypeObjectFromString(EDataType eDataType, String initialValue) {
+	public SgrHCOpStateType createSgrHCOpStateTypeObjectFromString(EDataType eDataType, String initialValue) {
 		return createSgrHCOpStateTypeFromString(V0Package.eINSTANCE.getSgrHCOpStateType(), initialValue);
 	}
 

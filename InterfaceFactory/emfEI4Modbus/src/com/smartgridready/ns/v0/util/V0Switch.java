@@ -274,6 +274,12 @@ public class V0Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE: {
+				SGrModbusBooleanMapperType sGrModbusBooleanMapperType = (SGrModbusBooleanMapperType)theEObject;
+				T result = caseSGrModbusBooleanMapperType(sGrModbusBooleanMapperType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case V0Package.SGR_MODBUS_DATA_POINT_DESCRIPTION_TYPE: {
 				SGrModbusDataPointDescriptionType sGrModbusDataPointDescriptionType = (SGrModbusDataPointDescriptionType)theEObject;
 				T result = caseSGrModbusDataPointDescriptionType(sGrModbusDataPointDescriptionType);
@@ -983,6 +989,21 @@ public class V0Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSGrModbusBitmapMapperType(SGrModbusBitmapMapperType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SGr Modbus Boolean Mapper Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SGr Modbus Boolean Mapper Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSGrModbusBooleanMapperType(SGrModbusBooleanMapperType object) {
 		return null;
 	}
 

@@ -204,6 +204,10 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 				return createSGrModbusBitmapMapperTypeAdapter();
 			}
 			@Override
+			public Adapter caseSGrModbusBooleanMapperType(SGrModbusBooleanMapperType object) {
+				return createSGrModbusBooleanMapperTypeAdapter();
+			}
+			@Override
 			public Adapter caseSGrModbusDataPointDescriptionType(SGrModbusDataPointDescriptionType object) {
 				return createSGrModbusDataPointDescriptionTypeAdapter();
 			}
@@ -824,6 +828,20 @@ public class V0AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSGrModbusBitmapMapperTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType <em>SGr Modbus Boolean Mapper Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.smartgridready.ns.v0.SGrModbusBooleanMapperType
+	 * @generated
+	 */
+	public Adapter createSGrModbusBooleanMapperTypeAdapter() {
 		return null;
 	}
 
