@@ -142,17 +142,15 @@ public class IBTlabLoopTester {
 				{
 					
 				   // loop data & test reporting 
-					LOG.info(" ");
-					LOG.info(dtf.format(LocalDateTime.now())+" ------> LOOP=" +	runtimeCnt + "  Exceptions:");	
-					if (devABBMeterTestIsOn)    LOG.info(" ABBMeter=" +  devABBMeterExceptions+ ",");
-					if (devVGT_SGCPTestIsOn)    LOG.info(" VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
-				    if (devGaroWallboxTestIsOn) LOG.info(" GaroWallbox=" + devGaroWallboxExceptions+ ",");
-					if (devFroniusSymoTestIsOn) LOG.info(" FroniusSymo=" + devFroniusSymoExceptions + ",");
+					LOG.info("\n\n>>>Time=" + dtf.format(LocalDateTime.now())+" ------> LOOP=" +	runtimeCnt + "  Exceptions:");	
+					if (devABBMeterTestIsOn)    LOG.info("     ABBMeter=" +  devABBMeterExceptions+ ",");
+					if (devVGT_SGCPTestIsOn)    LOG.info("     VGT_SCP=" +  devVGT_SGCPExceptions+ ",");
+				    if (devGaroWallboxTestIsOn) LOG.info("     GaroWallbox=" + devGaroWallboxExceptions+ ",");
+					if (devFroniusSymoTestIsOn) LOG.info("     FroniusSymo=" + devFroniusSymoExceptions + ",");
 					// TestBox
-					if (devTB_ABBMeterTestIsOn)    LOG.info(" TestBox ABBMeter=" +  devTB_ABBMeterExcpetions+ ",");
-				    if (devOMCCIWallboxTestIsOn) LOG.info(" TestBox OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
-					if (devWagoMeterTestIsOn)   LOG.info(" TestBox WagoMeter=" + devWagoMeterExceptions + ",");
-					LOG.info(" <------");
+					if (devTB_ABBMeterTestIsOn)    LOG.info("     TestBox ABBMeter=" +  devTB_ABBMeterExcpetions+ ",");
+				    if (devOMCCIWallboxTestIsOn) LOG.info("     TestBox OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
+					if (devWagoMeterTestIsOn)   LOG.info("     TestBox WagoMeter=" + devWagoMeterExceptions + ",");
 					
 				    //_____Next loop 
 					if (devABBMeterTestIsOn)    tstABBMeter();					
@@ -208,8 +206,7 @@ public class IBTlabLoopTester {
 		
 			try {							
 				mbRTU.setUnitIdentifier((byte) 7);
-			    LOG.info(" ");
-				LOG.info("@:Testing TestBox: WAGO Meter");
+				LOG.info("\n@:Testing TestBox: WAGO Meter");
 				Thread.sleep(25);
 				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
 				Thread.sleep(10);            
@@ -359,9 +356,8 @@ public class IBTlabLoopTester {
 			String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
 			
 				try {
-				    LOG.info(" ");
 	 				mbRTU.setUnitIdentifier((byte) 11);	
-  				    LOG.info(" @:Testing ABBMeter: ");
+  				    LOG.info("\n@:Testing ABBMeter: ");
 	  				Thread.sleep(25);
 	  				fVal1 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
 	  				Thread.sleep(10);            
@@ -501,9 +497,9 @@ public class IBTlabLoopTester {
 			
 				try {
 	 				  mbRTU.setUnitIdentifier((byte) 1 );	
-  				      LOG.info(" ");
   				      
-	  				  LOG.info(" @:Testing TestBox: ABBMeter: ");
+  				      
+	  				  LOG.info("\n@:Testing TestBox: ABBMeter: ");
 					  Thread.sleep(50);
 		  				fVal1 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
 		  				Thread.sleep(10);            
@@ -650,8 +646,7 @@ public class IBTlabLoopTester {
 				String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
 				
 					try {	
-						LOG.info(" ");
-						LOG.info("@:Testing devVGT_SGCP");
+						LOG.info("\n@:Testing devVGT_SGCP");
 						Thread.sleep(25);
 
 						  sVal1 = devVGT_SGCP.getVal("BiDirFlexMgmt", "ReadinessState");
@@ -712,8 +707,7 @@ public class IBTlabLoopTester {
 					
 					
 						try {	
-						     LOG.info(" ");
-							 LOG.info(" @:Testing GaroWallbox: ");							
+							 LOG.info("\n@:Testing GaroWallbox: ");							
 							 if ((runtimeCnt%60)== 0)
 							 {
 								 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
@@ -817,8 +811,7 @@ public class IBTlabLoopTester {
 						
 						
 							try {
- 							     LOG.info(" ");
-								 LOG.info(" @:Testing TestBox: OMCCIWallbox: ");							
+								 LOG.info("\n@:Testing TestBox: OMCCIWallbox: ");							
 								 if ((runtimeCnt%60)== 0)
 								 {
 									 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
@@ -915,8 +908,7 @@ public class IBTlabLoopTester {
 						long l;
 											
 							try {	
-							     LOG.info(" ");
-								 LOG.info(" @:Testing FroniusSymo: ");
+								 LOG.info("\n@:Testing FroniusSymo: ");
 								 
 								 // check Sunsoec Common Model Information
 								 l = devFroniusSymo.getValByGDPType("SunspCommonModel", "SunspecID").getInt32U();
@@ -999,7 +991,7 @@ public class IBTlabLoopTester {
 						     	 if(((l&(1<<SGrBool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
 						     	 if(((l&(1<<SGrBool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
 						     	 if(((l&(1<<SGrBool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
-								 LOG.info(" ");
+								 
 			
 								 LOG.info("  Status EvenList2  ");
 								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList2").getInt32U();
@@ -1083,7 +1075,7 @@ public class IBTlabLoopTester {
 				try {	
 					// if RTU is used, set address here
 					// mbRTU.setUnitIdentifier((byte) 7);
-					LOG.info(" ");
+					
 					LOG.info("@:Testing   xxxxx");
 					Thread.sleep(25);
 					
