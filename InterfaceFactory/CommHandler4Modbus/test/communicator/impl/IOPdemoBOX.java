@@ -89,8 +89,8 @@ public class IOPdemoBOX {
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
-			mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface		
-			//mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
+			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface		
+			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
  
 			int IOPDeviceSelection = 2;
 
@@ -124,11 +124,9 @@ public class IOPdemoBOX {
 				{
 					
 				   // loop data & test reporting 
-					LOG.info(" ");
-					LOG.info(dtf.format(LocalDateTime.now())+" ------> LOOP=" +	runtimeCnt + "  Exceptions:");	
-					if (devIOPMeterTestIsOn)    LOG.info("    IOPMeter=" +  devIOPMeterExceptions+ ",");
+					LOG.info("\n\n>>>Time=" + dtf.format(LocalDateTime.now())+" ------> LOOP=" +	runtimeCnt + "  Exceptions:");	
+					if (devIOPMeterTestIsOn)     LOG.info("   IOPMeter=" +  devIOPMeterExceptions+ ",");
 				    if (devOMCCIWallboxTestIsOn) LOG.info("   OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
-					LOG.info(" <------");
 					
 				    //_____Next loop 
 					if (devIOPMeterTestIsOn)    tstIOPMeter();					
@@ -181,9 +179,8 @@ public class IOPdemoBOX {
 			String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
 			
 				try {
-				    LOG.info(" ");
 	 				mbRTU.setUnitIdentifier(rtuAddr);	
-				    LOG.info(" @: logging IOPMeterData: ");
+				    LOG.info("\n@:Testing IOPMeterData: ");
 	  				Thread.sleep(25);
 	  				fVal1 = devIOPMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
 	  				Thread.sleep(10);            
@@ -333,8 +330,7 @@ public class IOPdemoBOX {
 				
 				
 					try {
-					     LOG.info(" ");
-						 LOG.info(" @:Testing TestBox: OMCCIWallbox: ");							
+						 LOG.info("\n@:Testing  OMCCIWallbox: ");							
 						 if ((runtimeCnt%60)== 0)
 						 {
 							 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;

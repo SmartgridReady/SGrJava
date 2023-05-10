@@ -127,7 +127,7 @@ public class HeatPumpTester {
 				   // loop data & test reporting
 				   Thread.sleep(10000);  // show last block for ccc  milliseconds
 
-			        LOG.info(" " + dtf.format(LocalDateTime.now()));	
+				    LOG.info("\n\n>>>Time=" + dtf.format(LocalDateTime.now()));	
 					LOG.info(String.format("------> LOOP=" +	runtimeCnt + "                     Exceptions:"));		
 					if (devStiebelISGIsOn)  LOG.info(String.format(" StiebelISG=" + devStiebel_ISGExcpetions + ","));
 					if (devCTAoptiHeatIsOn) LOG.info(String.format(" CTAoptiHeat=" + devCTAoptiHeat_Exceptions + ","));

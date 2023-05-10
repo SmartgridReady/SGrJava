@@ -262,7 +262,7 @@ public class IBTlabLoopTester {
 				Thread.sleep(10);
 				sVal4 = devWagoMeter.getVal("ActivePowerAC", "ActivePowerACL3");
 				LOG.info("  ActivePowerAC [kW]:           " + sVal1 + ", " + sVal2 + ",  " + sVal3
-						+ ",  " + sVal4 + "  ");
+						+ ",  " + sVal4 + "  ");  
 				Thread.sleep(10);
 				sVal1 = devWagoMeter.getVal("ReactivePowerAC", "ReactivePowerACtot");
 				Thread.sleep(10);
