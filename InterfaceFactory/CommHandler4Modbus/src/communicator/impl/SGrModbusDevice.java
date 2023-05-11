@@ -619,7 +619,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			break;
 	    	case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOL2H_VALUE:
 	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at higher adders
-	    		//  must follow follow the bwp definitions
+	    		//  must follow the bwp definitions
 				switch (mbregresp[0])
 				{
 					case 1:
