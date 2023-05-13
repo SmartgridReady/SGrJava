@@ -50,8 +50,7 @@ public interface SGrNamelistType extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 
-	 *     				names used for SGr label V1 used to secure legacy
-	 *     				compatibility
+	 *             Currently not used. Reserved for the future to secure legacy compatibility one we start renaming in future SGr label versions
 	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SLV1 Name</em>' attribute.

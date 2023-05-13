@@ -284,9 +284,7 @@ public interface DocumentRoot extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  RPT Root Point for stand alone generic Functional
-	 * 				Profile description
-	 * 			
+	 *  RPT Root Point for stand alone generic Functional Profile description 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>SGr Functional Profile Frame</em>' containment reference.
 	 * @see #setSGrFunctionalProfileFrame(SGrFunctionalProfileFrameType)

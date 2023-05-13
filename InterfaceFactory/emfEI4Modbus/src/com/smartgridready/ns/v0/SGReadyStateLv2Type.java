@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
  * E0005 SG-Ready states according the German heatpump
- * 				association bwp normal, intensivied, EVU_LOCK, forced
+ * 				association bwp normal, intensified, EVU_LOCK, forced
  * 				https://www.waermepumpe.de/normen-technik/sg-ready/
  * 			
  * <!-- end-model-doc -->
@@ -25,32 +25,18 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum SGReadyStateLv2Type implements Enumerator {
 	/**
-	 * The '<em><b>HPNORMAL</b></em>' literal object.
+	 * The '<em><b>HPNULL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Normal operation, optimized according to customer
-	 * 						requirements
+	 *  value 0 is not vslid
 	 * 					
 	 * <!-- end-model-doc -->
-	 * @see #HPNORMAL_VALUE
+	 * @see #HPNULL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	HPNORMAL(0, "HPNORMAL", "HP_NORMAL"),
-
-	/**
-	 * The '<em><b>HPINTENSIVIED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Increased operation
-	 * <!-- end-model-doc -->
-	 * @see #HPINTENSIVIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HPINTENSIVIED(1, "HPINTENSIVIED", "HP_INTENSIVIED"),
+	HPNULL(0, "HPNULL", "HP_NULL"),
 
 	/**
 	 * The '<em><b>HPLOCKED</b></em>' literal object.
@@ -64,7 +50,35 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HPLOCKED(2, "HPLOCKED", "HP_LOCKED"),
+	HPLOCKED(1, "HPLOCKED", "HP_LOCKED"),
+
+	/**
+	 * The '<em><b>HPNORMAL</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Normal operation, optimized according to customer
+	 * 						requirements
+	 * 					
+	 * <!-- end-model-doc -->
+	 * @see #HPNORMAL_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	HPNORMAL(2, "HPNORMAL", "HP_NORMAL"),
+
+	/**
+	 * The '<em><b>HPINTENSIFIED</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Increased operation
+	 * <!-- end-model-doc -->
+	 * @see #HPINTENSIFIED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	HPINTENSIFIED(3, "HPINTENSIFIED", "HP_INTENSIFIED"),
 
 	/**
 	 * The '<em><b>HPFORCED</b></em>' literal object.
@@ -77,7 +91,37 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HPFORCED(3, "HPFORCED", "HP_FORCED");
+	HPFORCED(4, "HPFORCED", "HP_FORCED");
+
+	/**
+	 * The '<em><b>HPNULL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 *  value 0 is not vslid
+	 * 					
+	 * <!-- end-model-doc -->
+	 * @see #HPNULL
+	 * @model literal="HP_NULL"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HPNULL_VALUE = 0;
+
+	/**
+	 * The '<em><b>HPLOCKED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 *  Locked operation for a maximum of 2 hours
+	 * 					
+	 * <!-- end-model-doc -->
+	 * @see #HPLOCKED
+	 * @model literal="HP_LOCKED"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HPLOCKED_VALUE = 1;
 
 	/**
 	 * The '<em><b>HPNORMAL</b></em>' literal value.
@@ -93,36 +137,21 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HPNORMAL_VALUE = 0;
+	public static final int HPNORMAL_VALUE = 2;
 
 	/**
-	 * The '<em><b>HPINTENSIVIED</b></em>' literal value.
+	 * The '<em><b>HPINTENSIFIED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Increased operation
 	 * <!-- end-model-doc -->
-	 * @see #HPINTENSIVIED
-	 * @model literal="HP_INTENSIVIED"
+	 * @see #HPINTENSIFIED
+	 * @model literal="HP_INTENSIFIED"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HPINTENSIVIED_VALUE = 1;
-
-	/**
-	 * The '<em><b>HPLOCKED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 *  Locked operation for a maximum of 2 hours
-	 * 					
-	 * <!-- end-model-doc -->
-	 * @see #HPLOCKED
-	 * @model literal="HP_LOCKED"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int HPLOCKED_VALUE = 2;
+	public static final int HPINTENSIFIED_VALUE = 3;
 
 	/**
 	 * The '<em><b>HPFORCED</b></em>' literal value.
@@ -136,7 +165,7 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HPFORCED_VALUE = 3;
+	public static final int HPFORCED_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>SG Ready State Lv2 Type</b></em>' enumerators.
@@ -146,9 +175,10 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	 */
 	private static final SGReadyStateLv2Type[] VALUES_ARRAY =
 		new SGReadyStateLv2Type[] {
-			HPNORMAL,
-			HPINTENSIVIED,
+			HPNULL,
 			HPLOCKED,
+			HPNORMAL,
+			HPINTENSIFIED,
 			HPFORCED,
 		};
 
@@ -206,9 +236,10 @@ public enum SGReadyStateLv2Type implements Enumerator {
 	 */
 	public static SGReadyStateLv2Type get(int value) {
 		switch (value) {
-			case HPNORMAL_VALUE: return HPNORMAL;
-			case HPINTENSIVIED_VALUE: return HPINTENSIVIED;
+			case HPNULL_VALUE: return HPNULL;
 			case HPLOCKED_VALUE: return HPLOCKED;
+			case HPNORMAL_VALUE: return HPNORMAL;
+			case HPINTENSIFIED_VALUE: return HPINTENSIFIED;
 			case HPFORCED_VALUE: return HPFORCED;
 		}
 		return null;

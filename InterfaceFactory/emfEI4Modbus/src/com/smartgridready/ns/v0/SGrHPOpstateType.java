@@ -64,16 +64,6 @@ public enum SGrHPOpstateType implements Enumerator {
 	COMPRESSORRUNNING(3, "COMPRESSORRUNNING", "COMPRESSOR_RUNNING"),
 
 	/**
-	 * The '<em><b>SUMMERMODEACTIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUMMERMODEACTIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SUMMERMODEACTIVE(4, "SUMMERMODEACTIVE", "SUMMER_MODE_ACTIVE"),
-
-	/**
 	 * The '<em><b>COOLINGMODEACTIVE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,7 +71,7 @@ public enum SGrHPOpstateType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COOLINGMODEACTIVE(5, "COOLINGMODEACTIVE", "COOLING_MODE_ACTIVE"),
+	COOLINGMODEACTIVE(4, "COOLINGMODEACTIVE", "COOLING_MODE_ACTIVE"),
 
 	/**
 	 * The '<em><b>INDEFROSTMODE</b></em>' literal object.
@@ -91,7 +81,7 @@ public enum SGrHPOpstateType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INDEFROSTMODE(6, "INDEFROSTMODE", "IN_DEFROST_MODE");
+	INDEFROSTMODE(5, "INDEFROSTMODE", "IN_DEFROST_MODE");
 
 	/**
 	 * The '<em><b>HPPUMPON</b></em>' literal value.
@@ -138,17 +128,6 @@ public enum SGrHPOpstateType implements Enumerator {
 	public static final int COMPRESSORRUNNING_VALUE = 3;
 
 	/**
-	 * The '<em><b>SUMMERMODEACTIVE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUMMERMODEACTIVE
-	 * @model literal="SUMMER_MODE_ACTIVE"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SUMMERMODEACTIVE_VALUE = 4;
-
-	/**
 	 * The '<em><b>COOLINGMODEACTIVE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,7 +136,7 @@ public enum SGrHPOpstateType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COOLINGMODEACTIVE_VALUE = 5;
+	public static final int COOLINGMODEACTIVE_VALUE = 4;
 
 	/**
 	 * The '<em><b>INDEFROSTMODE</b></em>' literal value.
@@ -168,7 +147,7 @@ public enum SGrHPOpstateType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INDEFROSTMODE_VALUE = 6;
+	public static final int INDEFROSTMODE_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>SGr HP Opstate Type</b></em>' enumerators.
@@ -182,7 +161,6 @@ public enum SGrHPOpstateType implements Enumerator {
 			HPINHEATINGMODE,
 			HPINDHWMODE,
 			COMPRESSORRUNNING,
-			SUMMERMODEACTIVE,
 			COOLINGMODEACTIVE,
 			INDEFROSTMODE,
 		};
@@ -245,7 +223,6 @@ public enum SGrHPOpstateType implements Enumerator {
 			case HPINHEATINGMODE_VALUE: return HPINHEATINGMODE;
 			case HPINDHWMODE_VALUE: return HPINDHWMODE;
 			case COMPRESSORRUNNING_VALUE: return COMPRESSORRUNNING;
-			case SUMMERMODEACTIVE_VALUE: return SUMMERMODEACTIVE;
 			case COOLINGMODEACTIVE_VALUE: return COOLINGMODEACTIVE;
 			case INDEFROSTMODE_VALUE: return INDEFROSTMODE;
 		}

@@ -31,7 +31,7 @@ import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
-import com.smartgridready.ns.v0.SGrHPOpstateStiebelType;
+import com.smartgridready.ns.v0.StiHPOpstateType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.V0Factory;
 
