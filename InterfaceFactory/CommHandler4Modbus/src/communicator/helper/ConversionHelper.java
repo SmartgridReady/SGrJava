@@ -101,4 +101,12 @@ public class ConversionHelper {
         result[0] = (byte) (value);
         return result;
     }
+
+    public static boolean[] byteArrToBooleanArr(byte[] bytes) {
+        boolean[] bools = new boolean[bytes.length];
+        for (int i=0; i<bools.length; i++) {
+            bools[i] = bytes[i]!=0;
+        }
+        return bools;
+    }
 }

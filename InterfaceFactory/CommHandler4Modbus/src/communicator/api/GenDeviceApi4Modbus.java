@@ -146,6 +146,6 @@ public interface GenDeviceApi4Modbus {
      * @throws GenDriverSocketException In case of communication errors with the modbus device.
      * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
      */
-    void setValArrByGDPType(String profileName, String dataPointName, String[] values)
+    void setValArrByGDPType(String profileName, String dataPointName, SGrBasicGenDataPointTypeType[] values)
             throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
 }

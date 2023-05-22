@@ -18,6 +18,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.helper;
 
+import java.lang.reflect.InvocationTargetException;
+
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 
@@ -33,16 +35,16 @@ public class GenDriverLoader {
 		}
 	
 		try {
-			Object instance = clazz.newInstance();
+			Object instance = clazz.getDeclaredConstructor().newInstance();
 			if (instance instanceof GenDriverAPI4Modbus) {
 				return (GenDriverAPI4Modbus) instance;				
 			}
 			else {
 				throw new GenDriverException("Given class " + aClassName + " does not implement " + GenDriverAPI4Modbus.class.getName() );
 			}
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (Exception e) {
 			throw new GenDriverException("Unable to instantiate modbus driver.", e);
-		}				
+		}			
 	}
 
 }

@@ -96,7 +96,7 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
-		when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrame.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
+		// when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrame.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
 		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
 		
 		// when
@@ -123,7 +123,7 @@ class SGrRestAPIDeviceTest {
 		responseSequence.add(Either.left( new BasicClassicHttpResponse(401, "Needs token renewal.")));
 		responseSequence.add(Either.right(CLEMAP_METER_RESP));					
 
-		when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrame.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
+//		when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrame.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
 		when(restServiceClientReq.callService()).thenReturn(Either.left( 
 				new BasicClassicHttpResponse(401, "Needs token renewal.")),
 				Either.right(CLEMAP_METER_RESP));
