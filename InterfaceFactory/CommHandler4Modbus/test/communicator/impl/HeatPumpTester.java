@@ -375,7 +375,7 @@ public class HeatPumpTester {
 	{
 		 LOG.info(String.format("Error reading value from device dev: " + e));
 		e.printStackTrace();
-		devCTAoptiHeat_Exceptions++;
+		devHovalTCP_Exceptions++;
 	}
   }	
 		
@@ -687,7 +687,9 @@ public class HeatPumpTester {
 						  */
 											
 						  // control SG-Ready by enum SGReadyStateLv2Type
-		                  oEnumList.setSgreadyStateLv2(SGReadyStateLv2Type.HPNORMAL);
+						  gdtValue.setInt16U(120);
+						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp","remoteCtrlTimeSec",gdtValue);
+		                  oEnumList.setSgreadyStateLv2(SGReadyStateLv2Type.HPINTENSIFIED);
 						  SGrBasicGenDataPointTypeType  bwpCmd = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 						  bwpCmd.setEnum(oEnumList);
 						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd", bwpCmd);
@@ -695,7 +697,12 @@ public class HeatPumpTester {
 						  oEnumList.unsetSgreadyStateLv2();
 						}
 						
-			            // testing getters						
+			            // testing getters	
+						iVal1 =  devCTAoptiHeat.getValByGDPType("SG-ReadyStates_bwp","remoteCtrlTimeSec").getInt16U();
+						boolean bRem = true;
+						if (iVal1==0) bRem = false; 
+						LOG.info(String.format("  remoteCtrl: "  + bRem + "  remoteCtrlTimeSec=" + iVal1));
+						
 						oEnumListSet= devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ctaHPOpModeCmd").getEnum();
 						oEnumListGet = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ctaHPOpState").getEnum();						
 						iVal3 = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ErrorNrSGr").getInt16();
@@ -740,6 +747,7 @@ public class HeatPumpTester {
 						fVal2 = devCTAoptiHeat.getValByGDPType("RoomTempCtrl", "RoomZoneTemp").getFloat32();			
 						LOG.info(String.format("  RoomZoneTemp Stpt, Val   :  " + fVal1 + " °C,  " + fVal2 + "  °C "));       
 						LOG.info(String.format(" "));	
+						
 						
 						oEnumList = devCTAoptiHeat.getValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd").getEnum();                         
 						LOG.info(String.format("  SGReady-bwp:      SGReadyCmd=" + oEnumList.getSgreadyStateLv2().getLiteral()));
