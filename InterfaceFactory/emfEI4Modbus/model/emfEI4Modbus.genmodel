@@ -1298,7 +1298,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusBitmapMapperType/genBitMapper"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrModbusBooleanMapperType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusBooleanMapperType/isPositiveLogic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusBooleanMapperType/assignedValueMeans"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrModbusBooleanMapperType/value"/>
     </genClasses>
     <genClasses ecoreClass="v0.ecore#//SGrModbusDataPointDescriptionType">

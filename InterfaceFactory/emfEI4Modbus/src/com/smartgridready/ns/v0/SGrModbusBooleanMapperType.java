@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <!-- begin-model-doc -->
  * 
- *           Booleans at modbus level may be true if 1, 0, 0xff, -1 , all but not a certain value .
- *           isPositiveLogic is true if a number must contain a specific value to be valid
- *           isPositiveLogic is false if a number must contain any  but NOT a specific value to be valid  
+ *           If this attribute is not set, true means 1, false means 0
+ *           Booleans at modbus register level may use different schemas like anyvalue but x = true 
+ *           in this case, set  assignedValueMeans=false and value=x
  *          
  * <!-- end-model-doc -->
  *
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isIsPositiveLogic <em>Is Positive Logic</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isAssignedValueMeans <em>Assigned Value Means</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -31,54 +31,54 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SGrModbusBooleanMapperType extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Is Positive Logic</b></em>' attribute.
+	 * Returns the value of the '<em><b>Assigned Value Means</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Positive Logic</em>' attribute.
-	 * @see #isSetIsPositiveLogic()
-	 * @see #unsetIsPositiveLogic()
-	 * @see #setIsPositiveLogic(boolean)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusBooleanMapperType_IsPositiveLogic()
+	 * @return the value of the '<em>Assigned Value Means</em>' attribute.
+	 * @see #isSetAssignedValueMeans()
+	 * @see #unsetAssignedValueMeans()
+	 * @see #setAssignedValueMeans(boolean)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrModbusBooleanMapperType_AssignedValueMeans()
 	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean" required="true"
-	 *        extendedMetaData="kind='element' name='isPositiveLogic' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='assignedValueMeans' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	boolean isIsPositiveLogic();
+	boolean isAssignedValueMeans();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isIsPositiveLogic <em>Is Positive Logic</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isAssignedValueMeans <em>Assigned Value Means</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Positive Logic</em>' attribute.
-	 * @see #isSetIsPositiveLogic()
-	 * @see #unsetIsPositiveLogic()
-	 * @see #isIsPositiveLogic()
+	 * @param value the new value of the '<em>Assigned Value Means</em>' attribute.
+	 * @see #isSetAssignedValueMeans()
+	 * @see #unsetAssignedValueMeans()
+	 * @see #isAssignedValueMeans()
 	 * @generated
 	 */
-	void setIsPositiveLogic(boolean value);
+	void setAssignedValueMeans(boolean value);
 
 	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isIsPositiveLogic <em>Is Positive Logic</em>}' attribute.
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isAssignedValueMeans <em>Assigned Value Means</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetIsPositiveLogic()
-	 * @see #isIsPositiveLogic()
-	 * @see #setIsPositiveLogic(boolean)
+	 * @see #isSetAssignedValueMeans()
+	 * @see #isAssignedValueMeans()
+	 * @see #setAssignedValueMeans(boolean)
 	 * @generated
 	 */
-	void unsetIsPositiveLogic();
+	void unsetAssignedValueMeans();
 
 	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isIsPositiveLogic <em>Is Positive Logic</em>}' attribute is set.
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isAssignedValueMeans <em>Assigned Value Means</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Is Positive Logic</em>' attribute is set.
-	 * @see #unsetIsPositiveLogic()
-	 * @see #isIsPositiveLogic()
-	 * @see #setIsPositiveLogic(boolean)
+	 * @return whether the value of the '<em>Assigned Value Means</em>' attribute is set.
+	 * @see #unsetAssignedValueMeans()
+	 * @see #isAssignedValueMeans()
+	 * @see #setAssignedValueMeans(boolean)
 	 * @generated
 	 */
-	boolean isSetIsPositiveLogic();
+	boolean isSetAssignedValueMeans();
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.

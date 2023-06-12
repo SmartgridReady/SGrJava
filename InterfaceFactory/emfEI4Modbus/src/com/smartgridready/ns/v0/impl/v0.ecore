@@ -2598,12 +2598,12 @@
       <details key="name" value="SGrModbusBooleanMapperType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPositiveLogic" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignedValueMeans" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="isPositiveLogic"/>
+        <details key="name" value="assignedValueMeans"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>

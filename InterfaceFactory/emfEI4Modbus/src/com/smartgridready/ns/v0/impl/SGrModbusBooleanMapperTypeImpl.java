@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusBooleanMapperTypeImpl#isIsPositiveLogic <em>Is Positive Logic</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusBooleanMapperTypeImpl#isAssignedValueMeans <em>Assigned Value Means</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrModbusBooleanMapperTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -28,33 +28,33 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container implements SGrModbusBooleanMapperType {
 	/**
-	 * The default value of the '{@link #isIsPositiveLogic() <em>Is Positive Logic</em>}' attribute.
+	 * The default value of the '{@link #isAssignedValueMeans() <em>Assigned Value Means</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsPositiveLogic()
+	 * @see #isAssignedValueMeans()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_POSITIVE_LOGIC_EDEFAULT = false;
+	protected static final boolean ASSIGNED_VALUE_MEANS_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsPositiveLogic() <em>Is Positive Logic</em>}' attribute.
+	 * The cached value of the '{@link #isAssignedValueMeans() <em>Assigned Value Means</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsPositiveLogic()
+	 * @see #isAssignedValueMeans()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isPositiveLogic = IS_POSITIVE_LOGIC_EDEFAULT;
+	protected boolean assignedValueMeans = ASSIGNED_VALUE_MEANS_EDEFAULT;
 
 	/**
-	 * This is true if the Is Positive Logic attribute has been set.
+	 * This is true if the Assigned Value Means attribute has been set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isPositiveLogicESet;
+	protected boolean assignedValueMeansESet;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -110,8 +110,8 @@ public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public boolean isIsPositiveLogic() {
-		return isPositiveLogic;
+	public boolean isAssignedValueMeans() {
+		return assignedValueMeans;
 	}
 
 	/**
@@ -120,13 +120,13 @@ public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public void setIsPositiveLogic(boolean newIsPositiveLogic) {
-		boolean oldIsPositiveLogic = isPositiveLogic;
-		isPositiveLogic = newIsPositiveLogic;
-		boolean oldIsPositiveLogicESet = isPositiveLogicESet;
-		isPositiveLogicESet = true;
+	public void setAssignedValueMeans(boolean newAssignedValueMeans) {
+		boolean oldAssignedValueMeans = assignedValueMeans;
+		assignedValueMeans = newAssignedValueMeans;
+		boolean oldAssignedValueMeansESet = assignedValueMeansESet;
+		assignedValueMeansESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__IS_POSITIVE_LOGIC, oldIsPositiveLogic, isPositiveLogic, !oldIsPositiveLogicESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__ASSIGNED_VALUE_MEANS, oldAssignedValueMeans, assignedValueMeans, !oldAssignedValueMeansESet));
 	}
 
 	/**
@@ -135,13 +135,13 @@ public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public void unsetIsPositiveLogic() {
-		boolean oldIsPositiveLogic = isPositiveLogic;
-		boolean oldIsPositiveLogicESet = isPositiveLogicESet;
-		isPositiveLogic = IS_POSITIVE_LOGIC_EDEFAULT;
-		isPositiveLogicESet = false;
+	public void unsetAssignedValueMeans() {
+		boolean oldAssignedValueMeans = assignedValueMeans;
+		boolean oldAssignedValueMeansESet = assignedValueMeansESet;
+		assignedValueMeans = ASSIGNED_VALUE_MEANS_EDEFAULT;
+		assignedValueMeansESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__IS_POSITIVE_LOGIC, oldIsPositiveLogic, IS_POSITIVE_LOGIC_EDEFAULT, oldIsPositiveLogicESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__ASSIGNED_VALUE_MEANS, oldAssignedValueMeans, ASSIGNED_VALUE_MEANS_EDEFAULT, oldAssignedValueMeansESet));
 	}
 
 	/**
@@ -150,8 +150,8 @@ public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public boolean isSetIsPositiveLogic() {
-		return isPositiveLogicESet;
+	public boolean isSetAssignedValueMeans() {
+		return assignedValueMeansESet;
 	}
 
 	/**
@@ -212,8 +212,8 @@ public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__IS_POSITIVE_LOGIC:
-				return isIsPositiveLogic();
+			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__ASSIGNED_VALUE_MEANS:
+				return isAssignedValueMeans();
 			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__VALUE:
 				return getValue();
 		}
@@ -228,8 +228,8 @@ public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__IS_POSITIVE_LOGIC:
-				setIsPositiveLogic((Boolean)newValue);
+			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__ASSIGNED_VALUE_MEANS:
+				setAssignedValueMeans((Boolean)newValue);
 				return;
 			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__VALUE:
 				setValue((Long)newValue);
@@ -246,8 +246,8 @@ public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__IS_POSITIVE_LOGIC:
-				unsetIsPositiveLogic();
+			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__ASSIGNED_VALUE_MEANS:
+				unsetAssignedValueMeans();
 				return;
 			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__VALUE:
 				unsetValue();
@@ -264,8 +264,8 @@ public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__IS_POSITIVE_LOGIC:
-				return isSetIsPositiveLogic();
+			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__ASSIGNED_VALUE_MEANS:
+				return isSetAssignedValueMeans();
 			case V0Package.SGR_MODBUS_BOOLEAN_MAPPER_TYPE__VALUE:
 				return isSetValue();
 		}
@@ -282,8 +282,8 @@ public class SGrModbusBooleanMapperTypeImpl extends MinimalEObjectImpl.Container
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (isPositiveLogic: ");
-		if (isPositiveLogicESet) result.append(isPositiveLogic); else result.append("<unset>");
+		result.append(" (assignedValueMeans: ");
+		if (assignedValueMeansESet) result.append(assignedValueMeans); else result.append("<unset>");
 		result.append(", value: ");
 		if (valueESet) result.append(value); else result.append("<unset>");
 		result.append(')');

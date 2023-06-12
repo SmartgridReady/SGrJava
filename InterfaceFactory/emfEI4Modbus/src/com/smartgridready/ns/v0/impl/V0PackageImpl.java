@@ -3856,7 +3856,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrModbusBooleanMapperType_IsPositiveLogic() {
+	public EAttribute getSGrModbusBooleanMapperType_AssignedValueMeans() {
         return (EAttribute)getSGrModbusBooleanMapperType().getEStructuralFeatures().get(0);
 	}
 

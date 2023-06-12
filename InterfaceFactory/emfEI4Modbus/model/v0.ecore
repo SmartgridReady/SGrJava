@@ -3380,18 +3380,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrModbusBooleanMapperType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="&#xA;          Booleans at modbus level may be true if 1, 0, 0xff, -1 , all but not a certain value .&#xA;          isPositiveLogic is true if a number must contain a specific value to be valid&#xA;          isPositiveLogic is false if a number must contain any  but NOT a specific value to be valid  &#xA;         "/>
+      <details key="documentation" value="&#xA;          If this attribute is not set, true means 1, false means 0&#xA;          Booleans at modbus register level may use different schemas like anyvalue but x = true &#xA;          in this case, set  assignedValueMeans=false and value=x&#xA;         "/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrModbusBooleanMapperType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPositiveLogic" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignedValueMeans" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="isPositiveLogic"/>
+        <details key="name" value="assignedValueMeans"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>

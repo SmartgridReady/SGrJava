@@ -2785,13 +2785,13 @@ public interface V0Package extends EPackage {
 	int SGR_MODBUS_BOOLEAN_MAPPER_TYPE = 34;
 
 	/**
-	 * The feature id for the '<em><b>Is Positive Logic</b></em>' attribute.
+	 * The feature id for the '<em><b>Assigned Value Means</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_MODBUS_BOOLEAN_MAPPER_TYPE__IS_POSITIVE_LOGIC = 0;
+	int SGR_MODBUS_BOOLEAN_MAPPER_TYPE__ASSIGNED_VALUE_MEANS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -8695,15 +8695,15 @@ public interface V0Package extends EPackage {
 	EClass getSGrModbusBooleanMapperType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isIsPositiveLogic <em>Is Positive Logic</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isAssignedValueMeans <em>Assigned Value Means</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Positive Logic</em>'.
-	 * @see com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isIsPositiveLogic()
+	 * @return the meta object for the attribute '<em>Assigned Value Means</em>'.
+	 * @see com.smartgridready.ns.v0.SGrModbusBooleanMapperType#isAssignedValueMeans()
 	 * @see #getSGrModbusBooleanMapperType()
 	 * @generated
 	 */
-	EAttribute getSGrModbusBooleanMapperType_IsPositiveLogic();
+	EAttribute getSGrModbusBooleanMapperType_AssignedValueMeans();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrModbusBooleanMapperType#getValue <em>Value</em>}'.
