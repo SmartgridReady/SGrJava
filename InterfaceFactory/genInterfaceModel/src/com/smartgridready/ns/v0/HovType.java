@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * Ehov: 
+ * Ehov8: 
  * 
  * <!-- end-model-doc -->
  * @see com.smartgridready.ns.v0.V0Package#getHovType()

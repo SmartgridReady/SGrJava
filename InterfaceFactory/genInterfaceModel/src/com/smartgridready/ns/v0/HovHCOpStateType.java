@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * Ehov: 
+ * Ehov5: 
  *      Zustand Heizkreisregelung
  * #0 = Abgeschaltet
  * #1 = Normal Heizbetrieb

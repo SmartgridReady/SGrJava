@@ -22,15 +22,16 @@ import com.smartgridready.ns.v0.CtaDHWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.HovBufferStateType;
-import com.smartgridready.ns.v0.HovDomHotWaterStateType;
+import com.smartgridready.ns.v0.HovDomHotWOpModeType;
+import com.smartgridready.ns.v0.HovDomHotWStateType;
 import com.smartgridready.ns.v0.HovHCOpModeType;
 import com.smartgridready.ns.v0.HovHCOpStateType;
 import com.smartgridready.ns.v0.HovHPOpModeType;
+import com.smartgridready.ns.v0.HovHPOpStateType;
 import com.smartgridready.ns.v0.HovSGReadySrcSelType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
-import com.smartgridready.ns.v0.SGrDHWOpModeType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
@@ -239,9 +240,7 @@ public class GenType2StringConversion {
 		} else if (oGenVal.isSetSgrHPOpMode() ) {// E0016
 			rval = oGenVal.getSgrHPOpMode().toString();
 		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
-			rval = oGenVal.getSgrHCOpMode().toString();
-		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
-			rval = oGenVal.getSgrDHWOpMode().toString();
+			rval = oGenVal.getSgrHCOpMode().toString();         
 		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
 			rval = oGenVal.getCtaDHWOpMode().toString();
 		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
@@ -258,8 +257,12 @@ public class GenType2StringConversion {
 			rval = oGenVal.getHovBufferState().toString();
 		} else if (oGenVal.isSetHovHCOpState()) {// hov005
 			rval = oGenVal.getHovHCOpState().toString();
-		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
-			rval = oGenVal.getHovDomHotWaterState().toString();
+		} else if (oGenVal.isSetHovDomHotWState()) {// hov006
+			rval = oGenVal.getHovDomHotWState().toString();
+		} else if (oGenVal.isSetHovDomHotWOpMode()) {// E007
+			rval = oGenVal.getHovDomHotWOpMode().toString();  
+		} else if (oGenVal.isSetCtaHPOpState()) {// hov008
+			rval = oGenVal.getHovHPOpState().toString();
 		} else {
 			throw new IllegalArgumentException("Given SGrEnumListType is not set OR not handled by the current implementation.");
 		}
@@ -306,9 +309,7 @@ public class GenType2StringConversion {
 		} else if (oGenVal.isSetSgrHPOpMode() ) {// E0016
 			rval.setSgrHPOpMode(SGrHPOpModeType.getByName(val));
 		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
-			rval.setSgrHCOpMode(SGrHCOpModeType.getByName(val));
-		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
-			rval.setSgrDHWOpMode(SGrDHWOpModeType.getByName(val));
+			rval.setSgrHCOpMode(SGrHCOpModeType.getByName(val));;
 		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
 			rval.setCtaDHWOpMode(CtaDHWOpModeType.getByName(val));
 		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
@@ -325,8 +326,13 @@ public class GenType2StringConversion {
 			rval.setHovBufferState(HovBufferStateType.getByName(val));
 		} else if (oGenVal.isSetHovHCOpState()) {// hov005
 			rval.setHovHCOpState(HovHCOpStateType.getByName(val));
-		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
-			rval.setHovDomHotWaterState(HovDomHotWaterStateType.getByName(val));
+		} else if (oGenVal.isSetHovDomHotWState()) {// hov006
+			rval.setHovDomHotWState(HovDomHotWStateType.getByName(val));
+		} else if (oGenVal.isSetHovDomHotWOpMode()) {// Ehov007
+			rval.setHovDomHotWOpMode(HovDomHotWOpModeType.getByName(val));
+		} else if (oGenVal.isSetHovHPOpState()) {// hov008			
+			rval.setHovHPOpState(HovHPOpStateType.getByName(val));
+			
 		} else {
 			throw new IllegalArgumentException("Given SGrEnumListType is not set OR not handled by the current implementation.");
 		}

@@ -277,13 +277,22 @@ public interface V0Package extends EPackage {
 	int SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE = 15;
 
 	/**
+	 * The feature id for the '<em><b>Unit Conversion Multiplicator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ATTR4_GENERIC_TYPE__UNIT_CONVERSION_MULTIPLICATOR = 16;
+
+	/**
 	 * The number of structural features of the '<em>SGr Attr4 Generic Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ATTR4_GENERIC_TYPE_FEATURE_COUNT = 16;
+	int SGR_ATTR4_GENERIC_TYPE_FEATURE_COUNT = 17;
 
 	/**
 	 * The number of operations of the '<em>SGr Attr4 Generic Type</em>' class.
@@ -1149,22 +1158,13 @@ public interface V0Package extends EPackage {
 	int SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE = 14;
 
 	/**
-	 * The feature id for the '<em><b>Sgr DHW Op Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SGR_ENUM_LIST_TYPE__SGR_DHW_OP_MODE = 15;
-
-	/**
 	 * The feature id for the '<em><b>Cta DHW Op Mode</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE = 16;
+	int SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Cta HP Op State</b></em>' attribute.
@@ -1173,7 +1173,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE = 17;
+	int SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Cta HP Op Mode</b></em>' attribute.
@@ -1182,7 +1182,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE = 18;
+	int SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Cta HC Op Mode</b></em>' attribute.
@@ -1191,7 +1191,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__CTA_HC_OP_MODE = 19;
+	int SGR_ENUM_LIST_TYPE__CTA_HC_OP_MODE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Hov HP Op Mode</b></em>' attribute.
@@ -1200,7 +1200,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__HOV_HP_OP_MODE = 20;
+	int SGR_ENUM_LIST_TYPE__HOV_HP_OP_MODE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Hov HC Op Mode</b></em>' attribute.
@@ -1209,7 +1209,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__HOV_HC_OP_MODE = 21;
+	int SGR_ENUM_LIST_TYPE__HOV_HC_OP_MODE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Hov SG Ready Src Sel</b></em>' attribute.
@@ -1218,7 +1218,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__HOV_SG_READY_SRC_SEL = 22;
+	int SGR_ENUM_LIST_TYPE__HOV_SG_READY_SRC_SEL = 21;
 
 	/**
 	 * The feature id for the '<em><b>Hov Buffer State</b></em>' attribute.
@@ -1227,7 +1227,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__HOV_BUFFER_STATE = 23;
+	int SGR_ENUM_LIST_TYPE__HOV_BUFFER_STATE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Hov HC Op State</b></em>' attribute.
@@ -1236,16 +1236,34 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__HOV_HC_OP_STATE = 24;
+	int SGR_ENUM_LIST_TYPE__HOV_HC_OP_STATE = 23;
 
 	/**
-	 * The feature id for the '<em><b>Hov Dom Hot Water State</b></em>' attribute.
+	 * The feature id for the '<em><b>Hov Dom Hot WOp Mode</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WATER_STATE = 25;
+	int SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WOP_MODE = 24;
+
+	/**
+	 * The feature id for the '<em><b>Hov Dom Hot WState</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WSTATE = 25;
+
+	/**
+	 * The feature id for the '<em><b>Hov HP Op State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SGR_ENUM_LIST_TYPE__HOV_HP_OP_STATE = 26;
 
 	/**
 	 * The number of structural features of the '<em>SGr Enum List Type</em>' class.
@@ -1254,7 +1272,7 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE_FEATURE_COUNT = 26;
+	int SGR_ENUM_LIST_TYPE_FEATURE_COUNT = 27;
 
 	/**
 	 * The number of operations of the '<em>SGr Enum List Type</em>' class.
@@ -2139,14 +2157,24 @@ public interface V0Package extends EPackage {
 	int HOV_BUFFER_STATE_TYPE = 27;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovDomHotWaterStateType <em>Hov Dom Hot Water State Type</em>}' enum.
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovDomHotWOpModeType <em>Hov Dom Hot WOp Mode Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.HovDomHotWaterStateType
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovDomHotWaterStateType()
+	 * @see com.smartgridready.ns.v0.HovDomHotWOpModeType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovDomHotWOpModeType()
 	 * @generated
 	 */
-	int HOV_DOM_HOT_WATER_STATE_TYPE = 28;
+	int HOV_DOM_HOT_WOP_MODE_TYPE = 28;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovDomHotWStateType <em>Hov Dom Hot WState Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.HovDomHotWStateType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovDomHotWStateType()
+	 * @generated
+	 */
+	int HOV_DOM_HOT_WSTATE_TYPE = 29;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovHCOpModeType <em>Hov HC Op Mode Type</em>}' enum.
@@ -2156,7 +2184,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHCOpModeType()
 	 * @generated
 	 */
-	int HOV_HC_OP_MODE_TYPE = 29;
+	int HOV_HC_OP_MODE_TYPE = 30;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovHCOpStateType <em>Hov HC Op State Type</em>}' enum.
@@ -2166,7 +2194,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHCOpStateType()
 	 * @generated
 	 */
-	int HOV_HC_OP_STATE_TYPE = 30;
+	int HOV_HC_OP_STATE_TYPE = 31;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovHPActBufferStateType <em>Hov HP Act Buffer State Type</em>}' enum.
@@ -2176,7 +2204,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHPActBufferStateType()
 	 * @generated
 	 */
-	int HOV_HP_ACT_BUFFER_STATE_TYPE = 31;
+	int HOV_HP_ACT_BUFFER_STATE_TYPE = 32;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovHPOpModeType <em>Hov HP Op Mode Type</em>}' enum.
@@ -2186,7 +2214,17 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHPOpModeType()
 	 * @generated
 	 */
-	int HOV_HP_OP_MODE_TYPE = 32;
+	int HOV_HP_OP_MODE_TYPE = 33;
+
+	/**
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovHPOpStateType <em>Hov HP Op State Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.HovHPOpStateType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHPOpStateType()
+	 * @generated
+	 */
+	int HOV_HP_OP_STATE_TYPE = 34;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovSGReadySrcSelType <em>Hov SG Ready Src Sel Type</em>}' enum.
@@ -2196,7 +2234,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovSGReadySrcSelType()
 	 * @generated
 	 */
-	int HOV_SG_READY_SRC_SEL_TYPE = 33;
+	int HOV_SG_READY_SRC_SEL_TYPE = 35;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.HovType <em>Hov Type</em>}' enum.
@@ -2206,7 +2244,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovType()
 	 * @generated
 	 */
-	int HOV_TYPE = 34;
+	int HOV_TYPE = 36;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.LevelOfOperationType <em>Level Of Operation Type</em>}' enum.
@@ -2216,7 +2254,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getLevelOfOperationType()
 	 * @generated
 	 */
-	int LEVEL_OF_OPERATION_TYPE = 35;
+	int LEVEL_OF_OPERATION_TYPE = 37;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.ProfileTypeEnumType <em>Profile Type Enum Type</em>}' enum.
@@ -2226,7 +2264,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getProfileTypeEnumType()
 	 * @generated
 	 */
-	int PROFILE_TYPE_ENUM_TYPE = 36;
+	int PROFILE_TYPE_ENUM_TYPE = 38;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrBool2BitRankType <em>SGr Bool2 Bit Rank Type</em>}' enum.
@@ -2236,7 +2274,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrBool2BitRankType()
 	 * @generated
 	 */
-	int SGR_BOOL2_BIT_RANK_TYPE = 37;
+	int SGR_BOOL2_BIT_RANK_TYPE = 39;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrDeviceKindType <em>SGr Device Kind Type</em>}' enum.
@@ -2246,17 +2284,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDeviceKindType()
 	 * @generated
 	 */
-	int SGR_DEVICE_KIND_TYPE = 38;
-
-	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrDHWOpModeType <em>SGr DHW Op Mode Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.SGrDHWOpModeType
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDHWOpModeType()
-	 * @generated
-	 */
-	int SGR_DHW_OP_MODE_TYPE = 39;
+	int SGR_DEVICE_KIND_TYPE = 40;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGReadyStateLv1Type <em>SG Ready State Lv1 Type</em>}' enum.
@@ -2266,7 +2294,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGReadyStateLv1Type()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV1_TYPE = 40;
+	int SG_READY_STATE_LV1_TYPE = 41;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGReadyStateLv2Type <em>SG Ready State Lv2 Type</em>}' enum.
@@ -2276,7 +2304,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGReadyStateLv2Type()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV2_TYPE = 41;
+	int SG_READY_STATE_LV2_TYPE = 42;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrEVSEStateLv1Type <em>SGr EVSE State Lv1 Type</em>}' enum.
@@ -2286,7 +2314,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrEVSEStateLv1Type()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV1_TYPE = 42;
+	int SGR_EVSE_STATE_LV1_TYPE = 43;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrEVSEStateLv2Type <em>SGr EVSE State Lv2 Type</em>}' enum.
@@ -2296,7 +2324,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrEVSEStateLv2Type()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV2_TYPE = 43;
+	int SGR_EVSE_STATE_LV2_TYPE = 44;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrEVStateType <em>SGr EV State Type</em>}' enum.
@@ -2306,7 +2334,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrEVStateType()
 	 * @generated
 	 */
-	int SGR_EV_STATE_TYPE = 44;
+	int SGR_EV_STATE_TYPE = 45;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrHCOpModeType <em>SGr HC Op Mode Type</em>}' enum.
@@ -2316,7 +2344,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrHCOpModeType()
 	 * @generated
 	 */
-	int SGR_HC_OP_MODE_TYPE = 45;
+	int SGR_HC_OP_MODE_TYPE = 46;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SgrHCOpStateType <em>Sgr HC Op State Type</em>}' enum.
@@ -2326,7 +2354,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSgrHCOpStateType()
 	 * @generated
 	 */
-	int SGR_HC_OP_STATE_TYPE = 46;
+	int SGR_HC_OP_STATE_TYPE = 47;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrHPOpModeType <em>SGr HP Op Mode Type</em>}' enum.
@@ -2336,7 +2364,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrHPOpModeType()
 	 * @generated
 	 */
-	int SGR_HP_OP_MODE_TYPE = 47;
+	int SGR_HP_OP_MODE_TYPE = 48;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrHPOpstateType <em>SGr HP Opstate Type</em>}' enum.
@@ -2346,7 +2374,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrHPOpstateType()
 	 * @generated
 	 */
-	int SGR_HP_OPSTATE_TYPE = 48;
+	int SGR_HP_OPSTATE_TYPE = 49;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrLanguageType <em>SGr Language Type</em>}' enum.
@@ -2356,7 +2384,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrLanguageType()
 	 * @generated
 	 */
-	int SGR_LANGUAGE_TYPE = 49;
+	int SGR_LANGUAGE_TYPE = 50;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrManufacturerIDType <em>SGr Manufacturer ID Type</em>}' enum.
@@ -2366,7 +2394,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrManufacturerIDType()
 	 * @generated
 	 */
-	int SGR_MANUFACTURER_ID_TYPE = 50;
+	int SGR_MANUFACTURER_ID_TYPE = 51;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrMeasValueSourceType <em>SGr Meas Value Source Type</em>}' enum.
@@ -2376,7 +2404,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMeasValueSourceType()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_SOURCE_TYPE = 51;
+	int SGR_MEAS_VALUE_SOURCE_TYPE = 52;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrMeasValueType <em>SGr Meas Value Type</em>}' enum.
@@ -2386,7 +2414,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMeasValueType()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_TYPE = 52;
+	int SGR_MEAS_VALUE_TYPE = 53;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrMROPresenceLevelIndicationType <em>SGr MRO Presence Level Indication Type</em>}' enum.
@@ -2396,7 +2424,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMROPresenceLevelIndicationType()
 	 * @generated
 	 */
-	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE = 53;
+	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE = 54;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrObligLvlType <em>SGr Oblig Lvl Type</em>}' enum.
@@ -2406,7 +2434,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrObligLvlType()
 	 * @generated
 	 */
-	int SGR_OBLIG_LVL_TYPE = 54;
+	int SGR_OBLIG_LVL_TYPE = 55;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrOCPPStateType <em>SGr OCPP State Type</em>}' enum.
@@ -2416,7 +2444,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrOCPPStateType()
 	 * @generated
 	 */
-	int SGR_OCPP_STATE_TYPE = 55;
+	int SGR_OCPP_STATE_TYPE = 56;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrPowerSourceType <em>SGr Power Source Type</em>}' enum.
@@ -2426,7 +2454,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrPowerSourceType()
 	 * @generated
 	 */
-	int SGR_POWER_SOURCE_TYPE = 56;
+	int SGR_POWER_SOURCE_TYPE = 57;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrReleaseState <em>SGr Release State</em>}' enum.
@@ -2436,7 +2464,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrReleaseState()
 	 * @generated
 	 */
-	int SGR_RELEASE_STATE = 57;
+	int SGR_RELEASE_STATE = 58;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrRWPType <em>SGr RWP Type</em>}' enum.
@@ -2446,7 +2474,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRWPType()
 	 * @generated
 	 */
-	int SGR_RWP_TYPE = 58;
+	int SGR_RWP_TYPE = 59;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrSGCPFeedInStateLv2Type <em>SGr SGCP Feed In State Lv2 Type</em>}' enum.
@@ -2456,7 +2484,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPFeedInStateLv2Type()
 	 * @generated
 	 */
-	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE = 59;
+	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE = 60;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrSGCPLoadStateLv2Type <em>SGr SGCP Load State Lv2 Type</em>}' enum.
@@ -2466,7 +2494,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPLoadStateLv2Type()
 	 * @generated
 	 */
-	int SGR_SGCP_LOAD_STATE_LV2_TYPE = 60;
+	int SGR_SGCP_LOAD_STATE_LV2_TYPE = 61;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrSGCPServiceType <em>SGr SGCP Service Type</em>}' enum.
@@ -2476,7 +2504,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPServiceType()
 	 * @generated
 	 */
-	int SGR_SGCP_SERVICE_TYPE = 61;
+	int SGR_SGCP_SERVICE_TYPE = 62;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrSunspStateCodesType <em>SGr Sunsp State Codes Type</em>}' enum.
@@ -2486,7 +2514,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSunspStateCodesType()
 	 * @generated
 	 */
-	int SGR_SUNSP_STATE_CODES_TYPE = 62;
+	int SGR_SUNSP_STATE_CODES_TYPE = 63;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrTransportServicesUsedListType <em>SGr Transport Services Used List Type</em>}' enum.
@@ -2496,7 +2524,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrTransportServicesUsedListType()
 	 * @generated
 	 */
-	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE = 63;
+	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE = 64;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SGrUnits <em>SGr Units</em>}' enum.
@@ -2506,7 +2534,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrUnits()
 	 * @generated
 	 */
-	int SGR_UNITS = 64;
+	int SGR_UNITS = 65;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.StiHPOpstateType <em>Sti HP Opstate Type</em>}' enum.
@@ -2516,7 +2544,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getStiHPOpstateType()
 	 * @generated
 	 */
-	int STI_HP_OPSTATE_TYPE = 65;
+	int STI_HP_OPSTATE_TYPE = 66;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.SubProfileTypeEnumType <em>Sub Profile Type Enum Type</em>}' enum.
@@ -2526,7 +2554,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSubProfileTypeEnumType()
 	 * @generated
 	 */
-	int SUB_PROFILE_TYPE_ENUM_TYPE = 66;
+	int SUB_PROFILE_TYPE_ENUM_TYPE = 67;
 
 	/**
 	 * The meta object id for the '<em>Cta DHW Op Mode Type Object</em>' data type.
@@ -2536,7 +2564,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getCtaDHWOpModeTypeObject()
 	 * @generated
 	 */
-	int CTA_DHW_OP_MODE_TYPE_OBJECT = 67;
+	int CTA_DHW_OP_MODE_TYPE_OBJECT = 68;
 
 	/**
 	 * The meta object id for the '<em>Cta HC Op Mode Type Object</em>' data type.
@@ -2546,7 +2574,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getCtaHCOpModeTypeObject()
 	 * @generated
 	 */
-	int CTA_HC_OP_MODE_TYPE_OBJECT = 68;
+	int CTA_HC_OP_MODE_TYPE_OBJECT = 69;
 
 	/**
 	 * The meta object id for the '<em>Cta HP Op Mode Type Object</em>' data type.
@@ -2556,7 +2584,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getCtaHPOpModeTypeObject()
 	 * @generated
 	 */
-	int CTA_HP_OP_MODE_TYPE_OBJECT = 69;
+	int CTA_HP_OP_MODE_TYPE_OBJECT = 70;
 
 	/**
 	 * The meta object id for the '<em>Cta HP Op State Type Object</em>' data type.
@@ -2566,7 +2594,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getCtaHPOpStateTypeObject()
 	 * @generated
 	 */
-	int CTA_HP_OP_STATE_TYPE_OBJECT = 70;
+	int CTA_HP_OP_STATE_TYPE_OBJECT = 71;
 
 	/**
 	 * The meta object id for the '<em>Hov Buffer State Type Object</em>' data type.
@@ -2576,17 +2604,27 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovBufferStateTypeObject()
 	 * @generated
 	 */
-	int HOV_BUFFER_STATE_TYPE_OBJECT = 71;
+	int HOV_BUFFER_STATE_TYPE_OBJECT = 72;
 
 	/**
-	 * The meta object id for the '<em>Hov Dom Hot Water State Type Object</em>' data type.
+	 * The meta object id for the '<em>Hov Dom Hot WOp Mode Type Object</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.HovDomHotWaterStateType
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovDomHotWaterStateTypeObject()
+	 * @see com.smartgridready.ns.v0.HovDomHotWOpModeType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovDomHotWOpModeTypeObject()
 	 * @generated
 	 */
-	int HOV_DOM_HOT_WATER_STATE_TYPE_OBJECT = 72;
+	int HOV_DOM_HOT_WOP_MODE_TYPE_OBJECT = 73;
+
+	/**
+	 * The meta object id for the '<em>Hov Dom Hot WState Type Object</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.HovDomHotWStateType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovDomHotWStateTypeObject()
+	 * @generated
+	 */
+	int HOV_DOM_HOT_WSTATE_TYPE_OBJECT = 74;
 
 	/**
 	 * The meta object id for the '<em>Hov HC Op Mode Type Object</em>' data type.
@@ -2596,7 +2634,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHCOpModeTypeObject()
 	 * @generated
 	 */
-	int HOV_HC_OP_MODE_TYPE_OBJECT = 73;
+	int HOV_HC_OP_MODE_TYPE_OBJECT = 75;
 
 	/**
 	 * The meta object id for the '<em>Hov HC Op State Type Object</em>' data type.
@@ -2606,7 +2644,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHCOpStateTypeObject()
 	 * @generated
 	 */
-	int HOV_HC_OP_STATE_TYPE_OBJECT = 74;
+	int HOV_HC_OP_STATE_TYPE_OBJECT = 76;
 
 	/**
 	 * The meta object id for the '<em>Hov HP Act Buffer State Type Object</em>' data type.
@@ -2616,7 +2654,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHPActBufferStateTypeObject()
 	 * @generated
 	 */
-	int HOV_HP_ACT_BUFFER_STATE_TYPE_OBJECT = 75;
+	int HOV_HP_ACT_BUFFER_STATE_TYPE_OBJECT = 77;
 
 	/**
 	 * The meta object id for the '<em>Hov HP Op Mode Type Object</em>' data type.
@@ -2626,7 +2664,17 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHPOpModeTypeObject()
 	 * @generated
 	 */
-	int HOV_HP_OP_MODE_TYPE_OBJECT = 76;
+	int HOV_HP_OP_MODE_TYPE_OBJECT = 78;
+
+	/**
+	 * The meta object id for the '<em>Hov HP Op State Type Object</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.smartgridready.ns.v0.HovHPOpStateType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovHPOpStateTypeObject()
+	 * @generated
+	 */
+	int HOV_HP_OP_STATE_TYPE_OBJECT = 79;
 
 	/**
 	 * The meta object id for the '<em>Hov SG Ready Src Sel Type Object</em>' data type.
@@ -2636,7 +2684,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovSGReadySrcSelTypeObject()
 	 * @generated
 	 */
-	int HOV_SG_READY_SRC_SEL_TYPE_OBJECT = 77;
+	int HOV_SG_READY_SRC_SEL_TYPE_OBJECT = 80;
 
 	/**
 	 * The meta object id for the '<em>Hov Type Object</em>' data type.
@@ -2646,7 +2694,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getHovTypeObject()
 	 * @generated
 	 */
-	int HOV_TYPE_OBJECT = 78;
+	int HOV_TYPE_OBJECT = 81;
 
 	/**
 	 * The meta object id for the '<em>Level Of Operation Type Object</em>' data type.
@@ -2656,7 +2704,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getLevelOfOperationTypeObject()
 	 * @generated
 	 */
-	int LEVEL_OF_OPERATION_TYPE_OBJECT = 79;
+	int LEVEL_OF_OPERATION_TYPE_OBJECT = 82;
 
 	/**
 	 * The meta object id for the '<em>Profile Type Enum Type Object</em>' data type.
@@ -2666,7 +2714,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getProfileTypeEnumTypeObject()
 	 * @generated
 	 */
-	int PROFILE_TYPE_ENUM_TYPE_OBJECT = 80;
+	int PROFILE_TYPE_ENUM_TYPE_OBJECT = 83;
 
 	/**
 	 * The meta object id for the '<em>SGr Bool2 Bit Rank Type Object</em>' data type.
@@ -2676,7 +2724,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrBool2BitRankTypeObject()
 	 * @generated
 	 */
-	int SGR_BOOL2_BIT_RANK_TYPE_OBJECT = 81;
+	int SGR_BOOL2_BIT_RANK_TYPE_OBJECT = 84;
 
 	/**
 	 * The meta object id for the '<em>SGr Device Kind Type Object</em>' data type.
@@ -2686,17 +2734,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDeviceKindTypeObject()
 	 * @generated
 	 */
-	int SGR_DEVICE_KIND_TYPE_OBJECT = 82;
-
-	/**
-	 * The meta object id for the '<em>SGr DHW Op Mode Type Object</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.SGrDHWOpModeType
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrDHWOpModeTypeObject()
-	 * @generated
-	 */
-	int SGR_DHW_OP_MODE_TYPE_OBJECT = 83;
+	int SGR_DEVICE_KIND_TYPE_OBJECT = 85;
 
 	/**
 	 * The meta object id for the '<em>SG Ready State Lv1 Type Object</em>' data type.
@@ -2706,7 +2744,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGReadyStateLv1TypeObject()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV1_TYPE_OBJECT = 84;
+	int SG_READY_STATE_LV1_TYPE_OBJECT = 86;
 
 	/**
 	 * The meta object id for the '<em>SG Ready State Lv2 Type Object</em>' data type.
@@ -2716,7 +2754,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGReadyStateLv2TypeObject()
 	 * @generated
 	 */
-	int SG_READY_STATE_LV2_TYPE_OBJECT = 85;
+	int SG_READY_STATE_LV2_TYPE_OBJECT = 87;
 
 	/**
 	 * The meta object id for the '<em>SGr EVSE State Lv1 Type Object</em>' data type.
@@ -2726,7 +2764,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrEVSEStateLv1TypeObject()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV1_TYPE_OBJECT = 86;
+	int SGR_EVSE_STATE_LV1_TYPE_OBJECT = 88;
 
 	/**
 	 * The meta object id for the '<em>SGr EVSE State Lv2 Type Object</em>' data type.
@@ -2736,7 +2774,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrEVSEStateLv2TypeObject()
 	 * @generated
 	 */
-	int SGR_EVSE_STATE_LV2_TYPE_OBJECT = 87;
+	int SGR_EVSE_STATE_LV2_TYPE_OBJECT = 89;
 
 	/**
 	 * The meta object id for the '<em>SGr EV State Type Object</em>' data type.
@@ -2746,7 +2784,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrEVStateTypeObject()
 	 * @generated
 	 */
-	int SGR_EV_STATE_TYPE_OBJECT = 88;
+	int SGR_EV_STATE_TYPE_OBJECT = 90;
 
 	/**
 	 * The meta object id for the '<em>SGr HC Op Mode Type Object</em>' data type.
@@ -2756,7 +2794,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrHCOpModeTypeObject()
 	 * @generated
 	 */
-	int SGR_HC_OP_MODE_TYPE_OBJECT = 89;
+	int SGR_HC_OP_MODE_TYPE_OBJECT = 91;
 
 	/**
 	 * The meta object id for the '<em>Sgr HC Op State Type Object</em>' data type.
@@ -2766,7 +2804,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSgrHCOpStateTypeObject()
 	 * @generated
 	 */
-	int SGR_HC_OP_STATE_TYPE_OBJECT = 90;
+	int SGR_HC_OP_STATE_TYPE_OBJECT = 92;
 
 	/**
 	 * The meta object id for the '<em>SGr HP Op Mode Type Object</em>' data type.
@@ -2776,7 +2814,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrHPOpModeTypeObject()
 	 * @generated
 	 */
-	int SGR_HP_OP_MODE_TYPE_OBJECT = 91;
+	int SGR_HP_OP_MODE_TYPE_OBJECT = 93;
 
 	/**
 	 * The meta object id for the '<em>SGr HP Opstate Type Object</em>' data type.
@@ -2786,7 +2824,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrHPOpstateTypeObject()
 	 * @generated
 	 */
-	int SGR_HP_OPSTATE_TYPE_OBJECT = 92;
+	int SGR_HP_OPSTATE_TYPE_OBJECT = 94;
 
 	/**
 	 * The meta object id for the '<em>SGr Language Type Object</em>' data type.
@@ -2796,7 +2834,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrLanguageTypeObject()
 	 * @generated
 	 */
-	int SGR_LANGUAGE_TYPE_OBJECT = 93;
+	int SGR_LANGUAGE_TYPE_OBJECT = 95;
 
 	/**
 	 * The meta object id for the '<em>SGr Manufacturer ID Type Object</em>' data type.
@@ -2806,7 +2844,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrManufacturerIDTypeObject()
 	 * @generated
 	 */
-	int SGR_MANUFACTURER_ID_TYPE_OBJECT = 94;
+	int SGR_MANUFACTURER_ID_TYPE_OBJECT = 96;
 
 	/**
 	 * The meta object id for the '<em>SGr Meas Value Source Type Object</em>' data type.
@@ -2816,7 +2854,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMeasValueSourceTypeObject()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_SOURCE_TYPE_OBJECT = 95;
+	int SGR_MEAS_VALUE_SOURCE_TYPE_OBJECT = 97;
 
 	/**
 	 * The meta object id for the '<em>SGr Meas Value Type Object</em>' data type.
@@ -2826,7 +2864,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMeasValueTypeObject()
 	 * @generated
 	 */
-	int SGR_MEAS_VALUE_TYPE_OBJECT = 96;
+	int SGR_MEAS_VALUE_TYPE_OBJECT = 98;
 
 	/**
 	 * The meta object id for the '<em>SGr MRO Presence Level Indication Type Object</em>' data type.
@@ -2836,7 +2874,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrMROPresenceLevelIndicationTypeObject()
 	 * @generated
 	 */
-	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT = 97;
+	int SGR_MRO_PRESENCE_LEVEL_INDICATION_TYPE_OBJECT = 99;
 
 	/**
 	 * The meta object id for the '<em>SGr Oblig Lvl Type Object</em>' data type.
@@ -2846,7 +2884,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrObligLvlTypeObject()
 	 * @generated
 	 */
-	int SGR_OBLIG_LVL_TYPE_OBJECT = 98;
+	int SGR_OBLIG_LVL_TYPE_OBJECT = 100;
 
 	/**
 	 * The meta object id for the '<em>SGr OCPP State Type Object</em>' data type.
@@ -2856,7 +2894,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrOCPPStateTypeObject()
 	 * @generated
 	 */
-	int SGR_OCPP_STATE_TYPE_OBJECT = 99;
+	int SGR_OCPP_STATE_TYPE_OBJECT = 101;
 
 	/**
 	 * The meta object id for the '<em>SGr Power Source Type Object</em>' data type.
@@ -2866,7 +2904,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrPowerSourceTypeObject()
 	 * @generated
 	 */
-	int SGR_POWER_SOURCE_TYPE_OBJECT = 100;
+	int SGR_POWER_SOURCE_TYPE_OBJECT = 102;
 
 	/**
 	 * The meta object id for the '<em>SGr Precision Type</em>' data type.
@@ -2875,7 +2913,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrPrecisionType()
 	 * @generated
 	 */
-	int SGR_PRECISION_TYPE = 101;
+	int SGR_PRECISION_TYPE = 103;
 
 	/**
 	 * The meta object id for the '<em>SGr Precision Type Object</em>' data type.
@@ -2885,7 +2923,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrPrecisionTypeObject()
 	 * @generated
 	 */
-	int SGR_PRECISION_TYPE_OBJECT = 102;
+	int SGR_PRECISION_TYPE_OBJECT = 104;
 
 	/**
 	 * The meta object id for the '<em>SGr Release State Object</em>' data type.
@@ -2895,7 +2933,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrReleaseStateObject()
 	 * @generated
 	 */
-	int SGR_RELEASE_STATE_OBJECT = 103;
+	int SGR_RELEASE_STATE_OBJECT = 105;
 
 	/**
 	 * The meta object id for the '<em>SGr RWP Type Object</em>' data type.
@@ -2905,7 +2943,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrRWPTypeObject()
 	 * @generated
 	 */
-	int SGR_RWP_TYPE_OBJECT = 104;
+	int SGR_RWP_TYPE_OBJECT = 106;
 
 	/**
 	 * The meta object id for the '<em>SGr SGCP Feed In State Lv2 Type Object</em>' data type.
@@ -2915,7 +2953,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPFeedInStateLv2TypeObject()
 	 * @generated
 	 */
-	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE_OBJECT = 105;
+	int SGR_SGCP_FEED_IN_STATE_LV2_TYPE_OBJECT = 107;
 
 	/**
 	 * The meta object id for the '<em>SGr SGCP Load State Lv2 Type Object</em>' data type.
@@ -2925,7 +2963,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPLoadStateLv2TypeObject()
 	 * @generated
 	 */
-	int SGR_SGCP_LOAD_STATE_LV2_TYPE_OBJECT = 106;
+	int SGR_SGCP_LOAD_STATE_LV2_TYPE_OBJECT = 108;
 
 	/**
 	 * The meta object id for the '<em>SGr SGCP Service Type Object</em>' data type.
@@ -2935,7 +2973,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSGCPServiceTypeObject()
 	 * @generated
 	 */
-	int SGR_SGCP_SERVICE_TYPE_OBJECT = 107;
+	int SGR_SGCP_SERVICE_TYPE_OBJECT = 109;
 
 	/**
 	 * The meta object id for the '<em>SGr Special Quality Req Type</em>' data type.
@@ -2945,7 +2983,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSpecialQualityReqType()
 	 * @generated
 	 */
-	int SGR_SPECIAL_QUALITY_REQ_TYPE = 108;
+	int SGR_SPECIAL_QUALITY_REQ_TYPE = 110;
 
 	/**
 	 * The meta object id for the '<em>SGr Sunsp State Codes Type Object</em>' data type.
@@ -2955,7 +2993,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrSunspStateCodesTypeObject()
 	 * @generated
 	 */
-	int SGR_SUNSP_STATE_CODES_TYPE_OBJECT = 109;
+	int SGR_SUNSP_STATE_CODES_TYPE_OBJECT = 111;
 
 	/**
 	 * The meta object id for the '<em>SGr Transport Services Used List Type Object</em>' data type.
@@ -2965,7 +3003,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrTransportServicesUsedListTypeObject()
 	 * @generated
 	 */
-	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE_OBJECT = 110;
+	int SGR_TRANSPORT_SERVICES_USED_LIST_TYPE_OBJECT = 112;
 
 	/**
 	 * The meta object id for the '<em>SGr Units Object</em>' data type.
@@ -2975,7 +3013,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSGrUnitsObject()
 	 * @generated
 	 */
-	int SGR_UNITS_OBJECT = 111;
+	int SGR_UNITS_OBJECT = 113;
 
 	/**
 	 * The meta object id for the '<em>Sti HP Opstate Type Object</em>' data type.
@@ -2985,7 +3023,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getStiHPOpstateTypeObject()
 	 * @generated
 	 */
-	int STI_HP_OPSTATE_TYPE_OBJECT = 112;
+	int STI_HP_OPSTATE_TYPE_OBJECT = 114;
 
 	/**
 	 * The meta object id for the '<em>Sub Profile Type Enum Type Object</em>' data type.
@@ -2995,7 +3033,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getSubProfileTypeEnumTypeObject()
 	 * @generated
 	 */
-	int SUB_PROFILE_TYPE_ENUM_TYPE_OBJECT = 113;
+	int SUB_PROFILE_TYPE_ENUM_TYPE_OBJECT = 115;
 
 	/**
 	 * The meta object id for the '<em>Text Element Type</em>' data type.
@@ -3005,7 +3043,7 @@ public interface V0Package extends EPackage {
 	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getTextElementType()
 	 * @generated
 	 */
-	int TEXT_ELEMENT_TYPE = 114;
+	int TEXT_ELEMENT_TYPE = 116;
 
 
 	/**
@@ -3247,6 +3285,17 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EReference getSGrAttr4GenericType_FlexAssistance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getUnitConversionMultiplicator <em>Unit Conversion Multiplicator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unit Conversion Multiplicator</em>'.
+	 * @see com.smartgridready.ns.v0.SGrAttr4GenericType#getUnitConversionMultiplicator()
+	 * @see #getSGrAttr4GenericType()
+	 * @generated
+	 */
+	EAttribute getSGrAttr4GenericType_UnitConversionMultiplicator();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType <em>SGr Basic Gen Data Point Type Type</em>}'.
@@ -4121,17 +4170,6 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrEnumListType_SgrHCOpMode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Sgr DHW Op Mode</em>'.
-	 * @see com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode()
-	 * @see #getSGrEnumListType()
-	 * @generated
-	 */
-	EAttribute getSGrEnumListType_SgrDHWOpMode();
-
-	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4231,15 +4269,37 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrEnumListType_HovHCOpState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWaterState <em>Hov Dom Hot Water State</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWOpMode <em>Hov Dom Hot WOp Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Hov Dom Hot Water State</em>'.
-	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWaterState()
+	 * @return the meta object for the attribute '<em>Hov Dom Hot WOp Mode</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWOpMode()
 	 * @see #getSGrEnumListType()
 	 * @generated
 	 */
-	EAttribute getSGrEnumListType_HovDomHotWaterState();
+	EAttribute getSGrEnumListType_HovDomHotWOpMode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWState <em>Hov Dom Hot WState</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hov Dom Hot WState</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWState()
+	 * @see #getSGrEnumListType()
+	 * @generated
+	 */
+	EAttribute getSGrEnumListType_HovDomHotWState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovHPOpState <em>Hov HP Op State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hov HP Op State</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getHovHPOpState()
+	 * @see #getSGrEnumListType()
+	 * @generated
+	 */
+	EAttribute getSGrEnumListType_HovHPOpState();
 
 	/**
 	 * Returns the meta object for class '{@link com.smartgridready.ns.v0.SGrFlexAssistanceType <em>SGr Flex Assistance Type</em>}'.
@@ -4884,14 +4944,24 @@ public interface V0Package extends EPackage {
 	EEnum getHovBufferStateType();
 
 	/**
-	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.HovDomHotWaterStateType <em>Hov Dom Hot Water State Type</em>}'.
+	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.HovDomHotWOpModeType <em>Hov Dom Hot WOp Mode Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Hov Dom Hot Water State Type</em>'.
-	 * @see com.smartgridready.ns.v0.HovDomHotWaterStateType
+	 * @return the meta object for enum '<em>Hov Dom Hot WOp Mode Type</em>'.
+	 * @see com.smartgridready.ns.v0.HovDomHotWOpModeType
 	 * @generated
 	 */
-	EEnum getHovDomHotWaterStateType();
+	EEnum getHovDomHotWOpModeType();
+
+	/**
+	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.HovDomHotWStateType <em>Hov Dom Hot WState Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Hov Dom Hot WState Type</em>'.
+	 * @see com.smartgridready.ns.v0.HovDomHotWStateType
+	 * @generated
+	 */
+	EEnum getHovDomHotWStateType();
 
 	/**
 	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.HovHCOpModeType <em>Hov HC Op Mode Type</em>}'.
@@ -4932,6 +5002,16 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EEnum getHovHPOpModeType();
+
+	/**
+	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.HovHPOpStateType <em>Hov HP Op State Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Hov HP Op State Type</em>'.
+	 * @see com.smartgridready.ns.v0.HovHPOpStateType
+	 * @generated
+	 */
+	EEnum getHovHPOpStateType();
 
 	/**
 	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.HovSGReadySrcSelType <em>Hov SG Ready Src Sel Type</em>}'.
@@ -4992,16 +5072,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EEnum getSGrDeviceKindType();
-
-	/**
-	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.SGrDHWOpModeType <em>SGr DHW Op Mode Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>SGr DHW Op Mode Type</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDHWOpModeType
-	 * @generated
-	 */
-	EEnum getSGrDHWOpModeType();
 
 	/**
 	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.SGReadyStateLv1Type <em>SG Ready State Lv1 Type</em>}'.
@@ -5334,16 +5404,28 @@ public interface V0Package extends EPackage {
 	EDataType getHovBufferStateTypeObject();
 
 	/**
-	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.HovDomHotWaterStateType <em>Hov Dom Hot Water State Type Object</em>}'.
+	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.HovDomHotWOpModeType <em>Hov Dom Hot WOp Mode Type Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Hov Dom Hot Water State Type Object</em>'.
-	 * @see com.smartgridready.ns.v0.HovDomHotWaterStateType
-	 * @model instanceClass="com.smartgridready.ns.v0.HovDomHotWaterStateType"
-	 *        extendedMetaData="name='hovDomHotWaterStateType:Object' baseType='hovDomHotWaterStateType'"
+	 * @return the meta object for data type '<em>Hov Dom Hot WOp Mode Type Object</em>'.
+	 * @see com.smartgridready.ns.v0.HovDomHotWOpModeType
+	 * @model instanceClass="com.smartgridready.ns.v0.HovDomHotWOpModeType"
+	 *        extendedMetaData="name='hovDomHotWOpModeType:Object' baseType='hovDomHotWOpModeType'"
 	 * @generated
 	 */
-	EDataType getHovDomHotWaterStateTypeObject();
+	EDataType getHovDomHotWOpModeTypeObject();
+
+	/**
+	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.HovDomHotWStateType <em>Hov Dom Hot WState Type Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Hov Dom Hot WState Type Object</em>'.
+	 * @see com.smartgridready.ns.v0.HovDomHotWStateType
+	 * @model instanceClass="com.smartgridready.ns.v0.HovDomHotWStateType"
+	 *        extendedMetaData="name='hovDomHotWStateType:Object' baseType='hovDomHotWStateType'"
+	 * @generated
+	 */
+	EDataType getHovDomHotWStateTypeObject();
 
 	/**
 	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.HovHCOpModeType <em>Hov HC Op Mode Type Object</em>}'.
@@ -5392,6 +5474,18 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EDataType getHovHPOpModeTypeObject();
+
+	/**
+	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.HovHPOpStateType <em>Hov HP Op State Type Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Hov HP Op State Type Object</em>'.
+	 * @see com.smartgridready.ns.v0.HovHPOpStateType
+	 * @model instanceClass="com.smartgridready.ns.v0.HovHPOpStateType"
+	 *        extendedMetaData="name='hovHPOpStateType:Object' baseType='hovHPOpStateType'"
+	 * @generated
+	 */
+	EDataType getHovHPOpStateTypeObject();
 
 	/**
 	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.HovSGReadySrcSelType <em>Hov SG Ready Src Sel Type Object</em>}'.
@@ -5464,18 +5558,6 @@ public interface V0Package extends EPackage {
 	 * @generated
 	 */
 	EDataType getSGrDeviceKindTypeObject();
-
-	/**
-	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.SGrDHWOpModeType <em>SGr DHW Op Mode Type Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>SGr DHW Op Mode Type Object</em>'.
-	 * @see com.smartgridready.ns.v0.SGrDHWOpModeType
-	 * @model instanceClass="com.smartgridready.ns.v0.SGrDHWOpModeType"
-	 *        extendedMetaData="name='SGrDHWOpModeType:Object' baseType='SGrDHWOpModeType'"
-	 * @generated
-	 */
-	EDataType getSGrDHWOpModeTypeObject();
 
 	/**
 	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.SGReadyStateLv1Type <em>SG Ready State Lv1 Type Object</em>}'.

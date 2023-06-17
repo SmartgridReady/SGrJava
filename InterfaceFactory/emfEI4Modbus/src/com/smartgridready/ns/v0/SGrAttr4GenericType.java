@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getMinRunTimeMinutes <em>Min Run Time Minutes</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getValueByTimeTableMinutes <em>Value By Time Table Minutes</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getFlexAssistance <em>Flex Assistance</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getUnitConversionMultiplicator <em>Unit Conversion Multiplicator</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType()
@@ -50,8 +51,9 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  upper range limit. Unit:inherited
-	 * 					
+	 * 
+	 *     				upper range limit. Unit:inherited
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Max Val</em>' attribute.
 	 * @see #isSetMaxVal()
@@ -104,8 +106,9 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  lower range limit. Unit:inherited
-	 * 					
+	 * 
+	 *     				lower range limit. Unit:inherited
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Min Val</em>' attribute.
 	 * @see #isSetMinVal()
@@ -158,9 +161,10 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  indicates Quality requirements fullfilled like
-	 * 						formal certifications
-	 * 					
+	 * 
+	 *     				indicates Quality requirements fullfilled like
+	 *     				formal certifications
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Spec Quality Requirement</em>' attribute.
 	 * @see #setSpecQualityRequirement(String)
@@ -186,9 +190,10 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  the precision of a measurement, calculation result
-	 * 						or result of a controls process
-	 * 					
+	 * 
+	 *     				the precision of a measurement, calculation result
+	 *     				or result of a controls process
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Precision</em>' attribute.
 	 * @see #isSetPrecision()
@@ -241,11 +246,12 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  A consumer or a generating system receives the
-	 * 						permit for a load change for a certain period of time. This time
-	 * 						is always set to 0 each time a confirmation message is received
-	 * 						(HeartBeat).
-	 * 					
+	 * 
+	 *     				A consumer or a generating system receives the
+	 *     				permit for a load change for a certain period of
+	 *     				time. This time is always set to 0 each time a
+	 *     				confirmation message is received (HeartBeat).
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stability Fallback</em>' containment reference.
 	 * @see #setStabilityFallback(SGrStabilityFallbackType)
@@ -271,12 +277,13 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  The time behavior of a transition from a power
-	 * 						adjustment (positive as well as negative) can be determined by
-	 * 						several time values, so that this starts with a random time delay,
-	 * 						changes via a ramp and an expiry time with return to the initial
-	 * 						value.
-	 * 					
+	 * 
+	 *     				The time behavior of a transition from a power
+	 *     				adjustment (positive as well as negative) can be
+	 *     				determined by several time values, so that this
+	 *     				starts with a random time delay, changes via a ramp
+	 *     				and an expiry time with return to the initial value.
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Smooth Transition</em>' containment reference.
 	 * @see #setSmoothTransition(SGrSmoothTransitionType)
@@ -302,9 +309,11 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Maximum time in milliseconds from capturing of measured value 
-	 *             until ready at the external interface (i.e. analog-digital conversion time)
-	 * 					
+	 * 
+	 *     				Maximum time in milliseconds from capturing of
+	 *     				measured value until ready at the external interface
+	 *     				(i.e. analog-digital conversion time)
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Max Latency Time Ms</em>' attribute.
 	 * @see #setMaxLatencyTimeMs(BigInteger)
@@ -331,7 +340,10 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  MeasValueType: type of measurement. Possbile values are "value", "min", max", "average", "stdDev"
+	 * 
+	 *     				MeasValueType: type of measurement. Possbile values
+	 *     				are "value", "min", max", "average", "stdDev"
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value Type</em>' attribute.
 	 * @see com.smartgridready.ns.v0.SGrMeasValueType
@@ -387,10 +399,11 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Value source kind related to SGr level 6
-	 * 						applications. Potential values are measuredValue, calculatedValue,
-	 * 						empiricalValue
-	 * 					
+	 * 
+	 *     				Value source kind related to SGr level 6
+	 *     				applications. Potential values are measuredValue,
+	 *     				calculatedValue, empiricalValue
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value Source</em>' attribute.
 	 * @see com.smartgridready.ns.v0.SGrMeasValueSourceType
@@ -445,8 +458,9 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  SampleRate in milliseconds
-	 * 					
+	 * 
+	 *     				SampleRate in milliseconds
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Sample Rate</em>' attribute.
 	 * @see #setSampleRate(BigInteger)
@@ -722,10 +736,14 @@ public interface SGrAttr4GenericType extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  Systems with more than One communicator need a definition of the priority of the commands / demands for a flexibility
-	 *           requirement.
-	 *           This element defines the kind of a such a command (servicable for net (DSO), energy or system (TNO)) and its priority (SHALL / SHOULD / MAY)
-	 * 		 
+	 * 
+	 *     				Systems with more than One communicator need a
+	 *     				definition of the priority of the commands / demands
+	 *     				for a flexibility requirement. This element defines
+	 *     				the kind of a such a command (servicable for net
+	 *     				(DSO), energy or system (TNO)) and its priority
+	 *     				(SHALL / SHOULD / MAY)
+	 *     			
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Flex Assistance</em>' containment reference.
 	 * @see #setFlexAssistance(SGrFlexAssistanceType)
@@ -745,5 +763,55 @@ public interface SGrAttr4GenericType extends EObject {
 	 * @generated
 	 */
 	void setFlexAssistance(SGrFlexAssistanceType value);
+
+	/**
+	 * Returns the value of the '<em><b>Unit Conversion Multiplicator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unit Conversion Multiplicator</em>' attribute.
+	 * @see #isSetUnitConversionMultiplicator()
+	 * @see #unsetUnitConversionMultiplicator()
+	 * @see #setUnitConversionMultiplicator(float)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrAttr4GenericType_UnitConversionMultiplicator()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Float"
+	 *        extendedMetaData="kind='element' name='unitConversionMultiplicator' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	float getUnitConversionMultiplicator();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getUnitConversionMultiplicator <em>Unit Conversion Multiplicator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unit Conversion Multiplicator</em>' attribute.
+	 * @see #isSetUnitConversionMultiplicator()
+	 * @see #unsetUnitConversionMultiplicator()
+	 * @see #getUnitConversionMultiplicator()
+	 * @generated
+	 */
+	void setUnitConversionMultiplicator(float value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getUnitConversionMultiplicator <em>Unit Conversion Multiplicator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUnitConversionMultiplicator()
+	 * @see #getUnitConversionMultiplicator()
+	 * @see #setUnitConversionMultiplicator(float)
+	 * @generated
+	 */
+	void unsetUnitConversionMultiplicator();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrAttr4GenericType#getUnitConversionMultiplicator <em>Unit Conversion Multiplicator</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Unit Conversion Multiplicator</em>' attribute is set.
+	 * @see #unsetUnitConversionMultiplicator()
+	 * @see #getUnitConversionMultiplicator()
+	 * @see #setUnitConversionMultiplicator(float)
+	 * @generated
+	 */
+	boolean isSetUnitConversionMultiplicator();
 
 } // SGrAttr4GenericType

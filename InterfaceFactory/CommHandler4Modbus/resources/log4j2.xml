@@ -4,14 +4,19 @@
     <Console name="Console">
       <PatternLayout pattern="[%t] %-5level %c{1.} - %msg%n"/>
     </Console>
+    <File name="File" fileName="commhandler.log">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+    </File>
   </Appenders>
   <Loggers>
     <Root level="info">
-    <!--  setzt tiefsten level fuer output -->
+        <!--  setzt tiefsten level fuer output -->
         <AppenderRef ref="Console"/>
-    </Root>
-    <logger name="org.apache.hc" level="info" />   
-  </Loggers>    
+        <AppenderRef ref="File"/>
+    </Root>   
+  </Loggers>
 </Configuration>
 <!--  levels:  
       "off", 

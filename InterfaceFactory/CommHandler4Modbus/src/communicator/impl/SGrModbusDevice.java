@@ -25,15 +25,16 @@ import com.smartgridready.ns.v0.CtaDHWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.HovBufferStateType;
-import com.smartgridready.ns.v0.HovDomHotWaterStateType;
+import com.smartgridready.ns.v0.HovDomHotWStateType;
+import com.smartgridready.ns.v0.HovDomHotWOpModeType;
 import com.smartgridready.ns.v0.HovHCOpModeType;
 import com.smartgridready.ns.v0.HovHCOpStateType;
 import com.smartgridready.ns.v0.HovHPOpModeType;
+import com.smartgridready.ns.v0.HovHPOpStateType;
 import com.smartgridready.ns.v0.HovSGReadySrcSelType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
-import com.smartgridready.ns.v0.SGrDHWOpModeType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
@@ -358,6 +359,21 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				if (aDataPoint.getModbusAttr().get(0).getIopEnumMapper()!=null )
 				{   // modbus value to generic value conversion
 					mbregresp[0] = aDataPoint.getModbusAttr().get(0).getIopEnumMapper().getGenEnumMapper().get(mbregresp[0]).intValue();
+				}
+				if (aDataPoint.getModbusAttr().get(0).getIopBooleanMapper()!=null )
+				{   // modbus value to generic value conversion
+					int ib;
+					if (aDataPoint.getModbusAttr().get(0).getIopBooleanMapper().isAssignedValueMeans())
+						ib = 1;
+					else
+						ib = 0;
+											 
+					 if (aDataPoint.getModbusAttr().get(0).getIopBooleanMapper().getValue()==mbregresp[0])
+						 mbregresp[0] = ib;
+					 else if (ib==1)
+					 	 mbregresp[0] = 0;
+					 else
+					 	 mbregresp[0] = 1;
 				}
 			}
 
@@ -1197,9 +1213,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retval = oGenVal.getSgrOCPPState().getValue();
 		} else if (oGenVal.isSetSgrHPOpMode()) { // E0016
 			retval = oGenVal.getSgrHPOpMode().getValue();
-		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
-			retval = oGenVal.getSgrHCOpMode().getValue();
-		} else if (oGenVal.isSetSgrDHWOpMode()) {// cta00
+		} else if (oGenVal.isSetCtaDHWOpMode()) {// cta00
 			retval = oGenVal.getCtaDHWOpMode().getValue();
 		} else if (oGenVal.isSetCtaDHWOpMode()) {// cta00
 			retval = oGenVal.getCtaDHWOpMode().getValue();
@@ -1217,8 +1231,12 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retval = oGenVal.getHovBufferState().getValue();
 		} else if (oGenVal.isSetHovHCOpState()) {// hov005
 			retval = oGenVal.getHovHCOpState().getValue();
-		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
-			retval = oGenVal.getHovDomHotWaterState().getValue();
+		} else if (oGenVal.isSetHovDomHotWState()) {// hov006
+			retval = oGenVal.getHovDomHotWState().getValue();
+		} else if (oGenVal.isSetHovHCOpMode() ) {// hov007
+			retval = oGenVal.getHovHCOpMode().getValue();
+		} else if (oGenVal.isSetCtaHPOpState()) {// hov008
+			retval = oGenVal.getCtaHPOpState().getValue();
 		}
 
 		return retval;
@@ -1264,8 +1282,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			rval.setSgrHPOpMode(SGrHPOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
 			rval.setSgrHCOpMode(SGrHCOpModeType.get((int)RegRes));
-		} else if (oGenVal.isSetSgrDHWOpMode()) {// E0018
-			rval.setSgrDHWOpMode(SGrDHWOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
 			rval.setCtaDHWOpMode(CtaDHWOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
@@ -1282,8 +1298,12 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			rval.setHovBufferState(HovBufferStateType.get((int)RegRes));
 		} else if (oGenVal.isSetHovHCOpState()) {// hov005
 			rval.setHovHCOpState(HovHCOpStateType.get((int)RegRes));
-		} else if (oGenVal.isSetHovDomHotWaterState()) {// hov006
-			rval.setHovDomHotWaterState(HovDomHotWaterStateType.get((int)RegRes));
+		} else if (oGenVal.isSetHovDomHotWState()) {// hov006
+			rval.setHovDomHotWState(HovDomHotWStateType.get((int)RegRes));
+		} else if (oGenVal.isSetHovDomHotWOpMode()) {// Ehov007
+			rval.setHovDomHotWOpMode(HovDomHotWOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaHPOpState()) {// hov008;
+			rval.setHovHPOpState(HovHPOpStateType.get((int)RegRes));
 		}
 		return rval;
 	}

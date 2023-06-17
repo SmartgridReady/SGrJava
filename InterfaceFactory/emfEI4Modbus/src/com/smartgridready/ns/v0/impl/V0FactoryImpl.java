@@ -160,8 +160,10 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createEStopBitLenTypeFromString(eDataType, initialValue);
 			case V0Package.HOV_BUFFER_STATE_TYPE:
 				return createHovBufferStateTypeFromString(eDataType, initialValue);
-			case V0Package.HOV_DOM_HOT_WATER_STATE_TYPE:
-				return createHovDomHotWaterStateTypeFromString(eDataType, initialValue);
+			case V0Package.HOV_DOM_HOT_WOP_MODE_TYPE:
+				return createHovDomHotWOpModeTypeFromString(eDataType, initialValue);
+			case V0Package.HOV_DOM_HOT_WSTATE_TYPE:
+				return createHovDomHotWStateTypeFromString(eDataType, initialValue);
 			case V0Package.HOV_HC_OP_MODE_TYPE:
 				return createHovHCOpModeTypeFromString(eDataType, initialValue);
 			case V0Package.HOV_HC_OP_STATE_TYPE:
@@ -170,6 +172,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createHovHPActBufferStateTypeFromString(eDataType, initialValue);
 			case V0Package.HOV_HP_OP_MODE_TYPE:
 				return createHovHPOpModeTypeFromString(eDataType, initialValue);
+			case V0Package.HOV_HP_OP_STATE_TYPE:
+				return createHovHPOpStateTypeFromString(eDataType, initialValue);
 			case V0Package.HOV_SG_READY_SRC_SEL_TYPE:
 				return createHovSGReadySrcSelTypeFromString(eDataType, initialValue);
 			case V0Package.HOV_TYPE:
@@ -190,8 +194,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrBool2BitRankTypeFromString(eDataType, initialValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE:
 				return createSGrDeviceKindTypeFromString(eDataType, initialValue);
-			case V0Package.SGR_DHW_OP_MODE_TYPE:
-				return createSGrDHWOpModeTypeFromString(eDataType, initialValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE:
 				return createSGReadyStateLv1TypeFromString(eDataType, initialValue);
 			case V0Package.SG_READY_STATE_LV2_TYPE:
@@ -284,8 +286,10 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createEStopBitLenTypeObjectFromString(eDataType, initialValue);
 			case V0Package.HOV_BUFFER_STATE_TYPE_OBJECT:
 				return createHovBufferStateTypeObjectFromString(eDataType, initialValue);
-			case V0Package.HOV_DOM_HOT_WATER_STATE_TYPE_OBJECT:
-				return createHovDomHotWaterStateTypeObjectFromString(eDataType, initialValue);
+			case V0Package.HOV_DOM_HOT_WOP_MODE_TYPE_OBJECT:
+				return createHovDomHotWOpModeTypeObjectFromString(eDataType, initialValue);
+			case V0Package.HOV_DOM_HOT_WSTATE_TYPE_OBJECT:
+				return createHovDomHotWStateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.HOV_HC_OP_MODE_TYPE_OBJECT:
 				return createHovHCOpModeTypeObjectFromString(eDataType, initialValue);
 			case V0Package.HOV_HC_OP_STATE_TYPE_OBJECT:
@@ -294,6 +298,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createHovHPActBufferStateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.HOV_HP_OP_MODE_TYPE_OBJECT:
 				return createHovHPOpModeTypeObjectFromString(eDataType, initialValue);
+			case V0Package.HOV_HP_OP_STATE_TYPE_OBJECT:
+				return createHovHPOpStateTypeObjectFromString(eDataType, initialValue);
 			case V0Package.HOV_SG_READY_SRC_SEL_TYPE_OBJECT:
 				return createHovSGReadySrcSelTypeObjectFromString(eDataType, initialValue);
 			case V0Package.HOV_TYPE_OBJECT:
@@ -346,8 +352,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createSGrBool2BitRankTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE_OBJECT:
 				return createSGrDeviceKindTypeObjectFromString(eDataType, initialValue);
-			case V0Package.SGR_DHW_OP_MODE_TYPE_OBJECT:
-				return createSGrDHWOpModeTypeObjectFromString(eDataType, initialValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE_OBJECT:
 				return createSGReadyStateLv1TypeObjectFromString(eDataType, initialValue);
 			case V0Package.SG_READY_STATE_LV2_TYPE_OBJECT:
@@ -467,8 +471,10 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertEStopBitLenTypeToString(eDataType, instanceValue);
 			case V0Package.HOV_BUFFER_STATE_TYPE:
 				return convertHovBufferStateTypeToString(eDataType, instanceValue);
-			case V0Package.HOV_DOM_HOT_WATER_STATE_TYPE:
-				return convertHovDomHotWaterStateTypeToString(eDataType, instanceValue);
+			case V0Package.HOV_DOM_HOT_WOP_MODE_TYPE:
+				return convertHovDomHotWOpModeTypeToString(eDataType, instanceValue);
+			case V0Package.HOV_DOM_HOT_WSTATE_TYPE:
+				return convertHovDomHotWStateTypeToString(eDataType, instanceValue);
 			case V0Package.HOV_HC_OP_MODE_TYPE:
 				return convertHovHCOpModeTypeToString(eDataType, instanceValue);
 			case V0Package.HOV_HC_OP_STATE_TYPE:
@@ -477,6 +483,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertHovHPActBufferStateTypeToString(eDataType, instanceValue);
 			case V0Package.HOV_HP_OP_MODE_TYPE:
 				return convertHovHPOpModeTypeToString(eDataType, instanceValue);
+			case V0Package.HOV_HP_OP_STATE_TYPE:
+				return convertHovHPOpStateTypeToString(eDataType, instanceValue);
 			case V0Package.HOV_SG_READY_SRC_SEL_TYPE:
 				return convertHovSGReadySrcSelTypeToString(eDataType, instanceValue);
 			case V0Package.HOV_TYPE:
@@ -497,8 +505,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrBool2BitRankTypeToString(eDataType, instanceValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE:
 				return convertSGrDeviceKindTypeToString(eDataType, instanceValue);
-			case V0Package.SGR_DHW_OP_MODE_TYPE:
-				return convertSGrDHWOpModeTypeToString(eDataType, instanceValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE:
 				return convertSGReadyStateLv1TypeToString(eDataType, instanceValue);
 			case V0Package.SG_READY_STATE_LV2_TYPE:
@@ -591,8 +597,10 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertEStopBitLenTypeObjectToString(eDataType, instanceValue);
 			case V0Package.HOV_BUFFER_STATE_TYPE_OBJECT:
 				return convertHovBufferStateTypeObjectToString(eDataType, instanceValue);
-			case V0Package.HOV_DOM_HOT_WATER_STATE_TYPE_OBJECT:
-				return convertHovDomHotWaterStateTypeObjectToString(eDataType, instanceValue);
+			case V0Package.HOV_DOM_HOT_WOP_MODE_TYPE_OBJECT:
+				return convertHovDomHotWOpModeTypeObjectToString(eDataType, instanceValue);
+			case V0Package.HOV_DOM_HOT_WSTATE_TYPE_OBJECT:
+				return convertHovDomHotWStateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.HOV_HC_OP_MODE_TYPE_OBJECT:
 				return convertHovHCOpModeTypeObjectToString(eDataType, instanceValue);
 			case V0Package.HOV_HC_OP_STATE_TYPE_OBJECT:
@@ -601,6 +609,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertHovHPActBufferStateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.HOV_HP_OP_MODE_TYPE_OBJECT:
 				return convertHovHPOpModeTypeObjectToString(eDataType, instanceValue);
+			case V0Package.HOV_HP_OP_STATE_TYPE_OBJECT:
+				return convertHovHPOpStateTypeObjectToString(eDataType, instanceValue);
 			case V0Package.HOV_SG_READY_SRC_SEL_TYPE_OBJECT:
 				return convertHovSGReadySrcSelTypeObjectToString(eDataType, instanceValue);
 			case V0Package.HOV_TYPE_OBJECT:
@@ -653,8 +663,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertSGrBool2BitRankTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SGR_DEVICE_KIND_TYPE_OBJECT:
 				return convertSGrDeviceKindTypeObjectToString(eDataType, instanceValue);
-			case V0Package.SGR_DHW_OP_MODE_TYPE_OBJECT:
-				return convertSGrDHWOpModeTypeObjectToString(eDataType, instanceValue);
 			case V0Package.SG_READY_STATE_LV1_TYPE_OBJECT:
 				return convertSGReadyStateLv1TypeObjectToString(eDataType, instanceValue);
 			case V0Package.SG_READY_STATE_LV2_TYPE_OBJECT:
@@ -1670,8 +1678,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HovDomHotWaterStateType createHovDomHotWaterStateTypeFromString(EDataType eDataType, String initialValue) {
-		HovDomHotWaterStateType result = HovDomHotWaterStateType.get(initialValue);
+	public HovDomHotWOpModeType createHovDomHotWOpModeTypeFromString(EDataType eDataType, String initialValue) {
+		HovDomHotWOpModeType result = HovDomHotWOpModeType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -1681,7 +1689,27 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertHovDomHotWaterStateTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertHovDomHotWOpModeTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HovDomHotWStateType createHovDomHotWStateTypeFromString(EDataType eDataType, String initialValue) {
+		HovDomHotWStateType result = HovDomHotWStateType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertHovDomHotWStateTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -1762,6 +1790,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertHovHPOpModeTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HovHPOpStateType createHovHPOpStateTypeFromString(EDataType eDataType, String initialValue) {
+		HovHPOpStateType result = HovHPOpStateType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertHovHPOpStateTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -1962,26 +2010,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * @generated
 	 */
 	public String convertSGrDeviceKindTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SGrDHWOpModeType createSGrDHWOpModeTypeFromString(EDataType eDataType, String initialValue) {
-		SGrDHWOpModeType result = SGrDHWOpModeType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrDHWOpModeTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2886,8 +2914,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HovDomHotWaterStateType createHovDomHotWaterStateTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createHovDomHotWaterStateTypeFromString(V0Package.eINSTANCE.getHovDomHotWaterStateType(), initialValue);
+	public HovDomHotWOpModeType createHovDomHotWOpModeTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createHovDomHotWOpModeTypeFromString(V0Package.eINSTANCE.getHovDomHotWOpModeType(), initialValue);
 	}
 
 	/**
@@ -2895,8 +2923,26 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertHovDomHotWaterStateTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertHovDomHotWaterStateTypeToString(V0Package.eINSTANCE.getHovDomHotWaterStateType(), instanceValue);
+	public String convertHovDomHotWOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertHovDomHotWOpModeTypeToString(V0Package.eINSTANCE.getHovDomHotWOpModeType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HovDomHotWStateType createHovDomHotWStateTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createHovDomHotWStateTypeFromString(V0Package.eINSTANCE.getHovDomHotWStateType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertHovDomHotWStateTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertHovDomHotWStateTypeToString(V0Package.eINSTANCE.getHovDomHotWStateType(), instanceValue);
 	}
 
 	/**
@@ -2969,6 +3015,24 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertHovHPOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertHovHPOpModeTypeToString(V0Package.eINSTANCE.getHovHPOpModeType(), instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HovHPOpStateType createHovHPOpStateTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createHovHPOpStateTypeFromString(V0Package.eINSTANCE.getHovHPOpStateType(), initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertHovHPOpStateTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertHovHPOpStateTypeToString(V0Package.eINSTANCE.getHovHPOpStateType(), instanceValue);
 	}
 
 	/**
@@ -3437,24 +3501,6 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 */
 	public String convertSGrDeviceKindTypeObjectToString(EDataType eDataType, Object instanceValue) {
 		return convertSGrDeviceKindTypeToString(V0Package.eINSTANCE.getSGrDeviceKindType(), instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SGrDHWOpModeType createSGrDHWOpModeTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createSGrDHWOpModeTypeFromString(V0Package.eINSTANCE.getSGrDHWOpModeType(), initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSGrDHWOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertSGrDHWOpModeTypeToString(V0Package.eINSTANCE.getSGrDHWOpModeType(), instanceValue);
 	}
 
 	/**

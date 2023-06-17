@@ -7,14 +7,15 @@ import com.smartgridready.ns.v0.CtaHCOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.HovBufferStateType;
-import com.smartgridready.ns.v0.HovDomHotWaterStateType;
+import com.smartgridready.ns.v0.HovDomHotWOpModeType;
+import com.smartgridready.ns.v0.HovDomHotWStateType;
 import com.smartgridready.ns.v0.HovHCOpModeType;
 import com.smartgridready.ns.v0.HovHCOpStateType;
 import com.smartgridready.ns.v0.HovHPOpModeType;
+import com.smartgridready.ns.v0.HovHPOpStateType;
 import com.smartgridready.ns.v0.HovSGReadySrcSelType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
-import com.smartgridready.ns.v0.SGrDHWOpModeType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
@@ -61,7 +62,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrOCPPState <em>Sgr OCPP State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrHPOpMode <em>Sgr HP Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrHCOpMode <em>Sgr HC Op Mode</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaHPOpState <em>Cta HP Op State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaHPOpMode <em>Cta HP Op Mode</em>}</li>
@@ -71,7 +71,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getHovSGReadySrcSel <em>Hov SG Ready Src Sel</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getHovBufferState <em>Hov Buffer State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getHovHCOpState <em>Hov HC Op State</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getHovDomHotWaterState <em>Hov Dom Hot Water State</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getHovDomHotWOpMode <em>Hov Dom Hot WOp Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getHovDomHotWState <em>Hov Dom Hot WState</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getHovHPOpState <em>Hov HP Op State</em>}</li>
  * </ul>
  *
  * @generated
@@ -513,35 +515,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	protected boolean sgrHCOpModeESet;
 
 	/**
-	 * The default value of the '{@link #getSgrDHWOpMode() <em>Sgr DHW Op Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSgrDHWOpMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final SGrDHWOpModeType SGR_DHW_OP_MODE_EDEFAULT = SGrDHWOpModeType.DHWSTANDBY;
-
-	/**
-	 * The cached value of the '{@link #getSgrDHWOpMode() <em>Sgr DHW Op Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSgrDHWOpMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected SGrDHWOpModeType sgrDHWOpMode = SGR_DHW_OP_MODE_EDEFAULT;
-
-	/**
-	 * This is true if the Sgr DHW Op Mode attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean sgrDHWOpModeESet;
-
-	/**
 	 * The default value of the '{@link #getCtaDHWOpMode() <em>Cta DHW Op Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -803,33 +776,91 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	protected boolean hovHCOpStateESet;
 
 	/**
-	 * The default value of the '{@link #getHovDomHotWaterState() <em>Hov Dom Hot Water State</em>}' attribute.
+	 * The default value of the '{@link #getHovDomHotWOpMode() <em>Hov Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHovDomHotWaterState()
+	 * @see #getHovDomHotWOpMode()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final HovDomHotWaterStateType HOV_DOM_HOT_WATER_STATE_EDEFAULT = HovDomHotWaterStateType.DHWOFF;
+	protected static final HovDomHotWOpModeType HOV_DOM_HOT_WOP_MODE_EDEFAULT = HovDomHotWOpModeType.DHWSTANDBY;
 
 	/**
-	 * The cached value of the '{@link #getHovDomHotWaterState() <em>Hov Dom Hot Water State</em>}' attribute.
+	 * The cached value of the '{@link #getHovDomHotWOpMode() <em>Hov Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHovDomHotWaterState()
+	 * @see #getHovDomHotWOpMode()
 	 * @generated
 	 * @ordered
 	 */
-	protected HovDomHotWaterStateType hovDomHotWaterState = HOV_DOM_HOT_WATER_STATE_EDEFAULT;
+	protected HovDomHotWOpModeType hovDomHotWOpMode = HOV_DOM_HOT_WOP_MODE_EDEFAULT;
 
 	/**
-	 * This is true if the Hov Dom Hot Water State attribute has been set.
+	 * This is true if the Hov Dom Hot WOp Mode attribute has been set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean hovDomHotWaterStateESet;
+	protected boolean hovDomHotWOpModeESet;
+
+	/**
+	 * The default value of the '{@link #getHovDomHotWState() <em>Hov Dom Hot WState</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHovDomHotWState()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final HovDomHotWStateType HOV_DOM_HOT_WSTATE_EDEFAULT = HovDomHotWStateType.DHWOFF;
+
+	/**
+	 * The cached value of the '{@link #getHovDomHotWState() <em>Hov Dom Hot WState</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHovDomHotWState()
+	 * @generated
+	 * @ordered
+	 */
+	protected HovDomHotWStateType hovDomHotWState = HOV_DOM_HOT_WSTATE_EDEFAULT;
+
+	/**
+	 * This is true if the Hov Dom Hot WState attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean hovDomHotWStateESet;
+
+	/**
+	 * The default value of the '{@link #getHovHPOpState() <em>Hov HP Op State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHovHPOpState()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final HovHPOpStateType HOV_HP_OP_STATE_EDEFAULT = HovHPOpStateType.HPOFF;
+
+	/**
+	 * The cached value of the '{@link #getHovHPOpState() <em>Hov HP Op State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHovHPOpState()
+	 * @generated
+	 * @ordered
+	 */
+	protected HovHPOpStateType hovHPOpState = HOV_HP_OP_STATE_EDEFAULT;
+
+	/**
+	 * This is true if the Hov HP Op State attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean hovHPOpStateESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1606,56 +1637,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public SGrDHWOpModeType getSgrDHWOpMode() {
-		return sgrDHWOpMode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSgrDHWOpMode(SGrDHWOpModeType newSgrDHWOpMode) {
-		SGrDHWOpModeType oldSgrDHWOpMode = sgrDHWOpMode;
-		sgrDHWOpMode = newSgrDHWOpMode == null ? SGR_DHW_OP_MODE_EDEFAULT : newSgrDHWOpMode;
-		boolean oldSgrDHWOpModeESet = sgrDHWOpModeESet;
-		sgrDHWOpModeESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__SGR_DHW_OP_MODE, oldSgrDHWOpMode, sgrDHWOpMode, !oldSgrDHWOpModeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void unsetSgrDHWOpMode() {
-		SGrDHWOpModeType oldSgrDHWOpMode = sgrDHWOpMode;
-		boolean oldSgrDHWOpModeESet = sgrDHWOpModeESet;
-		sgrDHWOpMode = SGR_DHW_OP_MODE_EDEFAULT;
-		sgrDHWOpModeESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__SGR_DHW_OP_MODE, oldSgrDHWOpMode, SGR_DHW_OP_MODE_EDEFAULT, oldSgrDHWOpModeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetSgrDHWOpMode() {
-		return sgrDHWOpModeESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public CtaDHWOpModeType getCtaDHWOpMode() {
 		return ctaDHWOpMode;
 	}
@@ -2106,8 +2087,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public HovDomHotWaterStateType getHovDomHotWaterState() {
-		return hovDomHotWaterState;
+	public HovDomHotWOpModeType getHovDomHotWOpMode() {
+		return hovDomHotWOpMode;
 	}
 
 	/**
@@ -2116,13 +2097,13 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public void setHovDomHotWaterState(HovDomHotWaterStateType newHovDomHotWaterState) {
-		HovDomHotWaterStateType oldHovDomHotWaterState = hovDomHotWaterState;
-		hovDomHotWaterState = newHovDomHotWaterState == null ? HOV_DOM_HOT_WATER_STATE_EDEFAULT : newHovDomHotWaterState;
-		boolean oldHovDomHotWaterStateESet = hovDomHotWaterStateESet;
-		hovDomHotWaterStateESet = true;
+	public void setHovDomHotWOpMode(HovDomHotWOpModeType newHovDomHotWOpMode) {
+		HovDomHotWOpModeType oldHovDomHotWOpMode = hovDomHotWOpMode;
+		hovDomHotWOpMode = newHovDomHotWOpMode == null ? HOV_DOM_HOT_WOP_MODE_EDEFAULT : newHovDomHotWOpMode;
+		boolean oldHovDomHotWOpModeESet = hovDomHotWOpModeESet;
+		hovDomHotWOpModeESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WATER_STATE, oldHovDomHotWaterState, hovDomHotWaterState, !oldHovDomHotWaterStateESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WOP_MODE, oldHovDomHotWOpMode, hovDomHotWOpMode, !oldHovDomHotWOpModeESet));
 	}
 
 	/**
@@ -2131,13 +2112,13 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public void unsetHovDomHotWaterState() {
-		HovDomHotWaterStateType oldHovDomHotWaterState = hovDomHotWaterState;
-		boolean oldHovDomHotWaterStateESet = hovDomHotWaterStateESet;
-		hovDomHotWaterState = HOV_DOM_HOT_WATER_STATE_EDEFAULT;
-		hovDomHotWaterStateESet = false;
+	public void unsetHovDomHotWOpMode() {
+		HovDomHotWOpModeType oldHovDomHotWOpMode = hovDomHotWOpMode;
+		boolean oldHovDomHotWOpModeESet = hovDomHotWOpModeESet;
+		hovDomHotWOpMode = HOV_DOM_HOT_WOP_MODE_EDEFAULT;
+		hovDomHotWOpModeESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WATER_STATE, oldHovDomHotWaterState, HOV_DOM_HOT_WATER_STATE_EDEFAULT, oldHovDomHotWaterStateESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WOP_MODE, oldHovDomHotWOpMode, HOV_DOM_HOT_WOP_MODE_EDEFAULT, oldHovDomHotWOpModeESet));
 	}
 
 	/**
@@ -2146,8 +2127,108 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 */
 	@Override
-	public boolean isSetHovDomHotWaterState() {
-		return hovDomHotWaterStateESet;
+	public boolean isSetHovDomHotWOpMode() {
+		return hovDomHotWOpModeESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public HovDomHotWStateType getHovDomHotWState() {
+		return hovDomHotWState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setHovDomHotWState(HovDomHotWStateType newHovDomHotWState) {
+		HovDomHotWStateType oldHovDomHotWState = hovDomHotWState;
+		hovDomHotWState = newHovDomHotWState == null ? HOV_DOM_HOT_WSTATE_EDEFAULT : newHovDomHotWState;
+		boolean oldHovDomHotWStateESet = hovDomHotWStateESet;
+		hovDomHotWStateESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WSTATE, oldHovDomHotWState, hovDomHotWState, !oldHovDomHotWStateESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetHovDomHotWState() {
+		HovDomHotWStateType oldHovDomHotWState = hovDomHotWState;
+		boolean oldHovDomHotWStateESet = hovDomHotWStateESet;
+		hovDomHotWState = HOV_DOM_HOT_WSTATE_EDEFAULT;
+		hovDomHotWStateESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WSTATE, oldHovDomHotWState, HOV_DOM_HOT_WSTATE_EDEFAULT, oldHovDomHotWStateESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetHovDomHotWState() {
+		return hovDomHotWStateESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public HovHPOpStateType getHovHPOpState() {
+		return hovHPOpState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setHovHPOpState(HovHPOpStateType newHovHPOpState) {
+		HovHPOpStateType oldHovHPOpState = hovHPOpState;
+		hovHPOpState = newHovHPOpState == null ? HOV_HP_OP_STATE_EDEFAULT : newHovHPOpState;
+		boolean oldHovHPOpStateESet = hovHPOpStateESet;
+		hovHPOpStateESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__HOV_HP_OP_STATE, oldHovHPOpState, hovHPOpState, !oldHovHPOpStateESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetHovHPOpState() {
+		HovHPOpStateType oldHovHPOpState = hovHPOpState;
+		boolean oldHovHPOpStateESet = hovHPOpStateESet;
+		hovHPOpState = HOV_HP_OP_STATE_EDEFAULT;
+		hovHPOpStateESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__HOV_HP_OP_STATE, oldHovHPOpState, HOV_HP_OP_STATE_EDEFAULT, oldHovHPOpStateESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetHovHPOpState() {
+		return hovHPOpStateESet;
 	}
 
 	/**
@@ -2188,8 +2269,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return getSgrHPOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE:
 				return getSgrHCOpMode();
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_DHW_OP_MODE:
-				return getSgrDHWOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
 				return getCtaDHWOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
@@ -2208,8 +2287,12 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return getHovBufferState();
 			case V0Package.SGR_ENUM_LIST_TYPE__HOV_HC_OP_STATE:
 				return getHovHCOpState();
-			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WATER_STATE:
-				return getHovDomHotWaterState();
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WOP_MODE:
+				return getHovDomHotWOpMode();
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WSTATE:
+				return getHovDomHotWState();
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_HP_OP_STATE:
+				return getHovHPOpState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -2267,9 +2350,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE:
 				setSgrHCOpMode((SGrHCOpModeType)newValue);
 				return;
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_DHW_OP_MODE:
-				setSgrDHWOpMode((SGrDHWOpModeType)newValue);
-				return;
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
 				setCtaDHWOpMode((CtaDHWOpModeType)newValue);
 				return;
@@ -2297,8 +2377,14 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_ENUM_LIST_TYPE__HOV_HC_OP_STATE:
 				setHovHCOpState((HovHCOpStateType)newValue);
 				return;
-			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WATER_STATE:
-				setHovDomHotWaterState((HovDomHotWaterStateType)newValue);
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WOP_MODE:
+				setHovDomHotWOpMode((HovDomHotWOpModeType)newValue);
+				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WSTATE:
+				setHovDomHotWState((HovDomHotWStateType)newValue);
+				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_HP_OP_STATE:
+				setHovHPOpState((HovHPOpStateType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -2357,9 +2443,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE:
 				unsetSgrHCOpMode();
 				return;
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_DHW_OP_MODE:
-				unsetSgrDHWOpMode();
-				return;
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
 				unsetCtaDHWOpMode();
 				return;
@@ -2387,8 +2470,14 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_ENUM_LIST_TYPE__HOV_HC_OP_STATE:
 				unsetHovHCOpState();
 				return;
-			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WATER_STATE:
-				unsetHovDomHotWaterState();
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WOP_MODE:
+				unsetHovDomHotWOpMode();
+				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WSTATE:
+				unsetHovDomHotWState();
+				return;
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_HP_OP_STATE:
+				unsetHovHPOpState();
 				return;
 		}
 		super.eUnset(featureID);
@@ -2432,8 +2521,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return isSetSgrHPOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE:
 				return isSetSgrHCOpMode();
-			case V0Package.SGR_ENUM_LIST_TYPE__SGR_DHW_OP_MODE:
-				return isSetSgrDHWOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
 				return isSetCtaDHWOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
@@ -2452,8 +2539,12 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return isSetHovBufferState();
 			case V0Package.SGR_ENUM_LIST_TYPE__HOV_HC_OP_STATE:
 				return isSetHovHCOpState();
-			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WATER_STATE:
-				return isSetHovDomHotWaterState();
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WOP_MODE:
+				return isSetHovDomHotWOpMode();
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_DOM_HOT_WSTATE:
+				return isSetHovDomHotWState();
+			case V0Package.SGR_ENUM_LIST_TYPE__HOV_HP_OP_STATE:
+				return isSetHovHPOpState();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2498,8 +2589,6 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 		if (sgrHPOpModeESet) result.append(sgrHPOpMode); else result.append("<unset>");
 		result.append(", sgrHCOpMode: ");
 		if (sgrHCOpModeESet) result.append(sgrHCOpMode); else result.append("<unset>");
-		result.append(", sgrDHWOpMode: ");
-		if (sgrDHWOpModeESet) result.append(sgrDHWOpMode); else result.append("<unset>");
 		result.append(", ctaDHWOpMode: ");
 		if (ctaDHWOpModeESet) result.append(ctaDHWOpMode); else result.append("<unset>");
 		result.append(", ctaHPOpState: ");
@@ -2518,8 +2607,12 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 		if (hovBufferStateESet) result.append(hovBufferState); else result.append("<unset>");
 		result.append(", hovHCOpState: ");
 		if (hovHCOpStateESet) result.append(hovHCOpState); else result.append("<unset>");
-		result.append(", hovDomHotWaterState: ");
-		if (hovDomHotWaterStateESet) result.append(hovDomHotWaterState); else result.append("<unset>");
+		result.append(", hovDomHotWOpMode: ");
+		if (hovDomHotWOpModeESet) result.append(hovDomHotWOpMode); else result.append("<unset>");
+		result.append(", hovDomHotWState: ");
+		if (hovDomHotWStateESet) result.append(hovDomHotWState); else result.append("<unset>");
+		result.append(", hovHPOpState: ");
+		if (hovHPOpStateESet) result.append(hovHPOpState); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

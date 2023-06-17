@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * Ehov:
+ * Ehov3:
  *      map for Hoval H 
  *      #0=AUS
  *      #1=Eingangskontakte

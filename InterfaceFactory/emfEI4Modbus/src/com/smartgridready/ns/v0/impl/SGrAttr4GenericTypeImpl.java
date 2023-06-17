@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getMinRunTimeMinutes <em>Min Run Time Minutes</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getValueByTimeTableMinutes <em>Value By Time Table Minutes</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getFlexAssistance <em>Flex Assistance</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrAttr4GenericTypeImpl#getUnitConversionMultiplicator <em>Unit Conversion Multiplicator</em>}</li>
  * </ul>
  *
  * @generated
@@ -429,6 +430,35 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected SGrFlexAssistanceType flexAssistance;
+
+	/**
+	 * The default value of the '{@link #getUnitConversionMultiplicator() <em>Unit Conversion Multiplicator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnitConversionMultiplicator()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final float UNIT_CONVERSION_MULTIPLICATOR_EDEFAULT = 0.0F;
+
+	/**
+	 * The cached value of the '{@link #getUnitConversionMultiplicator() <em>Unit Conversion Multiplicator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnitConversionMultiplicator()
+	 * @generated
+	 * @ordered
+	 */
+	protected float unitConversionMultiplicator = UNIT_CONVERSION_MULTIPLICATOR_EDEFAULT;
+
+	/**
+	 * This is true if the Unit Conversion Multiplicator attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean unitConversionMultiplicatorESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1159,6 +1189,56 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
+	public float getUnitConversionMultiplicator() {
+		return unitConversionMultiplicator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUnitConversionMultiplicator(float newUnitConversionMultiplicator) {
+		float oldUnitConversionMultiplicator = unitConversionMultiplicator;
+		unitConversionMultiplicator = newUnitConversionMultiplicator;
+		boolean oldUnitConversionMultiplicatorESet = unitConversionMultiplicatorESet;
+		unitConversionMultiplicatorESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ATTR4_GENERIC_TYPE__UNIT_CONVERSION_MULTIPLICATOR, oldUnitConversionMultiplicator, unitConversionMultiplicator, !oldUnitConversionMultiplicatorESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetUnitConversionMultiplicator() {
+		float oldUnitConversionMultiplicator = unitConversionMultiplicator;
+		boolean oldUnitConversionMultiplicatorESet = unitConversionMultiplicatorESet;
+		unitConversionMultiplicator = UNIT_CONVERSION_MULTIPLICATOR_EDEFAULT;
+		unitConversionMultiplicatorESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ATTR4_GENERIC_TYPE__UNIT_CONVERSION_MULTIPLICATOR, oldUnitConversionMultiplicator, UNIT_CONVERSION_MULTIPLICATOR_EDEFAULT, oldUnitConversionMultiplicatorESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetUnitConversionMultiplicator() {
+		return unitConversionMultiplicatorESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__STABILITY_FALLBACK:
@@ -1211,6 +1291,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return getValueByTimeTableMinutes();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
 				return getFlexAssistance();
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__UNIT_CONVERSION_MULTIPLICATOR:
+				return getUnitConversionMultiplicator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1270,6 +1352,9 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return;
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
 				setFlexAssistance((SGrFlexAssistanceType)newValue);
+				return;
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__UNIT_CONVERSION_MULTIPLICATOR:
+				setUnitConversionMultiplicator((Float)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1331,6 +1416,9 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
 				setFlexAssistance((SGrFlexAssistanceType)null);
 				return;
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__UNIT_CONVERSION_MULTIPLICATOR:
+				unsetUnitConversionMultiplicator();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1375,6 +1463,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 				return isSetValueByTimeTableMinutes();
 			case V0Package.SGR_ATTR4_GENERIC_TYPE__FLEX_ASSISTANCE:
 				return flexAssistance != null;
+			case V0Package.SGR_ATTR4_GENERIC_TYPE__UNIT_CONVERSION_MULTIPLICATOR:
+				return isSetUnitConversionMultiplicator();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1415,6 +1505,8 @@ public class SGrAttr4GenericTypeImpl extends MinimalEObjectImpl.Container implem
 		if (minRunTimeMinutesESet) result.append(minRunTimeMinutes); else result.append("<unset>");
 		result.append(", valueByTimeTableMinutes: ");
 		if (valueByTimeTableMinutesESet) result.append(valueByTimeTableMinutes); else result.append("<unset>");
+		result.append(", unitConversionMultiplicator: ");
+		if (unitConversionMultiplicatorESet) result.append(unitConversionMultiplicator); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}
