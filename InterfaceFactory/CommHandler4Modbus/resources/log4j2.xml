@@ -2,11 +2,11 @@
 <Configuration>
   <Appenders>
     <Console name="Console">
-      <PatternLayout pattern="[%t] %-5level %c{1.} - %msg%n"/>
+      <PatternLayout pattern=" %-5level %c{1.} - %msg%n"/>
     </Console>
-    <File name="File" fileName="commhandler.log">
+    <File name="File" fileName="20230619_tstHoval.log">
       <PatternLayout>
-        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+        <Pattern> %p %c{1.}  %m%n</Pattern>
       </PatternLayout>
     </File>
   </Appenders>
