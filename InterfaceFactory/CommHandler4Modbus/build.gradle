@@ -77,9 +77,10 @@ jar {
   
 	from sourceSets.main.allSource
 
-	duplicatesStrategy='exclude'
+	duplicatesStrategy=DuplicatesStrategy.EXCLUDE
 	exclude('**/ECLIPSE_.SF', '**/ECLIPSE_.DSA', '**/ECLIPSE_.RSA')
-	
+	exclude('log4j2.xml')
+
 	// Remove this after project cleanup
 	exclude('*.lnk', '.project')
 
