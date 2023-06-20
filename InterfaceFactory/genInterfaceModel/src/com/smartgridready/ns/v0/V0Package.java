@@ -1158,13 +1158,13 @@ public interface V0Package extends EPackage {
 	int SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE = 14;
 
 	/**
-	 * The feature id for the '<em><b>Cta DHW Op Mode</b></em>' attribute.
+	 * The feature id for the '<em><b>Cta Dom Hot WOp Mode</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE = 15;
+	int SGR_ENUM_LIST_TYPE__CTA_DOM_HOT_WOP_MODE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Cta HP Op State</b></em>' attribute.
@@ -2107,14 +2107,14 @@ public interface V0Package extends EPackage {
 	int SGR_VERSION_NUMBER_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link com.smartgridready.ns.v0.CtaDHWOpModeType <em>Cta DHW Op Mode Type</em>}' enum.
+	 * The meta object id for the '{@link com.smartgridready.ns.v0.CtaDomHotWOpModeType <em>Cta Dom Hot WOp Mode Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.CtaDHWOpModeType
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getCtaDHWOpModeType()
+	 * @see com.smartgridready.ns.v0.CtaDomHotWOpModeType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getCtaDomHotWOpModeType()
 	 * @generated
 	 */
-	int CTA_DHW_OP_MODE_TYPE = 23;
+	int CTA_DOM_HOT_WOP_MODE_TYPE = 23;
 
 	/**
 	 * The meta object id for the '{@link com.smartgridready.ns.v0.CtaHCOpModeType <em>Cta HC Op Mode Type</em>}' enum.
@@ -2557,14 +2557,14 @@ public interface V0Package extends EPackage {
 	int SUB_PROFILE_TYPE_ENUM_TYPE = 67;
 
 	/**
-	 * The meta object id for the '<em>Cta DHW Op Mode Type Object</em>' data type.
+	 * The meta object id for the '<em>Cta Dom Hot WOp Mode Type Object</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.smartgridready.ns.v0.CtaDHWOpModeType
-	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getCtaDHWOpModeTypeObject()
+	 * @see com.smartgridready.ns.v0.CtaDomHotWOpModeType
+	 * @see com.smartgridready.ns.v0.impl.V0PackageImpl#getCtaDomHotWOpModeTypeObject()
 	 * @generated
 	 */
-	int CTA_DHW_OP_MODE_TYPE_OBJECT = 68;
+	int CTA_DOM_HOT_WOP_MODE_TYPE_OBJECT = 68;
 
 	/**
 	 * The meta object id for the '<em>Cta HC Op Mode Type Object</em>' data type.
@@ -4170,15 +4170,15 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrEnumListType_SgrHCOpMode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}'.
+	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Cta DHW Op Mode</em>'.
-	 * @see com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode()
+	 * @return the meta object for the attribute '<em>Cta Dom Hot WOp Mode</em>'.
+	 * @see com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode()
 	 * @see #getSGrEnumListType()
 	 * @generated
 	 */
-	EAttribute getSGrEnumListType_CtaDHWOpMode();
+	EAttribute getSGrEnumListType_CtaDomHotWOpMode();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHPOpState <em>Cta HP Op State</em>}'.
@@ -4894,14 +4894,14 @@ public interface V0Package extends EPackage {
 	EAttribute getSGrVersionNumberType_SubReleaseVersionNumber();
 
 	/**
-	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.CtaDHWOpModeType <em>Cta DHW Op Mode Type</em>}'.
+	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.CtaDomHotWOpModeType <em>Cta Dom Hot WOp Mode Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Cta DHW Op Mode Type</em>'.
-	 * @see com.smartgridready.ns.v0.CtaDHWOpModeType
+	 * @return the meta object for enum '<em>Cta Dom Hot WOp Mode Type</em>'.
+	 * @see com.smartgridready.ns.v0.CtaDomHotWOpModeType
 	 * @generated
 	 */
-	EEnum getCtaDHWOpModeType();
+	EEnum getCtaDomHotWOpModeType();
 
 	/**
 	 * Returns the meta object for enum '{@link com.smartgridready.ns.v0.CtaHCOpModeType <em>Cta HC Op Mode Type</em>}'.
@@ -5344,16 +5344,16 @@ public interface V0Package extends EPackage {
 	EEnum getSubProfileTypeEnumType();
 
 	/**
-	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.CtaDHWOpModeType <em>Cta DHW Op Mode Type Object</em>}'.
+	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.CtaDomHotWOpModeType <em>Cta Dom Hot WOp Mode Type Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Cta DHW Op Mode Type Object</em>'.
-	 * @see com.smartgridready.ns.v0.CtaDHWOpModeType
-	 * @model instanceClass="com.smartgridready.ns.v0.CtaDHWOpModeType"
-	 *        extendedMetaData="name='ctaDHWOpModeType:Object' baseType='ctaDHWOpModeType'"
+	 * @return the meta object for data type '<em>Cta Dom Hot WOp Mode Type Object</em>'.
+	 * @see com.smartgridready.ns.v0.CtaDomHotWOpModeType
+	 * @model instanceClass="com.smartgridready.ns.v0.CtaDomHotWOpModeType"
+	 *        extendedMetaData="name='ctaDomHotWOpModeType:Object' baseType='ctaDomHotWOpModeType'"
 	 * @generated
 	 */
-	EDataType getCtaDHWOpModeTypeObject();
+	EDataType getCtaDomHotWOpModeTypeObject();
 
 	/**
 	 * Returns the meta object for data type '{@link com.smartgridready.ns.v0.CtaHCOpModeType <em>Cta HC Op Mode Type Object</em>}'.

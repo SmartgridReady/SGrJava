@@ -21,7 +21,7 @@ check for "EI-Modbus" and "Generic" directories in our Namespace http://www.smar
 */
 package communicator.impl;
 
-import com.smartgridready.ns.v0.CtaDHWOpModeType;
+import com.smartgridready.ns.v0.CtaDomHotWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.HovBufferStateType;
@@ -1213,10 +1213,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retval = oGenVal.getSgrOCPPState().getValue();
 		} else if (oGenVal.isSetSgrHPOpMode()) { // E0016
 			retval = oGenVal.getSgrHPOpMode().getValue();
-		} else if (oGenVal.isSetCtaDHWOpMode()) {// cta00
-			retval = oGenVal.getCtaDHWOpMode().getValue();
-		} else if (oGenVal.isSetCtaDHWOpMode()) {// cta00
-			retval = oGenVal.getCtaDHWOpMode().getValue();
+		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// cta00
+			retval = oGenVal.getCtaDomHotWOpMode().getValue();
+		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// cta00
+			retval = oGenVal.getCtaDomHotWOpMode().getValue();
 		} else if (oGenVal.isSetCtaHPOpMode()) {// cta00
 			retval = oGenVal.getCtaHPOpMode().getValue();
 		} else if (oGenVal.isSetCtaHPOpState()) {// cta00
@@ -1282,8 +1282,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			rval.setSgrHPOpMode(SGrHPOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
 			rval.setSgrHCOpMode(SGrHCOpModeType.get((int)RegRes));
-		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
-			rval.setCtaDHWOpMode(CtaDHWOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// Ecta001
+			rval.setCtaDomHotWOpMode(CtaDomHotWOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
 			rval.setCtaHPOpMode(CtaHPOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetCtaHPOpState()) {// Ecta002

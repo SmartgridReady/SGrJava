@@ -142,8 +142,8 @@ public class V0Validator extends EObjectValidator {
 				return validateSGrStabilityFallbackType((SGrStabilityFallbackType)value, diagnostics, context);
 			case V0Package.SGR_VERSION_NUMBER_TYPE:
 				return validateSGrVersionNumberType((SGrVersionNumberType)value, diagnostics, context);
-			case V0Package.CTA_DHW_OP_MODE_TYPE:
-				return validateCtaDHWOpModeType((CtaDHWOpModeType)value, diagnostics, context);
+			case V0Package.CTA_DOM_HOT_WOP_MODE_TYPE:
+				return validateCtaDomHotWOpModeType((CtaDomHotWOpModeType)value, diagnostics, context);
 			case V0Package.CTA_HC_OP_MODE_TYPE:
 				return validateCtaHCOpModeType((CtaHCOpModeType)value, diagnostics, context);
 			case V0Package.CTA_HP_OP_MODE_TYPE:
@@ -232,8 +232,8 @@ public class V0Validator extends EObjectValidator {
 				return validateStiHPOpstateType((StiHPOpstateType)value, diagnostics, context);
 			case V0Package.SUB_PROFILE_TYPE_ENUM_TYPE:
 				return validateSubProfileTypeEnumType((SubProfileTypeEnumType)value, diagnostics, context);
-			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
-				return validateCtaDHWOpModeTypeObject((CtaDHWOpModeType)value, diagnostics, context);
+			case V0Package.CTA_DOM_HOT_WOP_MODE_TYPE_OBJECT:
+				return validateCtaDomHotWOpModeTypeObject((CtaDomHotWOpModeType)value, diagnostics, context);
 			case V0Package.CTA_HC_OP_MODE_TYPE_OBJECT:
 				return validateCtaHCOpModeTypeObject((CtaHCOpModeType)value, diagnostics, context);
 			case V0Package.CTA_HP_OP_MODE_TYPE_OBJECT:
@@ -547,7 +547,7 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCtaDHWOpModeType(CtaDHWOpModeType ctaDHWOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCtaDomHotWOpModeType(CtaDomHotWOpModeType ctaDomHotWOpModeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -952,7 +952,7 @@ public class V0Validator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCtaDHWOpModeTypeObject(CtaDHWOpModeType ctaDHWOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCtaDomHotWOpModeTypeObject(CtaDomHotWOpModeType ctaDomHotWOpModeTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

@@ -142,8 +142,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case V0Package.CTA_DHW_OP_MODE_TYPE:
-				return createCtaDHWOpModeTypeFromString(eDataType, initialValue);
+			case V0Package.CTA_DOM_HOT_WOP_MODE_TYPE:
+				return createCtaDomHotWOpModeTypeFromString(eDataType, initialValue);
 			case V0Package.CTA_HC_OP_MODE_TYPE:
 				return createCtaHCOpModeTypeFromString(eDataType, initialValue);
 			case V0Package.CTA_HP_OP_MODE_TYPE:
@@ -264,8 +264,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return createTEnumObjectTypeFromString(eDataType, initialValue);
 			case V0Package.BITMASK_TYPE:
 				return createBitmaskTypeFromString(eDataType, initialValue);
-			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
-				return createCtaDHWOpModeTypeObjectFromString(eDataType, initialValue);
+			case V0Package.CTA_DOM_HOT_WOP_MODE_TYPE_OBJECT:
+				return createCtaDomHotWOpModeTypeObjectFromString(eDataType, initialValue);
 			case V0Package.CTA_HC_OP_MODE_TYPE_OBJECT:
 				return createCtaHCOpModeTypeObjectFromString(eDataType, initialValue);
 			case V0Package.CTA_HP_OP_MODE_TYPE_OBJECT:
@@ -453,8 +453,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case V0Package.CTA_DHW_OP_MODE_TYPE:
-				return convertCtaDHWOpModeTypeToString(eDataType, instanceValue);
+			case V0Package.CTA_DOM_HOT_WOP_MODE_TYPE:
+				return convertCtaDomHotWOpModeTypeToString(eDataType, instanceValue);
 			case V0Package.CTA_HC_OP_MODE_TYPE:
 				return convertCtaHCOpModeTypeToString(eDataType, instanceValue);
 			case V0Package.CTA_HP_OP_MODE_TYPE:
@@ -575,8 +575,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 				return convertTEnumObjectTypeToString(eDataType, instanceValue);
 			case V0Package.BITMASK_TYPE:
 				return convertBitmaskTypeToString(eDataType, instanceValue);
-			case V0Package.CTA_DHW_OP_MODE_TYPE_OBJECT:
-				return convertCtaDHWOpModeTypeObjectToString(eDataType, instanceValue);
+			case V0Package.CTA_DOM_HOT_WOP_MODE_TYPE_OBJECT:
+				return convertCtaDomHotWOpModeTypeObjectToString(eDataType, instanceValue);
 			case V0Package.CTA_HC_OP_MODE_TYPE_OBJECT:
 				return convertCtaHCOpModeTypeObjectToString(eDataType, instanceValue);
 			case V0Package.CTA_HP_OP_MODE_TYPE_OBJECT:
@@ -1498,8 +1498,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CtaDHWOpModeType createCtaDHWOpModeTypeFromString(EDataType eDataType, String initialValue) {
-		CtaDHWOpModeType result = CtaDHWOpModeType.get(initialValue);
+	public CtaDomHotWOpModeType createCtaDomHotWOpModeTypeFromString(EDataType eDataType, String initialValue) {
+		CtaDomHotWOpModeType result = CtaDomHotWOpModeType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -1509,7 +1509,7 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertCtaDHWOpModeTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertCtaDomHotWOpModeTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2716,8 +2716,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CtaDHWOpModeType createCtaDHWOpModeTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createCtaDHWOpModeTypeFromString(V0Package.eINSTANCE.getCtaDHWOpModeType(), initialValue);
+	public CtaDomHotWOpModeType createCtaDomHotWOpModeTypeObjectFromString(EDataType eDataType, String initialValue) {
+		return createCtaDomHotWOpModeTypeFromString(V0Package.eINSTANCE.getCtaDomHotWOpModeType(), initialValue);
 	}
 
 	/**
@@ -2725,8 +2725,8 @@ public class V0FactoryImpl extends EFactoryImpl implements V0Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertCtaDHWOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertCtaDHWOpModeTypeToString(V0Package.eINSTANCE.getCtaDHWOpModeType(), instanceValue);
+	public String convertCtaDomHotWOpModeTypeObjectToString(EDataType eDataType, Object instanceValue) {
+		return convertCtaDomHotWOpModeTypeToString(V0Package.eINSTANCE.getCtaDomHotWOpModeType(), instanceValue);
 	}
 
 	/**

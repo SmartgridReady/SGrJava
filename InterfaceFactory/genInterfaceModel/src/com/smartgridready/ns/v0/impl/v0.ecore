@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="v0" nsURI="http://www.smartgridready.com/ns/V0/" nsPrefix="v0">
-  <eClassifiers xsi:type="ecore:EEnum" name="CtaDHWOpModeType">
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaDomHotWOpModeType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="ctaDHWOpModeType"/>
+      <details key="name" value="ctaDomHotWOpModeType"/>
     </eAnnotations>
     <eLiterals name="DHWNULL" literal="DHW_NULL"/>
     <eLiterals name="DHWON" value="1" literal="DHW_ON"/>
@@ -12,10 +12,10 @@
     <eLiterals name="DHWTMPOFF" value="4" literal="DHW_TMP_OFF"/>
     <eLiterals name="DHWEMERGENCY" value="5" literal="DHW_EMERGENCY"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="CtaDHWOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaDomHotWOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="ctaDHWOpModeType:Object"/>
-      <details key="baseType" value="ctaDHWOpModeType"/>
+      <details key="name" value="ctaDomHotWOpModeType:Object"/>
+      <details key="baseType" value="ctaDomHotWOpModeType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CtaHCOpModeType">
@@ -1314,11 +1314,11 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaDHWOpMode" eType="#//CtaDHWOpModeType"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaDomHotWOpMode" eType="#//CtaDomHotWOpModeType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="ctaDHWOpMode"/>
+        <details key="name" value="ctaDomHotWOpMode"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>

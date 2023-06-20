@@ -2,7 +2,7 @@
  */
 package com.smartgridready.ns.v0.impl;
 
-import com.smartgridready.ns.v0.CtaDHWOpModeType;
+import com.smartgridready.ns.v0.CtaDomHotWOpModeType;
 import com.smartgridready.ns.v0.CtaHCOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
@@ -62,7 +62,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrOCPPState <em>Sgr OCPP State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrHPOpMode <em>Sgr HP Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getSgrHCOpMode <em>Sgr HC Op Mode</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaHPOpState <em>Cta HP Op State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaHPOpMode <em>Cta HP Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.impl.SGrEnumListTypeImpl#getCtaHCOpMode <em>Cta HC Op Mode</em>}</li>
@@ -515,33 +515,33 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	protected boolean sgrHCOpModeESet;
 
 	/**
-	 * The default value of the '{@link #getCtaDHWOpMode() <em>Cta DHW Op Mode</em>}' attribute.
+	 * The default value of the '{@link #getCtaDomHotWOpMode() <em>Cta Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCtaDHWOpMode()
+	 * @see #getCtaDomHotWOpMode()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final CtaDHWOpModeType CTA_DHW_OP_MODE_EDEFAULT = CtaDHWOpModeType.DHWNULL;
+	protected static final CtaDomHotWOpModeType CTA_DOM_HOT_WOP_MODE_EDEFAULT = CtaDomHotWOpModeType.DHWNULL;
 
 	/**
-	 * The cached value of the '{@link #getCtaDHWOpMode() <em>Cta DHW Op Mode</em>}' attribute.
+	 * The cached value of the '{@link #getCtaDomHotWOpMode() <em>Cta Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCtaDHWOpMode()
+	 * @see #getCtaDomHotWOpMode()
 	 * @generated
 	 * @ordered
 	 */
-	protected CtaDHWOpModeType ctaDHWOpMode = CTA_DHW_OP_MODE_EDEFAULT;
+	protected CtaDomHotWOpModeType ctaDomHotWOpMode = CTA_DOM_HOT_WOP_MODE_EDEFAULT;
 
 	/**
-	 * This is true if the Cta DHW Op Mode attribute has been set.
+	 * This is true if the Cta Dom Hot WOp Mode attribute has been set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean ctaDHWOpModeESet;
+	protected boolean ctaDomHotWOpModeESet;
 
 	/**
 	 * The default value of the '{@link #getCtaHPOpState() <em>Cta HP Op State</em>}' attribute.
@@ -1576,8 +1576,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CtaDHWOpModeType getCtaDHWOpMode() {
-		return ctaDHWOpMode;
+	public CtaDomHotWOpModeType getCtaDomHotWOpMode() {
+		return ctaDomHotWOpMode;
 	}
 
 	/**
@@ -1585,13 +1585,13 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCtaDHWOpMode(CtaDHWOpModeType newCtaDHWOpMode) {
-		CtaDHWOpModeType oldCtaDHWOpMode = ctaDHWOpMode;
-		ctaDHWOpMode = newCtaDHWOpMode == null ? CTA_DHW_OP_MODE_EDEFAULT : newCtaDHWOpMode;
-		boolean oldCtaDHWOpModeESet = ctaDHWOpModeESet;
-		ctaDHWOpModeESet = true;
+	public void setCtaDomHotWOpMode(CtaDomHotWOpModeType newCtaDomHotWOpMode) {
+		CtaDomHotWOpModeType oldCtaDomHotWOpMode = ctaDomHotWOpMode;
+		ctaDomHotWOpMode = newCtaDomHotWOpMode == null ? CTA_DOM_HOT_WOP_MODE_EDEFAULT : newCtaDomHotWOpMode;
+		boolean oldCtaDomHotWOpModeESet = ctaDomHotWOpModeESet;
+		ctaDomHotWOpModeESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE, oldCtaDHWOpMode, ctaDHWOpMode, !oldCtaDHWOpModeESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, V0Package.SGR_ENUM_LIST_TYPE__CTA_DOM_HOT_WOP_MODE, oldCtaDomHotWOpMode, ctaDomHotWOpMode, !oldCtaDomHotWOpModeESet));
 	}
 
 	/**
@@ -1599,13 +1599,13 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetCtaDHWOpMode() {
-		CtaDHWOpModeType oldCtaDHWOpMode = ctaDHWOpMode;
-		boolean oldCtaDHWOpModeESet = ctaDHWOpModeESet;
-		ctaDHWOpMode = CTA_DHW_OP_MODE_EDEFAULT;
-		ctaDHWOpModeESet = false;
+	public void unsetCtaDomHotWOpMode() {
+		CtaDomHotWOpModeType oldCtaDomHotWOpMode = ctaDomHotWOpMode;
+		boolean oldCtaDomHotWOpModeESet = ctaDomHotWOpModeESet;
+		ctaDomHotWOpMode = CTA_DOM_HOT_WOP_MODE_EDEFAULT;
+		ctaDomHotWOpModeESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE, oldCtaDHWOpMode, CTA_DHW_OP_MODE_EDEFAULT, oldCtaDHWOpModeESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, V0Package.SGR_ENUM_LIST_TYPE__CTA_DOM_HOT_WOP_MODE, oldCtaDomHotWOpMode, CTA_DOM_HOT_WOP_MODE_EDEFAULT, oldCtaDomHotWOpModeESet));
 	}
 
 	/**
@@ -1613,8 +1613,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetCtaDHWOpMode() {
-		return ctaDHWOpModeESet;
+	public boolean isSetCtaDomHotWOpMode() {
+		return ctaDomHotWOpModeESet;
 	}
 
 	/**
@@ -2161,8 +2161,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return getSgrHPOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE:
 				return getSgrHCOpMode();
-			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
-				return getCtaDHWOpMode();
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DOM_HOT_WOP_MODE:
+				return getCtaDomHotWOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
 				return getCtaHPOpState();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE:
@@ -2242,8 +2242,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE:
 				setSgrHCOpMode((SGrHCOpModeType)newValue);
 				return;
-			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
-				setCtaDHWOpMode((CtaDHWOpModeType)newValue);
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DOM_HOT_WOP_MODE:
+				setCtaDomHotWOpMode((CtaDomHotWOpModeType)newValue);
 				return;
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
 				setCtaHPOpState((CtaHPOpStateType)newValue);
@@ -2335,8 +2335,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE:
 				unsetSgrHCOpMode();
 				return;
-			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
-				unsetCtaDHWOpMode();
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DOM_HOT_WOP_MODE:
+				unsetCtaDomHotWOpMode();
 				return;
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
 				unsetCtaHPOpState();
@@ -2413,8 +2413,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 				return isSetSgrHPOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__SGR_HC_OP_MODE:
 				return isSetSgrHCOpMode();
-			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DHW_OP_MODE:
-				return isSetCtaDHWOpMode();
+			case V0Package.SGR_ENUM_LIST_TYPE__CTA_DOM_HOT_WOP_MODE:
+				return isSetCtaDomHotWOpMode();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_STATE:
 				return isSetCtaHPOpState();
 			case V0Package.SGR_ENUM_LIST_TYPE__CTA_HP_OP_MODE:
@@ -2481,8 +2481,8 @@ public class SGrEnumListTypeImpl extends MinimalEObjectImpl.Container implements
 		if (sgrHPOpModeESet) result.append(sgrHPOpMode); else result.append("<unset>");
 		result.append(", sgrHCOpMode: ");
 		if (sgrHCOpModeESet) result.append(sgrHCOpMode); else result.append("<unset>");
-		result.append(", ctaDHWOpMode: ");
-		if (ctaDHWOpModeESet) result.append(ctaDHWOpMode); else result.append("<unset>");
+		result.append(", ctaDomHotWOpMode: ");
+		if (ctaDomHotWOpModeESet) result.append(ctaDomHotWOpMode); else result.append("<unset>");
 		result.append(", ctaHPOpState: ");
 		if (ctaHPOpStateESet) result.append(ctaHPOpState); else result.append("<unset>");
 		result.append(", ctaHPOpMode: ");

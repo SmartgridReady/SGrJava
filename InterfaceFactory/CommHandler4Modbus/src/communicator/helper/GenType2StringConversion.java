@@ -18,7 +18,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.helper;
 
-import com.smartgridready.ns.v0.CtaDHWOpModeType;
+import com.smartgridready.ns.v0.CtaDomHotWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.HovBufferStateType;
@@ -241,8 +241,8 @@ public class GenType2StringConversion {
 			rval = oGenVal.getSgrHPOpMode().toString();
 		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
 			rval = oGenVal.getSgrHCOpMode().toString();         
-		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
-			rval = oGenVal.getCtaDHWOpMode().toString();
+		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// Ecta001
+			rval = oGenVal.getCtaDomHotWOpMode().toString();
 		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
 			rval = oGenVal.getCtaHPOpMode().toString();
 		} else if (oGenVal.isSetCtaHPOpState()) {// Ecta002
@@ -310,8 +310,8 @@ public class GenType2StringConversion {
 			rval.setSgrHPOpMode(SGrHPOpModeType.getByName(val));
 		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
 			rval.setSgrHCOpMode(SGrHCOpModeType.getByName(val));;
-		} else if (oGenVal.isSetCtaDHWOpMode()) {// Ecta001
-			rval.setCtaDHWOpMode(CtaDHWOpModeType.getByName(val));
+		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// Ecta001
+			rval.setCtaDomHotWOpMode(CtaDomHotWOpModeType.getByName(val));
 		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
 			rval.setCtaHPOpMode(CtaHPOpModeType.getByName(val));
 		} else if (oGenVal.isSetCtaHPOpState()) {// Ecta002

@@ -519,7 +519,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum ctaDHWOpModeTypeEEnum = null;
+	private EEnum ctaDomHotWOpModeTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -946,7 +946,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EDataType ctaDHWOpModeTypeObjectEDataType = null;
+	private EDataType ctaDomHotWOpModeTypeObjectEDataType = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3516,7 +3516,7 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSGrEnumListType_CtaDHWOpMode() {
+	public EAttribute getSGrEnumListType_CtaDomHotWOpMode() {
         return (EAttribute)getSGrEnumListType().getEStructuralFeatures().get(15);
 	}
 
@@ -5446,11 +5446,11 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EEnum getCtaDHWOpModeType() {
-		if (ctaDHWOpModeTypeEEnum == null) {
-			ctaDHWOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(2);
+	public EEnum getCtaDomHotWOpModeType() {
+		if (ctaDomHotWOpModeTypeEEnum == null) {
+			ctaDomHotWOpModeTypeEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(2);
 		}
-		return ctaDHWOpModeTypeEEnum;
+		return ctaDomHotWOpModeTypeEEnum;
 	}
 
 	/**
@@ -6239,11 +6239,11 @@ public class V0PackageImpl extends EPackageImpl implements V0Package {
 	 * @generated
 	 */
 	@Override
-	public EDataType getCtaDHWOpModeTypeObject() {
-		if (ctaDHWOpModeTypeObjectEDataType == null) {
-			ctaDHWOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(3);
+	public EDataType getCtaDomHotWOpModeTypeObject() {
+		if (ctaDomHotWOpModeTypeObjectEDataType == null) {
+			ctaDomHotWOpModeTypeObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(V0Package.eNS_URI).getEClassifiers().get(3);
 		}
-		return ctaDHWOpModeTypeObjectEDataType;
+		return ctaDomHotWOpModeTypeObjectEDataType;
 	}
 
 	/**

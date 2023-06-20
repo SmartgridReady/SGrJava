@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrOCPPState <em>Sgr OCPP State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHPOpMode <em>Sgr HP Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHCOpMode <em>Sgr HC Op Mode</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHPOpState <em>Cta HP Op State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHPOpMode <em>Cta HP Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHCOpMode <em>Cta HC Op Mode</em>}</li>
@@ -843,57 +843,57 @@ public interface SGrEnumListType extends EObject {
 	boolean isSetSgrHCOpMode();
 
 	/**
-	 * Returns the value of the '<em><b>Cta DHW Op Mode</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.CtaDHWOpModeType}.
+	 * Returns the value of the '<em><b>Cta Dom Hot WOp Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.CtaDomHotWOpModeType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cta DHW Op Mode</em>' attribute.
-	 * @see com.smartgridready.ns.v0.CtaDHWOpModeType
-	 * @see #isSetCtaDHWOpMode()
-	 * @see #unsetCtaDHWOpMode()
-	 * @see #setCtaDHWOpMode(CtaDHWOpModeType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_CtaDHWOpMode()
+	 * @return the value of the '<em>Cta Dom Hot WOp Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.CtaDomHotWOpModeType
+	 * @see #isSetCtaDomHotWOpMode()
+	 * @see #unsetCtaDomHotWOpMode()
+	 * @see #setCtaDomHotWOpMode(CtaDomHotWOpModeType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_CtaDomHotWOpMode()
 	 * @model unsettable="true"
-	 *        extendedMetaData="kind='element' name='ctaDHWOpMode' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='ctaDomHotWOpMode' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	CtaDHWOpModeType getCtaDHWOpMode();
+	CtaDomHotWOpModeType getCtaDomHotWOpMode();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cta DHW Op Mode</em>' attribute.
-	 * @see com.smartgridready.ns.v0.CtaDHWOpModeType
-	 * @see #isSetCtaDHWOpMode()
-	 * @see #unsetCtaDHWOpMode()
-	 * @see #getCtaDHWOpMode()
+	 * @param value the new value of the '<em>Cta Dom Hot WOp Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.CtaDomHotWOpModeType
+	 * @see #isSetCtaDomHotWOpMode()
+	 * @see #unsetCtaDomHotWOpMode()
+	 * @see #getCtaDomHotWOpMode()
 	 * @generated
 	 */
-	void setCtaDHWOpMode(CtaDHWOpModeType value);
+	void setCtaDomHotWOpMode(CtaDomHotWOpModeType value);
 
 	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}' attribute.
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetCtaDHWOpMode()
-	 * @see #getCtaDHWOpMode()
-	 * @see #setCtaDHWOpMode(CtaDHWOpModeType)
+	 * @see #isSetCtaDomHotWOpMode()
+	 * @see #getCtaDomHotWOpMode()
+	 * @see #setCtaDomHotWOpMode(CtaDomHotWOpModeType)
 	 * @generated
 	 */
-	void unsetCtaDHWOpMode();
+	void unsetCtaDomHotWOpMode();
 
 	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}' attribute is set.
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Cta DHW Op Mode</em>' attribute is set.
-	 * @see #unsetCtaDHWOpMode()
-	 * @see #getCtaDHWOpMode()
-	 * @see #setCtaDHWOpMode(CtaDHWOpModeType)
+	 * @return whether the value of the '<em>Cta Dom Hot WOp Mode</em>' attribute is set.
+	 * @see #unsetCtaDomHotWOpMode()
+	 * @see #getCtaDomHotWOpMode()
+	 * @see #setCtaDomHotWOpMode(CtaDomHotWOpModeType)
 	 * @generated
 	 */
-	boolean isSetCtaDHWOpMode();
+	boolean isSetCtaDomHotWOpMode();
 
 	/**
 	 * Returns the value of the '<em><b>Cta HP Op State</b></em>' attribute.

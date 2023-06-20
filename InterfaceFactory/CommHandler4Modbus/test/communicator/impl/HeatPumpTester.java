@@ -31,7 +31,7 @@ import java.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 // SmartGridready definitions
-import com.smartgridready.ns.v0.CtaDHWOpModeType;
+import com.smartgridready.ns.v0.CtaDomHotWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.HovDomHotWOpModeType;
 import com.smartgridready.ns.v0.HovDomHotWStateType;
@@ -95,8 +95,8 @@ public class HeatPumpTester {
 	private static boolean  devRTU_IOPIsOn=false; 
 	private static boolean  devTCP_IOPIsOn=true; 
 	private static boolean  devStiebelISGIsOn=false; 
-	private static boolean  devCTAoptiHeatIsOn=false; 
-	private static boolean  devHovalTCPIsOn=true; 
+	private static boolean  devCTAoptiHeatIsOn=true; 
+	private static boolean  devHovalTCPIsOn=false; 
 	
 	// shell for enumerations
 	private static SGrEnumListType oEnumList = V0Factory.eINSTANCE.createSGrEnumListType();
@@ -779,7 +779,7 @@ public class HeatPumpTester {
 						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec",gdtValue);
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
 					      */
-					      
+						  LOG.info("\n");
 													  
 						 
 						}
@@ -807,7 +807,7 @@ public class HeatPumpTester {
 						oEnumListSet=  devCTAoptiHeat.getValByGDPType("DomHotWaterCtrl", "ctaDomHotWOpModeCmd").getEnum();
 						fVal1 = devCTAoptiHeat.getValByGDPType("DomHotWaterCtrl", "ActDomHotWTemp").getFloat32();
 						fVal2 = devCTAoptiHeat.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt").getFloat32();
-						LOG.info(String.format("  DomHotWaterCtrl: ctaDomHotWOpModeCmd=" + oEnumListSet.getCtaDHWOpMode().getLiteral() + "/" +   oEnumListSet.getCtaDHWOpMode().getValue()  + ",  ActDomHotWTemp="  + fVal1 + " °C,  DomHotWTempStpt=" + fVal2 + " °C "));  
+						LOG.info(String.format("  DomHotWaterCtrl: ctaDomHotWOpModeCmd=" + oEnumListSet.getCtaDomHotWOpMode().getLiteral() + "/" +   oEnumListSet.getCtaDomHotWOpMode().getValue()  + ",  ActDomHotWTemp="  + fVal1 + " °C,  DomHotWTempStpt=" + fVal2 + " °C "));  
 						LOG.info(String.format(" "));	
 						
 						fVal1 = devCTAoptiHeat.getValByGDPType("PowerCtrl", "ActSpeed").getFloat32();

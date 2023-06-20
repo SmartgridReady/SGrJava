@@ -7,13 +7,13 @@
   <foreignModel>../../SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
   <genPackages prefix="V0" basePackage="com.smartgridready.ns" resource="XML" disposableProviderFactory="true"
       loadInitialization="true" literalsInterface="false" ecorePackage="v0.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CtaDHWOpModeType">
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWNULL"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWON"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWOFF"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWPUSH"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWTMPOFF"/>
-      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDHWOpModeType/DHWEMERGENCY"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CtaDomHotWOpModeType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDomHotWOpModeType/DHWNULL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDomHotWOpModeType/DHWON"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDomHotWOpModeType/DHWOFF"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDomHotWOpModeType/DHWPUSH"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDomHotWOpModeType/DHWTMPOFF"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaDomHotWOpModeType/DHWEMERGENCY"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CtaHCOpModeType">
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CtaHCOpModeType/HPNULL"/>
@@ -1011,7 +1011,7 @@
       <genEnumLiterals ecoreEnumLiteral="v0.ecore#//TEnumObjectType/HoldRegister"/>
     </genEnums>
     <genDataTypes ecoreDataType="v0.ecore#//BitmaskType"/>
-    <genDataTypes ecoreDataType="v0.ecore#//CtaDHWOpModeTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//CtaDomHotWOpModeTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//CtaHCOpModeTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//CtaHPOpModeTypeObject"/>
     <genDataTypes ecoreDataType="v0.ecore#//CtaHPOpStateTypeObject"/>
@@ -1305,7 +1305,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrOCPPState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrHPOpMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/sgrHCOpMode"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaDHWOpMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaDomHotWOpMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaHPOpState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaHPOpMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SGrEnumListType/ctaHCOpMode"/>
