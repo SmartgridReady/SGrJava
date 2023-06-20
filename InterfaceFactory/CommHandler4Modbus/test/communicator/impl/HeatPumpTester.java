@@ -194,8 +194,9 @@ public class HeatPumpTester {
 				// // replace device specific for TCP  (easymodus uses Driver instance per device)						
 				GenDriverAPI4ModbusTCP mbHovalTCP= new GenDriverAPI4ModbusTCP();
 				devHovalTCP=new SGrModbusDevice(tstDesc, mbHovalTCP);							
-				//setting Hoval Lab mbHovalTCP.initDevice("192.168.100.35",502);						
-				mbHovalTCP.initDevice("192.168.1.55",502);
+				//setting Hoval Lab 
+				mbHovalTCP.initDevice("192.168.0.35",502);						
+				//mbHovalTCP.initDevice("192.168.1.55",502);
 			}
 			
 			catch ( Exception e )
@@ -335,16 +336,18 @@ public class HeatPumpTester {
 		
 		oEnumList=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "hovDomHotWOpModeCmd").getEnum();
 		oEnumList1=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "hovDomHotWState").getEnum();
-		fVal1=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptComf").getFloat32();
+		fVal1=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptOffs").getFloat32();
 		fVal2=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptComf").getFloat32();
-		fVal3=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "ActDomHotWTemp").getFloat32();
-		fVal4=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptFb").getFloat32();
-		LOG.info(String.format("  DomHotWCtrl: hovDomHotWOpModeCmd=" + oEnumList.getHovDomHotWOpMode().getLiteral()+"/"+ oEnumList.getHovDomHotWOpMode().getValue()  + ",  DomHotWState=" +  oEnumList1.getHovDomHotWState().getLiteral()+"/"+oEnumList1.getHovDomHotWState().getValue()));
-		LOG.info(String.format("        DomHotWTempStptComf=" + fVal1 + " °C,  DomHotWTempStptEco=" + fVal2 + " °C,   ActDomHotWTemp=" + fVal3 + " °C,  DomHotWTempStptFb=" + fVal3 + " °C "));  
+		fVal3=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptEco").getFloat32();
+		fVal4=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "ActDomHotWTemp").getFloat32();
+		fVal5=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptFb").getFloat32();
+		LOG.info(String.format("  DomHotWCtrl: hovDomHotWOpModeCmd=" + oEnumList.getHovDomHotWOpMode().getLiteral()+"/"+ oEnumList.getHovDomHotWOpMode().getValue()  + ",  DomHotWState=" +  oEnumList1.getHovDomHotWState().getLiteral()+"/"+oEnumList1.getHovDomHotWState().getValue() + ", DomHotWTempStptComf=" + fVal2 + " °C"));
+		LOG.info(String.format("        DomHotWTempStptComf=" + fVal2 + " °C,  DomHotWTempStptEco=" + fVal3 + " °C,   ActDomHotWTemp=" + fVal4 + " °C,  DomHotWTempStptFb=" + fVal5 + " °C "));  
 		LOG.info(" ");  
 
 		fVal1=devHovalTCP.getValByGDPType("PowerCtrl", "PowerCtrlStpt").getFloat32();
 		fVal2=devHovalTCP.getValByGDPType("PowerCtrl", "ActSpeed").getFloat32();
+		fVal3=devHovalTCP.getValByGDPType("BufferStorageCtrl", "CoolBufferTempStptOffs").getFloat32();
 		fVal3=devHovalTCP.getValByGDPType("PowerCtrl", "ActPowerACtot").getFloat32();
 		LOG.info(String.format("  PowerCtrl: PowerCtrlStp =" + fVal1 + " %% , ActSpeed="  + fVal2 + " %% , ActPowerACtot=" + fVal3 +" kW"  ));  
 		LOG.info(" ");  
@@ -352,17 +355,18 @@ public class HeatPumpTester {
 
 		oEnumList=devHovalTCP.getValByGDPType("BufferStorageCtrl", "hovActBufferState").getEnum();
 		fVal1=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActBufferWaterTempStptFb").getFloat32();
-		fVal2=devHovalTCP.getValByGDPType("BufferStorageCtrl", "HeatBufferTempStptOffs").getFloat32();
-		fVal3=devHovalTCP.getValByGDPType("BufferStorageCtrl", "CoolBufferTempStptOffs").getFloat32();
+		fVal2=devHovalTCP.getValByGDPType("BufferStorageCtrl","HeatBufferTempStptOffs").getFloat32();	
+		fVal3=devHovalTCP.getValByGDPType("BufferStorageCtrl","CoolBufferTempStptOffs").getFloat32();	
 		LOG.info(String.format("  BufferStorageCtrl: hovActBufferState="+ oEnumList.getHovBufferState().getLiteral()+"/"+ oEnumList.getHovBufferState().getValue()  + ",  ActBufferWaterTempStptFb=" + fVal1 +",  HeatBufferTempStptOffs="  + fVal2 +  " °C,  CoolBufferTempStptOffs=" + fVal3 + " °C"));  
-	
-		fVal1=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTemp").getFloat32();fVal2=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempUpper").getFloat32();
-		fVal3=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempLower").getFloat32();
+		fVal1=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTemp").getFloat32();
+		fVal2=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempUpper").getFloat32();
+		fVal3=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempLower").getFloat32();	
 		fVal4=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActCoolBufferTempUpper").getFloat32();
-		fVal5=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActCoolBufferTempLower").getFloat32();
+		fVal5=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActCoolBufferTempLower").getFloat32();	
 		LOG.info(String.format("      ActHeatBufferTemp=" + fVal1 +",  ActHeatBufferTempUpper="  + fVal2 +  " °C,  ActHeatBufferTempLower=" + fVal3 + " °C,  ActCoolBufferTempUpper=" + fVal4 + " °C,  ActCoolBufferTempLower=" + fVal5 + " °C "));  
-		LOG.info(" "); 	
 		
+		LOG.info(" "); 	
+	
 		
 		oEnumList=devHovalTCP.getValByGDPType("HeatCoolCtrl_1", "hovHeatCoolCtrlOpModeCmd").getEnum();
 		oEnumList1=devHovalTCP.getValByGDPType("HeatCoolCtrl_1", "hovHeatCoolOpState").getEnum(); 				
@@ -398,7 +402,7 @@ public class HeatPumpTester {
 		fVal2=devHovalTCP.getValByGDPType("EnergyMonitor", "ActivePowerACtot").getFloat32();		
 		fVal3=devHovalTCP.getValByGDPType("EnergyMonitor", "RuntimeCompressor").getFloat32();
 		lVal=devHovalTCP.getValByGDPType("EnergyMonitor", "NrOfStartupsCompressor").getInt32U();
-		LOG.info(String.format("         ActiveEnergyACtot=, ActivePowerACtot=, RuntimeCompressor=, NrOfStartupsCompressor=  : " + fVal1 + " kWh,  " + fVal2 + " kWh,  " + fVal3 + " h,  " + lVal+"  times"));    
+		LOG.info(String.format("         ActiveEnergyACtot="+ fVal1 + " kWh,  ActivePowerACtot=" + fVal2 + " kWh, RuntimeCompressor="+ fVal3 + " h,  NrOfStartupsCompressor="+ lVal+"  times"));    
 		LOG.info(" "); 
 		
 		oEnumList=devHovalTCP.getValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd").getEnum();			  

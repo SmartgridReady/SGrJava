@@ -4,7 +4,7 @@
     <Console name="Console">
       <PatternLayout pattern=" %-5level %c{1.} - %msg%n"/>
     </Console>
-    <File name="File" fileName="20230619_tstHoval.log">
+    <File name="File" fileName="commhandler.log">
       <PatternLayout>
         <Pattern> %p %c{1.}  %m%n</Pattern>
       </PatternLayout>
