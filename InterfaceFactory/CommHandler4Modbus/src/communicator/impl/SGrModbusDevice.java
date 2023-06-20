@@ -71,7 +71,6 @@ import communicator.helper.ConversionHelper;
 import communicator.helper.GenType2StringConversion;
 import communicator.helper.ModbusReader;
 import communicator.helper.ModbusReaderResponse;
-import org.apache.hc.core5.http.MethodNotSupportedException;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

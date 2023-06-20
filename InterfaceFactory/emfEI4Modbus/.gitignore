@@ -5,3 +5,8 @@
 
 # Ignore Gradle build output directory
 build
+
+# Ignore generated sources
+/src
+/model/emfEI4Modbus.genmodel
+/model/v0.ecore
