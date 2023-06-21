@@ -18,7 +18,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 author: IBT/cb
 The purpose of this class is to offer a test environment with all existing decives at the IBT lab in order to allow communication tests under long term  
-and significant traffic load conditions 
+and significant traffic load conditions    
 
  */
 

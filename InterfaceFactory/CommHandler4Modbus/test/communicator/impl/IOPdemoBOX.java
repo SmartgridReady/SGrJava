@@ -16,7 +16,7 @@ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR B
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
-author: IBT/cb 2023/5/2
+author: IBT/cb 2023/5/11
 The purpose of this class is to offer a test environment to show Device Interoperabil-ity (WAGO METER vs ABB METER), Functional Profile Interoperability 
 (CurrentAC WAGO METER vs ABB METER vs Bender Controller) and Protocol Interoperability ( Bender Con-troller Modbus/TCP  vs OCPP)
 

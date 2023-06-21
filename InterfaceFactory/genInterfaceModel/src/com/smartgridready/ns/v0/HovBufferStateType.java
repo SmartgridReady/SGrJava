@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * Ehov: 
+ * Ehov4: 
  * 	#0 = keine Anforderung, AUS
  * 	#1 = Anforderung, Temp. tief, PLP aus (Entladeschutz)
  * 	#2 = Anforderung, Ladung läuft

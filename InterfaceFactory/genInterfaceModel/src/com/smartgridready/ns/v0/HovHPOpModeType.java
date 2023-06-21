@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * Ehov:
+ * Ehov1:
  *      map for Hoval H 
  *      // #0=Wärmeerzeuger aus
  * 	 // #1=Automatikbetrieb

@@ -28,8 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrOCPPState <em>Sgr OCPP State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHPOpMode <em>Sgr HP Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrHCOpMode <em>Sgr HC Op Mode</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHPOpState <em>Cta HP Op State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHPOpMode <em>Cta HP Op Mode</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaHCOpMode <em>Cta HC Op Mode</em>}</li>
@@ -38,7 +37,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getHovSGReadySrcSel <em>Hov SG Ready Src Sel</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getHovBufferState <em>Hov Buffer State</em>}</li>
  *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getHovHCOpState <em>Hov HC Op State</em>}</li>
- *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWaterState <em>Hov Dom Hot Water State</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWOpMode <em>Hov Dom Hot WOp Mode</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWState <em>Hov Dom Hot WState</em>}</li>
+ *   <li>{@link com.smartgridready.ns.v0.SGrEnumListType#getHovHPOpState <em>Hov HP Op State</em>}</li>
  * </ul>
  *
  * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType()
@@ -842,110 +843,57 @@ public interface SGrEnumListType extends EObject {
 	boolean isSetSgrHCOpMode();
 
 	/**
-	 * Returns the value of the '<em><b>Sgr DHW Op Mode</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.SGrDHWOpModeType}.
+	 * Returns the value of the '<em><b>Cta Dom Hot WOp Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.CtaDomHotWOpModeType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sgr DHW Op Mode</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrDHWOpModeType
-	 * @see #isSetSgrDHWOpMode()
-	 * @see #unsetSgrDHWOpMode()
-	 * @see #setSgrDHWOpMode(SGrDHWOpModeType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_SgrDHWOpMode()
+	 * @return the value of the '<em>Cta Dom Hot WOp Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.CtaDomHotWOpModeType
+	 * @see #isSetCtaDomHotWOpMode()
+	 * @see #unsetCtaDomHotWOpMode()
+	 * @see #setCtaDomHotWOpMode(CtaDomHotWOpModeType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_CtaDomHotWOpMode()
 	 * @model unsettable="true"
-	 *        extendedMetaData="kind='element' name='sgrDHWOpMode' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='ctaDomHotWOpMode' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	SGrDHWOpModeType getSgrDHWOpMode();
+	CtaDomHotWOpModeType getCtaDomHotWOpMode();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sgr DHW Op Mode</em>' attribute.
-	 * @see com.smartgridready.ns.v0.SGrDHWOpModeType
-	 * @see #isSetSgrDHWOpMode()
-	 * @see #unsetSgrDHWOpMode()
-	 * @see #getSgrDHWOpMode()
+	 * @param value the new value of the '<em>Cta Dom Hot WOp Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.CtaDomHotWOpModeType
+	 * @see #isSetCtaDomHotWOpMode()
+	 * @see #unsetCtaDomHotWOpMode()
+	 * @see #getCtaDomHotWOpMode()
 	 * @generated
 	 */
-	void setSgrDHWOpMode(SGrDHWOpModeType value);
+	void setCtaDomHotWOpMode(CtaDomHotWOpModeType value);
 
 	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}' attribute.
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetSgrDHWOpMode()
-	 * @see #getSgrDHWOpMode()
-	 * @see #setSgrDHWOpMode(SGrDHWOpModeType)
+	 * @see #isSetCtaDomHotWOpMode()
+	 * @see #getCtaDomHotWOpMode()
+	 * @see #setCtaDomHotWOpMode(CtaDomHotWOpModeType)
 	 * @generated
 	 */
-	void unsetSgrDHWOpMode();
+	void unsetCtaDomHotWOpMode();
 
 	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getSgrDHWOpMode <em>Sgr DHW Op Mode</em>}' attribute is set.
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDomHotWOpMode <em>Cta Dom Hot WOp Mode</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sgr DHW Op Mode</em>' attribute is set.
-	 * @see #unsetSgrDHWOpMode()
-	 * @see #getSgrDHWOpMode()
-	 * @see #setSgrDHWOpMode(SGrDHWOpModeType)
+	 * @return whether the value of the '<em>Cta Dom Hot WOp Mode</em>' attribute is set.
+	 * @see #unsetCtaDomHotWOpMode()
+	 * @see #getCtaDomHotWOpMode()
+	 * @see #setCtaDomHotWOpMode(CtaDomHotWOpModeType)
 	 * @generated
 	 */
-	boolean isSetSgrDHWOpMode();
-
-	/**
-	 * Returns the value of the '<em><b>Cta DHW Op Mode</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.CtaDHWOpModeType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cta DHW Op Mode</em>' attribute.
-	 * @see com.smartgridready.ns.v0.CtaDHWOpModeType
-	 * @see #isSetCtaDHWOpMode()
-	 * @see #unsetCtaDHWOpMode()
-	 * @see #setCtaDHWOpMode(CtaDHWOpModeType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_CtaDHWOpMode()
-	 * @model unsettable="true"
-	 *        extendedMetaData="kind='element' name='ctaDHWOpMode' namespace='##targetNamespace'"
-	 * @generated
-	 */
-	CtaDHWOpModeType getCtaDHWOpMode();
-
-	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cta DHW Op Mode</em>' attribute.
-	 * @see com.smartgridready.ns.v0.CtaDHWOpModeType
-	 * @see #isSetCtaDHWOpMode()
-	 * @see #unsetCtaDHWOpMode()
-	 * @see #getCtaDHWOpMode()
-	 * @generated
-	 */
-	void setCtaDHWOpMode(CtaDHWOpModeType value);
-
-	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetCtaDHWOpMode()
-	 * @see #getCtaDHWOpMode()
-	 * @see #setCtaDHWOpMode(CtaDHWOpModeType)
-	 * @generated
-	 */
-	void unsetCtaDHWOpMode();
-
-	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getCtaDHWOpMode <em>Cta DHW Op Mode</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Cta DHW Op Mode</em>' attribute is set.
-	 * @see #unsetCtaDHWOpMode()
-	 * @see #getCtaDHWOpMode()
-	 * @see #setCtaDHWOpMode(CtaDHWOpModeType)
-	 * @generated
-	 */
-	boolean isSetCtaDHWOpMode();
+	boolean isSetCtaDomHotWOpMode();
 
 	/**
 	 * Returns the value of the '<em><b>Cta HP Op State</b></em>' attribute.
@@ -1372,56 +1320,162 @@ public interface SGrEnumListType extends EObject {
 	boolean isSetHovHCOpState();
 
 	/**
-	 * Returns the value of the '<em><b>Hov Dom Hot Water State</b></em>' attribute.
-	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.HovDomHotWaterStateType}.
+	 * Returns the value of the '<em><b>Hov Dom Hot WOp Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.HovDomHotWOpModeType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Hov Dom Hot Water State</em>' attribute.
-	 * @see com.smartgridready.ns.v0.HovDomHotWaterStateType
-	 * @see #isSetHovDomHotWaterState()
-	 * @see #unsetHovDomHotWaterState()
-	 * @see #setHovDomHotWaterState(HovDomHotWaterStateType)
-	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_HovDomHotWaterState()
+	 * @return the value of the '<em>Hov Dom Hot WOp Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.HovDomHotWOpModeType
+	 * @see #isSetHovDomHotWOpMode()
+	 * @see #unsetHovDomHotWOpMode()
+	 * @see #setHovDomHotWOpMode(HovDomHotWOpModeType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_HovDomHotWOpMode()
 	 * @model unsettable="true"
-	 *        extendedMetaData="kind='element' name='hovDomHotWaterState' namespace='##targetNamespace'"
+	 *        extendedMetaData="kind='element' name='hovDomHotWOpMode' namespace='##targetNamespace'"
 	 * @generated
 	 */
-	HovDomHotWaterStateType getHovDomHotWaterState();
+	HovDomHotWOpModeType getHovDomHotWOpMode();
 
 	/**
-	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWaterState <em>Hov Dom Hot Water State</em>}' attribute.
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWOpMode <em>Hov Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Hov Dom Hot Water State</em>' attribute.
-	 * @see com.smartgridready.ns.v0.HovDomHotWaterStateType
-	 * @see #isSetHovDomHotWaterState()
-	 * @see #unsetHovDomHotWaterState()
-	 * @see #getHovDomHotWaterState()
+	 * @param value the new value of the '<em>Hov Dom Hot WOp Mode</em>' attribute.
+	 * @see com.smartgridready.ns.v0.HovDomHotWOpModeType
+	 * @see #isSetHovDomHotWOpMode()
+	 * @see #unsetHovDomHotWOpMode()
+	 * @see #getHovDomHotWOpMode()
 	 * @generated
 	 */
-	void setHovDomHotWaterState(HovDomHotWaterStateType value);
+	void setHovDomHotWOpMode(HovDomHotWOpModeType value);
 
 	/**
-	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWaterState <em>Hov Dom Hot Water State</em>}' attribute.
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWOpMode <em>Hov Dom Hot WOp Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetHovDomHotWaterState()
-	 * @see #getHovDomHotWaterState()
-	 * @see #setHovDomHotWaterState(HovDomHotWaterStateType)
+	 * @see #isSetHovDomHotWOpMode()
+	 * @see #getHovDomHotWOpMode()
+	 * @see #setHovDomHotWOpMode(HovDomHotWOpModeType)
 	 * @generated
 	 */
-	void unsetHovDomHotWaterState();
+	void unsetHovDomHotWOpMode();
 
 	/**
-	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWaterState <em>Hov Dom Hot Water State</em>}' attribute is set.
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWOpMode <em>Hov Dom Hot WOp Mode</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Hov Dom Hot Water State</em>' attribute is set.
-	 * @see #unsetHovDomHotWaterState()
-	 * @see #getHovDomHotWaterState()
-	 * @see #setHovDomHotWaterState(HovDomHotWaterStateType)
+	 * @return whether the value of the '<em>Hov Dom Hot WOp Mode</em>' attribute is set.
+	 * @see #unsetHovDomHotWOpMode()
+	 * @see #getHovDomHotWOpMode()
+	 * @see #setHovDomHotWOpMode(HovDomHotWOpModeType)
 	 * @generated
 	 */
-	boolean isSetHovDomHotWaterState();
+	boolean isSetHovDomHotWOpMode();
+
+	/**
+	 * Returns the value of the '<em><b>Hov Dom Hot WState</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.HovDomHotWStateType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Hov Dom Hot WState</em>' attribute.
+	 * @see com.smartgridready.ns.v0.HovDomHotWStateType
+	 * @see #isSetHovDomHotWState()
+	 * @see #unsetHovDomHotWState()
+	 * @see #setHovDomHotWState(HovDomHotWStateType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_HovDomHotWState()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='hovDomHotWState' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	HovDomHotWStateType getHovDomHotWState();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWState <em>Hov Dom Hot WState</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Hov Dom Hot WState</em>' attribute.
+	 * @see com.smartgridready.ns.v0.HovDomHotWStateType
+	 * @see #isSetHovDomHotWState()
+	 * @see #unsetHovDomHotWState()
+	 * @see #getHovDomHotWState()
+	 * @generated
+	 */
+	void setHovDomHotWState(HovDomHotWStateType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWState <em>Hov Dom Hot WState</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHovDomHotWState()
+	 * @see #getHovDomHotWState()
+	 * @see #setHovDomHotWState(HovDomHotWStateType)
+	 * @generated
+	 */
+	void unsetHovDomHotWState();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovDomHotWState <em>Hov Dom Hot WState</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Hov Dom Hot WState</em>' attribute is set.
+	 * @see #unsetHovDomHotWState()
+	 * @see #getHovDomHotWState()
+	 * @see #setHovDomHotWState(HovDomHotWStateType)
+	 * @generated
+	 */
+	boolean isSetHovDomHotWState();
+
+	/**
+	 * Returns the value of the '<em><b>Hov HP Op State</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.smartgridready.ns.v0.HovHPOpStateType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Hov HP Op State</em>' attribute.
+	 * @see com.smartgridready.ns.v0.HovHPOpStateType
+	 * @see #isSetHovHPOpState()
+	 * @see #unsetHovHPOpState()
+	 * @see #setHovHPOpState(HovHPOpStateType)
+	 * @see com.smartgridready.ns.v0.V0Package#getSGrEnumListType_HovHPOpState()
+	 * @model unsettable="true"
+	 *        extendedMetaData="kind='element' name='hovHPOpState' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	HovHPOpStateType getHovHPOpState();
+
+	/**
+	 * Sets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovHPOpState <em>Hov HP Op State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Hov HP Op State</em>' attribute.
+	 * @see com.smartgridready.ns.v0.HovHPOpStateType
+	 * @see #isSetHovHPOpState()
+	 * @see #unsetHovHPOpState()
+	 * @see #getHovHPOpState()
+	 * @generated
+	 */
+	void setHovHPOpState(HovHPOpStateType value);
+
+	/**
+	 * Unsets the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovHPOpState <em>Hov HP Op State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHovHPOpState()
+	 * @see #getHovHPOpState()
+	 * @see #setHovHPOpState(HovHPOpStateType)
+	 * @generated
+	 */
+	void unsetHovHPOpState();
+
+	/**
+	 * Returns whether the value of the '{@link com.smartgridready.ns.v0.SGrEnumListType#getHovHPOpState <em>Hov HP Op State</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Hov HP Op State</em>' attribute is set.
+	 * @see #unsetHovHPOpState()
+	 * @see #getHovHPOpState()
+	 * @see #setHovHPOpState(HovHPOpStateType)
+	 * @generated
+	 */
+	boolean isSetHovHPOpState();
 
 } // SGrEnumListType

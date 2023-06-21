@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * Ehov:
+ * Ehov2:
  *      map for Hoval H 
  *      // #0=Standbybetrieb
  * 	 // #1=Woche 1
