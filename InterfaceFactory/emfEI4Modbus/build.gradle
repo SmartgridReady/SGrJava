@@ -50,7 +50,15 @@ task model2Java(type: Exec) {
 
     standardOutput = new ByteArrayOutputStream()
 
+    doFirst {
+        def generatedSrc = fileTree('src')
+        generatedSrc.each { File file -> delete(file) }
+        delete('model/emfEI4Modbus.genmodel')
+        delete('model.v0.ecore')
+    }
+
     doLast {
         print standardOutput.toString()
     }
 }
+
