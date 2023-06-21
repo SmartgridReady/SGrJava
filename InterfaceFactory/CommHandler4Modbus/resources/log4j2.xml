@@ -2,15 +2,14 @@
 <Configuration>
   <Appenders>
     <Console name="Console">
-      <PatternLayout pattern="%d{mm:ss,SSS} [%t] %-5level %c{1.} - %msg%n"/>
+      <PatternLayout pattern=" %-5level %c{1.} - %msg%n"/>
     </Console>
   </Appenders>
   <Loggers>
-    <Root level="debug">
-    <!--  setzt tiefsten level fuer output -->
+    <Root level="info">
+        <!--  setzt tiefsten level fuer output -->
         <AppenderRef ref="Console"/>
     </Root>
-    <logger name="org.apache.hc" level="info" />   
   </Loggers>    
 </Configuration>
 <!--  levels:  

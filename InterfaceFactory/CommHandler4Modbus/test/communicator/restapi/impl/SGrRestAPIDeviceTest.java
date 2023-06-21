@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
+import communicator.api.GenDeviceApi4Rest;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.junit.jupiter.api.BeforeAll;
@@ -94,11 +95,12 @@ class SGrRestAPIDeviceTest {
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
-				
+
+		// when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrame.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
 		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
 		
 		// when
-		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
 		String res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
@@ -120,7 +122,8 @@ class SGrRestAPIDeviceTest {
 		List<Either<HttpResponse, String>> responseSequence = new LinkedList<>();
 		responseSequence.add(Either.left( new BasicClassicHttpResponse(401, "Needs token renewal.")));
 		responseSequence.add(Either.right(CLEMAP_METER_RESP));					
-		
+
+//		when(restServiceClientReq.getRestServiceCall()).thenReturn(deviceFrame.getFpListElement().get(0).getDpListElement().get(0).getRestAPIDataPoint().get(0).getRestServiceCall());
 		when(restServiceClientReq.callService()).thenReturn(Either.left( 
 				new BasicClassicHttpResponse(401, "Needs token renewal.")),
 				Either.right(CLEMAP_METER_RESP));
@@ -157,5 +160,4 @@ class SGrRestAPIDeviceTest {
 		// then		
 		assertEquals("6380bbd5200d8506be9b7c10", res);				
 	}
-
 }

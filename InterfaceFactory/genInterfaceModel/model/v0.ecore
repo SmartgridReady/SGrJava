@@ -1,6 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="v0" nsURI="http://www.smartgridready.com/ns/V0/" nsPrefix="v0">
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaDomHotWOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ecta001:&#xA;     Basic operation type of CTA Domestic Hot Water Heat Pump operation mode&#xA;      &#x9;ON OFF Push  temporary-off emergency-op      &#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaDomHotWOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="DHWNULL" literal="DHW_NULL"/>
+    <eLiterals name="DHWON" value="1" literal="DHW_ON"/>
+    <eLiterals name="DHWOFF" value="2" literal="DHW_OFF"/>
+    <eLiterals name="DHWPUSH" value="3" literal="DHW_PUSH"/>
+    <eLiterals name="DHWTMPOFF" value="4" literal="DHW_TMP_OFF"/>
+    <eLiterals name="DHWEMERGENCY" value="5" literal="DHW_EMERGENCY"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaDomHotWOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaDomHotWOpModeType:Object"/>
+      <details key="baseType" value="ctaDomHotWOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaHCOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ecta004:&#xA;     map for CTA Heatpump HeatCool modes Automatik&#xA;#1 Komfort&#xA;#2 Reduziert&#xA;#3 Frostschutz/Aus&#xA;#4 Notbetrieb&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHCOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
+    <eLiterals name="HPCOMFORT" value="1" literal="HP_COMFORT"/>
+    <eLiterals name="HPECO" value="2" literal="HP_ECO"/>
+    <eLiterals name="HPDEFROST" value="3" literal="HP_DEFROST"/>
+    <eLiterals name="HPEMERGENCYOP" value="4" literal="HP_EMERGENCY_OP"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaHCOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHCOpModeType:Object"/>
+      <details key="baseType" value="ctaHCOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaHPOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ecta003:&#xA;     map for CTA Heatpump HeatCool modes information&#xA;#1 =&#x9;WP in Stand by Modus&#xA;#2 =&#x9;Heizbetrieb aktiv&#xA;#3 =&#x9;Notbetrieb Heizen aktiv&#xA;#4 =&#x9;TWW Ladung aktiv&#xA;#5 =&#x9;Notbetrieb TWW aktiv&#xA;#6 =&#x9;Aktivkühlbetrieb aktiv&#xA;#7 =&#x9;Manueller Betrieb&#xA;#8 =&#x9;Heizungsspeicher Ladebetrieb ein&#xA;#9 =&#x9;Externer Betrieb ein&#xA;#10 =&#x9;Verteilkreis-ohne Puffer Betrieb&#xA;#11 =&#x9;Abtaubetrieb aktiv&#xA;#12 =&#x9;Kältegeführter Betrieb (Prozesskühlen)&#x9;&#xA;#13 =&#x9;Reserve&#xA;#14 =&#x9;TWW Legio mit El. Einsatz K6 und parallel Heizungsbetrieb (Pufferladung)&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHPOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
+    <eLiterals name="HPSTANDBY" value="1" literal="HP_STANDBY"/>
+    <eLiterals name="HPHEATINGOP" value="2" literal="HP_HEATING_OP"/>
+    <eLiterals name="HPEMERGHEATINGACTIVE" value="3" literal="HP_EMERG_HEATING_ACTIVE"/>
+    <eLiterals name="HPDOMHWACTIVE" value="4" literal="HP_DOMHW_ACTIVE"/>
+    <eLiterals name="HPOMHWEMERGACTIVE" value="5" literal="HP_OMHW_EMERG_ACTIVE"/>
+    <eLiterals name="HPACTIVECOOLINGOP" value="6" literal="HP_ACTIVE_COOLING_OP"/>
+    <eLiterals name="HPMANUALOP" value="7" literal="HP_MANUAL_OP"/>
+    <eLiterals name="HPBUFFERLOADACTIVE" value="8" literal="HP_BUFFER_LOAD_ACTIVE"/>
+    <eLiterals name="HPEXTERNALCTRL" value="9" literal="HP_EXTERNAL_CTRL"/>
+    <eLiterals name="HPDIRECTDISTRIBUTION" value="10" literal="HP_DIRECT_DISTRIBUTION"/>
+    <eLiterals name="HPDEFROSTACTIVE" value="11" literal="HP_DEFROST_ACTIVE"/>
+    <eLiterals name="HPPASSIVECOOLINGOP" value="12" literal="HP_PASSIVE_COOLING_OP"/>
+    <eLiterals name="HPRESERVE" value="13" literal="HP_RESERVE"/>
+    <eLiterals name="HPCOMBINDEDBUFFERLOADING" value="14" literal="HP_COMBINDED_BUFFER_LOADING"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaHPOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHPOpModeType:Object"/>
+      <details key="baseType" value="ctaHPOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CtaHPOpStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ecta002:&#xA;     BitRank (or enum?) map for CTA Heatpump status information&#xA;#1 =   Stand by&#xA;#2 =   Alarm Aus&#xA;#3 =   Ext. aus&#xA;#4 =   Aus Zeitlimite&#xA;#5 =   Aus Gesperrt (EW-Sperre)&#xA;#6 =   Manuell Aus&#xA;#7 =   Manueller Betrieb&#xA;#8 =   Startphase&#xA;#9 =   Stopp Phase&#xA;#10 = Sicherh. Abschaltung&#xA;#11 = Start Abtauphase&#xA;#12 = Abtauphase&#xA;#13 = Ende Abtauphase&#xA;#14 = Gesperrt Druckd. Bei Start&#xA;#15 = Kühlbetrieb aktiv&#xA;#16 = Heizbetrieb aktiv&#xA;#17 = Start nach VD Startfehler&#xA;#18 = Aus Begrenzung aktiv&#xA;#19 = Ol Rückführung aktiv     &#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHPOpStateType"/>
+    </eAnnotations>
+    <eLiterals name="HPNULL" literal="HP_NULL"/>
+    <eLiterals name="HPSTANDBY" value="1" literal="HP_STANDBY"/>
+    <eLiterals name="HPALARMOFF" value="2" literal="HP_ALARM_OFF"/>
+    <eLiterals name="HPEXTERNALOFF" value="3" literal="HP_EXTERNAL_OFF"/>
+    <eLiterals name="HPTIMEOUTOFF" value="4" literal="HP_TIMEOUT_OFF"/>
+    <eLiterals name="HPDSOOFF" value="5" literal="HP_DSO_OFF"/>
+    <eLiterals name="HPMANUALOFF" value="6" literal="HP_MANUAL_OFF"/>
+    <eLiterals name="HPMANUALOP" value="7" literal="HP_MANUAL_OP"/>
+    <eLiterals name="HPSTARTING" value="8" literal="HP_STARTING"/>
+    <eLiterals name="HPSTOPPING" value="9" literal="HP_STOPPING"/>
+    <eLiterals name="HPSECUREOFF" value="10" literal="HP_SECURE_OFF"/>
+    <eLiterals name="HPSTARTDEFROST" value="11" literal="HP_START_DEFROST"/>
+    <eLiterals name="HPDEFROSTING" value="12" literal="HP_DEFROSTING"/>
+    <eLiterals name="HPDEFROSTEND" value="13" literal="HP_DEFROST_END"/>
+    <eLiterals name="HPPRESSUREDIFF" value="14" literal="HP_PRESSURE_DIFF"/>
+    <eLiterals name="HPCOOLING" value="15" literal="HP_COOLING"/>
+    <eLiterals name="HPHEATING" value="16" literal="HP_HEATING"/>
+    <eLiterals name="HPCOMPSTARTERR" value="17" literal="HP_COMP_START_ERR"/>
+    <eLiterals name="HPOFFOUTOFLIMITS" value="18" literal="HP_OFF_OUT_OF_LIMITS"/>
+    <eLiterals name="HPOILRECIRCULACTIVE" value="19" literal="HP_OIL_RECIRCUL_ACTIVE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CtaHPOpStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ctaHPOpStateType:Object"/>
+      <details key="baseType" value="ctaHPOpStateType"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value=""/>
@@ -41,6 +143,346 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovBufferStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov4: &#xA;&#x9;#0 = keine Anforderung, AUS&#xA;&#x9;#1 = Anforderung, Temp. tief, PLP aus (Entladeschutz)&#xA;&#x9;#2 = Anforderung, Ladung läuft&#xA;&#x9;#3 = Anforderung, Sollwert erfüllt, Nachlauf aktiv&#xA;&#x9;#4 = Anforderung, Sollwert erfüllt&#xA;&#x9;#6 = Energiezwang&#xA;&#x9;#7= Abschöpffunktion&#xA;&#x9;&#xA;&#x9;#Entladeregelung :&#xA;&#x9;#0 = keine Anforderung (WEZ-Freigabe)&#xA;&#x9;#2 = Anforderung, Sollwert nicht erfüllt, UPE steht Richtung WEZ bzw. YPEL regelt stetig auf PEF&#xA;&#x9;#3 = Anforderung UPE-Umschaltverzögerung, UPE/YPEL steht Richtung WEZ&#xA;&#x9;#4 = Anforderung, Sollwert erfüllt, UPE/YPEL steht Richtung Puffer&#xA;&#x9;#6 = Energiezwang&#xA;&#x9;#8 = Vorzugsbetrieb SmartGrid&#xA;&#x9;#9 = Abnahmezwang Smart Grid&#xA;&#x9;&#xA;&#x9;für Modi manuell heizen / kühlen&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovBufferStateType"/>
+    </eAnnotations>
+    <eLiterals name="BUFOFF" literal="BUF_OFF"/>
+    <eLiterals name="BUFREQPROTECTED" value="1" literal="BUF_REQ_PROTECTED"/>
+    <eLiterals name="BUFREQACTIVE" value="2" literal="BUF_REQ_ACTIVE"/>
+    <eLiterals name="BUFREQFINALIZING" value="3" literal="BUF_REQ_FINALIZING"/>
+    <eLiterals name="BUFREQDONE" value="4" literal="BUF_REQ_DONE"/>
+    <eLiterals name="BUFRES" value="5" literal="BUF_RES"/>
+    <eLiterals name="BUFFORCED" value="6" literal="BUF_FORCED"/>
+    <eLiterals name="BUFSKIMMING" value="7" literal="BUF_SKIMMING"/>
+    <eLiterals name="BUFINTENSIFIEDEXT" value="8" literal="BUF_INTENSIFIED_EXT"/>
+    <eLiterals name="BUFFORCEDEXT" value="9" literal="BUF_FORCED_EXT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovBufferStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovBufferStateType:Object"/>
+      <details key="baseType" value="hovBufferStateType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovDomHotWOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov6:&#xA;     Basic operation type of a Domestic Hot Water Heat Pump operation mode&#xA;     Standby&#x9;week 1 &#x9;week 2&#x9;&#x9;Constant&#x9;&#x9;Eco mode    &#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovDomHotWOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="DHWSTANDBY" literal="DHW_STANDBY"/>
+    <eLiterals name="DHWSCHEDULE1OP" value="1" literal="DHW_SCHEDULE_1_OP"/>
+    <eLiterals name="DHWSCHEDULE2OP" value="2" literal="DHW_SCHEDULE_2_OP"/>
+    <eLiterals name="DHWCONSTOP" value="3" literal="DHW_CONST_OP"/>
+    <eLiterals name="DHWECOOP" value="4" literal="DHW_ECO_OP"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovDomHotWOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovDomHotWOpModeType:Object"/>
+      <details key="baseType" value="hovDomHotWOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovDomHotWStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov7: &#xA;     Zustand Warmwasserregelung:&#xA;     #0 = Abgeschaltet&#xA;     #1 = Normal Ladebetrieb&#xA;     #2 = Komfort Ladebetrieb&#xA;     #3 = Zwangsdrosselung (bei E-Zwang kleiner -50p)#4 = Zwangsladung  (bei E-Zwang groesser +50p)&#xA;     #5 = Stoerung&#xA;     #6 = WW-Entnahme (Entnahme von Trinkwarmwasser aktiv)&#xA;     #7 = Warnung&#xA;     #8 = Reduzierter Ladebetrieb&#xA;     #12 = Vorzugsbetrieb SmartGrid&#xA;     #13 = Abnahmezwang SmartGrid&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovDomHotWStateType"/>
+    </eAnnotations>
+    <eLiterals name="DHWOFF" literal="DHW_OFF"/>
+    <eLiterals name="DHWCHARGING" value="1" literal="DHW_CHARGING"/>
+    <eLiterals name="DHWCHARGECOMF" value="2" literal="DHW_CHARGE_COMF"/>
+    <eLiterals name="DHWFORCEDCURTAIL" value="3" literal="DHW_FORCED_CURTAIL"/>
+    <eLiterals name="DHWERROR" value="4" literal="DHW_ERROR"/>
+    <eLiterals name="DHWWITHDRAWING" value="5" literal="DHW_WITHDRAWING"/>
+    <eLiterals name="DHWWARNINGACTIVE" value="6" literal="DHW_WARNING_ACTIVE"/>
+    <eLiterals name="DHWREDUCED" value="7" literal="DHW_REDUCED"/>
+    <eLiterals name="DHWRES1" value="8" literal="DHW_RES1"/>
+    <eLiterals name="DHWRES2" value="9" literal="DHW_RES2"/>
+    <eLiterals name="DHWRES4" value="11" literal="DHW_RES4"/>
+    <eLiterals name="DHWINTENSIFIEDEXT" value="12" literal="DHW_INTENSIFIED_EXT"/>
+    <eLiterals name="DHWFORCEDEXT" value="13" literal="DHW_FORCED_EXT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovDomHotWStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovDomHotWStateType:Object"/>
+      <details key="baseType" value="hovDomHotWStateType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovHCOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov2:&#xA;     map for Hoval H &#xA;     // #0=Standbybetrieb&#xA;&#x9; // #1=Woche 1&#xA;&#x9; // #2=Woche 2&#xA;&#x9; // #4=Konstant&#xA;&#x9; // #5=Sparbetrieb&#xA;&#x9; // #7=Handbetrieb Heizen&#xA;&#x9; // #8=Handbetrieb Kühlen&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHCOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HCSTANDBY" literal="HC_STANDBY"/>
+    <eLiterals name="HCPLANW1" value="1" literal="HC_PLAN_W1"/>
+    <eLiterals name="HCPLANW2" value="2" literal="HC_PLAN_W2"/>
+    <eLiterals name="HCCONSTANT" value="3" literal="HC_CONSTANT"/>
+    <eLiterals name="HCECO" value="4" literal="HC_ECO"/>
+    <eLiterals name="HCMANHEAT" value="5" literal="HC_MAN_HEAT"/>
+    <eLiterals name="HCMANCOOL" value="6" literal="HC_MAN_COOL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovHCOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHCOpModeType:Object"/>
+      <details key="baseType" value="hovHCOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovHCOpStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov5: &#xA;     Zustand Heizkreisregelung&#xA;#0 = Abgeschaltet&#xA;#1 = Normal Heizbetrieb&#xA;#2 = Komfort Heizbetrieb&#xA;#3 = Spar Heizbetrieb&#xA;#4 = Frostbetrieb&#xA;#5 = Zwangsabnahme (bei Zwang groesser +50p)&#xA;#6 = Zwangsdrosselung  (bei Zwang kleiner -50p)&#xA;#7 = Ferienbetrieb&#xA;#8 = Partybetrieb&#xA;#9 = Normal Kuehlbetrieb&#xA;#10 = Komfort K?hlbetrieb&#xA;#11 = Spar Kuehlbetrieb&#xA;#12 = Stoerung&#xA;#13 = Handbetrieb&#xA;#14 = Schutz Kuehlbetrieb&#xA;#15 = Partybetrieb Kuehlen&#xA;#16 = Austrocknung Aufheizphase&#xA;#17 = Austrocknung Stationaerphase&#xA;#18 = Austrocknung Abkuehlphase&#xA;#19 = Austrocknung Endphase&#xA;#22 = Kuehlbetrieb Extern/Konstantanforderung&#xA;#23 = Heizbetrieb Extern/Konstantanforderung&#xA;#26 = Vorzugsbetrieb SmartGrid&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHCOpStateType"/>
+    </eAnnotations>
+    <eLiterals name="HCOFF" literal="HC_OFF"/>
+    <eLiterals name="HCNORMALHEATOP" value="1" literal="HC_NORMAL_HEAT_OP"/>
+    <eLiterals name="HCCOMFORTHEATOP" value="2" literal="HC_COMFORT_HEAT_OP"/>
+    <eLiterals name="HCECOHEATOP" value="3" literal="HC_ECO_HEAT_OP"/>
+    <eLiterals name="HCDEFROST" value="4" literal="HC_DEFROST"/>
+    <eLiterals name="HCFORCEDOP" value="5" literal="HC_FORCED_OP"/>
+    <eLiterals name="HCFORCECURTAIL" value="6" literal="HC_FORCE_CURTAIL"/>
+    <eLiterals name="HCVACATIONOP" value="7" literal="HC_VACATION_OP"/>
+    <eLiterals name="HCPARTYOP" value="8" literal="HC_PARTY_OP"/>
+    <eLiterals name="HCNORMALCOOLOP" value="9" literal="HC_NORMAL_COOL_OP"/>
+    <eLiterals name="HCCOMFORTCOOLOP" value="10" literal="HC_COMFORT_COOL_OP"/>
+    <eLiterals name="HCECOCOOLOP" value="11" literal="HC_ECO_COOL_OP"/>
+    <eLiterals name="HCERROR" value="12" literal="HC_ERROR"/>
+    <eLiterals name="HCMANUALOP" value="13" literal="HC_MANUAL_OP"/>
+    <eLiterals name="HCCOOLPROT" value="14" literal="HC_COOL_PROT"/>
+    <eLiterals name="HCPARTYCOOLOP" value="15" literal="HC_PARTY_COOL_OP"/>
+    <eLiterals name="HCDRYHEATING" value="16" literal="HC_DRY_HEATING"/>
+    <eLiterals name="HCDRYSTATIONARY" value="17" literal="HC_DRY_STATIONARY"/>
+    <eLiterals name="HCDRYCOOLING" value="18" literal="HC_DRY_COOLING"/>
+    <eLiterals name="HCDRYFINALIZING" value="19" literal="HC_DRY_FINALIZING"/>
+    <eLiterals name="HCRES1" value="20" literal="HC_RES1"/>
+    <eLiterals name="HCRES2" value="21" literal="HC_RES2"/>
+    <eLiterals name="HCCOOLINGEXTCMD" value="22" literal="HC_COOLING_EXT_CMD"/>
+    <eLiterals name="HCHEATINGEXTCMD" value="23" literal="HC_HEATING_EXT_CMD"/>
+    <eLiterals name="HCINTENSIFIEDEXT" value="24" literal="HC_INTENSIFIED_EXT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovHCOpStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHCOpStateType:Object"/>
+      <details key="baseType" value="hovHCOpStateType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovHPActBufferStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="BMhov001:&#xA;     BitRank map for Heat Pump Buffer state &#xA;     source: Hoval  (ER) means &quot;Entladeregelung&quot;&#xA;     Bit0 = keine Anforderung, AUS&#xA;     Bit0 = (ER) keine Anforderung (WEZ-Freigabe)&#xA;     Bit1 = Anforderung, Temp. tief, PLP aus (Entladeschutz)&#xA;     Bit2 = Anforderung, Ladung läuft&#xA;     Bit2 = (ER) Anforderung, Sollwert nicht erfüllt, UPE steht Richtung WEZ bzw. YPEL regelt stetig auf PEF&#xA;     Bit3 = Anforderung, Sollwert erfüllt, Nachlauf aktiv&#xA;     Bit3 = (ER) Anforderung UPE-Umschaltverzögerung, UPE/YPEL steht Richtung WEZ&#xA;     Bit4 = Anforderung, Sollwert erfüllt&#xA;     Bit4 = (ER) Anforderung, Sollwert erfüllt, UPE/YPEL steht Richtung Puffer&#xA;     Bit6 = Energiezwang&#xA;     Bit7=  Abschöpffunktion&#xA;     Bit8 = (ER)Vorzugsbetrieb SmartGrid&#xA;     Bit9 = (ER)Abnahmezwang Smart Grid&#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPActBufferStateType"/>
+    </eAnnotations>
+    <eLiterals name="HPBOFF" literal="HPB_OFF"/>
+    <eLiterals name="HPBTEMPLOW" value="1" literal="HPB_TEMP_LOW"/>
+    <eLiterals name="HPBRUNNING" value="2" literal="HPB_RUNNING"/>
+    <eLiterals name="HPBRUNHOLD" value="3" literal="HPB_RUN_HOLD"/>
+    <eLiterals name="HPBONTARGET" value="4" literal="HPB_ON_TARGET"/>
+    <eLiterals name="HPBRESERVE" value="5" literal="HPB_RESERVE"/>
+    <eLiterals name="HPBENERCOMPULSION" value="6" literal="HPB_ENER_COMPULSION"/>
+    <eLiterals name="HPBSKIMMING" value="7" literal="HPB_SKIMMING"/>
+    <eLiterals name="HPBSGRINTENSIVIED" value="8" literal="HPB_SGR_INTENSIVIED"/>
+    <eLiterals name="HPBSGRFORCED" value="9" literal="HPB_SGR_FORCED_"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovHPActBufferStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPActBufferStateType:Object"/>
+      <details key="baseType" value="hovHPActBufferStateType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovHPOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov1:&#xA;     map for Hoval H &#xA;     // #0=Wärmeerzeuger aus&#xA;&#x9; // #1=Automatikbetrieb&#xA;&#x9; // #4=Manueller Heizbetrieb&#xA;&#x9; // #5=Manueller Kühlbetrieb &#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HPOFF" literal="HP_OFF"/>
+    <eLiterals name="HPAUTOMATIC" value="1" literal="HP_AUTOMATIC"/>
+    <eLiterals name="HPMANHEAT" value="2" literal="HP_MAN_HEAT"/>
+    <eLiterals name="HPMANCOOL" value="3" literal="HP_MAN_COOL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovHPOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPOpModeType:Object"/>
+      <details key="baseType" value="hovHPOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovHPOpStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov8: &#xA;     #0=Abgeschaltet&#xA;     #1=Heizbetrieb&#xA;     #2=Vorlaufzeit Heizbetrieb&#xA;     #3=Extern gesperrt (auch bei SmartGrid Sperrbetrieb) &#xA;     #4=Kuehlbetrieb &#xA;     #5=Vorlaufzeit Kuehlbetrieb &#xA;     #15=Alarm &#xA;     #16=Stoerung&#xA;     #17=Blockiert&#xA;     #21=WFmax Abschaltung &#xA;     #22=WFsoll Abschaltung&#xA;     #26=Bivalenzabschaltung&#xA;     #27=Warmwasser Ladesperre&#xA;     #28=Minimale Auszeit&#xA;     #29=Minimale Einzeit&#xA;     #32=Nachlauf&#xA;     #33=Verzoegerung Folge WE &#xA;     #34=Betrieb Uebertemperatur&#xA;     #42=Manueller/Handebtrieb Heizen&#xA;     #43=Manueller/Handebtrieb Warmwasser&#xA;     #44=Manueller/Handebtrieb Kuehlen&#xA;     &#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPOpStateType"/>
+    </eAnnotations>
+    <eLiterals name="HPOFF" literal="HP_OFF"/>
+    <eLiterals name="HPHEATING" value="1" literal="HP_HEATING"/>
+    <eLiterals name="HPPREHEAT" value="2" literal="HP_PREHEAT"/>
+    <eLiterals name="HPLOCKEXTERN" value="3" literal="HP_LOCK_EXTERN"/>
+    <eLiterals name="HPCOOLING" value="4" literal="HP_COOLING"/>
+    <eLiterals name="HPPRECOOL" value="5" literal="HP_PRECOOL"/>
+    <eLiterals name="HP6" value="6" literal="HP_6"/>
+    <eLiterals name="HP7" value="7" literal="HP_7"/>
+    <eLiterals name="HP8" value="8" literal="HP_8"/>
+    <eLiterals name="HP9" value="9" literal="HP_9"/>
+    <eLiterals name="HP10" value="10" literal="HP_10"/>
+    <eLiterals name="HP11" value="11" literal="HP_11"/>
+    <eLiterals name="HP12" value="12" literal="HP_12"/>
+    <eLiterals name="HP13" value="13" literal="HP_13"/>
+    <eLiterals name="HP14" value="14" literal="HP_14"/>
+    <eLiterals name="HPALARM" value="15" literal="HP_ALARM"/>
+    <eLiterals name="HPERROR" value="16" literal="HP_ERROR"/>
+    <eLiterals name="HPBLOCKING" value="17" literal="HP_BLOCKING"/>
+    <eLiterals name="HP18" value="18" literal="HP_18"/>
+    <eLiterals name="HP19" value="19" literal="HP_19"/>
+    <eLiterals name="HP20" value="20" literal="HP_20"/>
+    <eLiterals name="HPWFmaxSWITCHOFF" value="21" literal="HP_WFmax_SWITCHOFF"/>
+    <eLiterals name="HPWFsetSWITCHOFF" value="22" literal="HP_WFset_SWITCHOFF"/>
+    <eLiterals name="HP23" value="23" literal="HP_23"/>
+    <eLiterals name="HP24" value="24" literal="HP_24"/>
+    <eLiterals name="HP25" value="25" literal="HP_25"/>
+    <eLiterals name="HPBIVALENCESWITCHOFF" value="26" literal="HP_BIVALENCE_SWITCHOFF"/>
+    <eLiterals name="HPMINOFFTIME" value="27" literal="HP_MIN_OFF_TIME"/>
+    <eLiterals name="HPMINONTIME" value="28" literal="HP_MIN_ON_TIME"/>
+    <eLiterals name="HP30" value="29" literal="HP_30"/>
+    <eLiterals name="HP31" value="30" literal="HP_31"/>
+    <eLiterals name="HPTRAILING" value="31" literal="HP_TRAILING"/>
+    <eLiterals name="HPDELAYAFTERWE" value="32" literal="HP_DELAY_AFTER_WE"/>
+    <eLiterals name="HPTEMPERATUREHIGHOP" value="33" literal="HP_TEMPERATURE_HIGH_OP"/>
+    <eLiterals name="HP35" value="34" literal="HP_35"/>
+    <eLiterals name="HP36" value="35" literal="HP_36"/>
+    <eLiterals name="HP37" value="36" literal="HP_37"/>
+    <eLiterals name="HP38" value="37" literal="HP_38"/>
+    <eLiterals name="HP39" value="38" literal="HP_39"/>
+    <eLiterals name="HP40" value="39" literal="HP_40"/>
+    <eLiterals name="HP41" value="40" literal="HP_41"/>
+    <eLiterals name="HP" value="41" literal="HP_"/>
+    <eLiterals name="HPMANOPHEATING" value="42" literal="HP_MAN_OP_HEATING"/>
+    <eLiterals name="HPMANOPDOMHOTWATER" value="43" literal="HP_MAN_OP_DOM_HOT_WATER"/>
+    <eLiterals name="HPMANOPCOOLING" value="44" literal="HP_MAN_OP_COOLING"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovHPOpStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovHPOpStateType:Object"/>
+      <details key="baseType" value="hovHPOpStateType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovSGReadySrcSelType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov3:&#xA;     map for Hoval H &#xA;     #0=AUS&#xA;     #1=Eingangskontakte&#xA;     #2=Systembus&#xA;     #3=Verfügbare Leistung gedämpft&#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovSGReadySrcSelType"/>
+    </eAnnotations>
+    <eLiterals name="SGRSrcOFF" literal="SGR_src_OFF"/>
+    <eLiterals name="SRCSrcCONTACTS" value="1" literal="SRC_src_CONTACTS"/>
+    <eLiterals name="SRCSrcSysBUS" value="2" literal="SRC_src_SysBUS"/>
+    <eLiterals name="SRCSrcDAMPED" value="3" literal="SRC_src_DAMPED"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovSGReadySrcSelTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovSGReadySrcSelType:Object"/>
+      <details key="baseType" value="hovSGReadySrcSelType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HovType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ehov8: &#xA;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovType"/>
+    </eAnnotations>
+    <eLiterals name="tbd"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="HovTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="hovType:Object"/>
+      <details key="baseType" value="hovType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LevelOfOperationType">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="LevelOfOperationType"/>
+    </eAnnotations>
+    <eLiterals name="m">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="m: monitoring only"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_1" value="1" literal="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="1: binary writable data points"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_2" value="2" literal="2">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="2: discrete writable data points"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_3" value="3" literal="3">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="3: fixed set of characteristic curves"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_4" value="4" literal="4">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="4: dynamic set values"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_5" value="5" literal="5">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="5: dynamic characteristic curves"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_6" value="6" literal="6">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="6: predictive"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_1m" value="7" literal="1m">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="1m: binary writable data points plus monitoring"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_2m" value="8" literal="2m">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="2m: discrete writable data points plus monitoring"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_3m" value="9" literal="3m">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="3m: fixed set of characteristic curves plus monitoring"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_4m" value="10" literal="4m">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="4m: dynamic set values plus monitoring"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_5m" value="11" literal="5m">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="5m: dynamic characteristic curves plus monitoring"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_6m" value="12" literal="6m">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="6m: predictive plus monitoring"/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="LevelOfOperationTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="LevelOfOperationType:Object"/>
+      <details key="baseType" value="LevelOfOperationType"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ProfileTypeEnumType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -296,101 +738,6 @@
         <details key="documentation" value="50: Reserve"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="SunspCommon001" value="50">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: All SunSpec compliant devices must include this as the first model "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspInverter101" value="51">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: model for single phase inverter monitoring (Int and SF) "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspInverter102" value="52">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: model for split phase inverter monitoring (Int and SF) "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspInverter103" value="53">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: model for 3 phase inverter monitoring (Int and SF)  "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspInverter111" value="54">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: model for single phase inverter monitoring using float values "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspInverter112" value="55">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: model for split phase inverter monitoring using float values "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspInverter113" value="56">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: model for s3 phase inverter monitoring using float values "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspNameplate120" value="57">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Inverter Controls Nameplate Ratings  "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspBasicSettings121" value="58">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Inverter Controls Basic Settings "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspMeasurementStatus122" value="59">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Inverter Controls Extended Measurements and Status  "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspImmControl123" value="60">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Immediate Inverter Controls  "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspBasicStorage124" value="61">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: SunspBasicStorage124 "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspMultMPP160" value="62">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Model for multiple Maximum Power Point Trackers"/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspStaticVoltVar126" value="63">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Static Volt-VAR Arrays for Q = f (U/Uref) "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspFreqWattParam127" value="64">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Parameterized Frequency-Watt compensation "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspWattPF131" value="65">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Parameterized Watt-Power Factor Crv   PF = f (P/Pmax) "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspVoltWatt132" value="66">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Parameterized Voltage-Power Factor Crv   P = f (U/Uref) "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspFreqWattCrv134" value="67">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Curve-Based Frequency-Watt curve P =  f (F/Fref)  "/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="SunspBatteryBaseModel802" value="68">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Sunspec: Battery SOC management "/>
-      </eAnnotations>
-    </eLiterals>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ProfileTypeEnumTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -409,7 +756,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxVal" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" upper range limit. Unit:inherited&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;upper range limit. Unit:inherited&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -420,7 +767,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minVal" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" lower range limit. Unit:inherited&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;lower range limit. Unit:inherited&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -431,7 +778,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="specQualityRequirement"
         eType="#//SGrSpecialQualityReqType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" indicates Quality requirements fullfilled like&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;formal certifications&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;indicates Quality requirements fullfilled like&#xA;    &#x9;&#x9;&#x9;&#x9;formal certifications&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -442,7 +789,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="precision" eType="#//SGrPrecisionType"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" the precision of a measurement, calculation result&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;or result of a controls process&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;the precision of a measurement, calculation result&#xA;    &#x9;&#x9;&#x9;&#x9;or result of a controls process&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -453,7 +800,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="stabilityFallback" eType="#//SGrStabilityFallbackType"
         containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" A consumer or a generating system receives the&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;permit for a load change for a certain period of time. This time&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;is always set to 0 each time a confirmation message is received&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(HeartBeat).&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;A consumer or a generating system receives the&#xA;    &#x9;&#x9;&#x9;&#x9;permit for a load change for a certain period of&#xA;    &#x9;&#x9;&#x9;&#x9;time. This time is always set to 0 each time a&#xA;    &#x9;&#x9;&#x9;&#x9;confirmation message is received (HeartBeat).&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -464,7 +811,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="smoothTransition" eType="#//SGrSmoothTransitionType"
         containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" The time behavior of a transition from a power&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;adjustment (positive as well as negative) can be determined by&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;several time values, so that this starts with a random time delay,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;changes via a ramp and an expiry time with return to the initial&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;value.&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;The time behavior of a transition from a power&#xA;    &#x9;&#x9;&#x9;&#x9;adjustment (positive as well as negative) can be&#xA;    &#x9;&#x9;&#x9;&#x9;determined by several time values, so that this&#xA;    &#x9;&#x9;&#x9;&#x9;starts with a random time delay, changes via a ramp&#xA;    &#x9;&#x9;&#x9;&#x9;and an expiry time with return to the initial value.&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -474,7 +821,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatencyTimeMs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" Maximum time in milliseconds from capturing of measured value &#xA;            until ready at the external interface (i.e. analog-digital conversion time)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;Maximum time in milliseconds from capturing of&#xA;    &#x9;&#x9;&#x9;&#x9;measured value until ready at the external interface&#xA;    &#x9;&#x9;&#x9;&#x9;(i.e. analog-digital conversion time)&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -482,20 +829,10 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeStampLog" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//DateTime">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" This is the date Time Value indicates that any&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;value generation must be paired with the time of either a&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;measuement was taken or where a higher controls software level&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;indicates when it got the value&#xA;&#x9;&#x9;"/>
-      </eAnnotations>
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="timeStampLog"/>
-        <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueType" eType="#//SGrMeasValueType"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" MeasValueType: type of measurement. Possbile values are &quot;value&quot;, &quot;min&quot;, max&quot;, &quot;average&quot;, &quot;stdDev&quot;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;MeasValueType: type of measurement. Possbile values&#xA;    &#x9;&#x9;&#x9;&#x9;are &quot;value&quot;, &quot;min&quot;, max&quot;, &quot;average&quot;, &quot;stdDev&quot;&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -506,7 +843,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueSource" eType="#//SGrMeasValueSourceType"
         unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" Value source kind related to SGr level 6&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;applications. Potential values are measuredValue, calculatedValue,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;empiricalValue&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;Value source kind related to SGr level 6&#xA;    &#x9;&#x9;&#x9;&#x9;applications. Potential values are measuredValue,&#xA;    &#x9;&#x9;&#x9;&#x9;calculatedValue, empiricalValue&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -516,7 +853,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleRate" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//UnsignedLong">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" SampleRate in milliseconds&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;SampleRate in milliseconds&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -567,11 +904,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="flexAssistance" eType="#//SGrFlexAssistanceType"
         containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value=" Systems with more than One communicator need a definition of the priority of the commands / demands for a flexibility&#xA;          requirement.&#xA;          This element defines the kind of a such a command (servicable for net (DSO), energy or system (TNO)) and its priority (SHALL / SHOULD / MAY)&#xA;&#x9;&#x9; "/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;Systems with more than One communicator need a&#xA;    &#x9;&#x9;&#x9;&#x9;definition of the priority of the commands / demands&#xA;    &#x9;&#x9;&#x9;&#x9;for a flexibility requirement. This element defines&#xA;    &#x9;&#x9;&#x9;&#x9;the kind of a such a command (servicable for net&#xA;    &#x9;&#x9;&#x9;&#x9;(DSO), energy or system (TNO)) and its priority&#xA;    &#x9;&#x9;&#x9;&#x9;(SHALL / SHOULD / MAY)&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="flexAssistance"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unitConversionMultiplicator"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="unitConversionMultiplicator"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -706,7 +1051,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SGrBitmapperListType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="BM0001:&#xA;     Field of enumeration where endum index is used as bitmap flag&#xA;     Unsigned int value  [and]  ( 1 [2 *  shift left] enum_index_value means bit is set&#xA;&#x9;"/>
+      <details key="documentation" value="BMxxxx:&#xA;     Field of enumeration where endum index is used as bitmap flag&#xA;     Unsigned int value  [and]  ( 1 [2 *  shift left] enum_index_value means bit is set&#xA;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrBitmapperListType"/>
@@ -720,11 +1065,35 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHPOpstateStiebel" eType="#//SGrHPOpstateStiebelType"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHPOpstate" eType="#//SGrHPOpstateType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="sgrHPOpstateStiebel"/>
+        <details key="name" value="sgrHPOpstate"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHCOpstate" eType="#//SgrHCOpStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrHCOpstate"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovHPActBufferState" eType="#//HovHPActBufferStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hovHPActBufferState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stiHPOpstate" eType="#//StiHPOpstateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="stiHPOpstate"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -845,8 +1214,8 @@
       <details key="name" value="SGrDataPointDescriptionType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="basicDataType" eType="#//SGrBasicGenDataPointTypeType"
-        containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="basicDataType" lowerBound="1"
+        eType="#//SGrBasicGenDataPointTypeType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="basicDataType"/>
@@ -933,6 +1302,14 @@
       <details key="name" value="SGrDeviceBaseType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="releaseNotes" lowerBound="1"
+        eType="#//SGrReleaseNotes" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="releaseNotes"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deviceProfile" lowerBound="1"
         eType="#//SGrDeviceProfileType" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1225,27 +1602,32 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGReadyStateLv2Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="E0005 SG-Ready states according the German heatpump&#xA;&#x9;&#x9;&#x9;&#x9;association bwp normal, intensivied, EVU_LOCK, forced&#xA;&#x9;&#x9;&#x9;&#x9;https://www.waermepumpe.de/normen-technik/sg-ready/&#xA;&#x9;&#x9;&#x9;"/>
+      <details key="documentation" value="E0005 SG-Ready states according the German heatpump&#xA;&#x9;&#x9;&#x9;&#x9;association bwp normal, intensified, EVU_LOCK, forced&#xA;&#x9;&#x9;&#x9;&#x9;https://www.waermepumpe.de/normen-technik/sg-ready/&#xA;&#x9;&#x9;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGReadyStateLv2Type"/>
     </eAnnotations>
-    <eLiterals name="HPNORMAL" literal="HP_NORMAL">
+    <eLiterals name="HPNULL" literal="HP_NULL">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Normal operation, optimized according to customer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;requirements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value=" value 0 is not vslid&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="HPINTENSIVIED" value="1" literal="HP_INTENSIVIED">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Increased operation"/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="HPLOCKED" value="2" literal="HP_LOCKED">
+    <eLiterals name="HPLOCKED" value="1" literal="HP_LOCKED">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value=" Locked operation for a maximum of 2 hours&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
     </eLiterals>
-    <eLiterals name="HPFORCED" value="3" literal="HP_FORCED">
+    <eLiterals name="HPNORMAL" value="2" literal="HP_NORMAL">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Normal operation, optimized according to customer&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;requirements&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HPINTENSIFIED" value="3" literal="HP_INTENSIFIED">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Increased operation"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="HPFORCED" value="4" literal="HP_FORCED">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Start command"/>
       </eAnnotations>
@@ -1374,6 +1756,110 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrHCOpMode" eType="#//SGrHCOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sgrHCOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaDomHotWOpMode" eType="#//CtaDomHotWOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ctaDomHotWOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaHPOpState" eType="#//CtaHPOpStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ctaHPOpState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaHPOpMode" eType="#//CtaHPOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ctaHPOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctaHCOpMode" eType="#//CtaHCOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="ctaHCOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovHPOpMode" eType="#//HovHPOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hovHPOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovHCOpMode" eType="#//HovHCOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hovHCOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovSGReadySrcSel" eType="#//HovSGReadySrcSelType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hovSGReadySrcSel"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovBufferState" eType="#//HovBufferStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hovBufferState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovHCOpState" eType="#//HovHCOpStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hovHCOpState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovDomHotWOpMode" eType="#//HovDomHotWOpModeType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hovDomHotWOpMode"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovDomHotWState" eType="#//HovDomHotWStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hovDomHotWState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hovHPOpState" eType="#//HovHPOpStateType"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="hovHPOpState"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrEVSEStateLv1Type">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1416,7 +1902,7 @@
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SGrEVStateType"/>
     </eAnnotations>
-    <eLiterals name="EVSTATEUNDEF" literal="EV_STATE_UNDEF"/>
+    <eLiterals name="EVSTATENULL" literal="EV_STATE_NULL"/>
     <eLiterals name="EVSTANDBY" value="1" literal="EV_STANDBY"/>
     <eLiterals name="EVDETECTED" value="2" literal="EV_DETECTED"/>
     <eLiterals name="EVREADY4CHARGING" value="3" literal="EV_READY4CHARGING"/>
@@ -1511,6 +1997,62 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrHCOpModeType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="E0017:&#xA;     Basic operation type of a heat cool valve operation mode&#xA;     Bereitschaft, Programm, Komfort, Eco, Warmwasser, Kühlen     &#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrHCOpModeType"/>
+    </eAnnotations>
+    <eLiterals name="HCOFF" literal="HC_OFF"/>
+    <eLiterals name="HCREADY" value="1" literal="HC_READY"/>
+    <eLiterals name="HCPROGOP" value="2" literal="HC_PROG_OP"/>
+    <eLiterals name="HCCOMFORTOP" value="3" literal="HC_COMFORT_OP"/>
+    <eLiterals name="HCECOOP" value="4" literal="HC_ECO_OP"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrHCOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SGrHCOpModeType:Object"/>
+      <details key="baseType" value="SGrHCOpModeType"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SgrHCOpStateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="BM0003:&#xA;     BitRank map for HeatPump HeatCoolState&#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="sgrHCOpStateType"/>
+    </eAnnotations>
+    <eLiterals name="HCOFF" literal="HC_OFF"/>
+    <eLiterals name="HCHEAT" value="1" literal="HC_HEAT"/>
+    <eLiterals name="HCHEATCOMFORT" value="2" literal="HC_HEAT_COMFORT"/>
+    <eLiterals name="HCHEATECO" value="3" literal="HC_HEAT_ECO"/>
+    <eLiterals name="HCDEFROST" value="4" literal="HC_DEFROST"/>
+    <eLiterals name="HCINTESIVIED50p" value="5" literal="HC_INTESIVIED_50p"/>
+    <eLiterals name="HCREDUCED50p" value="6" literal="HC_REDUCED_50p"/>
+    <eLiterals name="HCHOLIDAY" value="7" literal="HC_HOLIDAY"/>
+    <eLiterals name="HCPARTYHEAT" value="8" literal="HC_PARTY_HEAT"/>
+    <eLiterals name="HCCOOL" value="9" literal="HC_COOL"/>
+    <eLiterals name="HCCOOLCOMFORT" value="10" literal="HC_COOL_COMFORT"/>
+    <eLiterals name="HCCOOLECO" value="11" literal="HC_COOL_ECO"/>
+    <eLiterals name="HCERROR" value="12" literal="HC_ERROR"/>
+    <eLiterals name="HCMANUAL" value="13" literal="HC_MANUAL"/>
+    <eLiterals name="HCPROTCOOL" value="14" literal="HC_PROT_COOL"/>
+    <eLiterals name="HCPARTYCOOL" value="15" literal="HC_PARTY_COOL"/>
+    <eLiterals name="HCDRYINGHEATUP" value="16" literal="HC_DRYING_HEAT_UP"/>
+    <eLiterals name="HCDRYINGSTATIONARY" value="17" literal="HC_DRYING_STATIONARY"/>
+    <eLiterals name="HCDRYINGCOOLDOWN" value="18" literal="HC_DRYING_COOL_DOWN"/>
+    <eLiterals name="HCDRYINGFINAL" value="19" literal="HC_DRYING_FINAL"/>
+    <eLiterals name="HCCOOLEXTERNALCMD" value="20" literal="HC_COOL_EXTERNAL_CMD"/>
+    <eLiterals name="HCHEATEXTERNALCMD" value="21" literal="HC_HEAT_EXTERNAL_CMD"/>
+    <eLiterals name="HCSGRIDINTENSIVIED" value="22" literal="HC_SGRID_INTENSIVIED"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SgrHCOpStateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="sgrHCOpStateType:Object"/>
+      <details key="baseType" value="sgrHCOpStateType"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrHPOpModeType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="E0016:&#xA;     Basic operation type of a heat pump&#xA;     Bereitschaft, Programm, Komfort, Eco, Warmwasser, Notbetrieb     &#xA;&#x9;"/>
@@ -1524,6 +2066,8 @@
     <eLiterals name="WPCOMFORTOP" value="3" literal="WP_COMFORT_OP"/>
     <eLiterals name="WPECOOP" value="4" literal="WP_ECO_OP"/>
     <eLiterals name="WPDOMWATEROP" value="5" literal="WP_DOM_WATER_OP"/>
+    <eLiterals name="WPCOOLACTIVEOP" value="6" literal="WP_COOL_ACTIVE_OP"/>
+    <eLiterals name="WPCOOLPASSIVEOP" value="7" literal="WP_COOL_PASSIVE_OP"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrHPOpModeTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1531,30 +2075,24 @@
       <details key="baseType" value="SGrHPOpModeType"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="SGrHPOpstateStiebelType">
+  <eClassifiers xsi:type="ecore:EEnum" name="SGrHPOpstateType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="BM0002:&#xA;     BitRank map for Heat Pump Stiebel-Eltron&#xA;&#x9;"/>
+      <details key="documentation" value="BM0002:&#xA;     BitRank map for interoperable Heat Pump &#xA;&#x9;"/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrHPOpstateStiebelType"/>
+      <details key="name" value="SGrHPOpstateType"/>
     </eAnnotations>
-    <eLiterals name="HP1PUMPON" literal="HP_1_PUMP_ON"/>
-    <eLiterals name="HP2PUMPON" value="1" literal="HP_2_PUMP_ON"/>
-    <eLiterals name="HEATUPPROGRAM" value="2" literal="HEATUP_PROGRAM"/>
-    <eLiterals name="NHZSTAGESRUNNING" value="3" literal="NHZ_STAGES_RUNNING"/>
-    <eLiterals name="HPINHEATINGMODE" value="4" literal="HP_IN_HEATING_MODE"/>
-    <eLiterals name="HPINDHWMODE" value="5" literal="HP_IN_DHW_MODE"/>
-    <eLiterals name="COMPRESSORRUNNING" value="6" literal="COMPRESSOR_RUNNING"/>
-    <eLiterals name="SUMMERMODEACTIVE" value="7" literal="SUMMER_MODE_ACTIVE"/>
-    <eLiterals name="COOLINGMODEACTIVE" value="8" literal="COOLING_MODE_ACTIVE"/>
-    <eLiterals name="MINONEIWSINDEFROSTMODE" value="9" literal="MIN_ONE_IWS_IN_DEFROST_MODE"/>
-    <eLiterals name="SILENTMODE1ACTIVE" value="10" literal="SILENT_MODE_1_ACTIVE"/>
-    <eLiterals name="SILENTMODE2ACTIVE" value="11" literal="SILENT_MODE_2_ACTIVE"/>
+    <eLiterals name="HPPUMPON" literal="HP_PUMP_ON"/>
+    <eLiterals name="HPINHEATINGMODE" value="1" literal="HP_IN_HEATING_MODE"/>
+    <eLiterals name="HPINDHWMODE" value="2" literal="HP_IN_DHW_MODE"/>
+    <eLiterals name="COMPRESSORRUNNING" value="3" literal="COMPRESSOR_RUNNING"/>
+    <eLiterals name="COOLINGMODEACTIVE" value="4" literal="COOLING_MODE_ACTIVE"/>
+    <eLiterals name="INDEFROSTMODE" value="5" literal="IN_DEFROST_MODE"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="SGrHPOpstateStiebelTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+  <eClassifiers xsi:type="ecore:EDataType" name="SGrHPOpstateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SGrHPOpstateStiebelType:Object"/>
-      <details key="baseType" value="SGrHPOpstateStiebelType"/>
+      <details key="name" value="SGrHPOpstateType:Object"/>
+      <details key="baseType" value="SGrHPOpstateType"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SGrLanguageType">
@@ -1883,7 +2421,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sLV1Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="names used for SGr label V1 used to secure legacy&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;compatibility&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;            Currently not used. Reserved for the future to secure legacy compatibility one we start renaming in future SGr label versions&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1893,7 +2431,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sWorkName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="work names for temporary use"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;work names for temporary use&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1903,7 +2441,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sManufName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="manufacturers may use an internal wording&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;manufacturers may use an internal wording&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1913,7 +2451,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sIEC61850Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="IEC 61850 termonoligy place to add the 61850&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;abreviatuions if an overlap exists&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;IEC 61850 termonoligy place to add the 61850&#xA;    &#x9;&#x9;&#x9;&#x9;abreviatuions if an overlap exists&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1923,7 +2461,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sSAREFName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="SAREF for ENER termonoligy place to add the SAREF&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;abreviations if an overlap exists&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;SAREF for ENER termonoligy place to add the SAREF&#xA;    &#x9;&#x9;&#x9;&#x9;abreviations if an overlap exists&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1933,7 +2471,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sEEBUSName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="EEBUS for terminology place to add the EEBUS&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;abreviations if an overlap exists&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;EEBUS for terminology place to add the EEBUS&#xA;    &#x9;&#x9;&#x9;&#x9;abreviations if an overlap exists&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1943,7 +2481,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sSUNSPECName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="sSUNSPEC for terminology place to add the www.sunspec.org&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;abreviations if an overlap exists&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;sSUNSPEC for terminology place to add the&#xA;    &#x9;&#x9;&#x9;&#x9;www.sunspec.org abreviations if an overlap exists&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1953,11 +2491,18 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sHPbwpName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="bwp (German Heat Pump Association) for terminology place to add the bwp&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;naming for HVAC if an overlap exists&#xA;&#x9;&#x9;  "/>
+        <details key="documentation" value="&#xA;    &#x9;&#x9;&#x9;&#x9;bwp (German Heat Pump Association) for terminology&#xA;    &#x9;&#x9;&#x9;&#x9;place to add the bwp naming for HVAC if an overlap&#xA;    &#x9;&#x9;&#x9;&#x9;exists&#xA;    &#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="sHPbwpName"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sEN17609Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="sEN17609Name"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -2081,13 +2626,6 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mroVisibilityIndicator"
-        eType="#//SGrMROPresenceLevelIndicationType" unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="attribute"/>
-        <details key="name" value="mroVisibilityIndicator"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="profileName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
@@ -2134,9 +2672,9 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sgrLevelOfOperation" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
+        eType="#//LevelOfOperationType" unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="SGrLevelOfOperation defines a controls complexity&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;level 1) single contact 2) 2 or more contacts /state controlled&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interface 3) statical defined characteristics tables 4) dynamic&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;realtime control combined with statical defined characteristics&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;tables 5) dynamic realtime control combined with dynamic&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;changeable characteristics tables 6) prognosis based systems&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <details key="documentation" value="SGrLevelOfOperation defines a controls complexity&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  level m) for read-only monitoring dat points&#xA;            level 1) single contact 2) 2 or more contacts /state controlled&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interface 3) statical defined characteristics tables 4) dynamic&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;realtime control combined with statical defined characteristics&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;tables 5) dynamic realtime control combined with dynamic&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;changeable characteristics tables 6) prognosis based systems&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;"/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -2176,8 +2714,8 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="changelog" lowerBound="1"
-        upperBound="-1" eType="#//SGrChangeLog" containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="changelog" upperBound="-1"
+        eType="#//SGrChangeLog" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="changelog"/>
@@ -2524,108 +3062,110 @@
     <eLiterals name="KILOMETERSPERHOUR" value="87" literal="KILOMETERS_PER_HOUR"/>
     <eLiterals name="KILOPASCALS" value="88"/>
     <eLiterals name="KILOVOLTAMPERES" value="89" literal="KILOVOLT_AMPERES"/>
-    <eLiterals name="KILOVOLTAMPERESREACTIVE" value="90" literal="KILOVOLT_AMPERES_REACTIVE"/>
-    <eLiterals name="KILOVOLTS" value="91"/>
-    <eLiterals name="KILOWATTHOURS" value="92" literal="KILOWATT_HOURS"/>
-    <eLiterals name="KILOWATTS" value="93"/>
-    <eLiterals name="KWHOURSPERSQUAREFOOT" value="94" literal="KW_HOURS_PER_SQUARE_FOOT"/>
-    <eLiterals name="KWHOURSPERSQUAREMETER" value="95" literal="KW_HOURS_PER_SQUARE_METER"/>
-    <eLiterals name="LITERS" value="96"/>
-    <eLiterals name="LITERSPERHOUR" value="97" literal="LITERS_PER_HOUR"/>
-    <eLiterals name="LITERSPERMINUTE" value="98" literal="LITERS_PER_MINUTE"/>
-    <eLiterals name="LITERSPERSECOND" value="99" literal="LITERS_PER_SECOND"/>
-    <eLiterals name="LUMENS" value="100"/>
-    <eLiterals name="LUXES" value="101"/>
-    <eLiterals name="MEGABTUS" value="102" literal="MEGA_BTUS"/>
-    <eLiterals name="MEGAHERTZ" value="103"/>
-    <eLiterals name="MEGAJOULES" value="104"/>
-    <eLiterals name="MEGAJOULESPERDEGREEKELVIN" value="105" literal="MEGAJOULES_PER_DEGREE_KELVIN"/>
-    <eLiterals name="MEGAJOULESPERKILOGRAMDRYAIR" value="106" literal="MEGAJOULES_PER_KILOGRAM_DRY_AIR"/>
-    <eLiterals name="MEGAJOULESPERSQUAREFOOT" value="107" literal="MEGAJOULES_PER_SQUARE_FOOT"/>
-    <eLiterals name="MEGAJOULESPERSQUAREMETER" value="108" literal="MEGAJOULES_PER_SQUARE_METER"/>
-    <eLiterals name="MEGAVOLTAMPERES" value="109" literal="MEGAVOLT_AMPERES"/>
-    <eLiterals name="MEGAVOLTAMPERESREACTIVE" value="110" literal="MEGAVOLT_AMPERES_REACTIVE"/>
-    <eLiterals name="MEGAVOLTS" value="111"/>
-    <eLiterals name="MEGAWATTHOURS" value="112" literal="MEGAWATT_HOURS"/>
-    <eLiterals name="MEGAWATTS" value="113"/>
-    <eLiterals name="MEGOHMS" value="114"/>
-    <eLiterals name="METERS" value="115"/>
-    <eLiterals name="METERSPERHOUR" value="116" literal="METERS_PER_HOUR"/>
-    <eLiterals name="METERSPERMINUTE" value="117" literal="METERS_PER_MINUTE"/>
-    <eLiterals name="METERSPERSECOND" value="118" literal="METERS_PER_SECOND"/>
-    <eLiterals name="METERSPERSECONDPERSECOND" value="119" literal="METERS_PER_SECOND_PER_SECOND"/>
-    <eLiterals name="MILESPERHOUR" value="120" literal="MILES_PER_HOUR"/>
-    <eLiterals name="MILLIAMPERES" value="121"/>
-    <eLiterals name="MILLIBARS" value="122"/>
-    <eLiterals name="MILLIMETERS" value="123"/>
-    <eLiterals name="MILLIMETERSOFMERCURY" value="124" literal="MILLIMETERS_OF_MERCURY"/>
-    <eLiterals name="MILLIMETERSPERMINUTE" value="125" literal="MILLIMETERS_PER_MINUTE"/>
-    <eLiterals name="MILLIMETERSPERSECOND" value="126" literal="MILLIMETERS_PER_SECOND"/>
-    <eLiterals name="MILLIOHMS" value="127"/>
-    <eLiterals name="MILLISECONDS" value="128"/>
-    <eLiterals name="MILLIVOLTS" value="129"/>
-    <eLiterals name="MILLIWATTS" value="130"/>
-    <eLiterals name="MINUTES" value="131"/>
-    <eLiterals name="MONTHS" value="132"/>
-    <eLiterals name="NEWTON" value="133"/>
-    <eLiterals name="NEWTONMETERS" value="134" literal="NEWTON_METERS"/>
-    <eLiterals name="NEWTONSECONDS" value="135" literal="NEWTON_SECONDS"/>
-    <eLiterals name="NEWTONSPERMETER" value="136" literal="NEWTONS_PER_METER"/>
-    <eLiterals name="NOUNITS" value="137" literal="NO_UNITS"/>
-    <eLiterals name="OHMMETERS" value="138" literal="OHM_METERS"/>
-    <eLiterals name="OHMS" value="139"/>
-    <eLiterals name="PARTSPERBILLION" value="140" literal="PARTS_PER_BILLION"/>
-    <eLiterals name="PARTSPERMILLION" value="141" literal="PARTS_PER_MILLION"/>
-    <eLiterals name="PASCALS" value="142"/>
-    <eLiterals name="PERHOUR" value="143" literal="PER_HOUR"/>
-    <eLiterals name="PERMINUTE" value="144" literal="PER_MINUTE"/>
-    <eLiterals name="PERSECOND" value="145" literal="PER_SECOND"/>
-    <eLiterals name="PERCENT" value="146"/>
-    <eLiterals name="PERCENTOBSCURATIONPERFOOT" value="147" literal="PERCENT_OBSCURATION_PER_FOOT"/>
-    <eLiterals name="PERCENTOBSCURATIONPERMETER" value="148" literal="PERCENT_OBSCURATION_PER_METER"/>
-    <eLiterals name="PERCENTPERSECOND" value="149" literal="PERCENT_PER_SECOND"/>
-    <eLiterals name="PERCENTRELATIVEHUMIDITY" value="150" literal="PERCENT_RELATIVE_HUMIDITY"/>
-    <eLiterals name="POUNDSFORCEPERSQUAREINCH" value="151" literal="POUNDS_FORCE_PER_SQUARE_INCH"/>
-    <eLiterals name="POUNDSMASS" value="152" literal="POUNDS_MASS"/>
-    <eLiterals name="POUNDSMASSPERHOUR" value="153" literal="POUNDS_MASS_PER_HOUR"/>
-    <eLiterals name="POUNDSMASSPERMINUTE" value="154" literal="POUNDS_MASS_PER_MINUTE"/>
-    <eLiterals name="POUNDSMASSPERSECOND" value="155" literal="POUNDS_MASS_PER_SECOND"/>
-    <eLiterals name="POWERFACTOR" value="156" literal="POWER_FACTOR"/>
-    <eLiterals name="PSIPERDEGREEFAHRENHEIT" value="157" literal="PSI_PER_DEGREE_FAHRENHEIT"/>
-    <eLiterals name="RADIANS" value="158"/>
-    <eLiterals name="RADIANSPERSECOND" value="159" literal="RADIANS_PER_SECOND"/>
-    <eLiterals name="REVOLUTIONSPERMINUTE" value="160" literal="REVOLUTIONS_PER_MINUTE"/>
-    <eLiterals name="SECONDS" value="161"/>
-    <eLiterals name="SIEMENS" value="162"/>
-    <eLiterals name="SIEMENSPERMETER" value="163" literal="SIEMENS_PER_METER"/>
-    <eLiterals name="SQUARECENTIMETERS" value="164" literal="SQUARE_CENTIMETERS"/>
-    <eLiterals name="SQUAREFEET" value="165" literal="SQUARE_FEET"/>
-    <eLiterals name="SQUAREINCHES" value="166" literal="SQUARE_INCHES"/>
-    <eLiterals name="SQUAREMETERS" value="167" literal="SQUARE_METERS"/>
-    <eLiterals name="SQUAREMETERSPERNEWTON" value="168" literal="SQUARE_METERS_PER_NEWTON"/>
-    <eLiterals name="TESLAS" value="169"/>
-    <eLiterals name="THERMS" value="170"/>
-    <eLiterals name="TONHOURS" value="171" literal="TON_HOURS"/>
-    <eLiterals name="TONS" value="172"/>
-    <eLiterals name="TONSPERHOUR" value="173" literal="TONS_PER_HOUR"/>
-    <eLiterals name="TONSREFRIGERATION" value="174" literal="TONS_REFRIGERATION"/>
-    <eLiterals name="USGALLONS" value="175" literal="US_GALLONS"/>
-    <eLiterals name="USGALLONSPERMINUTE" value="176" literal="US_GALLONS_PER_MINUTE"/>
-    <eLiterals name="VOLTAMPERES" value="177" literal="VOLT_AMPERES"/>
-    <eLiterals name="VOLTAMPERESREACTIVE" value="178" literal="VOLT_AMPERES_REACTIVE"/>
-    <eLiterals name="VOLTS" value="179"/>
-    <eLiterals name="VOLTSPERDEGREEKELVIN" value="180" literal="VOLTS_PER_DEGREE_KELVIN"/>
-    <eLiterals name="VOLTSPERMETER" value="181" literal="VOLTS_PER_METER"/>
-    <eLiterals name="WATTHOURS" value="182" literal="WATT_HOURS"/>
-    <eLiterals name="WATTS" value="183"/>
-    <eLiterals name="WATTSPERMETERPERDEGREEKELVIN" value="184" literal="WATTS_PER_METER_PER_DEGREE_KELVIN"/>
-    <eLiterals name="WATTSPERSQUAREFOOT" value="185" literal="WATTS_PER_SQUARE_FOOT"/>
-    <eLiterals name="WATTSPERSQUAREMETER" value="186" literal="WATTS_PER_SQUARE_METER"/>
-    <eLiterals name="WATTSPERSQUAREMETERDEGREEKELVIN" value="187" literal="WATTS_PER_SQUARE_METER_DEGREE_KELVIN"/>
-    <eLiterals name="WEBERS" value="188"/>
-    <eLiterals name="WEEKS" value="189"/>
-    <eLiterals name="YEARS" value="190"/>
-    <eLiterals name="NONE" value="191"/>
+    <eLiterals name="KILOVOLTAMPEREHOURS" value="90" literal="KILOVOLT_AMPERE_HOURS"/>
+    <eLiterals name="KILOVOLTAMPERESREACTIVE" value="91" literal="KILOVOLT_AMPERES_REACTIVE"/>
+    <eLiterals name="KILOVOLTAMPERESREACTIVEHOURS" value="92" literal="KILOVOLT_AMPERES_REACTIVE_HOURS"/>
+    <eLiterals name="KILOVOLTS" value="93"/>
+    <eLiterals name="KILOWATTHOURS" value="94" literal="KILOWATT_HOURS"/>
+    <eLiterals name="KILOWATTS" value="95"/>
+    <eLiterals name="KWHOURSPERSQUAREFOOT" value="96" literal="KW_HOURS_PER_SQUARE_FOOT"/>
+    <eLiterals name="KWHOURSPERSQUAREMETER" value="97" literal="KW_HOURS_PER_SQUARE_METER"/>
+    <eLiterals name="LITERS" value="98"/>
+    <eLiterals name="LITERSPERHOUR" value="99" literal="LITERS_PER_HOUR"/>
+    <eLiterals name="LITERSPERMINUTE" value="100" literal="LITERS_PER_MINUTE"/>
+    <eLiterals name="LITERSPERSECOND" value="101" literal="LITERS_PER_SECOND"/>
+    <eLiterals name="LUMENS" value="102"/>
+    <eLiterals name="LUXES" value="103"/>
+    <eLiterals name="MEGABTUS" value="104" literal="MEGA_BTUS"/>
+    <eLiterals name="MEGAHERTZ" value="105"/>
+    <eLiterals name="MEGAJOULES" value="106"/>
+    <eLiterals name="MEGAJOULESPERDEGREEKELVIN" value="107" literal="MEGAJOULES_PER_DEGREE_KELVIN"/>
+    <eLiterals name="MEGAJOULESPERKILOGRAMDRYAIR" value="108" literal="MEGAJOULES_PER_KILOGRAM_DRY_AIR"/>
+    <eLiterals name="MEGAJOULESPERSQUAREFOOT" value="109" literal="MEGAJOULES_PER_SQUARE_FOOT"/>
+    <eLiterals name="MEGAJOULESPERSQUAREMETER" value="110" literal="MEGAJOULES_PER_SQUARE_METER"/>
+    <eLiterals name="MEGAVOLTAMPERES" value="111" literal="MEGAVOLT_AMPERES"/>
+    <eLiterals name="MEGAVOLTAMPERESREACTIVE" value="112" literal="MEGAVOLT_AMPERES_REACTIVE"/>
+    <eLiterals name="MEGAVOLTS" value="113"/>
+    <eLiterals name="MEGAWATTHOURS" value="114" literal="MEGAWATT_HOURS"/>
+    <eLiterals name="MEGAWATTS" value="115"/>
+    <eLiterals name="MEGOHMS" value="116"/>
+    <eLiterals name="METERS" value="117"/>
+    <eLiterals name="METERSPERHOUR" value="118" literal="METERS_PER_HOUR"/>
+    <eLiterals name="METERSPERMINUTE" value="119" literal="METERS_PER_MINUTE"/>
+    <eLiterals name="METERSPERSECOND" value="120" literal="METERS_PER_SECOND"/>
+    <eLiterals name="METERSPERSECONDPERSECOND" value="121" literal="METERS_PER_SECOND_PER_SECOND"/>
+    <eLiterals name="MILESPERHOUR" value="122" literal="MILES_PER_HOUR"/>
+    <eLiterals name="MILLIAMPERES" value="123"/>
+    <eLiterals name="MILLIBARS" value="124"/>
+    <eLiterals name="MILLIMETERS" value="125"/>
+    <eLiterals name="MILLIMETERSOFMERCURY" value="126" literal="MILLIMETERS_OF_MERCURY"/>
+    <eLiterals name="MILLIMETERSPERMINUTE" value="127" literal="MILLIMETERS_PER_MINUTE"/>
+    <eLiterals name="MILLIMETERSPERSECOND" value="128" literal="MILLIMETERS_PER_SECOND"/>
+    <eLiterals name="MILLIOHMS" value="129"/>
+    <eLiterals name="MILLISECONDS" value="130"/>
+    <eLiterals name="MILLIVOLTS" value="131"/>
+    <eLiterals name="MILLIWATTS" value="132"/>
+    <eLiterals name="MINUTES" value="133"/>
+    <eLiterals name="MONTHS" value="134"/>
+    <eLiterals name="NEWTON" value="135"/>
+    <eLiterals name="NEWTONMETERS" value="136" literal="NEWTON_METERS"/>
+    <eLiterals name="NEWTONSECONDS" value="137" literal="NEWTON_SECONDS"/>
+    <eLiterals name="NEWTONSPERMETER" value="138" literal="NEWTONS_PER_METER"/>
+    <eLiterals name="NOUNITS" value="139" literal="NO_UNITS"/>
+    <eLiterals name="OHMMETERS" value="140" literal="OHM_METERS"/>
+    <eLiterals name="OHMS" value="141"/>
+    <eLiterals name="PARTSPERBILLION" value="142" literal="PARTS_PER_BILLION"/>
+    <eLiterals name="PARTSPERMILLION" value="143" literal="PARTS_PER_MILLION"/>
+    <eLiterals name="PASCALS" value="144"/>
+    <eLiterals name="PERHOUR" value="145" literal="PER_HOUR"/>
+    <eLiterals name="PERMINUTE" value="146" literal="PER_MINUTE"/>
+    <eLiterals name="PERSECOND" value="147" literal="PER_SECOND"/>
+    <eLiterals name="PERCENT" value="148"/>
+    <eLiterals name="PERCENTOBSCURATIONPERFOOT" value="149" literal="PERCENT_OBSCURATION_PER_FOOT"/>
+    <eLiterals name="PERCENTOBSCURATIONPERMETER" value="150" literal="PERCENT_OBSCURATION_PER_METER"/>
+    <eLiterals name="PERCENTPERSECOND" value="151" literal="PERCENT_PER_SECOND"/>
+    <eLiterals name="PERCENTRELATIVEHUMIDITY" value="152" literal="PERCENT_RELATIVE_HUMIDITY"/>
+    <eLiterals name="POUNDSFORCEPERSQUAREINCH" value="153" literal="POUNDS_FORCE_PER_SQUARE_INCH"/>
+    <eLiterals name="POUNDSMASS" value="154" literal="POUNDS_MASS"/>
+    <eLiterals name="POUNDSMASSPERHOUR" value="155" literal="POUNDS_MASS_PER_HOUR"/>
+    <eLiterals name="POUNDSMASSPERMINUTE" value="156" literal="POUNDS_MASS_PER_MINUTE"/>
+    <eLiterals name="POUNDSMASSPERSECOND" value="157" literal="POUNDS_MASS_PER_SECOND"/>
+    <eLiterals name="POWERFACTOR" value="158" literal="POWER_FACTOR"/>
+    <eLiterals name="PSIPERDEGREEFAHRENHEIT" value="159" literal="PSI_PER_DEGREE_FAHRENHEIT"/>
+    <eLiterals name="RADIANS" value="160"/>
+    <eLiterals name="RADIANSPERSECOND" value="161" literal="RADIANS_PER_SECOND"/>
+    <eLiterals name="REVOLUTIONSPERMINUTE" value="162" literal="REVOLUTIONS_PER_MINUTE"/>
+    <eLiterals name="SECONDS" value="163"/>
+    <eLiterals name="SIEMENS" value="164"/>
+    <eLiterals name="SIEMENSPERMETER" value="165" literal="SIEMENS_PER_METER"/>
+    <eLiterals name="SQUARECENTIMETERS" value="166" literal="SQUARE_CENTIMETERS"/>
+    <eLiterals name="SQUAREFEET" value="167" literal="SQUARE_FEET"/>
+    <eLiterals name="SQUAREINCHES" value="168" literal="SQUARE_INCHES"/>
+    <eLiterals name="SQUAREMETERS" value="169" literal="SQUARE_METERS"/>
+    <eLiterals name="SQUAREMETERSPERNEWTON" value="170" literal="SQUARE_METERS_PER_NEWTON"/>
+    <eLiterals name="TESLAS" value="171"/>
+    <eLiterals name="THERMS" value="172"/>
+    <eLiterals name="TONHOURS" value="173" literal="TON_HOURS"/>
+    <eLiterals name="TONS" value="174"/>
+    <eLiterals name="TONSPERHOUR" value="175" literal="TONS_PER_HOUR"/>
+    <eLiterals name="TONSREFRIGERATION" value="176" literal="TONS_REFRIGERATION"/>
+    <eLiterals name="USGALLONS" value="177" literal="US_GALLONS"/>
+    <eLiterals name="USGALLONSPERMINUTE" value="178" literal="US_GALLONS_PER_MINUTE"/>
+    <eLiterals name="VOLTAMPERES" value="179" literal="VOLT_AMPERES"/>
+    <eLiterals name="VOLTAMPERESREACTIVE" value="180" literal="VOLT_AMPERES_REACTIVE"/>
+    <eLiterals name="VOLTS" value="181"/>
+    <eLiterals name="VOLTSPERDEGREEKELVIN" value="182" literal="VOLTS_PER_DEGREE_KELVIN"/>
+    <eLiterals name="VOLTSPERMETER" value="183" literal="VOLTS_PER_METER"/>
+    <eLiterals name="WATTHOURS" value="184" literal="WATT_HOURS"/>
+    <eLiterals name="WATTS" value="185"/>
+    <eLiterals name="WATTSPERMETERPERDEGREEKELVIN" value="186" literal="WATTS_PER_METER_PER_DEGREE_KELVIN"/>
+    <eLiterals name="WATTSPERSQUAREFOOT" value="187" literal="WATTS_PER_SQUARE_FOOT"/>
+    <eLiterals name="WATTSPERSQUAREMETER" value="188" literal="WATTS_PER_SQUARE_METER"/>
+    <eLiterals name="WATTSPERSQUAREMETERDEGREEKELVIN" value="189" literal="WATTS_PER_SQUARE_METER_DEGREE_KELVIN"/>
+    <eLiterals name="WEBERS" value="190"/>
+    <eLiterals name="WEEKS" value="191"/>
+    <eLiterals name="YEARS" value="192"/>
+    <eLiterals name="NONE" value="193"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SGrUnitsObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -2667,6 +3207,32 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StiHPOpstateType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="BMsti001:&#xA;     BitRank map for Heat Pump Stiebel-Eltron&#xA;&#x9;"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="stiHPOpstateType"/>
+    </eAnnotations>
+    <eLiterals name="HP1PUMPON" literal="HP_1_PUMP_ON"/>
+    <eLiterals name="HP2PUMPON" value="1" literal="HP_2_PUMP_ON"/>
+    <eLiterals name="HEATUPPROGRAM" value="2" literal="HEATUP_PROGRAM"/>
+    <eLiterals name="NHZSTAGESRUNNING" value="3" literal="NHZ_STAGES_RUNNING"/>
+    <eLiterals name="HPINHEATINGMODE" value="4" literal="HP_IN_HEATING_MODE"/>
+    <eLiterals name="HPINDHWMODE" value="5" literal="HP_IN_DHW_MODE"/>
+    <eLiterals name="COMPRESSORRUNNING" value="6" literal="COMPRESSOR_RUNNING"/>
+    <eLiterals name="SUMMERMODEACTIVE" value="7" literal="SUMMER_MODE_ACTIVE"/>
+    <eLiterals name="COOLINGMODEACTIVE" value="8" literal="COOLING_MODE_ACTIVE"/>
+    <eLiterals name="MINONEIWSINDEFROSTMODE" value="9" literal="MIN_ONE_IWS_IN_DEFROST_MODE"/>
+    <eLiterals name="SILENTMODE1ACTIVE" value="10" literal="SILENT_MODE_1_ACTIVE"/>
+    <eLiterals name="SILENTMODE2ACTIVE" value="11" literal="SILENT_MODE_2_ACTIVE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="StiHPOpstateTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="stiHPOpstateType:Object"/>
+      <details key="baseType" value="stiHPOpstateType"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SubProfileTypeEnumType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -3070,6 +3636,101 @@
     <eLiterals name="ph79" value="79">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="79:"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspCommon001" value="80">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="80 Sunspec: All SunSpec compliant devices must include this as the first model "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspInverter101" value="81">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="81 Sunspec: model for single phase inverter monitoring (Int and SF) "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspInverter102" value="82">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="82 Sunspec: model for split phase inverter monitoring (Int and SF) "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspInverter103" value="83">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="83 Sunspec: model for 3 phase inverter monitoring (Int and SF)  "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspInverter111" value="84">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="84 Sunspec: model for single phase inverter monitoring using float values "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspInverter112" value="85">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="85 Sunspec: model for split phase inverter monitoring using float values "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspInverter113" value="86">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="86 Sunspec: model for s3 phase inverter monitoring using float values "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspNameplate120" value="87">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="87 Sunspec: Inverter Controls Nameplate Ratings  "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspBasicSettings121" value="88">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="88 Sunspec: Inverter Controls Basic Settings "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspMeasurementStatus122" value="89">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=" 89 Sunspec: Inverter Controls Extended Measurements and Status  "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspImmControl123" value="90">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="90 Sunspec: Immediate Inverter Controls  "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspBasicStorage124" value="91">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="91 Sunspec: SunspBasicStorage124 "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspMultMPP160" value="92">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="92 Sunspec: Model for multiple Maximum Power Point Trackers"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspStaticVoltVar126" value="93">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="93 Sunspec: Static Volt-VAR Arrays for Q = f (U/Uref) "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspFreqWattParam127" value="94">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="94 Sunspec: Parameterized Frequency-Watt compensation "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspWattPF131" value="95">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="95 Sunspec: Parameterized Watt-Power Factor Crv   PF = f (P/Pmax) "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspVoltWatt132" value="96">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="96 Sunspec: Parameterized Voltage-Power Factor Crv   P = f (U/Uref) "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspFreqWattCrv134" value="97">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="97 Sunspec: Curve-Based Frequency-Watt curve P =  f (F/Fref)  "/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SunspBatteryBaseModel802" value="98">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="98 Sunspec: Battery SOC management "/>
       </eAnnotations>
     </eLiterals>
   </eClassifiers>

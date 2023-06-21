@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Disabled;
+import communicator.api.GenDeviceApi4Rest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +64,6 @@ class ClemapRestApiTest {
 	}
 	
 	@Test
-	@Disabled
 	void testClemapWrite() throws Exception {
 		
 		Properties props = new Properties();

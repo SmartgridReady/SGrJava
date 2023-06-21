@@ -119,8 +119,10 @@ public class AsyncClemapWagoTest {
     }
 
     private static SGrModbusDevice createWagoDevice() throws Exception {
-        SGrModbusDeviceFrame deviceDesc = new DeviceDescriptionLoader<SGrModbusDeviceFrame>()
-                .load(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
+        DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+        SGrModbusDeviceFrame deviceDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
+
+
         wagoDriver = new GenDriverAPI4ModbusRTU();
         wagoDriver.initTrspService("COM3", 19200);
         wagoDriver.setUnitIdentifier((byte)1);
