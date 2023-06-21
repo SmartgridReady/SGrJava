@@ -7,9 +7,9 @@
   </Appenders>
   <Loggers>
     <Root level="info">
-        <!--  setzt tiefsten level fuer output -->
+    <!--  setzt tiefsten level fuer output -->
         <AppenderRef ref="Console"/>
-    </Root>   
+    </Root>
   </Loggers>
 </Configuration>
 <!--  levels:  

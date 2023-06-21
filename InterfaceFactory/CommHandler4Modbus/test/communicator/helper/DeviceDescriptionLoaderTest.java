@@ -3,6 +3,8 @@ package communicator.helper;
 import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.smartgridready.ns.v0.SGrContactAPIDeviceFrame;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
@@ -12,10 +14,12 @@ import utils.ConfigurationLoader;
 import utils.TestConfiguration;
 
 public class DeviceDescriptionLoaderTest {
+
+	private static final Logger LOG = LoggerFactory.getLogger(DeviceDescriptionLoaderTest.class);
 	
 	@Test
 	public void testLoadDeviceDescriptions() throws Exception {
-		
+			
 		TestConfiguration config = new ConfigurationLoader<TestConfiguration>()
 				.load("./test/communicator/helper/devicedescriptions.yaml", TestConfiguration.class);
 		
@@ -26,7 +30,7 @@ public class DeviceDescriptionLoaderTest {
 			
 			try {
 
-				System.out.println("Loading file: " + desc.file);
+				LOG.info("Loading file: " + desc.file);
 				
 				DeviceDescriptionLoader<?> loader = new DeviceDescriptionLoader<>();
 				Object deviceDesc = loader.load(folder, desc.file);
@@ -44,10 +48,8 @@ public class DeviceDescriptionLoaderTest {
 					System.out.println("Device type " + deviceDesc.getClass().getName() + " not supported yet.");
 				}
 			} catch ( Exception e) {
-				System.out.println( "Unable to load file: " + desc.file + "\n");
+				LOG.error( "Unable to load file: " + desc.file + "\n");
 			}
-			
-			
 		});				
 	}
 	

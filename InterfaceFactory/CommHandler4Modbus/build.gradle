@@ -23,8 +23,8 @@ apply plugin: 'maven-publish'
 
 
 sourceSets {
-        main.java.srcDirs = ['src' ]
-        main.resources.srcDirs = ['resources' ] 
+        main.java.srcDirs = ['src']
+        main.resources.srcDirs = ['resources']
         test.java.srcDirs = ['test']
         test.resources.srcDirs = ['resources_test']
 }
@@ -32,6 +32,10 @@ sourceSets {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+test {
+    useJUnitPlatform() // needed to run JUnit 5 test with gradle
 }
 
 configurations {
@@ -60,17 +64,21 @@ dependencies {
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.19.0'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.19.0'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.19.0'
-    
-		
-			
+
+    implementation group: 'io.reactivex.rxjava3', name: 'rxjava', version: '3.1.5'
+
 	testImplementation group: 'org.yaml', name: 'snakeyaml', version: '1.27'
 	testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.10.0'
 	testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.10.0'
 	testImplementation group: 'org.mockito', name: 'mockito-inline', version: '3.10.0'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.9.2'
-	
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 jar {
@@ -93,11 +101,6 @@ jar {
         }
     }
 }
-
-test { // needed that JUnit5 is used for tests.
-    useJUnitPlatform()
-}
-
 
 tasks."compileJava".dependsOn ':InterfaceFactory:emfEI4Modbus:publishToMavenLocal'
 
