@@ -34,15 +34,38 @@ emfEI4Modbus provides the Java-XML binding of XML device descriptions. The class
 ## Build and publish for development
 
 ### Prerequisites
-- Gradle version > 7.3.3. Note If no IDE with Gradle integration is used, Gradle must first be installed locally: https://gradle.org/install 
 - Java JDK version >= 1.8
 - <b>SGrGenDriverAPI</b> and <b>EasyModbus</b> must be published to the local maven directory. See readme.md of https://github.com/SmartgridReady/SGrJavaDrivers. Chapter https://github.com/SmartgridReady/SGrJavaDrivers#build-and-publish-for-development.
-- Have a local clone of the SGrSpecifications project to get the XML-Schema resoures from. See https://github.com/SmartgridReady/SGrSpecifications
+- Have a local clone of the SGrSpecifications project to get the XML-Schema resources from. See https://github.com/SmartgridReady/SGrSpecifications
+- Current eclipse installation with EMF features installed (EMF features shipped with standard Eclipse).
 
+Rem: You can use a different IDE such as IntelliJ, however Eclipse must be additionally installed to allow
+automatic code-generation using Eclipse EMF.
 
-###
+### Configure gradle.properties
+The project relies on automatic code generation using Eclipse EMF and Gradle. Gradle needs to know the location
+your Eclipse installation and the root XSD-file of the SGrSpecification. Edit your ```gradle.properties``` file and add the new entries as follows. By default, the ```gradle.properties``` file can be found on:
+- Windows: ```C:\Users\<username>\.gradle```
+- Unix: ```USER_HOME\.gradle```
+
+New entries to add:
+```
+xsd2java.eclipse.home=<<path to your Eclipse installation where exlipse.exe resides>>
+xsd2java.xsd.resource=<<your SGrSpecifications root folder>>/SchemaDatabase/SGr/SGrIncluder.xsd
+```
+Example:
+```
+xsd2java.eclipse.home=c:/java/eclipse-2020-12
+xsd2java.xsd.resource=c:/dev/SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd
+```
+
+### Run the gradle build and publish to the local maven repository
 - Change to the local ```{project-root}/SGrJava``` directory.
-- Run the command:
+- To build the project run:
+    ```
+    bash>gradle clean build
+    ```
+- To publish to the local Maven repository run:
     ```
     bash>gradle publishToMavenLocal
     ```
