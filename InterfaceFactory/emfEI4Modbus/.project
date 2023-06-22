@@ -35,7 +35,7 @@
 		<link>
 			<name>SGr</name>
 			<type>2</type>
-			<locationURI>$%7BPARENT-3-PROJECT_LOC%7D/SGrSpecifications/SchemaDatabase/SGr</locationURI>
+			<location>C:/dev/SmartGridReady_git/SGrSpecifications/SchemaDatabase/SGr</location>
 		</link>
 	</linkedResources>
 </projectDescription>
