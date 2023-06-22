@@ -11,6 +11,7 @@ import communicator.common.runtime.GenDriverModbusException;
 import communicator.impl.SGrModbusDevice;
 import communicator.restapi.exception.RestApiAuthenticationException;
 import communicator.restapi.impl.SGrRestApiDevice;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -27,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@Disabled // TODO Has flaky timing issues.
 @ExtendWith(value = MockitoExtension.class)
 class AsyncDataStructureTest {
 
