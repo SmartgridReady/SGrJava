@@ -37,12 +37,12 @@ emfEI4Modbus provides the Java-XML binding of XML device descriptions. The class
 - Java JDK version >= 1.8
 - <b>SGrGenDriverAPI</b> and <b>EasyModbus</b> must be published to the local maven directory. See readme.md of https://github.com/SmartgridReady/SGrJavaDrivers. Chapter https://github.com/SmartgridReady/SGrJavaDrivers#build-and-publish-for-development.
 - Have a local clone of the SGrSpecifications project to get the XML-Schema resources from. See https://github.com/SmartgridReady/SGrSpecifications
-- Current eclipse installation with EMF features installed (EMF features shipped with standard Eclipse).
+- Current Eclipse installation with EMF features installed (EMF features shipped with standard Eclipse). Additionally you need to install the eclipse <b>XSD - XML Schema Definition SDK</b> Eclipse plugin to import XSD files and convert them to an ecore model. (see https://projects.eclipse.org/projects/modeling.mdt.xsd/reviews/restructuring-and-termination-review)
 
 Rem: You can use a different IDE such as IntelliJ, however Eclipse must be additionally installed to allow
 automatic code-generation using Eclipse EMF.
 
-### Configure gradle.properties
+### Configure gradle.propertiesS
 The project relies on automatic code generation using Eclipse EMF and Gradle. Gradle needs to know the location
 your Eclipse installation and the root XSD-file of the SGrSpecification. Edit your ```gradle.properties``` file and add the new entries as follows. By default, the ```gradle.properties``` file can be found on:
 - Windows: ```C:\Users\<username>\.gradle```
