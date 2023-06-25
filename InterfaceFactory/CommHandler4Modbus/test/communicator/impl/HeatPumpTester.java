@@ -195,8 +195,8 @@ public class HeatPumpTester {
 				GenDriverAPI4ModbusTCP mbHovalTCP= new GenDriverAPI4ModbusTCP();
 				devHovalTCP=new SGrModbusDevice(tstDesc, mbHovalTCP);							
 				//setting Hoval Lab 
-				mbHovalTCP.initDevice("192.168.0.35",502);						
-				//mbHovalTCP.initDevice("192.168.1.55",502);
+				//mbHovalTCP.initDevice("192.168.0.35",502);						
+				mbHovalTCP.initDevice("192.168.1.55",502);
 			}
 			
 			catch ( Exception e )
