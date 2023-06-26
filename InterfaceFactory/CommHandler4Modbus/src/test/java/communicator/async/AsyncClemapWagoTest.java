@@ -16,6 +16,7 @@ import io.reactivex.rxjava3.internal.schedulers.IoScheduler;
 import io.reactivex.rxjava3.internal.schedulers.RxThreadFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import java.time.Instant;
 import java.util.Properties;
 
+@Disabled // Needs live Clemap and Wago meters
 public class AsyncClemapWagoTest {
     public static final Logger LOG = LoggerFactory.getLogger(AsyncClemapWagoTest.class);
 
