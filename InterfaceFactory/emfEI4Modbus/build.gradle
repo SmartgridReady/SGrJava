@@ -19,7 +19,7 @@ apply plugin: 'java'
 apply plugin: 'maven-publish'
 
 sourceSets {
-    main.java.srcDirs = ['src', '../../../SGrSpecifications/SchemaDatabase/SGr' ]
+    main.java.srcDirs = ['src']
 }
 
 java {
