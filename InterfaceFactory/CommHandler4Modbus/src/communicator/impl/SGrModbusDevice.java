@@ -362,17 +362,19 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				if (aDataPoint.getModbusAttr().get(0).getIopBooleanMapper()!=null )
 				{   // modbus value to generic value conversion
 					int ib;
-					if (aDataPoint.getModbusAttr().get(0).getIopBooleanMapper().isAssignedValueMeans())
+					if (aDataPoint.getModbusAttr().get(0).getIopBooleanMapper().isIsPositiveLogic())
 						ib = 1;
 					else
 						ib = 0;
-											 
-					 if (aDataPoint.getModbusAttr().get(0).getIopBooleanMapper().getValue()==mbregresp[0])
-						 mbregresp[0] = ib;
-					 else if (ib==1)
-					 	 mbregresp[0] = 0;
-					 else
-					 	 mbregresp[0] = 1;
+
+					// TODO check the logic here. Is the behaviour really according the the documentation in the XSD?
+					if (aDataPoint.getModbusAttr().get(0).getIopBooleanMapper().getValue()==mbregresp[0])
+						mbregresp[0] = ib; // received mbregresp[0] matches the configured value.
+						                   // 		will result in true for all values != 0x00, if 0x00 received -> false
+					else if (ib==1)		   // received mbregresp[0] does not match the configured value + positive logic
+						mbregresp[0] = 0;  // 		will result in 'false'
+					else				   // received mbregresp[0] does not match the configured value + and negative logic
+						mbregresp[0] = 1;  //		will result in 'true'
 				}
 			}
 

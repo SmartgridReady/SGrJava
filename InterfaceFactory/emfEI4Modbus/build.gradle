@@ -40,6 +40,10 @@ compileJava {
     dependsOn 'model2Java'
 }
 
+clean.doFirst {
+    file('src').deleteDir()
+}
+
 task model2Java(type: Exec) {
 
     workingDir '../../'
