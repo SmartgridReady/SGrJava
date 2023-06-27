@@ -45,7 +45,7 @@ public class WriteExec<V> extends Processor implements Executable {
                   LOG.info("WriteExec SEQUENTIAL: {} - {}", writeCallable.getProfileName(), writeCallable.getDatapointName());
                   disposable = observable.subscribe(this::handleSuccess, this::handleError);
               }
-          } catch (Exception e) {
+          } catch (Throwable e) {
             handleError(e);
           }
     }
@@ -54,7 +54,7 @@ public class WriteExec<V> extends Processor implements Executable {
     }
     
     private void handleSuccess(AsyncResult<V> result) {
-        LOG.info("WriteExec RESULT {} - {} SUCCESS", result.getProfileName(), result.getDatapointName());
+        LOG.info("WriteExec RESULT {} - {} - {}", result.getProfileName(), result.getDatapointName(), result.getExecStatus().name());
         notifyFinished();
     }
     
@@ -63,10 +63,11 @@ public class WriteExec<V> extends Processor implements Executable {
         result.setResponseTime(Instant.now());
         result.setExecStatus(ExecStatus.ERROR);
         result.setThrowable(t);
-        LOG.error("WriteExec RESULT - ERROR {}", result);
+        LOG.error("WriteExec RESULT - {} - {} - {}", result.getProfileName(), result.getDatapointName(), result.getThrowable());
         notifyFinished();
     }
 
+    @Override
     public AsyncResult<V> getResult() {
         return writeCallable.getResult();
     }
@@ -109,7 +110,7 @@ public class WriteExec<V> extends Processor implements Executable {
     private void notifyFinished() {
         if (finishedNotificationReceiver != null) {
             synchronized (finishedNotificationReceiver) {
-                finishedNotificationReceiver.notify();
+                finishedNotificationReceiver.notifyAll();
             }
         }
     }

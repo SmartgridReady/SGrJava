@@ -58,6 +58,7 @@ public class ReadExec<R> extends Processor implements Executable {
         notifyFinished();
     }
 
+    @Override
     public AsyncResult<R> getResult() {
         return deviceCallable.getResult();
     }

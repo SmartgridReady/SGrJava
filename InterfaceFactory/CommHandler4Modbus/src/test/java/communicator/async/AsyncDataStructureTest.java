@@ -1,6 +1,7 @@
 package communicator.async;
 
 
+import communicator.async.process.Executable;
 import communicator.async.process.Parallel;
 import communicator.async.process.ExecStatus;
 import communicator.async.process.Processor;
@@ -19,16 +20,20 @@ import org.mockito.stubbing.Answer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(value = MockitoExtension.class)
 class AsyncDataStructureTest {
+
+    private static final int TIME_TOLERANCE_MS = 2;
 
     private static final Logger LOG = LoggerFactory.getLogger(AsyncDataStructureTest.class);
     @Mock
@@ -52,7 +57,8 @@ class AsyncDataStructureTest {
     }
 
     @Test
-    void buildAndRunDataStructure() throws Exception {
+    void
+    buildAndRunDataStructure() throws Exception {
         initStubs();
         doBuildAndRunDatstructureTest(ExecStatus.SUCCESS, null);
     }
@@ -169,25 +175,22 @@ class AsyncDataStructureTest {
             // Sequential read stuff
             // Timing
             Instant start = wago_voltageAC_l1.getRequestTime();
-            assertTrue(start.plusMillis(500).isBefore(wago_voltageAC_l1.getResponseTime()));
-            assertTrue(start.plusMillis(600).isAfter(wago_voltageAC_l1.getResponseTime()));
-            assertTrue(start.plusMillis(1000).isBefore(wago_voltageAC_l2.getResponseTime()));
-            assertTrue(start.plusMillis(1100).isAfter(wago_voltageAC_l2.getResponseTime()));
-            assertTrue(start.plusMillis(1500).isBefore(wago_voltageAC_l3.getResponseTime()));
-            assertTrue(start.plusMillis(1600).isAfter(wago_voltageAC_l3.getResponseTime()));
+
+            verifyTimeslot(wago_voltageAC_l1, start, 500, 600);
+            verifyTimeslot(wago_voltageAC_l2, start, 1000, 1100);
+            verifyTimeslot(wago_voltageAC_l3, start, 1500, 1600);
+
             // Parallel read stuff
-            assertTrue(start.plusMillis(750).isBefore(clemap_actPowerAC_tot.getResponseTime()));
-            assertTrue(start.plusMillis(1000).isAfter(clemap_actPowerAC_tot.getResponseTime()));
-            assertTrue(start.plusMillis( 2000).isBefore(clemap_actPowerAC_tot_2.getResponseTime()));
-            assertTrue(start.plusMillis(2200).isAfter(clemap_actPowerAC_tot_2.getResponseTime()));
+            verifyTimeslot(clemap_actPowerAC_tot, start,750, 1000);
+            verifyTimeslot(clemap_actPowerAC_tot_2, start, 2000, 2200);
 
             // Parallel write stuff (sequential after read stuff)
             // Assert that writeCycle is performed after readCycle (await works...)
-            assertTrue(start.plusMillis(2000).isBefore(garo_wallbox_A_hems_curr_lim.getRequestTime()));
+            assertTrue(Duration.between(start.plusMillis(2000), garo_wallbox_A_hems_curr_lim.getRequestTime()).toMillis() >= 0);
 
             start = garo_wallbox_B_hems_curr_lim.getRequestTime();
-            assertTrue(start.plusMillis(400).isBefore(garo_wallbox_A_hems_curr_lim.getResponseTime()));
-            assertTrue(start.plusMillis(200).isBefore(garo_wallbox_B_hems_curr_lim.getResponseTime()));
+            verifyTimeslot(garo_wallbox_A_hems_curr_lim, start, 400, 600);
+            verifyTimeslot(garo_wallbox_B_hems_curr_lim, start,200, 400);
 
         } else {
             // Exception case
@@ -200,6 +203,18 @@ class AsyncDataStructureTest {
             assertTrue( wago_voltageAC_l1.getExecThrowable() instanceof GenDriverModbusException);
             assertTrue( clemap_actPowerAC_tot.getExecThrowable() instanceof RestApiAuthenticationException);
             assertTrue( garo_wallbox_A_hems_curr_lim.getExecThrowable() instanceof GenDriverModbusException);
+        }
+    }
+
+    private static void verifyTimeslot(Executable executable, Instant start, long offsBeginMs, long offsEndMs) {
+        Instant time = executable.getResult().getResponseTime();
+        Instant begin = start.plusMillis(offsBeginMs - TIME_TOLERANCE_MS);
+        Instant end = start.plusMillis(offsEndMs + TIME_TOLERANCE_MS);
+        if (time.isBefore(begin)) {
+            fail(String.format("Async exec terminated %dms too early: %s", Duration.between(time, begin).toMillis(), executable));
+        }
+        if (time.isAfter(end)) {
+            fail(String.format("Async exec terminated %dms too late: %s", Duration.between(end, time).toMillis(), executable));
         }
     }
 

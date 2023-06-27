@@ -11,9 +11,9 @@
   <Loggers>
     <Root level="info">
     <!--  setzt tiefsten level fuer output -->
-        <!--  <AppenderRef ref="Console"/> -->        
+      <AppenderRef ref="Console"/>
     </Root>
-    <Logger name="communicator.async" level="info" additivity="false">
+    <Logger name="communicator.async" level="debug" additivity="false">
         <AppenderRef ref="ConsoleThreadTstmp" />
     </Logger>
     

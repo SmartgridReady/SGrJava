@@ -4,5 +4,10 @@ public enum ExecStatus {
     IDLE,
     PROCESSING,
     SUCCESS,
-    ERROR
+    ERROR;
+
+    public boolean isNotProcessed() {
+        return this.equals(IDLE) || this.equals(PROCESSING);
+    }
+
 }
