@@ -25,8 +25,8 @@ import com.smartgridready.ns.v0.CtaDomHotWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.HovBufferStateType;
-import com.smartgridready.ns.v0.HovDomHotWStateType;
 import com.smartgridready.ns.v0.HovDomHotWOpModeType;
+import com.smartgridready.ns.v0.HovDomHotWStateType;
 import com.smartgridready.ns.v0.HovHCOpModeType;
 import com.smartgridready.ns.v0.HovHCOpStateType;
 import com.smartgridready.ns.v0.HovHPOpModeType;
@@ -62,11 +62,12 @@ import com.smartgridready.ns.v0.TEnumConversionFct;
 import com.smartgridready.ns.v0.TEnumObjectType;
 import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
 import com.smartgridready.ns.v0.V0Factory;
-import communicator.modbus.api.GenDeviceApi4Modbus;
+import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
+import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.modbus.helper.CacheRecord;
 import communicator.modbus.helper.ConversionHelper;
 import communicator.modbus.helper.GenType2StringConversion;
@@ -92,7 +93,10 @@ import java.util.Optional;
  * @author furrer / IBT,cb
  *
  */
-public class SGrModbusDevice implements GenDeviceApi4Modbus {
+public class SGrModbusDevice extends SGrDeviceBase<
+		SGrModbusDeviceFrame,
+		SGrModbusFunctionalProfileType,
+		SGrModbusDataPointType> implements GenDeviceApi4Modbus {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrModbusDevice.class);
 
@@ -105,6 +109,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	private final Map<SGrTimeSyncBlockNotificationType, CacheRecord<ModbusReaderResponse>> myTimeSyncBlockReadCache = new HashMap<>();	
 
 	public SGrModbusDevice(SGrModbusDeviceFrame aDeviceDescription, GenDriverAPI4Modbus aRtuDriver) {
+		super(aDeviceDescription);
 		myDeviceDescription = aDeviceDescription;
 		drv4Modbus = aRtuDriver;
 	}
@@ -659,7 +664,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			break;
     		case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOH2L_VALUE:
 	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at lower adders
-	    		// must follow follow the bwp definitions
+	    		// must follow the bwp definitions
 				switch (mbregresp[0])
 				{
 					case 1:
@@ -1332,25 +1337,18 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				dataPointType.isSetInt8U();
 	}
 
-
-	private SGrModbusDataPointType findDatapoint(String profileName, String datapointName)
-			throws GenDriverException {
-		Optional<SGrModbusFunctionalProfileType> profile = findProfile(profileName);
-		if (profile.isPresent()) {
-			return findDataPointForProfile(profile.get(), datapointName)
-					.orElseThrow(() -> new GenDriverException("Datapoint with name " + datapointName + " not found"));
-		} else {
-			throw new GenDriverException("Functional profile with name " + profileName + " not found!");
-		}
+	protected SGrModbusDataPointType findDatapoint(String profileName, String datapointName) throws GenDriverException {
+		return super.findDatapoint(profileName, datapointName);
 	}
 
-	private Optional<SGrModbusFunctionalProfileType> findProfile(String aProfileName) {
+	@Override
+	protected Optional<SGrModbusFunctionalProfileType> findProfile(String aProfileName) {
 		return myDeviceDescription.getFpListElement().stream()
 				.filter(modbusProfileFrame -> modbusProfileFrame.getFunctionalProfile().getProfileName().equals(aProfileName))
 				.findFirst();
 	}
 
-	private Optional<SGrModbusDataPointType> findDataPointForProfile(SGrModbusFunctionalProfileType aProfile,
+	protected Optional<SGrModbusDataPointType> findDataPointForProfile(SGrModbusFunctionalProfileType aProfile,
 																	 String aDataPointName) {
 		return aProfile.getDpListElement().stream()
 				.filter(datapoint -> datapoint.getDataPoint().getDatapointName().equals(aDataPointName))

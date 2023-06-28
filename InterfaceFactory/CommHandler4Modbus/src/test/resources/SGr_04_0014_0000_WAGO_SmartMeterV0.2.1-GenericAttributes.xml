@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/xsl/SGr.xsl"?>
 <sgr:SGrModbusDeviceFrame deviceName="WAGOMeterV0.2.1" isLocalControl="true" manufacturerID="WAGO" manufacturerName="WAGO"  xmlns:sgr="http://www.smartgridready.com/ns/V0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/EI-Modbus/SGrModbusEIDeviceFrame.xsd ">
+  <sgr:releaseNotes>
+    <sgr:state>Draft</sgr:state>
+  </sgr:releaseNotes>
   <sgr:deviceProfile>
     <sgr:devNameList>
       <sgr:sLV1Name>WAGO Energy Meters MID</sgr:sLV1Name>
@@ -25,7 +28,6 @@
     </sgr:devLegibDesc>
     <sgr:transportService>Modbus</sgr:transportService>
     <sgr:deviceKind>SubMeterElectricity</sgr:deviceKind>
-    <sgr:serialNumber>0</sgr:serialNumber>
     <sgr:softwareRevision>
       <sgr:primaryVersionNumber>1</sgr:primaryVersionNumber>
       <sgr:secondaryVersionNumber>0</sgr:secondaryVersionNumber>
@@ -40,11 +42,18 @@
     <sgr:powerSource>mains1Phase</sgr:powerSource>
     <sgr:nominalPower>4 Watt</sgr:nominalPower>
     <sgr:remAuthorID>WAGO/ls</sgr:remAuthorID>
-    <sgr:devLevelofOperation>4</sgr:devLevelofOperation>
+    <sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
   </sgr:deviceProfile>
   <sgr:genAttribute>
     <sgr:specQualityRequirement>METAS</sgr:specQualityRequirement>
-    <sgr:precision>2.0</sgr:precision>
+    <sgr:curtailment>40</sgr:curtailment>
+    <sgr:minLoad>20</sgr:minLoad>
+    <sgr:maxLockTimeMinutes>10</sgr:maxLockTimeMinutes>
+    <sgr:precision>2.5</sgr:precision>
+    <sgr:flexAssistance>
+      <sgr:assists>AT_NetServicable</sgr:assists>
+      <sgr:obligedTo>OL_SHALL</sgr:obligedTo>
+    </sgr:flexAssistance>
   </sgr:genAttribute>
   <sgr:modbusAttr>
     <sgr:pollLatencyMS>1600</sgr:pollLatencyMS>
@@ -89,43 +98,26 @@
           <sgr:subReleaseVersionNumber>3</sgr:subReleaseVersionNumber>
         </sgr:versionNumber>
       </sgr:profileNumber>
-      <sgr:fpNameList>
-        <sgr:sLV1Name>VoltageAC</sgr:sLV1Name>
-      </sgr:fpNameList>
       <sgr:fpLegibDesc>
         <sgr:textElement>Voltage</sgr:textElement>
         <sgr:language>de</sgr:language>
       </sgr:fpLegibDesc>
     </sgr:functionalProfile>
-    <sgr:dpListElement>      
-  		<sgr:dataPoint datapointName="Voltage-L1-L2-L3"
-  			 rwpDatadirection="R" unit="NONE">  			
-        <sgr:basicDataType>  
-          <sgr:float32>0</sgr:float32>
-        </sgr:basicDataType>
-        <sgr:arrLen>3</sgr:arrLen>
-  		</sgr:dataPoint>
-  		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType>          
-            <sgr:float32>0</sgr:float32>
-        </sgr:modbusDataType>
-        <sgr:arrLen>3</sgr:arrLen>
-  			<sgr:modbusFirstRegisterReference
-  				registerType="HoldRegister" addr="20482" bitRank="0" />
-  			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
-  			<sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
-  		</sgr:modbusDataPoint>
-  		<sgr:timeToLive>200</sgr:timeToLive>
-  	</sgr:dpListElement>
+    <sgr:genAttribute>
+      <sgr:curtailment>30</sgr:curtailment>
+    </sgr:genAttribute>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="VoltageL1"  rwpDatadirection="R" unit="VOLTS">
+      <sgr:dataPoint datapointName="VoltageL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
         <sgr:basicDataType >
         <sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>VoltageL1</sgr:sLV1Name>
           <sgr:sManufName>L1 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
+      <sgr:genAttribute>
+        <sgr:precision>2.2</sgr:precision>
+        <sgr:minVal>0.005</sgr:minVal>
+      </sgr:genAttribute>
       <sgr:modbusDataPoint>
         <sgr:modbusDataType>
         <sgr:float32>0</sgr:float32></sgr:modbusDataType>
@@ -135,7 +127,7 @@
       </sgr:modbusDataPoint>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="VoltageL2"  rwpDatadirection="R" unit="VOLTS">
+      <sgr:dataPoint datapointName="VoltageL2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
         <sgr:basicDataType >
         <sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
@@ -151,11 +143,10 @@
       </sgr:modbusDataPoint>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="VoltageL3"  rwpDatadirection="R" unit="VOLTS">
+      <sgr:dataPoint datapointName="VoltageL3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
         <sgr:basicDataType >
         <sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>VoltageL3</sgr:sLV1Name>
           <sgr:sManufName>L3 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
@@ -168,11 +159,10 @@
       </sgr:modbusDataPoint>
     </sgr:dpListElement>
 	<sgr:dpListElement>
-      <sgr:dataPoint datapointName="VoltageACL1-L2"  rwpDatadirection="R" unit="VOLTS">
+      <sgr:dataPoint datapointName="VoltageACL1-L2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
         <sgr:basicDataType >
         <sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>VoltageACL1-L2</sgr:sLV1Name>
           <sgr:sManufName>L1-L2 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
@@ -185,11 +175,10 @@
       </sgr:modbusDataPoint>
     </sgr:dpListElement>
 	<sgr:dpListElement>
-      <sgr:dataPoint datapointName="VoltageACL1-L3"  rwpDatadirection="R" unit="VOLTS">
+      <sgr:dataPoint datapointName="VoltageACL1-L3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
         <sgr:basicDataType >
         <sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>VoltageACL1-L3</sgr:sLV1Name>
           <sgr:sManufName>L1-L3 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
@@ -202,10 +191,9 @@
       </sgr:modbusDataPoint>
     </sgr:dpListElement>
 	<sgr:dpListElement>
-      <sgr:dataPoint datapointName="VoltageACL2-L3"  rwpDatadirection="R" unit="VOLTS">
+      <sgr:dataPoint datapointName="VoltageACL2-L3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>VoltageACL2-L3</sgr:sLV1Name>
           <sgr:sManufName>L2-L3 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
@@ -217,27 +205,23 @@
       </sgr:modbusDataPoint>
     </sgr:dpListElement>  </sgr:fpListElement>
   <sgr:fpListElement>
-    <sgr:functionalProfile  profileName="Frequency">
+    <sgr:functionalProfile profileName="Frequency">
       <sgr:profileNumber>
         <sgr:specsOwnerId>0</sgr:specsOwnerId>
-        <sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
+        <sgr:profileIdentification>NonSpecific</sgr:profileIdentification>
         <sgr:subProfileIdent>Frequency</sgr:subProfileIdent>
-        <sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
+        <sgr:sgrLevelOfOperation>m</sgr:sgrLevelOfOperation>
         <sgr:versionNumber>
-          <sgr:primaryVersionNumber>0</sgr:primaryVersionNumber>
-          <sgr:secondaryVersionNumber>2</sgr:secondaryVersionNumber>
-          <sgr:subReleaseVersionNumber>3</sgr:subReleaseVersionNumber>
+          <sgr:primaryVersionNumber>1</sgr:primaryVersionNumber>
+          <sgr:secondaryVersionNumber>0</sgr:secondaryVersionNumber>
+          <sgr:subReleaseVersionNumber>0</sgr:subReleaseVersionNumber>
         </sgr:versionNumber>
       </sgr:profileNumber>
-      <sgr:fpNameList>
-        <sgr:sLV1Name>Frequency</sgr:sLV1Name>
-      </sgr:fpNameList>
     </sgr:functionalProfile>	
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="Frequency"  rwpDatadirection="R" unit="HERTZ">
+      <sgr:dataPoint datapointName="Frequency" mroVisibilityIndicator="M" rwpDatadirection="R" unit="HERTZ">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>Frequency</sgr:sLV1Name>
           <sgr:sManufName>Frequenz</sgr:sManufName>
         </sgr:dpNameList>
         <sgr:dpLegibDesc>
@@ -254,20 +238,19 @@
     </sgr:dpListElement>
   </sgr:fpListElement>
   <sgr:fpListElement>
-    <sgr:functionalProfile  profileName="CurrentAC">
+    <sgr:functionalProfile profileName="CurrentAC">
       <sgr:profileNumber>
         <sgr:specsOwnerId>0</sgr:specsOwnerId>
-        <sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
+        <sgr:profileIdentification>NonSpecific</sgr:profileIdentification>
         <sgr:subProfileIdent>CurrentAC</sgr:subProfileIdent>
-        <sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
+        <sgr:sgrLevelOfOperation>m</sgr:sgrLevelOfOperation>
         <sgr:versionNumber>
-          <sgr:primaryVersionNumber>0</sgr:primaryVersionNumber>
-          <sgr:secondaryVersionNumber>2</sgr:secondaryVersionNumber>
-          <sgr:subReleaseVersionNumber>3</sgr:subReleaseVersionNumber>
+          <sgr:primaryVersionNumber>1</sgr:primaryVersionNumber>
+          <sgr:secondaryVersionNumber>0</sgr:secondaryVersionNumber>
+          <sgr:subReleaseVersionNumber>0</sgr:subReleaseVersionNumber>
         </sgr:versionNumber>
       </sgr:profileNumber>
       <sgr:fpNameList>
-        <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
         <sgr:sWorkName>Beispielprofil fuer beta Test</sgr:sWorkName>
         <sgr:sManufName>TotalActiveEnergy</sgr:sManufName>
         <sgr:sIEC61850Name>-</sgr:sIEC61850Name>
@@ -280,10 +263,9 @@
       </sgr:fpLegibDesc>
     </sgr:functionalProfile>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="CurrentACL1"  rwpDatadirection="R" unit="AMPERES">
+      <sgr:dataPoint datapointName="CurrentACL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERES">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -309,10 +291,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="CurrentACL2"  rwpDatadirection="R" unit="AMPERES">
+      <sgr:dataPoint datapointName="CurrentACL2" mroVisibilityIndicator="R" rwpDatadirection="R" unit="AMPERES">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -338,10 +319,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="CurrentACL3"  rwpDatadirection="R" unit="AMPERES">
+      <sgr:dataPoint datapointName="CurrentACL3" mroVisibilityIndicator="R" rwpDatadirection="R" unit="AMPERES">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -354,7 +334,7 @@
         </sgr:dpLegibDesc>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType><sgr:int32U>0</sgr:int32U></sgr:modbusDataType>
+        <sgr:modbusDataType><sgr:float32>0</sgr:float32></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20496" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -368,16 +348,16 @@
     </sgr:dpListElement>
   </sgr:fpListElement>
   <sgr:fpListElement>
-    <sgr:functionalProfile  profileName="ActivePowerAC">
+    <sgr:functionalProfile profileName="ActivePowerAC">
       <sgr:profileNumber>
         <sgr:specsOwnerId>0</sgr:specsOwnerId>
-        <sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
+        <sgr:profileIdentification>NonSpecific</sgr:profileIdentification>
         <sgr:subProfileIdent>ActivePowerAC</sgr:subProfileIdent>
-        <sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
+        <sgr:sgrLevelOfOperation>m</sgr:sgrLevelOfOperation>
         <sgr:versionNumber>
-          <sgr:primaryVersionNumber>0</sgr:primaryVersionNumber>
-          <sgr:secondaryVersionNumber>2</sgr:secondaryVersionNumber>
-          <sgr:subReleaseVersionNumber>1</sgr:subReleaseVersionNumber>
+          <sgr:primaryVersionNumber>1</sgr:primaryVersionNumber>
+          <sgr:secondaryVersionNumber>0</sgr:secondaryVersionNumber>
+          <sgr:subReleaseVersionNumber>0</sgr:subReleaseVersionNumber>
         </sgr:versionNumber>
       </sgr:profileNumber>
       <sgr:fpNameList>
@@ -389,10 +369,9 @@
       </sgr:fpLegibDesc>
     </sgr:functionalProfile>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ActivePowerACtot"  rwpDatadirection="R" unit="KILOWATTS">
+      <sgr:dataPoint datapointName="ActivePowerACtot" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATTS">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -418,10 +397,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ActivePowerACL1"  rwpDatadirection="R" unit="KILOWATTS">
+      <sgr:dataPoint datapointName="ActivePowerACL1" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATTS">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -447,10 +425,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ActivePowerACL2"  rwpDatadirection="R" unit="KILOWATTS">
+      <sgr:dataPoint datapointName="ActivePowerACL2" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATTS">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -476,10 +453,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ActivePowerACL3"  rwpDatadirection="R" unit="KILOWATTS">
+      <sgr:dataPoint datapointName="ActivePowerACL3" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATTS">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -506,16 +482,16 @@
     </sgr:dpListElement>
   </sgr:fpListElement>
   <sgr:fpListElement>
-    <sgr:functionalProfile  profileName="ReactivePowerAC">
+    <sgr:functionalProfile profileName="ReactivePowerAC">
       <sgr:profileNumber>
         <sgr:specsOwnerId>0</sgr:specsOwnerId>
-        <sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
+        <sgr:profileIdentification>NonSpecific</sgr:profileIdentification>
         <sgr:subProfileIdent>ReactivePowerAC</sgr:subProfileIdent>
-        <sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
+        <sgr:sgrLevelOfOperation>m</sgr:sgrLevelOfOperation>
         <sgr:versionNumber>
-          <sgr:primaryVersionNumber>0</sgr:primaryVersionNumber>
-          <sgr:secondaryVersionNumber>2</sgr:secondaryVersionNumber>
-          <sgr:subReleaseVersionNumber>1</sgr:subReleaseVersionNumber>
+          <sgr:primaryVersionNumber>1</sgr:primaryVersionNumber>
+          <sgr:secondaryVersionNumber>0</sgr:secondaryVersionNumber>
+          <sgr:subReleaseVersionNumber>0</sgr:subReleaseVersionNumber>
         </sgr:versionNumber>
       </sgr:profileNumber>
       <sgr:fpNameList>
@@ -527,10 +503,9 @@
       </sgr:fpLegibDesc>
     </sgr:functionalProfile>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ReactivePowerACtot"  rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
+      <sgr:dataPoint datapointName="ReactivePowerACtot" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -556,7 +531,7 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ReactivePowerACL1"  rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
+      <sgr:dataPoint datapointName="ReactivePowerACL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>ReactivePowerACtot</sgr:sLV1Name>
@@ -581,10 +556,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ReactivePowerACL2"  rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
+      <sgr:dataPoint datapointName="ReactivePowerACL2" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>L2 Blindleistung</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -610,10 +584,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
 	<sgr:dpListElement>
-      <sgr:dataPoint datapointName="ReactivePowerACL3"  rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
+      <sgr:dataPoint datapointName="ReactivePowerACL3" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -641,7 +614,7 @@
     
   </sgr:fpListElement>
   <sgr:fpListElement>
-    <sgr:functionalProfile  profileName="ApparentPowerAC">
+    <sgr:functionalProfile profileName="ApparentPowerAC">
       <sgr:profileNumber>
         <sgr:specsOwnerId>0</sgr:specsOwnerId>
         <sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
@@ -662,10 +635,9 @@
       </sgr:fpLegibDesc>
     </sgr:functionalProfile>
 	<sgr:dpListElement>
-      <sgr:dataPoint datapointName="ApparentPowerACtot"  rwpDatadirection="R" unit="KILOVOLT_AMPERES">
+      <sgr:dataPoint datapointName="ApparentPowerACtot" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -691,10 +663,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ApparentPowerACL1"  rwpDatadirection="R" unit="KILOVOLT_AMPERES">
+      <sgr:dataPoint datapointName="ApparentPowerACL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -720,10 +691,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
 	<sgr:dpListElement>
-      <sgr:dataPoint datapointName="ApparentPowerACL2"  rwpDatadirection="R" unit="KILOVOLT_AMPERES">
+      <sgr:dataPoint datapointName="ApparentPowerACL2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -749,10 +719,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
 	<sgr:dpListElement>
-      <sgr:dataPoint datapointName="ApparentPowerACL3"  rwpDatadirection="R" unit="KILOVOLT_AMPERES">
+      <sgr:dataPoint datapointName="ApparentPowerACL3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -779,7 +748,7 @@
     </sgr:dpListElement>	
   </sgr:fpListElement>
   <sgr:fpListElement>
-    <sgr:functionalProfile  profileName="PowerFactor">
+    <sgr:functionalProfile profileName="PowerFactor">
       <sgr:profileNumber>
         <sgr:specsOwnerId>0</sgr:specsOwnerId>
         <sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
@@ -792,7 +761,6 @@
         </sgr:versionNumber>
       </sgr:profileNumber>
       <sgr:fpNameList>
-        <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
         <sgr:sWorkName>Beispielprofil f�ha Test</sgr:sWorkName>
         <sgr:sManufName>PowerFactor</sgr:sManufName>
         <sgr:sIEC61850Name>-</sgr:sIEC61850Name>
@@ -805,10 +773,9 @@
       </sgr:fpLegibDesc>
     </sgr:functionalProfile>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="PowerFactor"  rwpDatadirection="R" unit="NONE">
+      <sgr:dataPoint datapointName="PowerFactor" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -834,10 +801,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="PowerFactorL1"  rwpDatadirection="R" unit="NONE">
+      <sgr:dataPoint datapointName="PowerFactorL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -863,10 +829,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="PowerFactorL2"  rwpDatadirection="R" unit="NONE">
+      <sgr:dataPoint datapointName="PowerFactorL2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -892,10 +857,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>	
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="PowerFactorL3"  rwpDatadirection="R" unit="NONE">
+      <sgr:dataPoint datapointName="PowerFactorL3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
         <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -922,20 +886,19 @@
     </sgr:dpListElement>	
   </sgr:fpListElement>
   <sgr:fpListElement>
-    <sgr:functionalProfile  profileName="ActiveEnergyAC">
+    <sgr:functionalProfile profileName="ActiveEnergyAC">
       <sgr:profileNumber>
         <sgr:specsOwnerId>0</sgr:specsOwnerId>
-        <sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
+        <sgr:profileIdentification>NonSpecific</sgr:profileIdentification>
         <sgr:subProfileIdent>ActiveEnergyAC</sgr:subProfileIdent>
-        <sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
+        <sgr:sgrLevelOfOperation>m</sgr:sgrLevelOfOperation>
         <sgr:versionNumber>
-          <sgr:primaryVersionNumber>0</sgr:primaryVersionNumber>
-          <sgr:secondaryVersionNumber>2</sgr:secondaryVersionNumber>
-          <sgr:subReleaseVersionNumber>1</sgr:subReleaseVersionNumber>
+          <sgr:primaryVersionNumber>1</sgr:primaryVersionNumber>
+          <sgr:secondaryVersionNumber>0</sgr:secondaryVersionNumber>
+          <sgr:subReleaseVersionNumber>0</sgr:subReleaseVersionNumber>
         </sgr:versionNumber>
       </sgr:profileNumber>
       <sgr:fpNameList>
-        <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
         <sgr:sWorkName>Beispielprofil f�ha Test</sgr:sWorkName>
         <sgr:sManufName>TotalActiveEnergy</sgr:sManufName>
         <sgr:sIEC61850Name>-</sgr:sIEC61850Name>
@@ -948,10 +911,9 @@
       </sgr:fpLegibDesc>
     </sgr:functionalProfile>
     <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ActiveEnergyACtot"  rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
+      <sgr:dataPoint datapointName="ActiveEnergyACtot" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATT_HOURS">
+        <sgr:basicDataType><sgr:float64>0</sgr:float64></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -977,68 +939,9 @@
       	</sgr:modbusAttr>
     </sgr:dpListElement>
 	<sgr:dpListElement>
-      <sgr:dataPoint datapointName="ActiveEnergyACL1"  rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
+      <sgr:dataPoint datapointName="ActiveEnergyACL1" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATT_HOURS">
+        <sgr:basicDataType><sgr:float64>0</sgr:float64></sgr:basicDataType>
         <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
-          <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
-          <sgr:sManufName>Active import</sgr:sManufName>
-          <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
-          <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
-          <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
-        </sgr:dpNameList>
-        <sgr:dpLegibDesc>
-          <sgr:textElement>sgr:textElement</sgr:textElement>
-          <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
-      </sgr:dataPoint>
-      <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
-        <sgr:modbusFirstRegisterReference addr="24578" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
-        <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
-        <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
-      </sgr:modbusDataPoint>   
-      	<sgr:modbusAttr>
-      		<sgr:scalingByMulPwr>
-      			<sgr:multiplicator>1</sgr:multiplicator>
-      			<sgr:powerof10>-2</sgr:powerof10>
-      		</sgr:scalingByMulPwr>
-      	</sgr:modbusAttr>
-    </sgr:dpListElement>
-	<sgr:dpListElement>
-      <sgr:dataPoint datapointName="ActiveEnergyACL2"  rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
-        <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
-          <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
-          <sgr:sManufName>Active import</sgr:sManufName>
-          <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
-          <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
-          <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
-        </sgr:dpNameList>
-        <sgr:dpLegibDesc>
-          <sgr:textElement>sgr:textElement</sgr:textElement>
-          <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
-      </sgr:dataPoint>
-      <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
-        <sgr:modbusFirstRegisterReference addr="24580" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
-        <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
-        <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
-      </sgr:modbusDataPoint>   
-      	<sgr:modbusAttr>
-      		<sgr:scalingByMulPwr>
-      			<sgr:multiplicator>1</sgr:multiplicator>
-      			<sgr:powerof10>-2</sgr:powerof10>
-      		</sgr:scalingByMulPwr>
-      	</sgr:modbusAttr>
-    </sgr:dpListElement>
-    <sgr:dpListElement>
-      <sgr:dataPoint datapointName="ActiveEnergyACL3"  rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
-        <sgr:dpNameList>
-          <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
           <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
@@ -1063,9 +966,65 @@
       		</sgr:scalingByMulPwr>
       	</sgr:modbusAttr>
     </sgr:dpListElement>
+	<sgr:dpListElement>
+      <sgr:dataPoint datapointName="ActiveEnergyACL2" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATT_HOURS">
+        <sgr:basicDataType><sgr:float64>0</sgr:float64></sgr:basicDataType>
+        <sgr:dpNameList>
+          <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
+          <sgr:sManufName>Active import</sgr:sManufName>
+          <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
+          <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
+          <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
+        </sgr:dpNameList>
+        <sgr:dpLegibDesc>
+          <sgr:textElement>sgr:textElement</sgr:textElement>
+          <sgr:language>de</sgr:language>
+        </sgr:dpLegibDesc>
+      </sgr:dataPoint>
+      <sgr:modbusDataPoint>
+        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusFirstRegisterReference addr="24584" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
+        <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
+        <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
+      </sgr:modbusDataPoint>   
+      	<sgr:modbusAttr>
+      		<sgr:scalingByMulPwr>
+      			<sgr:multiplicator>1</sgr:multiplicator>
+      			<sgr:powerof10>-2</sgr:powerof10>
+      		</sgr:scalingByMulPwr>
+      	</sgr:modbusAttr>
+    </sgr:dpListElement>
+    <sgr:dpListElement>
+      <sgr:dataPoint datapointName="ActiveEnergyACL3" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATT_HOURS">
+        <sgr:basicDataType><sgr:float64>0</sgr:float64></sgr:basicDataType>
+        <sgr:dpNameList>
+          <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
+          <sgr:sManufName>Active import</sgr:sManufName>
+          <sgr:sIEC61850Name>sgr:sIEC61850Name</sgr:sIEC61850Name>
+          <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
+          <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
+        </sgr:dpNameList>
+        <sgr:dpLegibDesc>
+          <sgr:textElement>sgr:textElement</sgr:textElement>
+          <sgr:language>de</sgr:language>
+        </sgr:dpLegibDesc>
+      </sgr:dataPoint>
+      <sgr:modbusDataPoint>
+        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusFirstRegisterReference addr="24586" bitRank="0" registerType="HoldRegister"></sgr:modbusFirstRegisterReference>
+        <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
+        <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
+      </sgr:modbusDataPoint>   
+      	<sgr:modbusAttr>
+      		<sgr:scalingByMulPwr>
+      			<sgr:multiplicator>1</sgr:multiplicator>
+      			<sgr:powerof10>-2</sgr:powerof10>
+      		</sgr:scalingByMulPwr>
+      	</sgr:modbusAttr>
+    </sgr:dpListElement>
   </sgr:fpListElement>
   <sgr:fpListElement>
-  	<sgr:functionalProfile  profileName="ReactiveEnergyAC">
+  	<sgr:functionalProfile profileName="ReactiveEnergyAC">
   		<sgr:profileNumber>
   			<sgr:specsOwnerId>0</sgr:specsOwnerId>
   			<sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
@@ -1073,18 +1032,14 @@
   			<sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
   			<sgr:versionNumber>
   				<sgr:primaryVersionNumber>0</sgr:primaryVersionNumber>
-  				<sgr:secondaryVersionNumber>
-  					1
-  				</sgr:secondaryVersionNumber>
-  				<sgr:subReleaseVersionNumber>
-  					2
-  				</sgr:subReleaseVersionNumber>
+  				<sgr:secondaryVersionNumber>1</sgr:secondaryVersionNumber>
+  				<sgr:subReleaseVersionNumber>2</sgr:subReleaseVersionNumber>
   			</sgr:versionNumber>
   		</sgr:profileNumber>
   	</sgr:functionalProfile>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ReactiveEnergyACtot"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1102,7 +1057,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ReactiveEnergyACL1"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1120,7 +1075,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ReactiveEnergyACL2"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1136,7 +1091,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ReactiveEnergyACL3"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1152,7 +1107,7 @@
   	</sgr:dpListElement>
   </sgr:fpListElement>
   <sgr:fpListElement>
-  	<sgr:functionalProfile profileName="ActiveEnerBalanceAC" >
+  	<sgr:functionalProfile profileName="ActiveEnerBalanceAC">
   		<sgr:profileNumber>
   			<sgr:specsOwnerId>0</sgr:specsOwnerId>
   			<sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
@@ -1160,18 +1115,14 @@
   			<sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
   			<sgr:versionNumber>
   				<sgr:primaryVersionNumber>0</sgr:primaryVersionNumber>
-  				<sgr:secondaryVersionNumber>
-  					1
-  				</sgr:secondaryVersionNumber>
-  				<sgr:subReleaseVersionNumber>
-  					2
-  				</sgr:subReleaseVersionNumber>
+  				<sgr:secondaryVersionNumber>1</sgr:secondaryVersionNumber>
+  				<sgr:subReleaseVersionNumber>2</sgr:subReleaseVersionNumber>
   			</sgr:versionNumber>
   		</sgr:profileNumber>
   	</sgr:functionalProfile>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ActiveImportAC"
-  			 unit="KILOWATT_HOURS"
+  			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1187,7 +1138,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ActiveExportAC"
-  			 unit="KILOWATT_HOURS"
+  			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1203,7 +1154,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ActiveNetAC"
-  			 unit="KILOWATT_HOURS"
+  			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1219,7 +1170,7 @@
   	</sgr:dpListElement>
   </sgr:fpListElement>
   <sgr:fpListElement>
-  	<sgr:functionalProfile profileName="ReactiveEnerBalanceAC" >
+  	<sgr:functionalProfile profileName="ReactiveEnerBalanceAC">
   		<sgr:profileNumber>
   			<sgr:specsOwnerId>0</sgr:specsOwnerId>
   			<sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
@@ -1228,18 +1179,14 @@
   			<sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
   			<sgr:versionNumber>
   				<sgr:primaryVersionNumber>0</sgr:primaryVersionNumber>
-  				<sgr:secondaryVersionNumber>
-  					1
-  				</sgr:secondaryVersionNumber>
-  				<sgr:subReleaseVersionNumber>
-  					2
-  				</sgr:subReleaseVersionNumber>
+  				<sgr:secondaryVersionNumber>1</sgr:secondaryVersionNumber>
+  				<sgr:subReleaseVersionNumber>2</sgr:subReleaseVersionNumber>
   			</sgr:versionNumber>
   		</sgr:profileNumber>
   	</sgr:functionalProfile>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ReactiveImportAC"
-  			 unit="KILOWATT_HOURS"
+  			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1255,7 +1202,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ReactiveExportAC"
-  			 unit="KILOWATT_HOURS"
+  			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1271,7 +1218,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="ReactiveNetAC"
-  			 unit="KILOWATT_HOURS"
+  			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:basicDataType >
   				<sgr:float32>0.0</sgr:float32>
@@ -1287,8 +1234,7 @@
   	</sgr:dpListElement>
   </sgr:fpListElement>
   <sgr:fpListElement>
-  	<sgr:functionalProfile 
-  		profileName="PowerQuadrant">
+  	<sgr:functionalProfile profileName="PowerQuadrant">
   		<sgr:profileNumber>
   			<sgr:specsOwnerId>0</sgr:specsOwnerId>
   			<sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
@@ -1304,7 +1250,7 @@
   	</sgr:functionalProfile>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="PwrQuadACtot"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:basicDataType>
   				<sgr:int16>0</sgr:int16>
@@ -1320,7 +1266,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="PwrQuadACL1"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:basicDataType>
   				<sgr:int16>0</sgr:int16>
@@ -1336,7 +1282,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="PwrQuadACL2"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:basicDataType>
   				<sgr:int16>0</sgr:int16>
@@ -1350,10 +1296,9 @@
   			<sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
   		</sgr:modbusDataPoint>
   	</sgr:dpListElement>
-  	
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="PwrQuadACL3"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:basicDataType>
   				<sgr:int16>0</sgr:int16>
@@ -1368,29 +1313,29 @@
   		</sgr:modbusDataPoint>
   	</sgr:dpListElement>
   </sgr:fpListElement>
-  <sgr:fpListElement>
-  	<sgr:functionalProfile profileName="CurrentDirection"
-  		>
+  
+<!--   
+*************************************************************
+CurrentDirection must be added to FP family
+*************************************************************
+-->
+ <sgr:fpListElement>
+  	<sgr:functionalProfile profileName="CurrentDirection">
   		<sgr:profileNumber>
   			<sgr:specsOwnerId>0</sgr:specsOwnerId>
   			<sgr:profileIdentification>SubMeterElectricity</sgr:profileIdentification>
   			<sgr:subProfileIdent>CurrentDirection</sgr:subProfileIdent>
-  			<!--  CurrentDirection must be added to FP family -->
-  			<sgr:sgrLevelOfOperation>4</sgr:sgrLevelOfOperation>
+  			<sgr:sgrLevelOfOperation>m</sgr:sgrLevelOfOperation>
   			<sgr:versionNumber>
   				<sgr:primaryVersionNumber>0</sgr:primaryVersionNumber>
-  				<sgr:secondaryVersionNumber>
-  					0
-  				</sgr:secondaryVersionNumber>
-  				<sgr:subReleaseVersionNumber>
-  					0
-  				</sgr:subReleaseVersionNumber>
+  				<sgr:secondaryVersionNumber>0</sgr:secondaryVersionNumber>
+  				<sgr:subReleaseVersionNumber>0</sgr:subReleaseVersionNumber>
   			</sgr:versionNumber>
   		</sgr:profileNumber>
   	</sgr:functionalProfile>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="CurrentDirL1"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:basicDataType>
   				<sgr:string>sgr:string</sgr:string>
@@ -1406,7 +1351,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="CurrentDirL2"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:basicDataType>
   				<sgr:string>sgr:string</sgr:string></sgr:basicDataType>
@@ -1421,7 +1366,7 @@
   	</sgr:dpListElement>
   	<sgr:dpListElement>
   		<sgr:dataPoint datapointName="CurrentDirL3"
-  			 rwpDatadirection="R"
+  			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:basicDataType>
   				<sgr:string>sgr:string</sgr:string></sgr:basicDataType>
@@ -1434,5 +1379,5 @@
   			<sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
   		</sgr:modbusDataPoint>
   	</sgr:dpListElement>
-  </sgr:fpListElement>
+  </sgr:fpListElement>  
 </sgr:SGrModbusDeviceFrame>

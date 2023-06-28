@@ -18,6 +18,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.api;
 
+import communicator.common.api.GenDeviceApi;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.rest.exception.RestApiAuthenticationException;
 import communicator.rest.exception.RestApiResponseParseException;
@@ -26,7 +27,7 @@ import communicator.rest.impl.SGrRestApiDevice;
 
 import java.io.IOException;
 
-public interface GenDeviceApi4Rest {
+public interface GenDeviceApi4Rest extends GenDeviceApi {
 
     /**
      * Authenticates the REST API client.
@@ -42,7 +43,7 @@ public interface GenDeviceApi4Rest {
      * @see SGrRestApiDevice
      * @see DeviceDescriptionLoader
      */
-    public void authenticate()
+    void authenticate()
             throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException;
 
     /**
@@ -55,7 +56,7 @@ public interface GenDeviceApi4Rest {
      * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
      * @throws RestApiResponseParseException If parsing of the service response failed.
      */
-    public String getVal(String profileName, String dataPointName)
+    String getVal(String profileName, String dataPointName)
             throws IOException, RestApiServiceCallException, RestApiResponseParseException;
 
     /**
@@ -75,6 +76,6 @@ public interface GenDeviceApi4Rest {
      * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
      * @throws RestApiResponseParseException If parsing of the service response failed.
      */
-    public String setVal(String profileName, String dataPointName, String value)
+    String setVal(String profileName, String dataPointName, String value)
             throws IOException, RestApiServiceCallException, RestApiResponseParseException;
 }

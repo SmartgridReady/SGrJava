@@ -18,6 +18,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package communicator.modbus.api;
 
 import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
+import communicator.common.api.GenDeviceApi;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
@@ -28,7 +29,7 @@ import communicator.common.runtime.GenDriverSocketException;
  * The implementing device will convert the data to their modbus format.
  *
  */
-public interface GenDeviceApi4Modbus {
+public interface GenDeviceApi4Modbus extends GenDeviceApi {
 
     /**
      * Read a numeric or string value read a from a modbus device register.

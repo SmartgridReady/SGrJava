@@ -104,7 +104,7 @@ public class ReadExec<R> extends Processor implements Executable {
     private void notifyFinished() {
         if (finishedNotificationReceiver != null) {
             synchronized (finishedNotificationReceiver) {
-                finishedNotificationReceiver.notify();
+                finishedNotificationReceiver.notifyAll();
             }
         }
     }

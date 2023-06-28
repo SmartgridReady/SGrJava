@@ -26,6 +26,7 @@ import com.smartgridready.ns.v0.SGrRestAPIDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrRestAPIDataPointType;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 import com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType;
+import communicator.common.impl.SGrDeviceBase;
 import communicator.rest.api.GenDeviceApi4Rest;
 import communicator.rest.exception.RestApiAuthenticationException;
 import communicator.rest.exception.RestApiResponseParseException;
@@ -50,7 +51,10 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.Properties;
 
-public class SGrRestApiDevice implements GenDeviceApi4Rest {
+public class SGrRestApiDevice extends SGrDeviceBase<
+		SGrRestAPIDeviceFrame,
+		SGrRestAPIFunctionalProfileType,
+		SGrRestAPIDataPointType> implements GenDeviceApi4Rest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrRestApiDevice.class);
 	
@@ -59,6 +63,7 @@ public class SGrRestApiDevice implements GenDeviceApi4Rest {
 	private final RestServiceClientFactory restServiceClientFactory;
 	
 	public SGrRestApiDevice(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
+		super(deviceDescription);
 		this.deviceDescription = deviceDescription;
 		this.restServiceClientFactory = restServiceClientFactory;
 		this.httpAuthenticator = new DummyHttpAuthenticator();
@@ -159,7 +164,6 @@ public class SGrRestApiDevice implements GenDeviceApi4Rest {
 		}
 	}
 
-	
 	private Optional<ProfileDataPoint> findProfileDataPoint(String profileName, String dataPointName) {
 		
 		Optional<SGrRestAPIFunctionalProfileType> profile = findProfile(profileName);
@@ -172,19 +176,20 @@ public class SGrRestApiDevice implements GenDeviceApi4Rest {
 		return Optional.empty();
 	}
 	
-	private Optional<SGrRestAPIFunctionalProfileType> findProfile(String profileName) {
+	protected Optional<SGrRestAPIFunctionalProfileType> findProfile(String profileName) {
 		return deviceDescription.getFpListElement().stream().filter(
 				modbusProfileFrame -> modbusProfileFrame.getFunctionalProfile().getProfileName().equals(profileName))
 				.findFirst();
 	}
 
-	private Optional<SGrRestAPIDataPointType> findDataPointForProfile(SGrRestAPIFunctionalProfileType aProfile,
+	protected Optional<SGrRestAPIDataPointType> findDataPointForProfile(SGrRestAPIFunctionalProfileType aProfile,
 			String aDataPointName) {
 		return aProfile.getDpListElement().stream()
 				.filter(datapoint -> datapoint.getDataPoint().getDatapointName().equals(aDataPointName))
 				.findFirst();				
 	}
-	
+
+	// TODO currently only dp is required. This class is possibly obsolete.
 	private static class ProfileDataPoint {
 		
 		private final SGrRestAPIFunctionalProfileType fp;	// functional profile
@@ -203,5 +208,5 @@ public class SGrRestApiDevice implements GenDeviceApi4Rest {
 		public SGrRestAPIDataPointType getDp() {
 			return dp;
 		}					
-	}	
+	}
 }
