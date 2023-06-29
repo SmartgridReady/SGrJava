@@ -51,7 +51,7 @@
     <sgr:maxLockTimeMinutes>10</sgr:maxLockTimeMinutes>
     <sgr:precision>2.5</sgr:precision>
     <sgr:flexAssistance>
-      <sgr:assists>AT_NetServicable</sgr:assists>
+      <sgr:assists>AT_NetServiceable</sgr:assists>
       <sgr:obligedTo>OL_SHALL</sgr:obligedTo>
     </sgr:flexAssistance>
   </sgr:genAttribute>

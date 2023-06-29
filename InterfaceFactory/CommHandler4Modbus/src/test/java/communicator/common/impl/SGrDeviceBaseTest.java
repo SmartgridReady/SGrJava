@@ -99,7 +99,7 @@ public class SGrDeviceBaseTest {
         expected.put("minLoad", "20.0");
         expected.put("minVal", "0.005");
         expected.put("precision", "2.2");
-        expected.put("flexAssistance.assists", "AT_NetServicable");
+        expected.put("flexAssistance.assists", "AT_NetServiceable");
         expected.put("flexAssistance.obligedTo", "OL_SHALL");
 
         SGrModbusDevice device = createSGrModbusDevice();

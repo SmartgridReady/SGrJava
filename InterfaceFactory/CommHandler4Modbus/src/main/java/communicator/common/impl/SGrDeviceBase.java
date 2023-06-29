@@ -51,33 +51,36 @@ public abstract class SGrDeviceBase<
         // Merge all generic properties into one result
         SGrAttr4GenericType result = V0Factory.eINSTANCE.createSGrAttr4GenericType();
 
-        if (profileName != null && dataPointName != null) {
+        if (profileName!=null && dataPointName!=null) {
             // Datapoint attributes have precedence over functional profile and device properties
             P dataPoint = findDatapoint(profileName, dataPointName);
-            dataPoint.getGenAttribute().forEach(attr ->
-                    getFeaturesThatAreSet(attr).forEach(feature ->
-                            result.eSet(feature, attr.eGet(feature))));
+            Optional<SGrAttr4GenericType> attrOpt = Optional.ofNullable(dataPoint.getGenAttribute());
+            attrOpt.ifPresent(attr -> getFeaturesThatAreSet(attr)
+                    .forEach(feature -> result.eSet(feature, attr.eGet(feature))));
         }
 
         // Add additional properties that are set on functional profile level
         // Do not overwrite the attributes already set by the data point
-        if (profileName != null) {
+        if (profileName!=null) {
             Optional<F> profileOpt = findProfile(profileName);
-            profileOpt.ifPresent(profile ->
-                    profile.getGenAttribute().forEach(attr ->
-                            getFeaturesThatAreSet(attr)
-                                    .stream()
-                                    .filter(feature -> !result.eIsSet(feature))
-                                    .forEach(feature -> result.eSet(feature, attr.eGet(feature)))));
+            profileOpt.ifPresent(profile -> {
+                Optional<SGrAttr4GenericType> attrOpt = Optional.ofNullable(profile.getGenAttribute());
+                attrOpt.ifPresent(attr ->
+                        getFeaturesThatAreSet(attr)
+                                .stream()
+                                .filter(feature -> !result.eIsSet(feature))
+                                .forEach(feature -> result.eSet(feature, attr.eGet(feature))));
+            });
         }
 
         // Add additional properties that are set on device level
         // Do not overwrite the attributes already set by the functional profile
-        SGrAttr4GenericType attr = device.getGenAttribute();
-        getFeaturesThatAreSet(device.getGenAttribute())
-                .stream()
-                .filter(feature -> !result.eIsSet(feature))
-                .forEach(feature -> result.eSet(feature, attr.eGet(feature)));
+        Optional<SGrAttr4GenericType> attrOpt = Optional.ofNullable(device.getGenAttribute());
+        attrOpt.ifPresent(attr ->
+                getFeaturesThatAreSet(attr)
+                        .stream()
+                        .filter(feature -> !result.eIsSet(feature))
+                        .forEach(feature -> result.eSet(feature, attr.eGet(feature))));
 
         return result;
     }

@@ -834,7 +834,7 @@ public class SGrModbusDevice extends SGrDeviceBase<
 		// Attributes
 
 		// TODO:HF?  add attribute handling
-		if (aDataPoint.getGenAttribute().size() > 0) {
+		if (aDataPoint.getGenAttribute() != null) {
 			/* there are generic attributes available
 			 * place to add potential attribut setter API functionality
 			 */
