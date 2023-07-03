@@ -77,6 +77,7 @@ import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -93,10 +94,8 @@ import java.util.Optional;
  * @author furrer / IBT,cb
  *
  */
-public class SGrModbusDevice extends SGrDeviceBase<
-		SGrModbusDeviceFrame,
-		SGrModbusFunctionalProfileType,
-		SGrModbusDataPointType> implements GenDeviceApi4Modbus {
+public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModbusFunctionalProfileType, SGrModbusDataPointType>
+		implements GenDeviceApi4Modbus {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrModbusDevice.class);
 
@@ -834,10 +833,17 @@ public class SGrModbusDevice extends SGrDeviceBase<
 		// Attributes
 
 		// TODO:HF?  add attribute handling
+		/* IF there are generic attributes available
+		 * place to add potential attribute setter API functionality
+		 */
 		if (aDataPoint.getGenAttribute() != null) {
-			/* there are generic attributes available
-			 * place to add potential attribut setter API functionality
-			 */
+			if (aDataPoint.getGenAttribute().isSetMaxVal()) {
+				checkOutOfRange(sgrValues, BigDecimal.valueOf(aDataPoint.getGenAttribute().getMaxVal()), Comparator.MAX);
+			}
+
+			if (aDataPoint.getGenAttribute().isSetMinVal()) {
+				checkOutOfRange(sgrValues, BigDecimal.valueOf(aDataPoint.getGenAttribute().getMinVal()), Comparator.MIN);
+			}
 		}
 
 		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available

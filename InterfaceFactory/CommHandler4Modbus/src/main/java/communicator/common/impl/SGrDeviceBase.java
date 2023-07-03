@@ -1,21 +1,26 @@
 package communicator.common.impl;
 
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
+import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrDataPointBaseType;
 import com.smartgridready.ns.v0.SGrDeviceBaseType;
 import com.smartgridready.ns.v0.SGrFunctionalProfileBaseType;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.V0Package;
 import communicator.common.api.GenDeviceApi;
-import communicator.common.helper.EmfFeaturesHelper;
 import communicator.common.runtime.GenDriverException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
 public abstract class SGrDeviceBase<
@@ -24,6 +29,21 @@ public abstract class SGrDeviceBase<
         P extends SGrDataPointBaseType> implements GenDeviceApi {
 
     protected final D device;
+
+    public enum Comparator {
+        MIN(((val, lim) -> val.compareTo(lim) < 0)),
+        MAX(((val, lim) -> val.compareTo(lim) > 0));
+
+        private final BiPredicate<BigDecimal, BigDecimal> cmpFunc;
+
+        Comparator(BiPredicate<BigDecimal,BigDecimal> cmpFunc) {
+           this.cmpFunc = cmpFunc;
+        }
+
+        BiPredicate<BigDecimal,BigDecimal> getCmpFunc() {
+            return cmpFunc;
+        }
+    }
 
     protected SGrDeviceBase(D device) {
         this.device = device;
@@ -39,8 +59,8 @@ public abstract class SGrDeviceBase<
         Map<String, String> result = new HashMap<>();
 
         SGrAttr4GenericType genericType = getGenAttributesByGDPType(profileName, dataPointName);
-        getFeaturesThatAreSet(genericType).forEach(feature ->
-                result.putAll(EmfFeaturesHelper.featuresToStringMap(feature, genericType)));
+        getFeatureThatIsSet(genericType).forEach(feature ->
+                result.putAll(featuresToStringMap(feature, genericType)));
 
         return result;
     }
@@ -55,7 +75,7 @@ public abstract class SGrDeviceBase<
             // Datapoint attributes have precedence over functional profile and device properties
             P dataPoint = findDatapoint(profileName, dataPointName);
             Optional<SGrAttr4GenericType> attrOpt = Optional.ofNullable(dataPoint.getGenAttribute());
-            attrOpt.ifPresent(attr -> getFeaturesThatAreSet(attr)
+            attrOpt.ifPresent(attr -> getFeatureThatIsSet(attr)
                     .forEach(feature -> result.eSet(feature, attr.eGet(feature))));
         }
 
@@ -65,24 +85,23 @@ public abstract class SGrDeviceBase<
             Optional<F> profileOpt = findProfile(profileName);
             profileOpt.ifPresent(profile -> {
                 Optional<SGrAttr4GenericType> attrOpt = Optional.ofNullable(profile.getGenAttribute());
-                attrOpt.ifPresent(attr ->
-                        getFeaturesThatAreSet(attr)
-                                .stream()
-                                .filter(feature -> !result.eIsSet(feature))
-                                .forEach(feature -> result.eSet(feature, attr.eGet(feature))));
+                attrOpt.ifPresent(attr -> mergeAttribute(result, attr));
             });
         }
 
         // Add additional properties that are set on device level
         // Do not overwrite the attributes already set by the functional profile
         Optional<SGrAttr4GenericType> attrOpt = Optional.ofNullable(device.getGenAttribute());
-        attrOpt.ifPresent(attr ->
-                getFeaturesThatAreSet(attr)
-                        .stream()
-                        .filter(feature -> !result.eIsSet(feature))
-                        .forEach(feature -> result.eSet(feature, attr.eGet(feature))));
+        attrOpt.ifPresent(attr -> mergeAttribute(result, attr));
 
         return result;
+    }
+
+    private void mergeAttribute(SGrAttr4GenericType result, SGrAttr4GenericType attr) {
+        getFeatureThatIsSet(attr)
+                .stream()
+                .filter(feature -> !result.eIsSet(feature))
+                .forEach(feature -> result.eSet(feature, attr.eGet(feature)));
     }
 
     protected P findDatapoint(String profileName, String datapointName) throws GenDriverException {
@@ -95,9 +114,61 @@ public abstract class SGrDeviceBase<
             throw new GenDriverException("Functional profile with name " + datapointName + " not found");
         }
     }
-    private List<EStructuralFeature> getFeaturesThatAreSet(SGrAttr4GenericType genericAttribute) {
+
+    protected void checkOutOfRange(SGrBasicGenDataPointTypeType[] values, BigDecimal limit, Comparator comparator)
+            throws GenDriverException {
+
+        List<Double> outOfRangeValues = Arrays.stream(values)
+                .flatMap(value -> getFeatureThatIsSet(value).stream()
+                        .map(value::eGet)
+                        .filter(Number.class::isInstance)
+                        .map(Number.class::cast)
+                        .map(Number::doubleValue)
+                        .filter(val -> comparator.getCmpFunc().test(BigDecimal.valueOf(val), limit)))
+                .collect(Collectors.toList());
+
+        if (!outOfRangeValues.isEmpty()) {
+
+            throw new GenDriverException(
+                    String.format("Value(s) %s out of range. %s limit=%s",
+                            Arrays.toString(outOfRangeValues.toArray()), comparator.name(), limit.toString()));
+        }
+    }
+
+    private List<EStructuralFeature> getFeatureThatIsSet(SGrAttr4GenericType genericAttribute) {
 
         EList<EStructuralFeature> features = V0Package.eINSTANCE.getSGrAttr4GenericType().getEStructuralFeatures();
         return features.stream().filter(genericAttribute::eIsSet).collect(Collectors.toList());
+    }
+
+    private List<EStructuralFeature> getFeatureThatIsSet(SGrBasicGenDataPointTypeType dataPoint) {
+
+        EList<EStructuralFeature> features = V0Package.eINSTANCE.getSGrBasicGenDataPointTypeType().getEStructuralFeatures();
+        return features.stream().filter(dataPoint::eIsSet).collect(Collectors.toList());
+    }
+
+    private static Map<String, String> featuresToStringMap(EStructuralFeature feature, EObject data) {
+
+        Map<String, String> featureMap = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+        diveInto(feature, data, sb, featureMap);
+
+        return featureMap;
+    }
+
+    private static void diveInto(EStructuralFeature feature, EObject data, StringBuilder sb, Map<String, String> featureMap) {
+
+        if (feature instanceof EReference) {
+            sb.append(feature.getName()).append(".");
+            List<EStructuralFeature> children = ((EReference) feature).getEReferenceType().getEStructuralFeatures();
+            children.forEach(feat -> {
+                StringBuilder sbld = new StringBuilder(sb);
+                EObject dataObj = (EObject) data.eGet(feature);
+                diveInto(feat, dataObj, sbld, featureMap);
+            });
+        } else {
+            sb.append(feature.getName());
+            featureMap.put(sb.toString(), data.eGet(feature).toString());
+        }
     }
 }

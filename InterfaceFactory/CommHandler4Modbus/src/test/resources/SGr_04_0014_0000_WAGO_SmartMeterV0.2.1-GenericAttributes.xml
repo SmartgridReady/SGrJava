@@ -117,6 +117,7 @@
       <sgr:genAttribute>
         <sgr:precision>2.2</sgr:precision>
         <sgr:minVal>0.005</sgr:minVal>
+        <sgr:maxVal>380</sgr:maxVal>
       </sgr:genAttribute>
       <sgr:modbusDataPoint>
         <sgr:modbusDataType>
