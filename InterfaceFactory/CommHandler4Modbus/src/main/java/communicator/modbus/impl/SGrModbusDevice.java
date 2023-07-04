@@ -77,7 +77,6 @@ import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -836,15 +835,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		/* IF there are generic attributes available
 		 * place to add potential attribute setter API functionality
 		 */
-		if (aDataPoint.getGenAttribute() != null) {
-			if (aDataPoint.getGenAttribute().isSetMaxVal()) {
-				checkOutOfRange(sgrValues, BigDecimal.valueOf(aDataPoint.getGenAttribute().getMaxVal()), Comparator.MAX);
-			}
-
-			if (aDataPoint.getGenAttribute().isSetMinVal()) {
-				checkOutOfRange(sgrValues, BigDecimal.valueOf(aDataPoint.getGenAttribute().getMinVal()), Comparator.MIN);
-			}
-		}
+		checkOutOfRange(sgrValues, aDataPoint);
 
 		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available
 			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec

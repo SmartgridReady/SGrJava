@@ -1,20 +1,18 @@
 package communicator.rest.impl;
 
-import java.io.IOException;
-import java.util.Properties;
-
-import communicator.rest.api.GenDeviceApi4Rest;
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
-
 import communicator.common.helper.DeviceDescriptionLoader;
+import communicator.rest.api.GenDeviceApi4Rest;
 import communicator.rest.exception.RestApiAuthenticationException;
 import communicator.rest.exception.RestApiResponseParseException;
 import communicator.rest.exception.RestApiServiceCallException;
 import communicator.rest.http.client.ApacheRestServiceClientFactory;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.Properties;
 
 class ClemapRestApiTest {
 	

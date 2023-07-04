@@ -9,6 +9,7 @@ import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.V0Package;
 import communicator.common.api.GenDeviceApi;
 import communicator.common.runtime.GenDriverException;
+import communicator.modbus.helper.GenType2StringConversion;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -115,8 +116,36 @@ public abstract class SGrDeviceBase<
         }
     }
 
-    protected void checkOutOfRange(SGrBasicGenDataPointTypeType[] values, BigDecimal limit, Comparator comparator)
-            throws GenDriverException {
+    public void checkOutOfRange(String value, SGrDataPointBaseType dataPoint)
+        throws GenDriverException {
+
+        SGrBasicGenDataPointTypeType genVal =
+                GenType2StringConversion.format(value, dataPoint.getDataPoint().getBasicDataType());
+
+        checkOutOfRange(new SGrBasicGenDataPointTypeType[]{genVal}, dataPoint);
+    }
+
+    public void checkOutOfRange(SGrBasicGenDataPointTypeType[] values, SGrDataPointBaseType dataPoint)
+        throws GenDriverException {
+
+        Optional<String> errorStr = Optional.ofNullable(dataPoint.getGenAttribute())
+                .filter(SGrAttr4GenericType::isSetMaxVal)
+                .flatMap(attr -> checkOutOfRange(values, BigDecimal.valueOf(attr.getMaxVal()), Comparator.MAX));
+
+        if (errorStr.isPresent()) {
+            throw new GenDriverException(errorStr.get());
+        }
+
+        errorStr = Optional.ofNullable(dataPoint.getGenAttribute())
+                .filter(SGrAttr4GenericType::isSetMinVal)
+                .flatMap(attr -> checkOutOfRange(values, BigDecimal.valueOf(attr.getMinVal()), Comparator.MIN));
+
+        if (errorStr.isPresent()) {
+            throw new GenDriverException(errorStr.get());
+        }
+    }
+
+    protected Optional<String> checkOutOfRange(SGrBasicGenDataPointTypeType[] values, BigDecimal limit, Comparator comparator) {
 
         List<Double> outOfRangeValues = Arrays.stream(values)
                 .flatMap(value -> getFeatureThatIsSet(value).stream()
@@ -128,11 +157,11 @@ public abstract class SGrDeviceBase<
                 .collect(Collectors.toList());
 
         if (!outOfRangeValues.isEmpty()) {
-
-            throw new GenDriverException(
-                    String.format("Value(s) %s out of range. %s limit=%s",
-                            Arrays.toString(outOfRangeValues.toArray()), comparator.name(), limit.toString()));
+            return Optional.of(
+                    String.format("Values %s out of range. %s value=%s",
+                            Arrays.toString(outOfRangeValues.toArray()), comparator.name(), limit));
         }
+        return Optional.empty();
     }
 
     private List<EStructuralFeature> getFeatureThatIsSet(SGrAttr4GenericType genericAttribute) {

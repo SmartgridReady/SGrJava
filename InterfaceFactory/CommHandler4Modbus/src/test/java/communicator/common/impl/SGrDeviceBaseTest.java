@@ -6,7 +6,6 @@ import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.V0Factory;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.impl.SGrDeviceBase.Comparator;
-import communicator.common.runtime.GenDriverException;
 import communicator.modbus.impl.SGrModbusDevice;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,11 +19,14 @@ import java.math.BigInteger;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SGrDeviceBaseTest {
 
@@ -54,48 +56,48 @@ class SGrDeviceBaseTest {
 
     enum Expect {
         OK,
-        THROWS
+        ERROR
     }
 
     private static Stream<Arguments> checkRangeArguments() {
         return Stream.of(
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MIN, new BigDecimal(256), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MIN, new BigDecimal(257), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MIN, new BigDecimal(257), Expect.ERROR),
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MAX, new BigDecimal(256), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MAX, new BigDecimal(255), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MAX, new BigDecimal(255), Expect.ERROR),
 
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MIN, new BigDecimal(2048), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MIN, new BigDecimal(2049), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MIN, new BigDecimal(2049), Expect.ERROR),
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MAX, new BigDecimal(2048), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MAX, new BigDecimal(2047), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MAX, new BigDecimal(2047), Expect.ERROR),
 
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482048), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482049), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482049), Expect.ERROR),
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482048), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482047), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482047), Expect.ERROR),
 
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MIN, BigDecimal.valueOf(4096.999f), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MIN, BigDecimal.valueOf(4097.000f), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MIN, BigDecimal.valueOf(4097.000f), Expect.ERROR),
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MAX, BigDecimal.valueOf(4096.999f), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MAX, BigDecimal.valueOf(4096.998f), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MAX, BigDecimal.valueOf(4096.998f), Expect.ERROR),
 
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00009999d), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00010000d), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00010000d), Expect.ERROR),
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009999d), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.ERROR),
 
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MIN, new BigDecimal(80449999), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MIN, new BigDecimal(80450000), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MIN, new BigDecimal(80450000), Expect.ERROR),
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MAX, new BigDecimal(80449999), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MAX, new BigDecimal(80449998), Expect.THROWS),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MAX, new BigDecimal(80449998), Expect.ERROR),
 
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1000), Expect.OK),
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1001), Expect.OK),
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(1000), Expect.OK),
                 Arguments.of(new SGrBasicGenDataPointTypeType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(999), Expect.OK),
 
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048, INT_VALUE_2049, INT_VALUE_2050}, Comparator.MIN, new BigDecimal(2051), Expect.THROWS),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048, INT_VALUE_2049, INT_VALUE_2050},Comparator.MAX, new BigDecimal(2048), Expect.THROWS)
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048, INT_VALUE_2049, INT_VALUE_2050}, Comparator.MIN, new BigDecimal(2051), Expect.ERROR),
+                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048, INT_VALUE_2049, INT_VALUE_2050},Comparator.MAX, new BigDecimal(2048), Expect.ERROR)
         );
     }
 
@@ -105,11 +107,11 @@ class SGrDeviceBaseTest {
 
         SGrModbusDevice device = createSGrModbusDevice();
 
-        if (expect.equals(Expect.THROWS)) {
-            GenDriverException exception = assertThrows(GenDriverException.class, () -> device.checkOutOfRange(values, limit, comparator));
-            LOG.info("Expected ERROR: {}", exception.getMessage());
+        Optional<String> error = device.checkOutOfRange(values, limit, comparator);
+        if (expect.equals(Expect.ERROR)) {
+            assertTrue(error.isPresent());
         } else {
-            assertDoesNotThrow(() ->device.checkOutOfRange(values, limit, comparator));
+            assertFalse(error.isPresent());
         }
     }
 

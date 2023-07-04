@@ -20,6 +20,7 @@ package communicator.rest.api;
 
 import communicator.common.api.GenDeviceApi;
 import communicator.common.helper.DeviceDescriptionLoader;
+import communicator.common.runtime.GenDriverException;
 import communicator.rest.exception.RestApiAuthenticationException;
 import communicator.rest.exception.RestApiResponseParseException;
 import communicator.rest.exception.RestApiServiceCallException;
@@ -55,9 +56,10 @@ public interface GenDeviceApi4Rest extends GenDeviceApi {
      * @throws IOException If the communication with the server failed.
      * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
      * @throws RestApiResponseParseException If parsing of the service response failed.
+     * @throws GenDriverException If a common error occured.
      */
     String getVal(String profileName, String dataPointName)
-            throws IOException, RestApiServiceCallException, RestApiResponseParseException;
+            throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
 
     /**
      * Writes a value to the REST API device.
@@ -75,7 +77,8 @@ public interface GenDeviceApi4Rest extends GenDeviceApi {
      * @throws IOException If the communication with the server failed.
      * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
      * @throws RestApiResponseParseException If parsing of the service response failed.
+     * @throws GenDriverException If a common error occurred
      */
     String setVal(String profileName, String dataPointName, String value)
-            throws IOException, RestApiServiceCallException, RestApiResponseParseException;
+            throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
 }

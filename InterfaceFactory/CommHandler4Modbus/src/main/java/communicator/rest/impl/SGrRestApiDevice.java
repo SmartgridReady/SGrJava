@@ -27,6 +27,7 @@ import com.smartgridready.ns.v0.SGrRestAPIDataPointType;
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
 import com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType;
 import communicator.common.impl.SGrDeviceBase;
+import communicator.common.runtime.GenDriverException;
 import communicator.rest.api.GenDeviceApi4Rest;
 import communicator.rest.exception.RestApiAuthenticationException;
 import communicator.rest.exception.RestApiResponseParseException;
@@ -77,42 +78,47 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}
 		
 	@Override
-	public String getVal(String profileName, String dataPointName) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
-		Optional<ProfileDataPoint> profileDpOpt = findProfileDataPoint(profileName, dataPointName);	
-		if (profileDpOpt.isPresent()) {
-			return doReadWriteVal(profileDpOpt.get(), Optional.empty());
-		} else {
-			return "Profile/access-point " + profileName + "/" + dataPointName + " not found!";
-		}
+	public String getVal(String profileName, String dataPointName)
+			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
+		return setVal(profileName, dataPointName, null);
 	}
 
 	@Override
-	public String setVal(String profileName, String dataPointName, String value) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
-		Optional<ProfileDataPoint> profileDpOpt = findProfileDataPoint(profileName, dataPointName);	
-		if (profileDpOpt.isPresent()) {
-			return doReadWriteVal(profileDpOpt.get(), Optional.of(value));
+	public String setVal(String profileName, String dataPointName, String value)
+			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
+		Optional<SGrRestAPIDataPointType> dataPointOpt = findProfileDataPoint(profileName, dataPointName);
+		if (dataPointOpt.isPresent()) {
+			return doReadWriteVal(dataPointOpt.get(), value);
 		} else {
 			return "Profile/access-point " + profileName + "/" + dataPointName + " not found!";
 		}						
 	}
 
-	private String doReadWriteVal(ProfileDataPoint profileDp, Optional<String> value) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
+	private String doReadWriteVal(SGrRestAPIDataPointType dataPoint, String value)
+			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 		
 		String host = deviceDescription.getRestAPIInterfaceDesc().getTrspSrvRestURIoutOfBox();
 		
-		Optional<SGrRestAPIDataPointDescriptionType> dpDescriptionOpt 
-		= Optional.ofNullable(profileDp.getDp().getRestAPIDataPoint().get(0));
-		
+		Optional<SGrRestAPIDataPointDescriptionType> dpDescriptionOpt
+				= Optional.ofNullable(dataPoint.getRestAPIDataPoint().get(0));
+
+		Properties substitutions = new Properties();
 		if (dpDescriptionOpt.isPresent()) {
-			
-			Properties substitutions = new Properties();
-			value.ifPresent(s -> substitutions.put("value", s));
-			
+
+			if (value != null) {
+				checkOutOfRange(value, dataPoint);
+				substitutions.put("value", value);
+			}
+
 			SGrRestAPIDataPointDescriptionType dpDescription = dpDescriptionOpt.get();
 			RestServiceCall serviceCall = dpDescription.getRestServiceCall();
 			RestServiceClient restServiceClient = restServiceClientFactory.create(host, serviceCall, substitutions);
 			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
-			return parseJsonResponse(serviceCall.getResponseQuery().getQuery(), response);
+
+			if (value == null) {
+				return parseJsonResponse(serviceCall.getResponseQuery().getQuery(), response);
+			}
+			return response;
 		}
 		return "Missing 'restAPIDataPoint' description in device description XML file";
 	}	
@@ -164,13 +170,13 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		}
 	}
 
-	private Optional<ProfileDataPoint> findProfileDataPoint(String profileName, String dataPointName) {
+	private Optional<SGrRestAPIDataPointType> findProfileDataPoint(String profileName, String dataPointName) {
 		
 		Optional<SGrRestAPIFunctionalProfileType> profile = findProfile(profileName);
 		if (profile.isPresent()) {
 			Optional<SGrRestAPIDataPointType> dataPoint = findDataPointForProfile(profile.get(), dataPointName);
 			if (dataPoint.isPresent()) {
-				return Optional.of(new ProfileDataPoint(profile.get(), dataPoint.get()));
+				return dataPoint;
 			}
 		}
 		return Optional.empty();
@@ -178,7 +184,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	
 	protected Optional<SGrRestAPIFunctionalProfileType> findProfile(String profileName) {
 		return deviceDescription.getFpListElement().stream().filter(
-				modbusProfileFrame -> modbusProfileFrame.getFunctionalProfile().getProfileName().equals(profileName))
+				restApiProfileFrame -> restApiProfileFrame.getFunctionalProfile().getProfileName().equals(profileName))
 				.findFirst();
 	}
 
@@ -187,26 +193,5 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		return aProfile.getDpListElement().stream()
 				.filter(datapoint -> datapoint.getDataPoint().getDatapointName().equals(aDataPointName))
 				.findFirst();				
-	}
-
-	// TODO currently only dp is required. This class is possibly obsolete.
-	private static class ProfileDataPoint {
-		
-		private final SGrRestAPIFunctionalProfileType fp;	// functional profile
-		private final SGrRestAPIDataPointType dp;			// datapoint				
-		
-		public ProfileDataPoint(SGrRestAPIFunctionalProfileType fp, SGrRestAPIDataPointType dp) {
-			super();
-			this.fp = fp;
-			this.dp = dp;
-		}
-		
-		public SGrRestAPIFunctionalProfileType getFp() {
-			return fp;
-		}
-		
-		public SGrRestAPIDataPointType getDp() {
-			return dp;
-		}					
 	}
 }
