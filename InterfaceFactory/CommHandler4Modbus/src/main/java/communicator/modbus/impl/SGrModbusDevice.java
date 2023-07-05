@@ -77,7 +77,9 @@ import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.time.Instant;
@@ -309,12 +311,10 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		int[] mbregresp = Arrays.copyOfRange(mbregrespSrc, arrOffset*size, (arrOffset+1)*size);
 		boolean[] mbbitresp = Arrays.copyOfRange(mbbitrespSrc, arrOffset*size, (arrOffset+1)*size);
 
-		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();
 		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
 		
 		// Data format adaption
-		dGenType = aDataPoint.getDataPoint()
-				.getBasicDataType();
+		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();
 		// Data Direction ctrl
 		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
 
@@ -455,7 +455,6 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		}
 		else if (dGenType.isSetFloat32()) {
 			if (bGotRegisters) {
-
 				if (    dMBType.isSetInt8()
 						|| dMBType.isSetInt16()
 						|| dMBType.getInt32()!=null
@@ -475,7 +474,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 				} else if (dMBType.isSetFloat32()) {
 					fVal = ConversionHelper.byteBufFromRegisters(singleResp).getFloat();
 				} 
-			    else if (dMBType.isSetFloat64()) {
+			    else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null) {
 					dVal = ConversionHelper.byteBufFromRegisters(doubleResp).getDouble();
 			    	fVal = (float) dVal;
 				}
@@ -503,7 +502,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 				} else if (dMBType.isSetFloat32()) {
 					dVal = ConversionHelper.byteBufFromRegisters(singleResp).getFloat();
 					retVal.setFloat64(dVal);
-				} else if (dMBType.isSetFloat64()) {
+				} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null) {
 					dVal = ConversionHelper.byteBufFromRegisters(doubleResp).getDouble();
 					retVal.setFloat64(dVal);
 				}
@@ -512,7 +511,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		else if (dGenType.isSetInt16()) {
 			if (dMBType.isSetFloat32()) {
 				retVal.setInt16((short)ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
-			} else if (dMBType.isSetFloat64()) {
+			} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null) {
 				retVal.setInt16((short)ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				short shVal = (short) RegRes;
@@ -522,7 +521,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		else if (dGenType.getInt32() != null) {
 			if (dMBType.isSetFloat32()) {
 				retVal.setInt32(BigInteger.valueOf((int)ConversionHelper.byteBufFromRegisters(singleResp).getFloat()));
-			} else if (dMBType.isSetFloat64()) {
+			} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null) {
 				retVal.setInt32(BigInteger.valueOf((int)ConversionHelper.byteBufFromRegisters(doubleResp).getDouble()));
 			} else {
 				retVal.setInt32(BigInteger.valueOf((int)RegRes));
@@ -531,7 +530,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		else if (dGenType.isSetInt16U()) {
 			if (dMBType.isSetFloat32()) {
 				retVal.setInt16U((int) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
-			} else if (dMBType.isSetFloat64()){
+			} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null){
 				retVal.setInt16U((int) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				int iVal = (int) Math.abs(RegRes);
@@ -541,7 +540,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		else if (dGenType.isSetInt32U()) {
 			if (dMBType.isSetFloat32()) {
 				retVal.setInt32U((long) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
-			} else if (dMBType.isSetFloat64()){
+			} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null){
 				retVal.setInt32U((long) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				long lVal = (long) Math.abs(RegRes);
@@ -551,7 +550,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		else if (dGenType.isSetInt64()) {
 			if (dMBType.isSetFloat32()) {
 				retVal.setInt64((long) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
-			} else if (dMBType.isSetFloat64()){
+			} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null){
 				retVal.setInt64((long) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				retVal.setInt64(RegRes);
@@ -560,7 +559,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		else if (dGenType.getInt64U() != null) {
 			if (dMBType.isSetFloat32()) {
 				retVal.setInt64U(BigInteger.valueOf((long)ConversionHelper.byteBufFromRegisters(singleResp).getFloat()));
-			} else if (dMBType.isSetFloat64()){
+			} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null){
 				retVal.setInt64U(BigInteger.valueOf((long)ConversionHelper.byteBufFromRegisters(doubleResp).getDouble()));
 			} else {
 				long lVal = (long) RegRes;
@@ -570,7 +569,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		else if (dGenType.isSetInt8()) {
 			if (dMBType.isSetFloat32()) {
 				retVal.setInt8((byte) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
-			} else if (dMBType.isSetFloat64()){
+			} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null) {
 				retVal.setInt8((byte) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				byte btVal = (byte) RegRes;
@@ -580,27 +579,48 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		else if (dGenType.isSetInt8U()) {
 			if (dMBType.isSetFloat32()) {
 				retVal.setInt8U((byte) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
-			} else if (dMBType.isSetFloat64()){
+			} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null){
 				retVal.setInt8U((byte) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				short shVal = (byte) Math.abs(RegRes);
 				retVal.setInt8U(shVal);
 			}
-		}
-		else if (dGenType.getEnum()!=null) {
+		} else if (dGenType.getDecimal()!=null) {
+			if (bGotRegisters) {
+				if ((dMBType.isSetInt8())
+						|| (dMBType.isSetInt16())
+						|| (dMBType.getInt32()!=null)
+						|| (dMBType.isSetInt64())) {
+					dVal = (double) RegRes;
+					dVal = (dVal * Math.pow(10.0, pwof10));
+					dVal = dVal * mul;
+					retVal.setDecimal(BigDecimal.valueOf(dVal).setScale(0, RoundingMode.HALF_UP));
+				} else if ( dMBType.isSetInt8U()
+						|| (dMBType.isSetInt16U())
+						|| (dMBType.isSetInt32U())
+						|| (dMBType.getInt64U()!=null)) {
+					dVal = (double) Math.abs(RegRes);
+					dVal = (dVal * Math.pow(10.0, pwof10));
+					dVal = dVal * mul;
+					retVal.setDecimal(BigDecimal.valueOf(dVal).setScale(0, RoundingMode.HALF_UP));
+				} else if (dMBType.isSetFloat32()) {
+					dVal = ConversionHelper.byteBufFromRegisters(singleResp).getFloat();
+					retVal.setDecimal(BigDecimal.valueOf(dVal));
+				} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null) {
+					dVal = ConversionHelper.byteBufFromRegisters(doubleResp).getDouble();
+					retVal.setDecimal(BigDecimal.valueOf(dVal));
+				}
+			}
+		} else if (dGenType.getEnum()!=null) {
 			SGrEnumListType tt = regRes2EnumConversion(RegRes, dGenType.getEnum());
 			retVal.setEnum(tt);
-		}
-		else if(dGenType.getDateTime()!=null) {
+		} else if (dGenType.getDateTime()!=null) {
 			// TODO:HF? apply gregorian calendar library
 			// Q&A:CB can i assume that the value provided by MODBUS is a Unix timestamp in seconds? or millis?
 			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-		}
-		else if( dGenType.getString()!=null) {
-			    retVal.setString(ConversionHelper.convRegistersToString(mbregresp, 0, size*2));
-		}
-		else
-		{ // error handling for missing instance
+		} else if (dGenType.getString()!=null) {
+			retVal.setString(ConversionHelper.convRegistersToString(mbregresp, 0, size * 2));
+		} else { // error handling for missing instance
 		}		
 
 		return retVal;				
@@ -987,11 +1007,13 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 					fVal = sgrValue.getFloat32();
 				if (sgrValue.isSetFloat64())
 					fVal = (float) sgrValue.getFloat64();
+				if (sgrValue.getDecimal() != null)
+					fVal = (float)  sgrValue.getDecimal().floatValue();
 
 				mbRegBuf.put(ConversionHelper.floatToRegisters(fVal));
 			}
 
-		} else if (dMBType.isSetFloat64()) {
+		} else if (dMBType.isSetFloat64() || dMBType.getDecimal() != null) {
 			if (bRegisterCMDs) {
 				if (sgrValue.isSetInt8())
 					dVal = (double) sgrValue.getInt8();
@@ -1013,7 +1035,8 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 					dVal = (double) sgrValue.getInt32U();
 				if (sgrValue.getInt64U() != null)
 					dVal = (double) sgrValue.getInt64U().doubleValue();
-
+				if (sgrValue.getDecimal() != null)
+					dVal = sgrValue.getDecimal().doubleValue();
 				mbRegBuf.put(ConversionHelper.doubleToRegisters(dVal));
 			}
 		} else if (dMBType.isSetInt16()) {
@@ -1123,7 +1146,6 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 			if (bRegisterCMDs) {
 				mbRegBuf.put(ConversionHelper.convStringToRegisters(sgrValue.getString()));
 			}
-
 		} else if (dMBType.getDateTime() != null) {
 			/*
 			 * TODO:HF? apply gregorian calendar library =>
@@ -1174,6 +1196,9 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 			dVal = (double) dGenType.getInt32U();
 		if (dGenType.getInt64U() != null)
 			dVal = (double) dGenType.getInt64U().doubleValue();
+		if (dGenType.getDecimal() != null)
+			dVal = dGenType.getDecimal().doubleValue();
+
 		dVal = dVal /  mul;
 		dVal = (dVal * Math.pow(10.0, -powof10));
 

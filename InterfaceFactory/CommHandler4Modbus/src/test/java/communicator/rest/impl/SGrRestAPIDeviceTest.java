@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -131,8 +132,8 @@ class SGrRestAPIDeviceTest {
 
 	@ParameterizedTest
 	@CsvSource({
-			"0.004, Values [0.004000000189989805] out of range. MIN value=0.004999999888241291",
-			"101, Values [101.0] out of range. MAX value=100.0"})
+			"0.004, Values [0.004000000189989805] out of range. MIN value=0.005",
+			"101, Values [101.0] out of range. MAX value=100"})
 	void testSetValOutOfRange(String value, String expectedResponse) throws Exception {
 
 		// given
@@ -154,6 +155,6 @@ class SGrRestAPIDeviceTest {
 		URL devDescUrl = classloader.getResource("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
 
 		DeviceDescriptionLoader<SGrRestAPIDeviceFrame> loader = new DeviceDescriptionLoader<>();
-		return loader.load("", devDescUrl.getPath());
+		return loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 	}
 }

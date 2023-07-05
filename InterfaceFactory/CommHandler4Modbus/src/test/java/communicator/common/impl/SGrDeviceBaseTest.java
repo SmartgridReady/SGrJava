@@ -22,10 +22,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SGrDeviceBaseTest {
@@ -155,10 +153,10 @@ class SGrDeviceBaseTest {
         LOG.info("Received attributes {}", attributes);
 
         assertEquals("METAS", attributes.getSpecQualityRequirement());
-        assertEquals(20, attributes.getMinLoad());
-        assertEquals(30, attributes.getCurtailment());
-        assertEquals(10, attributes.getMaxLockTimeMinutes());
-        assertEquals(2.2, attributes.getPrecision());
+        assertEquals(BigDecimal.valueOf(20), attributes.getMinLoad());
+        assertEquals(BigDecimal.valueOf(30), attributes.getCurtailment());
+        assertEquals(BigDecimal.valueOf(10), attributes.getMaxLockTimeMinutes());
+        assertEquals(BigDecimal.valueOf(2.2), attributes.getPrecision());
         assertEquals("0.005", String.format("%.3f", attributes.getMinVal()));
         assertEquals("380.000", String.format("%.3f", attributes.getMaxVal()));
     }
@@ -172,9 +170,9 @@ class SGrDeviceBaseTest {
         LOG.info("Received attributes {}", attributes);
 
         assertEquals("METAS", attributes.getSpecQualityRequirement());
-        assertEquals(30, attributes.getCurtailment());
-        assertEquals(10, attributes.getMaxLockTimeMinutes());
-        assertEquals(2.5, attributes.getPrecision());
+        assertEquals(BigDecimal.valueOf(30), attributes.getCurtailment());
+        assertEquals(BigDecimal.valueOf(10), attributes.getMaxLockTimeMinutes());
+        assertEquals(BigDecimal.valueOf(2.5), attributes.getPrecision());
     }
 
     @Test
@@ -186,9 +184,9 @@ class SGrDeviceBaseTest {
         LOG.info("Received attributes {}", attributes);
 
         assertEquals("METAS", attributes.getSpecQualityRequirement());
-        assertEquals(40, attributes.getCurtailment());
-        assertEquals(10, attributes.getMaxLockTimeMinutes());
-        assertEquals(2.5, attributes.getPrecision());
+        assertEquals(BigDecimal.valueOf(40), attributes.getCurtailment());
+        assertEquals(BigDecimal.valueOf(10), attributes.getMaxLockTimeMinutes());
+        assertEquals(BigDecimal.valueOf(2.5), attributes.getPrecision());
     }
 
     @Test
@@ -196,11 +194,11 @@ class SGrDeviceBaseTest {
 
         Map<String, String> expected = new HashMap<>();
         expected.put("specQualityRequirement", "METAS");
-        expected.put("curtailment", "30.0");
-        expected.put("maxLockTimeMinutes", "10.0");
-        expected.put("minLoad", "20.0");
+        expected.put("curtailment", "30");
+        expected.put("maxLockTimeMinutes", "10");
+        expected.put("minLoad", "20");
         expected.put("minVal", "0.005");
-        expected.put("maxVal", "380.0");
+        expected.put("maxVal", "380");
         expected.put("precision", "2.2");
         expected.put("flexAssistance.assists", "AT_NetServiceable");
         expected.put("flexAssistance.obligedTo", "OL_SHALL");
@@ -220,7 +218,7 @@ class SGrDeviceBaseTest {
         URL devDescUrl = classloader.getResource("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
 
         DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-        SGrModbusDeviceFrame devDesc = loader.load("", devDescUrl.getPath());
+        SGrModbusDeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 
         return new SGrModbusDevice(devDesc, null);
     }

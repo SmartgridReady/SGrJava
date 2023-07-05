@@ -128,17 +128,16 @@ public abstract class SGrDeviceBase<
     public void checkOutOfRange(SGrBasicGenDataPointTypeType[] values, SGrDataPointBaseType dataPoint)
         throws GenDriverException {
 
+
         Optional<String> errorStr = Optional.ofNullable(dataPoint.getGenAttribute())
-                .filter(SGrAttr4GenericType::isSetMaxVal)
-                .flatMap(attr -> checkOutOfRange(values, BigDecimal.valueOf(attr.getMaxVal()), Comparator.MAX));
+                .flatMap(attr -> checkOutOfRange(values, attr.getMaxVal(), Comparator.MAX));
 
         if (errorStr.isPresent()) {
             throw new GenDriverException(errorStr.get());
         }
 
         errorStr = Optional.ofNullable(dataPoint.getGenAttribute())
-                .filter(SGrAttr4GenericType::isSetMinVal)
-                .flatMap(attr -> checkOutOfRange(values, BigDecimal.valueOf(attr.getMinVal()), Comparator.MIN));
+                .flatMap(attr -> checkOutOfRange(values, attr.getMinVal(), Comparator.MIN));
 
         if (errorStr.isPresent()) {
             throw new GenDriverException(errorStr.get());

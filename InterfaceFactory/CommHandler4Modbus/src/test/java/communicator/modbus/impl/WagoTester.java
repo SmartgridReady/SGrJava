@@ -28,7 +28,7 @@ public class WagoTester {
         }
     }
 
-    public static void main( String argv[] ) {
+    public static void main( String[] argv ) {
 
         try {
 
@@ -68,15 +68,18 @@ public class WagoTester {
         }
         catch ( Exception e )
         {
-            System.out.println( "Error loading device description. " + e);
+            LOG.error( "Error loading device description. " + e);
         }
     }
 
     private static ProtocolRecord checkDataPoint(Tuple2<String,String> dataPoint, SGrModbusDevice wagoMeter) {
 
         ProtocolRecord record = new ProtocolRecord();
+        record.readVal = "-";
+        record.exception = "";
         record.fpName = dataPoint._1;
         record.dpName = dataPoint._2;
+
         try {
             record.readVal = wagoMeter.getVal(dataPoint._1, dataPoint._2);
 

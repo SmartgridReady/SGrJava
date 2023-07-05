@@ -47,7 +47,9 @@ import com.smartgridready.ns.v0.SGrSGCPServiceType;
 import com.smartgridready.ns.v0.SGrSunspStateCodesType;
 import com.smartgridready.ns.v0.V0Factory;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -113,12 +115,8 @@ public class GenType2StringConversion {
 		} else if (dGenType.getInt64U() != null) {
 			BigInteger bgVal = dGenType.getInt64U();
 			retval = String.format(locale, "%d", bgVal);
-		} else if (dGenType.isSetInt8()) {
-			byte btVal = dGenType.getInt8();
-			retval = String.format(locale, "%d", btVal);
-		} else if (dGenType.isSetInt8U()) {
-			short shVal = dGenType.getInt8U();
-			retval = String.format(locale, "%d", shVal);
+		} else if (dGenType.getDecimal() != null) {
+			retval = dGenType.getDecimal().setScale(3, RoundingMode.HALF_UP).toString();
 		} else if (dGenType.getString() != null) {
 			retval = dGenType.getString();
 		} else if (dGenType.getDateTime() != null) {
@@ -185,6 +183,8 @@ public class GenType2StringConversion {
 		} else if (dGenType.isSetInt8U()) {
 			Short shVal = Short.parseShort(value);
 			retval.setInt8U(shVal);
+		} else if (dGenType.getDecimal() != null){
+			retval.setDecimal(new BigDecimal(value));
 		} else if (dGenType.getDateTime() != null) {
 			// TODO:HF? apply gregorian calendar library
 			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
@@ -202,7 +202,7 @@ public class GenType2StringConversion {
 	}
 
 	public static String enum2StringConversion(SGrEnumListType oGenVal) {
-		String rval = "-";
+		String rval;
 
 		// TODO HF add additional enums according CBTest
 		// Ongoing: extend this list manually for EACH enumeration being added to
@@ -309,7 +309,7 @@ public class GenType2StringConversion {
 		} else if (oGenVal.isSetSgrHPOpMode() ) {// E0016
 			rval.setSgrHPOpMode(SGrHPOpModeType.getByName(val));
 		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
-			rval.setSgrHCOpMode(SGrHCOpModeType.getByName(val));;
+			rval.setSgrHCOpMode(SGrHCOpModeType.getByName(val));
 		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// Ecta001
 			rval.setCtaDomHotWOpMode(CtaDomHotWOpModeType.getByName(val));
 		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
