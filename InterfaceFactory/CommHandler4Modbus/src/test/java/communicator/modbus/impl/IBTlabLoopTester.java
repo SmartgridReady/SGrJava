@@ -206,39 +206,39 @@ public class IBTlabLoopTester {
 				mbRTU.setUnitIdentifier((byte) 7);
 				LOG.info("\n@:Testing TestBox: WAGO Meter");
 				Thread.sleep(25);
-				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
+				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL1").getDecimal().floatValue();
 				Thread.sleep(10);            
-				fVal2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL2").getFloat32(); 
+				fVal2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL2").getDecimal().floatValue();
 				Thread.sleep(10);
-				fVal3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL3").getFloat32();
+				fVal3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageL3").getDecimal().floatValue();
 				Thread.sleep(10);
-				fVal4 = devWagoMeter.getValByGDPType("Frequency", "Frequency").getFloat32();
+				fVal4 = devWagoMeter.getValByGDPType("Frequency", "Frequency").getDecimal().floatValue();
 				LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
 						+ fVal3 + ",  " + fVal4 + "  ");
 				Thread.sleep(10);
-				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getFloat32();
+				fVal1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getDecimal().floatValue();
 				Thread.sleep(10);
-				fVal2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getFloat32();
+				fVal2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getDecimal().floatValue();
 				Thread.sleep(10);
-				fVal3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getFloat32();
+				fVal3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getDecimal().floatValue();
 				LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
 						+ fVal3 + "  ");
 				Thread.sleep(10);
-				fVal1 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+				fVal1 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL1").getDecimal().floatValue();
 				Thread.sleep(10);
-				fVal2 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+				fVal2 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL2").getDecimal().floatValue();
 				Thread.sleep(10);
-				fVal3 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+				fVal3 = devWagoMeter.getValByGDPType("CurrentAC", "CurrentACL3").getDecimal().floatValue();
 				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
 						+ fVal3 + "  ");
 				Thread.sleep(10);
-				fVal1 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactor").getFloat32();
+				fVal1 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactor").getDecimal().floatValue();
 				Thread.sleep(10);
-				fVal2 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getFloat32();
+				fVal2 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getDecimal().floatValue();
 				Thread.sleep(10);
-				fVal3 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getFloat32();
+				fVal3 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getDecimal().floatValue();
 				Thread.sleep(10);
-				fVal4 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getFloat32();
+				fVal4 = devWagoMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getDecimal().floatValue();
 				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
 						+ fVal3 + ",  " + fVal4 + "  ");
 				Thread.sleep(10); 
@@ -357,39 +357,39 @@ public class IBTlabLoopTester {
 	 				mbRTU.setUnitIdentifier((byte) 11);	
   				    LOG.info("\n@:Testing ABBMeter: ");
 	  				Thread.sleep(25);
-	  				fVal1 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
+	  				fVal1 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL1").getDecimal().floatValue();
 	  				Thread.sleep(10);            
-	  				fVal2 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL2").getFloat32(); 
+	  				fVal2 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL2").getDecimal().floatValue();
 	  				Thread.sleep(10);
-	  				fVal3 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL3").getFloat32();
+	  				fVal3 = devABBMeter.getValByGDPType("VoltageAC", "VoltageL3").getDecimal().floatValue();
 	  				Thread.sleep(10);
-	  				fVal4 = devABBMeter.getValByGDPType("Frequency", "Frequency").getFloat32();
+	  				fVal4 = devABBMeter.getValByGDPType("Frequency", "Frequency").getDecimal().floatValue();
 	  				LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + ",  " + fVal4 + "  ");
 	  				Thread.sleep(10);
-	  				fVal1 = devABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getFloat32();
+	  				fVal1 = devABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getDecimal().floatValue();
 	  				Thread.sleep(10);
-	  				fVal2 = devABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getFloat32();
+	  				fVal2 = devABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getDecimal().floatValue();
 	  				Thread.sleep(10);
-	  				fVal3 = devABBMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getFloat32();
+	  				fVal3 = devABBMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getDecimal().floatValue();
 	  				LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + "  ");
 	  				Thread.sleep(10);
-	  				fVal1 = devABBMeter.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+	  				fVal1 = devABBMeter.getValByGDPType("CurrentAC", "CurrentACL1").getDecimal().floatValue();
 	  				Thread.sleep(10);
-	  				fVal2 = devABBMeter.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+	  				fVal2 = devABBMeter.getValByGDPType("CurrentAC", "CurrentACL2").getDecimal().floatValue();
 	  				Thread.sleep(10);
-	  				fVal3 = devABBMeter.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+	  				fVal3 = devABBMeter.getValByGDPType("CurrentAC", "CurrentACL3").getDecimal().floatValue();
 	  				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + "  ");
 	  				Thread.sleep(10);
-	  				fVal1 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactor").getFloat32();
+	  				fVal1 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactor").getDecimal().floatValue();
 	  				Thread.sleep(10);
-	  				fVal2 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getFloat32();
+	  				fVal2 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getDecimal().floatValue();
 	  				Thread.sleep(10);
-	  				fVal3 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getFloat32();
+	  				fVal3 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getDecimal().floatValue();
 	  				Thread.sleep(10);
-	  				fVal4 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getFloat32();
+	  				fVal4 = devABBMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getDecimal().floatValue();
 	  				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + ",  " + fVal4 + "  ");
 	  				Thread.sleep(10); 
@@ -499,39 +499,39 @@ public class IBTlabLoopTester {
   				      
 	  				  LOG.info("\n@:Testing TestBox: ABBMeter: ");
 					  Thread.sleep(50);
-		  				fVal1 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat32();
+		  				fVal1 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL1").getDecimal().floatValue();
 		  				Thread.sleep(10);            
-		  				fVal2 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL2").getFloat32(); 
+		  				fVal2 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL2").getDecimal().floatValue();
 		  				Thread.sleep(10);
-		  				fVal3 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL3").getFloat32();
+		  				fVal3 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageL3").getDecimal().floatValue();
 		  				Thread.sleep(10);
-		  				fVal4 = devTB_ABBMeter.getValByGDPType("Frequency", "Frequency").getFloat32();
+		  				fVal4 = devTB_ABBMeter.getValByGDPType("Frequency", "Frequency").getDecimal().floatValue();
 		  				LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
 		  						+ fVal3 + ",  " + fVal4 + "  ");
 		  				Thread.sleep(10);
-		  				fVal1 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getFloat32();
+		  				fVal1 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getDecimal().floatValue();
 		  				Thread.sleep(10);
-		  				fVal2 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getFloat32();
+		  				fVal2 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getDecimal().floatValue();
 		  				Thread.sleep(10);
-		  				fVal3 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getFloat32();
+		  				fVal3 = devTB_ABBMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getDecimal().floatValue();
 		  				LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
 		  						+ fVal3 + "  ");
 		  				Thread.sleep(10);
-		  				fVal1 = devTB_ABBMeter.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+		  				fVal1 = devTB_ABBMeter.getValByGDPType("CurrentAC", "CurrentACL1").getDecimal().floatValue();
 		  				Thread.sleep(10);
-		  				fVal2 = devTB_ABBMeter.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+		  				fVal2 = devTB_ABBMeter.getValByGDPType("CurrentAC", "CurrentACL2").getDecimal().floatValue();
 		  				Thread.sleep(10);
-		  				fVal3 = devTB_ABBMeter.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+		  				fVal3 = devTB_ABBMeter.getValByGDPType("CurrentAC", "CurrentACL3").getDecimal().floatValue();
 		  				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
 		  						+ fVal3 + "  ");
 		  				Thread.sleep(10);
-		  				fVal1 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactor").getFloat32();
+		  				fVal1 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactor").getDecimal().floatValue();
 		  				Thread.sleep(10);
-		  				fVal2 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getFloat32();
+		  				fVal2 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getDecimal().floatValue();
 		  				Thread.sleep(10);
-		  				fVal3 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getFloat32();
+		  				fVal3 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getDecimal().floatValue();
 		  				Thread.sleep(10);
-		  				fVal4 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getFloat32();
+		  				fVal4 = devTB_ABBMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getDecimal().floatValue();
 		  				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
 		  						+ fVal3 + ",  " + fVal4 + "  ");
 		  				Thread.sleep(10); 
@@ -712,11 +712,11 @@ public class IBTlabLoopTester {
 								 devGaroWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
 								 LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");
 							 }
-							 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+							 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getDecimal().floatValue();
 							 Thread.sleep(200);
-							 fVal2 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+							 fVal2 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getDecimal().floatValue();
 							 Thread.sleep(200);
-							 fVal3 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+							 fVal3 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getDecimal().floatValue();
 							 Thread.sleep(200);
 							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 							 Thread.sleep(200);
@@ -729,19 +729,19 @@ public class IBTlabLoopTester {
 							 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
 							 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
-							 fVal1 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
+							 fVal1 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getDecimal().floatValue();
 							 Thread.sleep(200);
-							 fVal2 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getFloat32();
+							 fVal2 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getDecimal().floatValue();
 							 Thread.sleep(200);
-							 fVal3 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
+							 fVal3 = devGaroWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getDecimal().floatValue();
 							 Thread.sleep(200);
 							 LOG.info("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + "  ");	
 								 
-							 fVal1 = devGaroWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
+							 fVal1 = devGaroWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getDecimal().floatValue();
 							 Thread.sleep(200);
-							 fVal2 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat32();
+							 fVal2 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getDecimal().floatValue();
 							 Thread.sleep(200);
-							 fVal3 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
+							 fVal3 = devGaroWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getDecimal().floatValue();
 							 Thread.sleep(200);
 							 LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");	
 								
@@ -751,13 +751,13 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + "  ");
 							 
-							 fVal1 = devGaroWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat32();
+							 fVal1 = devGaroWallbox.getValByGDPType("Curtailment", "SafeCurrent").getDecimal().floatValue();
 							 Thread.sleep(200);
-							 fVal2 = devGaroWallbox.getValByGDPType("Curtailment", "HemsCurrentLimit").getFloat32();
+							 fVal2 = devGaroWallbox.getValByGDPType("Curtailment", "HemsCurrentLimit").getDecimal().floatValue();
 							 Thread.sleep(200);
-							 fVal3 = devGaroWallbox.getValByGDPType("Curtailment", "HWCurrentLimit").getFloat32();
+							 fVal3 = devGaroWallbox.getValByGDPType("Curtailment", "HWCurrentLimit").getDecimal().floatValue();
 							 Thread.sleep(200);
-							 iVal1 = devGaroWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
+							 iVal1 = (int)devGaroWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInteger();
 							 Thread.sleep(200);
 							 LOG.info("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +"  ");
 							 
@@ -816,11 +816,11 @@ public class IBTlabLoopTester {
 									 devOMCCIWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
 									 LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");
 								 }
-								 fVal1 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
+								 fVal1 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getDecimal().floatValue();
 								 Thread.sleep(200);
-								 fVal2 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getFloat32();
+								 fVal2 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getDecimal().floatValue();
 								 Thread.sleep(200);
-								 fVal3 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat32();
+								 fVal3 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getDecimal().floatValue();
 								 Thread.sleep(200);
 								 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 								 Thread.sleep(200);
@@ -833,19 +833,19 @@ public class IBTlabLoopTester {
 								 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
 								 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
-								 fVal1 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat32();
+								 fVal1 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getDecimal().floatValue();
 								 Thread.sleep(200);
-								 fVal2 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getFloat32();
+								 fVal2 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getDecimal().floatValue();
 								 Thread.sleep(200);
-								 fVal3 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat32();
+								 fVal3 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getDecimal().floatValue();
 								 Thread.sleep(200);
 								 LOG.info("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + "  ");	
 									 
-								 fVal1 = devOMCCIWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
+								 fVal1 = devOMCCIWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getDecimal().floatValue();
 								 Thread.sleep(200);
-								 fVal2 = devOMCCIWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat32();
+								 fVal2 = devOMCCIWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getDecimal().floatValue();
 								 Thread.sleep(200);
-								 fVal3 = devOMCCIWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat32();
+								 fVal3 = devOMCCIWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getDecimal().floatValue();
 								 Thread.sleep(200);
 								 LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");	
 									
@@ -855,13 +855,13 @@ public class IBTlabLoopTester {
 								 Thread.sleep(200);
 								 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + "  ");
 								 
-								 fVal1 = devOMCCIWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat32();
+								 fVal1 = devOMCCIWallbox.getValByGDPType("Curtailment", "SafeCurrent").getDecimal().floatValue();
 								 Thread.sleep(200);
-								 fVal2 = devOMCCIWallbox.getValByGDPType("Curtailment", "HemsCurrentLimit").getFloat32();
+								 fVal2 = devOMCCIWallbox.getValByGDPType("Curtailment", "HemsCurrentLimit").getDecimal().floatValue();
 								 Thread.sleep(200);
-								 fVal3 = devOMCCIWallbox.getValByGDPType("Curtailment", "HWCurrentLimit").getFloat32();
+								 fVal3 = devOMCCIWallbox.getValByGDPType("Curtailment", "HWCurrentLimit").getDecimal().floatValue();
 								 Thread.sleep(200);
-								 iVal1 = devOMCCIWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
+								 iVal1 = (int)devOMCCIWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInteger();
 								 Thread.sleep(200);
 								 LOG.info("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +"  ");
 								 
@@ -909,7 +909,7 @@ public class IBTlabLoopTester {
 								 LOG.info("\n@:Testing FroniusSymo: ");
 								 
 								 // check Sunsoec Common Model Information
-								 l = devFroniusSymo.getValByGDPType("SunspCommonModel", "SunspecID").getInt32U();
+								 l = devFroniusSymo.getValByGDPType("SunspCommonModel", "SunspecID").getInteger();
 								 sVal1 = String.format("0x%x", l);
 								 Thread.sleep(25);
 								 sVal2 = devFroniusSymo.getVal("SunspCommonModel", "SunspCommonModelID");
@@ -952,7 +952,7 @@ public class IBTlabLoopTester {
 									
 								 
 								 LOG.info("  Status  EvenList1  ");
-								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList1").getInt32U();
+								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList1").getInteger();
 								 LOG.info("   StatusRegister :         " + l + "  ");
 							     Thread.sleep(25);
 								 LOG.info("    EventList 1: isTrue =  ");
@@ -992,7 +992,7 @@ public class IBTlabLoopTester {
 								 
 			
 								 LOG.info("  Status EvenList2  ");
-								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList2").getInt32U();
+								 l =  devFroniusSymo.getValByGDPType("SunspInvModel","EventList2").getInteger();
 								 LOG.info("   StatusRegister :         " + l + "  ");
 								 LOG.info("   EventList 2: isTrue =  ");
 						     	 if(((l&(1<<SGrBool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");

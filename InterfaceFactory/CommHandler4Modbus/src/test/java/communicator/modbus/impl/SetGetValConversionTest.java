@@ -1,8 +1,8 @@
 package communicator.modbus.impl;
 
-import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrGenDataType;
 import com.smartgridready.ns.v0.SGrModbusDataPointDescriptionType;
 import com.smartgridready.ns.v0.SGrModbusDataPointType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
@@ -16,7 +16,8 @@ import com.smartgridready.ns.v0.TEnumConversionFct;
 import com.smartgridready.ns.v0.TEnumObjectType;
 import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
 import com.smartgridready.ns.v0.V0Factory;
-import com.smartgridready.ns.v0.impl.SGrBasicGenDataPointTypeTypeImpl;
+import com.smartgridready.ns.v0.impl.SGrGenDataTypeImpl;
+import com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeTypeImpl;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import io.vavr.Tuple2;
 import org.junit.jupiter.api.Test;
@@ -49,20 +50,23 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DECIMAL;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U;
-import static com.smartgridready.ns.v0.V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING;
+import static com.smartgridready.ns.v0.V0Package.SGR_GEN_DATA_TYPE__DECIMAL;
+import static com.smartgridready.ns.v0.V0Package.SGR_GEN_DATA_TYPE__ENUM;
+import static com.smartgridready.ns.v0.V0Package.SGR_GEN_DATA_TYPE__INTEGER;
+import static com.smartgridready.ns.v0.V0Package.SGR_GEN_DATA_TYPE__STRING;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__BOOLEAN;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__ENUM;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT32;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT64;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT16;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT16_U;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT32;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT32_U;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT64;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT64_U;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT8;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT8_U;
+import static com.smartgridready.ns.v0.V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__STRING;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -155,54 +159,58 @@ public class SetGetValConversionTest {
 
     static final EnumSet<TEnumConversionFct> ENUM_CONVERSION_FCTS;
 
-    static final Map<Integer, ValueProvider> NUMBER_FORMATS = new HashMap<>();
+    static final Map<Integer, ValueProvider> MODBUS_NUMBER_FORMATS = new HashMap<>();
+
+    static final Map<Integer, ValueProvider> GEN_NUMBER_FORMATS = new HashMap<>();
+
+
     static {
-        // TODO V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U,
-        NUMBER_FORMATS.put(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8,
+        GEN_NUMBER_FORMATS.put(SGR_GEN_DATA_TYPE__INTEGER, ValueProvider.of(0L,
+                () -> java.lang.String.valueOf(RANDOM.nextLong())));
+
+        GEN_NUMBER_FORMATS.put(SGR_GEN_DATA_TYPE__DECIMAL, ValueProvider.of(BigDecimal.ZERO,
+                () -> java.lang.String.valueOf(100f*RANDOM.nextDouble())));
+
+        MODBUS_NUMBER_FORMATS.put(
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT8,
                 ValueProvider.of((byte) 0,
                         () -> java.lang.String.valueOf(RANDOM.nextInt(2)==1 ? RANDOM.nextInt(127):-RANDOM.nextInt(127))));
 
-        NUMBER_FORMATS.put(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16,
+        MODBUS_NUMBER_FORMATS.put(
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT16,
                 ValueProvider.of((short) 0, () -> java.lang.String.valueOf(RANDOM.nextInt(Short.MAX_VALUE))));
 
-        NUMBER_FORMATS.put(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32,
+        MODBUS_NUMBER_FORMATS.put(
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT32,
                 ValueProvider.of(BigInteger.valueOf(0),
                         () -> java.lang.String.valueOf(RANDOM.nextInt(2)==1 ? RANDOM.nextInt(Integer.MAX_VALUE):-RANDOM.nextInt(Integer.MAX_VALUE))));
 
-        NUMBER_FORMATS.put(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64,
+        MODBUS_NUMBER_FORMATS.put(
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT64,
                 ValueProvider.of(0L,
                         () -> java.lang.String.valueOf(RANDOM.nextInt(2)==1 ? RANDOM.nextLong():-RANDOM.nextLong())));
 
-        // TODO V0Package.SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U,
+        // TODO V0Package.SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT8_U,
 
-        NUMBER_FORMATS.put(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U,
+        MODBUS_NUMBER_FORMATS.put(
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT16_U,
                 ValueProvider.of(0, () -> java.lang.String.valueOf(RANDOM.nextInt(2*Short.MAX_VALUE))));
 
-        NUMBER_FORMATS.put(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U,
+        MODBUS_NUMBER_FORMATS.put(
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT32_U,
                 ValueProvider.of(0L, () -> java.lang.String.valueOf(RANDOM.nextInt())));
 
-        NUMBER_FORMATS.put(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U,
+        MODBUS_NUMBER_FORMATS.put(
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT64_U,
                 ValueProvider.of(BigInteger.valueOf(0L), () -> java.lang.String.valueOf(RANDOM.nextLong())));
 
-        NUMBER_FORMATS.put(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32,
+        MODBUS_NUMBER_FORMATS.put(
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT32,
                 ValueProvider.of((float) 0, () -> java.lang.String.valueOf(100*RANDOM.nextFloat())));
 
-        NUMBER_FORMATS.put(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64,
+        MODBUS_NUMBER_FORMATS.put(
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT64,
                 ValueProvider.of((double) 0, () -> java.lang.String.valueOf(100*RANDOM.nextDouble())));
-
-
-        NUMBER_FORMATS.put(SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DECIMAL,
-                ValueProvider.of(BigDecimal.ZERO, () -> java.lang.String.valueOf(100*RANDOM.nextDouble())));
-
 
         ENUM_CONVERSION_FCTS = EnumSet.allOf(TEnumConversionFct.class);
         ENUM_CONVERSION_FCTS.remove(TEnumConversionFct.CHANGE_BIT_ORDER); // not implemented yet
@@ -213,13 +221,13 @@ public class SetGetValConversionTest {
 
     static void createFixtureTree() {
         // Start with all genTypes
-        NUMBER_FORMATS.forEach((key, value) -> FIXT_TREE.put(key, createModbus(key)));
+        GEN_NUMBER_FORMATS.forEach((key, genValueProvider) -> FIXT_TREE.put(key, createModbus(key)));
     }
 
     static Map<Integer, Map<TEnumConversionFct, Fixture<String,String, int[]>>> createModbus(int genType) {
         Map<Integer, Map<TEnumConversionFct, Fixture<String,String, int[]>>> modbusTypesMap =
             new HashMap<>();
-        NUMBER_FORMATS.forEach((key, value) -> modbusTypesMap.put(key, createFixtures(genType, key)));
+        MODBUS_NUMBER_FORMATS.forEach((key, value) -> modbusTypesMap.put(key, createFixtures(genType, key)));
         return modbusTypesMap;
     }
 
@@ -239,26 +247,25 @@ public class SetGetValConversionTest {
 
         return new Fixture<>(usedVal, usedVal, new int[getModbusBufferSize(modbusType)],
                     deviceFrame(true, convType,
-                            genType, NUMBER_FORMATS.get(genType).zeroVal,
-                            modbusType, NUMBER_FORMATS.get(modbusType).zeroVal));
+                            genType, GEN_NUMBER_FORMATS.get(genType).zeroVal,
+                            modbusType, MODBUS_NUMBER_FORMATS.get(modbusType).zeroVal));
     }
 
     private static String createTestNumber(int genType, int modbusType) {
 
         final Set<Integer> floatTypes = Sets.newSet(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32,
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64,
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DECIMAL);
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT32,
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT64);
 
         final Set<Integer> unsignedTypes = Sets.newSet(
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U,
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U,
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT32_U,
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT8_U,
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT16_U,
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT32_U,
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT64_U
         );
 
-        String genVal = NUMBER_FORMATS.get(genType).randomGen.get();
-        String modbVal = NUMBER_FORMATS.get(modbusType).randomGen.get();
+        String genVal = GEN_NUMBER_FORMATS.get(genType).randomGen.get();
+        String modbVal = MODBUS_NUMBER_FORMATS.get(modbusType).randomGen.get();
 
         double genDouble = Double.parseDouble(genVal);
         double modbDouble = Double.parseDouble(modbVal);
@@ -268,12 +275,12 @@ public class SetGetValConversionTest {
             usedDouble = modbDouble;
         }
 
-        if (unsignedTypes.contains(genType) || unsignedTypes.contains(modbusType)) {
+        if (unsignedTypes.contains(modbusType)) {
             // one of the types is unsigned, modify the selected value to be positive
             usedDouble = Math.abs(usedDouble);
         }
 
-        if (!floatTypes.contains(genType) || !floatTypes.contains(modbusType)) {
+        if (genType == SGR_GEN_DATA_TYPE__INTEGER || !floatTypes.contains(modbusType)) {
             // one of them is an integer.
             return String.valueOf(Math.round(usedDouble));
         }
@@ -310,6 +317,7 @@ public class SetGetValConversionTest {
         modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", fixture.getWriteValue());
         verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
         verify(genDriverAPI4Modbus, atLeast(0)).WriteSingleRegister(anyInt(), intCaptor.capture());
+        LOG.info("Modbus write value: {}", fixture.getWriteValue());
         LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayToShortHex(intArrayCaptor.getValue()));
         LOG.info("Modbus write single   register : {}", intCaptor.getAllValues().isEmpty() ? "-" : Integer.toHexString(intCaptor.getValue()));
 
@@ -341,10 +349,10 @@ public class SetGetValConversionTest {
     void testSingleFixture() throws Exception {
 
         Fixture<String, String, int[]>fixture =
-                new Fixture<>("-18", "-18", new int[]{ -16334, -16334},
+                new Fixture<>("-18", "-18", new int[]{ -16334, -16334, -16334, -16334},
                         deviceFrame(true, TEnumConversionFct.BIG_ENDIAN,
-                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8, (byte) 0,
-                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DECIMAL, BigDecimal.valueOf(0)));
+                                SGR_GEN_DATA_TYPE__INTEGER, 0L,
+                                SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT64, 0L));
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
                 fixture.getModbusDeviceFrame(),           // model
@@ -380,8 +388,8 @@ public class SetGetValConversionTest {
         Fixture<String, String, int[]>fixture =
                 new Fixture<>("Hello@SGr", "Hello@SGr", new int[]{0x4865, 0x6C6C, 0x6F40,0x5347, 0x7200},
                         deviceFrame(true, TEnumConversionFct.BIG_ENDIAN,
-                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING, "",
-                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING, ""));
+                                SGR_GEN_DATA_TYPE__STRING, "",
+                                SGR_MODBUS_DATA_POINT_TYPE_TYPE__STRING, ""));
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
                 fixture.getModbusDeviceFrame(),           // model
@@ -417,8 +425,8 @@ public class SetGetValConversionTest {
         Fixture<String, String, int[]>fixture =
                 new Fixture<>(Boolean.valueOf(bVal).toString(), Boolean.valueOf(bVal).toString(), bVal ? new int[]{0x1} : new int[]{0x0},
                         deviceFrame(true, TEnumConversionFct.BIG_ENDIAN,
-                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE,
-                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE));
+                                SGR_MODBUS_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE,
+                                SGR_MODBUS_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE));
 
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
@@ -471,8 +479,8 @@ public class SetGetValConversionTest {
         SGrModbusDeviceFrame deviceFrame = deviceFrame(
                 false,
                 testParam._1(),
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE,
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE);
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE,
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE);
 
         deviceFrame.getFpListElement().get(0)
                 .getDpListElement().get(0)
@@ -517,8 +525,8 @@ public class SetGetValConversionTest {
         genType.setSgrPowerSource(SGrPowerSourceType.BATTERY);
 
         SGrModbusDeviceFrame deviceFrame = deviceFrame(false, TEnumConversionFct.BIG_ENDIAN,
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM, genType,
-                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM, modbType);
+                SGR_GEN_DATA_TYPE__ENUM, genType,
+                SGR_MODBUS_DATA_POINT_TYPE_TYPE__ENUM, modbType);
 
         String expectedValue = SGrPowerSourceType.BATTERY.getName();
 
@@ -550,8 +558,8 @@ public class SetGetValConversionTest {
 
         SGrModbusDeviceFrame deviceFrame =
                         deviceFrame(false, TEnumConversionFct.CHANGE_BYTE_ORDER,
-                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64, (double) 0,
-                                SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32, (float) 0);
+                                SGR_GEN_DATA_TYPE__DECIMAL, BigDecimal.ZERO,
+                                SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT32, (float) 0);
 
         String[] expectedValues = new String[]{"219.923","220.000","220.128"};
         int[] expectedModbusValues = new int[]{23363, 19180, 23619, 0, 23619, -15072};
@@ -585,8 +593,8 @@ public class SetGetValConversionTest {
 
         SGrModbusDeviceFrame deviceFrame =
                 deviceFrame(false, TEnumConversionFct.CHANGE_BYTE_ORDER,
-                        SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32, (float) 0,
-                        SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT32, (float) 0);
+                        SGR_GEN_DATA_TYPE__DECIMAL, BigDecimal.ZERO,
+                        SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT32, (float) 0);
 
         String expectedValue = "220.220";
         int[] expectedModbusValues = new int[]{23619, 21048};
@@ -634,7 +642,8 @@ public class SetGetValConversionTest {
         functionalProfileType.setFunctionalProfile(profileDescriptionType);
 
         functionalProfileType.getDpListElement().add(modbDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerACL1", 1));
-        if (genericType != SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM) {
+
+        if (genericType != SGR_GEN_DATA_TYPE__ENUM) {
             // This does not work with enums. The genericValue and modbusValue of the previous datapoint will be set to <null>
             functionalProfileType.getDpListElement().add(modbDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerAC-ARRAY", 3));
             functionalProfileType.getDpListElement().add(blockDp(genericType, genericValue, modbusType, modbusValue, "ActivePowerAC-BLOCK", "ActivePowerAC-BLOCK", 1));
@@ -666,9 +675,9 @@ public class SetGetValConversionTest {
     }
 
     private static SGrModbusDataPointType blockDp(int genericType, Object genValue, int modbusType, Object modbValue,
-                                                  String dpName, String blockName, int arrLen) {
+                                                  String dpName, String blockId, int arrLen) {
         SGrModbusDataPointType blockDp = modbDp(genericType, genValue, modbusType, modbValue, dpName, arrLen);
-        blockDp.setBlockCashName(blockName);
+        blockDp.setBlockCacheId(blockId);
         return blockDp;
     }
 
@@ -681,7 +690,7 @@ public class SetGetValConversionTest {
         firstRegRef.setRegisterType(TEnumObjectType.HOLD_REGISTER);
         firstRegRef.setBitRank((short) 0);
         modbDpDesc.setModbusFirstRegisterReference(firstRegRef);
-        modbDpDesc.setModbusDataType(basicDP(modbusType, modbValue));
+        modbDpDesc.setModbusDataType(modbusDP(modbusType, modbValue));
         modbDpDesc.setDpSizeNrRegisters(getModbusBufferSize(modbusType));
 
         return modbDpDesc;
@@ -691,54 +700,61 @@ public class SetGetValConversionTest {
 
         SGrDataPointDescriptionType genDpDesc = V0Factory.eINSTANCE.createSGrDataPointDescriptionType();
         genDpDesc.setDatapointName(dpName);
-        genDpDesc.setBasicDataType(basicDP(genType, genValue));
+        genDpDesc.setDataType(basicDP(genType, genValue));
         genDpDesc.setRwpDatadirection(SGrRWPType.RW);
-        genDpDesc.setArrLen(arrLen);
+        genDpDesc.setArrayLength(arrLen);
         return genDpDesc;
     }
 
-    private static SGrBasicGenDataPointTypeType basicDP(int v0PackageType, Object genValue) {
+    private static SGrGenDataType basicDP(int v0PackageType, Object genValue) {
 
-        SGrBasicGenDataPointTypeTypeImpl dp = (SGrBasicGenDataPointTypeTypeImpl) V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+        SGrGenDataTypeImpl dp = (SGrGenDataTypeImpl) V0Factory.eINSTANCE.createSGrGenDataType();
         dp.eSet(v0PackageType, genValue);
         return dp;
     }
 
-    private static SGrTimeSyncBlockNotificationType timeSyncBlock(String blockName) {
+    private static SGrModbusDataPointTypeTypeImpl modbusDP(int v0PackageType, Object genValue) {
+
+        SGrModbusDataPointTypeTypeImpl dp = (SGrModbusDataPointTypeTypeImpl) V0Factory.eINSTANCE.createSGrModbusDataPointTypeType();
+        dp.eSet(v0PackageType, genValue);
+        return dp;
+    }
+
+
+    private static SGrTimeSyncBlockNotificationType timeSyncBlock(String blockId) {
 
         SGrTimeSyncBlockNotificationType tsBlock = V0Factory.eINSTANCE.createSGrTimeSyncBlockNotificationType();
         tsBlock.setFirstAddr(BigInteger.valueOf(2000));
-        tsBlock.setBlockCashName(blockName);
+        tsBlock.setBlockCacheId(blockId);
         tsBlock.setRegisterType(TEnumObjectType.HOLD_REGISTER);
-        tsBlock.setTimeToLive(200);
+        tsBlock.setTimeToLiveMs(200);
         tsBlock.setSize(6);
         return tsBlock;
     }
 
     private static int getModbusBufferSize(int modbusType) {
 
-        if (modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__FLOAT64
-                || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64_U
-                || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT64
-                || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__DECIMAL)
+        if (modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT64
+                || modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT64_U
+                || modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT64)
         {
             return 4;
-        } else if (   modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8
-                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT8_U
-                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16
-                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__INT16_U
-                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__BOOLEAN
-                   || modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__ENUM) {
+        } else if (   modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT8
+                   || modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT8_U
+                   || modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT16
+                   || modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT16_U
+                   || modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__BOOLEAN
+                   || modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__ENUM) {
             return 1;
-        } else if ( modbusType == SGR_BASIC_GEN_DATA_POINT_TYPE_TYPE__STRING) {
+        } else if ( modbusType == SGR_MODBUS_DATA_POINT_TYPE_TYPE__STRING) {
             return 5;
         }
         return 2;
     }
 
     private static String createDeviceName(TEnumConversionFct convFun, int genType, int modbusType) {
-        return SGrGDPTypeToNameMapper.getName(genType) + " - "
-                + SGrGDPTypeToNameMapper.getName(modbusType) + " - "
+        return SGrGDPTypeToNameMapper.getGenericName(genType) + " - "
+                + SGrGDPTypeToNameMapper.getModbusName(modbusType) + " - "
                 + convFun.getName();
     }
 

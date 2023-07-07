@@ -31,10 +31,10 @@ import com.smartgridready.ns.v0.HovHPOpStateType;
 import com.smartgridready.ns.v0.HovSGReadySrcSelType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
-import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.SGrGenDataType;
 import com.smartgridready.ns.v0.SGrHCOpModeType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
@@ -48,7 +48,6 @@ import com.smartgridready.ns.v0.SGrSunspStateCodesType;
 import com.smartgridready.ns.v0.V0Factory;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -63,7 +62,7 @@ public class GenType2StringConversion {
 		// utility class
 	}
 	
-	public static String[] format(SGrBasicGenDataPointTypeType[] dGenTypeArr) {
+	public static String[] format(SGrGenDataType[] dGenTypeArr) {
 		
 		List<String> retval = new ArrayList<>();
 		Arrays.asList(dGenTypeArr).forEach(val -> retval.add(format(val)));
@@ -71,7 +70,7 @@ public class GenType2StringConversion {
 	}
 	
 	
-	public static String format(SGrBasicGenDataPointTypeType dGenType) {
+	public static String format(SGrGenDataType dGenType) {
 		
 		final Locale locale = Locale.getDefault();
 		
@@ -85,36 +84,8 @@ public class GenType2StringConversion {
 		} else if (dGenType.getEnum() != null) {
 			SGrEnumListType eVal = dGenType.getEnum();
 			retval = enum2StringConversion(eVal);
-		} else if (dGenType.isSetFloat32()) {
-			float fVal = dGenType.getFloat32();
-			retval = String.format(locale, "%10.3f", fVal);
-		} else if (dGenType.isSetFloat64()) {
-			double dVal = dGenType.getFloat64();
-			retval = String.format(locale, "%10.3f", dVal);
-		} else if (dGenType.isSetInt8()){
-			byte bVal = dGenType.getInt8();
-			retval = String.format(locale, "%d", bVal);
-		} else if (dGenType.isSetInt16()) {
-			short shVal = dGenType.getInt16();
-			retval = String.format(locale, "%d", shVal);
-		} else if (dGenType.isSetInt8U()) {
-			short shVal = dGenType.getInt8U();
-			retval = String.format(locale, "%d", shVal);
-		} else if (dGenType.isSetInt16U()) {
-			int iVal = dGenType.getInt16U();
-			retval = String.format(locale, "%d", iVal);
-		} else if (dGenType.getInt32() != null) {
-			BigInteger bgVal = dGenType.getInt32();
-			retval = String.format(bgVal.toString());
-		} else if (dGenType.isSetInt32U()) {
-			long lVal = dGenType.getInt32U();
-			retval = String.format(locale, "%d", lVal);
-		} else if (dGenType.isSetInt64()) {
-			long lVal = dGenType.getInt64();
-			retval = String.format(locale, "%d", lVal);
-		} else if (dGenType.getInt64U() != null) {
-			BigInteger bgVal = dGenType.getInt64U();
-			retval = String.format(locale, "%d", bgVal);
+		} else if (dGenType.isSetInteger()) {
+			retval = String.format(locale, "%d", dGenType.getInteger());
 		} else if (dGenType.getDecimal() != null) {
 			retval = dGenType.getDecimal().setScale(3, RoundingMode.HALF_UP).toString();
 		} else if (dGenType.getString() != null) {
@@ -129,16 +100,16 @@ public class GenType2StringConversion {
 		return retval;
 	}
 
-	public static SGrBasicGenDataPointTypeType[] format(String[] values, SGrBasicGenDataPointTypeType dGenType) {
+	public static SGrGenDataType[] format(String[] values, SGrGenDataType dGenType) {
 
-		List<SGrBasicGenDataPointTypeType> retval = new ArrayList<>();
+		List<SGrGenDataType> retval = new ArrayList<>();
 		Arrays.stream(values).forEach(val -> retval.add(format(val, dGenType)));
-		return retval.toArray(new SGrBasicGenDataPointTypeType[0]);
+		return retval.toArray(new SGrGenDataType[0]);
 	}
 
-	public static SGrBasicGenDataPointTypeType format(String value, final SGrBasicGenDataPointTypeType dGenType) {
+	public static SGrGenDataType format(String value, final SGrGenDataType dGenType) {
 
-		SGrBasicGenDataPointTypeType retval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+		SGrGenDataType retval = V0Factory.eINSTANCE.createSGrGenDataType();
 
 		if (dGenType.isSetBoolean()) {
 			boolean bVal = false;
@@ -146,43 +117,8 @@ public class GenType2StringConversion {
 				bVal = true;
 			}
 			retval.setBoolean(bVal);
-		}else if (dGenType.isSetFloat32()) {
-			float fVal;
-			fVal = Float.parseFloat(value);
-			retval.setFloat32(fVal);
-		} else if (dGenType.isSetFloat64()) {
-			double dVal;
-			dVal = Double.parseDouble(value);
-			retval.setFloat64(dVal);
-		} else if (dGenType.isSetInt16()) {
-			short shVal;
-			shVal = Short.parseShort(value);
-			retval.setInt16(shVal);
-		} else if (dGenType.isSetInt16U()) {
-			int iVal;
-			iVal = Integer.parseInt(value);
-			retval.setInt16U(iVal);
-		} else if (dGenType.getInt32() != null) {
-			BigInteger bgVal = new BigInteger(value);
-			retval.setInt32(bgVal);
-		} else if (dGenType.isSetInt32U()) {
-			long lVal = Long.parseLong(value);
-			retval.setInt32U(lVal);
-		} else if (dGenType.isSetInt64()) {
-			long lVal = Long.parseLong(value);
-			retval.setInt64(lVal);
-		} else if (dGenType.getInt64U() != null) {
-			// TODO:HF? SGrBasicGenDataPointTypeType, isSetInt64U Funktion wurde vom Modeler
-			// nicht generiert
-			BigInteger bgVal1 = new BigInteger(value);
-			retval.setInt64U(bgVal1);
-		} else if (dGenType.isSetInt8()) {
-			byte btVal;
-			btVal = Byte.parseByte(value);
-			retval.setInt8(btVal);
-		} else if (dGenType.isSetInt8U()) {
-			Short shVal = Short.parseShort(value);
-			retval.setInt8U(shVal);
+		} else if (dGenType.isSetInteger()) {
+			retval.setInteger(Long.parseLong(value));
 		} else if (dGenType.getDecimal() != null){
 			retval.setDecimal(new BigDecimal(value));
 		} else if (dGenType.getDateTime() != null) {

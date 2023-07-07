@@ -1,7 +1,7 @@
 package communicator.common.impl;
 
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
-import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
+import com.smartgridready.ns.v0.SGrGenDataType;
 import com.smartgridready.ns.v0.SGrDataPointBaseType;
 import com.smartgridready.ns.v0.SGrDeviceBaseType;
 import com.smartgridready.ns.v0.SGrFunctionalProfileBaseType;
@@ -119,13 +119,13 @@ public abstract class SGrDeviceBase<
     public void checkOutOfRange(String value, SGrDataPointBaseType dataPoint)
         throws GenDriverException {
 
-        SGrBasicGenDataPointTypeType genVal =
-                GenType2StringConversion.format(value, dataPoint.getDataPoint().getBasicDataType());
+        SGrGenDataType genVal =
+                GenType2StringConversion.format(value, dataPoint.getDataPoint().getDataType());
 
-        checkOutOfRange(new SGrBasicGenDataPointTypeType[]{genVal}, dataPoint);
+        checkOutOfRange(new SGrGenDataType[]{genVal}, dataPoint);
     }
 
-    public void checkOutOfRange(SGrBasicGenDataPointTypeType[] values, SGrDataPointBaseType dataPoint)
+    public void checkOutOfRange(SGrGenDataType[] values, SGrDataPointBaseType dataPoint)
         throws GenDriverException {
 
 
@@ -144,7 +144,7 @@ public abstract class SGrDeviceBase<
         }
     }
 
-    protected Optional<String> checkOutOfRange(SGrBasicGenDataPointTypeType[] values, BigDecimal limit, Comparator comparator) {
+    protected Optional<String> checkOutOfRange(SGrGenDataType[] values, BigDecimal limit, Comparator comparator) {
 
         List<Double> outOfRangeValues = Arrays.stream(values)
                 .flatMap(value -> getFeatureThatIsSet(value).stream()
@@ -169,9 +169,9 @@ public abstract class SGrDeviceBase<
         return features.stream().filter(genericAttribute::eIsSet).collect(Collectors.toList());
     }
 
-    private List<EStructuralFeature> getFeatureThatIsSet(SGrBasicGenDataPointTypeType dataPoint) {
+    private List<EStructuralFeature> getFeatureThatIsSet(SGrGenDataType dataPoint) {
 
-        EList<EStructuralFeature> features = V0Package.eINSTANCE.getSGrBasicGenDataPointTypeType().getEStructuralFeatures();
+        EList<EStructuralFeature> features = V0Package.eINSTANCE.getSGrGenDataType().getEStructuralFeatures();
         return features.stream().filter(dataPoint::eIsSet).collect(Collectors.toList());
     }
 

@@ -5,7 +5,7 @@
 	manufacturerID="ClemapAG" manufacturerName="CLEMAP"
 	xmlns:sgr="http://www.smartgridready.com/ns/V0/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../SchemaDatabase/SGr/EI-RestAPI/SGrRestAPI_EIDeviceFrame.xsd ">
+	xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/EI-RestAPI/SGrRestAPI_EIDeviceFrame.xsd ">
 	<sgr:releaseNotes>
 		<sgr:state>Draft</sgr:state>
 	</sgr:releaseNotes>
@@ -55,8 +55,8 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActivePowerACtot"
 				rwpDatadirection="R" unit="KILOWATTS" mroVisibilityIndicator="R">
-				<sgr:basicDataType>
-					<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
+				<sgr:dataType>
+					<sgr:decimal>0.0</sgr:decimal></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:genAttribute>
 				<sgr:minVal>0.005</sgr:minVal>
@@ -80,8 +80,8 @@
 		<sgr:dpListElement>		
 			<sgr:dataPoint datapointName="ActivePowerACL1"
 				rwpDatadirection="R" unit="KILOWATTS" mroVisibilityIndicator="R">
-				<sgr:basicDataType>
-					<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
+				<sgr:dataType>
+					<sgr:decimal>0.0</sgr:decimal></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:restAPIDataPoint dataType="JSON_number">
 				<sgr:restServiceCall>
@@ -100,8 +100,8 @@
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActivePowerACL2"
 				rwpDatadirection="R" unit="KILOWATTS" mroVisibilityIndicator="R">
-				<sgr:basicDataType>
-					<sgr:float32>0.0</sgr:float32></sgr:basicDataType>
+				<sgr:dataType>
+					<sgr:decimal>0.0</sgr:decimal></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:restAPIDataPoint dataType="JSON_number">
 				<sgr:restServiceCall>
@@ -121,7 +121,7 @@
 			<sgr:dataPoint mroVisibilityIndicator="R"
 				datapointName="ActivePowerACL3" rwpDatadirection="R"
 				unit="KILOWATTS">
-				<sgr:basicDataType><sgr:float32>0</sgr:float32></sgr:basicDataType>
+				<sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:restAPIDataPoint dataType="JSON_number">
 				<sgr:restServiceCall>

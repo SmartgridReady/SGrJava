@@ -1,7 +1,7 @@
 package communicator.common.impl;
 
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
-import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
+import com.smartgridready.ns.v0.SGrGenDataType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.V0Factory;
 import communicator.common.helper.DeviceDescriptionLoader;
@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,25 +29,13 @@ class SGrDeviceBaseTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SGrDeviceBaseTest.class);
 
-    private static final SGrBasicGenDataPointTypeType SHORT_VALUE_256 = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-    private static final SGrBasicGenDataPointTypeType INT_VALUE_2048 = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-    private static final SGrBasicGenDataPointTypeType INT_VALUE_2049 = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-    private static final SGrBasicGenDataPointTypeType INT_VALUE_2050 = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-    private static final SGrBasicGenDataPointTypeType LONG_VALUE_20482048= V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-    private static final SGrBasicGenDataPointTypeType FLOAT_VALUE_4096_9999 = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-    private static final SGrBasicGenDataPointTypeType DOUBLE_VALUE_4096_00009999 = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-    private static final SGrBasicGenDataPointTypeType BIG_INT_VALUE_80449999 = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-    private static final SGrBasicGenDataPointTypeType STRING_VALUE_1000 = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+    private static final SGrGenDataType INTEGER_VALUE_20482048 = V0Factory.eINSTANCE.createSGrGenDataType();
+    private static final SGrGenDataType DOUBLE_VALUE_4096_00009999 = V0Factory.eINSTANCE.createSGrGenDataType();
+    private static final SGrGenDataType STRING_VALUE_1000 = V0Factory.eINSTANCE.createSGrGenDataType();
 
     static {
-        SHORT_VALUE_256.setInt16((short)256);
-        INT_VALUE_2048.setInt16U(2048);
-        INT_VALUE_2049.setInt16U(2049);
-        INT_VALUE_2050.setInt16U(2050);
-        LONG_VALUE_20482048.setInt32U(20482048L);
-        FLOAT_VALUE_4096_9999.setFloat32(4096.999f);
-        DOUBLE_VALUE_4096_00009999.setFloat64(4096.00009999d);
-        BIG_INT_VALUE_80449999.setInt32(new BigInteger("80449999"));
+        INTEGER_VALUE_20482048.setInteger(20482048L);
+        DOUBLE_VALUE_4096_00009999.setDecimal(BigDecimal.valueOf(4096.00009999d));
         STRING_VALUE_1000.setString("1000");
     }
 
@@ -59,49 +46,26 @@ class SGrDeviceBaseTest {
 
     private static Stream<Arguments> checkRangeArguments() {
         return Stream.of(
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MIN, new BigDecimal(256), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MIN, new BigDecimal(257), Expect.ERROR),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MAX, new BigDecimal(256), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{SHORT_VALUE_256}, Comparator.MAX, new BigDecimal(255), Expect.ERROR),
+                Arguments.of(new SGrGenDataType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482048), Expect.OK),
+                Arguments.of(new SGrGenDataType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482049), Expect.ERROR),
+                Arguments.of(new SGrGenDataType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482048), Expect.OK),
+                Arguments.of(new SGrGenDataType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482047), Expect.ERROR),
 
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MIN, new BigDecimal(2048), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MIN, new BigDecimal(2049), Expect.ERROR),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MAX, new BigDecimal(2048), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048}, Comparator.MAX, new BigDecimal(2047), Expect.ERROR),
+                Arguments.of(new SGrGenDataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00009999d), Expect.OK),
+                Arguments.of(new SGrGenDataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00010000d), Expect.ERROR),
+                Arguments.of(new SGrGenDataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009999d), Expect.OK),
+                Arguments.of(new SGrGenDataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.ERROR),
 
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482048), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482049), Expect.ERROR),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482048), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{LONG_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482047), Expect.ERROR),
-
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MIN, BigDecimal.valueOf(4096.999f), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MIN, BigDecimal.valueOf(4097.000f), Expect.ERROR),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MAX, BigDecimal.valueOf(4096.999f), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{FLOAT_VALUE_4096_9999}, Comparator.MAX, BigDecimal.valueOf(4096.998f), Expect.ERROR),
-
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00009999d), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00010000d), Expect.ERROR),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009999d), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.ERROR),
-
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MIN, new BigDecimal(80449999), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MIN, new BigDecimal(80450000), Expect.ERROR),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MAX, new BigDecimal(80449999), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{BIG_INT_VALUE_80449999}, Comparator.MAX, new BigDecimal(80449998), Expect.ERROR),
-
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1000), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1001), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(1000), Expect.OK),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(999), Expect.OK),
-
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048, INT_VALUE_2049, INT_VALUE_2050}, Comparator.MIN, new BigDecimal(2051), Expect.ERROR),
-                Arguments.of(new SGrBasicGenDataPointTypeType[]{INT_VALUE_2048, INT_VALUE_2049, INT_VALUE_2050},Comparator.MAX, new BigDecimal(2048), Expect.ERROR)
+                Arguments.of(new SGrGenDataType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1000), Expect.OK),
+                Arguments.of(new SGrGenDataType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1001), Expect.OK),
+                Arguments.of(new SGrGenDataType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(1000), Expect.OK),
+                Arguments.of(new SGrGenDataType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(999), Expect.OK)
         );
     }
 
     @ParameterizedTest
     @MethodSource("checkRangeArguments")
-    void checkRange(SGrBasicGenDataPointTypeType[] values, Comparator comparator, BigDecimal limit, Expect expect) {
+    void checkRange(SGrGenDataType[] values, Comparator comparator, BigDecimal limit, Expect expect) {
 
         SGrModbusDevice device = createSGrModbusDevice();
 
