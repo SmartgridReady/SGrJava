@@ -19,12 +19,18 @@ import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.impl.SGrGenDataTypeImpl;
 import com.smartgridready.ns.v0.impl.SGrModbusDataPointTypeTypeImpl;
 import communicator.common.runtime.GenDriverAPI4Modbus;
+import communicator.common.runtime.GenDriverException;
+import communicator.common.runtime.GenDriverModbusException;
+import communicator.common.runtime.GenDriverSocketException;
+import communicator.modbus.helper.CacheRecord;
+import communicator.modbus.helper.ModbusReaderResponse;
 import io.vavr.Tuple2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.platform.commons.util.ReflectionUtils;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
@@ -34,6 +40,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.SGrGDPTypeToNameMapper;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -78,18 +85,20 @@ import static org.mockito.Mockito.when;
  * Test the data type conversions by writing a value to the modbus mock, read
  * the written value back and verify the read value.
  * <br>
- * TODO Current issues with the SGrModbus device must be fixed and tested:
  * <ul>
- *     <li>When converting from int type to int tpye, a double value is used as intermediate type.
+ *     <li>When converting from int type to int type, a double value is used as intermediate type.
  *     This leads to floating point precision deviations between written and read values.</li>
  *     <li>Several U8 type conversions are missing in setVal() and probably in getVal() too</li>
  * </ul>
  *
  */
 @ExtendWith(MockitoExtension.class)
-public class SetGetValConversionTest {
+class SetGetValConversionTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SetGetValConversionTest.class);
+
+    public static final int TIME_SYNC_BLOCK_SIZE = 6;
+    public static final int TIME_SYNC_BLOCK_ADDRESS = 2000;
 
     @Mock
     GenDriverAPI4Modbus genDriverAPI4Modbus;
@@ -306,43 +315,7 @@ public class SetGetValConversionTest {
     @MethodSource("streamFixtureTree")
     void testCompleteConversion(Fixture<String, String, int[]> fixture) throws Exception {
 
-        if ("INT64 - INT32 - ChangeByteOrder".equals(fixture.getModbusDeviceFrame().getDeviceName())) {
-            LOG.info("Hit breakpoint");
-        }
-
-        SGrModbusDevice modbusDevice = new SGrModbusDevice(
-                fixture.getModbusDeviceFrame(),           // model
-                genDriverAPI4Modbus);                     // mock
-
-        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", fixture.getWriteValue());
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteSingleRegister(anyInt(), intCaptor.capture());
-        LOG.info("Modbus write value: {}", fixture.getWriteValue());
-        LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayToShortHex(intArrayCaptor.getValue()));
-        LOG.info("Modbus write single   register : {}", intCaptor.getAllValues().isEmpty() ? "-" : Integer.toHexString(intCaptor.getValue()));
-
-        if (!intArrayCaptor.getAllValues().isEmpty()) {
-            int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, fixture.getExpectedModbusValue().length);
-
-            LOG.info("Modbus read registers: {}", intArrayToShortHex(modbusreg));
-            //assertArrayEquals(fixture.getExpectedModbusValue(), modbusreg);
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
-        } else if (!intCaptor.getAllValues().isEmpty()){
-            LOG.info("Modbus read single register: {}", Integer.toHexString(intCaptor.getValue()));
-            //assertEquals(fixture.getExpectedModbusValue()[0], intCaptor.getValue());
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(new int[]{intCaptor.getValue()});
-        }
-
-        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
-        LOG.info("Modbus read value: {}", res);
-
-        String testName = fixture.getModbusDeviceFrame().getDeviceName();
-        if (testName.contains("FLOAT64") || testName.contains("FLOAT32") || testName.contains("DECIMAL")) {
-            fixture.writeValue = normalizeNumberFormat(fixture.writeValue);
-            res = normalizeNumberFormat(res);
-        }
-
-        assertEquals(fixture.writeValue, res);
+        doTestWriteAndReadBack(fixture);
     }
 
     @Test
@@ -354,32 +327,7 @@ public class SetGetValConversionTest {
                                 SGR_GEN_DATA_TYPE__INTEGER, 0L,
                                 SGR_MODBUS_DATA_POINT_TYPE_TYPE__INT64, 0L));
 
-        SGrModbusDevice modbusDevice = new SGrModbusDevice(
-                fixture.getModbusDeviceFrame(),           // model
-                genDriverAPI4Modbus);                     // mock
-
-        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", fixture.getWriteValue());
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteSingleRegister(anyInt(), intCaptor.capture());
-        LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayToShortHex(intArrayCaptor.getValue()));
-        LOG.info("Modbus write single   register : {}", intCaptor.getAllValues().isEmpty() ? "-" : Integer.toHexString(intCaptor.getValue()));
-
-        if (!intArrayCaptor.getAllValues().isEmpty()) {
-            int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, fixture.getExpectedModbusValue().length);
-            modbusreg = adjustSign(modbusreg);
-            LOG.info("Modbus read registers: {}", intArrayToShortHex(modbusreg));
-            //assertArrayEquals(fixture.getExpectedModbusValue(), modbusreg);
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
-        } else if (!intCaptor.getAllValues().isEmpty()){
-            int val = adjustSign(intCaptor.getValue());
-            LOG.info("Modbus read single register: {}", Integer.toHexString(val));
-            assertEquals(fixture.getExpectedModbusValue()[0], val);
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(new int[]{val});
-        }
-
-        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
-        LOG.info("Modbus read value: {}", res);
-        assertEquals(fixture.getReadValue(), res.trim());
+        doTestWriteAndReadBack(fixture);
     }
 
     @Test
@@ -391,32 +339,7 @@ public class SetGetValConversionTest {
                                 SGR_GEN_DATA_TYPE__STRING, "",
                                 SGR_MODBUS_DATA_POINT_TYPE_TYPE__STRING, ""));
 
-        SGrModbusDevice modbusDevice = new SGrModbusDevice(
-                fixture.getModbusDeviceFrame(),           // model
-                genDriverAPI4Modbus);                     // mock
-
-        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", fixture.getWriteValue());
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteSingleRegister(anyInt(), intCaptor.capture());
-        LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayToShortHex(intArrayCaptor.getValue()));
-        LOG.info("Modbus write single   register : {}", intCaptor.getAllValues().isEmpty() ? "-" : Integer.toHexString(intCaptor.getValue()));
-
-        if (!intArrayCaptor.getAllValues().isEmpty()) {
-            int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, fixture.getExpectedModbusValue().length);
-            modbusreg = adjustSign(modbusreg);
-            LOG.info("Modbus read registers: {}", intArrayToShortHex(modbusreg));
-            assertArrayEquals(fixture.getExpectedModbusValue(), modbusreg);
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
-        } else if (!intCaptor.getAllValues().isEmpty()){
-            int val = adjustSign(intCaptor.getValue());
-            LOG.info("Modbus read single register: {}", Integer.toHexString(val));
-            assertEquals(fixture.getExpectedModbusValue()[0], val);
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(new int[]{val});
-        }
-
-        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
-        LOG.info("Modbus read value: {}", res);
-        assertEquals(fixture.getReadValue(), res.trim());
+        doTestWriteAndReadBack(fixture);
     }
 
     @ParameterizedTest
@@ -428,33 +351,7 @@ public class SetGetValConversionTest {
                                 SGR_MODBUS_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE,
                                 SGR_MODBUS_DATA_POINT_TYPE_TYPE__BOOLEAN, Boolean.FALSE));
 
-
-        SGrModbusDevice modbusDevice = new SGrModbusDevice(
-                fixture.getModbusDeviceFrame(),           // model
-                genDriverAPI4Modbus);                     // mock
-
-        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", fixture.getWriteValue());
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteSingleRegister(anyInt(), intCaptor.capture());
-        LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayToShortHex(intArrayCaptor.getValue()));
-        LOG.info("Modbus write single   register : {}", intCaptor.getAllValues().isEmpty() ? "-" : Integer.toHexString(intCaptor.getValue()));
-
-        if (!intArrayCaptor.getAllValues().isEmpty()) {
-            int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, fixture.getExpectedModbusValue().length);
-            modbusreg = adjustSign(modbusreg);
-            LOG.info("Modbus read registers: {}", intArrayToShortHex(modbusreg));
-            // assertArrayEquals(fixture.getExpectedModbusValue(), modbusreg);
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
-        } else if (!intCaptor.getAllValues().isEmpty()){
-            int val = adjustSign(intCaptor.getValue());
-            LOG.info("Modbus read single register: {}", Integer.toHexString(val));
-            assertEquals(fixture.getExpectedModbusValue()[0], val);
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(new int[]{val});
-        }
-
-        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
-        LOG.info("Modbus read value: {}", res);
-        assertEquals(fixture.getReadValue(), res.trim());
+        doTestWriteAndReadBack(fixture);
     }
 
     static Stream<Tuple2<TEnumConversionFct, Boolean>> booleanConversions() {
@@ -572,19 +469,22 @@ public class SetGetValConversionTest {
                 genDriverAPI4Modbus);                     // mock
 
         modbusDevice.setValArr("ActivePowerAC", "ActivePowerAC-ARRAY", expectedValues);
-        verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
-        LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayToShortHex(intArrayCaptor.getValue()));
+        verify(genDriverAPI4Modbus, atLeast(1)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
 
         if (!intArrayCaptor.getAllValues().isEmpty()) {
-            int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, expectedModbusValues.length);
+            int[] modbusreg = intArrayCaptor.getValue();
+            assertEquals(getModbusBufferSize(
+                    SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT32) * expectedValues.length, modbusreg.length,
+                    "Invalid length of values written to the modbus registers.");
+
             modbusreg = adjustSign(modbusreg);
-            LOG.info("Modbus read registers: {}", intArrayToShortHex(modbusreg));
+            LOG.info("Modbus write-read-back registers: {}", intArrayToShortHex(modbusreg));
             assertArrayEquals(expectedModbusValues, modbusreg);
             when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
         }
 
         String[] res = modbusDevice.getValArr("ActivePowerAC", "ActivePowerAC-ARRAY");
-        LOG.info("Modbus read value: {}", Arrays.toString(res));
+        LOG.info("Modbus read values: {}", Arrays.toString(res));
         assertArrayEquals(expectedValues, Arrays.stream(res).map(String::trim).toArray());
     }
 
@@ -597,30 +497,98 @@ public class SetGetValConversionTest {
                         SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT32, (float) 0);
 
         String expectedValue = "220.220";
-        int[] expectedModbusValues = new int[]{23619, 21048};
+        int[] expectedModbusValues = new int[]{23619, 21048, 23619, 21048, 23619, 21048};
 
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
                 deviceFrame,                              // model
                 genDriverAPI4Modbus);                     // mock
 
+
         modbusDevice.setVal("ActivePowerAC", "ActivePowerAC-BLOCK", expectedValue);
         verify(genDriverAPI4Modbus).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
-        LOG.info("Modbus write multiple registers: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayToShortHex(intArrayCaptor.getValue()));
+        LOG.info("Modbus write multiple registers (single value): {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : intArrayToShortHex(intArrayCaptor.getValue()));
 
         if (!intArrayCaptor.getAllValues().isEmpty()) {
-            int[] modbusreg = Arrays.copyOfRange(intArrayCaptor.getValue(), 0, expectedModbusValues.length);
-            assertArrayEquals(expectedModbusValues, modbusreg);
-            modbusreg = adjustSign(modbusreg);
-            LOG.info("Modbus read registers: {}", intArrayToShortHex(modbusreg));
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
+            int[] modbusreg = intArrayCaptor.getValue();
+            assertEquals(getModbusBufferSize(SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT32), modbusreg.length,
+                    "Invalid length of values written to the modbus registers.");
+
+            IntBuffer intBuf = IntBuffer.allocate(TIME_SYNC_BLOCK_SIZE);
+
+            for (int i=0; i<TIME_SYNC_BLOCK_SIZE/getModbusBufferSize(SGR_MODBUS_DATA_POINT_TYPE_TYPE__FLOAT32); i++) {
+                intBuf.put(modbusreg);
+            }
+
+            int[] modbusregRead = intBuf.array();
+            assertArrayEquals(expectedModbusValues, modbusregRead);
+            modbusregRead = adjustSign(modbusregRead);
+            LOG.info("Modbus read multiple registers: {}", intArrayToShortHex(modbusregRead));
+            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusregRead);
         }
 
+        // Mock the read cache before doing the read test.
+        Field timeSyncBlockCache = ReflectionUtils.findFields(SGrModbusDevice.class,
+                f -> f.getName().equals("myTimeSyncBlockReadCache"),
+                ReflectionUtils.HierarchyTraversalMode.TOP_DOWN).get(0);
+        timeSyncBlockCache.setAccessible(true);
+
+        Map<SGrTimeSyncBlockNotificationType, CacheRecord<ModbusReaderResponse>> cacheRecords = new HashMap<>();
+        timeSyncBlockCache.set(modbusDevice, cacheRecords);
+
+        // Test the block read.
         String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerAC-BLOCK");
-        verify(genDriverAPI4Modbus).ReadHoldingRegisters(2000, 6); // Blocktransfer will read 3 blocks à 2 registers
+        verify(genDriverAPI4Modbus).ReadHoldingRegisters(TIME_SYNC_BLOCK_ADDRESS, TIME_SYNC_BLOCK_SIZE);
+
+        assertEquals(1, cacheRecords.size(), "Cache has not been written during modbus read.");
+
+        cacheRecords.values().forEach(value -> assertArrayEquals(expectedModbusValues, value.getValue().getMbregresp(),
+                "Cache record does not contain the expected modbus response (3* the given float value)"));
+
+        LOG.info("Read cache content: {}", cacheRecords);
         LOG.info("Modbus read value: {}", res);
         assertEquals(expectedValue, res.trim());
 
+    }
+
+    private void doTestWriteAndReadBack(Fixture<String, String, int[]> fixture) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+        // given
+        SGrModbusDevice modbusDevice = new SGrModbusDevice(
+                fixture.getModbusDeviceFrame(),           // model
+                genDriverAPI4Modbus);                     // mock
+
+        // when
+        LOG.info("Modbus write value: {}", fixture.getWriteValue());
+        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", fixture.getWriteValue());
+
+        // then
+        verify(genDriverAPI4Modbus, atLeast(0)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
+        verify(genDriverAPI4Modbus, atLeast(0)).WriteSingleRegister(anyInt(), intCaptor.capture());
+
+        if (!intArrayCaptor.getAllValues().isEmpty()) {
+            int[] modbusRegReceived = intArrayCaptor.getValue();
+            LOG.info("Modbus write-read-back multiple registers: {}", intArrayToShortHex(modbusRegReceived));
+
+            assertEquals(fixture.getExpectedModbusValue().length, modbusRegReceived.length,
+                    "Invalid length of values written to the modbus registers.");
+
+            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusRegReceived);
+
+        } else if (!intCaptor.getAllValues().isEmpty()){
+            LOG.info("Modbus write-read-back single register: {}", Integer.toHexString(intCaptor.getValue()));
+            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(new int[]{intCaptor.getValue()});
+        }
+
+        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
+        LOG.info("Modbus read value: {}", res);
+
+        String testName = fixture.getModbusDeviceFrame().getDeviceName();
+        if (testName.contains("FLOAT64") || testName.contains("FLOAT32") || testName.contains("DECIMAL")) {
+            fixture.writeValue = normalizeNumberFormat(fixture.writeValue);
+            res = normalizeNumberFormat(res);
+        }
+
+        assertEquals(fixture.writeValue, res.trim());
     }
 
 
@@ -724,11 +692,11 @@ public class SetGetValConversionTest {
     private static SGrTimeSyncBlockNotificationType timeSyncBlock(String blockId) {
 
         SGrTimeSyncBlockNotificationType tsBlock = V0Factory.eINSTANCE.createSGrTimeSyncBlockNotificationType();
-        tsBlock.setFirstAddr(BigInteger.valueOf(2000));
+        tsBlock.setFirstAddr(BigInteger.valueOf(TIME_SYNC_BLOCK_ADDRESS));
         tsBlock.setBlockCacheId(blockId);
         tsBlock.setRegisterType(TEnumObjectType.HOLD_REGISTER);
         tsBlock.setTimeToLiveMs(200);
-        tsBlock.setSize(6);
+        tsBlock.setSize(TIME_SYNC_BLOCK_SIZE);
         return tsBlock;
     }
 

@@ -39,4 +39,10 @@ public class CacheRecord<V> {
 	public V getValue() {
 		return value;
 	}
+
+	@Override
+	public String toString() {
+		return "value=" + (value != null ? value.toString() : "<null>")
+			+ ", lastAccess=" + (lastAccess != null ? lastAccess.toString() : "<null>");
+	}
 }

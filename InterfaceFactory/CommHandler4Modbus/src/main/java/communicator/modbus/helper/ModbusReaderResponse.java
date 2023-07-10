@@ -61,4 +61,15 @@ public class ModbusReaderResponse {
     public boolean isbGotDiscrete() {
         return bGotDiscrete;
     }
+
+    @Override
+    public String toString() {
+        if (mbregresp != null) {
+           return Arrays.toString(mbregresp);
+        } else if (mbbitresp != null) {
+            return Arrays.toString(mbbitresp);
+        } else{
+            return "Empty modbus response.";
+        }
+    }
 }
