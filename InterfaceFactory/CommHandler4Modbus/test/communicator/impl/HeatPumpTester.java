@@ -260,8 +260,8 @@ public class HeatPumpTester {
 				  devHovalTCP.setValByGDPType("HeatCoolCtrl_3", "hovHeatCoolCtrlOpModeCmd", hpCmd);
 				  LOG.info(String.format("  Setting  HeatCoolCtrl_3:hovHeatCoolCtrlOpModeCmd="+ oEnumList.getHovHCOpMode().getLiteral()));
 				  
-				  // control DomHotWCtrl by  DomHotWOpMode
-	              oEnumList.setHovDomHotWOpMode(HovDomHotWOpModeType.DHWECOOP);
+				  // control DomHotWaterCtrl by  DomHotWOpMode
+	              oEnumList.DomHotWaterCtrl(HovDomHotWOpModeType.DHWECOOP);
 				  hpCmd.setEnum(oEnumList);
 				  devHovalTCP.setValByGDPType("DomHotWaterCtrl", "hovDomHotWOpModeCmd", hpCmd);
 				  LOG.info(String.format("  Setting  DomHotWaterCtrl:hovDomHotWOpModeCmd"+ oEnumList.getHovDomHotWOpMode().getLiteral()));
@@ -341,7 +341,7 @@ public class HeatPumpTester {
 		fVal3=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptEco").getFloat32();
 		fVal4=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "ActDomHotWTemp").getFloat32();
 		fVal5=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptFb").getFloat32();
-		LOG.info(String.format("  DomHotWCtrl: hovDomHotWOpModeCmd=" + oEnumList.getHovDomHotWOpMode().getLiteral()+"/"+ oEnumList.getHovDomHotWOpMode().getValue()  + ",  DomHotWState=" +  oEnumList1.getHovDomHotWState().getLiteral()+"/"+oEnumList1.getHovDomHotWState().getValue() + ", DomHotWTempStptComf=" + fVal2 + " °C"));
+		LOG.info(String.format("  DomHotWaterCtrl: hovDomHotWOpModeCmd=" + oEnumList.getHovDomHotWOpMode().getLiteral()+"/"+ oEnumList.getHovDomHotWOpMode().getValue()  + ",  DomHotWState=" +  oEnumList1.getHovDomHotWState().getLiteral()+"/"+oEnumList1.getHovDomHotWState().getValue() + ", DomHotWTempStptComf=" + fVal2 + " °C"));
 		LOG.info(String.format("        DomHotWTempStptComf=" + fVal2 + " °C,  DomHotWTempStptEco=" + fVal3 + " °C,   ActDomHotWTemp=" + fVal4 + " °C,  DomHotWTempStptFb=" + fVal5 + " °C "));  
 		LOG.info(" ");  
 
@@ -503,8 +503,8 @@ public class HeatPumpTester {
 				  LOG.info(String.format("  Setting HeatCoolCtrl_2: SupplyWaterTempStptComf=" + fVal1));
 				  fVal1= (float) 43.3;
 				  hpval.setFloat32(fVal1); 
-				  devStiebelISG.setValByGDPType("DomHotWCtrl", "DomHotWTempStptComf",hpval);
-				  LOG.info(String.format("  Setting DomHotWCtrl: DomHotWTempStptComf=" + fVal1));
+				  devStiebelISG.setValByGDPType("DomHotWaterCtrl", "DomHotWTempStptComf",hpval);
+				  LOG.info(String.format("  Setting DomHotWaterCtrl: DomHotWTempStptComf=" + fVal1));
 				 
 
 				  //Setpoints Eco
@@ -518,7 +518,7 @@ public class HeatPumpTester {
 				  LOG.info(String.format("  Setting HeatCoolCtrl_2: SupplyWaterTempStptEco=" + fVal1));
 				  fVal1= (float) 41.2;
 				  hpval.setFloat32(fVal1); 
-				  devStiebelISG.setValByGDPType("DomHotWCtrl", "DomHotWTempStptEco",hpval);
+				  devStiebelISG.setValByGDPType("DomHotWaterCtrl", "DomHotWTempStptEco",hpval);
 				  LOG.info(String.format("  Setting HeatCoolCtrl_2: DomHotWTempStptEco=" + fVal1));
 				 	 
 				 
@@ -594,7 +594,7 @@ public class HeatPumpTester {
 				fVal2=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptEco").getFloat32();							
 				fVal3=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptFb").getFloat32();
 				fVal4=devStiebelISG.getValByGDPType("DomHotWaterCtrl", "ActDomHotWTemp").getFloat32();
-				 LOG.info(String.format("  DomHotWCtrl:  DomHotWTempStptComf=" + fVal1 + " °C,  DomHotWTempStptEco=" + + fVal2 + " °C,  DomHotWTempStptFb=" + fVal3 + " °C,  ActDomHotWTemp=" + fVal4 + " °C "));  
+				 LOG.info(String.format("  DomHotWaterCtrl:  DomHotWTempStptComf=" + fVal1 + " °C,  DomHotWTempStptEco=" + + fVal2 + " °C,  DomHotWTempStptFb=" + fVal3 + " °C,  ActDomHotWTemp=" + fVal4 + " °C "));  
 				 LOG.info(String.format(" "));	
 				fVal1=devStiebelISG.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTempStptFb").getFloat32();
 				fVal2=devStiebelISG.getValByGDPType("BufferStorageCtrl", "ActHeatBufferTemp").getFloat32();
@@ -744,25 +744,24 @@ public class HeatPumpTester {
 						  */
 
 					      
-						  /*  Set DomHotWSetPoint
-						 //TODO: read timeout beim Schreiben klären
+						  //  Set DomHotWSetPoint
 						  gdtValue.setInt16U(20);
-						  devCTAoptiHeat.setValByGDPType("DomHotWCtrl","ctaRemoteCtrlTimeSec",gdtValue);
+						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl","ctaRemoteCtrlTimeSec",gdtValue);
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
 						  Thread.sleep(25);							  
-						  gdtValue.setFloat32((float)51.0);
-						  devCTAoptiHeat.setValByGDPType("DomHotWCtrl", "DomHotWTempStpt",gdtValue);
-						  */
+						  gdtValue.setFloat32((float)51.5);
+						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt",gdtValue);
+						  LOG.info(String.format("Setting  DomHotWTempStpt=" + gdtValue.getFloat32()));
 						
-						  /*  Set DomHotWCtrl
+						  /*  Set DomHotWaterCtrl
 						  * /TODO: read timeout beim Schreiben klären
 						  gdtValue.setInt16U(20);
-						  devCTAoptiHeat.setValByGDPType("DomHotWCtrl","ctaRemoteCtrlTimeSec",gdtValue);
+						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl","ctaRemoteCtrlTimeSec",gdtValue);
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
 						  Thread.sleep(25);						  
 						  oEnumListSet.setCtaDHWOpMode(CtaDHWOpModeType.DHWON);
 						  modeCmd.setEnum(oEnumListSet);
-						  devCTAoptiHeat.setValByGDPType("DomHotWCtrl", "ctaDomHotWOpMode", modeCmd);
+						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl", "ctaDomHotWOpMode", modeCmd);
 						  */
 					      
 						  /* control SG-Ready by enum SGReadyStateLv2Type

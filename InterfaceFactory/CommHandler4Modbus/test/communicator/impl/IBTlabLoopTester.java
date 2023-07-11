@@ -88,7 +88,7 @@ public class IBTlabLoopTester {
 	private static boolean  devWagoMeterTestIsOn = true; 
 	private static boolean  devOMCCIWallboxTestIsOn = true; 
 	// !! Schalter in Box umlegen für Test !!
-	private static boolean  devTB_ABBMeterTestIsOn = true; 
+	private static boolean  devTB_ABBMeterTestIsOn = false; 
 	
 	// shell for enumerations
 	private static SGrEnumListType oEnumList = null;
@@ -712,7 +712,7 @@ public class IBTlabLoopTester {
 							 {
 								 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
 								 devGaroWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
-								 LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");
+								 LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");							 
 							 }
 							 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
 							 Thread.sleep(200);
@@ -817,6 +817,7 @@ public class IBTlabLoopTester {
 									 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
 									 devOMCCIWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
 									 LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");
+									 
 								 }
 								 fVal1 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
 								 Thread.sleep(200);

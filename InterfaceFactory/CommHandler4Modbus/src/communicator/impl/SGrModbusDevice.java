@@ -888,8 +888,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					l6dev);
 		}
 
-		mbregsnd = mbRegBuf.array();
-		mbbitsnd = ConversionHelper.byteArrToBooleanArr(mbByteBuf.array());
+		int nrRegisters = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
+		mbregsnd = Arrays.copyOfRange(mbRegBuf.array(), 0,nrRegisters * sgrValues.length);
+		mbbitsnd = Arrays.copyOfRange(ConversionHelper.byteArrToBooleanArr(mbByteBuf.array()), 0, nrRegisters * sgrValues.length);
+
 
 		try {
 			if (bRegisterCMDs) {
