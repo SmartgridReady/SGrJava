@@ -54,7 +54,7 @@
 		</sgr:functionalProfile>
 		<sgr:dpListElement>
 			<sgr:dataPoint datapointName="ActivePowerACtot"
-				rwpDatadirection="R" unit="KILOWATTS" mroVisibilityIndicator="R">
+				rwpDatadirection="RW" unit="KILOWATTS" mroVisibilityIndicator="R">
 				<sgr:dataType>
 					<sgr:decimal>0.0</sgr:decimal></sgr:dataType>
 			</sgr:dataPoint>
@@ -79,7 +79,7 @@
 		</sgr:dpListElement>
 		<sgr:dpListElement>		
 			<sgr:dataPoint datapointName="ActivePowerACL1"
-				rwpDatadirection="R" unit="KILOWATTS" mroVisibilityIndicator="R">
+				rwpDatadirection="RW" unit="KILOWATTS" mroVisibilityIndicator="R">
 				<sgr:dataType>
 					<sgr:decimal>0.0</sgr:decimal></sgr:dataType>
 			</sgr:dataPoint>
@@ -119,8 +119,48 @@
 		</sgr:dpListElement>
 		<sgr:dpListElement>
 			<sgr:dataPoint mroVisibilityIndicator="R"
-				datapointName="ActivePowerACL3" rwpDatadirection="R"
+				datapointName="ActivePowerACL3" rwpDatadirection="W"
 				unit="KILOWATTS">
+				<sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+			</sgr:dataPoint>
+			<sgr:restAPIDataPoint dataType="JSON_number">
+				<sgr:restServiceCall>
+					<sgr:requestHeader>
+						<sgr:header headerName="Accept" value="application/json" />
+					</sgr:requestHeader>
+					<sgr:requestMethod>GET</sgr:requestMethod>
+					<sgr:requestPath>/digitaltwins/?sensor_id={{sensor_id}}</sgr:requestPath>
+					<sgr:responseQuery>
+						<sgr:queryType>JMESPathExpression</sgr:queryType>
+						<sgr:query>[0].ten_sec.p_l3</sgr:query>
+					</sgr:responseQuery>
+				</sgr:restServiceCall>
+			</sgr:restAPIDataPoint>
+		</sgr:dpListElement>
+		<sgr:dpListElement>
+			<sgr:dataPoint mroVisibilityIndicator="R"
+						   datapointName="W-Datapoint" rwpDatadirection="W"
+						   unit="KILOWATTS">
+				<sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+			</sgr:dataPoint>
+			<sgr:restAPIDataPoint dataType="JSON_number">
+				<sgr:restServiceCall>
+					<sgr:requestHeader>
+						<sgr:header headerName="Accept" value="application/json" />
+					</sgr:requestHeader>
+					<sgr:requestMethod>GET</sgr:requestMethod>
+					<sgr:requestPath>/digitaltwins/?sensor_id={{sensor_id}}</sgr:requestPath>
+					<sgr:responseQuery>
+						<sgr:queryType>JMESPathExpression</sgr:queryType>
+						<sgr:query>[0].ten_sec.p_l3</sgr:query>
+					</sgr:responseQuery>
+				</sgr:restServiceCall>
+			</sgr:restAPIDataPoint>
+		</sgr:dpListElement>
+		<sgr:dpListElement>
+			<sgr:dataPoint mroVisibilityIndicator="R"
+						   datapointName="RW-Datapoint" rwpDatadirection="RW"
+						   unit="KILOWATTS">
 				<sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:restAPIDataPoint dataType="JSON_number">

@@ -1,8 +1,8 @@
 package communicator.common.helper;
-/**
-*Copyright(c) 2022 Verein SmartGridready Switzerland
-* @generated NOT
-*
+/*
+Copyright(c) 2022 Verein SmartGridready Switzerland
+@generated NOT
+
 This Open Source Software is BSD 3 clause licensed:
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -33,10 +33,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class DeviceDescriptionLoader<C> {
-		
+
+	private static final Logger LOG = LoggerFactory.getLogger(DeviceDescriptionLoader.class);
+
 	private static ComposedAdapterFactory composedAdapterFactory;
 
 	/**
@@ -99,7 +103,7 @@ public class DeviceDescriptionLoader<C> {
 			return (C) resource.getAllContents().next();
 			
 		} catch ( Exception e ) {
-			System.out.println( "Error loading XML: " + e);
+			LOG.error( "Error loading XML: ", e);
 			return null;
 		}
 	}

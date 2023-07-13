@@ -190,6 +190,9 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 	private SGrGenDataType prv_getBlockVal( SGrModbusDataPointType aDataPoint)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
+			// Check read/write permission
+			checkReadWritePermission(aDataPoint, DataDirection.READ);
+
 			Optional<SGrTimeSyncBlockNotificationType> blockNotificationTypeOpt = findTimeSyncBlockNotificationType(aDataPoint.getBlockCacheId());
 			if (!blockNotificationTypeOpt.isPresent()) {
 				throw new GenDriverException("Could not find timeSyncBlockNotification entry with name=" + aDataPoint.getBlockCacheId());
@@ -249,6 +252,9 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		SGrModbusDataPointType aDataPoint, int arrayLen)
 		throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
+		// Check if read is allowed
+		checkReadWritePermission(aDataPoint, DataDirection.READ);
+
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
 		TSGrModbusRegisterRef mbRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 
@@ -302,12 +308,12 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 														  boolean bGotDiscrete,
 														  int size, int arrOffset) {
 
-		int mul = 1, l6dev = -1;
+		int mul = 1;
+		int l6dev;
 		int pwof10 = 0;
 		// Register return value calculation
 		long RegRes = 0;
 		double dVal;
-		float fVal = (float) 0.0;
 
 		int[] mbregresp = Arrays.copyOfRange(mbregrespSrc, arrOffset*size, (arrOffset+1)*size);
 		boolean[] mbbitresp = Arrays.copyOfRange(mbbitrespSrc, arrOffset*size, (arrOffset+1)*size);
@@ -724,14 +730,11 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		// Data format adaption
 		SGrModbusDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
 
+		// Handle generic attributes:
 		// Data Direction ctrl
-		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
-		// Attributes
+		checkReadWritePermission(aDataPoint, DataDirection.WRITE);
 
-		// TODO:HF?  add attribute handling
-		/* IF there are generic attributes available
-		 * place to add potential attribute setter API functionality
-		 */
+		// Value range check
 		checkOutOfRange(sgrValues, aDataPoint);
 
 		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available

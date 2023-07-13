@@ -80,18 +80,19 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	@Override
 	public String getVal(String profileName, String dataPointName)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
-		return setVal(profileName, dataPointName, null);
+
+		SGrRestAPIDataPointType dataPoint = findProfileDataPoint(profileName, dataPointName);
+		checkReadWritePermission(dataPoint, DataDirection.READ);
+		return doReadWriteVal(dataPoint, null);
 	}
 
 	@Override
 	public String setVal(String profileName, String dataPointName, String value)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
-		Optional<SGrRestAPIDataPointType> dataPointOpt = findProfileDataPoint(profileName, dataPointName);
-		if (dataPointOpt.isPresent()) {
-			return doReadWriteVal(dataPointOpt.get(), value);
-		} else {
-			return "Profile/access-point " + profileName + "/" + dataPointName + " not found!";
-		}						
+
+		SGrRestAPIDataPointType dataPoint = findProfileDataPoint(profileName, dataPointName);
+		checkReadWritePermission(dataPoint, DataDirection.WRITE);
+		return doReadWriteVal(dataPoint, value);
 	}
 
 	private String doReadWriteVal(SGrRestAPIDataPointType dataPoint, String value)
@@ -170,16 +171,16 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		}
 	}
 
-	private Optional<SGrRestAPIDataPointType> findProfileDataPoint(String profileName, String dataPointName) {
+	private SGrRestAPIDataPointType findProfileDataPoint(String profileName, String dataPointName) throws GenDriverException {
 		
 		Optional<SGrRestAPIFunctionalProfileType> profile = findProfile(profileName);
 		if (profile.isPresent()) {
 			Optional<SGrRestAPIDataPointType> dataPoint = findDataPointForProfile(profile.get(), dataPointName);
 			if (dataPoint.isPresent()) {
-				return dataPoint;
+				return dataPoint.get();
 			}
 		}
-		return Optional.empty();
+		throw new GenDriverException(String.format("Datapoint profile=%s name=%s not found", profileName, dataPointName));
 	}
 	
 	protected Optional<SGrRestAPIFunctionalProfileType> findProfile(String profileName) {

@@ -5,6 +5,7 @@ import com.smartgridready.ns.v0.SGrGenDataType;
 import com.smartgridready.ns.v0.SGrDataPointBaseType;
 import com.smartgridready.ns.v0.SGrDeviceBaseType;
 import com.smartgridready.ns.v0.SGrFunctionalProfileBaseType;
+import com.smartgridready.ns.v0.SGrRWPType;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.V0Package;
 import communicator.common.api.GenDeviceApi;
@@ -21,8 +22,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class SGrDeviceBase<
         D extends SGrDeviceBaseType,
@@ -30,6 +33,16 @@ public abstract class SGrDeviceBase<
         P extends SGrDataPointBaseType> implements GenDeviceApi {
 
     protected final D device;
+
+    protected enum DataDirection {
+        READ(Stream.of(SGrRWPType.R, SGrRWPType.RW, SGrRWPType.RWP).collect(Collectors.toSet())),
+        WRITE(Stream.of(SGrRWPType.W, SGrRWPType.RW, SGrRWPType.RWP).collect(Collectors.toSet()));
+
+        private final Set<SGrRWPType> opAllowedTypes;
+        DataDirection(Set<SGrRWPType> opAllowedTypes) {
+            this.opAllowedTypes = opAllowedTypes;
+        }
+    }
 
     public enum Comparator {
         MIN(((val, lim) -> val.compareTo(lim) < 0)),
@@ -141,6 +154,17 @@ public abstract class SGrDeviceBase<
 
         if (errorStr.isPresent()) {
             throw new GenDriverException(errorStr.get());
+        }
+    }
+
+    public void checkReadWritePermission(SGrDataPointBaseType dataPoint, DataDirection direction) throws GenDriverException {
+
+        SGrRWPType dRWPType = dataPoint.getDataPoint().getRwpDatadirection();
+        if (!direction.opAllowedTypes.contains(dRWPType)) {
+            throw new GenDriverException(String.format(
+                    "Operation %s not allowed on datapoint %s",
+                    direction.name(),
+                    dataPoint.getDataPoint().getDatapointName()));
         }
     }
 

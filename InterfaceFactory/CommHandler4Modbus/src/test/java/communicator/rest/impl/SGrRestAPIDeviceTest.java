@@ -13,14 +13,21 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -29,8 +36,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(value = MockitoExtension.class)
 class SGrRestAPIDeviceTest {
 
+	private static final Logger LOG = LoggerFactory.getLogger(SGrRestAPIDeviceTest.class);
+
 	@Mock
 	RestServiceClientFactory restServiceClientFactory;
+
+	@Mock
+	RestServiceClient restServiceClient;
 	
 	@Mock
 	RestServiceClient restServiceClientAuth;
@@ -147,6 +159,45 @@ class SGrRestAPIDeviceTest {
 
 		Exception exception = assertThrows(GenDriverException.class, () -> device.setVal("ActivePowerAC", "ActivePowerACtot", value));
 		assertEquals(expectedResponse, exception.getMessage());
+	}
+
+
+	private static Stream<Arguments> rwPermissionChecks() {
+
+		// VoltageL1 = R, VoltageL2 = W, VoltageL3 = RW
+		return Stream.of(
+				Arguments.of("write on RW DP", "ActivePowerACL1", true,  null),
+				Arguments.of("write on R  DP", "ActivePowerACL2", true,  "Operation WRITE not allowed on datapoint ActivePowerACL2"),
+				Arguments.of("write on W  DP", "ActivePowerACL3", true,  null),
+				Arguments.of("read  on RW DP", "ActivePowerACL1", false, null),
+				Arguments.of("read  on R  DP", "ActivePowerACL2", false, null),
+				Arguments.of("read  on W  DP", "ActivePowerACL3", false, "Operation READ not allowed on datapoint ActivePowerACL3")
+		);
+	}
+
+	@ParameterizedTest
+	@MethodSource("rwPermissionChecks")
+	void writePermissionCheckModbus(String testName, String dataPointName, boolean isWrite, String expectedErrorMsg) throws Exception {
+
+		LOG.info("Testing writePermissionCheckModbus: {}", testName);
+
+		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+
+		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), any())).thenReturn(restServiceClient);
+		Mockito.lenient().when(restServiceClient.callService()).thenReturn(Either.right("{}"));
+
+		if (expectedErrorMsg == null) {
+			if(isWrite) {
+				assertDoesNotThrow(() -> restApiDevice.setVal("ActivePowerAC", dataPointName, "380"));
+			} else {
+				assertDoesNotThrow(() -> restApiDevice.getVal("ActivePowerAC", dataPointName));
+			}
+		} else {
+			GenDriverException e = isWrite ?
+					assertThrows(GenDriverException.class, () -> restApiDevice.setVal("ActivePowerAC", dataPointName, "380"))
+					: assertThrows(GenDriverException.class, () -> restApiDevice.getVal("ActivePowerAC", dataPointName));
+			assertEquals(expectedErrorMsg, e.getMessage());
+		}
 	}
 
 
