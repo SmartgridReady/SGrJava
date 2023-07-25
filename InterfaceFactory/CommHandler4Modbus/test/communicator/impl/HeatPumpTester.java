@@ -720,16 +720,16 @@ public class HeatPumpTester {
 					       * 
 					       */
 						  
-						  /* set power
-						  //TODO: read timeout beim Schreiben klären 
-						  gdtValue.setInt16U(20);
+						  //* set power
+
+						  gdtValue.setInt16U(120);
 						  devCTAoptiHeat.setValByGDPType("PowerCtrl","ctaRemoteCtrlTimeSec",gdtValue);
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
 						  Thread.sleep(25);
-					      gdtValue.setFloat32((float)38.0);
+					      gdtValue.setFloat32((float)45.0);
 						  devCTAoptiHeat.setValByGDPType("PowerCtrl","PowerCtrlStpt",gdtValue);
 						  LOG.info(String.format("Setting PowerCtrl: PowerCtrlStpt="  + gdtValue.getFloat32()));
-						  */
+						  
 						  
 						  
 						  /* set storage buffer
@@ -743,26 +743,28 @@ public class HeatPumpTester {
 						  LOG.info(String.format("Setting BufferStorageCtrl: HeatBufferTempStptOffset="  + gdtValue.getFloat32()));
 						  */
 
-					      
-						  //  Set DomHotWSetPoint
+
+						  /*  Set DomHotWaterCtrl //
 						  gdtValue.setInt16U(20);
+						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl","ctaRemoteCtrlTimeSec",gdtValue);
+						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
+						  Thread.sleep(25);						  
+						  oEnumListSet.setCtaDomHotWOpMode(CtaDomHotWOpModeType.DHWOFF);
+						  modeCmd.setEnum(oEnumListSet);
+						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl", "ctaDomHotWOpModeCmd", modeCmd);
+						  LOG.info(String.format("Setting  ctaDomHotWOpModeCmd=" +  modeCmd.getEnum().getCtaDomHotWOpMode().getLiteral()));
+						  */
+						  /*
+						  //  Set DomHotWTempStpt
+						  gdtValue.setInt16U(120);
 						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl","ctaRemoteCtrlTimeSec",gdtValue);
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
 						  Thread.sleep(25);							  
 						  gdtValue.setFloat32((float)51.5);
 						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt",gdtValue);
 						  LOG.info(String.format("Setting  DomHotWTempStpt=" + gdtValue.getFloat32()));
-						
-						  /*  Set DomHotWaterCtrl
-						  * /TODO: read timeout beim Schreiben klären
-						  gdtValue.setInt16U(20);
-						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl","ctaRemoteCtrlTimeSec",gdtValue);
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-						  Thread.sleep(25);						  
-						  oEnumListSet.setCtaDHWOpMode(CtaDHWOpModeType.DHWON);
-						  modeCmd.setEnum(oEnumListSet);
-						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl", "ctaDomHotWOpMode", modeCmd);
 						  */
+
 					      
 						  /* control SG-Ready by enum SGReadyStateLv2Type
 						  gdtValue.setInt16U(120);
