@@ -1,7 +1,7 @@
 package communicator.common.impl;
 
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
-import com.smartgridready.ns.v0.SGrGenDataType;
+import com.smartgridready.ns.v0.DataTypeType;
 import com.smartgridready.ns.v0.SGrDataPointBaseType;
 import com.smartgridready.ns.v0.SGrDeviceBaseType;
 import com.smartgridready.ns.v0.SGrFunctionalProfileBaseType;
@@ -132,13 +132,13 @@ public abstract class SGrDeviceBase<
     public void checkOutOfRange(String value, SGrDataPointBaseType dataPoint)
         throws GenDriverException {
 
-        SGrGenDataType genVal =
+        DataTypeType genVal =
                 GenType2StringConversion.format(value, dataPoint.getDataPoint().getDataType());
 
-        checkOutOfRange(new SGrGenDataType[]{genVal}, dataPoint);
+        checkOutOfRange(new DataTypeType[]{genVal}, dataPoint);
     }
 
-    public void checkOutOfRange(SGrGenDataType[] values, SGrDataPointBaseType dataPoint)
+    public void checkOutOfRange(DataTypeType[] values, SGrDataPointBaseType dataPoint)
         throws GenDriverException {
 
 
@@ -168,7 +168,7 @@ public abstract class SGrDeviceBase<
         }
     }
 
-    protected Optional<String> checkOutOfRange(SGrGenDataType[] values, BigDecimal limit, Comparator comparator) {
+    protected Optional<String> checkOutOfRange(DataTypeType[] values, BigDecimal limit, Comparator comparator) {
 
         List<Double> outOfRangeValues = Arrays.stream(values)
                 .flatMap(value -> getFeatureThatIsSet(value).stream()
@@ -193,9 +193,9 @@ public abstract class SGrDeviceBase<
         return features.stream().filter(genericAttribute::eIsSet).collect(Collectors.toList());
     }
 
-    private List<EStructuralFeature> getFeatureThatIsSet(SGrGenDataType dataPoint) {
+    private List<EStructuralFeature> getFeatureThatIsSet(DataTypeType dataPoint) {
 
-        EList<EStructuralFeature> features = V0Package.eINSTANCE.getSGrGenDataType().getEStructuralFeatures();
+        EList<EStructuralFeature> features = V0Package.eINSTANCE.getDataTypeType().getEStructuralFeatures();
         return features.stream().filter(dataPoint::eIsSet).collect(Collectors.toList());
     }
 

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/xsl/SGr.xsl"?>
 <sgr:SGrModbusDeviceFrame deviceName="WAGOMeterV0.2.1" isLocalControl="true" manufacturerID="WAGO" manufacturerName="WAGO"  xmlns:sgr="http://www.smartgridready.com/ns/V0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/EI-Modbus/SGrModbusEIDeviceFrame.xsd ">
+  <sgr:releaseNotes>
+    <sgr:state>Draft</sgr:state>
+  </sgr:releaseNotes>
   <sgr:deviceProfile>
     <sgr:devNameList>
       <sgr:sLV1Name>WAGO Energy Meters MID</sgr:sLV1Name>
@@ -98,7 +101,7 @@
     <sgr:dpListElement>      
   		<sgr:dataPoint datapointName="Voltage-L1-L2-L3"
   			 rwpDatadirection="R" unit="NONE">  			
-          <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+          <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
           <sgr:arrayLength>3</sgr:arrayLength>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -115,7 +118,7 @@
   	</sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageL1"  rwpDatadirection="R" unit="VOLTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>VoltageL1</sgr:sLV1Name>
           <sgr:sManufName>L1 Spannung</sgr:sManufName>
@@ -131,7 +134,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageL2"  rwpDatadirection="R" unit="VOLTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sManufName>L2 Spannung</sgr:sManufName>
         </sgr:dpNameList>
@@ -146,7 +149,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageL3"  rwpDatadirection="R" unit="VOLTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>VoltageL3</sgr:sLV1Name>
           <sgr:sManufName>L3 Spannung</sgr:sManufName>
@@ -162,7 +165,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageACL1-L2"  rwpDatadirection="R" unit="VOLTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>VoltageACL1-L2</sgr:sLV1Name>
           <sgr:sManufName>L1-L2 Spannung</sgr:sManufName>
@@ -178,7 +181,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageACL1-L3"  rwpDatadirection="R" unit="VOLTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>VoltageACL1-L3</sgr:sLV1Name>
           <sgr:sManufName>L1-L3 Spannung</sgr:sManufName>
@@ -194,7 +197,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageACL2-L3"  rwpDatadirection="R" unit="VOLTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>VoltageACL2-L3</sgr:sLV1Name>
           <sgr:sManufName>L2-L3 Spannung</sgr:sManufName>
@@ -226,7 +229,7 @@
     </sgr:functionalProfile>	
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="Frequency"  rwpDatadirection="R" unit="HERTZ">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>Frequency</sgr:sLV1Name>
           <sgr:sManufName>Frequenz</sgr:sManufName>
@@ -272,7 +275,7 @@
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="CurrentACL1"  rwpDatadirection="R" unit="AMPERES">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -301,7 +304,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="CurrentACL2"  rwpDatadirection="R" unit="AMPERES">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -330,7 +333,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="CurrentACL3"  rwpDatadirection="R" unit="AMPERES">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -381,7 +384,7 @@
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActivePowerACtot"  rwpDatadirection="R" unit="KILOWATTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -410,7 +413,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActivePowerACL1"  rwpDatadirection="R" unit="KILOWATTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -439,7 +442,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActivePowerACL2"  rwpDatadirection="R" unit="KILOWATTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -468,7 +471,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActivePowerACL3"  rwpDatadirection="R" unit="KILOWATTS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -519,7 +522,7 @@
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ReactivePowerACtot"  rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -548,7 +551,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ReactivePowerACL1"  rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>ReactivePowerACtot</sgr:sLV1Name>
           <sgr:sManufName>Totale Blindleistung</sgr:sManufName>
@@ -573,7 +576,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ReactivePowerACL2"  rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -602,7 +605,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ReactivePowerACL3"  rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -654,7 +657,7 @@
     </sgr:functionalProfile>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ApparentPowerACtot"  rwpDatadirection="R" unit="KILOVOLT_AMPERES">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -683,7 +686,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ApparentPowerACL1"  rwpDatadirection="R" unit="KILOVOLT_AMPERES">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -712,7 +715,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ApparentPowerACL2"  rwpDatadirection="R" unit="KILOVOLT_AMPERES">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -741,7 +744,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ApparentPowerACL3"  rwpDatadirection="R" unit="KILOVOLT_AMPERES">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -797,7 +800,7 @@
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="PowerFactor"  rwpDatadirection="R" unit="NONE">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -826,7 +829,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="PowerFactorL1"  rwpDatadirection="R" unit="NONE">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -855,7 +858,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="PowerFactorL2"  rwpDatadirection="R" unit="NONE">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -884,7 +887,7 @@
     </sgr:dpListElement>	
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="PowerFactorL3"  rwpDatadirection="R" unit="NONE">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -940,7 +943,7 @@
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActiveEnergyACtot"  rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -969,7 +972,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ActiveEnergyACL1"  rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -998,7 +1001,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ActiveEnergyACL2"  rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -1027,7 +1030,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActiveEnergyACL3"  rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:dataType><sgr:decimal>0</sgr:decimal></sgr:dataType>
+        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>sgr:sLV1Name</sgr:sLV1Name>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
@@ -1078,7 +1081,7 @@
   			 rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1096,7 +1099,7 @@
   			 rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1114,7 +1117,7 @@
   			 rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1130,7 +1133,7 @@
   			 rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1165,7 +1168,7 @@
   			 unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1181,7 +1184,7 @@
   			 unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1197,7 +1200,7 @@
   			 unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1233,7 +1236,7 @@
   			 unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1249,7 +1252,7 @@
   			 unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1265,7 +1268,7 @@
   			 unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:decimal>0.0</sgr:decimal>
+  				<sgr:float64>0.0</sgr:float64>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1298,7 +1301,7 @@
   			 rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:integer>0</sgr:integer>
+  				<sgr:int8U>0</sgr:int8U>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1314,7 +1317,7 @@
   			 rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:integer>0</sgr:integer>
+  				<sgr:int8U>0</sgr:int8U>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1330,7 +1333,7 @@
   			 rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:integer>0</sgr:integer>
+  				<sgr:int8U>0</sgr:int8U>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
@@ -1347,7 +1350,7 @@
   			 rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:integer>0</sgr:integer>
+  				<sgr:int8U>0</sgr:int8U>
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>

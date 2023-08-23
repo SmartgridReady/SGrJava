@@ -1,6 +1,6 @@
 package communicator.modbus.impl;
 
-import com.smartgridready.ns.v0.SGrGenDataType;
+import com.smartgridready.ns.v0.DataTypeType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.modbus.api.GenDeviceApi4Modbus;
@@ -35,27 +35,27 @@ public class GetValArrayTester {
 				// set device address of devWagoMeter
 					
 				mbRTU.setUnitIdentifier((byte) 1);				
-				SGrGenDataType[] voltages = devWagoMeter.getValArrByGDPType("VoltageAC", "Voltage-L1-L2-L3");
+				DataTypeType[] voltages = devWagoMeter.getValArrByGDPType("VoltageAC", "Voltage-L1-L2-L3");
 				
 				// Voltages as GDP type
 				LOG.info("WAGO Meter Voltages AC run 1: L1: {}V - L2 {}V - L3: {}V", 
-						voltages[0].getDecimal(),
-						voltages[1].getDecimal(),
-						voltages[2].getDecimal());
+						voltages[0].getFloat32(),
+						voltages[1].getFloat32(),
+						voltages[2].getFloat32());
 				
 				
 				voltages = devWagoMeter.getValArrByGDPType("VoltageAC", "Voltage-L1-L2-L3");				
 				LOG.info("WAGO Meter Voltages AC run 2: L1: {}V - L2 {}V - L3: {}V", 
-						voltages[0].getDecimal(),
-						voltages[1].getDecimal(),
-						voltages[2].getDecimal());
+						voltages[0].getFloat32(),
+						voltages[1].getFloat32(),
+						voltages[2].getFloat32());
 				
 				Thread.sleep(1000);
 				voltages = devWagoMeter.getValArrByGDPType("VoltageAC", "Voltage-L1-L2-L3");				
 				LOG.info("WAGO Meter Voltages AC run 3: L1: {}V - L2 {}V - L3: {}V", 
-						voltages[0].getDecimal(),
-						voltages[1].getDecimal(),
-						voltages[2].getDecimal());
+						voltages[0].getFloat32(),
+						voltages[1].getFloat32(),
+						voltages[2].getFloat32());
 				
 				
 				// Voltages as String

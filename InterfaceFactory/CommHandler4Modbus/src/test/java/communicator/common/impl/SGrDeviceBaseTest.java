@@ -1,7 +1,7 @@
 package communicator.common.impl;
 
+import com.smartgridready.ns.v0.DataTypeType;
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
-import com.smartgridready.ns.v0.SGrGenDataType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.V0Factory;
 import communicator.common.helper.DeviceDescriptionLoader;
@@ -29,13 +29,13 @@ class SGrDeviceBaseTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SGrDeviceBaseTest.class);
 
-    private static final SGrGenDataType INTEGER_VALUE_20482048 = V0Factory.eINSTANCE.createSGrGenDataType();
-    private static final SGrGenDataType DOUBLE_VALUE_4096_00009999 = V0Factory.eINSTANCE.createSGrGenDataType();
-    private static final SGrGenDataType STRING_VALUE_1000 = V0Factory.eINSTANCE.createSGrGenDataType();
+    private static final DataTypeType INTEGER_VALUE_20482048 = V0Factory.eINSTANCE.createDataTypeType();
+    private static final DataTypeType DOUBLE_VALUE_4096_00009999 = V0Factory.eINSTANCE.createDataTypeType();
+    private static final DataTypeType STRING_VALUE_1000 = V0Factory.eINSTANCE.createDataTypeType();
 
     static {
-        INTEGER_VALUE_20482048.setInteger(20482048L);
-        DOUBLE_VALUE_4096_00009999.setDecimal(BigDecimal.valueOf(4096.00009999d));
+        INTEGER_VALUE_20482048.setInt32U(20482048L);
+        DOUBLE_VALUE_4096_00009999.setFloat64(4096.00009999d);
         STRING_VALUE_1000.setString("1000");
     }
 
@@ -46,26 +46,26 @@ class SGrDeviceBaseTest {
 
     private static Stream<Arguments> checkRangeArguments() {
         return Stream.of(
-                Arguments.of(new SGrGenDataType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482048), Expect.OK),
-                Arguments.of(new SGrGenDataType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482049), Expect.ERROR),
-                Arguments.of(new SGrGenDataType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482048), Expect.OK),
-                Arguments.of(new SGrGenDataType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482047), Expect.ERROR),
+                Arguments.of(new DataTypeType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482048), Expect.OK),
+                Arguments.of(new DataTypeType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482049), Expect.ERROR),
+                Arguments.of(new DataTypeType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482048), Expect.OK),
+                Arguments.of(new DataTypeType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482047), Expect.ERROR),
 
-                Arguments.of(new SGrGenDataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00009999d), Expect.OK),
-                Arguments.of(new SGrGenDataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00010000d), Expect.ERROR),
-                Arguments.of(new SGrGenDataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009999d), Expect.OK),
-                Arguments.of(new SGrGenDataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.ERROR),
+                Arguments.of(new DataTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00009999d), Expect.OK),
+                Arguments.of(new DataTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00010000d), Expect.ERROR),
+                Arguments.of(new DataTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009999d), Expect.OK),
+                Arguments.of(new DataTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.ERROR),
 
-                Arguments.of(new SGrGenDataType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1000), Expect.OK),
-                Arguments.of(new SGrGenDataType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1001), Expect.OK),
-                Arguments.of(new SGrGenDataType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(1000), Expect.OK),
-                Arguments.of(new SGrGenDataType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(999), Expect.OK)
+                Arguments.of(new DataTypeType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1000), Expect.OK),
+                Arguments.of(new DataTypeType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1001), Expect.OK),
+                Arguments.of(new DataTypeType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(1000), Expect.OK),
+                Arguments.of(new DataTypeType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(999), Expect.OK)
         );
     }
 
     @ParameterizedTest
     @MethodSource("checkRangeArguments")
-    void checkRange(SGrGenDataType[] values, Comparator comparator, BigDecimal limit, Expect expect) {
+    void checkRange(DataTypeType[] values, Comparator comparator, BigDecimal limit, Expect expect) {
 
         SGrModbusDevice device = createSGrModbusDevice();
 
@@ -119,7 +119,7 @@ class SGrDeviceBaseTest {
         assertEquals("METAS", attributes.getSpecQualityRequirement());
         assertEquals(BigDecimal.valueOf(20), attributes.getMinLoad());
         assertEquals(BigDecimal.valueOf(30), attributes.getCurtailment());
-        assertEquals(BigDecimal.valueOf(10), attributes.getMaxLockTimeMinutes());
+        assertEquals(10.0f, attributes.getMaxLockTimeMinutes());
         assertEquals(BigDecimal.valueOf(2.2), attributes.getPrecision());
         assertEquals("0.005", String.format("%.3f", attributes.getMinVal()));
         assertEquals("380.000", String.format("%.3f", attributes.getMaxVal()));
@@ -135,7 +135,7 @@ class SGrDeviceBaseTest {
 
         assertEquals("METAS", attributes.getSpecQualityRequirement());
         assertEquals(BigDecimal.valueOf(30), attributes.getCurtailment());
-        assertEquals(BigDecimal.valueOf(10), attributes.getMaxLockTimeMinutes());
+        assertEquals(10.0f, attributes.getMaxLockTimeMinutes());
         assertEquals(BigDecimal.valueOf(2.5), attributes.getPrecision());
     }
 
@@ -149,7 +149,7 @@ class SGrDeviceBaseTest {
 
         assertEquals("METAS", attributes.getSpecQualityRequirement());
         assertEquals(BigDecimal.valueOf(40), attributes.getCurtailment());
-        assertEquals(BigDecimal.valueOf(10), attributes.getMaxLockTimeMinutes());
+        assertEquals(10.0f, attributes.getMaxLockTimeMinutes());
         assertEquals(BigDecimal.valueOf(2.5), attributes.getPrecision());
     }
 
@@ -159,7 +159,7 @@ class SGrDeviceBaseTest {
         Map<String, String> expected = new HashMap<>();
         expected.put("specQualityRequirement", "METAS");
         expected.put("curtailment", "30");
-        expected.put("maxLockTimeMinutes", "10");
+        expected.put("maxLockTimeMinutes", "10.0");
         expected.put("minLoad", "20");
         expected.put("minVal", "0.005");
         expected.put("maxVal", "380");
