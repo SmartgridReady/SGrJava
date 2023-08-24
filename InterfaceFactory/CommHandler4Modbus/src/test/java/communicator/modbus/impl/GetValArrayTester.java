@@ -1,6 +1,6 @@
 package communicator.modbus.impl;
 
-import com.smartgridready.ns.v0.DataTypeType;
+import com.smartgridready.ns.v0.DataType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.modbus.api.GenDeviceApi4Modbus;
@@ -34,8 +34,8 @@ public class GetValArrayTester {
 			try {	
 				// set device address of devWagoMeter
 					
-				mbRTU.setUnitIdentifier((byte) 1);				
-				DataTypeType[] voltages = devWagoMeter.getValArrByGDPType("VoltageAC", "Voltage-L1-L2-L3");
+				mbRTU.setUnitIdentifier((byte) 1);
+				DataType[] voltages = devWagoMeter.getValArrByGDPType("VoltageAC", "Voltage-L1-L2-L3");
 				
 				// Voltages as GDP type
 				LOG.info("WAGO Meter Voltages AC run 1: L1: {}V - L2 {}V - L3: {}V", 

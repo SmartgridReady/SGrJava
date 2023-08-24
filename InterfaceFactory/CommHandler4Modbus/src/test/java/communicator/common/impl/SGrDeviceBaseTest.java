@@ -1,6 +1,6 @@
 package communicator.common.impl;
 
-import com.smartgridready.ns.v0.DataTypeType;
+import com.smartgridready.ns.v0.DataType;
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
 import com.smartgridready.ns.v0.V0Factory;
@@ -29,9 +29,9 @@ class SGrDeviceBaseTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SGrDeviceBaseTest.class);
 
-    private static final DataTypeType INTEGER_VALUE_20482048 = V0Factory.eINSTANCE.createDataTypeType();
-    private static final DataTypeType DOUBLE_VALUE_4096_00009999 = V0Factory.eINSTANCE.createDataTypeType();
-    private static final DataTypeType STRING_VALUE_1000 = V0Factory.eINSTANCE.createDataTypeType();
+    private static final DataType INTEGER_VALUE_20482048 = V0Factory.eINSTANCE.createDataType();
+    private static final DataType DOUBLE_VALUE_4096_00009999 = V0Factory.eINSTANCE.createDataType();
+    private static final DataType STRING_VALUE_1000 = V0Factory.eINSTANCE.createDataType();
 
     static {
         INTEGER_VALUE_20482048.setInt32U(20482048L);
@@ -46,26 +46,26 @@ class SGrDeviceBaseTest {
 
     private static Stream<Arguments> checkRangeArguments() {
         return Stream.of(
-                Arguments.of(new DataTypeType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482048), Expect.OK),
-                Arguments.of(new DataTypeType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482049), Expect.ERROR),
-                Arguments.of(new DataTypeType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482048), Expect.OK),
-                Arguments.of(new DataTypeType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482047), Expect.ERROR),
+                Arguments.of(new DataType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482048), Expect.OK),
+                Arguments.of(new DataType[]{INTEGER_VALUE_20482048}, Comparator.MIN, new BigDecimal(20482049), Expect.ERROR),
+                Arguments.of(new DataType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482048), Expect.OK),
+                Arguments.of(new DataType[]{INTEGER_VALUE_20482048}, Comparator.MAX, new BigDecimal(20482047), Expect.ERROR),
 
-                Arguments.of(new DataTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00009999d), Expect.OK),
-                Arguments.of(new DataTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00010000d), Expect.ERROR),
-                Arguments.of(new DataTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009999d), Expect.OK),
-                Arguments.of(new DataTypeType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.ERROR),
+                Arguments.of(new DataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00009999d), Expect.OK),
+                Arguments.of(new DataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00010000d), Expect.ERROR),
+                Arguments.of(new DataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009999d), Expect.OK),
+                Arguments.of(new DataType[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.ERROR),
 
-                Arguments.of(new DataTypeType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1000), Expect.OK),
-                Arguments.of(new DataTypeType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1001), Expect.OK),
-                Arguments.of(new DataTypeType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(1000), Expect.OK),
-                Arguments.of(new DataTypeType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(999), Expect.OK)
+                Arguments.of(new DataType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1000), Expect.OK),
+                Arguments.of(new DataType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1001), Expect.OK),
+                Arguments.of(new DataType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(1000), Expect.OK),
+                Arguments.of(new DataType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(999), Expect.OK)
         );
     }
 
     @ParameterizedTest
     @MethodSource("checkRangeArguments")
-    void checkRange(DataTypeType[] values, Comparator comparator, BigDecimal limit, Expect expect) {
+    void checkRange(DataType[] values, Comparator comparator, BigDecimal limit, Expect expect) {
 
         SGrModbusDevice device = createSGrModbusDevice();
 

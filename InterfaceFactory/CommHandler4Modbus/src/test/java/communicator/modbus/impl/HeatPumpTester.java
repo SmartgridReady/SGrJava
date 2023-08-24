@@ -27,10 +27,10 @@ package communicator.modbus.impl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.smartgridready.ns.v0.DataType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 // SmartGridready definitions
-import com.smartgridready.ns.v0.DataTypeType;
 import com.smartgridready.ns.v0.SGrEnumListType;
 import com.smartgridready.ns.v0.SGrHPOpstateType;
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
@@ -203,7 +203,7 @@ public class HeatPumpTester {
 			long lVal=0;
 			boolean bVal1=false,bVal2=false,bVal3=false;
 			String  sVal1="0.0", sVal2="0.0", sVal3="0.0", sVal4 ="0.0";
-			DataTypeType gdtValue = V0Factory.eINSTANCE.createDataTypeType();
+			DataType gdtValue = V0Factory.eINSTANCE.createDataType();
 				
 			try {			
 				 LOG.info(String.format("HeatPump HovalTCP"));
@@ -212,8 +212,8 @@ public class HeatPumpTester {
 				if (runtimeCnt == 2)
 				{
                   // Testing Setters
-				  DataTypeType  hpval = V0Factory.eINSTANCE.createDataTypeType();
-				  DataTypeType  hpCmd = V0Factory.eINSTANCE.createDataTypeType();
+				  DataType  hpval = V0Factory.eINSTANCE.createDataType();
+				  DataType  hpCmd = V0Factory.eINSTANCE.createDataType();
 
 				  float fValStpt = (float) 0.0 ;	
 				  hpval.setFloat64(fValStpt);
@@ -465,7 +465,7 @@ public class HeatPumpTester {
 				if (runtimeCnt == 2)
 				{
 
-				  DataTypeType  hpval = V0Factory.eINSTANCE.createDataTypeType();
+					DataType  hpval = V0Factory.eINSTANCE.createDataType();
 				  /*	
 				   LOG.info(String.format("######################  setting new values ######################"));
 				   // testing setters: one setting for a test run only recommended
@@ -680,9 +680,9 @@ public class HeatPumpTester {
 				
 				//Setters
 				float fValStpt=(float)  runtimeCnt *  (float) 0.1;
-				DataTypeType gdtValue=V0Factory.eINSTANCE.createDataTypeType();
+				DataType gdtValue=V0Factory.eINSTANCE.createDataType();
 				SGrEnumListType oEnumListSet=V0Factory.eINSTANCE.createSGrEnumListType();
-				DataTypeType  modeCmd = V0Factory.eINSTANCE.createDataTypeType();
+				DataType  modeCmd = V0Factory.eINSTANCE.createDataType();
 				
 					try {	
 						// if RTU is used, set address here
@@ -694,7 +694,7 @@ public class HeatPumpTester {
 
 						if (runtimeCnt == 2)
 						{
-						  DataTypeType  hpval = V0Factory.eINSTANCE.createDataTypeType();
+							DataType  hpval = V0Factory.eINSTANCE.createDataType();
 								
 						  LOG.info(String.format("######################  setting new values ######################"));
 						  // testing setters: one setting for a test run only recommended
@@ -912,7 +912,7 @@ public class HeatPumpTester {
 				if (runtimeCnt == 2)
 				{
 
-				  DataTypeType  hpval = V0Factory.eINSTANCE.createDataTypeType();
+					DataType  hpval = V0Factory.eINSTANCE.createDataType();
 					
 				   LOG.info(String.format("######################  setting new values ######################"));
 				   // testing setters: one setting for a test run only recommended

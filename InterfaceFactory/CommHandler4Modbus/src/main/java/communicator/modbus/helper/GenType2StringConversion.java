@@ -34,7 +34,7 @@ import com.smartgridready.ns.v0.SGReadyStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.DataTypeType;
+import com.smartgridready.ns.v0.DataType;
 import com.smartgridready.ns.v0.SGrHCOpModeType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
@@ -61,7 +61,7 @@ public class GenType2StringConversion {
 		// utility class
 	}
 	
-	public static String[] format(DataTypeType[] dGenTypeArr) {
+	public static String[] format(DataType[] dGenTypeArr) {
 		
 		List<String> retval = new ArrayList<>();
 		Arrays.asList(dGenTypeArr).forEach(val -> retval.add(format(val)));
@@ -69,7 +69,7 @@ public class GenType2StringConversion {
 	}
 	
 	
-	public static String format(DataTypeType dGenType) {
+	public static String format(DataType dGenType) {
 		
 		final Locale locale = Locale.getDefault();
 		
@@ -101,9 +101,9 @@ public class GenType2StringConversion {
 		} else if (dGenType.isSetInt16U()) {
 			int iVal = dGenType.getInt16U();
 			retval = String.format(locale, "%d", iVal);
-		} else if (dGenType.getInt32() != null) {
-			BigInteger bgVal = dGenType.getInt32();
-			retval = String.format(bgVal.toString());
+		} else if (dGenType.isSetInt32()) {
+			long lVal = dGenType.getInt32();
+			retval = String.format("%d", lVal);
 		} else if (dGenType.isSetInt32U()) {
 			long lVal = dGenType.getInt32U();
 			retval = String.format(locale, "%d", lVal);
@@ -125,16 +125,16 @@ public class GenType2StringConversion {
 		return retval;
 	}
 
-	public static DataTypeType[] format(String[] values, DataTypeType dGenType) {
+	public static DataType[] format(String[] values, DataType dGenType) {
 
-		List<DataTypeType> retval = new ArrayList<>();
+		List<DataType> retval = new ArrayList<>();
 		Arrays.stream(values).forEach(val -> retval.add(format(val, dGenType)));
-		return retval.toArray(new DataTypeType[0]);
+		return retval.toArray(new DataType[0]);
 	}
 
-	public static DataTypeType format(String value, final DataTypeType dGenType) {
+	public static DataType format(String value, final DataType dGenType) {
 
-		DataTypeType retval = V0Factory.eINSTANCE.createDataTypeType();
+		DataType retval = V0Factory.eINSTANCE.createDataType();
 
 		if (dGenType.isSetBoolean()) {
 			retval.setBoolean(value.equals("true") || value.equals("TRUE"));
@@ -154,9 +154,9 @@ public class GenType2StringConversion {
 			int iVal;
 			iVal = Integer.parseInt(value);
 			retval.setInt16U(iVal);
-		} else if (dGenType.getInt32() != null) {
-			BigInteger bgVal = new BigInteger(value);
-			retval.setInt32(bgVal);
+		} else if (dGenType.isSetInt32()) {
+			int iVal = Integer.parseInt(value);
+			retval.setInt32(iVal);
 		} else if (dGenType.isSetInt32U()) {
 			long lVal = Long.parseLong(value);
 			retval.setInt32U(lVal);
