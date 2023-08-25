@@ -1078,7 +1078,7 @@ public class IBTlabLoopTester {
 					Thread.sleep(25);
 					
 					// Add test getters and setters for binary interface
-					//fVal1 = devWagoMeter.getValByGDPType("FpName", "DpName").getFloat32(); 
+					//fVal1 = devWagoMeter.getValByGDPType("FpName", "DpName").getFloat64();
 					//Thread.sleep(10);   
 
 
