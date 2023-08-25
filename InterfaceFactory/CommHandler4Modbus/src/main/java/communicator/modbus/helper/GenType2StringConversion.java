@@ -31,10 +31,10 @@ import com.smartgridready.ns.v0.HovHPOpStateType;
 import com.smartgridready.ns.v0.HovSGReadySrcSelType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
-import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
 import com.smartgridready.ns.v0.SGrEnumListType;
+import com.smartgridready.ns.v0.DataType;
 import com.smartgridready.ns.v0.SGrHCOpModeType;
 import com.smartgridready.ns.v0.SGrHPOpModeType;
 import com.smartgridready.ns.v0.SGrMeasValueSourceType;
@@ -61,7 +61,7 @@ public class GenType2StringConversion {
 		// utility class
 	}
 	
-	public static String[] format(SGrBasicGenDataPointTypeType[] dGenTypeArr) {
+	public static String[] format(DataType[] dGenTypeArr) {
 		
 		List<String> retval = new ArrayList<>();
 		Arrays.asList(dGenTypeArr).forEach(val -> retval.add(format(val)));
@@ -69,7 +69,7 @@ public class GenType2StringConversion {
 	}
 	
 	
-	public static String format(SGrBasicGenDataPointTypeType dGenType) {
+	public static String format(DataType dGenType) {
 		
 		final Locale locale = Locale.getDefault();
 		
@@ -101,9 +101,9 @@ public class GenType2StringConversion {
 		} else if (dGenType.isSetInt16U()) {
 			int iVal = dGenType.getInt16U();
 			retval = String.format(locale, "%d", iVal);
-		} else if (dGenType.getInt32() != null) {
-			BigInteger bgVal = dGenType.getInt32();
-			retval = String.format(bgVal.toString());
+		} else if (dGenType.isSetInt32()) {
+			long lVal = dGenType.getInt32();
+			retval = String.format("%d", lVal);
 		} else if (dGenType.isSetInt32U()) {
 			long lVal = dGenType.getInt32U();
 			retval = String.format(locale, "%d", lVal);
@@ -113,12 +113,6 @@ public class GenType2StringConversion {
 		} else if (dGenType.getInt64U() != null) {
 			BigInteger bgVal = dGenType.getInt64U();
 			retval = String.format(locale, "%d", bgVal);
-		} else if (dGenType.isSetInt8()) {
-			byte btVal = dGenType.getInt8();
-			retval = String.format(locale, "%d", btVal);
-		} else if (dGenType.isSetInt8U()) {
-			short shVal = dGenType.getInt8U();
-			retval = String.format(locale, "%d", shVal);
 		} else if (dGenType.getString() != null) {
 			retval = dGenType.getString();
 		} else if (dGenType.getDateTime() != null) {
@@ -131,23 +125,19 @@ public class GenType2StringConversion {
 		return retval;
 	}
 
-	public static SGrBasicGenDataPointTypeType[] format(String[] values, SGrBasicGenDataPointTypeType dGenType) {
+	public static DataType[] format(String[] values, DataType dGenType) {
 
-		List<SGrBasicGenDataPointTypeType> retval = new ArrayList<>();
+		List<DataType> retval = new ArrayList<>();
 		Arrays.stream(values).forEach(val -> retval.add(format(val, dGenType)));
-		return retval.toArray(new SGrBasicGenDataPointTypeType[0]);
+		return retval.toArray(new DataType[0]);
 	}
 
-	public static SGrBasicGenDataPointTypeType format(String value, final SGrBasicGenDataPointTypeType dGenType) {
+	public static DataType format(String value, final DataType dGenType) {
 
-		SGrBasicGenDataPointTypeType retval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+		DataType retval = V0Factory.eINSTANCE.createDataType();
 
 		if (dGenType.isSetBoolean()) {
-			boolean bVal = false;
-			if (value.equals("true") || value.equals("TRUE")) {
-				bVal = true;
-			}
-			retval.setBoolean(bVal);
+			retval.setBoolean(value.equals("true") || value.equals("TRUE"));
 		}else if (dGenType.isSetFloat32()) {
 			float fVal;
 			fVal = Float.parseFloat(value);
@@ -164,9 +154,9 @@ public class GenType2StringConversion {
 			int iVal;
 			iVal = Integer.parseInt(value);
 			retval.setInt16U(iVal);
-		} else if (dGenType.getInt32() != null) {
-			BigInteger bgVal = new BigInteger(value);
-			retval.setInt32(bgVal);
+		} else if (dGenType.isSetInt32()) {
+			int iVal = Integer.parseInt(value);
+			retval.setInt32(iVal);
 		} else if (dGenType.isSetInt32U()) {
 			long lVal = Long.parseLong(value);
 			retval.setInt32U(lVal);
@@ -202,7 +192,7 @@ public class GenType2StringConversion {
 	}
 
 	public static String enum2StringConversion(SGrEnumListType oGenVal) {
-		String rval = "-";
+		String rval;
 
 		// TODO HF add additional enums according CBTest
 		// Ongoing: extend this list manually for EACH enumeration being added to
@@ -309,7 +299,7 @@ public class GenType2StringConversion {
 		} else if (oGenVal.isSetSgrHPOpMode() ) {// E0016
 			rval.setSgrHPOpMode(SGrHPOpModeType.getByName(val));
 		} else if (oGenVal.isSetSgrHCOpMode() ) {// E0017
-			rval.setSgrHCOpMode(SGrHCOpModeType.getByName(val));;
+			rval.setSgrHCOpMode(SGrHCOpModeType.getByName(val));
 		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// Ecta001
 			rval.setCtaDomHotWOpMode(CtaDomHotWOpModeType.getByName(val));
 		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003

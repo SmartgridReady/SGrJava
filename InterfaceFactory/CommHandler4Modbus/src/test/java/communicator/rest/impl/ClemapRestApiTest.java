@@ -1,21 +1,21 @@
 package communicator.rest.impl;
 
-import java.io.IOException;
-import java.util.Properties;
-
-import communicator.rest.api.GenDeviceApi4Rest;
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
-
 import communicator.common.helper.DeviceDescriptionLoader;
+import communicator.rest.api.GenDeviceApi4Rest;
 import communicator.rest.exception.RestApiAuthenticationException;
 import communicator.rest.exception.RestApiResponseParseException;
 import communicator.rest.exception.RestApiServiceCallException;
 import communicator.rest.http.client.ApacheRestServiceClientFactory;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.util.Properties;
+
+@Disabled("Neeeds a real device")
 class ClemapRestApiTest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ClemapRestApiTest.class);
@@ -35,6 +35,7 @@ class ClemapRestApiTest {
 			+ "}";
 	
 	@Test
+	@SuppressWarnings("squid:S2699")
 	void testClemapRead() throws Exception {
 		
 		Properties props = new Properties();
@@ -61,8 +62,10 @@ class ClemapRestApiTest {
 			throw e;
 		}						
 	}
-	
+
+	@Disabled("needs a Clemap EI-XML that contains a 'Configuration/CreateMeterGroup' profile")
 	@Test
+	@SuppressWarnings("squid:S2699")
 	void testClemapWrite() throws Exception {
 		
 		Properties props = new Properties();

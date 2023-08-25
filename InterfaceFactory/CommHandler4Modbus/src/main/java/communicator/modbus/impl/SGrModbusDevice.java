@@ -24,17 +24,18 @@ package communicator.modbus.impl;
 import com.smartgridready.ns.v0.CtaDomHotWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
+import com.smartgridready.ns.v0.DataType;
 import com.smartgridready.ns.v0.HovBufferStateType;
-import com.smartgridready.ns.v0.HovDomHotWStateType;
 import com.smartgridready.ns.v0.HovDomHotWOpModeType;
+import com.smartgridready.ns.v0.HovDomHotWStateType;
 import com.smartgridready.ns.v0.HovHCOpModeType;
 import com.smartgridready.ns.v0.HovHCOpStateType;
 import com.smartgridready.ns.v0.HovHPOpModeType;
 import com.smartgridready.ns.v0.HovHPOpStateType;
 import com.smartgridready.ns.v0.HovSGReadySrcSelType;
+import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.SGReadyStateLv1Type;
 import com.smartgridready.ns.v0.SGReadyStateLv2Type;
-import com.smartgridready.ns.v0.SGrBasicGenDataPointTypeType;
 import com.smartgridready.ns.v0.SGrEVSEStateLv1Type;
 import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
 import com.smartgridready.ns.v0.SGrEVStateType;
@@ -62,11 +63,12 @@ import com.smartgridready.ns.v0.TEnumConversionFct;
 import com.smartgridready.ns.v0.TEnumObjectType;
 import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
 import com.smartgridready.ns.v0.V0Factory;
-import communicator.modbus.api.GenDeviceApi4Modbus;
+import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
+import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.modbus.helper.CacheRecord;
 import communicator.modbus.helper.ConversionHelper;
 import communicator.modbus.helper.GenType2StringConversion;
@@ -92,7 +94,8 @@ import java.util.Optional;
  * @author furrer / IBT,cb
  *
  */
-public class SGrModbusDevice implements GenDeviceApi4Modbus {
+public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModbusFunctionalProfileType, SGrModbusDataPointType>
+		implements GenDeviceApi4Modbus {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrModbusDevice.class);
 
@@ -100,11 +103,12 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 	private final SGrModbusDeviceFrame myDeviceDescription;
 	
-	private final Map<SGrModbusDataPointType, CacheRecord<List<SGrBasicGenDataPointTypeType>>> myReadCache = new HashMap<>();
+	private final Map<SGrModbusDataPointType, CacheRecord<List<DataType>>> myReadCache = new HashMap<>();
 	
 	private final Map<SGrTimeSyncBlockNotificationType, CacheRecord<ModbusReaderResponse>> myTimeSyncBlockReadCache = new HashMap<>();	
 
 	public SGrModbusDevice(SGrModbusDeviceFrame aDeviceDescription, GenDriverAPI4Modbus aRtuDriver) {
+		super(aDeviceDescription);
 		myDeviceDescription = aDeviceDescription;
 		drv4Modbus = aRtuDriver;
 	}
@@ -117,7 +121,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
-				SGrBasicGenDataPointTypeType dGenType = prv_getValByGDPType(dataPoint.get());
+				DataType dGenType = prv_getValByGDPType(dataPoint.get());
 				return GenType2StringConversion.format(dGenType);
 			}
 		}
@@ -125,11 +129,11 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	}
 
 	@Override
-	public SGrBasicGenDataPointTypeType getValByGDPType(String sProfileName, String sDataPointName)
+	public DataType getValByGDPType(String sProfileName, String sDataPointName)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);
 
-		SGrBasicGenDataPointTypeType retval = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+		DataType retval = V0Factory.eINSTANCE.createDataType();
 
 		if (profile.isPresent()) {
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
@@ -142,10 +146,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	}
 
 	// Read a single value
-	private SGrBasicGenDataPointTypeType prv_getValByGDPType(
+	private DataType prv_getValByGDPType(
 			SGrModbusDataPointType aDataPoint) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		
-		if (aDataPoint.getBlockCashName() != null) {
+		if (aDataPoint.getBlockCacheId() != null) {
 			return prv_getBlockVal(aDataPoint);
 		}
 
@@ -160,7 +164,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	}
 	
 	@Override
-	public SGrBasicGenDataPointTypeType[] getValArrByGDPType(String sProfileName, String sDataPointName) 
+	public DataType[] getValArrByGDPType(String sProfileName, String sDataPointName)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		Optional<SGrModbusFunctionalProfileType> profile = findProfile(sProfileName);	
@@ -169,24 +173,27 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			Optional<SGrModbusDataPointType> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				
-				if (!dataPoint.get().getDataPoint().isSetArrLen()) {
+				if (!dataPoint.get().getDataPoint().isSetArrayLength()) {
 					throw new GenDriverException(String.format("getValArrByGDPType(): Datapoint %s-%s is not an array.", sProfileName, sDataPointName ));
 				}
 									
-				int arrLen = dataPoint.get().getDataPoint().getArrLen();								
+				int arrLen = dataPoint.get().getDataPoint().getArrayLength();
 				return prv_getValArrByGDPType(dataPoint.get(), arrLen);
 			}
 		}
-		return new SGrBasicGenDataPointTypeType[] {};
+		return new DataType[] {};
 	}			
 	
 	
-	private SGrBasicGenDataPointTypeType prv_getBlockVal( SGrModbusDataPointType aDataPoint)
+	private DataType prv_getBlockVal( SGrModbusDataPointType aDataPoint)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
-			Optional<SGrTimeSyncBlockNotificationType> blockNotificationTypeOpt = findTimeSyncBlockNotificationType(aDataPoint.getBlockCashName());
+			// Check read/write permission
+			checkReadWritePermission(aDataPoint, DataDirection.READ);
+
+			Optional<SGrTimeSyncBlockNotificationType> blockNotificationTypeOpt = findTimeSyncBlockNotificationType(aDataPoint.getBlockCacheId());
 			if (!blockNotificationTypeOpt.isPresent()) {
-				throw new GenDriverException("Could not find timeSyncBlockNotification entry with name=" + aDataPoint.getBlockCashName());
+				throw new GenDriverException("Could not find timeSyncBlockNotification entry with name=" + aDataPoint.getBlockCacheId());
 			}
 			
 			SGrTimeSyncBlockNotificationType blockNotificationType = blockNotificationTypeOpt.get();											
@@ -202,7 +209,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					
 			CacheRecord<ModbusReaderResponse> mbCacheRecord = myTimeSyncBlockReadCache.get(blockNotificationType);
 			ModbusReaderResponse mbResponse;
-			if (mbCacheRecord == null || mbCacheRecord.isExpired(blockNotificationType.getTimeToLive())) {
+			if (mbCacheRecord == null || mbCacheRecord.isExpired(blockNotificationType.getTimeToLiveMs())) {
 
 				LOG.debug("Reading time sync block from modbus device");
 				mbResponse = ModbusReader.read(
@@ -212,7 +219,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 						modbusInterfaceDesc.isFirstRegisterAddressIsOne(),
 						blockNotificationType.getSize());
 				
-				if (blockNotificationType.isSetTimeToLive()) {
+				if (blockNotificationType.isSetTimeToLiveMs()) {
 					myTimeSyncBlockReadCache.put(blockNotificationType, new CacheRecord<>(mbResponse, Instant.now()));
 				}
 			} else {
@@ -239,16 +246,19 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	}
 
 	// Read an array of values
-	private SGrBasicGenDataPointTypeType[] prv_getValArrByGDPType(
+	private DataType[] prv_getValArrByGDPType(
 		SGrModbusDataPointType aDataPoint, int arrayLen)
 		throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+
+		// Check if read is allowed
+		checkReadWritePermission(aDataPoint, DataDirection.READ);
 
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
 		TSGrModbusRegisterRef mbRegRef = aDataPoint.getModbusDataPoint().get(0).getModbusFirstRegisterReference();
 
 		boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
 
-		CacheRecord<List<SGrBasicGenDataPointTypeType>> resultRecord = myReadCache.get(aDataPoint);
+		CacheRecord<List<DataType>> resultRecord = myReadCache.get(aDataPoint);
 
 		if (resultRecord == null || resultRecord.isExpired(aDataPoint.getTimeToLive())) {
 			
@@ -264,7 +274,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					size * arrayLen);
 
 		    // modbus OSI Layer 6 to generic OSI layer 6 conversion
-			List<SGrBasicGenDataPointTypeType> resultList = new ArrayList<>();		
+			List<DataType> resultList = new ArrayList<>();
 			for (int arrIdx = 0; arrIdx < arrayLen; arrIdx++) {						
 				resultList.add(
 					doReadConversion(
@@ -285,10 +295,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		} else {
 			LOG.debug("Was reading value from chache.");
 		}
-		return resultRecord.getValue().toArray(new SGrBasicGenDataPointTypeType[0]);				
+		return resultRecord.getValue().toArray(new DataType[0]);
 	}
 
-	private SGrBasicGenDataPointTypeType doReadConversion(SGrModbusDataPointType aDataPoint,
+	private DataType doReadConversion(SGrModbusDataPointType aDataPoint,
 														  SGrModbusInterfaceDescriptionType modbusInterfaceDesc,
 														  final int[] mbregrespSrc,
 														  final boolean[] mbbitrespSrc,
@@ -296,22 +306,21 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 														  boolean bGotDiscrete,
 														  int size, int arrOffset) {
 
-		int mul = 1, l6dev = -1;
+		int mul = 1;
+		int l6dev;
 		int pwof10 = 0;
 		// Register return value calculation
 		long RegRes = 0;
 		double dVal;
-		float fVal = (float) 0.0;
+		float fVal = 0;
 
 		int[] mbregresp = Arrays.copyOfRange(mbregrespSrc, arrOffset*size, (arrOffset+1)*size);
 		boolean[] mbbitresp = Arrays.copyOfRange(mbbitrespSrc, arrOffset*size, (arrOffset+1)*size);
 
-		SGrBasicGenDataPointTypeType dGenType = aDataPoint.getDataPoint().getBasicDataType();
-		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
+		ModbusDataType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
 		
 		// Data format adaption
-		dGenType = aDataPoint.getDataPoint()
-				.getBasicDataType();
+		DataType dGenType = aDataPoint.getDataPoint().getDataType();
 		// Data Direction ctrl
 		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
 
@@ -420,7 +429,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		// for all Java virtual machines
 		// Q&A:CB could you explain the issue further. Not clear to me yet.
 
-		SGrBasicGenDataPointTypeType retVal = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
+		DataType retVal = V0Factory.eINSTANCE.createDataType();
 		
 		if (dGenType.getEnum2bitmapIndex()!=null)
 		{
@@ -449,13 +458,12 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				bVal = mbbitresp[0];
 			}
 			retVal.setBoolean(bVal);
-		}
-		else if (dGenType.isSetFloat32()) {
-			if (bGotRegisters) {
 
+		} else if (dGenType.isSetFloat32()) {
+			if (bGotRegisters) {
 				if (    dMBType.isSetInt8()
 						|| dMBType.isSetInt16()
-						|| dMBType.getInt32()!=null
+						|| dMBType.isSetInt32()
 						|| dMBType.isSetInt64() ) {
 					dVal = (double) RegRes;
 					dVal = (dVal * Math.pow(10.0, pwof10));
@@ -471,10 +479,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					fVal = (float) dVal;
 				} else if (dMBType.isSetFloat32()) {
 					fVal = ConversionHelper.byteBufFromRegisters(singleResp).getFloat();
-				} 
-			    else if (dMBType.isSetFloat64()) {
+				}
+				else if (dMBType.isSetFloat64()) {
 					dVal = ConversionHelper.byteBufFromRegisters(doubleResp).getDouble();
-			    	fVal = (float) dVal;
+					fVal = (float) dVal;
 				}
 			}
 			retVal.setFloat32(fVal);
@@ -483,7 +491,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			if (bGotRegisters) {
 				if ((dMBType.isSetInt8())
 						|| (dMBType.isSetInt16())
-						|| (dMBType.getInt32()!=null)
+						|| (dMBType.isSetInt32())
 						|| (dMBType.isSetInt64())) {
 					dVal = (double) RegRes;
 					dVal = (dVal * Math.pow(10.0, pwof10));
@@ -516,13 +524,13 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				retVal.setInt16(shVal);
 			}
 		}
-		else if (dGenType.getInt32() != null) {
+		else if (dGenType.isSetInt32()) {
 			if (dMBType.isSetFloat32()) {
-				retVal.setInt32(BigInteger.valueOf((int)ConversionHelper.byteBufFromRegisters(singleResp).getFloat()));
+				retVal.setInt32((int)ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
 			} else if (dMBType.isSetFloat64()) {
-				retVal.setInt32(BigInteger.valueOf((int)ConversionHelper.byteBufFromRegisters(doubleResp).getDouble()));
+				retVal.setInt32((int)ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
-				retVal.setInt32(BigInteger.valueOf((int)RegRes));
+				retVal.setInt32((int)RegRes);
 			}
 		}
 		else if (dGenType.isSetInt16U()) {
@@ -567,7 +575,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		else if (dGenType.isSetInt8()) {
 			if (dMBType.isSetFloat32()) {
 				retVal.setInt8((byte) ConversionHelper.byteBufFromRegisters(singleResp).getFloat());
-			} else if (dMBType.isSetFloat64()){
+			} else if (dMBType.isSetFloat64()) {
 				retVal.setInt8((byte) ConversionHelper.byteBufFromRegisters(doubleResp).getDouble());
 			} else {
 				byte btVal = (byte) RegRes;
@@ -583,21 +591,16 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				short shVal = (byte) Math.abs(RegRes);
 				retVal.setInt8U(shVal);
 			}
-		}
-		else if (dGenType.getEnum()!=null) {
+		} else if (dGenType.getEnum()!=null) {
 			SGrEnumListType tt = regRes2EnumConversion(RegRes, dGenType.getEnum());
 			retVal.setEnum(tt);
-		}
-		else if(dGenType.getDateTime()!=null) {
+		} else if (dGenType.getDateTime()!=null) {
 			// TODO:HF? apply gregorian calendar library
 			// Q&A:CB can i assume that the value provided by MODBUS is a Unix timestamp in seconds? or millis?
 			// =>inDpTT.setDateTime(2017-08-04T08:48:37.124Z);
-		}
-		else if( dGenType.getString()!=null) {
-			    retVal.setString(ConversionHelper.convRegistersToString(mbregresp, 0, size*2));
-		}
-		else
-		{ // error handling for missing instance
+		} else if (dGenType.getString()!=null) {
+			retVal.setString(ConversionHelper.convRegistersToString(mbregresp, 0, size * 2));
+		} else { // error handling for missing instance
 		}		
 
 		return retVal;				
@@ -659,7 +662,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			break;
     		case SGrModbusLayer6DeviationType.SG_READY_ENUM2_IOH2L_VALUE:
 	    		// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at lower adders
-	    		// must follow follow the bwp definitions
+	    		// must follow the bwp definitions
 				switch (mbregresp[0])
 				{
 					case 1:
@@ -783,20 +786,20 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		SGrModbusDataPointType dataPoint = findDatapoint(profileName, dataPointName);
-		SGrBasicGenDataPointTypeType[] genValues = GenType2StringConversion.format(values, dataPoint.getDataPoint().getBasicDataType());
+		DataType[] genValues = GenType2StringConversion.format(values, dataPoint.getDataPoint().getDataType());
 		prv_setValArrByGDPType(dataPoint, genValues);
 	}
 
 	@Override
-	public void setValByGDPType(String sProfileName, String sDataPointName, SGrBasicGenDataPointTypeType value)
+	public void setValByGDPType(String sProfileName, String sDataPointName, DataType value)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		SGrModbusDataPointType dataPoint = findDatapoint(sProfileName, sDataPointName);
-		prv_setValArrByGDPType(dataPoint, new SGrBasicGenDataPointTypeType[]{value});
+		prv_setValArrByGDPType(dataPoint, new DataType[]{value});
 	}
 
 	@Override
-	public void setValArrByGDPType(String profileName, String dataPointName, SGrBasicGenDataPointTypeType[] values)
+	public void setValArrByGDPType(String profileName, String dataPointName, DataType[] values)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		SGrModbusDataPointType dataPoint = findDatapoint(profileName, dataPointName);
 		prv_setValArrByGDPType(dataPoint, values);
@@ -804,7 +807,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 	private void prv_setValArrByGDPType(
 			SGrModbusDataPointType aDataPoint,
-			SGrBasicGenDataPointTypeType[] sgrValues) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+			DataType[] sgrValues) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 
 		int[] mbregsnd = new int[120];
@@ -822,18 +825,14 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		SGrModbusInterfaceDescriptionType modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDesc();
 
 		// Data format adaption
-		SGrBasicGenDataPointTypeType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
+		ModbusDataType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType();
 
+		// Handle generic attributes:
 		// Data Direction ctrl
-		SGrRWPType dRWPType = aDataPoint.getDataPoint().getRwpDatadirection();
-		// Attributes
+		checkReadWritePermission(aDataPoint, DataDirection.WRITE);
 
-		// TODO:HF?  add attribute handling
-		if (aDataPoint.getGenAttribute() != null) {
-			/* there are generic attributes available
-			 * place to add potential attribut setter API functionality
-			 */
-		}
+		// Value range check
+		checkOutOfRange(sgrValues, aDataPoint);
 
 		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available
 			if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
@@ -890,8 +889,9 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					l6dev);
 		}
 
-		mbregsnd = mbRegBuf.array();
-		mbbitsnd = ConversionHelper.byteArrToBooleanArr(mbByteBuf.array());
+		int nrRegisters = aDataPoint.getModbusDataPoint().get(0).getDpSizeNrRegisters();
+		mbregsnd = Arrays.copyOfRange(mbRegBuf.array(), 0,nrRegisters * sgrValues.length);
+		mbbitsnd = Arrays.copyOfRange(ConversionHelper.byteArrToBooleanArr(mbByteBuf.array()), 0, nrRegisters * sgrValues.length);
 
 		try {
 			if (bRegisterCMDs) {
@@ -916,12 +916,12 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 	private void doWriteConversion(
 			IntBuffer mbRegBufRes,
 			ByteBuffer 	mbBitBuf,
-			SGrBasicGenDataPointTypeType sgrValue,
+			DataType sgrValue,
 			boolean bRegisterCMDs,
 			boolean bDiscreteCMDs,
 			int mul,
 			int powof10,
-			SGrBasicGenDataPointTypeType dMBType,
+			ModbusDataType dMBType,
 			int mbsize,
 			EList<TEnumConversionFct> MBconvScheme,
 			SGrModbusEnumMapperType sgrEnumMapper,
@@ -967,8 +967,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					fVal = (float) sgrValue.getInt8();
 				if (sgrValue.isSetInt16())
 					fVal = (float) sgrValue.getInt16();
-				if (sgrValue.getInt32() != null)
-					fVal = (float) sgrValue.getInt32().floatValue();
+				if (sgrValue.isSetInt32())
+					fVal = (float) sgrValue.getInt32();
 				if (sgrValue.isSetInt32U())
 					fVal = (float) sgrValue.getInt32U();
 				if (sgrValue.isSetInt64())
@@ -995,8 +995,8 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					dVal = (double) sgrValue.getInt8();
 				if (sgrValue.isSetInt16())
 					dVal = (double) sgrValue.getInt16();
-				if (sgrValue.getInt32() != null)
-					dVal = (double) sgrValue.getInt32().doubleValue();
+				if (sgrValue.isSetInt32())
+					dVal = (double) sgrValue.getInt32();
 				if (sgrValue.isSetInt64())
 					dVal = (double) sgrValue.getInt64();
 				if (sgrValue.isSetFloat32())
@@ -1023,7 +1023,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 					throw new IllegalArgumentException(
 							"INT16_VALUE out of range. Must be in -32678..32676 inclusive:" + dVal);
 				}
-
 			}
 
 		} else if (dMBType.isSetInt16U()) {
@@ -1087,7 +1086,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 				}
 			}
 		}
-		else if (dMBType.getInt32() != null) {
+		else if (dMBType.isSetInt32()) {
 			if (bRegisterCMDs) {
 				dVal = getConvertedDouble(sgrValue, powof10, mul);
 				if ((dVal <= 2147483647.0) && (dVal >= -2147483648.0)) {
@@ -1121,7 +1120,6 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			if (bRegisterCMDs) {
 				mbRegBuf.put(ConversionHelper.convStringToRegisters(sgrValue.getString()));
 			}
-
 		} else if (dMBType.getDateTime() != null) {
 			/*
 			 * TODO:HF? apply gregorian calendar library =>
@@ -1149,15 +1147,15 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		}
 	}
 
-	double getConvertedDouble(SGrBasicGenDataPointTypeType dGenType, int powof10, int mul) {
+	double getConvertedDouble(DataType dGenType, int powof10, int mul) {
 		double dVal = 0.0;
 
 		if (dGenType.isSetInt8())
 			dVal = (double) dGenType.getInt8();
 		if (dGenType.isSetInt16())
 			dVal = (double) dGenType.getInt16();
-		if (dGenType.getInt32() != null)
-			dVal = (double) dGenType.getInt32().doubleValue();
+		if (dGenType.isSetInt32())
+			dVal = (double) dGenType.getInt32();
 		if (dGenType.isSetInt64())
 			dVal = (double) dGenType.getInt64();
 		if (dGenType.isSetFloat32())
@@ -1172,6 +1170,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			dVal = (double) dGenType.getInt32U();
 		if (dGenType.getInt64U() != null)
 			dVal = (double) dGenType.getInt64U().doubleValue();
+
 		dVal = dVal /  mul;
 		dVal = (dVal * Math.pow(10.0, -powof10));
 
@@ -1311,10 +1310,10 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 
 	private Optional<SGrTimeSyncBlockNotificationType> findTimeSyncBlockNotificationType(String aName) {
 		return myDeviceDescription.getTimeSyncBlockNotification().stream()
-				.filter(tSyncBlock -> tSyncBlock.getBlockCashName().equals(aName)).findFirst();
+				.filter(tSyncBlock -> tSyncBlock.getBlockCacheId().equals(aName)).findFirst();
 	}
 
-	private static int adjustSign(SGrBasicGenDataPointTypeType type, int register) {
+	private static int adjustSign(ModbusDataType type, int register) {
 		if ( (register & 0x8000) != 0) {
 			if (isUnsignedType(type)) {
 				return register & 0x0000FFFF;
@@ -1325,32 +1324,21 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		return register;
 	}
 
-	private static boolean isUnsignedType(SGrBasicGenDataPointTypeType dataPointType) {
+	private static boolean isUnsignedType(ModbusDataType dataPointType) {
 		return (dataPointType.getInt64U() != null) ||
 				dataPointType.isSetInt32U() ||
 				dataPointType.isSetInt16U() ||
 				dataPointType.isSetInt8U();
 	}
 
-
-	private SGrModbusDataPointType findDatapoint(String profileName, String datapointName)
-			throws GenDriverException {
-		Optional<SGrModbusFunctionalProfileType> profile = findProfile(profileName);
-		if (profile.isPresent()) {
-			return findDataPointForProfile(profile.get(), datapointName)
-					.orElseThrow(() -> new GenDriverException("Datapoint with name " + datapointName + " not found"));
-		} else {
-			throw new GenDriverException("Functional profile with name " + profileName + " not found!");
-		}
-	}
-
-	private Optional<SGrModbusFunctionalProfileType> findProfile(String aProfileName) {
+	@Override
+	protected Optional<SGrModbusFunctionalProfileType> findProfile(String aProfileName) {
 		return myDeviceDescription.getFpListElement().stream()
 				.filter(modbusProfileFrame -> modbusProfileFrame.getFunctionalProfile().getProfileName().equals(aProfileName))
 				.findFirst();
 	}
 
-	private Optional<SGrModbusDataPointType> findDataPointForProfile(SGrModbusFunctionalProfileType aProfile,
+	protected Optional<SGrModbusDataPointType> findDataPointForProfile(SGrModbusFunctionalProfileType aProfile,
 																	 String aDataPointName) {
 		return aProfile.getDpListElement().stream()
 				.filter(datapoint -> datapoint.getDataPoint().getDatapointName().equals(aDataPointName))

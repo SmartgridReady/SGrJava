@@ -18,7 +18,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.api;
 
+import communicator.common.api.GenDeviceApi;
 import communicator.common.helper.DeviceDescriptionLoader;
+import communicator.common.runtime.GenDriverException;
 import communicator.rest.exception.RestApiAuthenticationException;
 import communicator.rest.exception.RestApiResponseParseException;
 import communicator.rest.exception.RestApiServiceCallException;
@@ -26,7 +28,7 @@ import communicator.rest.impl.SGrRestApiDevice;
 
 import java.io.IOException;
 
-public interface GenDeviceApi4Rest {
+public interface GenDeviceApi4Rest extends GenDeviceApi {
 
     /**
      * Authenticates the REST API client.
@@ -42,7 +44,7 @@ public interface GenDeviceApi4Rest {
      * @see SGrRestApiDevice
      * @see DeviceDescriptionLoader
      */
-    public void authenticate()
+    void authenticate()
             throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException;
 
     /**
@@ -54,9 +56,10 @@ public interface GenDeviceApi4Rest {
      * @throws IOException If the communication with the server failed.
      * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
      * @throws RestApiResponseParseException If parsing of the service response failed.
+     * @throws GenDriverException If a common error occured.
      */
-    public String getVal(String profileName, String dataPointName)
-            throws IOException, RestApiServiceCallException, RestApiResponseParseException;
+    String getVal(String profileName, String dataPointName)
+            throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
 
     /**
      * Writes a value to the REST API device.
@@ -74,7 +77,8 @@ public interface GenDeviceApi4Rest {
      * @throws IOException If the communication with the server failed.
      * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
      * @throws RestApiResponseParseException If parsing of the service response failed.
+     * @throws GenDriverException If a common error occurred
      */
-    public String setVal(String profileName, String dataPointName, String value)
-            throws IOException, RestApiServiceCallException, RestApiResponseParseException;
+    String setVal(String profileName, String dataPointName, String value)
+            throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
 }
