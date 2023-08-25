@@ -1331,18 +1331,6 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 				dataPointType.isSetInt8U();
 	}
 
-
-	private SGrModbusDataPointType findDatapoint(String profileName, String datapointName)
-			throws GenDriverException {
-		Optional<SGrModbusFunctionalProfileType> profile = findProfile(profileName);
-		if (profile.isPresent()) {
-			return findDataPointForProfile(profile.get(), datapointName)
-					.orElseThrow(() -> new GenDriverException("Datapoint with name " + datapointName + " not found"));
-		} else {
-			throw new GenDriverException("Functional profile with name " + profileName + " not found!");
-		}
-	}
-
 	@Override
 	protected Optional<SGrModbusFunctionalProfileType> findProfile(String aProfileName) {
 		return myDeviceDescription.getFpListElement().stream()
