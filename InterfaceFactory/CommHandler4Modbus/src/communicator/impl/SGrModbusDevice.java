@@ -278,6 +278,26 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 						arrIdx));
 			}
 			
+			//added by 3_CBTest for completion of heat pump testing, TBC by hf
+			if (aDataPoint.getGenAttribute().size() > 0) {
+				/* there are generic attributes available
+				 * place to add potential attribut setter API functionality
+				 */
+				
+				if (aDataPoint.getGenAttribute().get(0).isSetUnitConversionMultiplicator())
+				{
+				  float unitConv = aDataPoint.getGenAttribute().get(0).getUnitConversionMultiplicator(); 
+				  if (resultList.get(0).isSetFloat32())
+				  {
+					  for (int fl=0;fl<resultList.size();fl++)
+					  {
+						  resultList.get(fl).setFloat32((resultList.get(fl).getFloat32() * unitConv)); 
+					  }
+				  }
+				}
+				
+			}
+			// end added by 3_CBTest
 			resultRecord = new CacheRecord<>(resultList, Instant.now());			
 			if (aDataPoint.isSetTimeToLive()) {				
 				myReadCache.put(aDataPoint, resultRecord);
@@ -812,7 +832,7 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 		boolean isSetIopEnum = false, isSetIopBitmap = false, isSetAccessProt = false;
 		int mul = 1, l6dev = -1;
 		int powof10 = 0;
-		float fVal = (float) 0.0;
+		float fVal = (float) 0.0; 
 		double dVal = 0.0;
 		BigInteger bgVal = BigInteger.ZERO;
 		SGrModbusEnumMapperType sgrEnumMapper = null;
@@ -831,6 +851,19 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			/* there are generic attributes available
 			 * place to add potential attribut setter API functionality
 			 */
+			//added by 3_CBTest for completion of heat pump testing, TBC by hf
+			if (aDataPoint.getGenAttribute().get(0).isSetUnitConversionMultiplicator())
+			{
+			  float unitConv = aDataPoint.getGenAttribute().get(0).getUnitConversionMultiplicator(); 
+			  if (sgrValues[0].isSetFloat32())
+			  {
+				  for (int fl=0;fl<sgrValues.length;fl++)
+				  {
+						  sgrValues[fl].setFloat32(sgrValues[fl].getFloat32() / unitConv); 
+				  }
+			  }
+			}
+			// end added by 3_CBTest
 		}
 
 		if (aDataPoint.getModbusAttr().size() > 0) { // there are Modbus attributes available
