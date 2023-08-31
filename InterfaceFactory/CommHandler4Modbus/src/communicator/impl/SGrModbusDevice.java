@@ -22,6 +22,8 @@ check for "EI-Modbus" and "Generic" directories in our Namespace http://www.smar
 package communicator.impl;
 
 import com.smartgridready.ns.v0.CtaDomHotWOpModeType;
+import com.smartgridready.ns.v0.CtaHCOpModeType;
+import com.smartgridready.ns.v0.CtaHCOpStateType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.HovBufferStateType;
@@ -1247,14 +1249,16 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			retval = oGenVal.getSgrOCPPState().getValue();
 		} else if (oGenVal.isSetSgrHPOpMode()) { // E0016
 			retval = oGenVal.getSgrHPOpMode().getValue();
-		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// cta00
+		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// cta0001
 			retval = oGenVal.getCtaDomHotWOpMode().getValue();
-		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// cta00
-			retval = oGenVal.getCtaDomHotWOpMode().getValue();
-		} else if (oGenVal.isSetCtaHPOpMode()) {// cta00
-			retval = oGenVal.getCtaHPOpMode().getValue();
-		} else if (oGenVal.isSetCtaHPOpState()) {// cta00
+		} else if (oGenVal.isSetCtaHPOpState()) {// cta0002
 			retval = oGenVal.getCtaHPOpState().getValue();
+		} else if (oGenVal.isSetCtaHPOpMode()) {// cta0003
+			retval = oGenVal.getCtaHPOpMode().getValue();
+		} else if (oGenVal.isSetCtaHCOpMode()) {// cta0004
+			retval = oGenVal.getCtaHCOpMode().getValue();
+		} else if (oGenVal.isSetCtaHCOpState()) {// cta0005
+			retval = oGenVal.getCtaHCOpState().getValue();
 		} else if (oGenVal.isSetHovHPOpMode()) {// hov001
 			retval = oGenVal.getHovHPOpMode().getValue();
 		} else if (oGenVal.isSetHovHCOpMode()) {// hov002
@@ -1318,10 +1322,14 @@ public class SGrModbusDevice implements GenDeviceApi4Modbus {
 			rval.setSgrHCOpMode(SGrHCOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetCtaDomHotWOpMode()) {// Ecta001
 			rval.setCtaDomHotWOpMode(CtaDomHotWOpModeType.get((int)RegRes));
-		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
-			rval.setCtaHPOpMode(CtaHPOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetCtaHPOpState()) {// Ecta002
 			rval.setCtaHPOpState(CtaHPOpStateType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaHPOpMode()) {// Ecta003
+			rval.setCtaHPOpMode(CtaHPOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaHCOpMode()) {// Ecta004
+			rval.setCtaHCOpMode(CtaHCOpModeType.get((int)RegRes));
+		} else if (oGenVal.isSetCtaHCOpState()) {// Ecta005
+			rval.setCtaHCOpState(CtaHCOpStateType.get((int)RegRes));
 		} else if (oGenVal.isSetHovHPOpMode()) {// hov001
 			rval.setHovHPOpMode(HovHPOpModeType.get((int)RegRes));
 		} else if (oGenVal.isSetHovHCOpMode()) {// hov002

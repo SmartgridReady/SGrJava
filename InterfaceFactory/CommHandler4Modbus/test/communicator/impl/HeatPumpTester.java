@@ -753,11 +753,11 @@ public class HeatPumpTester {
 						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl","ctaRemoteCtrlTimeSec",gdtValue);
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));						  
 						  gdtValue.unsetInt16U();
-						  Thread.sleep(25);						  
-						  oEnumListSet.setCtaHCOpMode(CtaHCOpModeType.HPCOMFORT);
+						  Thread.sleep(25);
+						  oEnumListSet.setCtaHCOpMode(CtaHCOpModeType.HCCOMFORT);
 						  modeCmd.setEnum(oEnumListSet);
 						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl", "ctaHCOpModeCmd", modeCmd);
-						  LOG.info(String.format("Setting  ctaHCOpModeCmd=" +  modeCmd.getEnum().getCtaDomHotWOpMode().getLiteral()));
+						  LOG.info(String.format("Setting  ctaHCOpModeCmd=" +  modeCmd.getEnum().getCtaHCOpMode().getLiteral()));
 						  //*/
 						  /*
 						  //  Set SupplyWaterTempStpt
@@ -824,7 +824,9 @@ public class HeatPumpTester {
 						LOG.info(String.format("  ctaRemoteCtrlTimeSec: "  + bRem + "  ctaRemoteCtrlTimeSec=" + iVal1));
 						
 						oEnumListSet= devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ctaHPOpModeCmdFb").getEnum();
-						oEnumListState = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ctaHPOpState").getEnum();						
+						oEnumListState = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ctaHPOpState").getEnum();		
+						oEnumListSet.unsetCtaHPOpMode();
+						oEnumListSet.unsetCtaHPOpState();
 						iVal3 = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ErrorNrSGr").getInt16();
 						fVal1 = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFloat32();
 						fVal2 = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "SupplyWaterTemp").getFloat32();	
@@ -839,7 +841,8 @@ public class HeatPumpTester {
 						fVal1 = devCTAoptiHeat.getValByGDPType("DomHotWaterCtrl", "ActDomHotWTemp").getFloat32();
 						fVal2 = devCTAoptiHeat.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt").getFloat32();
 						LOG.info(String.format("  DomHotWaterCtrl: ctaDomHotWOpModeCmd=" + oEnumListSet.getCtaDomHotWOpMode().getLiteral() + "/" +   oEnumListSet.getCtaDomHotWOpMode().getValue()  + ",  ActDomHotWTemp="  + fVal1 + " °C,  DomHotWTempStpt=" + fVal2 + " °C "));  
-						LOG.info(String.format(" "));	
+						LOG.info(String.format(" "));
+						oEnumListSet.unsetCtaDomHotWOpMode();
 						
 						fVal1 = devCTAoptiHeat.getValByGDPType("PowerCtrl", "ActSpeed").getFloat32();
 						fVal2 = devCTAoptiHeat.getValByGDPType("PowerCtrl", "ActPowerACtot").getFloat32();    
@@ -855,12 +858,13 @@ public class HeatPumpTester {
 						
 
 						oEnumListSet = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ctaHCOpModeCmd").getEnum();	
-						//oEnumListState = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "HeatCoolOpState").getEnum();
-						iVal1 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "HeatCoolOpState").getInt16U();		
-						LOG.info(String.format("  HeatCoolCtrl ctaHCOpModeCmd="+ oEnumListSet.getCtaHCOpMode().getLiteral() + "/" + oEnumListSet.getCtaHCOpMode().getValue() + ", ctaHeatCoolOpState=" + iVal1));  //+ oEnumListState.get .getLiteral() + " / " + oEnumListState.getHeatCoolOpState().getValue())); 				
+						oEnumListState = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ctaHCOpState").getEnum();
+						LOG.info(String.format("  HeatCoolCtrl ctaHCOpModeCmd="+ oEnumListSet.getCtaHCOpMode().getLiteral() + "/" + oEnumListState.getCtaHCOpMode().getValue() + ", ctaHCOpState=" + oEnumListState.getCtaHCOpState().getLiteral() + " / " + oEnumListState.getCtaHCOpState().getValue())); 				
 						fVal1 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "SupplyWaterTempStptComf").getFloat32();
 						fVal2 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "SupplyWaterTemp").getFloat32();
 						fVal4 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat32();
+						oEnumListSet.unsetCtaHPOpMode();
+						oEnumListState.unsetCtaHCOpState();
 	
 						LOG.info(String.format("                SupplyWaterTempStpt=" + fVal1 + " °C,  SupplyWaterTemp=" + fVal2 + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C"));  			
 						LOG.info(String.format(" "));	
