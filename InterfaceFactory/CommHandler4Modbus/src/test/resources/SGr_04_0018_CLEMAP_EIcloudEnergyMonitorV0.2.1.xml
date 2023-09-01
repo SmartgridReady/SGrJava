@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/xsl/SGr.xsl"?>
 <sgr:SGrRestAPIDeviceFrame
-	deviceName="CLEMAP Energy Monitor" isLocalControl="false"
-	manufacturerID="ClemapAG" manufacturerName="CLEMAP"
+	deviceName="CLEMAP Energy Monitor" isLocalControl="false" manufacturerName="CLEMAP"
 	xmlns:sgr="http://www.smartgridready.com/ns/V0/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/EI-RestAPI/SGrRestAPI_EIDeviceFrame.xsd ">
@@ -56,7 +55,7 @@
 			<sgr:dataPoint datapointName="ActivePowerACtot"
 				rwpDatadirection="RW" unit="KILOWATTS" mroVisibilityIndicator="R">
 				<sgr:dataType>
-					<sgr:float64>0.0</sgr:float64></sgr:dataType>
+					<sgr:float64 /></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:genAttribute>
 				<sgr:minVal>0.005</sgr:minVal>
@@ -81,7 +80,7 @@
 			<sgr:dataPoint datapointName="ActivePowerACL1"
 				rwpDatadirection="RW" unit="KILOWATTS" mroVisibilityIndicator="R">
 				<sgr:dataType>
-					<sgr:float64>0.0</sgr:float64></sgr:dataType>
+					<sgr:float64 /></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:restAPIDataPoint dataType="JSON_number">
 				<sgr:restServiceCall>
@@ -101,7 +100,7 @@
 			<sgr:dataPoint datapointName="ActivePowerACL2"
 				rwpDatadirection="R" unit="KILOWATTS" mroVisibilityIndicator="R">
 				<sgr:dataType>
-					<sgr:float64>0.0</sgr:float64></sgr:dataType>
+					<sgr:float64 /></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:restAPIDataPoint dataType="JSON_number">
 				<sgr:restServiceCall>
@@ -121,7 +120,7 @@
 			<sgr:dataPoint mroVisibilityIndicator="R"
 				datapointName="ActivePowerACL3" rwpDatadirection="W"
 				unit="KILOWATTS">
-				<sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+				<sgr:dataType><sgr:float64 /></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:restAPIDataPoint dataType="JSON_number">
 				<sgr:restServiceCall>
@@ -141,7 +140,7 @@
 			<sgr:dataPoint mroVisibilityIndicator="R"
 						   datapointName="W-Datapoint" rwpDatadirection="W"
 						   unit="KILOWATTS">
-				<sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+				<sgr:dataType><sgr:float64 /></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:restAPIDataPoint dataType="JSON_number">
 				<sgr:restServiceCall>
@@ -161,7 +160,7 @@
 			<sgr:dataPoint mroVisibilityIndicator="R"
 						   datapointName="RW-Datapoint" rwpDatadirection="RW"
 						   unit="KILOWATTS">
-				<sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+				<sgr:dataType><sgr:float64 /></sgr:dataType>
 			</sgr:dataPoint>
 			<sgr:restAPIDataPoint dataType="JSON_number">
 				<sgr:restServiceCall>

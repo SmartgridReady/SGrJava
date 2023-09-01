@@ -1,7 +1,6 @@
 package communicator.common.impl;
 
 import com.smartgridready.ns.v0.SGrAttr4GenericType;
-import com.smartgridready.ns.v0.DataType;
 import com.smartgridready.ns.v0.SGrDataPointBaseType;
 import com.smartgridready.ns.v0.SGrDeviceBaseType;
 import com.smartgridready.ns.v0.SGrFunctionalProfileBaseType;
@@ -9,6 +8,7 @@ import com.smartgridready.ns.v0.SGrRWPType;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.V0Package;
 import communicator.common.api.GenDeviceApi;
+import communicator.common.api.Value;
 import communicator.common.runtime.GenDriverException;
 import communicator.modbus.helper.GenType2StringConversion;
 import org.eclipse.emf.common.util.EList;
@@ -132,13 +132,13 @@ public abstract class SGrDeviceBase<
     public void checkOutOfRange(String value, SGrDataPointBaseType dataPoint)
         throws GenDriverException {
 
-        DataType genVal =
+        Value genVal =
                 GenType2StringConversion.format(value, dataPoint.getDataPoint().getDataType());
 
-        checkOutOfRange(new DataType[]{genVal}, dataPoint);
+        checkOutOfRange(new Value[]{genVal}, dataPoint);
     }
 
-    public void checkOutOfRange(DataType[] values, SGrDataPointBaseType dataPoint)
+    public void checkOutOfRange(Value[] values, SGrDataPointBaseType dataPoint)
         throws GenDriverException {
 
 
@@ -168,16 +168,11 @@ public abstract class SGrDeviceBase<
         }
     }
 
-    protected Optional<String> checkOutOfRange(DataType[] values, BigDecimal limit, Comparator comparator) {
+    protected Optional<String> checkOutOfRange(Value[] values, BigDecimal limit, Comparator comparator) {
 
-        List<Double> outOfRangeValues = Arrays.stream(values)
-                .flatMap(value -> getFeatureThatIsSet(value).stream()
-                        .map(value::eGet)
-                        .filter(Number.class::isInstance)
-                        .map(Number.class::cast)
-                        .map(Number::doubleValue)
-                        .filter(val -> comparator.getCmpFunc().test(BigDecimal.valueOf(val), limit)))
-                .collect(Collectors.toList());
+        List<Value> outOfRangeValues = Arrays.stream(values)
+                        .filter(val -> comparator.getCmpFunc().test(BigDecimal.valueOf(val.getFloat64()), limit))
+                        .collect(Collectors.toList());
 
         if (!outOfRangeValues.isEmpty()) {
             return Optional.of(
@@ -191,12 +186,6 @@ public abstract class SGrDeviceBase<
 
         EList<EStructuralFeature> features = V0Package.eINSTANCE.getSGrAttr4GenericType().getEStructuralFeatures();
         return features.stream().filter(genericAttribute::eIsSet).collect(Collectors.toList());
-    }
-
-    private List<EStructuralFeature> getFeatureThatIsSet(DataType dataPoint) {
-
-        EList<EStructuralFeature> features = V0Package.eINSTANCE.getDataType().getEStructuralFeatures();
-        return features.stream().filter(dataPoint::eIsSet).collect(Collectors.toList());
     }
 
     private static Map<String, String> featuresToStringMap(EStructuralFeature feature, EObject data) {

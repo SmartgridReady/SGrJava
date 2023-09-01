@@ -1,11 +1,16 @@
 package communicator.modbus.helper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class ConversionHelper {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ConversionHelper.class);
 
     private ConversionHelper() {
         // helper class
@@ -15,15 +20,15 @@ public class ConversionHelper {
         ByteBuffer bbuf = ByteBuffer.wrap(bytes);
         IntBuffer ibuf =  IntBuffer.allocate(bytes.length/2);
         for( int i=0; i<ibuf.capacity(); i++) {
-            ibuf.put(bbuf.getShort());
+            ibuf.put(bbuf.getShort() & 0x0000ffff);
         }
         return ibuf.array();
     }
 
     public static ByteBuffer byteBufFromRegisters(int[] intArr) {
         ByteBuffer bbuf = ByteBuffer.allocate(intArr.length*2);
-        for (int i= 0; i<intArr.length; i++) {
-            bbuf.putShort((short)intArr[i]);
+        for (int i : intArr) {
+            bbuf.putShort((short)(intArr[i] & 0x0000ffff));
         }
         bbuf.rewind(); // to get values from...
         return bbuf;
@@ -34,21 +39,52 @@ public class ConversionHelper {
         ByteBuffer bbuf = ByteBuffer.allocate(4);
         bbuf.putFloat(fVal);
         bbuf.rewind();
-        res[0] = bbuf.getShort();
-        res[1] = bbuf.getShort();
+        res[0] = bbuf.getShort() & 0x0000ffff;
+        res[1] = bbuf.getShort() & 0x0000ffff;
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(String.format("Convert floatToRegisters double: %f, hex: %04x %04x", fVal, res[0], res[1]));
+        }
         return res;
     }
 
     public static int[] doubleToRegisters(double dVal) {
+
         int[] res = new int[4];
         ByteBuffer bbuf = ByteBuffer.allocate(8);
         bbuf.putDouble(dVal);
         bbuf.rewind();
         for(int i=0; i < res.length; i++) {
-            res[i] = bbuf.getShort();
+            res[i] = (bbuf.getShort() & 0x0000ffff);
+        }
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(String.format("Convert doubleToRegisters double: %f, hex: %04x %04x %04x %04x", dVal, res[0], res[1], res[2], res[3]));
         }
         return res;
     }
+
+    public static int[] longToRegisters(long lVal) {
+        int[] res = new int[4];
+
+        res[0] = ((short) (lVal >> 48) & 0xffff);
+        res[1] = ((short) (lVal >> 32) & 0xffff);
+        res[2] = ((short) (lVal >> 16) & 0xffff);
+        res[3] = ((short) (lVal) & 0xffff);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(String.format("Convert longToRegisters long: %d, hex: %04x %04x %04x %04x", lVal, res[0], res[1], res[2], res[3]));
+        }
+        return res;
+    }
+
+    public static int[] intToRegisters(int value) {
+        int[] res = new int[2];
+        res[0] = ((short) ((value >> 16) & 0x0000ffff));
+        res[1] = ((short) value & 0x0000ffff);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(String.format("Convert intToRegisters long: %d, hex: %04x %04x", value, res[0], res[1]));
+        }
+        return res;
+    }
+
 
     /**
      * Converts 16 - Bit Register values to String
@@ -79,7 +115,7 @@ public class ConversionHelper {
      * @return Converted String
      */
     public static int[] convStringToRegisters(String stringToConvert) {
-        byte[] array = stringToConvert.getBytes(Charset.forName("ASCII"));
+        byte[] array = stringToConvert.getBytes(StandardCharsets.US_ASCII);
         int[] returnarray = new int[stringToConvert.length() / 2 + stringToConvert.length() % 2];
         for (int i = 0; i < returnarray.length; i++) {
             returnarray[i] = array[i * 2] << 8;
@@ -88,10 +124,13 @@ public class ConversionHelper {
             }
         }
 
-        StringBuffer sb = new StringBuffer();
-        Arrays.stream(returnarray).forEach(iVal ->
-                sb.append(String.format(" %08x", iVal))
-        );
+        if (LOG.isDebugEnabled()) {
+            StringBuilder sb = new StringBuilder();
+            Arrays.stream(returnarray).forEach(iVal ->
+                    sb.append(String.format(" %08x", iVal))
+            );
+            LOG.debug("ASCII String HEX: {}", sb);
+        }
         return returnarray;
     }
 

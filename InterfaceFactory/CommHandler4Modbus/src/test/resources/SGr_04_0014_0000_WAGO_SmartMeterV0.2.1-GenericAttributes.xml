@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/xsl/SGr.xsl"?>
-<sgr:SGrModbusDeviceFrame deviceName="WAGOMeterV0.2.1" isLocalControl="true" manufacturerID="WAGO" manufacturerName="WAGO"  xmlns:sgr="http://www.smartgridready.com/ns/V0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/EI-Modbus/SGrModbusEIDeviceFrame.xsd ">
+<sgr:SGrModbusDeviceFrame deviceName="WAGOMeterV0.2.1" isLocalControl="true" manufacturerName="WAGO"  xmlns:sgr="http://www.smartgridready.com/ns/V0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/EI-Modbus/SGrModbusEIDeviceFrame.xsd ">
   <sgr:releaseNotes>
     <sgr:state>Draft</sgr:state>
   </sgr:releaseNotes>
@@ -11,21 +11,21 @@
       <sgr:sManufName>879-3xxx</sgr:sManufName>
       <sgr:sEEBUSName>SubMeter</sgr:sEEBUSName>
     </sgr:devNameList>
-    <sgr:devLegibDesc>
+    <sgr:legibleDescription>
       <sgr:textElement>Comprehensive energy measurement is necessary for optimizing energy consumption. WAGO now has new energy meters in its portfolio that simplify this task while providing several key advantages. They use the push-in connection technology with a lever, making them connect quickly and easily. The devices have a width of just 72 mm for direct measurement. These widths save a tremendous amount of control cabinet space. In addition to the values for active and reactive energy, the energy meters also record the mains frequency as well as current, voltage and power for all phases. And the user can conveniently see all of these energy characteristics at a glance on a large, illuminated display.</sgr:textElement>
       <sgr:language>en</sgr:language>
       <sgr:uri>https://www.wago.com/us/energy-consumption-meter/p/879-3000</sgr:uri>
-    </sgr:devLegibDesc>
-    <sgr:devLegibDesc>
+    </sgr:legibleDescription>
+    <sgr:legibleDescription>
     	<sgr:textElement>Um den Energieverbrauch zu optimieren, ist eine umfassende Energiemessung notwendig. WAGO hat hierf�zt neue Energiez㧬er im Portfolio, die zahlreiche Vorteile bieten. Sie verwenden die Push-in-Anschlusstechnik mit Hebel und lassen sich dadurch sehr einfach und zeitsparend anschlieޥn. Die Ger㳥 haben eine Breite von lediglich 72 mm bei Direktmessung. Damit spart der Anwender jede Menge Platz im Schaltschrank ein. Neben den Werten f�k- und Blindenergie erfassen die Energiez㧬er auch Netzfrequenz sowie Strom, Spannung und Leistung f�e Phasen. Auf dem groޥn beleuchteten Display sieht der Nutzer alle Energiequalit㳳merkmale auf einen Blick.</sgr:textElement>
     	<sgr:language>de</sgr:language>
     	<sgr:uri>https://www.wago.com/de/stromwandler-spannungsabgriffe/energieverbrauchszaehler/p/879-3000</sgr:uri>
-    </sgr:devLegibDesc>
-    <sgr:devLegibDesc>
+    </sgr:legibleDescription>
+    <sgr:legibleDescription>
     	<sgr:textElement>Comprehensive energy measurement is necessary for optimizing energy consumption. WAGO now has new energy meters in its portfolio that simplify this task while providing several key advantages. They use the push-in connection technology with a lever, making them connect quickly and easily. The devices have a width of just 72 mm for direct measurement. These widths save a tremendous amount of control cabinet space. In addition to the values for active and reactive energy, the energy meters also record the mains frequency as well as current, voltage and power for all phases. And the user can conveniently see all of these energy characteristics at a glance on a large, illuminated display.</sgr:textElement>
     	<sgr:language>it</sgr:language>
     	<sgr:uri>https://www.wago.com/it/trasformatori-di-corrente-e-derivatori-di-tensione/misuratore-del-consumo-di-energia/p/879-3000</sgr:uri>
-    </sgr:devLegibDesc>
+    </sgr:legibleDescription>
     <sgr:transportService>Modbus</sgr:transportService>
     <sgr:deviceKind>SubMeterElectricity</sgr:deviceKind>
     <sgr:softwareRevision>
@@ -98,10 +98,10 @@
           <sgr:subReleaseVersionNumber>3</sgr:subReleaseVersionNumber>
         </sgr:versionNumber>
       </sgr:profileNumber>
-      <sgr:fpLegibDesc>
+      <sgr:legibleDescription>
         <sgr:textElement>Voltage</sgr:textElement>
         <sgr:language>de</sgr:language>
-      </sgr:fpLegibDesc>
+      </sgr:legibleDescription>
     </sgr:functionalProfile>
     <sgr:genAttribute>
       <sgr:curtailment>30</sgr:curtailment>
@@ -109,7 +109,8 @@
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageL1" mroVisibilityIndicator="M" rwpDatadirection="RW" unit="VOLTS">
         <sgr:dataType >
-        <sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:float64 />
+        </sgr:dataType>
         <sgr:dpNameList>
           <sgr:sManufName>L1 Spannung</sgr:sManufName>
         </sgr:dpNameList>
@@ -121,7 +122,7 @@
       </sgr:genAttribute>
       <sgr:modbusDataPoint>
         <sgr:modbusDataType>
-        <sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20482" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -130,14 +131,15 @@
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageL2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
         <sgr:dataType >
-        <sgr:float64>0</sgr:float64></sgr:dataType>
+          <sgr:float64 />
+        </sgr:dataType>
         <sgr:dpNameList>
           <sgr:sManufName>L2 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
         <sgr:modbusDataType>
-        <sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20484" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -146,14 +148,15 @@
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageL3" mroVisibilityIndicator="M" rwpDatadirection="W" unit="VOLTS">
         <sgr:dataType >
-        <sgr:float64>0</sgr:float64></sgr:dataType>
+          <sgr:float64 />
+        </sgr:dataType>
         <sgr:dpNameList>
           <sgr:sManufName>L3 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
         <sgr:modbusDataType>
-        <sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20486" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -162,14 +165,15 @@
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageACL1-L2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
         <sgr:dataType >
-        <sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:float64 />
+        </sgr:dataType>
         <sgr:dpNameList>
           <sgr:sManufName>L1-L2 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
         <sgr:modbusDataType >
-        <sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20530" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -178,14 +182,15 @@
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageACL1-L3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
         <sgr:dataType >
-        <sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:float64 />
+        </sgr:dataType>
         <sgr:dpNameList>
           <sgr:sManufName>L1-L3 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
         <sgr:modbusDataType >
-        <sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20532" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -193,13 +198,13 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="VoltageACL2-L3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="VOLTS">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sManufName>L2-L3 Spannung</sgr:sManufName>
         </sgr:dpNameList>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20534" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -221,17 +226,17 @@
     </sgr:functionalProfile>	
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="Frequency" mroVisibilityIndicator="M" rwpDatadirection="R" unit="HERTZ">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sManufName>Frequenz</sgr:sManufName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20488" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -258,14 +263,14 @@
         <sgr:sSAREFName>-</sgr:sSAREFName>
         <sgr:sEEBUSName>-</sgr:sEEBUSName>
       </sgr:fpNameList>
-      <sgr:fpLegibDesc>
+      <sgr:legibleDescription>
         <sgr:textElement>Current</sgr:textElement>
         <sgr:language>de</sgr:language>
-      </sgr:fpLegibDesc>
+      </sgr:legibleDescription>
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="CurrentACL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="AMPERES">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -273,13 +278,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20492" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -293,7 +298,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="CurrentACL2" mroVisibilityIndicator="R" rwpDatadirection="R" unit="AMPERES">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -301,13 +306,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20494" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -321,7 +326,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="CurrentACL3" mroVisibilityIndicator="R" rwpDatadirection="R" unit="AMPERES">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -329,13 +334,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20496" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -364,14 +369,14 @@
       <sgr:fpNameList>
         <sgr:sManufName>ActivePowerAC</sgr:sManufName>
       </sgr:fpNameList>
-      <sgr:fpLegibDesc>
+      <sgr:legibleDescription>
         <sgr:textElement>Power</sgr:textElement>
         <sgr:language>de</sgr:language>
-      </sgr:fpLegibDesc>
+      </sgr:legibleDescription>
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActivePowerACtot" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATTS">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -379,13 +384,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20498" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -399,7 +404,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActivePowerACL1" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATTS">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -407,13 +412,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20500" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -427,7 +432,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActivePowerACL2" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATTS">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -435,13 +440,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20502" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -455,7 +460,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActivePowerACL3" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATTS">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -463,13 +468,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20504" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -498,14 +503,14 @@
       <sgr:fpNameList>
         <sgr:sManufName>ReactivePowerAC</sgr:sManufName>
       </sgr:fpNameList>
-      <sgr:fpLegibDesc>
+      <sgr:legibleDescription>
         <sgr:textElement>Power</sgr:textElement>
         <sgr:language>de</sgr:language>
-      </sgr:fpLegibDesc>
+      </sgr:legibleDescription>
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ReactivePowerACtot" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -513,13 +518,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20506" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -533,18 +538,18 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ReactivePowerACL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sLV1Name>ReactivePowerACtot</sgr:sLV1Name>
           <sgr:sManufName>Totale Blindleistung</sgr:sManufName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20508" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -558,7 +563,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ReactivePowerACL2" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>L2 Blindleistung</sgr:sManufName>
@@ -566,13 +571,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20510" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -586,7 +591,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ReactivePowerACL3" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOVOLT_AMPERES_REACTIVE">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -594,13 +599,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20512" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -630,14 +635,14 @@
       <sgr:fpNameList>
         <sgr:sManufName>ApparentPowerAC</sgr:sManufName>
       </sgr:fpNameList>
-      <sgr:fpLegibDesc>
+      <sgr:legibleDescription>
         <sgr:textElement>Power</sgr:textElement>
         <sgr:language>de</sgr:language>
-      </sgr:fpLegibDesc>
+      </sgr:legibleDescription>
     </sgr:functionalProfile>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ApparentPowerACtot" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -645,13 +650,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20514" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -665,7 +670,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ApparentPowerACL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -673,13 +678,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20516" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -693,7 +698,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ApparentPowerACL2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -701,13 +706,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20518" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -721,7 +726,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ApparentPowerACL3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="KILOVOLT_AMPERES">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -729,13 +734,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20520" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -768,14 +773,14 @@
         <sgr:sSAREFName>-</sgr:sSAREFName>
         <sgr:sEEBUSName>-</sgr:sEEBUSName>
       </sgr:fpNameList>
-      <sgr:fpLegibDesc>
+      <sgr:legibleDescription>
         <sgr:textElement>Power</sgr:textElement>
         <sgr:language>de</sgr:language>
-      </sgr:fpLegibDesc>
+      </sgr:legibleDescription>
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="PowerFactor" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -783,13 +788,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20522" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -803,7 +808,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="PowerFactorL1" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -811,13 +816,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20524" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -831,7 +836,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="PowerFactorL2" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -839,13 +844,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20526" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -859,7 +864,7 @@
     </sgr:dpListElement>	
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="PowerFactorL3" mroVisibilityIndicator="M" rwpDatadirection="R" unit="NONE">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -867,13 +872,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="20528" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -906,14 +911,14 @@
         <sgr:sSAREFName>-</sgr:sSAREFName>
         <sgr:sEEBUSName>-</sgr:sEEBUSName>
       </sgr:fpNameList>
-      <sgr:fpLegibDesc>
+      <sgr:legibleDescription>
         <sgr:textElement>Power</sgr:textElement>
         <sgr:language>de</sgr:language>
-      </sgr:fpLegibDesc>
+      </sgr:legibleDescription>
     </sgr:functionalProfile>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActiveEnergyACtot" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -921,13 +926,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="24576" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -941,7 +946,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ActiveEnergyACL1" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -949,13 +954,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="24582" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -969,7 +974,7 @@
     </sgr:dpListElement>
 	<sgr:dpListElement>
       <sgr:dataPoint datapointName="ActiveEnergyACL2" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -977,13 +982,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="24584" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -997,7 +1002,7 @@
     </sgr:dpListElement>
     <sgr:dpListElement>
       <sgr:dataPoint datapointName="ActiveEnergyACL3" mroVisibilityIndicator="R" rwpDatadirection="R" unit="KILOWATT_HOURS">
-        <sgr:dataType><sgr:float64>0</sgr:float64></sgr:dataType>
+        <sgr:dataType><sgr:float64 /></sgr:dataType>
         <sgr:dpNameList>
           <sgr:sWorkName>sgr:sWorkName</sgr:sWorkName>
           <sgr:sManufName>Active import</sgr:sManufName>
@@ -1005,13 +1010,13 @@
           <sgr:sSAREFName>sgr:sSAREFName</sgr:sSAREFName>
           <sgr:sEEBUSName>sgr:sEEBUSName</sgr:sEEBUSName>
         </sgr:dpNameList>
-        <sgr:dpLegibDesc>
+        <sgr:legibleDescription>
           <sgr:textElement>sgr:textElement</sgr:textElement>
           <sgr:language>de</sgr:language>
-        </sgr:dpLegibDesc>
+        </sgr:legibleDescription>
       </sgr:dataPoint>
       <sgr:modbusDataPoint>
-        <sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+        <sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
         <sgr:modbusFirstRegisterReference addr="24586" bitRank="0" registerType="HoldRegister" />
         <sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
         <sgr:masterFunctionsSupported>Primitives</sgr:masterFunctionsSupported>
@@ -1043,12 +1048,12 @@
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
   			<sgr:modbusDataType >
-  			<sgr:float32>0</sgr:float32>
+  			<sgr:float32 />
   			</sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24612" bitRank="0" />
@@ -1061,12 +1066,12 @@
   			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
   			<sgr:modbusDataType>
-  			<sgr:float32>0</sgr:float32>
+  			<sgr:float32 />
   			</sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24618" bitRank="0" />
@@ -1079,11 +1084,11 @@
   			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+  			<sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24620" bitRank="0" />
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -1095,11 +1100,11 @@
   			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="KILOWATT_HOURS">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+  			<sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24622" bitRank="0" />
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -1126,11 +1131,11 @@
   			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+  			<sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24588" bitRank="0" />
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -1142,11 +1147,11 @@
   			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+  			<sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24600" bitRank="0" />
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -1158,11 +1163,11 @@
   			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+  			<sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24576" bitRank="0" />
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -1190,11 +1195,11 @@
   			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+  			<sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24624" bitRank="0" />
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -1206,11 +1211,11 @@
   			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+  			<sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24636" bitRank="0" />
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -1222,11 +1227,11 @@
   			mroVisibilityIndicator="O" unit="KILOWATT_HOURS"
   			rwpDatadirection="R">
   			<sgr:dataType >
-  				<sgr:float64>0.0</sgr:float64>
+  				<sgr:float64 />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType ><sgr:float32>0</sgr:float32></sgr:modbusDataType>
+  			<sgr:modbusDataType ><sgr:float32 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="24612" bitRank="0" />
   			<sgr:dpSizeNrRegisters>2</sgr:dpSizeNrRegisters>
@@ -1254,11 +1259,11 @@
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:int8U>0</sgr:int8U>
+  				<sgr:int8U />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType><sgr:int16>0</sgr:int16></sgr:modbusDataType>
+  			<sgr:modbusDataType><sgr:int16 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="16407" bitRank="0" />
   			<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -1270,11 +1275,11 @@
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:int8U>0</sgr:int8U>
+  				<sgr:int8U />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType><sgr:int16>0</sgr:int16></sgr:modbusDataType>
+  			<sgr:modbusDataType><sgr:int16 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="16408" bitRank="0" />
   			<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -1286,11 +1291,11 @@
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:int8U>0</sgr:int8U>
+  				<sgr:int8U />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType><sgr:int16>0</sgr:int16></sgr:modbusDataType>
+  			<sgr:modbusDataType><sgr:int16 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="16409" bitRank="0" />
   			<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -1302,11 +1307,11 @@
   			mroVisibilityIndicator="M" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:int8U>0</sgr:int8U>
+  				<sgr:int8U />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType><sgr:int16>0</sgr:int16></sgr:modbusDataType>
+  			<sgr:modbusDataType><sgr:int16 /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="16410" bitRank="0" />
   			<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -1339,11 +1344,11 @@ CurrentDirection must be added to FP family
   			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:string>sgr:string</sgr:string>
+  				<sgr:string />
   			</sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType><sgr:int8U>0</sgr:int8U></sgr:modbusDataType>
+  			<sgr:modbusDataType><sgr:int8U /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="16402" bitRank="0" />
   			<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -1355,10 +1360,10 @@ CurrentDirection must be added to FP family
   			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:string>sgr:string</sgr:string></sgr:dataType>
+  				<sgr:string /></sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType><sgr:int8U>0</sgr:int8U></sgr:modbusDataType>
+  			<sgr:modbusDataType><sgr:int8U /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="16403" bitRank="0" />
   			<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>
@@ -1370,10 +1375,10 @@ CurrentDirection must be added to FP family
   			mroVisibilityIndicator="O" rwpDatadirection="R"
   			unit="NONE">
   			<sgr:dataType>
-  				<sgr:string>sgr:string</sgr:string></sgr:dataType>
+  				<sgr:string /></sgr:dataType>
   		</sgr:dataPoint>
   		<sgr:modbusDataPoint>
-  			<sgr:modbusDataType><sgr:int8U>0</sgr:int8U></sgr:modbusDataType>
+  			<sgr:modbusDataType><sgr:int8U /></sgr:modbusDataType>
   			<sgr:modbusFirstRegisterReference
   				registerType="HoldRegister" addr="16404" bitRank="0" />
   			<sgr:dpSizeNrRegisters>1</sgr:dpSizeNrRegisters>

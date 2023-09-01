@@ -340,12 +340,14 @@ public class IOPdemoBOX {
 						 Thread.sleep(200);
 						 fVal3 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat64();
 						 Thread.sleep(200);
-						 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
+						 // FIXNE
+						 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 						 Thread.sleep(200);
 						 sgrEVState = oEnumList.getSgrEVState();
 						 LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
-						 
-						 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+
+						 // FIXME
+						 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
 						 Thread.sleep(200);
 						 sgrOCPPState = oEnumList.getSgrOCPPState();
 						 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");

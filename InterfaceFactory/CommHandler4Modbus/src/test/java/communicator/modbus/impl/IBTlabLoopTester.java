@@ -718,12 +718,14 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat64();
 							 Thread.sleep(200);
-							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
+							 // FIXME
+							 //oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 							 Thread.sleep(200);
 							 sgrEVState = oEnumList.getSgrEVState();
 							 LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
-							 
-							 oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+
+							 // FIXME
+							 // oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
 							 Thread.sleep(200);
 							 sgrOCPPState = oEnumList.getSgrOCPPState();
 							 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
@@ -822,12 +824,14 @@ public class IBTlabLoopTester {
 								 Thread.sleep(200);
 								 fVal3 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat64();
 								 Thread.sleep(200);
-								 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
+								 // FIXME
+								 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 								 Thread.sleep(200);
 								 sgrEVState = oEnumList.getSgrEVState();
 								 LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
-								 
-								 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+
+								 // FIXME
+								 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
 								 Thread.sleep(200);
 								 sgrOCPPState = oEnumList.getSgrOCPPState();
 								 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");

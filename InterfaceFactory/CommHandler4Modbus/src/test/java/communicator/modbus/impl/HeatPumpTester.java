@@ -28,6 +28,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.smartgridready.ns.v0.DataType;
+import communicator.common.api.Float64Value;
+import communicator.common.api.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 // SmartGridready definitions
@@ -212,11 +214,10 @@ public class HeatPumpTester {
 				if (runtimeCnt == 2)
 				{
                   // Testing Setters
-				  DataType  hpval = V0Factory.eINSTANCE.createDataType();
 				  DataType  hpCmd = V0Factory.eINSTANCE.createDataType();
 
 				  float fValStpt = (float) 0.0 ;	
-				  hpval.setFloat64(fValStpt);
+				  Value hpval = Float64Value.of(fValStpt);
 				   LOG.info(String.format("######################  setting new values ######################"));
 				   // testing setters: one setting for a test run only recommended
 				   // read the device manual carefully before testing any setpoint
@@ -309,9 +310,10 @@ public class HeatPumpTester {
 			}
  
         // testing getters
-		oEnumList=devHovalTCP.getValByGDPType("HeatPumpBase", "hovHPOpModeCmd").getEnum();
-		oEnumList1=devHovalTCP.getValByGDPType("HeatPumpBase", "hovHPOpState").getEnum();     
-		bVal1=devHovalTCP.getValByGDPType("HeatPumpBase", "ErrorNrSGr").isBoolean();
+		// FIXME
+		// oEnumList=devHovalTCP.getValByGDPType("HeatPumpBase", "hovHPOpModeCmd").getEnum();
+		// oEnumList1=devHovalTCP.getValByGDPType("HeatPumpBase", "hovHPOpState").getEnum();
+		// bVal1=devHovalTCP.getValByGDPType("HeatPumpBase", "ErrorNrSGr").isBoolean();
 		fVal1=devHovalTCP.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFloat64();
 		fVal2=devHovalTCP.getValByGDPType("HeatPumpBase", "SupplyWaterTempStpt").getFloat64();
 		fVal3=devHovalTCP.getValByGDPType("HeatPumpBase", "SupplyWaterTempStptFb").getFloat64();
@@ -320,9 +322,10 @@ public class HeatPumpTester {
 		LOG.info(String.format("  HeatPumpBase:    hovHPOpModeCmd=" + oEnumList.getHovHPOpMode().getLiteral()+ "/" + oEnumList.getHovHPOpMode().getValue()  + ",  HPOpState=" + oEnumList1.getHovHPOpState().getLiteral()+"/" + oEnumList1.getHovHPOpMode().getValue() + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C"));
 		LOG.info(String.format("    SupplyWaterTempStpt=" + fVal2 +" °C,  SupplyWaterTempStptFb=" + fVal3 + "°C, SupplyWaterTemp=" + fVal4 +  "°C,  ReturnSupplyWaterTemp=" + fVal5 +  " °C "));     
 		LOG.info(" "); 
-		
-		oEnumList=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "hovDomHotWOpModeCmd").getEnum();
-		oEnumList1=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "hovDomHotWState").getEnum();
+
+		// FIXME
+		///oEnumList=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "hovDomHotWOpModeCmd").getEnum();
+		// oEnumList1=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "hovDomHotWState").getEnum();
 		fVal1=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptOffs").getFloat64();
 		fVal2=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptComf").getFloat64();
 		fVal3=devHovalTCP.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStptEco").getFloat64();
@@ -339,8 +342,8 @@ public class HeatPumpTester {
 		LOG.info(String.format("  PowerCtrl: PowerCtrlStp =" + fVal1 + " %% , ActSpeed="  + fVal2 + " %% , ActPowerACtot=" + fVal3 +" kW"  ));  
 		LOG.info(" ");  
 		
-
-		oEnumList=devHovalTCP.getValByGDPType("BufferStorageCtrl", "hovActBufferState").getEnum();
+		// FIXME
+		// oEnumList=devHovalTCP.getValByGDPType("BufferStorageCtrl", "hovActBufferState").getEnum();
 		fVal1=devHovalTCP.getValByGDPType("BufferStorageCtrl", "ActBufferWaterTempStptFb").getFloat64();
 		fVal2=devHovalTCP.getValByGDPType("BufferStorageCtrl","HeatBufferTempStptOffs").getFloat64();
 		fVal3=devHovalTCP.getValByGDPType("BufferStorageCtrl","CoolBufferTempStptOffs").getFloat64();
@@ -354,25 +357,28 @@ public class HeatPumpTester {
 		
 		LOG.info(" "); 	
 	
-		
-		oEnumList=devHovalTCP.getValByGDPType("HeatCoolCtrl_1", "hovHeatCoolCtrlOpModeCmd").getEnum();
-		oEnumList1=devHovalTCP.getValByGDPType("HeatCoolCtrl_1", "hovHeatCoolOpState").getEnum(); 				
+
+		// FIXME
+		// oEnumList=devHovalTCP.getValByGDPType("HeatCoolCtrl_1", "hovHeatCoolCtrlOpModeCmd").getEnum();
+		// oEnumList1=devHovalTCP.getValByGDPType("HeatCoolCtrl_1", "hovHeatCoolOpState").getEnum();
 		fVal1=devHovalTCP.getValByGDPType("HeatCoolCtrl_1", "SupplyWaterTemp").getFloat64();
 		fVal2=devHovalTCP.getValByGDPType("HeatCoolCtrl_1", "SupplyWaterTempStpt").getFloat64();
 		fVal3=devHovalTCP.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat64();
 		LOG.info(String.format("  HeatCoolCtrl_1:  HeatCoolCtrlOpModeCmd=" + oEnumList.getHovHCOpMode().getLiteral()+"/"+oEnumList.getHovHCOpMode().getValue()+" ,  HeatCoolOpState: "  + oEnumList1.getHovHCOpState().getLiteral()+"/"+ oEnumList1.getHovHCOpState().getValue()+ " SupplyWaterTemp=" + fVal1 + " °C,  SupplyWaterTempStpt=" + fVal2 + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C "));  
 		LOG.info(" "); 
-		 
-		oEnumList=devHovalTCP.getValByGDPType("HeatCoolCtrl_2", "hovHeatCoolCtrlOpModeCmd").getEnum();
-		oEnumList1=devHovalTCP.getValByGDPType("HeatCoolCtrl_2", "hovHeatCoolOpState").getEnum();
+
+		// FIXME
+		// oEnumList=devHovalTCP.getValByGDPType("HeatCoolCtrl_2", "hovHeatCoolCtrlOpModeCmd").getEnum();
+		// oEnumList1=devHovalTCP.getValByGDPType("HeatCoolCtrl_2", "hovHeatCoolOpState").getEnum();
 		fVal1=devHovalTCP.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTemp").getFloat64();
 		fVal2=devHovalTCP.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTempStpt").getFloat64();
 		fVal3=devHovalTCP.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat64();
 		LOG.info(String.format("  HeatCoolCtrl_2:  HeatCoolCtrlOpModeCmd=" + oEnumList.getHovHCOpMode().getLiteral()+"/"+oEnumList.getHovHCOpMode().getValue() +" ,  HeatCoolOpState: "  + oEnumList1.getHovHCOpState().getLiteral()+"/"+ oEnumList1.getHovHCOpState().getValue()+ ", SupplyWaterTemp=" + fVal1 + " °C,  SupplyWaterTempStpt=" + fVal2 + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C "));  
 		LOG.info(" "); 
-		 
-		oEnumList=devHovalTCP.getValByGDPType("HeatCoolCtrl_3", "hovHeatCoolCtrlOpModeCmd").getEnum();
-		oEnumList1=devHovalTCP.getValByGDPType("HeatCoolCtrl_3", "hovHeatCoolOpState").getEnum();
+
+		// FIXME
+		//oEnumList=devHovalTCP.getValByGDPType("HeatCoolCtrl_3", "hovHeatCoolCtrlOpModeCmd").getEnum();
+		//oEnumList1=devHovalTCP.getValByGDPType("HeatCoolCtrl_3", "hovHeatCoolOpState").getEnum();
 		fVal1=devHovalTCP.getValByGDPType("HeatCoolCtrl_3", "SupplyWaterTemp").getFloat64();
 		fVal2=devHovalTCP.getValByGDPType("HeatCoolCtrl_3", "SupplyWaterTempStpt").getFloat64();
 		fVal3=devHovalTCP.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat64();
@@ -391,9 +397,10 @@ public class HeatPumpTester {
 		lVal=devHovalTCP.getValByGDPType("EnergyMonitor", "NrOfStartupsCompressor").getInt32U();
 		LOG.info(String.format("         ActiveEnergyACtot="+ fVal1 + " kWh,  ActivePowerACtot=" + fVal2 + " kWh, RuntimeCompressor="+ fVal3 + " h,  NrOfStartupsCompressor="+ lVal+"  times"));    
 		LOG.info(" "); 
-		
-		oEnumList=devHovalTCP.getValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd").getEnum();			  
-		oEnumList1=devHovalTCP.getValByGDPType("SG-ReadyStates_bwp", "hovSGReadySrcSelect").getEnum();	
+
+		// FIXME
+		// oEnumList=devHovalTCP.getValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd").getEnum();
+		// oEnumList1=devHovalTCP.getValByGDPType("SG-ReadyStates_bwp", "hovSGReadySrcSelect").getEnum();
 		LOG.info(String.format("  SG-ReadyStates_bwp SGReadyCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()+"/" + oEnumList.getSgreadyStateLv2().getValue() + ",   hovSGReadySrcSelect="+ oEnumList1.getHovSGReadySrcSel().getLiteral() +"/" + oEnumList1.getHovSGReadySrcSel().getValue() ));
 
 					 
@@ -537,11 +544,13 @@ public class HeatPumpTester {
 				}
 				
 				  
-				// testing 
-				oEnumList= devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpModeCmd").getEnum();
+				// testing
+				// FIXME
+				// oEnumList= devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpModeCmd").getEnum();
 				iVal1=(int)devStiebelISG.getValByGDPType("HeatPumpBase", "HPOpState").getInt16U();
 				iVal2=(int)devStiebelISG.getValByGDPType("HeatPumpBase", "stiHPOpState").getInt16U();
-				bVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "ErrorNrSGr").isBoolean();
+				// FIXME
+				// bVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "ErrorNrSGr").isBoolean();
 				fVal1=devStiebelISG.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFloat64();
 				fVal2=devStiebelISG.getValByGDPType("HeatPumpBase", "SupplyWaterTemp").getFloat64();
 				fVal3=devStiebelISG.getValByGDPType("HeatPumpBase", "ReturnSupplyWaterTemp").getFloat64();
@@ -598,11 +607,12 @@ public class HeatPumpTester {
 				fVal3=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTempStptFb").getFloat64();
 				fVal4=devStiebelISG.getValByGDPType("HeatCoolCtrl_2", "SupplyWaterTemp").getFloat64();
 				 LOG.info(String.format("  HeatCoolCtrl_2:    SupplyWaterTempStptComf=" + fVal1 + " °C,  SupplyWaterTempStptEco=" + fVal2 +  " °C,  SupplyWaterTempStptFb=" + fVal3 + " °C,  SupplyWaterTemp=" + fVal4 + " °C "));  
-				 LOG.info(String.format(" "));	
-				oEnumList = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyState").getEnum();
-				bVal1=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled").isBoolean(); 
-				bVal2=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON").isBoolean();               
-				bVal3=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON").isBoolean();                             
+				 LOG.info(String.format(" "));
+				// FIXME
+				// oEnumList = devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyState").getEnum();
+				// bVal1=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyEnabled").isBoolean();
+				// bVal2=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp1isON").isBoolean();
+				// bVal3=devStiebelISG.getValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON").isBoolean();
 				LOG.info(String.format("  SGReady-bwp:      SGReadyState=" + oEnumList.getSgreadyStateLv2().getLiteral() + ",  SGReadyEnabled=" + bVal1 + ",  SGReadyInp1isON=" + bVal2 + ",  SGReadyInp2isON=" + bVal3 ));
 				oEnumList.unsetSgreadyStateLv2();
 				LOG.info(String.format(" "));	
@@ -777,9 +787,10 @@ public class HeatPumpTester {
 						boolean bRem = true;
 						if (iVal1==0) bRem = false; 
 						LOG.info(String.format("  ctaRemoteCtrlTimeSec: "  + bRem + "  ctaRemoteCtrlTimeSec=" + iVal1));
-						
-						oEnumListSet= devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ctaHPOpModeCmdFb").getEnum();
-						oEnumListGet = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ctaHPOpState").getEnum();						
+
+						// FIXME
+						// oEnumListSet= devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ctaHPOpModeCmdFb").getEnum();
+						// oEnumListGet = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ctaHPOpState").getEnum();
 						iVal3 = (int)devCTAoptiHeat.getValByGDPType("HeatPumpBase", "ErrorNrSGr").getInt16();
 						fVal1 = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "OutsideAirTemp").getFloat64();
 						fVal2 = devCTAoptiHeat.getValByGDPType("HeatPumpBase", "SupplyWaterTemp").getFloat64();
@@ -790,8 +801,9 @@ public class HeatPumpTester {
 
 						LOG.info(String.format("		  OutsideAir="+ fVal1 +" °C,  SupplyWaterTemp=" + fVal2 + "°C, ReturnSupplyWaterTemp="   + fVal3 +  "°C, SourceTemp="   + fVal4 +  "°C " ));    
 						LOG.info(String.format(" "));
-						
-						oEnumListSet=  devCTAoptiHeat.getValByGDPType("DomHotWaterCtrl", "ctaDomHotWOpModeCmd").getEnum();
+
+						// FIXME
+						// oEnumListSet=  devCTAoptiHeat.getValByGDPType("DomHotWaterCtrl", "ctaDomHotWOpModeCmd").getEnum();
 						fVal1 = devCTAoptiHeat.getValByGDPType("DomHotWaterCtrl", "ActDomHotWTemp").getFloat64();
 						fVal2 = devCTAoptiHeat.getValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt").getFloat64();
 						LOG.info(String.format("  DomHotWaterCtrl: ctaDomHotWOpModeCmd=" + oEnumListSet.getCtaDomHotWOpMode().getLiteral() + "/" +   oEnumListSet.getCtaDomHotWOpMode().getValue()  + ",  ActDomHotWTemp="  + fVal1 + " °C,  DomHotWTempStpt=" + fVal2 + " °C "));  
@@ -823,8 +835,9 @@ public class HeatPumpTester {
 						LOG.info(String.format("  RoomTempCtrl: RoomZoneTemp=" + fVal2 + " °C,  RoomZoneTempStpt=" + fVal1 + "  °C "));       
 						LOG.info(String.format(" "));	
 						
-						
-						oEnumList = devCTAoptiHeat.getValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd").getEnum();                         
+
+						// FIXME
+						// oEnumList = devCTAoptiHeat.getValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd").getEnum();
 						LOG.info(String.format("  SGReady-bwp:  SGReadyCmd=" + oEnumList.getSgreadyStateLv2().getLiteral()));
 						oEnumList.unsetSgreadyStateLv2();
 						LOG.info(String.format(" "));	
