@@ -1,6 +1,9 @@
 package communicator.modbus.impl;
 
 import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
+import communicator.common.api.Float32Value;
+import communicator.common.api.Float64Value;
+import communicator.common.api.Int64Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
@@ -37,9 +40,9 @@ class SetGetValValidationTest {
 
         SGrModbusDevice modbusDevice = createModbusDevice();
 
-        assertDoesNotThrow(() -> modbusDevice.setVal("VoltageAC", "VoltageL1", "380"));
-        assertThrows(GenDriverException.class, () -> modbusDevice.setVal("VoltageAC", "VoltageL1", "380.001"));
-        assertThrows(GenDriverException.class, () -> modbusDevice.setVal("VoltageAC", "VoltageL1", "0.004"));
+        assertDoesNotThrow(() -> modbusDevice.setValByGDPType("VoltageAC", "VoltageL1", Int64Value.of(380)));
+        assertThrows(GenDriverException.class, () -> modbusDevice.setValByGDPType("VoltageAC", "VoltageL1", Float32Value.of(380.001f)));
+        assertThrows(GenDriverException.class, () -> modbusDevice.setValByGDPType("VoltageAC", "VoltageL1", Float64Value.of(0.004d)));
     }
 
     private static Stream<Arguments> rwPermissionChecks() {
@@ -65,14 +68,14 @@ class SetGetValValidationTest {
 
         if (expectedErrorMsg == null) {
             if(isWrite) {
-                assertDoesNotThrow(() -> modbusDevice.setVal("VoltageAC", dataPointName, "380"));
+                assertDoesNotThrow(() -> modbusDevice.setValByGDPType("VoltageAC", dataPointName, Float32Value.of(380.0f)));
             } else {
                 when(modbusDriver.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(new int[]{0,0});
                 assertDoesNotThrow(() -> modbusDevice.getVal("VoltageAC", dataPointName));
             }
         } else {
             GenDriverException e = isWrite ?
-                  assertThrows(GenDriverException.class, () -> modbusDevice.setVal("VoltageAC", dataPointName, "380"))
+                  assertThrows(GenDriverException.class, () -> modbusDevice.setValByGDPType("VoltageAC", dataPointName, Int64Value.of(380)))
                 : assertThrows(GenDriverException.class, () -> modbusDevice.getVal("VoltageAC", dataPointName));
             assertEquals(expectedErrorMsg, e.getMessage());
         }
@@ -83,7 +86,7 @@ class SetGetValValidationTest {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL deviceDescUrl = classloader.getResource("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
         SGrModbusDeviceFrame  deviceDesc = new DeviceDescriptionLoader<SGrModbusDeviceFrame>()
-                .load("", Optional.ofNullable(deviceDescUrl.getPath()).orElse(""));
+                .load("", Optional.ofNullable(deviceDescUrl != null ? deviceDescUrl.getPath() : null).orElse(""));
 
         return new SGrModbusDevice(deviceDesc, modbusDriver);
     }

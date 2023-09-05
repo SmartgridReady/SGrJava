@@ -63,6 +63,7 @@ import com.smartgridready.ns.v0.TEnumObjectType;
 import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
 import com.smartgridready.ns.v0.V0Factory;
 import communicator.common.api.Value;
+import communicator.common.api.Value;
 import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
@@ -182,7 +183,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 	}			
 	
 	
-	private Value prv_getBlockVal( SGrModbusDataPointType aDataPoint)
+	private Value prv_getBlockVal(SGrModbusDataPointType aDataPoint)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 			// Check read/write permission
@@ -296,12 +297,12 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 	}
 
 	private Value doReadConversion(SGrModbusDataPointType aDataPoint,
-														  SGrModbusInterfaceDescriptionType modbusInterfaceDesc,
-														  final int[] mbregrespSrc,
-														  final boolean[] mbbitrespSrc,
-														  boolean bGotRegisters,
-														  boolean bGotDiscrete,
-														  int size, int arrOffset) {
+										 SGrModbusInterfaceDescriptionType modbusInterfaceDesc,
+										 final int[] mbregrespSrc,
+										 final boolean[] mbbitrespSrc,
+										 boolean bGotRegisters,
+										 boolean bGotDiscrete,
+										 int size, int arrOffset) {
 
 		int mul = 1;
 		int l6dev;
@@ -933,7 +934,9 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		// for all Java virtual machines
 		// Q&A:CB Please could you explain the problem. Not that clear to me...
 
+
 		IntBuffer mbRegBuf = IntBuffer.allocate(32);
+		sgrValue.scaleDown(mul, powof10);
 		mbRegBuf.put(sgrValue.toModbusRegister(dMBType, bRegisterCMDs));
 
 

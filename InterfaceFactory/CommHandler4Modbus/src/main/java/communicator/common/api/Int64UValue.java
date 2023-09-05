@@ -1,9 +1,5 @@
 package communicator.common.api;
 
-import com.smartgridready.ns.v0.ModbusDataType;
-import communicator.common.helper.DataTypeHelper;
-import communicator.modbus.helper.ConversionHelper;
-
 import java.math.BigInteger;
 
 public class Int64UValue extends Value {
@@ -52,7 +48,7 @@ public class Int64UValue extends Value {
 
     @Override
     public long getInt64() {
-        Value.checkInt64(value.longValue());
+        Value.checkInt64(value);
         return value.longValue();
     }
 
@@ -80,18 +76,22 @@ public class Int64UValue extends Value {
 
     @Override
     public void scaleDown(int mul, int powOf10) {
-        BigInteger val = value.divide(BigInteger.valueOf(mul));
-        val = val.multiply(BigInteger.valueOf((long)Math.pow(10.0, -powOf10)));
-        Value.checkInt64U(val);
-        value = val;
+        if (mul != 1 || powOf10 !=0) {
+            BigInteger val = value.divide(BigInteger.valueOf(mul));
+            val = val.multiply(BigInteger.valueOf((long) Math.pow(10.0, -powOf10)));
+            Value.checkInt64U(val);
+            value = val;
+        }
     }
 
     @Override
     public void scaleUp(int mul, int powOf10) {
-        BigInteger val = value.multiply(BigInteger.valueOf(mul));
-        val = val.multiply(BigInteger.valueOf((long)Math.pow(10.0, powOf10)));
-        Value.checkInt64U(val);
-        value = val;
+        if (mul != 1 || powOf10 !=0) {
+            BigInteger val = value.multiply(BigInteger.valueOf(mul));
+            val = val.multiply(BigInteger.valueOf((long) Math.pow(10.0, powOf10)));
+            Value.checkInt64U(val);
+            value = val;
+        }
     }
 
     public static Value of(BigInteger value) {

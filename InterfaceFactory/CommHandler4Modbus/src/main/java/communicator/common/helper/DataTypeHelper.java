@@ -41,8 +41,8 @@ public class DataTypeHelper {
     static {
         modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__BOOLEAN, "BOOLEAN");
         modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT8,    "INT8");
-        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT16,  "INT8");
-        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT32, "INT8");
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT16,  "INT16");
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT32, "INT32");
         modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT64, "INT64");
         modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT8_U, "INT8_U");
         modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT16_U, "INT16_U");

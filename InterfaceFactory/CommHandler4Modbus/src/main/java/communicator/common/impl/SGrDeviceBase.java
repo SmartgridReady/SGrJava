@@ -7,10 +7,10 @@ import com.smartgridready.ns.v0.SGrFunctionalProfileBaseType;
 import com.smartgridready.ns.v0.SGrRWPType;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.V0Package;
+import communicator.common.api.Float64Value;
 import communicator.common.api.GenDeviceApi;
 import communicator.common.api.Value;
 import communicator.common.runtime.GenDriverException;
-import communicator.modbus.helper.GenType2StringConversion;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -132,9 +132,8 @@ public abstract class SGrDeviceBase<
     public void checkOutOfRange(String value, SGrDataPointBaseType dataPoint)
         throws GenDriverException {
 
-        Value genVal =
-                GenType2StringConversion.format(value, dataPoint.getDataPoint().getDataType());
-
+        // TODO is this conversion suitable for all numerical String values?
+        Value genVal = Float64Value.of(Double.parseDouble(value));
         checkOutOfRange(new Value[]{genVal}, dataPoint);
     }
 

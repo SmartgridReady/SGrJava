@@ -3,6 +3,7 @@ package communicator.modbus.helper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.charset.StandardCharsets;
@@ -22,13 +23,20 @@ public class ConversionHelper {
         for( int i=0; i<ibuf.capacity(); i++) {
             ibuf.put(bbuf.getShort() & 0x0000ffff);
         }
+        if (LOG.isDebugEnabled()) {
+            StringBuilder sb = new StringBuilder("Convert bytes to register int[]: ");
+            for(int val : ibuf.array()) {
+                sb.append(String.format("%04x ", val));
+            }
+            LOG.debug(sb.toString());
+        }
         return ibuf.array();
     }
 
     public static ByteBuffer byteBufFromRegisters(int[] intArr) {
         ByteBuffer bbuf = ByteBuffer.allocate(intArr.length*2);
-        for (int i : intArr) {
-            bbuf.putShort((short)(intArr[i] & 0x0000ffff));
+        for (int j : intArr) {
+            bbuf.putShort((short) (j & 0x0000ffff));
         }
         bbuf.rewind(); // to get values from...
         return bbuf;
@@ -75,16 +83,42 @@ public class ConversionHelper {
         return res;
     }
 
+    public static int[] unsignedLongToRegister(BigInteger value) {
+        byte[] res = new byte[8];
+        byte[] inBytes = value.toByteArray();
+        // write array from behind
+        for (int i=res.length-1, j=inBytes.length-1; i>=0 && j>=0; i--, j--) {
+            res[i] = inBytes[j];
+        }
+        return bytesToRegisters(res);
+    }
+
+
     public static int[] intToRegisters(int value) {
         int[] res = new int[2];
-        res[0] = ((short) ((value >> 16) & 0x0000ffff));
+        res[0] = ((short) (value >> 16) & 0x0000ffff);
         res[1] = ((short) value & 0x0000ffff);
         if (LOG.isDebugEnabled()) {
-            LOG.debug(String.format("Convert intToRegisters long: %d, hex: %04x %04x", value, res[0], res[1]));
+            LOG.debug(String.format("Convert intToRegisters int: %d, hex: %04x %04x", value, res[0], res[1]));
         }
         return res;
     }
 
+    public static int[] uintToRegisters(long value) {
+        int[] res = intToRegisters((int)value);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(String.format("Convert uintToRegisters uint: %d, hex: %04x %04x", value, res[0], res[1]));
+        }
+        return res;
+    }
+
+    public static int[] shortToRegister(short value) {
+        int resVal = value & 0x0000ffff;
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(String.format("Convert shortToRegisters short: %d, hex: %04x", value, resVal));
+        }
+        return new int[]{resVal};
+    }
 
     /**
      * Converts 16 - Bit Register values to String

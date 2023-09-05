@@ -17,6 +17,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package communicator.modbus.api;
 import communicator.common.api.GenDeviceApi;
+import communicator.common.api.NumberValue;
 import communicator.common.api.Value;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
@@ -24,7 +25,7 @@ import communicator.common.runtime.GenDriverSocketException;
 
 /**
  * The API defines read and write operations for SmartGridReady devices.
- * The values can be provided as {@link String} or {@link Value}
+ * The values can be provided as {@link String} or {@link NumberValue}
  * The implementing device will convert the data to their modbus format.
  *
  */
