@@ -732,12 +732,12 @@ public class HeatPumpTester {
 					      gdtValue.setFloat32(fVal1);
 						  devCTAoptiHeat.setValByGDPType("PowerCtrl","PowerCtrlStpt",gdtValue);
 						  LOG.info(String.format("Setting PowerCtrl: PowerCtrlStpt="  + fVal1 ) + " %");  
-						  
+						  */
 						  
 						  
 						  /* set storage buffer
 						  //TODO: read timeout beim Schreiben klären
-						  gdtValue.setInt16U(20);
+						  gdtValue.setInt16U(30);
 						  devCTAoptiHeat.setValByGDPType("BufferStorageCtrl","ctaRemoteCtrlTimeSec",gdtValue);
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
 						  gdtValue.unsetInt16U();
@@ -759,7 +759,7 @@ public class HeatPumpTester {
 						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl", "ctaHCOpModeCmd", modeCmd);
 						  LOG.info(String.format("Setting  ctaHCOpModeCmd=" +  modeCmd.getEnum().getCtaHCOpMode().getLiteral()));
 						  */
-						  //*
+						  /*
 						  //  Set SupplyWaterTempStpt
 						  gdtValue.setInt16U(120);
 						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl","ctaRemoteCtrlTimeSec",gdtValue);
@@ -769,7 +769,7 @@ public class HeatPumpTester {
 						  gdtValue.setFloat32((float)22.6);
 						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl", "SupplyWaterTempStptComf",gdtValue);
 						  LOG.info(String.format("Setting  SupplyWaterTempStptComf=" + gdtValue.getFloat32()));
-						  //*/
+						  */
 						  
 
 						  /*  Set DomHotWaterCtrl //
@@ -796,9 +796,10 @@ public class HeatPumpTester {
 						  */
 
 					      
-						  /* control SG-Ready by enum SGReadyStateLv2Type
+						  //* control SG-Ready by enum SGReadyStateLv2Type
 						  gdtValue.setInt16U(120);
 						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec",gdtValue);
+						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));	
 		                  oEnumList.setSgreadyStateLv2(SGReadyStateLv2Type.HPNORMAL);
 						  SGrBasicGenDataPointTypeType  hpCmd = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 						  gdtValue.unsetInt16U();
@@ -806,11 +807,8 @@ public class HeatPumpTester {
 						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd", hpCmd);
 						  LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));
 						  oEnumList.unsetSgreadyStateLv2();						  
-						  // ctaRemoteCtrlTimeSec is a second counter starting @max 3000 in order to allow using setpoints for external controls
-						  gdtValue.setInt16U(20);
-						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec",gdtValue);
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-					      */
+
+					      //*/
 						  LOG.info("\n");
 													  
 						 
