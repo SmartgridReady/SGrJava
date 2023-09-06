@@ -62,20 +62,21 @@ public class DataTypeHelper {
 
     static final Map<Integer, DataTypeRecord> modbusFeatures = new HashMap<>();
     static {
-        modbusFeatures.put(V0Package.DATA_TYPE__INT8,    new DataTypeRecord("INT8", value -> Int8Value.of((byte)value)));
-        modbusFeatures.put(V0Package.DATA_TYPE__INT16,   new DataTypeRecord("INT16", value -> Int16Value.of((short)value)));
-        modbusFeatures.put(V0Package.DATA_TYPE__INT32,   new DataTypeRecord("INT32", value -> Int32Value.of((int)value)));
-        modbusFeatures.put(V0Package.DATA_TYPE__INT64,   new DataTypeRecord("INT64", value -> Int64Value.of((long)value)));
-        modbusFeatures.put(V0Package.DATA_TYPE__INT8_U,  new DataTypeRecord("INT8_U", value -> Int8UValue.of((short)value)));
-        modbusFeatures.put(V0Package.DATA_TYPE__INT16_U, new DataTypeRecord("INT16_U", value -> Int16UValue.of((int)value)));
-        modbusFeatures.put(V0Package.DATA_TYPE__INT32_U, new DataTypeRecord("INT32_U", value -> Int32UValue.of((long)value)));
-        modbusFeatures.put(V0Package.DATA_TYPE__INT64_U, new DataTypeRecord("INT64_U", value -> Int64UValue.of(BigInteger.valueOf((long)value))));
-        modbusFeatures.put(V0Package.DATA_TYPE__FLOAT32, new DataTypeRecord("FLOAT32", value -> Float32Value.of((float)value)));
-        modbusFeatures.put(V0Package.DATA_TYPE__FLOAT64, new DataTypeRecord("FLOAT64", value -> Float64Value.of((double)value)));
-        modbusFeatures.put(V0Package.DATA_TYPE__DATE_TIME, new DataTypeRecord("DATE_TIME", value -> null));
-        modbusFeatures.put(V0Package.DATA_TYPE__STRING, new DataTypeRecord("STRING", value -> null));
-        modbusFeatures.put(V0Package.DATA_TYPE__ENUM, new DataTypeRecord("ENUM", value -> null));
-        modbusFeatures.put(V0Package.DATA_TYPE__ENUM2BITMAP_INDEX, new DataTypeRecord("ENUM2BITMAP_INDEX", value -> null));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__BOOLEAN, new DataTypeRecord("BOOLEAN", value -> null));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT8,    new DataTypeRecord("INT8", value -> Int8Value.of((byte)value)));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT16,   new DataTypeRecord("INT16", value -> Int16Value.of((short)value)));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT32,   new DataTypeRecord("INT32", value -> Int32Value.of((int)value)));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT64,   new DataTypeRecord("INT64", value -> Int64Value.of((long)value)));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT8_U,  new DataTypeRecord("INT8_U", value -> Int8UValue.of((short)value)));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT16_U, new DataTypeRecord("INT16_U", value -> Int16UValue.of((int)value)));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT32_U, new DataTypeRecord("INT32_U", value -> Int32UValue.of((long)value)));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__INT64_U, new DataTypeRecord("INT64_U", value -> Int64UValue.of(BigInteger.valueOf((long)value))));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__FLOAT32, new DataTypeRecord("FLOAT32", value -> Float32Value.of((float)value)));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__FLOAT64, new DataTypeRecord("FLOAT64", value -> Float64Value.of((double)value)));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__DATE_TIME, new DataTypeRecord("DATE_TIME", value -> null));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__STRING, new DataTypeRecord("STRING", value -> null));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__ENUM, new DataTypeRecord("ENUM", value -> null));
+        modbusFeatures.put(V0Package.MODBUS_DATA_TYPE__ENUM2BITMAP_INDEX, new DataTypeRecord("ENUM2BITMAP_INDEX", value -> null));
     }
 
     public static Value genValueFor(int genDataTypeId, Object value) {
@@ -94,14 +95,14 @@ public class DataTypeHelper {
         return rec.factoryMeth.apply(value);
     }
 
-    public static Map.Entry<Integer, DataTypeRecord> getGenDataType(DataType genDataType) {
+    public static String getGenDataTypeName(DataType genDataType) {
         Iterator<Map.Entry<Integer, DataTypeRecord >> it = genFeatures.entrySet().iterator();
-        return getActiveFeature(it, feature -> (((DataTypeImpl)genDataType).eIsSet(feature)));
+        return getActiveFeature(it, feature -> (((DataTypeImpl)genDataType).eIsSet(feature))).getValue().name;
     }
 
-    public static Map.Entry<Integer, DataTypeRecord> getModbusDataType(ModbusDataType modbusDataType) {
+    public static String getModbusDataTypeName(ModbusDataType modbusDataType) {
         Iterator<Map.Entry<Integer, DataTypeRecord>> it = modbusFeatures.entrySet().iterator();
-        return getActiveFeature(it, feature -> (((ModbusDataTypeImpl)modbusDataType).eIsSet(feature)));
+        return getActiveFeature(it, feature -> (((ModbusDataTypeImpl)modbusDataType).eIsSet(feature))).getValue().name;
     }
 
     private static Map.Entry<Integer, DataTypeRecord > getActiveFeature(Iterator<Map.Entry<Integer, DataTypeRecord>> it, IntPredicate checkFunction) {

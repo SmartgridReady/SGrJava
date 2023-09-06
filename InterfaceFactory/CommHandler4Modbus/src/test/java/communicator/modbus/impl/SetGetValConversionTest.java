@@ -16,6 +16,7 @@ import com.smartgridready.ns.v0.TSGrModbusRegisterRef;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.impl.DataTypeImpl;
 import com.smartgridready.ns.v0.impl.ModbusDataTypeImpl;
+import communicator.common.api.BooleanValue;
 import communicator.common.api.Float32Value;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Int16UValue;
@@ -25,6 +26,7 @@ import communicator.common.api.Int32Value;
 import communicator.common.api.Int64UValue;
 import communicator.common.api.Int64Value;
 import communicator.common.api.Int8Value;
+import communicator.common.api.StringValue;
 import communicator.common.api.Value;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
@@ -32,10 +34,12 @@ import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
 import communicator.modbus.helper.CacheRecord;
 import communicator.modbus.helper.ModbusReaderResponse;
+import io.vavr.Tuple2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.platform.commons.util.ReflectionUtils;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -72,6 +76,7 @@ import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT64;
 import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT64_U;
 import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT8;
 import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT8_U;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__STRING;
 import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__BOOLEAN;
 import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__ENUM;
 import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__FLOAT32;
@@ -119,18 +124,21 @@ class SetGetValConversionTest {
 
     @Captor
     ArgumentCaptor<Integer> intCaptor = ArgumentCaptor.forClass(int.class);
+
+    @Captor
+    ArgumentCaptor<Boolean> booleanCaptor = ArgumentCaptor.forClass(Boolean.class);
     
-    private static class Fixture {
+    private static class Fixture<T> {
 
         Value writeValue;
         Value readValue;
-        int[] expectedModbusValue;
+        T expectedModbusValue;
 
         SGrModbusDeviceFrame modbusDeviceFrame;
 
         public Fixture(Value writeValue,
                        Value readValue,
-                       int[] expectedModbusValue,
+                       T expectedModbusValue,
                        SGrModbusDeviceFrame modbusDeviceFrame) {
             this.writeValue = writeValue;
             this.expectedModbusValue = expectedModbusValue;
@@ -142,7 +150,7 @@ class SetGetValConversionTest {
             return writeValue;
         }
 
-        public int[] getExpectedModbusValue() {
+        public T getExpectedModbusValue() {
             return expectedModbusValue;
         }
 
@@ -156,7 +164,7 @@ class SetGetValConversionTest {
         }
     }
 
-    private static final Map<Integer, Map<Integer, Map<TEnumConversionFct, Fixture>>>
+    private static final Map<Integer, Map<Integer, Map<TEnumConversionFct, Fixture<int[]>>>>
             FIXT_TREE= new HashMap<>();
 
     static final class ValueProvider {
@@ -270,16 +278,16 @@ class SetGetValConversionTest {
         GEN_NUMBER_FORMATS.forEach((key, genValueProvider) -> FIXT_TREE.put(key, createModbus(key)));
     }
 
-    static Map<Integer, Map<TEnumConversionFct, Fixture>> createModbus(int genType) {
-        Map<Integer, Map<TEnumConversionFct, Fixture>> modbusTypesMap =
+    static Map<Integer, Map<TEnumConversionFct, Fixture<int[]>>> createModbus(int genType) {
+        Map<Integer, Map<TEnumConversionFct, Fixture<int[]>>> modbusTypesMap =
             new HashMap<>();
         MODBUS_NUMBER_FORMATS.forEach((key, value) -> modbusTypesMap.put(key, createFixtures(genType, key)));
         return modbusTypesMap;
     }
 
-    private static Map<TEnumConversionFct, Fixture> createFixtures(int genType, int modbusType) {
+    private static Map<TEnumConversionFct, Fixture<int[]>> createFixtures(int genType, int modbusType) {
 
-        Map<TEnumConversionFct, Fixture> fixtureMap = new HashMap<>();
+        Map<TEnumConversionFct, Fixture<int[]>> fixtureMap = new HashMap<>();
 
         ENUM_CONVERSION_FCTS.forEach( convType ->
                 fixtureMap.put(convType, createFixture(genType, modbusType, convType)));
@@ -287,11 +295,11 @@ class SetGetValConversionTest {
         return fixtureMap;
     }
 
-    private static Fixture createFixture(int genType, int modbusType, TEnumConversionFct convType) {
+    private static Fixture<int[]> createFixture(int genType, int modbusType, TEnumConversionFct convType) {
 
         Value usedVal = createTestNumber(genType, modbusType);
 
-        return new Fixture(usedVal, usedVal, new int[getModbusBufferSize(modbusType)],
+        return new Fixture<>(usedVal, usedVal, new int[getModbusBufferSize(modbusType)],
                     deviceFrame(true, convType, genType, modbusType));
     }
 
@@ -342,11 +350,11 @@ class SetGetValConversionTest {
     }
 
 
-    static  Stream<Fixture> streamFixtureTree() {
+    static  Stream<Fixture<int[]>> streamFixtureTree() {
 
         createFixtureTree();
 
-        final List<Fixture> fixtures = new ArrayList<>();
+        final List<Fixture<int[]>> fixtures = new ArrayList<>();
 
         FIXT_TREE.values().forEach(
              modbusType -> modbusType.values().forEach(convType -> fixtures.addAll(convType.values()))
@@ -356,7 +364,7 @@ class SetGetValConversionTest {
 
     @ParameterizedTest
     @MethodSource("streamFixtureTree")
-    void testCompleteConversion(Fixture fixture) throws Exception {
+    void testCompleteConversion(Fixture<int[]> fixture) throws Exception {
 
         doTestWriteAndReadBack(fixture);
     }
@@ -364,35 +372,44 @@ class SetGetValConversionTest {
     @Test
     void testSingleFixture() throws Exception {
 
-        Fixture fixture =
-                new Fixture(Int16UValue.of(-18), Int16UValue.of(-18), new int[]{ -16334, -16334, -16334, -16334},
+        Fixture<int[]> fixture =
+                new Fixture<>(Int16UValue.of(-18), Int16UValue.of(-18), new int[]{ -16334, -16334, -16334, -16334},
                         deviceFrame(true, TEnumConversionFct.BIG_ENDIAN, DATA_TYPE__INT64, MODBUS_DATA_TYPE__INT64));
 
         doTestWriteAndReadBack(fixture);
     }
 
-    /*
     @Test
     void testConvertString() throws Exception{
 
-        Fixture<Value, Value, int[]>fixture =
-                new Fixture<>("Hello@SGr", "Hello@SGr", new int[]{0x4865, 0x6C6C, 0x6F40,0x5347, 0x7200},
+        Fixture<int[]> fixture =
+                new Fixture<>(StringValue.of("Hello@SGr"), StringValue.of("Hello@SGr"), new int[]{0x4865, 0x6C6C, 0x6F40,0x5347, 0x7200},
                         deviceFrame(true, TEnumConversionFct.BIG_ENDIAN, DATA_TYPE__STRING, MODBUS_DATA_TYPE__STRING));
 
         doTestWriteAndReadBack(fixture);
     }
-     */
 
-    /*
+
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
-    void testBitRegisterConversion(boolean bVal)  throws Exception {
-        Fixture<Value, Value, int[]>fixture =
-                new Fixture<>(Boolean.valueOf(bVal).toString(), Boolean.valueOf(bVal).toString(), bVal ? new int[]{0x1} : new int[]{0x0},
+    void testBooleanRegisterConversion(boolean bVal)  throws Exception {
+        Fixture<int[]> fixture =
+                new Fixture<>(BooleanValue.of(bVal), BooleanValue.of(bVal), bVal ? new int[]{0x1} : new int[]{0x0},
                         deviceFrame(true, TEnumConversionFct.BIG_ENDIAN, MODBUS_DATA_TYPE__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
 
         doTestWriteAndReadBack(fixture);
     }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void testBooleanDiscreteValConversion(boolean bVal)  throws Exception {
+        Fixture<int[]> fixture =
+                new Fixture<>(BooleanValue.of(bVal), BooleanValue.of(bVal), bVal ? new int[]{0x1} : new int[]{0x0},
+                        deviceFrame(true, TEnumConversionFct.BIG_ENDIAN, MODBUS_DATA_TYPE__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
+
+        doTestWriteAndReadBack(fixture);
+    }
+
 
     static Stream<Tuple2<TEnumConversionFct, Boolean>> booleanConversions() {
 
@@ -409,9 +426,7 @@ class SetGetValConversionTest {
         return  testParams.stream();
     }
 
-     */
 
-    /*
     @ParameterizedTest
     @MethodSource("booleanConversions")
     void readWriteCoilsTest(Tuple2<TEnumConversionFct, Boolean> testParam) throws Exception {
@@ -427,32 +442,28 @@ class SetGetValConversionTest {
                 .getModbusDataPoint().get(0)
                 .getModbusFirstRegisterReference().setRegisterType(TEnumObjectType.COIL);
 
-        Fixture<Value, Value, boolean[]> fixture = new Fixture<>(testParam._1().toString(), testParam._2().toString(),
+        Fixture<boolean[]> fixture = new Fixture<>(BooleanValue.of(testParam._2), BooleanValue.of(testParam._2),
                 new boolean[]{testParam._2()}, deviceFrame);
 
-        when(genDriverAPI4Modbus.ReadCoils(anyInt(), anyInt())).thenReturn(fixture.expectedModbusValue);
+        when(genDriverAPI4Modbus.ReadCoils(anyInt(), anyInt())).thenReturn(new boolean[]{testParam._2} );
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
                 fixture.getModbusDeviceFrame(),           // model
                 genDriverAPI4Modbus);                     // mock
 
         modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", fixture.getWriteValue());
-        verify(genDriverAPI4Modbus, atLeast(0)).ReadCoils(anyInt(), intCaptor.capture());
+        verify(genDriverAPI4Modbus).WriteSingleCoil(anyInt(), booleanCaptor.capture());
 
-        LOG.info("Modbus write coils: {}", intArrayCaptor.getAllValues().isEmpty() ? "-" : Integer.toHexString(intCaptor.getValue()));
+        LOG.info("Modbus write coils: {}", booleanCaptor.getAllValues().isEmpty() ? "-" : booleanCaptor.getValue());
+        assertEquals(fixture.getExpectedModbusValue()[0], booleanCaptor.getValue());
+        when(genDriverAPI4Modbus.ReadCoils(anyInt(), anyInt())).thenReturn(new boolean[]{booleanCaptor.getValue()});
 
-        if (!intCaptor.getAllValues().isEmpty()){
-            int val = adjustSign(intCaptor.getValue());
-            LOG.info("Modbus read coils: {}", Integer.toHexString(val));
-            assertEquals(fixture.getExpectedModbusValue()[0], val > 0);
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(new int[]{val});
-        }
+        Value res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
 
-        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
-        LOG.info("Modbus read value: {}", res);
-        assertEquals(fixture.getReadValue(), res.trim());
+        verify(genDriverAPI4Modbus).ReadCoils(anyInt(), anyInt());
+        LOG.info("Modbus read value: {}", res.getBoolean());
+        assertEquals(fixture.readValue.getBoolean(), res.getBoolean());
     }
-    */
 
 
     /*
@@ -592,7 +603,7 @@ class SetGetValConversionTest {
 
     }
 
-    private void doTestWriteAndReadBack(Fixture fixture) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+    private void doTestWriteAndReadBack(Fixture<int[]> fixture) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
         // given
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
                 fixture.getModbusDeviceFrame(),           // model
@@ -624,11 +635,15 @@ class SetGetValConversionTest {
         LOG.info("Modbus read value: {}", resVal);
 
         // We need to normalize the String values to compare, since the values can be mixed int/float typed.
-        Double expected = Double.parseDouble(fixture.getWriteValue().getString());
-        String expStr = String.format("%.4f", expected);
-        Double result = Double.parseDouble(resVal.getString());
-        String resStr = String.format("%.4f", result);
-        assertEquals(expStr, resStr);
+        if (resVal instanceof StringValue || resVal instanceof BooleanValue) {
+            assertEquals(fixture.getWriteValue().getString(), resVal.getString());
+        } else {
+            Double expected = Double.parseDouble(fixture.getWriteValue().getString());
+            String expStr = String.format("%.4f", expected);
+            Double result = Double.parseDouble(resVal.getString());
+            String resStr = String.format("%.4f", result);
+            assertEquals(expStr, resStr);
+        }
     }
 
 

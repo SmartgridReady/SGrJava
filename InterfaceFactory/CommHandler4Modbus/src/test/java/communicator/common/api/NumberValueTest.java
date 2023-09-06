@@ -18,9 +18,9 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class NumberValuesTest {
+class NumberValueTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(NumberValuesTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(NumberValueTest.class);
 
 
     private static final DataType genTypeFloat32 = V0Factory.eINSTANCE.createDataType();
@@ -162,7 +162,7 @@ class NumberValuesTest {
     @MethodSource("testParams")
     void writeAndReadBackNumbers(Fixture fixture) {
 
-        int[] modbusValue = fixture.testValue.toModbusRegister(fixture.modbusType, true);
+        int[] modbusValue = fixture.testValue.toModbusRegister(fixture.modbusType);
         assertArrayEquals(fixture.modbusValue, modbusValue);
 
         Value readValue = Value.fromModbusRegister(fixture.modbusType, modbusValue);

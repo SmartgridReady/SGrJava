@@ -31,6 +31,7 @@ public class Int8UValue extends NumberValue<Short> {
 
     @Override
     public void roundToInt() {
+        // is already an int
     }
 
     public static Int8UValue of(short value) {

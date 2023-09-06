@@ -1,5 +1,8 @@
 package communicator.common.api;
 
+import org.apache.hc.core5.http.MethodNotSupportedException;
+
+import java.lang.reflect.Method;
 import java.math.BigInteger;
 
 public class Int64UValue extends Value {
@@ -60,7 +63,7 @@ public class Int64UValue extends Value {
 
     @Override
     public float getFloat32() {
-        Value.ceckFloat32(value.doubleValue());
+        Value.checkFloat32(value.doubleValue());
         return value.floatValue();
     }
 
@@ -72,6 +75,11 @@ public class Int64UValue extends Value {
     @Override
     public String getString() {
         return value.toString();
+    }
+
+    @Override
+    public boolean getBoolean() {
+        return value.compareTo(BigInteger.ZERO) == 0 ? false : true;
     }
 
     @Override
@@ -101,6 +109,7 @@ public class Int64UValue extends Value {
 
     @Override
     public void roundToInt() {
+        // is already int
     }
 
     public static Int64UValue of(BigInteger value) {

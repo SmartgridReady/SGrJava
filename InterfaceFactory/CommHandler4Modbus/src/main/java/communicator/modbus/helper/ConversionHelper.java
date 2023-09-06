@@ -139,7 +139,7 @@ public class ConversionHelper {
                 result[i * 2 + 1] = registerResult[0];
             }
         }
-        return new String(result);
+        return new String(result).trim();
     }
 
     /**

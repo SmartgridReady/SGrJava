@@ -20,23 +20,13 @@ public abstract class Value {
     public abstract float getFloat32();
     public abstract double getFloat64();
     public abstract String getString();
+    public abstract boolean getBoolean();
     public abstract void scaleDown(int mul, int powOf10);
     public abstract void scaleUp(int mul, int powOf10);
     public abstract void absValue();
     public abstract void roundToInt();
 
-
-    public int[] toModbusRegister(ModbusDataType modbusDataType, boolean bRegisterCmds) {
-
-        if (bRegisterCmds) {
-             return convertToNumberToModbusRegister(modbusDataType);
-        }
-        throw new IllegalArgumentException(
-        String.format("Value to modbus type %s conversion not supported.",
-                DataTypeHelper.getModbusDataType(modbusDataType).getValue()));
-    }
-
-    private int[] convertToNumberToModbusRegister(ModbusDataType modbusDataType) {
+    public int[] toModbusRegister(ModbusDataType modbusDataType) {
 
         if (modbusDataType.getFloat64()!=null) {
             return ConversionHelper.doubleToRegisters(getFloat64());
@@ -68,48 +58,78 @@ public abstract class Value {
         if (modbusDataType.getInt8U()!=null) {
             return ConversionHelper.shortToRegister(getInt8U());
         }
+        if (modbusDataType.getString() != null) {
+            return ConversionHelper.convStringToRegisters(getString());
+        }
+        if (modbusDataType.getBoolean() != null) {
+            return ConversionHelper.shortToRegister(getBoolean() ? (short)1 : (short)0);
+        }
 
         throw new IllegalArgumentException(
-                String.format("Number conversion to modbus type %s conversion not supported.",
-                        DataTypeHelper.getModbusDataType(modbusDataType).getValue()));
+                String.format("Conversion to modbus register for type %s not supported.",
+                        DataTypeHelper.getModbusDataTypeName(modbusDataType)));
     }
 
-    public static Value fromModbusRegister(ModbusDataType modbusDataType, int[] buffer) {
+    public byte[] toModbusDiscreteVal(ModbusDataType modbusDataType) {
+        if (modbusDataType.getBoolean() != null) {
+            return new byte[]{getBoolean() ? (byte)1 : (byte)0};
+        }
+        throw new IllegalArgumentException(
+                String.format("Conversion to modbus discrete value for type %s not supported.",
+                        DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+    }
+
+    public static Value fromModbusRegister(ModbusDataType modbusDataType, int[] registers) {
 
         if (modbusDataType.getFloat64() != null) {
-            return Float64Value.of(ConversionHelper.byteBufFromRegisters(buffer).getDouble());
+            return Float64Value.of(ConversionHelper.byteBufFromRegisters(registers).getDouble());
         }
         if (modbusDataType.getFloat32() != null) {
-            return Float32Value.of(ConversionHelper.byteBufFromRegisters(buffer).getFloat());
+            return Float32Value.of(ConversionHelper.byteBufFromRegisters(registers).getFloat());
         }
         if (modbusDataType.getInt64() != null) {
-            return Int64Value.of(ConversionHelper.byteBufFromRegisters(buffer).getLong());
+            return Int64Value.of(ConversionHelper.byteBufFromRegisters(registers).getLong());
         }
         if (modbusDataType.getInt64U() != null) {
-            long signedLong = ConversionHelper.byteBufFromRegisters(buffer).getLong();
+            long signedLong = ConversionHelper.byteBufFromRegisters(registers).getLong();
             return Int64UValue.of(BigInteger.valueOf(signedLong).and(UNSIGNED_LONG_MASK));
         }
         if (modbusDataType.getInt32() != null) {
-            return Int32Value.of(ConversionHelper.byteBufFromRegisters(buffer).getInt());
+            return Int32Value.of(ConversionHelper.byteBufFromRegisters(registers).getInt());
         }
         if (modbusDataType.getInt32U() != null) {
-            return Int32UValue.of(Integer.toUnsignedLong(ConversionHelper.byteBufFromRegisters(buffer).getInt()));
+            return Int32UValue.of(Integer.toUnsignedLong(ConversionHelper.byteBufFromRegisters(registers).getInt()));
         }
         if (modbusDataType.getInt16() != null) {
-            return Int16Value.of(ConversionHelper.byteBufFromRegisters(buffer).getShort());
+            return Int16Value.of(ConversionHelper.byteBufFromRegisters(registers).getShort());
         }
         if (modbusDataType.getInt16U() != null) {
-            return Int16UValue.of(ConversionHelper.byteBufFromRegisters(buffer).getShort() & 0xFFFF);
+            return Int16UValue.of(ConversionHelper.byteBufFromRegisters(registers).getShort() & 0xFFFF);
         }
         if (modbusDataType.getInt8() != null) {
-            return Int8Value.of((byte)ConversionHelper.byteBufFromRegisters(buffer).getShort());
+            return Int8Value.of((byte)ConversionHelper.byteBufFromRegisters(registers).getShort());
         }
         if (modbusDataType.getInt8U() != null) {
-            return Int8UValue.of(ConversionHelper.byteBufFromRegisters(buffer).getShort());
+            return Int8UValue.of(ConversionHelper.byteBufFromRegisters(registers).getShort());
+        }
+        if (modbusDataType.getString() != null) {
+            return StringValue.of(ConversionHelper.convRegistersToString(registers, 0, registers.length * 2));
+        }
+        if (modbusDataType.getBoolean() != null) {
+            return BooleanValue.of(ConversionHelper.byteBufFromRegisters(registers).getShort() != 0);
         }
 
-        throw new IllegalArgumentException(String.format("Modbus type %s to Value.class conversion not supported.",
-                DataTypeHelper.getModbusDataType(modbusDataType).getValue()));
+        throw new IllegalArgumentException(String.format("Modbus register type %s to Value.class conversion from register not supported.",
+                DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+    }
+
+    public static Value fromDiscreteInput(ModbusDataType modbusDataType, boolean[] bitregister) {
+        if (modbusDataType.getBoolean() != null) {
+            return BooleanValue.of(bitregister[0]);
+        }
+
+        throw new IllegalArgumentException(String.format("Modbus type %s to Value.class conversion from discrete input not supported.",
+                DataTypeHelper.getModbusDataTypeName(modbusDataType)));
     }
 
     static void checkInt8(long value) {
@@ -160,7 +180,7 @@ public abstract class Value {
         }
     }
 
-    static void ceckFloat32(double value) {
+    static void checkFloat32(double value) {
         if (value < -Float.MAX_VALUE || value > Float.MAX_VALUE) {
             throw new IllegalArgumentException(String.format("Cannot convert value %f to float32. Value out of range", value));
         }

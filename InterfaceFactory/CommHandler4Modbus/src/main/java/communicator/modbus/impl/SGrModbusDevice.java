@@ -24,7 +24,6 @@ package communicator.modbus.impl;
 import com.smartgridready.ns.v0.CtaDomHotWOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpModeType;
 import com.smartgridready.ns.v0.CtaHPOpStateType;
-import com.smartgridready.ns.v0.DataType;
 import com.smartgridready.ns.v0.HovBufferStateType;
 import com.smartgridready.ns.v0.HovDomHotWOpModeType;
 import com.smartgridready.ns.v0.HovDomHotWStateType;
@@ -285,40 +284,30 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		int l6dev;
 		int pwof10 = 0;
 		// Register return value calculation
-		long RegRes = 0;
-		double dVal;
-		float fVal = 0;
 
 		int[] mbregresp = Arrays.copyOfRange(mbregrespSrc, arrOffset*size, (arrOffset+1)*size);
 		boolean[] mbbitresp = Arrays.copyOfRange(mbbitrespSrc, arrOffset*size, (arrOffset+1)*size);
 
 		ModbusDataType dMBType = aDataPoint.getModbusDataPoint().get(0).getModbusDataType() ;
-		
-		// Data format adaption
-		DataType dGenType = aDataPoint.getDataPoint().getDataType();
 
-		EList<TEnumConversionFct> MBconvScheme = modbusInterfaceDesc.getConversionScheme();
-
-		int[] singleResp = new int[2];
-		int[] doubleResp = new int[4];
+		EList<TEnumConversionFct> modbusConversionScheme = modbusInterfaceDesc.getConversionScheme();
 		if (bGotRegisters) {
-			if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
-				mbregresp = ConvertEndians(MBconvScheme, mbregresp, size);
+			if (!modbusConversionScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
+				mbregresp = ConvertEndians(modbusConversionScheme, mbregresp, size);
 			}
 
 			// Attributes
-			if (aDataPoint.getModbusAttr().size() > 0)
-			{ // there are Modbus attributes available
+			if (!aDataPoint.getModbusAttr().isEmpty())
+			{   // there are Modbus attributes available
 
-				if (aDataPoint.getModbusAttr().get(0).isSetSunssf()) { // use sunpsec
-				} else
-				{  if (aDataPoint.getModbusAttr().get(0).getScalingByMulPwr()!=null)
-				  {
+				if (   !aDataPoint.getModbusAttr().get(0).isSetSunssf()
+				    && (aDataPoint.getModbusAttr().get(0).getScalingByMulPwr()!=null))
+				{
 					SGrScalingType attrScaling = aDataPoint.getModbusAttr().get(0).getScalingByMulPwr();
 					mul = attrScaling.getMultiplicator();
 					pwof10 = attrScaling.getPowerof10();
-				  }
 				}
+
 				if (aDataPoint.getModbusAttr().get(0).isSetLayer6Deviation() )
 				{   // do we have Layer 6 deviations ?
 			       	l6dev = aDataPoint.getModbusAttr().get(0).getLayer6Deviation().getValue();
@@ -328,7 +317,8 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 				{   // modbus value to generic value conversion
 
 					int[] zwi= {0,0,0,0,0,0,0,0};
-					int lp,gen;
+					int lp;
+					int gen;
 					for (lp=0;lp<aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().size();lp++)
 					{
 						gen = aDataPoint.getModbusAttr().get(0).getIopBitmapMapper().getGenBitMapper().get(lp).intValue();
@@ -365,45 +355,15 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 			// - after change byte order
 			// - if the modbus value is an unsigned number and MSB is set
 			mbregresp[0] = adjustSign(dMBType, mbregresp[0]);
-		
-            for (int u = 0; u < size; u++) {
-            	if (u == 0) {
-					RegRes = mbregresp[u];
-				} else {
-					RegRes = RegRes << 16;
-					RegRes = RegRes | (mbregresp[u] & 0x0000ffff);
-				}
-				
-				if (size == 2)
-			    {
-			    	singleResp[0] = mbregresp[0];
-			    	singleResp[1] = mbregresp[1];
-			    } 
-			    else if (size == 4)
-			    {
-			    	doubleResp[0] = mbregresp[0];
-			    	doubleResp[1] = mbregresp[1];
-			    	doubleResp[2] = mbregresp[2];
-			    	doubleResp[3] = mbregresp[3];
-			    }
-			    else if (size > 2)
-			    {
-			    	// 3, 5-unbounded?
-			    }
-	        }
 	    }
 
-		if (bGotDiscrete) { // TODO: manage discrete block conversion
-
-		}		
-	    
-	    // generic type expected as API return type
-		// TODO:HF? Check why the data type "long" does not create a 64 bit signed integer
-		// for all Java virtual machines
-		// Q&A:CB could you explain the issue further. Not clear to me yet.
-
-		Value retVal = Value.fromModbusRegister(dMBType, mbregresp);
-		retVal.scaleUp(mul, pwof10);
+		Value retVal;
+		if (bGotDiscrete) {
+			retVal = Value.fromDiscreteInput(dMBType, mbbitresp);
+		} else {
+			retVal = Value.fromModbusRegister(dMBType, mbregresp);
+			retVal.scaleUp(mul, pwof10);
+		}
 		return retVal;				
 	}
 
@@ -581,17 +541,17 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		SGrModbusDataPointType dataPoint = findDatapoint(sProfileName, sDataPointName);
-		prv_setValArrByGDPType(dataPoint, new Value[]{value});
+		setValArr(dataPoint, new Value[]{value});
 	}
 
 	@Override
 	public void setValArr(String profileName, String dataPointName, Value[] values)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		SGrModbusDataPointType dataPoint = findDatapoint(profileName, dataPointName);
-		prv_setValArrByGDPType(dataPoint, values);
+		setValArr(dataPoint, values);
 	}
 
-	private void prv_setValArrByGDPType(
+	private void setValArr(
 			SGrModbusDataPointType aDataPoint,
 			Value[] sgrValues) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
@@ -701,7 +661,7 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 
 	private void doWriteConversion(
 			IntBuffer mbRegBufRes,
-			ByteBuffer 	mbBitBuf,
+			ByteBuffer 	mbByteBuf,
 			Value sgrValue,
 			boolean bRegisterCMDs,
 			boolean bDiscreteCMDs,
@@ -726,7 +686,11 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 
 		IntBuffer mbRegBuf = IntBuffer.allocate(32);
 		sgrValue.scaleDown(mul, powof10);
-		mbRegBuf.put(sgrValue.toModbusRegister(dMBType, bRegisterCMDs));
+		if (bRegisterCMDs) {
+			mbRegBuf.put(sgrValue.toModbusRegister(dMBType));
+		} else {
+			mbByteBuf.put(sgrValue.toModbusDiscreteVal(dMBType)[0]);
+		}
 
 		if (!MBconvScheme.get(0).equals(TEnumConversionFct.BIG_ENDIAN)) {
 			if (bRegisterCMDs) {
@@ -741,35 +705,6 @@ public class SGrModbusDevice extends SGrDeviceBase<SGrModbusDeviceFrame, SGrModb
 		}
 	}
 
-	double getConvertedDouble(DataType dGenType, int powof10, int mul) {
-		double dVal = 0.0;
-
-//		if (dGenType.isSetInt8())
-//			dVal = (double) dGenType.getInt8();
-//		if (dGenType.isSetInt16())
-//			dVal = (double) dGenType.getInt16();
-//		if (dGenType.isSetInt32())
-//			dVal = (double) dGenType.getInt32();
-//		if (dGenType.isSetInt64())
-//			dVal = (double) dGenType.getInt64();
-//		if (dGenType.isSetFloat32())
-//			dVal = (double) dGenType.getFloat32();
-//		if (dGenType.isSetFloat64())
-//			dVal = dGenType.getFloat64();
-//		if (dGenType.isSetInt8U())
-//			dVal = (double) dGenType.getInt8U();
-//		if (dGenType.isSetInt16U())
-//			dVal = (double) dGenType.getInt16U();
-//		if (dGenType.isSetInt32U())
-//			dVal = (double) dGenType.getInt32U();
-//		if (dGenType.getInt64U() != null)
-//			dVal = (double) dGenType.getInt64U().doubleValue();
-
-		dVal = dVal /  mul;
-		dVal = (dVal * Math.pow(10.0, -powof10));
-
-		return dVal;
-	}
 
 	// ===================================== code to be maintained frequently ==============================================
 	// Manually adopted enumeration handling: needs 3 entries for each enumerated

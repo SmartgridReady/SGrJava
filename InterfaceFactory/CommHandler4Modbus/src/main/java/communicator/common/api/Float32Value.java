@@ -11,7 +11,7 @@ public class Float32Value extends NumberValue<Float> {
         if (mul != 1 || powOf10 !=0) {
             double dVal = value / mul;
             dVal = dVal * Math.pow(10.0, -powOf10);
-            Value.ceckFloat32(dVal);
+            Value.checkFloat32(dVal);
             value = (float) dVal;
         }
     }
@@ -21,7 +21,7 @@ public class Float32Value extends NumberValue<Float> {
         if (mul != 1 || powOf10 != 0) {
             double dVal = (value * Math.pow(10.0, powOf10));
             dVal = dVal * mul;
-            Value.ceckFloat32(dVal);
+            Value.checkFloat32(dVal);
             value = (float) dVal;
         }
     }

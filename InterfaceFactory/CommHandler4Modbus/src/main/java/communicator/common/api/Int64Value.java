@@ -29,6 +29,7 @@ public class Int64Value extends NumberValue<Long> {
 
     @Override
     public void roundToInt() {
+        // is already int
     }
 
     public static Int64Value of(long value) {

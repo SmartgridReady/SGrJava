@@ -1,6 +1,7 @@
 package communicator.common.api;
 
 import com.smartgridready.ns.v0.V0Package;
+import org.apache.hc.core5.http.MethodNotSupportedException;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -47,6 +48,11 @@ public abstract class NumberValue<T extends Number> extends Value {
     }
 
     @Override
+    public boolean getBoolean() {
+        return value.longValue() != 0 ? true : false;
+    }
+
+    @Override
     public long getInt64() {
         return value.longValue();
     }
@@ -65,7 +71,7 @@ public abstract class NumberValue<T extends Number> extends Value {
 
     @Override
     public float getFloat32() {
-        Value.ceckFloat32(value.floatValue());
+        Value.checkFloat32(value.floatValue());
         return value.floatValue();
     }
 
