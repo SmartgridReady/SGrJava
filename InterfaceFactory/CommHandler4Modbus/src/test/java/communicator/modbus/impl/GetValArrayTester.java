@@ -24,7 +24,7 @@ public class GetValArrayTester {
 		try {	
 			
 			DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-			SGrModbusDeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc.getPath());
+			SGrModbusDeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ?deviceDesc.getPath() : null);
 			
 			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
 			mbRTU.initTrspService("COM3", 19200);	
@@ -35,7 +35,7 @@ public class GetValArrayTester {
 				// set device address of devWagoMeter
 					
 				mbRTU.setUnitIdentifier((byte) 1);
-				Value[] voltages = devWagoMeter.getValArrByGDPType("VoltageAC", "Voltage-L1-L2-L3");
+				Value[] voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
 				
 				// Voltages as GDP type
 				LOG.info("WAGO Meter Voltages AC run 1: L1: {}V - L2 {}V - L3: {}V", 
@@ -44,14 +44,14 @@ public class GetValArrayTester {
 						voltages[2].getFloat32());
 				
 				
-				voltages = devWagoMeter.getValArrByGDPType("VoltageAC", "Voltage-L1-L2-L3");				
+				voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
 				LOG.info("WAGO Meter Voltages AC run 2: L1: {}V - L2 {}V - L3: {}V", 
 						voltages[0].getFloat32(),
 						voltages[1].getFloat32(),
 						voltages[2].getFloat32());
 				
 				Thread.sleep(1000);
-				voltages = devWagoMeter.getValArrByGDPType("VoltageAC", "Voltage-L1-L2-L3");				
+				voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
 				LOG.info("WAGO Meter Voltages AC run 3: L1: {}V - L2 {}V - L3: {}V", 
 						voltages[0].getFloat32(),
 						voltages[1].getFloat32(),
@@ -59,9 +59,9 @@ public class GetValArrayTester {
 				
 				
 				// Voltages as String
-				String[] strVoltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
+				voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
 				LOG.info("WAGO Meter Voltages AC run 4; L1: {}V - L2 {}V - L3: {}V",
-						strVoltages[0], strVoltages[1], strVoltages[2]);						
+						voltages[0], voltages[1], voltages[2]);
 				
 			}
 			catch ( Exception e)

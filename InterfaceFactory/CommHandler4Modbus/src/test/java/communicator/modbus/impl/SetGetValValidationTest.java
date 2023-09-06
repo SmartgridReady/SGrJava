@@ -40,9 +40,9 @@ class SetGetValValidationTest {
 
         SGrModbusDevice modbusDevice = createModbusDevice();
 
-        assertDoesNotThrow(() -> modbusDevice.setValByGDPType("VoltageAC", "VoltageL1", Int64Value.of(380)));
-        assertThrows(GenDriverException.class, () -> modbusDevice.setValByGDPType("VoltageAC", "VoltageL1", Float32Value.of(380.001f)));
-        assertThrows(GenDriverException.class, () -> modbusDevice.setValByGDPType("VoltageAC", "VoltageL1", Float64Value.of(0.004d)));
+        assertDoesNotThrow(() -> modbusDevice.setVal("VoltageAC", "VoltageL1", Int64Value.of(380)));
+        assertThrows(GenDriverException.class, () -> modbusDevice.setVal("VoltageAC", "VoltageL1", Float32Value.of(380.001f)));
+        assertThrows(GenDriverException.class, () -> modbusDevice.setVal("VoltageAC", "VoltageL1", Float64Value.of(0.004d)));
     }
 
     private static Stream<Arguments> rwPermissionChecks() {
@@ -68,14 +68,14 @@ class SetGetValValidationTest {
 
         if (expectedErrorMsg == null) {
             if(isWrite) {
-                assertDoesNotThrow(() -> modbusDevice.setValByGDPType("VoltageAC", dataPointName, Float32Value.of(380.0f)));
+                assertDoesNotThrow(() -> modbusDevice.setVal("VoltageAC", dataPointName, Float32Value.of(380.0f)));
             } else {
                 when(modbusDriver.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(new int[]{0,0});
                 assertDoesNotThrow(() -> modbusDevice.getVal("VoltageAC", dataPointName));
             }
         } else {
             GenDriverException e = isWrite ?
-                  assertThrows(GenDriverException.class, () -> modbusDevice.setValByGDPType("VoltageAC", dataPointName, Int64Value.of(380)))
+                  assertThrows(GenDriverException.class, () -> modbusDevice.setVal("VoltageAC", dataPointName, Int64Value.of(380)))
                 : assertThrows(GenDriverException.class, () -> modbusDevice.getVal("VoltageAC", dataPointName));
             assertEquals(expectedErrorMsg, e.getMessage());
         }

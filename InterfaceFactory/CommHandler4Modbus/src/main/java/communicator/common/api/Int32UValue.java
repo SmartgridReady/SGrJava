@@ -23,7 +23,16 @@ public class Int32UValue extends NumberValue<Long> {
         }
     }
 
-    public static Value of(long value) {
+    @Override
+    public void absValue() {
+        value = Math.abs(value);
+    }
+
+    @Override
+    public void roundToInt() {
+    }
+
+    public static Int32UValue of(long value) {
         return new Int32UValue(value);
     }
 }

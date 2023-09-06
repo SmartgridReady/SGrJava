@@ -24,7 +24,16 @@ public class Int8Value extends NumberValue<Byte> {
         }
     }
 
-    public static Value of(byte value) {
+    @Override
+    public void absValue() {
+        value = (byte)Math.abs(value);
+    }
+
+    @Override
+    public void roundToInt() {
+    }
+
+    public static Int8Value of(byte value) {
         return new Int8Value(value);
     }
 }

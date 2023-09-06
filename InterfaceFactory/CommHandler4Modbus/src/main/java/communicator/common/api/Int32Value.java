@@ -24,7 +24,16 @@ public class Int32Value extends NumberValue<Integer> {
         }
     }
 
-    public static Value of(int value) {
+    @Override
+    public void absValue() {
+        value = Math.abs(value);
+    }
+
+    @Override
+    public void roundToInt() {
+    }
+
+    public static Int32Value of(int value) {
         return new Int32Value(value);
     }
 }

@@ -24,7 +24,16 @@ public class Int8UValue extends NumberValue<Short> {
         }
     }
 
-    public static Value of(short value) {
+    @Override
+    public void absValue() {
+        value = (short)Math.abs(value);
+    }
+
+    @Override
+    public void roundToInt() {
+    }
+
+    public static Int8UValue of(short value) {
         return new Int8UValue(value);
     }
 }

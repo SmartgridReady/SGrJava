@@ -81,7 +81,7 @@ public class WagoTester {
         record.dpName = dataPoint._2;
 
         try {
-            record.readVal = wagoMeter.getVal(dataPoint._1, dataPoint._2);
+            record.readVal = wagoMeter.getVal(dataPoint._1, dataPoint._2).getString();
 
         } catch (Exception e) {
             record.exception = e.getMessage();

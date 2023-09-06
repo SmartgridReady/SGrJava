@@ -22,6 +22,9 @@ public abstract class Value {
     public abstract String getString();
     public abstract void scaleDown(int mul, int powOf10);
     public abstract void scaleUp(int mul, int powOf10);
+    public abstract void absValue();
+    public abstract void roundToInt();
+
 
     public int[] toModbusRegister(ModbusDataType modbusDataType, boolean bRegisterCmds) {
 
@@ -105,7 +108,8 @@ public abstract class Value {
             return Int8UValue.of(ConversionHelper.byteBufFromRegisters(buffer).getShort());
         }
 
-        throw new IllegalArgumentException(String.format("Modbus type %s to Value.class conversion not supported.", DataTypeHelper.getModbusDataType(modbusDataType).getValue()));
+        throw new IllegalArgumentException(String.format("Modbus type %s to Value.class conversion not supported.",
+                DataTypeHelper.getModbusDataType(modbusDataType).getValue()));
     }
 
     static void checkInt8(long value) {

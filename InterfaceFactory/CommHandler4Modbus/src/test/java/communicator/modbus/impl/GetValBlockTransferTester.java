@@ -25,7 +25,7 @@ public class GetValBlockTransferTester {
 		
 	try {
 			DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-			SGrModbusDeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc.getPath());
+			SGrModbusDeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ? deviceDesc.getPath() : null);
 			
 			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
 			mbRTU.initTrspService("COM3", 19200);
@@ -39,17 +39,17 @@ public class GetValBlockTransferTester {
 				
 				
 				// Voltages from device
-				Value voltage1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2");
-				Value voltage2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3");
-				Value voltage3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3");
+				Value voltage1 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L2");
+				Value voltage2 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L3");
+				Value voltage3 = devWagoMeter.getVal("VoltageAC", "VoltageACL2-L3");
 				
 				LOG.info("WAGO Meter Voltages AC run 1: L1-L2: {}V || L1-L3 {}V  || L2-L3: {}V", 
 						voltage1.getFloat32(), voltage2.getFloat32(), voltage3.getFloat32());
 				
 				// Voltages from cache (since lifetime 200ms)
-				voltage1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2");
-				voltage2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3");
-				voltage3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3");
+				voltage1 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L2");
+				voltage2 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L3");
+				voltage3 = devWagoMeter.getVal("VoltageAC", "VoltageACL2-L3");
 				
 				LOG.info("WAGO Meter Voltages AC run 2: L1-L2: {}V || L1-L3 {}V  || L2-L3: {}V", 
 						voltage1.getFloat32(), voltage2.getFloat32(), voltage3.getFloat32());
@@ -57,9 +57,9 @@ public class GetValBlockTransferTester {
 				
 				// new Voltages from Device because of sleep 1s.
 				Thread.sleep(1000);
-				voltage1 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2");
-				voltage2 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3");
-				voltage3 = devWagoMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3");
+				voltage1 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L2");
+				voltage2 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L3");
+				voltage3 = devWagoMeter.getVal("VoltageAC", "VoltageACL2-L3");
 				
 				LOG.info("WAGO Meter Voltages AC run 3: L1-L2: {}V || L1-L3 {}V  || L2-L3: {}V", 
 						voltage1.getFloat32(), voltage2.getFloat32(), voltage3.getFloat32());

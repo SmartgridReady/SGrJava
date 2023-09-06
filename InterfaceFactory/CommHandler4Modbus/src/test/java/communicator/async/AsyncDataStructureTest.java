@@ -1,13 +1,15 @@
 package communicator.async;
 
 
+import communicator.async.process.ExecStatus;
 import communicator.async.process.Executable;
 import communicator.async.process.Parallel;
-import communicator.async.process.ExecStatus;
 import communicator.async.process.Processor;
 import communicator.async.process.ReadExec;
 import communicator.async.process.Sequence;
 import communicator.async.process.WriteExec;
+import communicator.common.api.Float32Value;
+import communicator.common.api.Value;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.modbus.impl.SGrModbusDevice;
 import communicator.rest.exception.RestApiAuthenticationException;
@@ -28,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(value = MockitoExtension.class)
@@ -56,6 +59,18 @@ class AsyncDataStructureTest {
         return value;
     }
 
+    private Value withDelay(long delay, Value value) throws Exception {
+        Thread.sleep(delay);
+        LOG.debug("Delay {}ms is over.", delay);
+        return value;
+    }
+
+    private Void withDelay(long delay) throws Exception {
+        Thread.sleep(delay);
+        LOG.debug("Delay {}ms is over.", delay);
+        return null;
+    }
+
     @Test
     void
     buildAndRunDataStructure() throws Exception {
@@ -72,15 +87,15 @@ class AsyncDataStructureTest {
     private void doBuildAndRunDatstructureTest(ExecStatus expectedStatus, String expectedExceptionMessage) {
 
         // Setup READ tasks
-        ReadExec<String> wago_voltageAC_l1       = new ReadExec<>( "VoltageAC", "VoltageL1",  wagoModbusDevice::getVal);
-        ReadExec<String> wago_voltageAC_l2       = new ReadExec<>( "VoltageAC", "VoltageL2",  wagoModbusDevice::getVal);
-        ReadExec<String> wago_voltageAC_l3       = new ReadExec<>( "VoltageAC", "VoltageL3",  wagoModbusDevice::getVal);
+        ReadExec<Value> wago_voltageAC_l1       = new ReadExec<>( "VoltageAC", "VoltageL1",  wagoModbusDevice::getVal);
+        ReadExec<Value> wago_voltageAC_l2       = new ReadExec<>( "VoltageAC", "VoltageL2",  wagoModbusDevice::getVal);
+        ReadExec<Value> wago_voltageAC_l3       = new ReadExec<>( "VoltageAC", "VoltageL3",  wagoModbusDevice::getVal);
         ReadExec<String> clemap_actPowerAC_tot   = new ReadExec<>( "ActivePowerAC", "ActivePowerACtot", clemapRestApiDevice::getVal);
         ReadExec<String> clemap_actPowerAC_tot_2 = new ReadExec<>("ActivePowerAC", "ActivePowerACtot",       clemapRestApiDevice_2::getVal);
 
         // Setup WRITE tasks
-        WriteExec<String> garo_wallbox_A_hems_curr_lim = new WriteExec<>("Curtailment", "HemsCurrentLimit", garoModbusDevice_A::setVal);
-        WriteExec<String> garo_wallbox_B_hems_curr_lim = new WriteExec<>("Curtailment", "HemsCurrentLimit", garoModbusDevice_B::setVal);
+        WriteExec<Value> garo_wallbox_A_hems_curr_lim = new WriteExec<>("Curtailment", "HemsCurrentLimit", garoModbusDevice_A::setVal);
+        WriteExec<Value> garo_wallbox_B_hems_curr_lim = new WriteExec<>("Curtailment", "HemsCurrentLimit", garoModbusDevice_B::setVal);
 
         // Wire tasks
         Processor readChain = new Parallel()        // 2000
@@ -109,8 +124,8 @@ class AsyncDataStructureTest {
         // Get results from read-chain.
         // Example: wago_voltageAC_l1.getReadValue();
         // Do some calculations and determine new control values:
-        garo_wallbox_A_hems_curr_lim.setWriteValue("10A");
-        garo_wallbox_B_hems_curr_lim.setWriteValue("5A");
+        garo_wallbox_A_hems_curr_lim.setWriteValue(Float32Value.of(10f));
+        garo_wallbox_B_hems_curr_lim.setWriteValue(Float32Value.of(5f));
         // Process the write-chain:
         writeChain.process();
 
@@ -144,13 +159,13 @@ class AsyncDataStructureTest {
 
     private static void verifyResultsAndTiming(ExecStatus expectedStatus,
                                                String expectedExceptionMessage,
-                                               ReadExec<String> wago_voltageAC_l1,
-                                               ReadExec<String> wago_voltageAC_l2,
-                                               ReadExec<String> wago_voltageAC_l3,
+                                               ReadExec<Value> wago_voltageAC_l1,
+                                               ReadExec<Value> wago_voltageAC_l2,
+                                               ReadExec<Value> wago_voltageAC_l3,
                                                ReadExec<String> clemap_actPowerAC_tot,
                                                ReadExec<String> clemap_actPowerAC_tot_2,
-                                               WriteExec<String> garo_wallbox_A_hems_curr_lim,
-                                               WriteExec<String> garo_wallbox_B_hems_curr_lim) {
+                                               WriteExec<Value> garo_wallbox_A_hems_curr_lim,
+                                               WriteExec<Value> garo_wallbox_B_hems_curr_lim) {
         // Status
         assertEquals(expectedStatus, wago_voltageAC_l1.getExecStatus());
         assertEquals(expectedStatus, wago_voltageAC_l2.getExecStatus());
@@ -168,7 +183,7 @@ class AsyncDataStructureTest {
             assertNull(clemap_actPowerAC_tot.getExecThrowable());
             assertNull(garo_wallbox_A_hems_curr_lim.getExecThrowable());
             assertNull(garo_wallbox_B_hems_curr_lim.getExecThrowable());
-            assertEquals("220V",  wago_voltageAC_l1.getReadValue());
+            assertEquals("220.0", wago_voltageAC_l1.getReadValue().getString());
             assertEquals("20kWh", clemap_actPowerAC_tot.getReadValue());
             assertEquals("50kWh", clemap_actPowerAC_tot_2.getReadValue());
 
@@ -220,7 +235,7 @@ class AsyncDataStructureTest {
 
     private void initStubs() throws Exception {
         when(wagoModbusDevice.getVal(any(), any())).thenAnswer(
-                (Answer<String>) invocation -> withDelay(500, "220V"));
+                (Answer<Value>) invocation -> withDelay(500, Float32Value.of(220f)));
 
         when(clemapRestApiDevice.getVal(any(), any())).thenAnswer(
                 (Answer<String>) invocation -> withDelay(750, "20kWh"));
@@ -228,28 +243,36 @@ class AsyncDataStructureTest {
         when(clemapRestApiDevice_2.getVal(any(), any())).thenAnswer(
                 (Answer<String>) invocation -> withDelay(2000, "50kWh"));
 
-        when(garoModbusDevice_A.setVal(any(), any(), any())).thenAnswer(
-                (Answer<String>) invocation ->  withDelay(500, "OK"));
+        doAnswer((Answer<Void>) invocation -> {
+            withDelay(500);
+            return null;
+        }).when(garoModbusDevice_A).setVal(any(), any(), any());
 
-        when(garoModbusDevice_B.setVal(any(), any(), any())).thenAnswer(
-                (Answer<String>) invocation ->  withDelay(250, "OK"));
+        doAnswer((Answer<Void>) invocation -> {
+            withDelay(250);
+            return null;
+        }).when(garoModbusDevice_B).setVal(any(), any(), any());
     }
 
     private void initStubsWithException(String errorMessage) throws Exception {
 
         when(wagoModbusDevice.getVal(any(), any())).thenAnswer(
-                (Answer<String>) invocation -> { withDelay(500, "220V"); throw new GenDriverModbusException(errorMessage);});
+                (Answer<Value>) invocation -> { withDelay(500, "220V"); throw new GenDriverModbusException(errorMessage);});
 
         when(clemapRestApiDevice.getVal(any(), any())).thenAnswer(
-                (Answer<String>) invocation -> { withDelay(750, "20kWh"); throw new RestApiAuthenticationException(errorMessage);});
+                (Answer<Value>) invocation -> { withDelay(750, "20kWh"); throw new RestApiAuthenticationException(errorMessage);});
 
         when(clemapRestApiDevice_2.getVal(any(), any())).thenAnswer(
-                (Answer<String>) invocation -> { withDelay(2000, "50kWh"); throw new RestApiAuthenticationException(errorMessage);});
+                (Answer<Value>) invocation -> { withDelay(2000, "50kWh"); throw new RestApiAuthenticationException(errorMessage);});
 
-        when(garoModbusDevice_A.setVal(any(), any(), any())).thenAnswer(
-                (Answer<String>) invocation ->  { withDelay(1000, "OK"); throw new GenDriverModbusException(errorMessage);});
+        doAnswer((Answer<Void>) invocation -> {
+            withDelay(1000);
+            throw new GenDriverModbusException(errorMessage);
+        }).when(garoModbusDevice_A).setVal(any(), any(), any());
 
-        when(garoModbusDevice_B.setVal(any(), any(), any())).thenAnswer(
-                (Answer<String>) invocation ->  { withDelay(1000, "OK"); throw new GenDriverModbusException(errorMessage);});
+        doAnswer((Answer<Void>) invocation -> {
+            withDelay(1000);
+            throw new GenDriverModbusException(errorMessage);
+        }).when(garoModbusDevice_B).setVal(any(), any(), any());
     }
 }

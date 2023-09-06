@@ -94,7 +94,16 @@ public class Int64UValue extends Value {
         }
     }
 
-    public static Value of(BigInteger value) {
+    @Override
+    public void absValue() {
+        value = value.abs();
+    }
+
+    @Override
+    public void roundToInt() {
+    }
+
+    public static Int64UValue of(BigInteger value) {
         return new Int64UValue(value);
     }
 }

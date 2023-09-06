@@ -24,7 +24,16 @@ public class Int16Value extends NumberValue<Short> {
         }
     }
 
-    public static Value of(short value) {
+    @Override
+    public void absValue() {
+        value = (short)Math.abs(value);
+    }
+
+    @Override
+    public void roundToInt() {
+    }
+
+    public static Int16Value of(short value) {
         return new Int16Value(value);
     }
 }

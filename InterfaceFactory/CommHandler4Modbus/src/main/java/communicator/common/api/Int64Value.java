@@ -22,7 +22,16 @@ public class Int64Value extends NumberValue<Long> {
         }
     }
 
-    public static Value of(long value) {
+    @Override
+    public void absValue() {
+        value = Math.abs(value);
+    }
+
+    @Override
+    public void roundToInt() {
+    }
+
+    public static Int64Value of(long value) {
         return new Int64Value(value);
     }
 }

@@ -22,7 +22,17 @@ public class Float64Value extends NumberValue<Double> {
         }
     }
 
-    public static Value of(double value) {
+    @Override
+    public void absValue() {
+        value = Math.abs(value);
+    }
+
+    @Override
+    public void roundToInt() {
+        value = (double)Math.round(value);
+    }
+
+    public static Float64Value of(double value) {
         return new Float64Value(value);
     }
 }

@@ -80,7 +80,7 @@ public abstract class NumberValue<T extends Number> extends Value {
     }
 
     public String toString() {
-        return getString();
+       return value.toString();
     }
 
     static Set<Integer> floatFeatureTypes = new HashSet<>(

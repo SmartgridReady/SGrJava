@@ -18,9 +18,9 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Float32ValueTest {
+class NumberValuesTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Float32ValueTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(NumberValuesTest.class);
 
 
     private static final DataType genTypeFloat32 = V0Factory.eINSTANCE.createDataType();
