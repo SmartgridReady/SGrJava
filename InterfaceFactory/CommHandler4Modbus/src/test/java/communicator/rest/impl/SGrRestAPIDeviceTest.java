@@ -2,6 +2,11 @@ package communicator.rest.impl;
 
 import com.smartgridready.ns.v0.RestApiDeviceFrame;
 import com.smartgridready.ns.v0.RestApiServiceCall;
+import communicator.common.api.Float32Value;
+import communicator.common.api.Float64Value;
+import communicator.common.api.Int32UValue;
+import communicator.common.api.StringValue;
+import communicator.common.api.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.api.GenDeviceApi4Rest;
@@ -77,7 +82,7 @@ class SGrRestAPIDeviceTest {
 	
 	
 	@Test
-	void testgetValSuccessWithBearerAuthentication() throws Exception {
+	void testGetValSuccessWithBearerAuthentication() throws Exception {
 
 		// given
 		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
@@ -91,10 +96,10 @@ class SGrRestAPIDeviceTest {
 		// when
 		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
-		String res = device.getVal("ActivePowerAC", "ActivePowerACtot");
+		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
 		// then		
-		assertEquals("7.5", res);
+		assertEquals("7.5", res.getString());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -115,10 +120,10 @@ class SGrRestAPIDeviceTest {
 		// when
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
-		String res = device.getVal("ActivePowerAC", "ActivePowerACtot");
+		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
 		// then		
-		assertEquals("7.5", res);
+		assertEquals(7.5f, res.getFloat32());
 		
 	}
 	
@@ -137,16 +142,16 @@ class SGrRestAPIDeviceTest {
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
 
-		String res = device.setVal("ActivePowerAC", "ActivePowerACtot", "100");
+		Value res = device.setVal("ActivePowerAC", "ActivePowerACtot", Int32UValue.of(100));
 
 		// then		
-		assertEquals("OK", res);
+		assertEquals("OK", res.getString());
 	}
 
 	@ParameterizedTest
 	@CsvSource({
 			"0.004, Values [0.004] out of range. MIN value=0.005",
-			"101, Values [101.0] out of range. MAX value=100"})
+			"101, Values [101] out of range. MAX value=100"})
 	void testSetValOutOfRange(String value, String expectedResponse) throws Exception {
 
 		// given
@@ -158,7 +163,7 @@ class SGrRestAPIDeviceTest {
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
 
-		Exception exception = assertThrows(GenDriverException.class, () -> device.setVal("ActivePowerAC", "ActivePowerACtot", value));
+		Exception exception = assertThrows(GenDriverException.class, () -> device.setVal("ActivePowerAC", "ActivePowerACtot", StringValue.of(value)));
 		assertEquals(expectedResponse, exception.getMessage());
 	}
 
@@ -189,13 +194,13 @@ class SGrRestAPIDeviceTest {
 
 		if (expectedErrorMsg == null) {
 			if(isWrite) {
-				assertDoesNotThrow(() -> restApiDevice.setVal("ActivePowerAC", dataPointName, "380"));
+				assertDoesNotThrow(() -> restApiDevice.setVal("ActivePowerAC", dataPointName, Float32Value.of(380)));
 			} else {
 				assertDoesNotThrow(() -> restApiDevice.getVal("ActivePowerAC", dataPointName));
 			}
 		} else {
 			GenDriverException e = isWrite ?
-					assertThrows(GenDriverException.class, () -> restApiDevice.setVal("ActivePowerAC", dataPointName, "380"))
+					assertThrows(GenDriverException.class, () -> restApiDevice.setVal("ActivePowerAC", dataPointName, Float64Value.of(380)))
 					: assertThrows(GenDriverException.class, () -> restApiDevice.getVal("ActivePowerAC", dataPointName));
 			assertEquals(expectedErrorMsg, e.getMessage());
 		}

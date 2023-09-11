@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.internal.schedulers.IoScheduler;
 import io.reactivex.rxjava3.internal.schedulers.RxThreadFactory;
 import io.reactivex.rxjava3.internal.schedulers.SingleScheduler;
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -16,6 +17,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -29,9 +32,9 @@ class RxPrioritySchedulerTest {
     @Mock
     SGrModbusDevice wagoModbusDevice;
 
-    private Value withDelay(long delay, Value value) throws Exception {
-        Thread.sleep(delay);
-        LOG.info("Delay {}ms, val={} is over.", delay, value);
+    private Value withDelay(Value value) {
+        Awaitility.await().pollDelay(Duration.ofMillis(500)).until(()-> true);
+        LOG.info("Delay {}ms, val={} is over.", 500, value);
         return value;
     }
 
@@ -43,10 +46,10 @@ class RxPrioritySchedulerTest {
         Scheduler observingThread = new SingleScheduler();
 
         when(wagoModbusDevice.getVal("VoltageAC", "VoltageL1")).thenAnswer(
-                (Answer<Value>) invocation -> withDelay(500, Float32Value.of(220f)));
+                (Answer<Value>) invocation -> withDelay(Float32Value.of(220f)));
 
         when(wagoModbusDevice.getVal("VoltageAC", "VoltageL2")).thenAnswer(
-                (Answer<Value>) invocation -> withDelay(500, Float32Value.of(180f)));
+                (Answer<Value>) invocation -> withDelay(Float32Value.of(180f)));
 
         // Priority scheduler
         Observable<Value> voltage1 = Observable.fromCallable(
@@ -66,7 +69,7 @@ class RxPrioritySchedulerTest {
                 .subscribeOn(schedulerMaxPrio).observeOn(observingThread)
                 .subscribe(this::assertVoltage, this::failOnError);
 
-        Thread.sleep(1000);
+        Awaitility.await().pollDelay(Duration.ofMillis(1000));
 
         dispose1.dispose();
         dispose2.dispose();

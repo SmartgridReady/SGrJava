@@ -4,6 +4,7 @@ import com.smartgridready.ns.v0.GenericAttributes;
 import com.smartgridready.ns.v0.ModbusDeviceFrame;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Int64Value;
+import communicator.common.api.StringValue;
 import communicator.common.api.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.impl.SGrDeviceBase.Comparator;
@@ -33,8 +34,7 @@ class SGrDeviceBaseTest {
     private static final Value INTEGER_VALUE_20482048 = Int64Value.of(20482048L);
     private static final Value DOUBLE_VALUE_4096_00009999 = Float64Value.of(4096.00009999d);
 
-    // FIXME
-    // private static final Value STRING_VALUE_1000 = V0Factory.eINSTANCE.createDataType();
+    private static final Value STRING_VALUE_1000 = StringValue.of("1000");
 
     enum Expect {
         OK,
@@ -51,14 +51,12 @@ class SGrDeviceBaseTest {
                 Arguments.of(new Value[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00009999d), Expect.OK),
                 Arguments.of(new Value[]{DOUBLE_VALUE_4096_00009999}, Comparator.MIN, BigDecimal.valueOf(4096.00010000d), Expect.ERROR),
                 Arguments.of(new Value[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009999d), Expect.OK),
-                Arguments.of(new Value[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.ERROR)
+                Arguments.of(new Value[]{DOUBLE_VALUE_4096_00009999}, Comparator.MAX, BigDecimal.valueOf(4096.00009998d), Expect.ERROR),
 
-                /* FIXME
-                Arguments.of(new DataType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1000), Expect.OK),
-                Arguments.of(new DataType[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1001), Expect.OK),
-                Arguments.of(new DataType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(1000), Expect.OK),
-                Arguments.of(new DataType[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(999), Expect.OK)
-                */
+                Arguments.of(new Value[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1000), Expect.OK),
+                Arguments.of(new Value[]{STRING_VALUE_1000}, Comparator.MIN, new BigDecimal(1001), Expect.ERROR),
+                Arguments.of(new Value[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(1000), Expect.OK),
+                Arguments.of(new Value[]{STRING_VALUE_1000}, Comparator.MAX, new BigDecimal(999),  Expect.ERROR)
         );
     }
 

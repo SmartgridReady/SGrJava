@@ -26,6 +26,7 @@ import com.smartgridready.ns.v0.RestApiDataPointConfiguration;
 import com.smartgridready.ns.v0.RestApiDeviceFrame;
 import com.smartgridready.ns.v0.RestApiFunctionalProfile;
 import com.smartgridready.ns.v0.RestApiServiceCall;
+import communicator.common.api.StringValue;
 import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.api.GenDeviceApi4Rest;
@@ -41,6 +42,7 @@ import communicator.rest.http.client.RestServiceClientUtils;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
+import communicator.common.api.Value;
 import io.vavr.control.Either;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
@@ -78,7 +80,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}
 		
 	@Override
-	public String getVal(String profileName, String dataPointName)
+	public Value getVal(String profileName, String dataPointName)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 
 		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
@@ -87,7 +89,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}
 
 	@Override
-	public String setVal(String profileName, String dataPointName, String value)
+	public Value setVal(String profileName, String dataPointName, communicator.common.api.Value value)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 
 		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
@@ -95,7 +97,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		return doReadWriteVal(dataPoint, value);
 	}
 
-	private String doReadWriteVal(RestApiDataPoint dataPoint, String value)
+	private Value doReadWriteVal(RestApiDataPoint dataPoint, Value value)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 		
 		String host = deviceDescription.getRestApiInterfaceDescription().getRestApiUri();
@@ -107,8 +109,8 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		if (dpDescriptionOpt.isPresent()) {
 
 			if (value != null) {
-				checkOutOfRange(value, dataPoint);
-				substitutions.put("value", value);
+				checkOutOfRange(new Value[]{value}, dataPoint);
+				substitutions.put("value", value.getString());
 			}
 
 			RestApiDataPointConfiguration dpDescription = dpDescriptionOpt.get();
@@ -117,11 +119,11 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
 
 			if (value == null) {
-				return parseJsonResponse(serviceCall.getResponseQuery().getQuery(), response);
+				return StringValue.of(parseJsonResponse(serviceCall.getResponseQuery().getQuery(), response));
 			}
-			return response;
+			return StringValue.of(response);
 		}
-		return "Missing 'restAPIDataPoint' description in device description XML file";
+		throw  new GenDriverException("Missing 'restAPIDataPoint' description in device description XML file");
 	}	
 
 	private String handleServiceCall(RestServiceClient serviceClient, boolean tryTokenRenewal) throws IOException, RestApiServiceCallException, RestApiResponseParseException {

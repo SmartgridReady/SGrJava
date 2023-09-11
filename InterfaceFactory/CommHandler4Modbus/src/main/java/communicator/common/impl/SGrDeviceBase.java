@@ -7,7 +7,6 @@ import com.smartgridready.ns.v0.FunctionalProfileBase;
 import com.smartgridready.ns.v0.GenericAttributes;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.V0Package;
-import communicator.common.api.Float64Value;
 import communicator.common.api.GenDeviceApi;
 import communicator.common.api.Value;
 import communicator.common.runtime.GenDriverException;
@@ -34,7 +33,7 @@ public abstract class SGrDeviceBase<
 
     protected final D device;
 
-    protected enum RwpDirections {
+    public enum RwpDirections {
         READ(Stream.of(DataDirection.R, DataDirection.RW, DataDirection.RWP).collect(Collectors.toSet())),
         WRITE(Stream.of(DataDirection.W, DataDirection.RW, DataDirection.RWP).collect(Collectors.toSet()));
 
@@ -129,17 +128,8 @@ public abstract class SGrDeviceBase<
         }
     }
 
-    public void checkOutOfRange(String value, DataPointBase dataPoint)
-        throws GenDriverException {
-
-        // TODO is this conversion suitable for all numerical String values?
-        Value genVal = Float64Value.of(Double.parseDouble(value));
-        checkOutOfRange(new Value[]{genVal}, dataPoint);
-    }
-
     public void checkOutOfRange(Value[] values, DataPointBase dataPoint)
         throws GenDriverException {
-
 
         Optional<String> errorStr = Optional.ofNullable(dataPoint.getGenericAttributes())
                 .flatMap(attr -> checkOutOfRange(values, attr.getMaxVal(), Comparator.MAX));

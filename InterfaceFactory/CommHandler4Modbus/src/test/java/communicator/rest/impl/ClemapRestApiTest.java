@@ -1,6 +1,7 @@
 package communicator.rest.impl;
 
 import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import communicator.common.api.StringValue;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.rest.api.GenDeviceApi4Rest;
 import communicator.rest.exception.RestApiAuthenticationException;
@@ -81,7 +82,7 @@ class ClemapRestApiTest {
 		
 		try {
 			clemapConfigurator.authenticate();
-			LOG.info("Response: {}", clemapConfigurator.setVal("Configuration", "CreateMeterGroup", METER_GROUP_CONFIG_JSON));
+			LOG.info("Response: {}", clemapConfigurator.setVal("Configuration", "CreateMeterGroup", StringValue.of(METER_GROUP_CONFIG_JSON)));
 		} catch (RestApiAuthenticationException | RestApiServiceCallException | RestApiResponseParseException | IOException e) {
 			LOG.info("Error: " + e.getMessage());
 			throw e;

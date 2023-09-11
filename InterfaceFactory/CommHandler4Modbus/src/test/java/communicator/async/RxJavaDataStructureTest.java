@@ -10,6 +10,7 @@ import communicator.rest.impl.SGrRestApiDevice;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -18,11 +19,13 @@ import org.mockito.stubbing.Answer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RxJavaDataStructureTest {
+class RxJavaDataStructureTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(RxJavaDataStructureTest.class);
     @Mock
@@ -35,17 +38,11 @@ public class RxJavaDataStructureTest {
                 (Answer<Value>) invocation -> withDelay(500, Float32Value.of(220f)));
 
         when(clemapRestApiDevice.getVal(any(), any())).thenAnswer(
-                (Answer<String>) invocation -> withDelay(750, "20kWh"));
+                (Answer<Value>) invocation -> withDelay(750, Float32Value.of(20f)));
     }
 
-    private String withDelay(long delay, String value) throws Exception {
-        Thread.sleep(delay);
-        LOG.debug("Delay {}ms is over.", delay);
-        return value;
-    }
-
-    private Value withDelay(long delay, Value value) throws Exception {
-        Thread.sleep(delay);
+    private Value withDelay(long delay, Value value) {
+        Awaitility.await().pollDelay(Duration.ofMillis(delay)).until(() -> true);
         LOG.debug("Delay {}ms is over.", delay);
         return value;
     }
@@ -53,10 +50,9 @@ public class RxJavaDataStructureTest {
     @Test
     void buildAndRunDataStructure() throws Exception {
 
-        // FIXME allow RESTAPI / Clemap to return 'Value'
-        // initStubs();
+        initStubs();
 
-        Observable<AsyncResult<String>> clemap_actPowerAC_tot =
+        Observable<AsyncResult<Value>> clemap_actPowerAC_tot =
                 Observable.fromCallable(
                         new DeviceReadCallable<>(clemapRestApiDevice::getVal, "ActivePowerAC", "ActivePowerACtot"))
                 .subscribeOn(Schedulers.io());
@@ -77,12 +73,11 @@ public class RxJavaDataStructureTest {
                 wago_voltage_L1.mergeWith(wago_voltage_L2).mergeWith(wago_voltage_L3)
                 .subscribeOn(Schedulers.io());
 
-        // FIXME allow RESTAPI / Clemap to return 'Value'
-        // Disposable disposable = wago_all.mergeWith(clemap_actPowerAC_tot)
-        //  .subscribe(this::onResult);
+        Disposable disposable = wago_all.mergeWith(clemap_actPowerAC_tot)
+          .subscribe(this::onResult);
 
-        // Thread.sleep(2000);
-        // disposable.dispose();
+        Awaitility.await().pollDelay(Duration.ofMillis(2000)).until(() -> true);
+        disposable.dispose();
     }
 
     private void onResult(AsyncResult<?> results) {

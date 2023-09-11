@@ -19,6 +19,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package communicator.rest.api;
 
 import communicator.common.api.GenDeviceApi;
+import communicator.common.api.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.exception.RestApiAuthenticationException;
@@ -58,7 +59,7 @@ public interface GenDeviceApi4Rest extends GenDeviceApi {
      * @throws RestApiResponseParseException If parsing of the service response failed.
      * @throws GenDriverException If a common error occured.
      */
-    String getVal(String profileName, String dataPointName)
+    Value getVal(String profileName, String dataPointName)
             throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
 
     /**
@@ -78,7 +79,8 @@ public interface GenDeviceApi4Rest extends GenDeviceApi {
      * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
      * @throws RestApiResponseParseException If parsing of the service response failed.
      * @throws GenDriverException If a common error occurred
+     * @return StringValue with the httpResponse
      */
-    String setVal(String profileName, String dataPointName, String value)
+    Value setVal(String profileName, String dataPointName, Value value)
             throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
 }

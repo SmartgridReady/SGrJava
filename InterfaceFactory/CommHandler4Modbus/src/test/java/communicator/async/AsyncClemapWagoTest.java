@@ -2,6 +2,7 @@ package communicator.async;
 
 import com.smartgridready.ns.v0.ModbusDeviceFrame;
 import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import communicator.async.process.ExecStatus;
 import communicator.async.process.Parallel;
 import communicator.async.process.Processor;
 import communicator.async.process.ReadExec;
@@ -24,6 +25,8 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 import java.util.Properties;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Disabled // Needs live Clemap and Wago meters
 public class AsyncClemapWagoTest {
@@ -57,8 +60,8 @@ public class AsyncClemapWagoTest {
         ReadExec<Value> wago_voltageAC_l1 = new ReadExec<>( "VoltageAC", "VoltageL1",  wagoDevice::getVal);
         ReadExec<Value> wago_voltageAC_l2 = new ReadExec<>( "VoltageAC", "VoltageL2",  wagoDevice::getVal);
         ReadExec<Value> wago_voltageAC_l3 = new ReadExec<>( "VoltageAC", "VoltageL3",  wagoDevice::getVal);
-        ReadExec<String> clemap_actPowerAC_tot = new ReadExec<>( "ActivePowerAC", "ActivePowerACtot", clemapDevice::getVal, schedulerMaxPrio);
-        ReadExec<String> clemap_actPowerAC_L1  = new ReadExec<>( "ActivePowerAC", "ActivePowerACL1", clemapDevice::getVal, schedulerMaxPrio);
+        ReadExec<Value> clemap_actPowerAC_tot = new ReadExec<>( "ActivePowerAC", "ActivePowerACtot", clemapDevice::getVal, schedulerMaxPrio);
+        ReadExec<Value> clemap_actPowerAC_L1  = new ReadExec<>( "ActivePowerAC", "ActivePowerACL1", clemapDevice::getVal, schedulerMaxPrio);
 
         // Wire tasks
         Processor readChain = new Parallel()        // 1500
@@ -85,6 +88,12 @@ public class AsyncClemapWagoTest {
         LOG.info(wago_voltageAC_l3.toString());
         LOG.info(clemap_actPowerAC_tot.toString());
         LOG.info(clemap_actPowerAC_L1.toString());
+
+        assertEquals(ExecStatus.SUCCESS, wago_voltageAC_l1.getExecStatus());
+        assertEquals(ExecStatus.SUCCESS, wago_voltageAC_l2.getExecStatus());
+        assertEquals(ExecStatus.SUCCESS, wago_voltageAC_l3.getExecStatus());
+        assertEquals(ExecStatus.SUCCESS, clemap_actPowerAC_tot.getExecStatus());
+        assertEquals(ExecStatus.SUCCESS, clemap_actPowerAC_L1.getExecStatus());
     }
 
     @Test
@@ -94,8 +103,8 @@ public class AsyncClemapWagoTest {
         ReadExec<Value> wago_voltageAC_l1 = new ReadExec<>( "VoltageAC", "VoltageL1",  wagoDevice::getVal);
         ReadExec<Value> wago_voltageAC_l2 = new ReadExec<>( "VoltageAC", "VoltageL2",  wagoDevice::getVal);
         ReadExec<Value> wago_voltageAC_l3 = new ReadExec<>( "VoltageAC", "VoltageL3",  wagoDevice::getVal);
-        ReadExec<String> clemap_actPowerAC_tot = new ReadExec<>( "ActivePowerAC", "ActivePowerACtot", clemapDevice::getVal);
-        ReadExec<String> clemap_actPowerAC_L1  = new ReadExec<>( "ActivePowerAC", "ActivePowerACL1", clemapDevice::getVal);
+        ReadExec<Value> clemap_actPowerAC_tot = new ReadExec<>( "ActivePowerAC", "ActivePowerACtot", clemapDevice::getVal);
+        ReadExec<Value> clemap_actPowerAC_L1  = new ReadExec<>( "ActivePowerAC", "ActivePowerACL1", clemapDevice::getVal);
 
         // Wire tasks
         Processor readChain = new Sequence()       // 1500
@@ -119,6 +128,12 @@ public class AsyncClemapWagoTest {
         LOG.info(wago_voltageAC_l3.toString());
         LOG.info(clemap_actPowerAC_tot.toString());
         LOG.info(clemap_actPowerAC_L1.toString());
+
+        assertEquals(ExecStatus.SUCCESS, wago_voltageAC_l1.getExecStatus());
+        assertEquals(ExecStatus.SUCCESS, wago_voltageAC_l2.getExecStatus());
+        assertEquals(ExecStatus.SUCCESS, wago_voltageAC_l3.getExecStatus());
+        assertEquals(ExecStatus.SUCCESS, clemap_actPowerAC_tot.getExecStatus());
+        assertEquals(ExecStatus.SUCCESS, clemap_actPowerAC_L1.getExecStatus());
     }
 
     private static SGrModbusDevice createWagoDevice() throws Exception {
