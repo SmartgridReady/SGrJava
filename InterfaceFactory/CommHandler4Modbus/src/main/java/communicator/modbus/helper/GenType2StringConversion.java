@@ -18,34 +18,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.modbus.helper;
 
-import com.smartgridready.ns.v0.CtaDomHotWOpModeType;
-import com.smartgridready.ns.v0.CtaHPOpModeType;
-import com.smartgridready.ns.v0.CtaHPOpStateType;
 import com.smartgridready.ns.v0.DataType;
-import com.smartgridready.ns.v0.HovBufferStateType;
-import com.smartgridready.ns.v0.HovDomHotWOpModeType;
-import com.smartgridready.ns.v0.HovDomHotWStateType;
-import com.smartgridready.ns.v0.HovHCOpModeType;
-import com.smartgridready.ns.v0.HovHCOpStateType;
-import com.smartgridready.ns.v0.HovHPOpModeType;
-import com.smartgridready.ns.v0.HovHPOpStateType;
-import com.smartgridready.ns.v0.HovSGReadySrcSelType;
-import com.smartgridready.ns.v0.SGReadyStateLv1Type;
-import com.smartgridready.ns.v0.SGReadyStateLv2Type;
-import com.smartgridready.ns.v0.SGrEVSEStateLv2Type;
-import com.smartgridready.ns.v0.SGrEVStateType;
-import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.SGrHCOpModeType;
-import com.smartgridready.ns.v0.SGrHPOpModeType;
-import com.smartgridready.ns.v0.SGrMeasValueSourceType;
-import com.smartgridready.ns.v0.SGrOCPPStateType;
-import com.smartgridready.ns.v0.SGrObligLvlType;
-import com.smartgridready.ns.v0.SGrPowerSourceType;
-import com.smartgridready.ns.v0.SGrSGCPFeedInStateLv2Type;
-import com.smartgridready.ns.v0.SGrSGCPLoadStateLv2Type;
-import com.smartgridready.ns.v0.SGrSGCPServiceType;
-import com.smartgridready.ns.v0.SGrSunspStateCodesType;
-import com.smartgridready.ns.v0.V0Factory;
+import com.smartgridready.ns.v0.EnumListType;
 import communicator.common.api.Int64Value;
 import communicator.common.api.Value;
 
@@ -191,7 +165,7 @@ public class GenType2StringConversion {
 		return retval;
 	}
 
-	public static String enum2StringConversion(SGrEnumListType oGenVal) {
+	public static String enum2StringConversion(EnumListType oGenVal) {
 		String rval;
 
 		// TODO HF add additional enums according CBTest
@@ -259,15 +233,16 @@ public class GenType2StringConversion {
 		return rval;
 	}
 
-	public static SGrEnumListType string2EnumConversion(String val, SGrEnumListType oGenVal) {
+	/* FIXME remove
+	public static EnumListType string2EnumConversion(String val, EnumListType oGenVal) {
 
-		SGrEnumListType rval = V0Factory.eINSTANCE.createSGrEnumListType();
+		EnumListType rval = V0Factory.eINSTANCE.createEnumListType();
 
 		// TODO HF add additional enums according CBTest
 		// Ongoing: extend this list manually for EACH enumeration being added to
 		// the system
 		if (oGenVal.isSetSgrMeasValueSource()) { // E0001
-			rval.setSgrMeasValueSource(SGrMeasValueSourceType.getByName(val));
+			rval.setSgrMeasValueSource(.getByName(val));
 		} else if (oGenVal.isSetSgrPowerSource()) { // E0002
 			rval.setSgrPowerSource(SGrPowerSourceType.getByName(val));
 		} else if (oGenVal.isSetSgreadyStateLv2()) { // E0003
@@ -328,4 +303,5 @@ public class GenType2StringConversion {
 		}
 		return rval;
 	}
+	 */
 }

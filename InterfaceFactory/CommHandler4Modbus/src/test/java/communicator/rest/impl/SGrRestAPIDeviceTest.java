@@ -1,7 +1,7 @@
 package communicator.rest.impl;
 
-import com.smartgridready.ns.v0.RestServiceCall;
-import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
+import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import com.smartgridready.ns.v0.RestApiServiceCall;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.api.GenDeviceApi4Rest;
@@ -50,7 +50,7 @@ class SGrRestAPIDeviceTest {
 	@Mock
 	RestServiceClient restServiceClientReq;
 	
-	static SGrRestAPIDeviceFrame deviceFrame;
+	static RestApiDeviceFrame deviceFrame;
 			
 	private static final String CLEMAP_AUTH_RESP = "{\r\n"
 			+ "    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6ImFjY2VzcyJ9.eyJ1c2VySWQiOiI2MzM0MzI5MWVjZjJjZjAxM2ExZTVhOWQiLCJpYXQiOjE2NjgwOTI1NzMsImV4cCI6MTY2ODE3ODk3MywiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiNjMzNDMyOTFlY2YyY2YwMTNhMWU1YTlkIiwianRpIjoiNTU2NmU2M2QtNTVmOC00MDEyLWJlYTUtOTJjYWE0NDIwYzQ3In0.xVOrspfi1E61Jb0BXBt37wgqGcnkPueMcHh1_zI-xXM\",\r\n"
@@ -80,10 +80,10 @@ class SGrRestAPIDeviceTest {
 	void testgetValSuccessWithBearerAuthentication() throws Exception {
 
 		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
@@ -102,10 +102,10 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithTokenRenewal() throws Exception {
 		
 		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		when(restServiceClientReq.callService()).thenReturn(Either.left( 
@@ -126,10 +126,10 @@ class SGrRestAPIDeviceTest {
 	void testSetVal() throws Exception {
 		
 		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));		
 		when(restServiceClientReq.callService()).thenReturn(Either.right("OK"));
 		
@@ -150,9 +150,9 @@ class SGrRestAPIDeviceTest {
 	void testSetValOutOfRange(String value, String expectedResponse) throws Exception {
 
 		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
@@ -202,11 +202,11 @@ class SGrRestAPIDeviceTest {
 	}
 
 
-	private static SGrRestAPIDeviceFrame createSGrRestAPIDeviceFrame() {
+	private static RestApiDeviceFrame createSGrRestAPIDeviceFrame() {
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		URL devDescUrl = classloader.getResource("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
 
-		DeviceDescriptionLoader<SGrRestAPIDeviceFrame> loader = new DeviceDescriptionLoader<>();
+		DeviceDescriptionLoader<RestApiDeviceFrame> loader = new DeviceDescriptionLoader<>();
 		return loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 	}
 }

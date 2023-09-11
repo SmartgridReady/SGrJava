@@ -28,14 +28,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.smartgridready.ns.v0.DataType;
+import com.smartgridready.ns.v0.HPOpModeType;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 // SmartGridready definitions
-import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.SGrHPOpstateType;
-import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
+import com.smartgridready.ns.v0.EnumListType;
+import com.smartgridready.ns.v0.HPOpstateType;
+import com.smartgridready.ns.v0.ModbusDeviceFrame;
 import com.smartgridready.ns.v0.V0Factory;
 
 //proprietary definitions
@@ -88,15 +89,15 @@ public class HeatPumpTester {
 	private static boolean  devHovalTCPIsOn=false; 
 	
 	// shell for enumerations
-	private static SGrEnumListType oEnumList = V0Factory.eINSTANCE.createSGrEnumListType();
-	private static SGrEnumListType oEnumList1 = V0Factory.eINSTANCE.createSGrEnumListType();
+	private static EnumListType oEnumList = V0Factory.eINSTANCE.createEnumListType();
+	private static EnumListType oEnumList1 = V0Factory.eINSTANCE.createEnumListType();
 	
 	public static void main( String argv[] ) {			
 
 		
 		try {
 			
-			DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
+			DeviceDescriptionLoader<ModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
 		    
 			LOG.info(String.format("\n\n\n"));
 			LOG.info(String.format("****************************************  SESSION STARTS ***********************************"));
@@ -162,11 +163,11 @@ public class HeatPumpTester {
 	   // -----------------------------------------------------------------------------------------------------------------------------	
 		static void initHovalTCP(String aBaseDir, String aDescriptionFile ) {				
 			
-			SGrModbusDeviceFrame tstDesc = null;
+			ModbusDeviceFrame tstDesc = null;
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
+				DeviceDescriptionLoader<ModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
 				tstDesc=loader.load(aBaseDir, aDescriptionFile);	
 				
 				// replace device specific for RTU
@@ -421,11 +422,11 @@ public class HeatPumpTester {
 	   // -----------------------------------------------------------------------------------------------------------------------------	
 		static void initStiebelISG(String aBaseDir, String aDescriptionFile ) {				
 			
-			SGrModbusDeviceFrame tmpDesc=null;
+			ModbusDeviceFrame tmpDesc=null;
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
+				DeviceDescriptionLoader<ModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
 				tmpDesc=loader.load(aBaseDir, aDescriptionFile);	
 			}
 			
@@ -465,13 +466,12 @@ public class HeatPumpTester {
 			String  sVal1="0.0", sVal2="0.0", sVal3="0.0", sVal4 ="0.0";
 
 				
-			try {			
+			try {
 				LOG.info(String.format("HeatPump Stiebel-Eltron"));
 				Thread.sleep(25);
 				
 				if (runtimeCnt == 2)
 				{
-
 					DataType  hpval = V0Factory.eINSTANCE.createDataType();
 				  /*	
 				   LOG.info(String.format("######################  setting new values ######################"));
@@ -480,9 +480,9 @@ public class HeatPumpTester {
 				  // control by HPOpMode enum
 
 				
-				  oEnumList.setSgrHPOpMode(SGrHPOpModeType.WPPROGOP);
+				  oEnumList.setSgrHPOpMode(HPOpModeType.WPPROGOP);
 				  hpval.setEnum(oEnumList);
-				  devStiebelISG.setValByGDPType("HeatPumpBase", "HPOpModeCmd", hpval);	
+				  devStiebelISG.setValByGDPType("HeatPumpBase", "HPOpModeCmd", hpval);
 				  LOG.info(String.format("  Setting  HeatPumpBase:HPOpModeCmd="+ hpval.getEnum().getSgrHPOpMode().getLiteral()));
 				
 				 
@@ -514,8 +514,7 @@ public class HeatPumpTester {
 				  hpval.setFloat64(fVal1);
 				  devStiebelISG.setValByGDPType("DomHotWCtrl", "DomHotWTempStptEco",hpval);
 				  LOG.info(String.format("  Setting HeatCoolCtrl_2: DomHotWTempStptEco=" + fVal1));
-				 	 
-				 
+
 				 
 				
 				// enable or disable SG-Ready				   
@@ -540,9 +539,10 @@ public class HeatPumpTester {
 				hpval.setBoolean(false);  
                 devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyInp2isON", hpval);
                 LOG.info(String.format("  Setting SG-ReadyStates_bwp:SGReadyInp2isON=",hpval.isBoolean()));
-	*/				 	
+				   */
+
 				}
-				
+
 				  
 				// testing
 				// FIXME
@@ -561,12 +561,12 @@ public class HeatPumpTester {
 				LOG.info(String.format("    HPOpState bits set: iop=" + Integer.toBinaryString(iVal1)));
 				if (iVal1 != 0)  
 				{
-					if(( (iVal1 & (1<<SGrHPOpstateType.HPPUMPON_VALUE))) != 0)  LOG.info(String.format("HP_PUMP_ON, "));
-					if(( (iVal1 & (1<<SGrHPOpstateType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HP_IN_HEATING_MODE, "));
-					if(( (iVal1 & (1<<SGrHPOpstateType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DWH ON, "));
-					if(( (iVal1 & (1<<SGrHPOpstateType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
-					if(( (iVal1 & (1<<SGrHPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING_MODE_ACTIVE, "));
-					if(( (iVal1 & (1<<SGrHPOpstateType.INDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
+					if(( (iVal1 & (1<<HPOpstateType.HPPUMPON_VALUE))) != 0)  LOG.info(String.format("HP_PUMP_ON, "));
+					if(( (iVal1 & (1<<HPOpstateType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HP_IN_HEATING_MODE, "));
+					if(( (iVal1 & (1<<HPOpstateType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DWH ON, "));
+					if(( (iVal1 & (1<<HPOpstateType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
+					if(( (iVal1 & (1<<HPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING_MODE_ACTIVE, "));
+					if(( (iVal1 & (1<<HPOpstateType.INDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
 				}
 				 LOG.info(String.format("    stiHPOpState bits set:iop=" +  Integer.toBinaryString(iVal2)));
 				if (iVal2 != 0)  
@@ -651,11 +651,11 @@ public class HeatPumpTester {
 		   // -----------------------------------------------------------------------------------------------------------------------------	
 			static void initCTAoptiHeat(String aBaseDir, String aDescriptionFile ) {
 				
-				SGrModbusDeviceFrame tstDesc=null;
+				ModbusDeviceFrame tstDesc=null;
 				
 				try {	
 					
-					DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
+					DeviceDescriptionLoader<ModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
 					tstDesc=loader.load(aBaseDir, aDescriptionFile);	
 				}
 				
@@ -686,12 +686,12 @@ public class HeatPumpTester {
 				int  iVal1=0, iVal2=0, iVal3=0, iVal4=0;
 				long  lVal1=0, lVal2=0, lVal3=0, lVal4=0;
 				boolean bVal1 = false;
-				SGrEnumListType oEnumListGet=V0Factory.eINSTANCE.createSGrEnumListType();
+				EnumListType oEnumListGet=V0Factory.eINSTANCE.createEnumListType();
 				
 				//Setters
 				float fValStpt=(float)  runtimeCnt *  (float) 0.1;
 				DataType gdtValue=V0Factory.eINSTANCE.createDataType();
-				SGrEnumListType oEnumListSet=V0Factory.eINSTANCE.createSGrEnumListType();
+				EnumListType oEnumListSet=V0Factory.eINSTANCE.createEnumListType();
 				DataType  modeCmd = V0Factory.eINSTANCE.createDataType();
 				
 					try {	
@@ -874,11 +874,11 @@ public class HeatPumpTester {
 	   // -----------------------------------------------------------------------------------------------------------------------------	
 		static void initdevXXXXX(String aBaseDir, String aDescriptionFile ) {				
 			
-			SGrModbusDeviceFrame tstDesc;
+			ModbusDeviceFrame tstDesc;
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
+				DeviceDescriptionLoader<ModbusDeviceFrame> loader=new DeviceDescriptionLoader<>();
 				tstDesc=loader.load(aBaseDir, aDescriptionFile);	
 				
 				// replace device specific for RTU

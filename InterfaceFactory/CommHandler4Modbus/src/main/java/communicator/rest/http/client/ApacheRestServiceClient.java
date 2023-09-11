@@ -24,6 +24,7 @@ import java.util.EnumMap;
 import java.util.Properties;
 import java.util.function.Function;
 
+import com.smartgridready.ns.v0.RestApiServiceCall;
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.client5.http.fluent.Request;
 import org.apache.hc.core5.http.ClassicHttpResponse;
@@ -32,7 +33,6 @@ import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
 
 import com.smartgridready.ns.v0.HttpMethod;
-import com.smartgridready.ns.v0.RestServiceCall;
 
 import io.vavr.control.Either;
 
@@ -48,11 +48,11 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		HTTP_METHOD_MAP.put(HttpMethod.DELETE, Request::delete);				
 	}	
 
-	protected ApacheRestServiceClient(String baseUri, RestServiceCall restServiceCall) {
+	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall) {
 		super(baseUri, restServiceCall);
 	}
 	
-	protected ApacheRestServiceClient(String baseUri, RestServiceCall restServiceCall, Properties substitutions) {
+	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall, Properties substitutions) {
 		super(baseUri, restServiceCall, substitutions);
 	}
 

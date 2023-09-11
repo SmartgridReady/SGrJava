@@ -24,24 +24,22 @@ and significant traffic load conditions
 
 package communicator.modbus.impl;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-// WIP/cb import com.smartgridready.ns.v0.SGrBool2BitRankType;
-import com.smartgridready.ns.v0.SGrEVStateType;
-import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
-import com.smartgridready.ns.v0.SGrOCPPStateType;
-import com.smartgridready.ns.v0.SGrBool2BitRankType;
+import com.smartgridready.ns.v0.Bool2BitRankType;
+import com.smartgridready.ns.v0.EVStateType;
+import com.smartgridready.ns.v0.EnumListType;
+import com.smartgridready.ns.v0.ModbusDeviceFrame;
+import com.smartgridready.ns.v0.OCPPStateType;
 import communicator.common.api.Float64Value;
-import communicator.modbus.api.GenDeviceApi4Modbus;
-import communicator.common.runtime.Parity;
 import communicator.common.helper.DeviceDescriptionLoader;
+import communicator.common.runtime.Parity;
+import communicator.modbus.api.GenDeviceApi4Modbus;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
-// debug an logger classes
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class IBTlabLoopTester {
 	
@@ -90,7 +88,7 @@ public class IBTlabLoopTester {
 	private static boolean  devTB_ABBMeterTestIsOn = true; 
 	
 	// shell for enumerations
-	private static SGrEnumListType oEnumList = null;
+	private static EnumListType oEnumList = null;
 	
 	public static void main( String argv[] ) {	
 		
@@ -185,8 +183,8 @@ public class IBTlabLoopTester {
 		
 		try {	
 			
-			DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-			SGrModbusDeviceFrame tstMeter = loader.load(aBaseDir,aDescriptionFile);	
+			DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+			ModbusDeviceFrame tstMeter = loader.load(aBaseDir,aDescriptionFile);	
 			devWagoMeter =  new SGrModbusDevice(tstMeter, mbRTU );
 
 			
@@ -337,8 +335,8 @@ public class IBTlabLoopTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-				SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+				ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 				devABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
 			}
@@ -477,8 +475,8 @@ public class IBTlabLoopTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-				SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+				ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 				devTB_ABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
 			}
@@ -622,8 +620,8 @@ public class IBTlabLoopTester {
 				
 				try {	
 					
-					DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-					SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+					DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+					ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 					GenDriverAPI4ModbusTCP mbVGT_SGCP= new GenDriverAPI4ModbusTCP();
@@ -679,8 +677,8 @@ public class IBTlabLoopTester {
 					
 					try {	
 						
-						DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-						SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+						DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+						ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 						
 						// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 						GenDriverAPI4ModbusTCP mbWbGaro= new GenDriverAPI4ModbusTCP();
@@ -700,8 +698,8 @@ public class IBTlabLoopTester {
 				{
 					double fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
 					String  sVal1 = "0.0", sVal2 = "0.0";
-					SGrEVStateType sgrEVState = null;
-					SGrOCPPStateType sgrOCPPState = null;
+					EVStateType sgrEVState = null;
+					OCPPStateType sgrOCPPState = null;
 					int     iVal1  = 0;
 					float CurtailCurrent;
 					
@@ -785,8 +783,8 @@ public class IBTlabLoopTester {
 						//TODO: complete and use full OMCCI EI.xml
 						try {	
 							
-							DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-							SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+							DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+							ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 							GenDriverAPI4ModbusTCP mbWbOMCCI= new GenDriverAPI4ModbusTCP();
@@ -806,8 +804,8 @@ public class IBTlabLoopTester {
 					{
 						double fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
 						String  sVal1 = "0.0", sVal2 = "0.0";
-						SGrEVStateType sgrEVState = null;
-						SGrOCPPStateType sgrOCPPState = null;
+						EVStateType sgrEVState = null;
+						OCPPStateType sgrOCPPState = null;
 						int     iVal1  = 0;
 						float CurtailCurrent;
 						
@@ -889,8 +887,8 @@ public class IBTlabLoopTester {
 						
 						try {	
 							
-							DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-							SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+							DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+							ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 							GenDriverAPI4ModbusTCP mbPVFroniusSymo = new GenDriverAPI4ModbusTCP();
@@ -963,76 +961,76 @@ public class IBTlabLoopTester {
 							     Thread.sleep(25);
 								 LOG.info("    EventList 1: isTrue =  ");
 
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT3_VALUE)))!=0) LOG.info("BIT3, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT4_VALUE)))!=0) LOG.info("BIT4, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT5_VALUE)))!=0) LOG.info("BIT5, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT6_VALUE)))!=0) LOG.info("BIT6, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT7_VALUE)))!=0) LOG.info("BIT7, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT8_VALUE)))!=0) LOG.info("BIT8, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT9_VALUE)))!=0) LOG.info("BIT9, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT10_VALUE)))!=0) LOG.info("BIT10, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT11_VALUE)))!=0) LOG.info("BIT11, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT12_VALUE)))!=0) LOG.info("BIT12, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT13_VALUE)))!=0) LOG.info("BIT13, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT14_VALUE)))!=0) LOG.info("BIT14, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT15_VALUE)))!=0) LOG.info("BIT15, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT16_VALUE)))!=0) LOG.info("BIT16, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT17_VALUE)))!=0) LOG.info("BIT17, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT18_VALUE)))!=0) LOG.info("BIT18, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT19_VALUE)))!=0) LOG.info("BIT19, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT20_VALUE)))!=0) LOG.info("BIT20, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT21_VALUE)))!=0) LOG.info("BIT21, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT22_VALUE)))!=0) LOG.info("BIT22, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT23_VALUE)))!=0) LOG.info("BIT23, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT24_VALUE)))!=0) LOG.info("BIT24, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT25_VALUE)))!=0) LOG.info("BIT25, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT26_VALUE)))!=0) LOG.info("BIT26, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT27_VALUE)))!=0) LOG.info("BIT27, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT28_VALUE)))!=0) LOG.info("BIT28, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT3_VALUE)))!=0) LOG.info("BIT3, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT4_VALUE)))!=0) LOG.info("BIT4, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT5_VALUE)))!=0) LOG.info("BIT5, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT6_VALUE)))!=0) LOG.info("BIT6, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT7_VALUE)))!=0) LOG.info("BIT7, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT8_VALUE)))!=0) LOG.info("BIT8, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT9_VALUE)))!=0) LOG.info("BIT9, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT10_VALUE)))!=0) LOG.info("BIT10, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT11_VALUE)))!=0) LOG.info("BIT11, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT12_VALUE)))!=0) LOG.info("BIT12, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT13_VALUE)))!=0) LOG.info("BIT13, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT14_VALUE)))!=0) LOG.info("BIT14, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT15_VALUE)))!=0) LOG.info("BIT15, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT16_VALUE)))!=0) LOG.info("BIT16, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT17_VALUE)))!=0) LOG.info("BIT17, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT18_VALUE)))!=0) LOG.info("BIT18, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT19_VALUE)))!=0) LOG.info("BIT19, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT20_VALUE)))!=0) LOG.info("BIT20, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT21_VALUE)))!=0) LOG.info("BIT21, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT22_VALUE)))!=0) LOG.info("BIT22, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT23_VALUE)))!=0) LOG.info("BIT23, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT24_VALUE)))!=0) LOG.info("BIT24, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT25_VALUE)))!=0) LOG.info("BIT25, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT26_VALUE)))!=0) LOG.info("BIT26, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT27_VALUE)))!=0) LOG.info("BIT27, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT28_VALUE)))!=0) LOG.info("BIT28, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
 								 
 			
 								 LOG.info("  Status EvenList2  ");
 								 l =  devFroniusSymo.getVal("SunspInvModel","EventList2").getInt32U();
 								 LOG.info("   StatusRegister :         " + l + "  ");
 								 LOG.info("   EventList 2: isTrue =  ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT3_VALUE)))!=0) LOG.info("BIT3, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT4_VALUE)))!=0) LOG.info("BIT4, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT5_VALUE)))!=0) LOG.info("BIT5, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT6_VALUE)))!=0) LOG.info("BIT6, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT7_VALUE)))!=0) LOG.info("BIT7, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT8_VALUE)))!=0) LOG.info("BIT8, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT9_VALUE)))!=0) LOG.info("BIT9, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT10_VALUE)))!=0) LOG.info("BIT10, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT11_VALUE)))!=0) LOG.info("BIT11, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT12_VALUE)))!=0) LOG.info("BIT12, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT13_VALUE)))!=0) LOG.info("BIT13, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT14_VALUE)))!=0) LOG.info("BIT14, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT15_VALUE)))!=0) LOG.info("BIT15, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT16_VALUE)))!=0) LOG.info("BIT16, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT17_VALUE)))!=0) LOG.info("BIT17, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT18_VALUE)))!=0) LOG.info("BIT18, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT19_VALUE)))!=0) LOG.info("BIT19, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT20_VALUE)))!=0) LOG.info("BIT20, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT21_VALUE)))!=0) LOG.info("BIT21, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT22_VALUE)))!=0) LOG.info("BIT22, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT23_VALUE)))!=0) LOG.info("BIT23, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT24_VALUE)))!=0) LOG.info("BIT24, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT25_VALUE)))!=0) LOG.info("BIT25, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT26_VALUE)))!=0) LOG.info("BIT26, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT27_VALUE)))!=0) LOG.info("BIT27, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT28_VALUE)))!=0) LOG.info("BIT28, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
-						     	 if(((l&(1<<SGrBool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT3_VALUE)))!=0) LOG.info("BIT3, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT4_VALUE)))!=0) LOG.info("BIT4, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT5_VALUE)))!=0) LOG.info("BIT5, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT6_VALUE)))!=0) LOG.info("BIT6, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT7_VALUE)))!=0) LOG.info("BIT7, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT8_VALUE)))!=0) LOG.info("BIT8, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT9_VALUE)))!=0) LOG.info("BIT9, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT10_VALUE)))!=0) LOG.info("BIT10, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT11_VALUE)))!=0) LOG.info("BIT11, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT12_VALUE)))!=0) LOG.info("BIT12, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT13_VALUE)))!=0) LOG.info("BIT13, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT14_VALUE)))!=0) LOG.info("BIT14, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT15_VALUE)))!=0) LOG.info("BIT15, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT16_VALUE)))!=0) LOG.info("BIT16, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT17_VALUE)))!=0) LOG.info("BIT17, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT18_VALUE)))!=0) LOG.info("BIT18, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT19_VALUE)))!=0) LOG.info("BIT19, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT20_VALUE)))!=0) LOG.info("BIT20, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT21_VALUE)))!=0) LOG.info("BIT21, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT22_VALUE)))!=0) LOG.info("BIT22, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT23_VALUE)))!=0) LOG.info("BIT23, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT24_VALUE)))!=0) LOG.info("BIT24, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT25_VALUE)))!=0) LOG.info("BIT25, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT26_VALUE)))!=0) LOG.info("BIT26, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT27_VALUE)))!=0) LOG.info("BIT27, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT28_VALUE)))!=0) LOG.info("BIT28, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
+						     	 if(((l&(1<<Bool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
 							 }
 							 catch ( Exception e)
 							 {
@@ -1052,8 +1050,8 @@ public class IBTlabLoopTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-				SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+				ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 				
 				// replace device specific for RTU
 				//add devXXXX =  new SGrModbusDevice(tstDesc, mbRTU );

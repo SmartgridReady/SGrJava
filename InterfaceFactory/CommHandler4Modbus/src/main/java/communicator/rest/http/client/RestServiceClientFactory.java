@@ -20,9 +20,9 @@ package communicator.rest.http.client;
 
 import java.util.Properties;
 
-import com.smartgridready.ns.v0.RestServiceCall;
+import com.smartgridready.ns.v0.RestApiServiceCall;
 
 public interface RestServiceClientFactory {
-	public RestServiceClient create(String baseUri, RestServiceCall serviceCall);
-	public RestServiceClient create(String baseUri, RestServiceCall serviceCall, Properties substitutions);	
+	public RestServiceClient create(String baseUri, RestApiServiceCall serviceCall);
+	public RestServiceClient create(String baseUri, RestApiServiceCall serviceCall, Properties substitutions);
 }

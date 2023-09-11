@@ -29,10 +29,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 // WIP/cb import com.smartgridready.ns.v0.SGrBool2BitRankType;
-import com.smartgridready.ns.v0.SGrEVStateType;
-import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
-import com.smartgridready.ns.v0.SGrOCPPStateType;
+import com.smartgridready.ns.v0.EVStateType;
+import com.smartgridready.ns.v0.EnumListType;
+import com.smartgridready.ns.v0.ModbusDeviceFrame;
+import com.smartgridready.ns.v0.OCPPStateType;
 import communicator.common.api.Float32Value;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.common.runtime.Parity;
@@ -76,7 +76,7 @@ public class IOPdemoBOX {
 
 
 	// shell for enumerations
-	private static SGrEnumListType oEnumList = null;
+	private static EnumListType oEnumList = null;
 	
 		
 	public static void main( String argv[] ) {	
@@ -159,8 +159,8 @@ public class IOPdemoBOX {
 			
 			try {	
 				rtuAddr = deviceAddr;
-				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-				SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+				ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 				devIOPMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
 			}
@@ -300,8 +300,8 @@ public class IOPdemoBOX {
 				//TODO: complete and use full OMCCI EI.xml
 				try {	
 					
-					DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-					SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+					DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+					ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
 					
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 					GenDriverAPI4ModbusTCP mbWbOMCCI= new GenDriverAPI4ModbusTCP();
@@ -321,8 +321,8 @@ public class IOPdemoBOX {
 			{
 				double fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
 				String  sVal1 = "0.0", sVal2 = "0.0";
-				SGrEVStateType sgrEVState = null;
-				SGrOCPPStateType sgrOCPPState = null;
+				EVStateType sgrEVState = null;
+				OCPPStateType sgrOCPPState = null;
 				int     iVal1  = 0;
 				float CurtailCurrent;
 				

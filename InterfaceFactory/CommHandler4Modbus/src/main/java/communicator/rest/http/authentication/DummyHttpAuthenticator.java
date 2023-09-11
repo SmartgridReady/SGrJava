@@ -19,7 +19,7 @@ package communicator.rest.http.authentication;
 
 import java.io.IOException;
 
-import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
+import com.smartgridready.ns.v0.RestApiDeviceFrame;
 
 import communicator.rest.exception.RestApiResponseParseException;
 import communicator.rest.exception.RestApiServiceCallException;
@@ -28,7 +28,7 @@ import communicator.rest.http.client.RestServiceClientFactory;
 public class DummyHttpAuthenticator implements Authenticator {	
 
 	@Override
-	public String getAuthorizationHeaderValue(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory)
+	public String getAuthorizationHeaderValue(RestApiDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException {
 		return null;
 	}

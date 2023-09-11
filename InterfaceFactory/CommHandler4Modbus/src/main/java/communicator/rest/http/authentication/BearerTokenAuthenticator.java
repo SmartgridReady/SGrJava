@@ -24,14 +24,16 @@ import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Optional;
 
+import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import org.apache.hc.core5.http.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
-import com.smartgridready.ns.v0.SGrRestAPIInterfaceDescriptionType;
+import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 
 import communicator.rest.exception.RestApiResponseParseException;
 import communicator.rest.exception.RestApiServiceCallException;
@@ -52,7 +54,7 @@ public class BearerTokenAuthenticator implements Authenticator {
 	private Optional<String> bearerToken = Optional.empty();	
 	
 	@Override
-	public String getAuthorizationHeaderValue(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory)
+	public String getAuthorizationHeaderValue(RestApiDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException {
 		
 		if (!bearerToken.isPresent() || isBearerTokenExpired()) {
@@ -67,17 +69,17 @@ public class BearerTokenAuthenticator implements Authenticator {
 	}
 	
 	@Override
-	public void renewToken(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException {
+	public void renewToken(RestApiDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException {
 		bearerToken = Optional.empty();
 		authenticate(deviceDescription, restServiceClientFactory);		
 	}
 	
-	private void authenticate(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException {
+	private void authenticate(RestApiDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException {
 		
-		SGrRestAPIInterfaceDescriptionType ifDescription = deviceDescription.getRestAPIInterfaceDesc();		
-		String host = ifDescription.getTrspSrvRestURIoutOfBox();
+		RestApiInterfaceDescription ifDescription = deviceDescription.getRestApiInterfaceDescription();
+		String host = ifDescription.getRestApiUri();
 		
-		RestServiceClient restServiceClient = restServiceClientFactory.create(host, ifDescription.getRestAPIBearer().getServiceCall());
+		RestServiceClient restServiceClient = restServiceClientFactory.create(host, ifDescription.getRestApiBearer().getRestApiServiceCall());
 		requestBearerToken(restServiceClient);
 	}
 	

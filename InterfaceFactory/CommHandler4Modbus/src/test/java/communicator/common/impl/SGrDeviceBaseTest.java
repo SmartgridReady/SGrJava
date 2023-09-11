@@ -1,7 +1,7 @@
 package communicator.common.impl;
 
-import com.smartgridready.ns.v0.SGrAttr4GenericType;
-import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
+import com.smartgridready.ns.v0.GenericAttributes;
+import com.smartgridready.ns.v0.ModbusDeviceFrame;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Int64Value;
 import communicator.common.api.Value;
@@ -112,14 +112,14 @@ class SGrDeviceBaseTest {
 
         SGrModbusDevice device = createSGrModbusDevice();
 
-        SGrAttr4GenericType attributes = device.getGenAttributesByGDPType("VoltageAC", "VoltageL1");
+        GenericAttributes attributes = device.getGenAttributesByGDPType("VoltageAC", "VoltageL1");
         LOG.info("Received attributes {}", attributes);
 
-        assertEquals("METAS", attributes.getSpecQualityRequirement());
-        assertEquals(BigDecimal.valueOf(20), attributes.getMinLoad());
-        assertEquals(BigDecimal.valueOf(30), attributes.getCurtailment());
+        assertEquals("METAS", attributes.getSpecialQualityRequirement());
+        assertEquals(Double.valueOf(20.0), attributes.getMinLoad());
+        assertEquals(Double.valueOf(30.0), attributes.getCurtailment());
         assertEquals(10.0f, attributes.getMaxLockTimeMinutes());
-        assertEquals(BigDecimal.valueOf(2.2), attributes.getPrecision());
+        assertEquals(BigDecimal.valueOf(2.2), attributes.getPrecisionPercent());
         assertEquals("0.005", String.format("%.3f", attributes.getMinVal()));
         assertEquals("380.000", String.format("%.3f", attributes.getMaxVal()));
     }
@@ -129,13 +129,13 @@ class SGrDeviceBaseTest {
 
         SGrModbusDevice device = createSGrModbusDevice();
 
-        SGrAttr4GenericType attributes = device.getGenAttributesByGDPType("VoltageAC", null);
+        GenericAttributes attributes = device.getGenAttributesByGDPType("VoltageAC", null);
         LOG.info("Received attributes {}", attributes);
 
-        assertEquals("METAS", attributes.getSpecQualityRequirement());
-        assertEquals(BigDecimal.valueOf(30), attributes.getCurtailment());
+        assertEquals("METAS", attributes.getSpecialQualityRequirement());
+        assertEquals(Double.valueOf(30), attributes.getCurtailment());
         assertEquals(10.0f, attributes.getMaxLockTimeMinutes());
-        assertEquals(BigDecimal.valueOf(2.5), attributes.getPrecision());
+        assertEquals(BigDecimal.valueOf(2.5), attributes.getPrecisionPercent());
     }
 
     @Test
@@ -143,26 +143,26 @@ class SGrDeviceBaseTest {
 
         SGrModbusDevice device = createSGrModbusDevice();
 
-        SGrAttr4GenericType attributes = device.getGenAttributesByGDPType(null, null);
+        GenericAttributes attributes = device.getGenAttributesByGDPType(null, null);
         LOG.info("Received attributes {}", attributes);
 
-        assertEquals("METAS", attributes.getSpecQualityRequirement());
-        assertEquals(BigDecimal.valueOf(40), attributes.getCurtailment());
+        assertEquals("METAS", attributes.getSpecialQualityRequirement());
+        assertEquals(Double.valueOf(40.0), attributes.getCurtailment());
         assertEquals(10.0f, attributes.getMaxLockTimeMinutes());
-        assertEquals(BigDecimal.valueOf(2.5), attributes.getPrecision());
+        assertEquals(BigDecimal.valueOf(2.5), attributes.getPrecisionPercent());
     }
 
     @Test
     void getGenAttributes() throws Exception {
 
         Map<String, String> expected = new HashMap<>();
-        expected.put("specQualityRequirement", "METAS");
-        expected.put("curtailment", "30");
+        expected.put("specialQualityRequirement", "METAS");
+        expected.put("curtailment", "30.0");
         expected.put("maxLockTimeMinutes", "10.0");
-        expected.put("minLoad", "20");
+        expected.put("minLoad", "20.0");
         expected.put("minVal", "0.005");
         expected.put("maxVal", "380");
-        expected.put("precision", "2.2");
+        expected.put("precisionPercent", "2.2");
         expected.put("flexAssistance.assists", "AT_NetServiceable");
         expected.put("flexAssistance.obligedTo", "OL_SHALL");
 
@@ -180,8 +180,8 @@ class SGrDeviceBaseTest {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL devDescUrl = classloader.getResource("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
 
-        DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-        SGrModbusDeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
+        DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
+        ModbusDeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 
         return new SGrModbusDevice(devDesc, null);
     }

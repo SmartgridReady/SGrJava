@@ -18,16 +18,16 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.http.client;
 
+import com.smartgridready.ns.v0.RestApiServiceCall;
 import org.eclipse.emf.common.util.EList;
 
 import com.smartgridready.ns.v0.HeaderEntry;
-import com.smartgridready.ns.v0.RestServiceCall;
 
 public class RestServiceClientUtils {
 	
 	private RestServiceClientUtils() { throw new IllegalAccessError("Utility class"); }
 	
-	public static String printServiceCall(RestServiceCall restServiceCall) {
+	public static String printServiceCall(RestApiServiceCall restServiceCall) {
 		
 		StringBuilder sb = new StringBuilder();
 

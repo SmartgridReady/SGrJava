@@ -20,12 +20,12 @@ package communicator.rest.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.smartgridready.ns.v0.RestServiceCall;
-import com.smartgridready.ns.v0.SGrRestAPIAuthenticationEnumMethodType;
-import com.smartgridready.ns.v0.SGrRestAPIDataPointDescriptionType;
-import com.smartgridready.ns.v0.SGrRestAPIDataPointType;
-import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
-import com.smartgridready.ns.v0.SGrRestAPIFunctionalProfileType;
+import com.smartgridready.ns.v0.RestApiAuthenticationMethod;
+import com.smartgridready.ns.v0.RestApiDataPoint;
+import com.smartgridready.ns.v0.RestApiDataPointConfiguration;
+import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import com.smartgridready.ns.v0.RestApiFunctionalProfile;
+import com.smartgridready.ns.v0.RestApiServiceCall;
 import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.api.GenDeviceApi4Rest;
@@ -53,17 +53,17 @@ import java.util.Optional;
 import java.util.Properties;
 
 public class SGrRestApiDevice extends SGrDeviceBase<
-		SGrRestAPIDeviceFrame,
-		SGrRestAPIFunctionalProfileType,
-		SGrRestAPIDataPointType> implements GenDeviceApi4Rest {
+		RestApiDeviceFrame,
+		RestApiFunctionalProfile,
+		RestApiDataPoint> implements GenDeviceApi4Rest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrRestApiDevice.class);
 	
-	private final SGrRestAPIDeviceFrame deviceDescription;
+	private final RestApiDeviceFrame deviceDescription;
 	private Authenticator httpAuthenticator;
 	private final RestServiceClientFactory restServiceClientFactory;
 	
-	public SGrRestApiDevice(SGrRestAPIDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
+	public SGrRestApiDevice(RestApiDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
 		super(deviceDescription);
 		this.deviceDescription = deviceDescription;
 		this.restServiceClientFactory = restServiceClientFactory;
@@ -71,8 +71,8 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}	
 	
 	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
-		SGrRestAPIAuthenticationEnumMethodType authMethod = 
-				deviceDescription.getRestAPIInterfaceDesc().getRestAPIAuthenticationMethod();
+		RestApiAuthenticationMethod authMethod =
+				deviceDescription.getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
 				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
 				httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
 	}
@@ -81,8 +81,8 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	public String getVal(String profileName, String dataPointName)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 
-		SGrRestAPIDataPointType dataPoint = findProfileDataPoint(profileName, dataPointName);
-		checkReadWritePermission(dataPoint, DataDirection.READ);
+		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
+		checkReadWritePermission(dataPoint, RwpDirections.READ);
 		return doReadWriteVal(dataPoint, null);
 	}
 
@@ -90,18 +90,18 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	public String setVal(String profileName, String dataPointName, String value)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 
-		SGrRestAPIDataPointType dataPoint = findProfileDataPoint(profileName, dataPointName);
-		checkReadWritePermission(dataPoint, DataDirection.WRITE);
+		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
+		checkReadWritePermission(dataPoint, RwpDirections.WRITE);
 		return doReadWriteVal(dataPoint, value);
 	}
 
-	private String doReadWriteVal(SGrRestAPIDataPointType dataPoint, String value)
+	private String doReadWriteVal(RestApiDataPoint dataPoint, String value)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 		
-		String host = deviceDescription.getRestAPIInterfaceDesc().getTrspSrvRestURIoutOfBox();
+		String host = deviceDescription.getRestApiInterfaceDescription().getRestApiUri();
 		
-		Optional<SGrRestAPIDataPointDescriptionType> dpDescriptionOpt
-				= Optional.ofNullable(dataPoint.getRestAPIDataPoint().get(0));
+		Optional<RestApiDataPointConfiguration> dpDescriptionOpt
+				= Optional.ofNullable(dataPoint.getRestApiDataPointConfiguration());
 
 		Properties substitutions = new Properties();
 		if (dpDescriptionOpt.isPresent()) {
@@ -111,8 +111,8 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 				substitutions.put("value", value);
 			}
 
-			SGrRestAPIDataPointDescriptionType dpDescription = dpDescriptionOpt.get();
-			RestServiceCall serviceCall = dpDescription.getRestServiceCall();
+			RestApiDataPointConfiguration dpDescription = dpDescriptionOpt.get();
+			RestApiServiceCall serviceCall = dpDescription.getRestApiServiceCall();
 			RestServiceClient restServiceClient = restServiceClientFactory.create(host, serviceCall, substitutions);
 			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
 
@@ -171,11 +171,11 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		}
 	}
 
-	private SGrRestAPIDataPointType findProfileDataPoint(String profileName, String dataPointName) throws GenDriverException {
+	private RestApiDataPoint findProfileDataPoint(String profileName, String dataPointName) throws GenDriverException {
 		
-		Optional<SGrRestAPIFunctionalProfileType> profile = findProfile(profileName);
+		Optional<RestApiFunctionalProfile> profile = findProfile(profileName);
 		if (profile.isPresent()) {
-			Optional<SGrRestAPIDataPointType> dataPoint = findDataPointForProfile(profile.get(), dataPointName);
+			Optional<RestApiDataPoint> dataPoint = findDataPointForProfile(profile.get(), dataPointName);
 			if (dataPoint.isPresent()) {
 				return dataPoint.get();
 			}
@@ -183,16 +183,16 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		throw new GenDriverException(String.format("Datapoint profile=%s name=%s not found", profileName, dataPointName));
 	}
 	
-	protected Optional<SGrRestAPIFunctionalProfileType> findProfile(String profileName) {
-		return deviceDescription.getFpListElement().stream().filter(
-				restApiProfileFrame -> restApiProfileFrame.getFunctionalProfile().getProfileName().equals(profileName))
+	protected Optional<RestApiFunctionalProfile> findProfile(String profileName) {
+		return deviceDescription.getFunctionalProfileList().getFunctionalProfileListElement().stream().filter(
+				restApiProfileFrame -> restApiProfileFrame.getFunctionalProfile().getFunctionalProfileName().equals(profileName))
 				.findFirst();
 	}
 
-	protected Optional<SGrRestAPIDataPointType> findDataPointForProfile(SGrRestAPIFunctionalProfileType aProfile,
+	protected Optional<RestApiDataPoint> findDataPointForProfile(RestApiFunctionalProfile aProfile,
 			String aDataPointName) {
-		return aProfile.getDpListElement().stream()
-				.filter(datapoint -> datapoint.getDataPoint().getDatapointName().equals(aDataPointName))
+		return aProfile.getDataPointList().getDataPointListElement().stream()
+				.filter(datapoint -> datapoint.getDataPoint().getDataPointName().equals(aDataPointName))
 				.findFirst();				
 	}
 }

@@ -1,17 +1,15 @@
 package communicator.common.helper;
 
-import java.util.Collection;
-
+import com.smartgridready.ns.v0.ContactDeviceFrame;
+import com.smartgridready.ns.v0.ModbusDeviceFrame;
+import com.smartgridready.ns.v0.RestApiDeviceFrame;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.smartgridready.ns.v0.SGrContactAPIDeviceFrame;
-import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
-import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
-
 import utils.ConfigurationLoader;
 import utils.TestConfiguration;
+
+import java.util.Collection;
 
 public class DeviceDescriptionLoaderTest {
 
@@ -35,14 +33,14 @@ public class DeviceDescriptionLoaderTest {
 				DeviceDescriptionLoader<?> loader = new DeviceDescriptionLoader<>();
 				Object deviceDesc = loader.load(folder, desc.file);
 				
-				if (deviceDesc instanceof SGrModbusDeviceFrame) {
-					SGrModbusDeviceFrame device = ((SGrModbusDeviceFrame)deviceDesc);
+				if (deviceDesc instanceof ModbusDeviceFrame) {
+					ModbusDeviceFrame device = ((ModbusDeviceFrame)deviceDesc);
 					System.out.println("Loaded MODBUS device" + device.getDeviceName() + " - " + device.getManufacturerName() + "\n");
-				} else if ( deviceDesc instanceof SGrRestAPIDeviceFrame) {
-					SGrRestAPIDeviceFrame device = ((SGrRestAPIDeviceFrame)deviceDesc);
+				} else if ( deviceDesc instanceof RestApiDeviceFrame) {
+					RestApiDeviceFrame device = ((RestApiDeviceFrame)deviceDesc);
 					System.out.println("Loaded RESTAPI device" + device.getDeviceName() + " - " + device.getManufacturerName() + "\n");
-				} else if ( deviceDesc instanceof SGrContactAPIDeviceFrame) {
-					SGrContactAPIDeviceFrame device = ((SGrContactAPIDeviceFrame)deviceDesc);
+				} else if ( deviceDesc instanceof ContactDeviceFrame) {
+					ContactDeviceFrame device = ((ContactDeviceFrame)deviceDesc);
 					System.out.println("Loaded CONTACT device" + device.getDeviceName() + " - " + device.getManufacturerName() + "\n");
 				} else {
 					System.out.println("Device type " + deviceDesc.getClass().getName() + " not supported yet.");
