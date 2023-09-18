@@ -274,8 +274,8 @@ public class HeatPumpTester {
 				  devHovalTCP.setValByGDPType("SG-ReadyStates_bwp", "hovSGReadySrcSelect", hpCmd);
 				  LOG.info(String.format("  Setting  ReadyStates_bwp:hovSGReadySrcSelect="+ oEnumList1.getHovSGReadySrcSel().getLiteral())); 
 				  				  hpCmd.setEnum(oEnumList);
-				  devHovalTCP.setValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd", hpCmd);
-				  LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));				  
+				  devHovalTCP.setValByGDPType("SG-ReadyStates_bwp", "SGReadyOpModeCmd", hpCmd);
+				  LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyOpModeCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));				  
 				
                  // -------------------------------  SGR LEVEL 4 SETPOINTS -----------------------		
 				 // PowerCtrl new Setpoint in %
@@ -406,9 +406,9 @@ public class HeatPumpTester {
 		LOG.info(String.format("         ActiveEnergyACtot="+ fVal1 + " kWh,  ActivePowerACtot=" + fVal2 + " kWh, RuntimeCompressor="+ fVal3 + " h,  NrOfStartupsCompressor="+ lVal+"  times"));    
 		LOG.info(" "); 
 		
-		oEnumList=devHovalTCP.getValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd").getEnum();			  
+		oEnumList=devHovalTCP.getValByGDPType("SG-ReadyStates_bwp", "SGReadyOpModeCmd").getEnum();			  
 		oEnumList1=devHovalTCP.getValByGDPType("SG-ReadyStates_bwp", "hovSGReadySrcSelect").getEnum();	
-		LOG.info(String.format("  SG-ReadyStates_bwp SGReadyCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()+"/" + oEnumList.getSgreadyStateLv2().getValue() + ",   hovSGReadySrcSelect="+ oEnumList1.getHovSGReadySrcSel().getLiteral() +"/" + oEnumList1.getHovSGReadySrcSel().getValue() ));
+		LOG.info(String.format("  SG-ReadyStates_bwp SGReadyOpModeCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()+"/" + oEnumList.getSgreadyStateLv2().getValue() + ",   hovSGReadySrcSelect="+ oEnumList1.getHovSGReadySrcSel().getLiteral() +"/" + oEnumList1.getHovSGReadySrcSel().getValue() ));
 
 					 
 			
@@ -535,8 +535,8 @@ public class HeatPumpTester {
                 oEnumList.setSgreadyStateLv2(SGReadyStateLv2Type.HPNORMAL);
 				SGrBasicGenDataPointTypeType  hpCmd = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 				hpCmd.setEnum(oEnumList);
-				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd", hpCmd);
-				LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));
+				devStiebelISG.setValByGDPType("SG-ReadyStates_bwp", "SGReadyOpModeCmd", hpCmd);
+				LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyOpModeCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));
 				oEnumList.unsetSgreadyStateLv2();
 			
 			
@@ -748,17 +748,17 @@ public class HeatPumpTester {
 						  */
 
 						  
-						  /*  Set HeatCoolCtrl //
-						  gdtValue.setInt16U(30);
+						  //*  Set HeatCoolCtrl //
+						  gdtValue.setInt16U(45);
 						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl","ctaRemoteCtrlTimeSec",gdtValue);
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));						  
 						  gdtValue.unsetInt16U();
 						  Thread.sleep(25);
-						  oEnumListSet.setCtaHCOpMode(CtaHCOpModeType.HCAUTO);
+						  oEnumListSet.setCtaHCOpMode(CtaHCOpModeType.HCECO);
 						  modeCmd.setEnum(oEnumListSet);
 						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl", "ctaHCOpModeCmd", modeCmd);
 						  LOG.info(String.format("Setting  ctaHCOpModeCmd=" +  modeCmd.getEnum().getCtaHCOpMode().getLiteral()));
-						  */
+						 // */
 						  /*
 						  //  Set SupplyWaterTempStpt
 						  gdtValue.setInt16U(120);
@@ -767,8 +767,8 @@ public class HeatPumpTester {
 						  gdtValue.unsetInt16U();
 						  Thread.sleep(25);							  
 						  gdtValue.setFloat32((float)22.6);
-						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl", "SupplyWaterTempStptComf",gdtValue);
-						  LOG.info(String.format("Setting  SupplyWaterTempStptComf=" + gdtValue.getFloat32()));
+						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl", "SupplyWaterTempStpt",gdtValue);
+						  LOG.info(String.format("Setting  SupplyWaterTempStpt=" + gdtValue.getFloat32()));
 						  */
 						  
 
@@ -796,7 +796,7 @@ public class HeatPumpTester {
 						  */
 
 					      
-						  //* control SG-Ready by enum SGReadyStateLv2Type
+						  /* control SG-Ready by enum SGReadyStateLv2Type
 						  gdtValue.setInt16U(120);
 						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec",gdtValue);
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));	
@@ -804,11 +804,11 @@ public class HeatPumpTester {
 						  SGrBasicGenDataPointTypeType  hpCmd = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
 						  gdtValue.unsetInt16U();
 						  hpCmd.setEnum(oEnumList);
-						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd", hpCmd);
-						  LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));
+						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp", "SGReadyOpModeCmd", hpCmd);
+						  LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyOpModeCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));
 						  oEnumList.unsetSgreadyStateLv2();						  
 
-					      //*/
+					      */
 						  LOG.info("\n");
 													  
 						 
@@ -858,7 +858,7 @@ public class HeatPumpTester {
 						oEnumListSet = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ctaHCOpModeCmd").getEnum();	
 						oEnumListState = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ctaHCOpState").getEnum();
 						LOG.info(String.format("  HeatCoolCtrl ctaHCOpModeCmd="+ oEnumListSet.getCtaHCOpMode().getLiteral() + "/" + oEnumListSet.getCtaHCOpMode().getValue() + ", ctaHCOpState=" + oEnumListState.getCtaHCOpState().getLiteral() + " / " + oEnumListState.getCtaHCOpState().getValue())); 				
-						fVal1 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "SupplyWaterTempStptComf").getFloat32();
+						fVal1 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "SupplyWaterTempStpt").getFloat32();
 						fVal2 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "SupplyWaterTemp").getFloat32();
 						fVal4 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat32();
 						LOG.info(String.format("                SupplyWaterTempStpt=" + fVal1 + " °C,  SupplyWaterTemp=" + fVal2 + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C"));  			
@@ -872,8 +872,8 @@ public class HeatPumpTester {
 						LOG.info(String.format(" "));	
 						
 						
-						oEnumList = devCTAoptiHeat.getValByGDPType("SG-ReadyStates_bwp", "SGReadyCmd").getEnum();  
-						LOG.info(String.format("  SGReady-bwp:  SGReadyCmd=" + oEnumList.getSgreadyStateLv2().getLiteral()));
+						oEnumList = devCTAoptiHeat.getValByGDPType("SG-ReadyStates_bwp", "SGReadyOpModeCmd").getEnum();  
+						LOG.info(String.format("  SGReady-bwp:  SGReadyOpModeCmd=" + oEnumList.getSgreadyStateLv2().getLiteral()));
 						oEnumList.unsetSgreadyStateLv2();
 						LOG.info(String.format(" "));	
 						
