@@ -6,24 +6,11 @@ public class Float32Value extends NumberValue<Float> {
         this.value = value;
     }
 
-    @Override
-    public void scaleDown(int mul, int powOf10) {
-        if (mul != 1 || powOf10 !=0) {
-            double dVal = value / mul;
-            dVal = dVal * Math.pow(10.0, -powOf10);
-            Value.checkFloat32(dVal);
-            value = (float) dVal;
-        }
-    }
 
     @Override
-    public void scaleUp(int mul, int powOf10) {
-        if (mul != 1 || powOf10 != 0) {
-            double dVal = (value * Math.pow(10.0, powOf10));
-            dVal = dVal * mul;
-            Value.checkFloat32(dVal);
-            value = (float) dVal;
-        }
+    protected void setValue(double value) {
+        checkFloat32(value);
+        this.value = (float)value;
     }
 
     @Override

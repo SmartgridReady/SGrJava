@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class AuthenticatorFactory {
 	
-	private AuthenticatorFactory() { /* Utility class */ };
+	private AuthenticatorFactory() { /* Utility class */ }
 
 	private static final Map<RestApiAuthenticationMethod, Class<? extends Authenticator>> AUTHENTICATOR_REGISTRY = new HashMap<>();
 	static {
@@ -35,7 +35,7 @@ public class AuthenticatorFactory {
 		AUTHENTICATOR_REGISTRY.put(RestApiAuthenticationMethod.NO_SECURITY_SCHEME, DummyHttpAuthenticator.class);
 	}
 	
-	public static final Authenticator getAuthenticator(RestApiAuthenticationMethod authMethodType)
+	public static Authenticator getAuthenticator(RestApiAuthenticationMethod authMethodType)
 		throws RestApiAuthenticationException {
 		Class<? extends Authenticator> authClass = AUTHENTICATOR_REGISTRY.get(authMethodType);
 		if (authClass != null) {

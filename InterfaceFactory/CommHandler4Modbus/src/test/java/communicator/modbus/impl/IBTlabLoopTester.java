@@ -24,11 +24,7 @@ and significant traffic load conditions
 
 package communicator.modbus.impl;
 
-import com.smartgridready.ns.v0.Bool2BitRankType;
-import com.smartgridready.ns.v0.EVStateType;
-import com.smartgridready.ns.v0.EnumListType;
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
-import com.smartgridready.ns.v0.OCPPStateType;
+import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.Float64Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.Parity;
@@ -86,10 +82,7 @@ public class IBTlabLoopTester {
 	private static boolean  devOMCCIWallboxTestIsOn = true; 
 	// !! Schalter in Box umlegen für Test !!
 	private static boolean  devTB_ABBMeterTestIsOn = true; 
-	
-	// shell for enumerations
-	private static EnumListType oEnumList = null;
-	
+
 	public static void main( String argv[] ) {	
 		
 
@@ -183,8 +176,8 @@ public class IBTlabLoopTester {
 		
 		try {	
 			
-			DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-			ModbusDeviceFrame tstMeter = loader.load(aBaseDir,aDescriptionFile);	
+			DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+			DeviceFrame tstMeter = loader.load(aBaseDir,aDescriptionFile);
 			devWagoMeter =  new SGrModbusDevice(tstMeter, mbRTU );
 
 			
@@ -335,8 +328,8 @@ public class IBTlabLoopTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-				ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+				DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 				devABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
 			}
@@ -475,8 +468,8 @@ public class IBTlabLoopTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-				ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+				DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 				devTB_ABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
 			}
@@ -620,8 +613,8 @@ public class IBTlabLoopTester {
 				
 				try {	
 					
-					DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-					ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+					DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+					DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 					GenDriverAPI4ModbusTCP mbVGT_SGCP= new GenDriverAPI4ModbusTCP();
@@ -677,8 +670,8 @@ public class IBTlabLoopTester {
 					
 					try {	
 						
-						DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-						ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+						DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+						DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 						
 						// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 						GenDriverAPI4ModbusTCP mbWbGaro= new GenDriverAPI4ModbusTCP();
@@ -698,8 +691,6 @@ public class IBTlabLoopTester {
 				{
 					double fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
 					String  sVal1 = "0.0", sVal2 = "0.0";
-					EVStateType sgrEVState = null;
-					OCPPStateType sgrOCPPState = null;
 					int     iVal1  = 0;
 					float CurtailCurrent;
 					
@@ -721,14 +712,17 @@ public class IBTlabLoopTester {
 							 // FIXME
 							 //oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 							 Thread.sleep(200);
-							 sgrEVState = oEnumList.getSgrEVState();
-							 LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
+							 // FIXME
+							 //sgrEVState = oEnumList.getSgrEVState();
+							 //LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
 
 							 // FIXME
 							 // oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
 							 Thread.sleep(200);
-							 sgrOCPPState = oEnumList.getSgrOCPPState();
-							 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
+
+							 // FIXME
+							 // sgrOCPPState = oEnumList.getSgrOCPPState();
+							 // LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
 							 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
 							 fVal1 = devGaroWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat64();
@@ -783,8 +777,8 @@ public class IBTlabLoopTester {
 						//TODO: complete and use full OMCCI EI.xml
 						try {	
 							
-							DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-							ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+							DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+							DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 							GenDriverAPI4ModbusTCP mbWbOMCCI= new GenDriverAPI4ModbusTCP();
@@ -804,8 +798,6 @@ public class IBTlabLoopTester {
 					{
 						double fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
 						String  sVal1 = "0.0", sVal2 = "0.0";
-						EVStateType sgrEVState = null;
-						OCPPStateType sgrOCPPState = null;
 						int     iVal1  = 0;
 						float CurtailCurrent;
 						
@@ -827,14 +819,16 @@ public class IBTlabLoopTester {
 								 // FIXME
 								 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 								 Thread.sleep(200);
-								 sgrEVState = oEnumList.getSgrEVState();
-								 LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
+								 // FIXME
+								 // sgrEVState = oEnumList.getSgrEVState();
+								 // LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
 
 								 // FIXME
 								 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
 								 Thread.sleep(200);
-								 sgrOCPPState = oEnumList.getSgrOCPPState();
-								 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
+								 // FIXME
+								 // sgrOCPPState = oEnumList.getSgrOCPPState();
+								 // LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
 								 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
 								 fVal1 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat64();
@@ -887,8 +881,8 @@ public class IBTlabLoopTester {
 						
 						try {	
 							
-							DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-							ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+							DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+							DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 							GenDriverAPI4ModbusTCP mbPVFroniusSymo = new GenDriverAPI4ModbusTCP();
@@ -961,6 +955,8 @@ public class IBTlabLoopTester {
 							     Thread.sleep(25);
 								 LOG.info("    EventList 1: isTrue =  ");
 
+								 // FIXME
+								/*
 						     	 if(((l&(1<<Bool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
@@ -993,12 +989,15 @@ public class IBTlabLoopTester {
 						     	 if(((l&(1<<Bool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
+								 */
 								 
 			
 								 LOG.info("  Status EvenList2  ");
 								 l =  devFroniusSymo.getVal("SunspInvModel","EventList2").getInt32U();
 								 LOG.info("   StatusRegister :         " + l + "  ");
 								 LOG.info("   EventList 2: isTrue =  ");
+								 // FIXME
+								/*
 						     	 if(((l&(1<<Bool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
@@ -1031,6 +1030,7 @@ public class IBTlabLoopTester {
 						     	 if(((l&(1<<Bool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
+								 */
 							 }
 							 catch ( Exception e)
 							 {
@@ -1050,8 +1050,8 @@ public class IBTlabLoopTester {
 			
 			try {	
 				
-				DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-				ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+				DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 				
 				// replace device specific for RTU
 				//add devXXXX =  new SGrModbusDevice(tstDesc, mbRTU );

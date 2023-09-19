@@ -83,10 +83,15 @@ public class Int64UValue extends Value {
     }
 
     @Override
+    public EnumValue.EnumRecord getEnum() {
+        throw new IllegalArgumentException("Cannot convert from uint64 value to enum value");
+    }
+
+    @Override
     public void scaleDown(int mul, int powOf10) {
         if (mul != 1 || powOf10 !=0) {
             BigInteger val = value.divide(BigInteger.valueOf(mul));
-            val = val.multiply(BigInteger.valueOf((long) Math.pow(10.0, -powOf10)));
+            val = val.divide(BigInteger.valueOf((long) Math.pow(10.0, powOf10)));
             Value.checkInt64U(val);
             value = val;
         }

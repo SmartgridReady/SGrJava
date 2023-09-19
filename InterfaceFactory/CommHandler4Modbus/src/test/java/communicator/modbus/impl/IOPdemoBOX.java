@@ -29,10 +29,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 // WIP/cb import com.smartgridready.ns.v0.SGrBool2BitRankType;
-import com.smartgridready.ns.v0.EVStateType;
-import com.smartgridready.ns.v0.EnumListType;
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
-import com.smartgridready.ns.v0.OCPPStateType;
+import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.Float32Value;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.common.runtime.Parity;
@@ -72,12 +69,7 @@ public class IOPdemoBOX {
 	
 	// device selection
 	private static boolean  devIOPMeterTestIsOn = true; 
-	private static boolean  devOMCCIWallboxTestIsOn = true; 
-
-
-	// shell for enumerations
-	private static EnumListType oEnumList = null;
-	
+	private static boolean  devOMCCIWallboxTestIsOn = true;
 		
 	public static void main( String argv[] ) {	
 			
@@ -159,8 +151,8 @@ public class IOPdemoBOX {
 			
 			try {	
 				rtuAddr = deviceAddr;
-				DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-				ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+				DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 				devIOPMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
 			}
@@ -300,8 +292,8 @@ public class IOPdemoBOX {
 				//TODO: complete and use full OMCCI EI.xml
 				try {	
 					
-					DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-					ModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+					DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+					DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 					
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 					GenDriverAPI4ModbusTCP mbWbOMCCI= new GenDriverAPI4ModbusTCP();
@@ -321,8 +313,6 @@ public class IOPdemoBOX {
 			{
 				double fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
 				String  sVal1 = "0.0", sVal2 = "0.0";
-				EVStateType sgrEVState = null;
-				OCPPStateType sgrOCPPState = null;
 				int     iVal1  = 0;
 				float CurtailCurrent;
 				
@@ -344,14 +334,17 @@ public class IOPdemoBOX {
 						 // FIXNE
 						 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
 						 Thread.sleep(200);
-						 sgrEVState = oEnumList.getSgrEVState();
-						 LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
+						 // FIXME
+						 // sgrEVState = oEnumList.getSgrEVState();
+						 // LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
 
 						 // FIXME
 						 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
 						 Thread.sleep(200);
-						 sgrOCPPState = oEnumList.getSgrOCPPState();
-						 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
+
+						 // FIXME
+						 // sgrOCPPState = oEnumList.getSgrOCPPState();
+						 // LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
 						 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
 						 fVal1 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat64();

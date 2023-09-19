@@ -1,12 +1,15 @@
 package communicator.common.api;
 
+import com.smartgridready.ns.v0.Enum;
+import com.smartgridready.ns.v0.EnumEntry;
 import com.smartgridready.ns.v0.ModbusDataType;
 import communicator.common.helper.DataTypeHelper;
 import communicator.modbus.helper.ConversionHelper;
 
 import java.math.BigInteger;
+import java.util.EnumMap;
 
-public abstract class Value {
+public abstract class Value extends Object  {
     public static final BigInteger UNSIGNED_LONG_MASK = BigInteger.ONE.shiftLeft(Long.SIZE).subtract(BigInteger.ONE);
 
     public abstract byte getInt8();
@@ -21,6 +24,7 @@ public abstract class Value {
     public abstract double getFloat64();
     public abstract String getString();
     public abstract boolean getBoolean();
+    public abstract EnumValue.EnumRecord getEnum();
     public abstract void scaleDown(int mul, int powOf10);
     public abstract void scaleUp(int mul, int powOf10);
     public abstract void absValue();
@@ -63,6 +67,13 @@ public abstract class Value {
         }
         if (modbusDataType.getBoolean() != null) {
             return ConversionHelper.shortToRegister(getBoolean() ? (short)1 : (short)0);
+        }
+        if (modbusDataType.getEnum() != null) {
+
+            Enum enumMap = modbusDataType.getEnum();
+
+
+
         }
 
         throw new IllegalArgumentException(

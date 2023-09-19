@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/xsl/SGr.xsl"?>
-<ModbusDeviceFrame xmlns="http://www.smartgridready.com/ns/V0/"
+<DeviceFrame xmlns="http://www.smartgridready.com/ns/V0/"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/Product/ModbusFrame.xsd">
+                   xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd">
   <deviceName>WAGOMeterV0.2.1</deviceName>
   <manufacturerName>WAGO</manufacturerName>
   <specificationOwnerIdentification>0</specificationOwnerIdentification>
@@ -30,7 +30,6 @@
       <language>it</language>
       <uri>https://www.wago.com/it/trasformatori-di-corrente-e-derivatori-di-tensione/misuratore-del-consumo-di-energia/p/879-3000</uri>
     </legibleDescription>
-    <transportService>Modbus</transportService>
     <deviceCategory>SubMeterElectricity</deviceCategory>
     <isLocalControl>true</isLocalControl>
     <softwareRevision>1.0.0</softwareRevision>
@@ -45,7 +44,9 @@
     <specialQualityRequirement>METAS</specialQualityRequirement>
     <precisionPercent>2.0</precisionPercent>
   </genericAttributes>
-  <modbusInterfaceDescription>
+  <interfaceList>
+    <modbusInterface>
+      <modbusInterfaceDescription>
     <modbusInterfaceSelection>RTU</modbusInterfaceSelection>
     <modbusRtu>
       <slaveAddr>1</slaveAddr>
@@ -1530,4 +1531,6 @@
       </dataPointList>
     </functionalProfileListElement>
   </functionalProfileList>
-</ModbusDeviceFrame>
+    </modbusInterface>
+  </interfaceList>
+</DeviceFrame>

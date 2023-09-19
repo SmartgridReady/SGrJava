@@ -22,12 +22,12 @@ check for "EI-Modbus" and "Generic" directories in our Namespace http://www.smar
 package communicator.modbus.impl;
 
 import com.smartgridready.ns.v0.BitOrder;
+import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ModbusDataPoint;
 import com.smartgridready.ns.v0.ModbusDataPointConfiguration;
 import com.smartgridready.ns.v0.ModbusDataType;
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
-import com.smartgridready.ns.v0.ModbusEnumMapper;
 import com.smartgridready.ns.v0.ModbusFunctionalProfile;
+import com.smartgridready.ns.v0.ModbusInterface;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 import com.smartgridready.ns.v0.ModbusLayer6Deviation;
 import com.smartgridready.ns.v0.RegisterType;
@@ -65,18 +65,18 @@ import static communicator.common.impl.SGrDeviceBase.RwpDirections.READ;
  * @author furrer / IBT,cb
  *
  */
-public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunctionalProfile, ModbusDataPoint>
+public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctionalProfile, ModbusDataPoint>
 		implements GenDeviceApi4Modbus {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrModbusDevice.class);
 
 	private final GenDriverAPI4Modbus drv4Modbus;
 
-	private final ModbusDeviceFrame myDeviceDescription;
+	private final DeviceFrame myDeviceDescription;
 
 	private final Map<TimeSyncBlockNotification, CacheRecord<ModbusReaderResponse>> myTimeSyncBlockReadCache = new HashMap<>();
 
-	public SGrModbusDevice(ModbusDeviceFrame aDeviceDescription, GenDriverAPI4Modbus aRtuDriver) {
+	public SGrModbusDevice(DeviceFrame aDeviceDescription, GenDriverAPI4Modbus aRtuDriver) {
 		super(aDeviceDescription);
 		myDeviceDescription = aDeviceDescription;
 		drv4Modbus = aRtuDriver;
@@ -150,7 +150,7 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 				throw new GenDriverException("Error in EI-XML, datapoint address must be >= timeSyncBlock address");
 			}
 			
-			ModbusInterfaceDescription modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDescription();
+			ModbusInterfaceDescription modbusInterfaceDesc = myDeviceDescription.getInterfaceList().getModbusInterface().getModbusInterfaceDescription();
 					
 			CacheRecord<ModbusReaderResponse> mbCacheRecord = myTimeSyncBlockReadCache.get(blockNotificationType);
 			ModbusReaderResponse mbResponse;
@@ -197,7 +197,7 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 		// Check if read is allowed
 		checkReadWritePermission(aDataPoint, READ);
 
-		ModbusInterfaceDescription modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDescription();
+		ModbusInterfaceDescription modbusInterfaceDesc = getModbusInterfaceDescription();
 		ModbusDataPointConfiguration mbRegRef = aDataPoint.getModbusDataPointConfiguration();
 
 		boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
@@ -257,7 +257,7 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 			if (aDataPoint.getModbusAttributes() != null)
 			{   // there are Modbus attributes available
 
-				// TODO not unit-tested code
+				// TODO unit-test this code
 				if (   !aDataPoint.getModbusAttributes().isSetSunssf()
 				    && (aDataPoint.getModbusAttributes().getScalingFactor() !=null))
 				{
@@ -271,6 +271,8 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 			       	l6dev = aDataPoint.getModbusAttributes().getLayer6Deviation().getValue();
 			       	mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
 				}
+
+				/* FIXME remove
 				if (aDataPoint.getModbusAttributes().getIopBitmapMapper()!=null )
 				{   // modbus value to generic value conversion
 
@@ -306,6 +308,7 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 					else				   // received mbregresp[0] does not match the configured value + and negative logic
 						mbregresp[0] = 1;  //		will result in 'true'
 				}
+				*/
 			}
 
 
@@ -351,6 +354,8 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 					mbregresp = mbregconv;
 				}
 				break;
+
+			/* FIXME remove
 			case ModbusLayer6Deviation.SG_READY_ENUM2_IOL2H_VALUE:
 				// done to align SGReady-bwp level 2 definitions into two I/O Registers IO 0 at higher adders
 				//  must follow the bwp definitions
@@ -401,6 +406,7 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 								String.format("Unhandled layer6deviation: conversionScheme=%d, mbregresp[0]=%d", mBlayer6Scheme, mbregresp[0]));
 				}
 				break;
+			 */
 			default:
 				throw new GenDriverException(String.format("Unhandled layer6deviation: conversionScheme=%d", mBlayer6Scheme));
 		}
@@ -516,9 +522,8 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 		int mul = 1;
 		int l6dev = -1;
 		int powof10 = 0;
-		ModbusEnumMapper sgrEnumMapper = null;
 
-		ModbusInterfaceDescription modbusInterfaceDesc = myDeviceDescription.getModbusInterfaceDescription();
+		ModbusInterfaceDescription modbusInterfaceDesc = getModbusInterfaceDescription();
 
 		// Data format adaption
 		ModbusDataType dMBType = aDataPoint.getModbusDataPointConfiguration().getModbusDataType();
@@ -540,12 +545,11 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 			if (aDataPoint.getModbusAttributes().isSetLayer6Deviation()) {
 				l6dev = aDataPoint.getModbusAttributes().getLayer6Deviation().getValue();
 			}
-			if (aDataPoint.getModbusAttributes().getIopEnumMapper() != null) {
-				sgrEnumMapper = aDataPoint.getModbusAttributes().getIopEnumMapper();
-			}
+			/* FIXME remove
 			if (aDataPoint.getModbusAttributes().getIopBitmapMapper() != null) {
 				isSetIopBitmap = true;  // for future use
 			}
+			*/
 			if (aDataPoint.getModbusAttributes().getAccessProtection() != null) {
 				isSetAccessProt = true; // for future use
 			}
@@ -643,7 +647,7 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 	}
 
 	private Optional<TimeSyncBlockNotification> findTimeSyncBlockNotificationType(String aName) {
-		return myDeviceDescription.getTimeSyncBlockNotification().stream()
+		return myDeviceDescription.getInterfaceList().getModbusInterface().getTimeSyncBlockNotification().stream()
 				.filter(tSyncBlock -> tSyncBlock.getBlockCacheIdentification().equals(aName)).findFirst();
 	}
 
@@ -667,7 +671,7 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 
 	@Override
 	protected Optional<ModbusFunctionalProfile> findProfile(String aProfileName) {
-		return myDeviceDescription.getFunctionalProfileList().getFunctionalProfileListElement().stream()
+		return myDeviceDescription.getInterfaceList().getModbusInterface().getFunctionalProfileList().getFunctionalProfileListElement().stream()
 				.filter(modbusProfileFrame -> modbusProfileFrame.getFunctionalProfile().getFunctionalProfileName().equals(aProfileName))
 				.findFirst();
 	}
@@ -678,4 +682,13 @@ public class SGrModbusDevice extends SGrDeviceBase<ModbusDeviceFrame, ModbusFunc
 				.filter(datapoint -> datapoint.getDataPoint().getDataPointName().equals(aDataPointName))
 				.findFirst();
 	}
+
+	private ModbusInterface getModbusInterface() {
+		return myDeviceDescription.getInterfaceList().getModbusInterface();
+	}
+
+	private ModbusInterfaceDescription getModbusInterfaceDescription() {
+		return getModbusInterface().getModbusInterfaceDescription();
+	}
+
 }

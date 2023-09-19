@@ -1,55 +1,55 @@
 package communicator.common.api;
 
-import com.smartgridready.ns.v0.V0Package;
-import org.apache.hc.core5.http.MethodNotSupportedException;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.HashSet;
-import java.util.Set;
 
 public abstract class NumberValue<T extends Number> extends Value {
 
     protected T value;
     @Override
     public byte getInt8() {
-        Value.checkInt8(value.longValue());
+        checkInt8(value.longValue());
         return value.byteValue();
     }
 
     @Override
     public short getInt8U() {
-        Value.checkInt8U(value.longValue());
+        checkInt8U(value.longValue());
         return value.shortValue();
     }
 
     @Override
     public short getInt16() {
-        Value.checkInt16(value.longValue());
+        checkInt16(value.longValue());
         return value.shortValue();
     }
 
     @Override
     public int getInt16U() {
-        Value.checkInt16U(value.longValue());
+        checkInt16U(value.longValue());
         return value.intValue();
     }
 
     @Override
     public int getInt32() {
-        Value.checkInt32(value.longValue());
+        checkInt32(value.longValue());
         return value.intValue();
     }
 
     @Override
     public long getInt32U() {
-        Value.checkInt32U(value.longValue());
+        checkInt32U(value.longValue());
         return value.longValue();
     }
 
     @Override
     public boolean getBoolean() {
         return value.longValue() != 0 ? true : false;
+    }
+
+    @Override
+    public EnumValue.EnumRecord getEnum() {
+        throw new IllegalArgumentException("Cannot convert numeric value to enum");
     }
 
     @Override
@@ -71,7 +71,7 @@ public abstract class NumberValue<T extends Number> extends Value {
 
     @Override
     public float getFloat32() {
-        Value.checkFloat32(value.floatValue());
+        checkFloat32(value.floatValue());
         return value.floatValue();
     }
 
@@ -89,11 +89,22 @@ public abstract class NumberValue<T extends Number> extends Value {
        return value.toString();
     }
 
-    static Set<Integer> floatFeatureTypes = new HashSet<>(
-            V0Package.DATA_TYPE__FLOAT32,
-            V0Package.DATA_TYPE__FLOAT64
-    );
-    static boolean isIntegerType(int feature) {
-        return !floatFeatureTypes.contains(feature);
+    @Override
+    public void scaleDown(int mul, int powOf10) {
+
+        if (mul != 1 || powOf10 !=0) {
+            double dVal = value.doubleValue() / mul;
+            setValue(dVal * Math.pow(10.0, -powOf10));
+        }
     }
+
+    @Override
+    public void scaleUp(int mul, int powOf10) {
+        if(mul != 1 || powOf10 != 0) {
+            double dVal = value.doubleValue() * Math.pow(10.0, powOf10);
+            setValue(dVal * mul);
+        }
+    }
+
+    protected abstract void setValue(double value);
 }

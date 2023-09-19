@@ -20,7 +20,7 @@ package communicator.rest.http.authentication;
 
 import java.io.IOException;
 
-import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import com.smartgridready.ns.v0.DeviceFrame;
 
 import communicator.rest.exception.RestApiResponseParseException;
 import communicator.rest.exception.RestApiServiceCallException;
@@ -28,10 +28,10 @@ import communicator.rest.http.client.RestServiceClientFactory;
 
 public interface Authenticator {
 	
-	String getAuthorizationHeaderValue(RestApiDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException, RestApiResponseParseException;
+	String getAuthorizationHeaderValue(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException, RestApiResponseParseException;
 	
 	default boolean isTokenRenewalSupported() { return false; };
 	
-	default void renewToken(RestApiDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException, RestApiResponseParseException {};
+	default void renewToken(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException, RestApiResponseParseException {};
 	
 }

@@ -1,8 +1,6 @@
 package communicator.common.helper;
 
-import com.smartgridready.ns.v0.ContactDeviceFrame;
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
-import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import com.smartgridready.ns.v0.DeviceFrame;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,14 +31,14 @@ public class DeviceDescriptionLoaderTest {
 				DeviceDescriptionLoader<?> loader = new DeviceDescriptionLoader<>();
 				Object deviceDesc = loader.load(folder, desc.file);
 				
-				if (deviceDesc instanceof ModbusDeviceFrame) {
-					ModbusDeviceFrame device = ((ModbusDeviceFrame)deviceDesc);
+				if (deviceDesc instanceof DeviceFrame) {
+					DeviceFrame device = ((DeviceFrame)deviceDesc);
 					System.out.println("Loaded MODBUS device" + device.getDeviceName() + " - " + device.getManufacturerName() + "\n");
-				} else if ( deviceDesc instanceof RestApiDeviceFrame) {
-					RestApiDeviceFrame device = ((RestApiDeviceFrame)deviceDesc);
+				} else if ( deviceDesc instanceof DeviceFrame) {
+					DeviceFrame device = ((DeviceFrame)deviceDesc);
 					System.out.println("Loaded RESTAPI device" + device.getDeviceName() + " - " + device.getManufacturerName() + "\n");
-				} else if ( deviceDesc instanceof ContactDeviceFrame) {
-					ContactDeviceFrame device = ((ContactDeviceFrame)deviceDesc);
+				} else if ( deviceDesc instanceof DeviceFrame) {
+					DeviceFrame device = ((DeviceFrame)deviceDesc);
 					System.out.println("Loaded CONTACT device" + device.getDeviceName() + " - " + device.getManufacturerName() + "\n");
 				} else {
 					System.out.println("Device type " + deviceDesc.getClass().getName() + " not supported yet.");

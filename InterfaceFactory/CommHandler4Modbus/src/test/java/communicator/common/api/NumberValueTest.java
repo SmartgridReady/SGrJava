@@ -1,6 +1,6 @@
 package communicator.common.api;
 
-import com.smartgridready.ns.v0.DataType;
+import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.V0Factory;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +23,7 @@ class NumberValueTest {
     private static final Logger LOG = LoggerFactory.getLogger(NumberValueTest.class);
 
 
-    private static final DataType genTypeFloat32 = V0Factory.eINSTANCE.createDataType();
+    private static final DataTypeProduct genTypeFloat32 = V0Factory.eINSTANCE.createDataTypeProduct();
     static { genTypeFloat32.setFloat32(V0Factory.eINSTANCE.createEmptyType());}
 
     private static final ModbusDataType modbusTypeFloat64 = V0Factory.eINSTANCE.createModbusDataType();
@@ -175,4 +175,96 @@ class NumberValueTest {
 
         LOG.info("Test {}: write={}, read={}", fixture.testName, fixture.testValue.getString(), readValue.getString());
     }
+
+
+    private static final class ScalingFixture {
+
+        public Value inputVal;
+        public Value scaleUpVal;
+        public Value scaleDownVal;
+        public int mul;
+        public int powOf10;
+
+        String testName;
+
+        public ScalingFixture(Value inputVal, int mul, int powOf10, Value scaleUpVal, Value scaleDownVal, String testName) {
+            this.inputVal = inputVal;
+            this.mul = mul;
+            this.powOf10 = powOf10;
+            this.scaleUpVal = scaleUpVal;
+            this.scaleDownVal = scaleDownVal;
+            this.testName = testName;
+        }
+
+        @Override
+        public String toString() {
+            return testName;
+        }
+    }
+
+    private static Stream<ScalingFixture> scalingFixtureStream() {
+        List fixtures = new ArrayList();
+        fixtures.add(new ScalingFixture(Float32Value.of(0.0034f), 1, 0, Float32Value.of(0.0034f), Float32Value.of(0.0034f), "F32 - m1 - p0"));
+        fixtures.add(new ScalingFixture(Float32Value.of(0.0034f), 2, 0, Float32Value.of(0.0068f), Float32Value.of(0.0017f), "F32 - m2 - p1"));
+        fixtures.add(new ScalingFixture(Float32Value.of(0.0034f), 1, 2, Float32Value.of(0.34f), Float32Value.of(0.000034f),"F32 - m1 - p0" ));
+
+        fixtures.add(new ScalingFixture(Float64Value.of(0.84e-2d), 1, 0, Float64Value.of(0.84e-2d), Float64Value.of(0.84e-2d), "F64 - m1 - p0"));
+        fixtures.add(new ScalingFixture(Float64Value.of(0.84e-2d), 2, 0, Float64Value.of(1.68e-2d), Float64Value.of(0.42e-2d), "F64 - m2 - p1"));
+        fixtures.add(new ScalingFixture(Float64Value.of(0.84e-2d), 1, 2, Float64Value.of(0.84d), Float64Value.of(0.84e-4d), "F64 - m1 - p0" ));
+
+        fixtures.add(new ScalingFixture(Int64Value.of(24000000), 1, 0, Int64Value.of(24000000), Int64Value.of(24000000), "I64 - m1 - p0"));
+        fixtures.add(new ScalingFixture(Int64Value.of(24000000), 2, 0, Int64Value.of(48000000), Int64Value.of(12000000), "I64 - m2 - p1"));
+        fixtures.add(new ScalingFixture(Int64Value.of(24000000), 1, 2, Int64Value.of(2400000000L), Int64Value.of(240000), "I64 - m1 - p0" ));
+
+        fixtures.add(new ScalingFixture(Int64UValue.of(BigInteger.valueOf(24000000)), 1, 0, Int64UValue.of(BigInteger.valueOf(24000000)), Int64UValue.of(BigInteger.valueOf(24000000)), "I64U - m1 - p0"));
+        fixtures.add(new ScalingFixture(Int64UValue.of(BigInteger.valueOf(24000000)), 2, 0, Int64UValue.of(BigInteger.valueOf(48000000)), Int64UValue.of(BigInteger.valueOf(12000000)), "I64U - m2 - p1"));
+        fixtures.add(new ScalingFixture(Int64UValue.of(BigInteger.valueOf(24000000)), 1, 2, Int64UValue.of(BigInteger.valueOf(2400000000L)), Int64UValue.of(BigInteger.valueOf(240000)), "I64U - m1 - p0"));
+
+        fixtures.add(new ScalingFixture(Int32Value.of(32005), 1, 0, Int32Value.of(32005), Int32Value.of(32005), "I32 - m1 - p0"));
+        fixtures.add(new ScalingFixture(Int32Value.of(32005), 2, 0, Int32Value.of(64010), Int32Value.of(16002), "I32 - m2 - p1"));
+        fixtures.add(new ScalingFixture(Int32Value.of(32005), 1, 2, Int32Value.of(3200500), Int32Value.of(320), "I32 - m1 - p0"));
+
+        fixtures.add(new ScalingFixture(Int32UValue.of(32005), 1, 0, Int32UValue.of(32005), Int32UValue.of(32005), "I32U - m1 - p0"));
+        fixtures.add(new ScalingFixture(Int32UValue.of(32005), 2, 0, Int32UValue.of(64010), Int32UValue.of(16002), "I32U - m2 - p1"));
+        fixtures.add(new ScalingFixture(Int32UValue.of(32005), 1, 2, Int32UValue.of(3200500), Int32UValue.of(320), "I32U - m1 - p0"));
+
+        fixtures.add(new ScalingFixture(Int16Value.of((short)255), 1, 0, Int16Value.of((short)255), Int16Value.of((short)255), "I16 - m1 - p0"));
+        fixtures.add(new ScalingFixture(Int16Value.of((short)255), 2, 0, Int16Value.of((short)510), Int16Value.of((short)127), "I16 - m2 - p1"));
+        fixtures.add(new ScalingFixture(Int16Value.of((short)255), 1, 2, Int16Value.of((short)25500), Int16Value.of((short)2), "I16 - m1 - p0"));
+
+        fixtures.add(new ScalingFixture(Int16UValue.of((short)255), 1, 0, Int16UValue.of((short)255), Int16UValue.of((short)255), "I16U - m1 - p0"));
+        fixtures.add(new ScalingFixture(Int16UValue.of((short)255), 2, 0, Int16UValue.of((short)510), Int16UValue.of((short)127), "I16U - m2 - p1"));
+        fixtures.add(new ScalingFixture(Int16UValue.of((short)255), 1, 2, Int16UValue.of((short)25500), Int16UValue.of((short)2), "I16U - m1 - p0"));
+
+        fixtures.add(new ScalingFixture(Int8Value.of((byte)35), 1, 0, Int8Value.of((byte)35),   Int8Value.of((byte)35), "I8 - m1 - p0"));
+        fixtures.add(new ScalingFixture(Int8Value.of((byte)35), 2, 0, Int8Value.of((byte)70),   Int8Value.of((byte)17), "I8 - m2 - p1"));
+        fixtures.add(new ScalingFixture(Int8Value.of((byte)1), 1, 2,  Int8Value.of((byte)100),  Int8Value.of((byte)0), "I8 - m1 - p0"));
+
+        fixtures.add(new ScalingFixture(Int8UValue.of((byte)35), 1, 0, Int8UValue.of((byte)35),   Int8UValue.of((byte)35), "I8U - m1 - p0"));
+        fixtures.add(new ScalingFixture(Int8UValue.of((byte)35), 2, 0, Int8UValue.of((byte)70),   Int8UValue.of((byte)17), "I8U - m2 - p1"));
+        fixtures.add(new ScalingFixture(Int8UValue.of((byte)1), 1, 2,  Int8UValue.of((byte)100),  Int8UValue.of((byte)0),  "I8U - m1 - p0"));
+
+        return fixtures.stream();
+    }
+
+
+
+    @ParameterizedTest
+    @MethodSource("scalingFixtureStream")
+    void scaleUp(ScalingFixture fixture) {
+
+        Value value = fixture.inputVal;
+        value.scaleUp(fixture.mul, fixture.powOf10);
+        assertEquals(fixture.scaleUpVal.getString(), value.getString());
+    }
+
+    @ParameterizedTest
+    @MethodSource("scalingFixtureStream")
+    void scaleDown(ScalingFixture fixture) {
+
+        Value value = fixture.inputVal;
+        value.scaleDown(fixture.mul, fixture.powOf10);
+        assertEquals(fixture.scaleDownVal.getString(), value.getString());
+    }
+
 }

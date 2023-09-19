@@ -2,12 +2,11 @@ package communicator.modbus.impl;
 
 import java.net.URL;
 
+import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.Value;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
 
 import communicator.common.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
@@ -24,8 +23,8 @@ public class GetValBlockTransferTester {
 		URL deviceDesc = classloader.getResource("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-Blocktransfer.xml");
 		
 	try {
-			DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-			ModbusDeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ? deviceDesc.getPath() : null);
+			DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+			DeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ? deviceDesc.getPath() : null);
 			
 			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
 			mbRTU.initTrspService("COM3", 19200);

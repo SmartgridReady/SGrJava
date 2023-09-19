@@ -6,21 +6,9 @@ public class Int32UValue extends NumberValue<Long> {
     }
 
     @Override
-    public void scaleDown(int mul, int powOf10) {
-        if (mul != 1 || powOf10 !=0) {
-            Value.checkInt32U(value);
-            double dVal = (double) value / mul;
-            value = (long) (dVal * Math.pow(10.0, -powOf10));
-        }
-    }
-
-    @Override
-    public void scaleUp(int mul, int powOf10) {
-        if (mul != 1 || powOf10 !=0) {
-            double dVal = (value * Math.pow(10.0, powOf10));
-            value = (long) dVal * mul;
-            Value.checkInt32U(value);
-        }
+    protected void setValue(double value) {
+        checkInt32U((long)value);
+        this.value = (long)value;
     }
 
     @Override

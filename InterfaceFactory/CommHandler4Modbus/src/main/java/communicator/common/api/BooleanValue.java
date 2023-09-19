@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 public class BooleanValue extends Value {
 
-    private boolean value;
+    private final boolean value;
 
     private BooleanValue(boolean value) {
         this.value = value;
@@ -63,6 +63,11 @@ public class BooleanValue extends Value {
     @Override
     public String getString() {
         return value ? Boolean.TRUE.toString() : Boolean.FALSE.toString();
+    }
+
+    @Override
+    public EnumValue.EnumRecord getEnum() {
+        throw new IllegalArgumentException("Cannot convert from boolean to enum.");
     }
 
     @Override

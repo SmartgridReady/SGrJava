@@ -20,11 +20,13 @@ package communicator.rest.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.RestApiAuthenticationMethod;
 import com.smartgridready.ns.v0.RestApiDataPoint;
 import com.smartgridready.ns.v0.RestApiDataPointConfiguration;
-import com.smartgridready.ns.v0.RestApiDeviceFrame;
 import com.smartgridready.ns.v0.RestApiFunctionalProfile;
+import com.smartgridready.ns.v0.RestApiInterface;
+import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import communicator.common.api.StringValue;
 import communicator.common.impl.SGrDeviceBase;
@@ -55,17 +57,17 @@ import java.util.Optional;
 import java.util.Properties;
 
 public class SGrRestApiDevice extends SGrDeviceBase<
-		RestApiDeviceFrame,
+		DeviceFrame,
 		RestApiFunctionalProfile,
 		RestApiDataPoint> implements GenDeviceApi4Rest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrRestApiDevice.class);
 	
-	private final RestApiDeviceFrame deviceDescription;
+	private final DeviceFrame deviceDescription;
 	private Authenticator httpAuthenticator;
 	private final RestServiceClientFactory restServiceClientFactory;
 	
-	public SGrRestApiDevice(RestApiDeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
+	public SGrRestApiDevice(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
 		super(deviceDescription);
 		this.deviceDescription = deviceDescription;
 		this.restServiceClientFactory = restServiceClientFactory;
@@ -74,7 +76,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	
 	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
 		RestApiAuthenticationMethod authMethod =
-				deviceDescription.getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
+				getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
 				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
 				httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
 	}
@@ -100,7 +102,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	private Value doReadWriteVal(RestApiDataPoint dataPoint, Value value)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 		
-		String host = deviceDescription.getRestApiInterfaceDescription().getRestApiUri();
+		String host = getRestApiInterfaceDescription().getRestApiUri();
 		
 		Optional<RestApiDataPointConfiguration> dpDescriptionOpt
 				= Optional.ofNullable(dataPoint.getRestApiDataPointConfiguration());
@@ -186,7 +188,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}
 	
 	protected Optional<RestApiFunctionalProfile> findProfile(String profileName) {
-		return deviceDescription.getFunctionalProfileList().getFunctionalProfileListElement().stream().filter(
+		return getRestApiInterface().getFunctionalProfileList().getFunctionalProfileListElement().stream().filter(
 				restApiProfileFrame -> restApiProfileFrame.getFunctionalProfile().getFunctionalProfileName().equals(profileName))
 				.findFirst();
 	}
@@ -196,5 +198,13 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		return aProfile.getDataPointList().getDataPointListElement().stream()
 				.filter(datapoint -> datapoint.getDataPoint().getDataPointName().equals(aDataPointName))
 				.findFirst();				
+	}
+
+	private RestApiInterface getRestApiInterface() {
+		return deviceDescription.getInterfaceList().getRestApiInterface();
+	}
+
+	private RestApiInterfaceDescription getRestApiInterfaceDescription() {
+		return getRestApiInterface().getRestApiInterfaceDescription();
 	}
 }

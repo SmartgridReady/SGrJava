@@ -3,19 +3,21 @@ package communicator.modbus.impl;
 import com.smartgridready.ns.v0.BitOrder;
 import com.smartgridready.ns.v0.DataDirection;
 import com.smartgridready.ns.v0.DataPointDescription;
-import com.smartgridready.ns.v0.DataType;
+import com.smartgridready.ns.v0.DataTypeProduct;
+import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.FunctionalProfileDescription;
+import com.smartgridready.ns.v0.InterfaceList;
 import com.smartgridready.ns.v0.ModbusDataPoint;
 import com.smartgridready.ns.v0.ModbusDataPointConfiguration;
 import com.smartgridready.ns.v0.ModbusDataPointList;
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
 import com.smartgridready.ns.v0.ModbusFunctionalProfile;
 import com.smartgridready.ns.v0.ModbusFunctionalProfileList;
+import com.smartgridready.ns.v0.ModbusInterface;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 import com.smartgridready.ns.v0.RegisterType;
 import com.smartgridready.ns.v0.TimeSyncBlockNotification;
 import com.smartgridready.ns.v0.V0Factory;
-import com.smartgridready.ns.v0.impl.DataTypeImpl;
+import com.smartgridready.ns.v0.impl.DataTypeProductImpl;
 import com.smartgridready.ns.v0.impl.ModbusDataTypeImpl;
 import communicator.common.api.BooleanValue;
 import communicator.common.api.Float32Value;
@@ -26,7 +28,6 @@ import communicator.common.api.Int32UValue;
 import communicator.common.api.Int32Value;
 import communicator.common.api.Int64UValue;
 import communicator.common.api.Int64Value;
-import communicator.common.api.Int8UValue;
 import communicator.common.api.Int8Value;
 import communicator.common.api.StringValue;
 import communicator.common.api.Value;
@@ -67,19 +68,20 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__ENUM;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__FLOAT32;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__FLOAT64;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT16;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT16_U;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT32;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT32_U;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT64;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT64_U;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT8;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__INT8_U;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE__STRING;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_POINT_LIST__DATA_POINT_LIST_ELEMENT;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__BOOLEAN;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__ENUM;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__FLOAT32;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__FLOAT64;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT16;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT16_U;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT32;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT32_U;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT64;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT64_U;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT8;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT8_U;
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__STRING;
 import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__BOOLEAN;
 import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__ENUM;
 import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__FLOAT32;
@@ -137,15 +139,15 @@ class SetGetValConversionTest {
         Value readValue;
         T expectedModbusValue;
 
-        ModbusDeviceFrame modbusDeviceFrame;
+        DeviceFrame deviceFrame;
 
         public Fixture(Value writeValue,
                        Value readValue,
                        T expectedModbusValue,
-                       ModbusDeviceFrame modbusDeviceFrame) {
+                       DeviceFrame deviceFrame) {
             this.writeValue = writeValue;
             this.expectedModbusValue = expectedModbusValue;
-            this.modbusDeviceFrame = modbusDeviceFrame;
+            this.deviceFrame = deviceFrame;
             this.readValue = readValue;
         }
 
@@ -157,13 +159,13 @@ class SetGetValConversionTest {
             return expectedModbusValue;
         }
 
-        public ModbusDeviceFrame getModbusDeviceFrame() {
-            return modbusDeviceFrame;
+        public DeviceFrame getDeviceFrame() {
+            return deviceFrame;
         }
 
         @Override
         public String toString() {
-            return modbusDeviceFrame.getDeviceName();
+            return deviceFrame.getDeviceName();
         }
     }
 
@@ -191,43 +193,43 @@ class SetGetValConversionTest {
 
     static {
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__INT8,
+                DATA_TYPE_PRODUCT__INT8,
                 ValueProvider.of(() -> Int8Value.of((byte)(RANDOM.nextInt(2)==1 ? RANDOM.nextInt(127):-RANDOM.nextInt(127)))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__INT16,
+                DATA_TYPE_PRODUCT__INT16,
                 ValueProvider.of(() -> Int16Value.of((short) RANDOM.nextInt(Short.MAX_VALUE))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__INT32,
+                DATA_TYPE_PRODUCT__INT32,
                 ValueProvider.of(() -> Int32Value.of(RANDOM.nextInt(2)==1 ? RANDOM.nextInt(Integer.MAX_VALUE):-RANDOM.nextInt(Integer.MAX_VALUE))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__INT64,
+                DATA_TYPE_PRODUCT__INT64,
                 ValueProvider.of(() -> Int64Value.of(RANDOM.nextInt(2)==1 ? RANDOM.nextLong():-RANDOM.nextLong())));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__INT8_U,
+                DATA_TYPE_PRODUCT__INT8_U,
                 ValueProvider.of(() -> Int8Value.of((byte)RANDOM.nextInt(127))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__INT16_U,
+                DATA_TYPE_PRODUCT__INT16_U,
                 ValueProvider.of(() -> Int16UValue.of(RANDOM.nextInt(2*Short.MAX_VALUE))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__INT32_U,
+                DATA_TYPE_PRODUCT__INT32_U,
                 ValueProvider.of(() -> Int32UValue.of(RANDOM.nextInt())));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__INT64_U,
+                DATA_TYPE_PRODUCT__INT64_U,
                 ValueProvider.of(() -> Int64Value.of(RANDOM.nextLong())));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__FLOAT32,
+                DATA_TYPE_PRODUCT__FLOAT32,
                 ValueProvider.of(() -> Float32Value.of(100*RANDOM.nextFloat())));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE__FLOAT64,
+                DATA_TYPE_PRODUCT__FLOAT64,
                 ValueProvider.of(() -> Float64Value.of(100*RANDOM.nextDouble())));
 
         //=========================================================
@@ -309,15 +311,15 @@ class SetGetValConversionTest {
     private static Value createTestNumber(int genType, int modbusType) {
 
         final Set<Integer> genFloatTypes = Sets.newSet(
-                DATA_TYPE__FLOAT32,
-                DATA_TYPE__FLOAT64
+                DATA_TYPE_PRODUCT__FLOAT32,
+                DATA_TYPE_PRODUCT__FLOAT64
         );
 
         final Set<Integer> genUnsignedTypes = Sets.newSet(
-                DATA_TYPE__INT8_U,
-                DATA_TYPE__INT16_U,
-                DATA_TYPE__INT32_U,
-                DATA_TYPE__INT64_U
+                DATA_TYPE_PRODUCT__INT8_U,
+                DATA_TYPE_PRODUCT__INT16_U,
+                DATA_TYPE_PRODUCT__INT32_U,
+                DATA_TYPE_PRODUCT__INT64_U
         );
 
         final Set<Integer> modbusFloatTypes = Sets.newSet(
@@ -377,7 +379,7 @@ class SetGetValConversionTest {
 
         Fixture<int[]> fixture =
                 new Fixture<>(Int8Value.of((byte)18), Int8Value.of((byte)18), new int[]{ 0, 18},
-                        deviceFrame(true, BitOrder.CHANGE_BYTE_ORDER, DATA_TYPE__INT8, DATA_TYPE__INT8));
+                        deviceFrame(true, BitOrder.CHANGE_BYTE_ORDER, DATA_TYPE_PRODUCT__INT8, MODBUS_DATA_TYPE__INT8));
 
         doTestWriteAndReadBack(fixture);
     }
@@ -387,7 +389,7 @@ class SetGetValConversionTest {
 
         Fixture<int[]> fixture =
                 new Fixture<>(StringValue.of("Hello@SGr"), StringValue.of("Hello@SGr"), new int[]{0x4865, 0x6C6C, 0x6F40,0x5347, 0x7200},
-                        deviceFrame(true, BitOrder.BIG_ENDIAN, DATA_TYPE__STRING, MODBUS_DATA_TYPE__STRING));
+                        deviceFrame(true, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__STRING, MODBUS_DATA_TYPE__STRING));
 
         doTestWriteAndReadBack(fixture);
     }
@@ -398,7 +400,7 @@ class SetGetValConversionTest {
     void testBooleanRegisterConversion(boolean bVal)  throws Exception {
         Fixture<int[]> fixture =
                 new Fixture<>(BooleanValue.of(bVal), BooleanValue.of(bVal), bVal ? new int[]{0x1} : new int[]{0x0},
-                        deviceFrame(true, BitOrder.BIG_ENDIAN, MODBUS_DATA_TYPE__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
+                        deviceFrame(true, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
 
         doTestWriteAndReadBack(fixture);
     }
@@ -408,7 +410,7 @@ class SetGetValConversionTest {
     void testBooleanDiscreteValConversion(boolean bVal)  throws Exception {
         Fixture<int[]> fixture =
                 new Fixture<>(BooleanValue.of(bVal), BooleanValue.of(bVal), bVal ? new int[]{0x1} : new int[]{0x0},
-                        deviceFrame(true, BitOrder.BIG_ENDIAN, MODBUS_DATA_TYPE__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
+                        deviceFrame(true, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
 
         doTestWriteAndReadBack(fixture);
     }
@@ -434,13 +436,13 @@ class SetGetValConversionTest {
     @MethodSource("booleanConversions")
     void readWriteCoilsTest(Tuple2<BitOrder, Boolean> testParam) throws Exception {
 
-        ModbusDeviceFrame deviceFrame = deviceFrame(
+        DeviceFrame deviceFrame = deviceFrame(
                 false,
                 testParam._1(),
-                MODBUS_DATA_TYPE__BOOLEAN,
+                DATA_TYPE_PRODUCT__BOOLEAN,
                 MODBUS_DATA_TYPE__BOOLEAN);
 
-        deviceFrame.getFunctionalProfileList().getFunctionalProfileListElement().get(0)
+        deviceFrame.getInterfaceList().getModbusInterface().getFunctionalProfileList().getFunctionalProfileListElement().get(0)
                 .getDataPointList().getDataPointListElement().get(0)
                 .getModbusDataPointConfiguration().setRegisterType(RegisterType.COIL);
 
@@ -450,7 +452,7 @@ class SetGetValConversionTest {
         when(genDriverAPI4Modbus.ReadCoils(anyInt(), anyInt())).thenReturn(new boolean[]{testParam._2} );
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
-                fixture.getModbusDeviceFrame(),           // model
+                fixture.getDeviceFrame(),           // model
                 genDriverAPI4Modbus);                     // mock
 
         modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", fixture.getWriteValue());
@@ -509,8 +511,8 @@ class SetGetValConversionTest {
     @Test
     void testSetValGetValArray() throws Exception {
 
-        ModbusDeviceFrame deviceFrame =
-                        deviceFrame(false, BitOrder.CHANGE_BYTE_ORDER, DATA_TYPE__FLOAT32, MODBUS_DATA_TYPE__FLOAT32);
+        DeviceFrame deviceFrame =
+                        deviceFrame(false, BitOrder.CHANGE_BYTE_ORDER, DATA_TYPE_PRODUCT__FLOAT32, MODBUS_DATA_TYPE__FLOAT32);
 
         Value[] expectedValues = new Value[]{Float32Value.of(219.923f),Float32Value.of(220.000f), Float32Value.of(220.128f)};
         int[] expectedModbusValues = new int[]{23363, 19180, 23619, 0, 23619, -15072};
@@ -547,8 +549,8 @@ class SetGetValConversionTest {
     @Test
     void testSetValGetValBlocktransfer() throws Exception {
 
-        ModbusDeviceFrame deviceFrame =
-                deviceFrame(false, BitOrder.CHANGE_BYTE_ORDER, DATA_TYPE__FLOAT32, MODBUS_DATA_TYPE__FLOAT32);
+        DeviceFrame deviceFrame =
+                deviceFrame(false, BitOrder.CHANGE_BYTE_ORDER, DATA_TYPE_PRODUCT__FLOAT32, MODBUS_DATA_TYPE__FLOAT32);
 
         Value expectedValue = Float32Value.of(220.220f);
         int[] expectedModbusValues = new int[]{23619, 21048, 23619, 21048, 23619, 21048};
@@ -608,7 +610,7 @@ class SetGetValConversionTest {
     private void doTestWriteAndReadBack(Fixture<int[]> fixture) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
         // given
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
-                fixture.getModbusDeviceFrame(),           // model
+                fixture.getDeviceFrame(),           // model
                 genDriverAPI4Modbus);                     // mock
 
         // when
@@ -649,15 +651,22 @@ class SetGetValConversionTest {
     }
 
 
-    private static ModbusDeviceFrame deviceFrame(boolean firstRegOne,
+    private static DeviceFrame deviceFrame(boolean firstRegOne,
                                                     BitOrder conversionFct,
                                                     int genericType,
                                                     int modbusType) {
 
-        ModbusDeviceFrame deviceFrame = V0Factory.eINSTANCE.createModbusDeviceFrame();
+        DeviceFrame deviceFrame = V0Factory.eINSTANCE.createDeviceFrame();
         deviceFrame.setDeviceName(createDeviceName(conversionFct, genericType, modbusType));
 
-        deviceFrame.setModbusInterfaceDescription(modbDevDesc(firstRegOne, conversionFct));
+        InterfaceList interfaceList = V0Factory.eINSTANCE.createInterfaceList();
+        deviceFrame.setInterfaceList(interfaceList);
+
+        ModbusInterface modbusInterface = V0Factory.eINSTANCE.createModbusInterface();
+        interfaceList.setModbusInterface(modbusInterface);
+        deviceFrame.getInterfaceList().setModbusInterface(modbusInterface);
+
+        modbusInterface.setModbusInterfaceDescription(modbDevDesc(firstRegOne, conversionFct));
 
         ModbusFunctionalProfile functionalProfile =
                 V0Factory.eINSTANCE.createModbusFunctionalProfile();
@@ -671,16 +680,16 @@ class SetGetValConversionTest {
 
         functionalProfile.getDataPointList().getDataPointListElement().add(modbDp(genericType, modbusType, "ActivePowerACL1", 1));
 
-        if (genericType != DATA_TYPE__ENUM) {
+        if (genericType != DATA_TYPE_PRODUCT__ENUM) {
             // This does not work with enums. The genericValue and modbusValue of the previous datapoint will be set to <null>
             functionalProfile.getDataPointList().getDataPointListElement().add(modbDp(genericType, modbusType, "ActivePowerAC-ARRAY", 3));
             functionalProfile.getDataPointList().getDataPointListElement().add(blockDp(genericType, modbusType,"ActivePowerAC-BLOCK", "ActivePowerAC-BLOCK", 1));
-            deviceFrame.getTimeSyncBlockNotification().add(timeSyncBlock("ActivePowerAC-BLOCK"));
+            deviceFrame.getInterfaceList().getModbusInterface().getTimeSyncBlockNotification().add(timeSyncBlock("ActivePowerAC-BLOCK"));
         }
 
         ModbusFunctionalProfileList profileList = V0Factory.eINSTANCE.createModbusFunctionalProfileList();
         profileList.getFunctionalProfileListElement().add(functionalProfile);
-        deviceFrame.setFunctionalProfileList(profileList);
+        deviceFrame.getInterfaceList().getModbusInterface().setFunctionalProfileList(profileList);
         return deviceFrame;
     }
 
@@ -732,9 +741,9 @@ class SetGetValConversionTest {
         return genDpDesc;
     }
 
-    private static DataType basicDP(int v0PackageType) {
+    private static DataTypeProductImpl basicDP(int v0PackageType) {
 
-        DataTypeImpl dp = (DataTypeImpl) V0Factory.eINSTANCE.createDataType();
+        DataTypeProductImpl dp = (DataTypeProductImpl) V0Factory.eINSTANCE.createDataTypeProduct();
         dp.eSet(v0PackageType, V0Factory.eINSTANCE.createEmptyType());
         return dp;
     }

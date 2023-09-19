@@ -1,6 +1,6 @@
 package communicator.modbus.impl;
 
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
+import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.Float32Value;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Int64Value;
@@ -85,7 +85,7 @@ class SetGetValValidationTest {
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL deviceDescUrl = classloader.getResource("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
-        ModbusDeviceFrame  deviceDesc = new DeviceDescriptionLoader<ModbusDeviceFrame>()
+        DeviceFrame deviceDesc = new DeviceDescriptionLoader<DeviceFrame>()
                 .load("", Optional.ofNullable(deviceDescUrl != null ? deviceDescUrl.getPath() : null).orElse(""));
 
         return new SGrModbusDevice(deviceDesc, modbusDriver);

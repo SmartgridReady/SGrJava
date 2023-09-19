@@ -2,7 +2,7 @@ package communicator.common.impl;
 
 import com.smartgridready.ns.v0.DataDirection;
 import com.smartgridready.ns.v0.DataPointBase;
-import com.smartgridready.ns.v0.DeviceBase;
+import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
 import com.smartgridready.ns.v0.GenericAttributes;
 import com.smartgridready.ns.v0.V0Factory;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class SGrDeviceBase<
-        D extends DeviceBase,
+        D extends DeviceFrame,
         F extends FunctionalProfileBase,
         P extends DataPointBase> implements GenDeviceApi {
 

@@ -98,6 +98,11 @@ public class StringValue extends Value {
     }
 
     @Override
+    public EnumValue.EnumRecord getEnum() {
+        throw new IllegalArgumentException("Cannot convert from String value to enum");
+    }
+
+    @Override
     public void scaleDown(int mul, int powOf10) {
         if (mul != 1 || powOf10 !=0) {
             double dVal = toDouble() / mul;

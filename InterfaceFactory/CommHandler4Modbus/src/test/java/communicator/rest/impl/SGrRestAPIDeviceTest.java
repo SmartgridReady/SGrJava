@@ -1,6 +1,6 @@
 package communicator.rest.impl;
 
-import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import communicator.common.api.Float32Value;
 import communicator.common.api.Float64Value;
@@ -55,7 +55,7 @@ class SGrRestAPIDeviceTest {
 	@Mock
 	RestServiceClient restServiceClientReq;
 	
-	static RestApiDeviceFrame deviceFrame;
+	static DeviceFrame deviceFrame;
 			
 	private static final String CLEMAP_AUTH_RESP = "{\r\n"
 			+ "    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6ImFjY2VzcyJ9.eyJ1c2VySWQiOiI2MzM0MzI5MWVjZjJjZjAxM2ExZTVhOWQiLCJpYXQiOjE2NjgwOTI1NzMsImV4cCI6MTY2ODE3ODk3MywiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiNjMzNDMyOTFlY2YyY2YwMTNhMWU1YTlkIiwianRpIjoiNTU2NmU2M2QtNTVmOC00MDEyLWJlYTUtOTJjYWE0NDIwYzQ3In0.xVOrspfi1E61Jb0BXBt37wgqGcnkPueMcHh1_zI-xXM\",\r\n"
@@ -88,7 +88,7 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
 		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
@@ -110,7 +110,8 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
 		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
+				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		when(restServiceClientReq.callService()).thenReturn(Either.left( 
@@ -134,7 +135,8 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
 		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
+				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));		
 		when(restServiceClientReq.callService()).thenReturn(Either.right("OK"));
 		
@@ -157,7 +159,8 @@ class SGrRestAPIDeviceTest {
 		// given
 		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
+				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
@@ -207,11 +210,11 @@ class SGrRestAPIDeviceTest {
 	}
 
 
-	private static RestApiDeviceFrame createSGrRestAPIDeviceFrame() {
+	private static DeviceFrame createSGrRestAPIDeviceFrame() {
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		URL devDescUrl = classloader.getResource("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
 
-		DeviceDescriptionLoader<RestApiDeviceFrame> loader = new DeviceDescriptionLoader<>();
+		DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
 		return loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 	}
 }

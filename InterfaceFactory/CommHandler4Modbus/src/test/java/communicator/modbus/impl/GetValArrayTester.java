@@ -1,6 +1,6 @@
 package communicator.modbus.impl;
 
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
+import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.modbus.api.GenDeviceApi4Modbus;
@@ -23,8 +23,8 @@ public class GetValArrayTester {
 		
 		try {	
 			
-			DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-			ModbusDeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ?deviceDesc.getPath() : null);
+			DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+			DeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ?deviceDesc.getPath() : null);
 			
 			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
 			mbRTU.initTrspService("COM3", 19200);	

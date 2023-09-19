@@ -1,7 +1,6 @@
 package communicator.async;
 
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
-import com.smartgridready.ns.v0.RestApiDeviceFrame;
+import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.async.process.ExecStatus;
 import communicator.async.process.Parallel;
 import communicator.async.process.Processor;
@@ -137,8 +136,8 @@ public class AsyncClemapWagoTest {
     }
 
     private static SGrModbusDevice createWagoDevice() throws Exception {
-        DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-        ModbusDeviceFrame deviceDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
+        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceFrame deviceDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
 
         wagoDriver = new GenDriverAPI4ModbusRTU();
@@ -155,7 +154,7 @@ public class AsyncClemapWagoTest {
         props.put("baseUri", "https://cloud.clemap.com:3032");
         props.put("sensor_id", "63343431ecf2cf013a1e5a9f");
 
-        RestApiDeviceFrame deviceDesc = new DeviceDescriptionLoader<RestApiDeviceFrame>()
+        DeviceFrame deviceDesc = new DeviceDescriptionLoader<DeviceFrame>()
                 .load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
 
         SGrRestApiDevice clemapDevice = new SGrRestApiDevice(deviceDesc, new ApacheRestServiceClientFactory());

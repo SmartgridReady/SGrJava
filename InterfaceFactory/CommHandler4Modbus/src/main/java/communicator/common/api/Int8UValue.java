@@ -7,21 +7,9 @@ public class Int8UValue extends NumberValue<Short> {
     }
 
     @Override
-    public void scaleDown(int mul, int powOf10) {
-        if (mul != 1 || powOf10 !=0) {
-            Value.checkInt8U(value);
-            double dVal = (double) value / mul;
-            value = (short) (dVal * Math.pow(10.0, -powOf10));
-        }
-    }
-
-    @Override
-    public void scaleUp(int mul, int powOf10) {
-        if (mul != 1 || powOf10 !=0) {
-            double dVal = (value * Math.pow(10.0, powOf10));
-            value = (short) (dVal * mul);
-            Value.checkInt8U(value);
-        }
+    protected void setValue(double value) {
+        checkInt8U((long) value);
+        this.value = (short)value;
     }
 
     @Override

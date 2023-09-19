@@ -1,7 +1,7 @@
 package communicator.common.impl;
 
+import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.GenericAttributes;
-import com.smartgridready.ns.v0.ModbusDeviceFrame;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Int64Value;
 import communicator.common.api.StringValue;
@@ -178,8 +178,8 @@ class SGrDeviceBaseTest {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL devDescUrl = classloader.getResource("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
 
-        DeviceDescriptionLoader<ModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-        ModbusDeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
+        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 
         return new SGrModbusDevice(devDesc, null);
     }
