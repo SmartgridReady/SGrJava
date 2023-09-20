@@ -722,12 +722,15 @@ public class HeatPumpTester {
 					       * 
 					       */
 						  
-						  /* set power
-						  gdtValue.setInt16U(240);
-						  devCTAoptiHeat.setValByGDPType("PowerCtrl","ctaRemoteCtrlTimeSec",gdtValue);
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-						  Thread.sleep(25);
+
+						  gdtValue.setInt16U(120);
+						  devCTAoptiHeat.setValByGDPType("DeviceInformation","ctaRemoteCtrlTimeSec",gdtValue);
+						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));						  
 						  gdtValue.unsetInt16U();
+						  Thread.sleep(25);
+						  
+						  
+						  /* set power
 						  fVal1 = (float)50.0;
 					      gdtValue.setFloat32(fVal1);
 						  devCTAoptiHeat.setValByGDPType("PowerCtrl","PowerCtrlStpt",gdtValue);
@@ -737,10 +740,6 @@ public class HeatPumpTester {
 						  
 						  /* set storage buffer
 						  //TODO: read timeout beim Schreiben klären
-						  gdtValue.setInt16U(30);
-						  devCTAoptiHeat.setValByGDPType("BufferStorageCtrl","ctaRemoteCtrlTimeSec",gdtValue);
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-						  gdtValue.unsetInt16U();
 						  Thread.sleep(25);					  
 						  gdtValue.setFloat32((float)-2.0);
 						  devCTAoptiHeat.setValByGDPType("BufferStorageCtrl","HeatBufferTempStptOffset",gdtValue);
@@ -748,23 +747,14 @@ public class HeatPumpTester {
 						  */
 
 						  
-						  //*  Set HeatCoolCtrl //
-						  gdtValue.setInt16U(45);
-						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl","ctaRemoteCtrlTimeSec",gdtValue);
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));						  
-						  gdtValue.unsetInt16U();
-						  Thread.sleep(25);
+						  /*  Set HeatCoolCtrl //
 						  oEnumListSet.setCtaHCOpMode(CtaHCOpModeType.HCECO);
 						  modeCmd.setEnum(oEnumListSet);
 						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl", "ctaHCOpModeCmd", modeCmd);
 						  LOG.info(String.format("Setting  ctaHCOpModeCmd=" +  modeCmd.getEnum().getCtaHCOpMode().getLiteral()));
-						 // */
+						 / */
 						  /*
 						  //  Set SupplyWaterTempStpt
-						  gdtValue.setInt16U(120);
-						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl","ctaRemoteCtrlTimeSec",gdtValue);
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-						  gdtValue.unsetInt16U();
 						  Thread.sleep(25);							  
 						  gdtValue.setFloat32((float)22.6);
 						  devCTAoptiHeat.setValByGDPType("HeatCoolCtrl", "SupplyWaterTempStpt",gdtValue);
@@ -772,23 +762,15 @@ public class HeatPumpTester {
 						  */
 						  
 
-						  /*  Set DomHotWaterCtrl //
-						  gdtValue.setInt16U(20);
-						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl","ctaRemoteCtrlTimeSec",gdtValue);
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));						  
-						  gdtValue.unsetInt16U();
+						 // /*  Set DomHotWaterCtrl //
 						  Thread.sleep(25);						  
-						  oEnumListSet.setCtaDomHotWOpMode(CtaDomHotWOpModeType.DHWOFF);
+						  oEnumListSet.setCtaDomHotWOpMode(CtaDomHotWOpModeType.DHWPUSH);
 						  modeCmd.setEnum(oEnumListSet);
 						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl", "ctaDomHotWOpModeCmd", modeCmd);
 						  LOG.info(String.format("Setting  ctaDomHotWOpModeCmd=" +  modeCmd.getEnum().getCtaDomHotWOpMode().getLiteral()));
-						  */
+						  //*/
 						  /*
 						  //  Set DomHotWTempStpt
-						  gdtValue.setInt16U(120);
-						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl","ctaRemoteCtrlTimeSec",gdtValue);
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-						  gdtValue.unsetInt16U();
 						  Thread.sleep(25);							  
 						  gdtValue.setFloat32((float)51.5);
 						  devCTAoptiHeat.setValByGDPType("DomHotWaterCtrl", "DomHotWTempStpt",gdtValue);
@@ -797,12 +779,6 @@ public class HeatPumpTester {
 
 					      
 						  /* control SG-Ready by enum SGReadyStateLv2Type
-						  gdtValue.setInt16U(120);
-						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec",gdtValue);
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));	
-		                  oEnumList.setSgreadyStateLv2(SGReadyStateLv2Type.HPNORMAL);
-						  SGrBasicGenDataPointTypeType  hpCmd = V0Factory.eINSTANCE.createSGrBasicGenDataPointTypeType();
-						  gdtValue.unsetInt16U();
 						  hpCmd.setEnum(oEnumList);
 						  devCTAoptiHeat.setValByGDPType("SG-ReadyStates_bwp", "SGReadyOpModeCmd", hpCmd);
 						  LOG.info(String.format("  Setting  ReadyStates_bwp:SGReadyOpModeCmd="+ oEnumList.getSgreadyStateLv2().getLiteral()));
@@ -816,7 +792,7 @@ public class HeatPumpTester {
 						
 					      
 			            // testing getters	
-						iVal1 =  devCTAoptiHeat.getValByGDPType("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec").getInt16U();
+						iVal1 =  devCTAoptiHeat.getValByGDPType("DeviceInformation","ctaRemoteCtrlTimeSec").getInt16U();
 						boolean bRem = true;
 						if (iVal1==0) bRem = false; 
 						LOG.info(String.format("  ctaRemoteCtrlTimeSec: "  + bRem + "  ctaRemoteCtrlTimeSec=" + iVal1));
