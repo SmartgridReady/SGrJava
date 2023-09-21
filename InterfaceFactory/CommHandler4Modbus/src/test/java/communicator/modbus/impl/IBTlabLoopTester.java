@@ -25,6 +25,8 @@ and significant traffic load conditions
 package communicator.modbus.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
+import communicator.common.api.BooleanValue;
+import communicator.common.api.EnumValue;
 import communicator.common.api.Float64Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.Parity;
@@ -81,7 +83,7 @@ public class IBTlabLoopTester {
 	private static boolean  devWagoMeterTestIsOn = true; 
 	private static boolean  devOMCCIWallboxTestIsOn = true; 
 	// !! Schalter in Box umlegen für Test !!
-	private static boolean  devTB_ABBMeterTestIsOn = true; 
+	private static boolean  devTB_ABBMeterTestIsOn = true;
 
 	public static void main( String argv[] ) {	
 		
@@ -642,11 +644,10 @@ public class IBTlabLoopTester {
 						  sVal1 = devVGT_SGCP.getVal("BiDirFlexMgmt", "ReadinessState").getString();
 						  sVal2 = devVGT_SGCP.getVal("BiDirFlexMgmt", "RunState").getString();
 						  sVal3 = devVGT_SGCP.getVal("BiDirFlexMgmt", "ActualActivePower").getString();
-						  // FIXME set boolean
-						  // if ((runtimeCnt & 1) == 0)
-						  // () -> devVGT_SGCP.setVal("BiDirFlexMgmt", "ActivePowerActivation", "false")
-						  // else
-						  //	  devVGT_SGCP.setVal("BiDirFlexMgmt", "ActivePowerActivation", "true");
+						  if ((runtimeCnt & 1) == 0)
+							  devVGT_SGCP.setVal("BiDirFlexMgmt", "ActivePowerActivation", BooleanValue.of(false));
+						  else
+						  	  devVGT_SGCP.setVal("BiDirFlexMgmt", "ActivePowerActivation", BooleanValue.of(true));
 
 						LOG.info(" ReadinessState / RunState / ActualActivePower: " + sVal1 + ", "
 								+ sVal2 + sVal3 + "  ");
@@ -709,20 +710,14 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 fVal3 = devGaroWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
 							 Thread.sleep(200);
-							 // FIXME
-							 //oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
-							 Thread.sleep(200);
-							 // FIXME
-							 //sgrEVState = oEnumList.getSgrEVState();
-							 //LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
 
-							 // FIXME
-							 // oEnumList = devGaroWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+							 EnumValue.EnumRecord oEnumList = devGaroWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 							 Thread.sleep(200);
+							 LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
 
-							 // FIXME
-							 // sgrOCPPState = oEnumList.getSgrOCPPState();
-							 // LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
+							 oEnumList = devGaroWallbox.getVal("EVSEState", "ocppState").getEnum();
+							 Thread.sleep(200);
+							 LOG.info("  OCPP-StatusCode:                  " + oEnumList.getLiteral() + "  ");
 							 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
 							 fVal1 = devGaroWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat64();
@@ -741,11 +736,11 @@ public class IBTlabLoopTester {
 							 Thread.sleep(200);
 							 LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");	
 								
-							 //sVal1 = devGaroWallbox.getVal("EVState", "isSmartEV15118");
-							 //Thread.sleep(200);
-							 //??? sVal2 = devGaroWallbox.getVal("EVState", "EVCCID");
+							 Boolean evState = devGaroWallbox.getVal("EVState", "isSmartEV15118").getBoolean();
 							 Thread.sleep(200);
-							 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + "  ");
+							 EnumValue.EnumRecord evccid = devGaroWallbox.getVal("EVState", "EVCCID").getEnum();
+							 Thread.sleep(200);
+							 LOG.info("  EVState  support (ISO/IEC 15118): " + evState + ",    EVCCID = " + evccid + "  ");
 							 
 							 fVal1 = devGaroWallbox.getVal("Curtailment", "SafeCurrent").getFloat64();
 							 Thread.sleep(200);
@@ -816,19 +811,14 @@ public class IBTlabLoopTester {
 								 Thread.sleep(200);
 								 fVal3 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
 								 Thread.sleep(200);
-								 // FIXME
-								 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
-								 Thread.sleep(200);
-								 // FIXME
-								 // sgrEVState = oEnumList.getSgrEVState();
-								 // LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
 
-								 // FIXME
-								 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+								 EnumValue.EnumRecord oEnumList = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 								 Thread.sleep(200);
-								 // FIXME
-								 // sgrOCPPState = oEnumList.getSgrOCPPState();
-								 // LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
+								 LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
+
+								 oEnumList = devOMCCIWallbox.getVal("EVSEState", "ocppState").getEnum();
+								 Thread.sleep(200);
+								 LOG.info("  OCPP-StatusCode:                  " + oEnumList.getLiteral() + "  ");
 								 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
 								 fVal1 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat64();
@@ -955,7 +945,7 @@ public class IBTlabLoopTester {
 							     Thread.sleep(25);
 								 LOG.info("    EventList 1: isTrue =  ");
 
-								 // FIXME
+								 // FIXME with bitmaps
 								/*
 						     	 if(((l&(1<<Bool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
@@ -996,7 +986,7 @@ public class IBTlabLoopTester {
 								 l =  devFroniusSymo.getVal("SunspInvModel","EventList2").getInt32U();
 								 LOG.info("   StatusRegister :         " + l + "  ");
 								 LOG.info("   EventList 2: isTrue =  ");
-								 // FIXME
+								 // FIXME with bitmaps
 								/*
 						     	 if(((l&(1<<Bool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
 						     	 if(((l&(1<<Bool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");

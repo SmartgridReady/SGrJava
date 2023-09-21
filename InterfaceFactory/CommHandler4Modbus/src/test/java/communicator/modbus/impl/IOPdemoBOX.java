@@ -30,6 +30,7 @@ import java.time.format.DateTimeFormatter;
 
 // WIP/cb import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.DeviceFrame;
+import communicator.common.api.EnumValue;
 import communicator.common.api.Float32Value;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.common.runtime.Parity;
@@ -331,20 +332,14 @@ public class IOPdemoBOX {
 						 Thread.sleep(200);
 						 fVal3 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
 						 Thread.sleep(200);
-						 // FIXNE
-						 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
-						 Thread.sleep(200);
-						 // FIXME
-						 // sgrEVState = oEnumList.getSgrEVState();
-						 // LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
 
-						 // FIXME
-						 // oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+						 EnumValue.EnumRecord oEnumList = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 						 Thread.sleep(200);
+						 LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
 
-						 // FIXME
-						 // sgrOCPPState = oEnumList.getSgrOCPPState();
-						 // LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
+						 oEnumList = devOMCCIWallbox.getVal("EVSEState", "ocppState").getEnum();
+						 Thread.sleep(200);
+						 LOG.info("  OCPP-StatusCode:                  " + oEnumList.getLiteral() + "  ");
 						 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
 						 fVal1 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat64();
@@ -363,11 +358,11 @@ public class IOPdemoBOX {
 						 Thread.sleep(200);
 						 LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");	
 							
-						 //sVal1 = devOMCCIWallbox.getVal("EVState", "isSmartEV15118");
-						 //Thread.sleep(200);
-						 //??? sVal2 = devOMCCIWallbox.getVal("EVState", "EVCCID");
+						 boolean bVal = devOMCCIWallbox.getVal("EVState", "isSmartEV15118").getBoolean();
 						 Thread.sleep(200);
-						 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + "  ");
+						 EnumValue.EnumRecord enumRecord = devOMCCIWallbox.getVal("EVState", "EVCCID").getEnum();
+						 Thread.sleep(200);
+						 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + enumRecord.getLiteral() + "  ");
 						 
 						 fVal1 = devOMCCIWallbox.getVal("Curtailment", "SafeCurrent").getFloat64();
 						 Thread.sleep(200);
