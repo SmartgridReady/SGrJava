@@ -44,12 +44,12 @@ public abstract class NumberValue<T extends Number> extends Value {
 
     @Override
     public boolean getBoolean() {
-        return value.longValue() != 0 ? true : false;
+        return value.longValue() != 0;
     }
 
     @Override
     public EnumValue.EnumRecord getEnum() {
-        throw new IllegalArgumentException("Cannot convert numeric value to enum");
+        return null;
     }
 
     @Override

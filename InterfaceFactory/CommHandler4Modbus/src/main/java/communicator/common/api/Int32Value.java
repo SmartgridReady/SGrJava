@@ -18,6 +18,7 @@ public class Int32Value extends NumberValue<Integer> {
 
     @Override
     public void roundToInt() {
+        // not available
     }
 
     public static Int32Value of(int value) {

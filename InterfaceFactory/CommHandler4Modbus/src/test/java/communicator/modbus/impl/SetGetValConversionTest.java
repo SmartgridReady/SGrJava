@@ -5,6 +5,8 @@ import com.smartgridready.ns.v0.DataDirection;
 import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.EnumEntryProductRecord;
+import com.smartgridready.ns.v0.EnumMapProduct;
 import com.smartgridready.ns.v0.FunctionalProfileDescription;
 import com.smartgridready.ns.v0.InterfaceList;
 import com.smartgridready.ns.v0.ModbusDataPoint;
@@ -20,6 +22,7 @@ import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.impl.DataTypeProductImpl;
 import com.smartgridready.ns.v0.impl.ModbusDataTypeImpl;
 import communicator.common.api.BooleanValue;
+import communicator.common.api.EnumValue;
 import communicator.common.api.Float32Value;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Int16UValue;
@@ -38,6 +41,7 @@ import communicator.common.runtime.GenDriverSocketException;
 import communicator.modbus.helper.CacheRecord;
 import communicator.modbus.helper.ModbusReaderResponse;
 import io.vavr.Tuple2;
+import org.eclipse.emf.common.util.EList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -68,7 +72,6 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT;
 import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__BOOLEAN;
 import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__ENUM;
 import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__FLOAT32;
@@ -469,44 +472,39 @@ class SetGetValConversionTest {
         assertEquals(fixture.readValue.getBoolean(), res.getBoolean());
     }
 
-
-    /*
     @Test
     void testEnumConversion() throws Exception {
 
-        SGrEnumListType genType = V0Factory.eINSTANCE.createSGrEnumListType();
-        genType.setSgrPowerSource(SGrPowerSourceType.BATTERY);
+        DataTypeProduct dataTypeProduct = V0Factory.eINSTANCE.createDataTypeProduct();
+        dataTypeProduct.setEnum(createEnumMap(new byte[]{(byte)0xFF}));
 
-        SGrEnumListType modbType = V0Factory.eINSTANCE.createSGrEnumListType();
-        genType.setSgrPowerSource(SGrPowerSourceType.BATTERY);
-
-        ModbusDeviceFrame deviceFrame = deviceFrame(false, TEnumConversionFct.BIG_ENDIAN, DATA_TYPE__ENUM, MODBUS_DATA_TYPE__ENUM);
-
-        String expectedValue = SGrPowerSourceType.BATTERY.getName();
+        DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__ENUM, MODBUS_DATA_TYPE__INT32);
+        deviceFrame.getInterfaceList().getModbusInterface().getFunctionalProfileList()
+                .getFunctionalProfileListElement().get(0)
+                .getDataPointList().getDataPointListElement().get(0)
+                .getDataPoint().setDataType(dataTypeProduct);
 
         SGrModbusDevice modbusDevice = new SGrModbusDevice(
                 deviceFrame,
                 genDriverAPI4Modbus);
 
-        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", expectedValue);
-        verify(genDriverAPI4Modbus).WriteSingleRegister(anyInt(), intCaptor.capture());
+        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", EnumValue.of("DHW_PUSH"));
+        verify(genDriverAPI4Modbus).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
 
-        if (!intCaptor.getAllValues().isEmpty()) {
-            LOG.info("Modbus read enum: {}",
-                    Optional.ofNullable(
-                            SGrPowerSourceType.get(Optional.ofNullable(intCaptor.getValue()).orElse(-1)))
-                            .map(SGrPowerSourceType::getName)
-                            .orElse("undefined"));
-
-            assertEquals(SGrPowerSourceType.BATTERY.getValue(), intCaptor.getValue());
-            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(),anyInt())).thenReturn(new int[]{intCaptor.getValue()});
+        if (!intArrayCaptor.getAllValues().isEmpty()) {
+            LOG.info("Modbus write enum: {}", intArrayCaptor.getValue());
+            assertArrayEquals(new int[]{0, 255}, intArrayCaptor.getValue());
+            when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(),anyInt())).thenReturn(intArrayCaptor.getValue());
         }
 
-        String res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
+        Value res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
         LOG.info("Modbus read value: {}", res);
-        assertEquals(expectedValue, res.trim());
+        assertEquals("DHW_PUSH", res.getEnum().getLiteral());
+        assertEquals("DHW_PUSH", res.getString());
+        assertEquals(255, res.getInt32());
+        assertEquals("Description of DHW_PUSH", res.getEnum().getDescription());
+        assertEquals("DHW_PUSH:255 | Description of DHW_PUSH", res.toString());
     }
-     */
 
     @Test
     void testSetValGetValArray() throws Exception {
@@ -668,8 +666,7 @@ class SetGetValConversionTest {
 
         modbusInterface.setModbusInterfaceDescription(modbDevDesc(firstRegOne, conversionFct));
 
-        ModbusFunctionalProfile functionalProfile =
-                V0Factory.eINSTANCE.createModbusFunctionalProfile();
+        ModbusFunctionalProfile functionalProfile = V0Factory.eINSTANCE.createModbusFunctionalProfile();
 
         ModbusDataPointList dataPointList = V0Factory.eINSTANCE.createModbusDataPointList();
         functionalProfile.setDataPointList(dataPointList);
@@ -683,8 +680,8 @@ class SetGetValConversionTest {
         if (genericType != DATA_TYPE_PRODUCT__ENUM) {
             // This does not work with enums. The genericValue and modbusValue of the previous datapoint will be set to <null>
             functionalProfile.getDataPointList().getDataPointListElement().add(modbDp(genericType, modbusType, "ActivePowerAC-ARRAY", 3));
-            functionalProfile.getDataPointList().getDataPointListElement().add(blockDp(genericType, modbusType,"ActivePowerAC-BLOCK", "ActivePowerAC-BLOCK", 1));
-            deviceFrame.getInterfaceList().getModbusInterface().getTimeSyncBlockNotification().add(timeSyncBlock("ActivePowerAC-BLOCK"));
+            functionalProfile.getDataPointList().getDataPointListElement().add(blockDp(genericType, modbusType));
+            deviceFrame.getInterfaceList().getModbusInterface().getTimeSyncBlockNotification().add(timeSyncBlock());
         }
 
         ModbusFunctionalProfileList profileList = V0Factory.eINSTANCE.createModbusFunctionalProfileList();
@@ -713,9 +710,9 @@ class SetGetValConversionTest {
         return modbDp;
     }
 
-    private static ModbusDataPoint blockDp(int genericType, int modbusType, String dpName, String blockId, int arrLen) {
-        ModbusDataPoint blockDp = modbDp(genericType, modbusType, dpName, arrLen);
-        blockDp.setBlockCacheIdentification(blockId);
+    private static ModbusDataPoint blockDp(int genericType, int modbusType) {
+        ModbusDataPoint blockDp = modbDp(genericType, modbusType, "ActivePowerAC-BLOCK", 1);
+        blockDp.setBlockCacheIdentification("ActivePowerAC-BLOCK");
         return blockDp;
     }
 
@@ -744,7 +741,12 @@ class SetGetValConversionTest {
     private static DataTypeProductImpl basicDP(int v0PackageType) {
 
         DataTypeProductImpl dp = (DataTypeProductImpl) V0Factory.eINSTANCE.createDataTypeProduct();
-        dp.eSet(v0PackageType, V0Factory.eINSTANCE.createEmptyType());
+        Object dataPointType = V0Factory.eINSTANCE.createEmptyType(); // numeric values are empty types
+        if (v0PackageType == DATA_TYPE_PRODUCT__ENUM) {
+            dataPointType = V0Factory.eINSTANCE.createEnumMapProduct();
+        }
+
+        dp.eSet(v0PackageType, dataPointType);
         return dp;
     }
 
@@ -756,11 +758,11 @@ class SetGetValConversionTest {
     }
 
 
-    private static TimeSyncBlockNotification timeSyncBlock(String blockId) {
+    private static TimeSyncBlockNotification timeSyncBlock() {
 
         TimeSyncBlockNotification tsBlock = V0Factory.eINSTANCE.createTimeSyncBlockNotification();
         tsBlock.setFirstAddress(BigInteger.valueOf(TIME_SYNC_BLOCK_ADDRESS));
-        tsBlock.setBlockCacheIdentification(blockId);
+        tsBlock.setBlockCacheIdentification("ActivePowerAC-BLOCK");
         tsBlock.setRegisterType(RegisterType.HOLD_REGISTER);
         tsBlock.setTimeToLiveMs(200);
         tsBlock.setSize(TIME_SYNC_BLOCK_SIZE);
@@ -827,5 +829,24 @@ class SetGetValConversionTest {
         );
         sb.delete(sb.length() -1, sb.length()).append("]");
         return sb.toString();
+    }
+
+    private EnumMapProduct createEnumMap(byte[] hexMask) {
+        EnumMapProduct retVal = V0Factory.eINSTANCE.createEnumMapProduct();
+        EList<EnumEntryProductRecord> enumEntries = retVal.getEnumEntry();
+        enumEntries.add(createEnumRecord("DHW_ON", 1));
+        enumEntries.add(createEnumRecord("DHW_OFF", 2));
+        enumEntries.add(createEnumRecord("DHW_PUSH", 255));
+        enumEntries.add(createEnumRecord("DHW_TMP_OFF", 256));
+        retVal.setHexMask(hexMask);
+        return retVal;
+    }
+
+    private EnumEntryProductRecord createEnumRecord(String literal, int ordinal) {
+        EnumEntryProductRecord enumRecord = V0Factory.eINSTANCE.createEnumEntryProductRecord();
+        enumRecord.setLiteral(literal);
+        enumRecord.setOrdinal(ordinal);
+        enumRecord.setDescription("Description of " + literal);
+        return enumRecord;
     }
 }

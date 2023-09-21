@@ -1,15 +1,13 @@
 package communicator.common.api;
 
-import com.smartgridready.ns.v0.Enum;
-import com.smartgridready.ns.v0.EnumEntry;
+import com.smartgridready.ns.v0.EnumMapProduct;
 import com.smartgridready.ns.v0.ModbusDataType;
 import communicator.common.helper.DataTypeHelper;
 import communicator.modbus.helper.ConversionHelper;
 
 import java.math.BigInteger;
-import java.util.EnumMap;
 
-public abstract class Value extends Object  {
+public abstract class Value  {
     public static final BigInteger UNSIGNED_LONG_MASK = BigInteger.ONE.shiftLeft(Long.SIZE).subtract(BigInteger.ONE);
 
     public abstract byte getInt8();
@@ -68,13 +66,6 @@ public abstract class Value extends Object  {
         if (modbusDataType.getBoolean() != null) {
             return ConversionHelper.shortToRegister(getBoolean() ? (short)1 : (short)0);
         }
-        if (modbusDataType.getEnum() != null) {
-
-            Enum enumMap = modbusDataType.getEnum();
-
-
-
-        }
 
         throw new IllegalArgumentException(
                 String.format("Conversion to modbus register for type %s not supported.",
@@ -89,6 +80,7 @@ public abstract class Value extends Object  {
                 String.format("Conversion to modbus discrete value for type %s not supported.",
                         DataTypeHelper.getModbusDataTypeName(modbusDataType)));
     }
+
 
     public static Value fromModbusRegister(ModbusDataType modbusDataType, int[] registers) {
 
@@ -132,6 +124,11 @@ public abstract class Value extends Object  {
 
         throw new IllegalArgumentException(String.format("Modbus register type %s to Value.class conversion from register not supported.",
                 DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+    }
+
+    @SuppressWarnings("unused")
+    public Int64Value enumToOrdinalValue (EnumMapProduct enumMapProduct) {
+        return Int64Value.of(getInt64());
     }
 
     public static Value fromDiscreteInput(ModbusDataType modbusDataType, boolean[] bitregister) {

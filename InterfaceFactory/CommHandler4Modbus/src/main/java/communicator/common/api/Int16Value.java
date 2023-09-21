@@ -19,6 +19,7 @@ public class Int16Value extends NumberValue<Short> {
 
     @Override
     public void roundToInt() {
+        // not available
     }
 
     public static Int16Value of(short value) {

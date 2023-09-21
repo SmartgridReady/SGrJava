@@ -1,8 +1,5 @@
 package communicator.common.api;
 
-import org.apache.hc.core5.http.MethodNotSupportedException;
-
-import java.lang.reflect.Method;
 import java.math.BigInteger;
 
 public class Int64UValue extends Value {
@@ -79,7 +76,7 @@ public class Int64UValue extends Value {
 
     @Override
     public boolean getBoolean() {
-        return value.compareTo(BigInteger.ZERO) == 0 ? false : true;
+        return value.compareTo(BigInteger.ZERO) != 0;
     }
 
     @Override

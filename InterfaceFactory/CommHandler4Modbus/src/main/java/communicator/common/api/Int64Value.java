@@ -1,7 +1,5 @@
 package communicator.common.api;
 
-import java.math.BigInteger;
-
 public class Int64Value extends NumberValue<Long> {
 
     private Int64Value(long value) {
