@@ -30,7 +30,7 @@ import java.time.format.DateTimeFormatter;
 
 // WIP/cb import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.DeviceFrame;
-import communicator.common.api.EnumValue;
+import communicator.common.api.EnumRecord;
 import communicator.common.api.Float32Value;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.common.runtime.Parity;
@@ -333,7 +333,7 @@ public class IOPdemoBOX {
 						 fVal3 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
 						 Thread.sleep(200);
 
-						 EnumValue.EnumRecord oEnumList = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
+						 EnumRecord oEnumList = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 						 Thread.sleep(200);
 						 LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
 
@@ -360,7 +360,7 @@ public class IOPdemoBOX {
 							
 						 boolean bVal = devOMCCIWallbox.getVal("EVState", "isSmartEV15118").getBoolean();
 						 Thread.sleep(200);
-						 EnumValue.EnumRecord enumRecord = devOMCCIWallbox.getVal("EVState", "EVCCID").getEnum();
+						 EnumRecord enumRecord = devOMCCIWallbox.getVal("EVState", "EVCCID").getEnum();
 						 Thread.sleep(200);
 						 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + enumRecord.getLiteral() + "  ");
 						 

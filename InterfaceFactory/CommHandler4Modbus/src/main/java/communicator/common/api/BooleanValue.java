@@ -66,7 +66,7 @@ public class BooleanValue extends Value {
     }
 
     @Override
-    public EnumValue.EnumRecord getEnum() {
+    public EnumRecord getEnum() {
         throw new IllegalArgumentException("Cannot convert from boolean to enum.");
     }
 

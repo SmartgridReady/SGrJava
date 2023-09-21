@@ -27,7 +27,7 @@ import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Disabled // Needs live Clemap and Wago meters
+@Disabled("Needs a real device")
 public class AsyncClemapWagoTest {
     public static final Logger LOG = LoggerFactory.getLogger(AsyncClemapWagoTest.class);
 

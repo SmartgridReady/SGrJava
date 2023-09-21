@@ -48,7 +48,7 @@ public abstract class NumberValue<T extends Number> extends Value {
     }
 
     @Override
-    public EnumValue.EnumRecord getEnum() {
+    public EnumRecord getEnum() {
         return null;
     }
 

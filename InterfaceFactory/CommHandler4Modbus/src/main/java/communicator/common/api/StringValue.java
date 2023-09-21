@@ -1,7 +1,5 @@
 package communicator.common.api;
 
-import org.apache.hc.core5.http.MethodNotSupportedException;
-
 import java.math.BigInteger;
 
 public class StringValue extends Value {
@@ -98,7 +96,7 @@ public class StringValue extends Value {
     }
 
     @Override
-    public EnumValue.EnumRecord getEnum() {
+    public EnumRecord getEnum() {
         throw new IllegalArgumentException("Cannot convert from String value to enum");
     }
 

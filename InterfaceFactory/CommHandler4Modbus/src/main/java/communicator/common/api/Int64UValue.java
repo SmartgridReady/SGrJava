@@ -80,7 +80,7 @@ public class Int64UValue extends Value {
     }
 
     @Override
-    public EnumValue.EnumRecord getEnum() {
+    public EnumRecord getEnum() {
         throw new IllegalArgumentException("Cannot convert from uint64 value to enum value");
     }
 

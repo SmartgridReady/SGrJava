@@ -22,7 +22,7 @@ public abstract class Value  {
     public abstract double getFloat64();
     public abstract String getString();
     public abstract boolean getBoolean();
-    public abstract EnumValue.EnumRecord getEnum();
+    public abstract EnumRecord getEnum();
     public abstract void scaleDown(int mul, int powOf10);
     public abstract void scaleUp(int mul, int powOf10);
     public abstract void absValue();

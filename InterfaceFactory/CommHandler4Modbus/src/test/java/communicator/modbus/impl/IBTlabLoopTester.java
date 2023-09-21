@@ -26,7 +26,7 @@ package communicator.modbus.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.BooleanValue;
-import communicator.common.api.EnumValue;
+import communicator.common.api.EnumRecord;
 import communicator.common.api.Float64Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.Parity;
@@ -711,7 +711,7 @@ public class IBTlabLoopTester {
 							 fVal3 = devGaroWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
 							 Thread.sleep(200);
 
-							 EnumValue.EnumRecord oEnumList = devGaroWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
+							 EnumRecord oEnumList = devGaroWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 							 Thread.sleep(200);
 							 LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
 
@@ -738,7 +738,7 @@ public class IBTlabLoopTester {
 								
 							 Boolean evState = devGaroWallbox.getVal("EVState", "isSmartEV15118").getBoolean();
 							 Thread.sleep(200);
-							 EnumValue.EnumRecord evccid = devGaroWallbox.getVal("EVState", "EVCCID").getEnum();
+							 EnumRecord evccid = devGaroWallbox.getVal("EVState", "EVCCID").getEnum();
 							 Thread.sleep(200);
 							 LOG.info("  EVState  support (ISO/IEC 15118): " + evState + ",    EVCCID = " + evccid + "  ");
 							 
@@ -812,7 +812,7 @@ public class IBTlabLoopTester {
 								 fVal3 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
 								 Thread.sleep(200);
 
-								 EnumValue.EnumRecord oEnumList = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
+								 EnumRecord oEnumList = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 								 Thread.sleep(200);
 								 LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
 
