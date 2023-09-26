@@ -2,6 +2,7 @@ package communicator.common.api;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Map;
 
 public abstract class NumberValue<T extends Number> extends Value {
 
@@ -49,7 +50,12 @@ public abstract class NumberValue<T extends Number> extends Value {
 
     @Override
     public EnumRecord getEnum() {
-        return null;
+        throw new UnsupportedOperationException("Cannot convert numeric value to an enum.");
+    }
+
+    @Override
+    public Map<String, Boolean> getBitmap() {
+        throw new UnsupportedOperationException("Cannot convert numeric value to a bitmap.");
     }
 
     @Override
@@ -89,21 +95,21 @@ public abstract class NumberValue<T extends Number> extends Value {
        return value.toString();
     }
 
-    @Override
-    public void scaleDown(int mul, int powOf10) {
+    public NumberValue scaleDown(int mul, int powOf10) {
 
         if (mul != 1 || powOf10 !=0) {
             double dVal = value.doubleValue() / mul;
-            setValue(dVal * Math.pow(10.0, -powOf10));
+            return Float64Value.of(dVal * Math.pow(10.0, -powOf10));
         }
+        return this;
     }
 
-    @Override
-    public void scaleUp(int mul, int powOf10) {
+    public NumberValue scaleUp(int mul, int powOf10) {
         if(mul != 1 || powOf10 != 0) {
             double dVal = value.doubleValue() * Math.pow(10.0, powOf10);
-            setValue(dVal * mul);
+            return Float64Value.of(dVal * mul);
         }
+        return this;
     }
 
     protected abstract void setValue(double value);

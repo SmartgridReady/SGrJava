@@ -5,6 +5,7 @@ import com.smartgridready.ns.v0.EnumMapProduct;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.util.Map;
 
 public class EnumValue extends Value {
 
@@ -171,13 +172,8 @@ public class EnumValue extends Value {
     }
 
     @Override
-    public void scaleDown(int mul, int powOf10) {
-        // not available
-    }
-
-    @Override
-    public void scaleUp(int mul, int powOf10) {
-        // not available
+    public Map<String, Boolean> getBitmap() {
+        throw new UnsupportedOperationException("Cannot convert from an enum value to a bitmap value.");
     }
 
     @Override

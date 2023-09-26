@@ -28,6 +28,7 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.BooleanValue;
 import communicator.common.api.EnumRecord;
 import communicator.common.api.Float64Value;
+import communicator.common.api.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.Parity;
 import communicator.modbus.api.GenDeviceApi4Modbus;
@@ -891,6 +892,7 @@ public class IBTlabLoopTester {
 						float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0;
 						String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";						
 						boolean b;
+						Value bitMapValue;
 						long l;
 											
 							try {	
@@ -940,87 +942,18 @@ public class IBTlabLoopTester {
 									
 								 
 								 LOG.info("  Status  EvenList1  ");
-								 l =  devFroniusSymo.getVal("SunspInvModel","EventList1").getInt32U();
-								 LOG.info("   StatusRegister :         " + l + "  ");
+								 bitMapValue =  devFroniusSymo.getVal("SunspInvModel","EventList1");
+								 LOG.info("   StatusRegister :         {}", bitMapValue.getInt32());
 							     Thread.sleep(25);
 								 LOG.info("    EventList 1: isTrue =  ");
+								 bitMapValue.getBitmap().forEach( (literal, value) -> LOG.info("        {} = {}", literal, value));
 
-								 // FIXME with bitmaps
-								/*
-						     	 if(((l&(1<<Bool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT3_VALUE)))!=0) LOG.info("BIT3, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT4_VALUE)))!=0) LOG.info("BIT4, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT5_VALUE)))!=0) LOG.info("BIT5, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT6_VALUE)))!=0) LOG.info("BIT6, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT7_VALUE)))!=0) LOG.info("BIT7, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT8_VALUE)))!=0) LOG.info("BIT8, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT9_VALUE)))!=0) LOG.info("BIT9, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT10_VALUE)))!=0) LOG.info("BIT10, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT11_VALUE)))!=0) LOG.info("BIT11, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT12_VALUE)))!=0) LOG.info("BIT12, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT13_VALUE)))!=0) LOG.info("BIT13, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT14_VALUE)))!=0) LOG.info("BIT14, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT15_VALUE)))!=0) LOG.info("BIT15, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT16_VALUE)))!=0) LOG.info("BIT16, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT17_VALUE)))!=0) LOG.info("BIT17, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT18_VALUE)))!=0) LOG.info("BIT18, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT19_VALUE)))!=0) LOG.info("BIT19, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT20_VALUE)))!=0) LOG.info("BIT20, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT21_VALUE)))!=0) LOG.info("BIT21, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT22_VALUE)))!=0) LOG.info("BIT22, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT23_VALUE)))!=0) LOG.info("BIT23, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT24_VALUE)))!=0) LOG.info("BIT24, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT25_VALUE)))!=0) LOG.info("BIT25, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT26_VALUE)))!=0) LOG.info("BIT26, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT27_VALUE)))!=0) LOG.info("BIT27, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT28_VALUE)))!=0) LOG.info("BIT28, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
-								 */
-								 
 			
 								 LOG.info("  Status EvenList2  ");
-								 l =  devFroniusSymo.getVal("SunspInvModel","EventList2").getInt32U();
-								 LOG.info("   StatusRegister :         " + l + "  ");
+								 bitMapValue =  devFroniusSymo.getVal("SunspInvModel","EventList2");
+								 LOG.info("   StatusRegister :         {}   ", bitMapValue.getInt32());
 								 LOG.info("   EventList 2: isTrue =  ");
-								 // FIXME with bitmaps
-								/*
-						     	 if(((l&(1<<Bool2BitRankType.BIT0_VALUE)))!=0) LOG.info("BIT0, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT1_VALUE)))!=0) LOG.info("BIT1, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT2_VALUE)))!=0) LOG.info("BIT2, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT3_VALUE)))!=0) LOG.info("BIT3, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT4_VALUE)))!=0) LOG.info("BIT4, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT5_VALUE)))!=0) LOG.info("BIT5, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT6_VALUE)))!=0) LOG.info("BIT6, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT7_VALUE)))!=0) LOG.info("BIT7, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT8_VALUE)))!=0) LOG.info("BIT8, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT9_VALUE)))!=0) LOG.info("BIT9, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT10_VALUE)))!=0) LOG.info("BIT10, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT11_VALUE)))!=0) LOG.info("BIT11, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT12_VALUE)))!=0) LOG.info("BIT12, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT13_VALUE)))!=0) LOG.info("BIT13, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT14_VALUE)))!=0) LOG.info("BIT14, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT15_VALUE)))!=0) LOG.info("BIT15, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT16_VALUE)))!=0) LOG.info("BIT16, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT17_VALUE)))!=0) LOG.info("BIT17, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT18_VALUE)))!=0) LOG.info("BIT18, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT19_VALUE)))!=0) LOG.info("BIT19, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT20_VALUE)))!=0) LOG.info("BIT20, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT21_VALUE)))!=0) LOG.info("BIT21, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT22_VALUE)))!=0) LOG.info("BIT22, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT23_VALUE)))!=0) LOG.info("BIT23, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT24_VALUE)))!=0) LOG.info("BIT24, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT25_VALUE)))!=0) LOG.info("BIT25, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT26_VALUE)))!=0) LOG.info("BIT26, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT27_VALUE)))!=0) LOG.info("BIT27, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT28_VALUE)))!=0) LOG.info("BIT28, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT29_VALUE)))!=0) LOG.info("BIT29, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT30_VALUE)))!=0) LOG.info("BIT30, ");
-						     	 if(((l&(1<<Bool2BitRankType.BIT31_VALUE)))!=0) LOG.info("BIT31, ");
-								 */
+								 bitMapValue.getBitmap().forEach((literal, value) -> LOG.info("        {} = {}", literal, value));
 							 }
 							 catch ( Exception e)
 							 {

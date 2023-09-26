@@ -20,48 +20,72 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package communicator.modbus.helper;
 
 import communicator.common.runtime.GenDriverAPI4Modbus;
-import communicator.common.runtime.GenDriverException;
 
 public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
+
+	private static final int[] REGISTER_INT_VAL = new int[]{0x00000000, 0x00000005};
+
+	public static final int[] REGISTER_FLOAT_VAL = new int[]{0x0000435c, 0x000051ec};
+
+	private boolean returnInteger;
+
+	public void setIsIntegerType(boolean returnInteger) {
+		this.returnInteger = returnInteger;
+	}
 	
 	@Override
-	public int[] ReadInputRegisters(int startingAddress, int quantity) throws GenDriverException {		
-		return new int[] { 0x00, 0xBB, 0xCC, 0xDD };
+	public int[] ReadInputRegisters(int startingAddress, int quantity) {
+		return prepareReturnValue(quantity);
 	}
 
 	@Override
-	public int[] ReadHoldingRegisters(int startingAddress, int quantity) throws GenDriverException {
-		return new int[] { 0x00, 0x22, 0x33, 0x44 };
+	public int[] ReadHoldingRegisters(int startingAddress, int quantity) {
+		return prepareReturnValue(quantity);
 	}
 
 	@Override
-	public void disconnect() throws GenDriverException {		
+	public void disconnect() {
+		// nothing to do
 	}
 
 	@Override
-	public boolean[] ReadDiscreteInputs(int startingAddress, int quantity) throws GenDriverException {
+	public boolean[] ReadDiscreteInputs(int startingAddress, int quantity) {
 		throw new UnsupportedOperationException("mocking not implemented yet");
 	}
 
 	@Override
-	public boolean[] ReadCoils(int startingAddress, int quantity) throws GenDriverException {
+	public boolean[] ReadCoils(int startingAddress, int quantity) {
 		throw new UnsupportedOperationException("mocking not implemented yet");
 	}
 
 	@Override
-	public void WriteMultipleCoils(int startingAdress, boolean[] values) throws GenDriverException {
+	public void WriteMultipleCoils(int startingAdress, boolean[] values) {
 	}
 	
 
 	@Override
-	public void WriteSingleCoil(int startingAdress, boolean value) throws GenDriverException {		
+	public void WriteSingleCoil(int startingAdress, boolean value) {
 	}
 
 	@Override
-	public void WriteMultipleRegisters(int startingAdress, int[] values) throws GenDriverException {
+	public void WriteMultipleRegisters(int startingAdress, int[] values) {
 	}
 
 	@Override
-	public void WriteSingleRegister(int startingAdress, int value) throws GenDriverException {		
-	}	
+	public void WriteSingleRegister(int startingAdress, int value) {
+	}
+
+
+	private int[] prepareReturnValue(int quantity) {
+
+		int[] registers = returnInteger ? REGISTER_INT_VAL : REGISTER_FLOAT_VAL;
+
+		int[] result = registers;
+		if (quantity == 1) {
+			result = new int[1];
+			System.arraycopy(registers, 1, result, 0, 1);
+		}
+		return result;
+	}
 }
+

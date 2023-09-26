@@ -1,6 +1,8 @@
 package communicator.modbus.impl;
 
 import com.smartgridready.ns.v0.BitOrder;
+import com.smartgridready.ns.v0.BitmapEntryProduct;
+import com.smartgridready.ns.v0.BitmapProduct;
 import com.smartgridready.ns.v0.DataDirection;
 import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DataTypeProduct;
@@ -21,6 +23,7 @@ import com.smartgridready.ns.v0.TimeSyncBlockNotification;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.impl.DataTypeProductImpl;
 import com.smartgridready.ns.v0.impl.ModbusDataTypeImpl;
+import communicator.common.api.BitmapValue;
 import communicator.common.api.BooleanValue;
 import communicator.common.api.EnumValue;
 import communicator.common.api.Float32Value;
@@ -51,6 +54,7 @@ import org.junit.platform.commons.util.ReflectionUtils;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.internal.util.collections.Sets;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
@@ -72,6 +76,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__BITMAP;
 import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__BOOLEAN;
 import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__ENUM;
 import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__FLOAT32;
@@ -484,9 +489,7 @@ class SetGetValConversionTest {
                 .getDataPointList().getDataPointListElement().get(0)
                 .getDataPoint().setDataType(dataTypeProduct);
 
-        SGrModbusDevice modbusDevice = new SGrModbusDevice(
-                deviceFrame,
-                genDriverAPI4Modbus);
+        SGrModbusDevice modbusDevice = new SGrModbusDevice(deviceFrame, genDriverAPI4Modbus);
 
         modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", EnumValue.of("DHW_PUSH"));
         verify(genDriverAPI4Modbus).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
@@ -504,6 +507,131 @@ class SetGetValConversionTest {
         assertEquals(255, res.getInt32());
         assertEquals("Description of DHW_PUSH", res.getEnum().getDescription());
         assertEquals("DHW_PUSH:255 | Description of DHW_PUSH", res.toString());
+    }
+
+    @Test
+    void testBitmapConversion() throws Exception {
+
+        int[] expectedModbusValue = new int[]{0x00000004, 0x0000010B};
+
+        DataTypeProduct dataTypeProduct = V0Factory.eINSTANCE.createDataTypeProduct();
+        dataTypeProduct.setBitmap(createBitmap());
+
+        DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BITMAP, MODBUS_DATA_TYPE__INT32_U);
+        deviceFrame.getInterfaceList().getModbusInterface().getFunctionalProfileList()
+                .getFunctionalProfileListElement().get(0)
+                .getDataPointList().getDataPointListElement().get(0)
+                .getDataPoint().setDataType(dataTypeProduct);
+
+        SGrModbusDevice modbusDevice = new SGrModbusDevice(deviceFrame, genDriverAPI4Modbus);
+
+        Map<String, Boolean> bitsToSet = new HashMap<>();
+        bitsToSet.put("BIT_0", true);
+        bitsToSet.put("BIT_1", true);
+        bitsToSet.put("BIT_3", true);
+        bitsToSet.put("BIT_8", true);
+        bitsToSet.put("BIT_18", true);
+
+        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", BitmapValue.of(bitsToSet));
+
+        verify(genDriverAPI4Modbus).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
+        LOG.info("Modbus write bitmap: {}", intArrayCaptor.getValue());
+        assertArrayEquals(expectedModbusValue, intArrayCaptor.getValue());
+
+        when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(intArrayCaptor.getValue());
+
+        Value res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
+        LOG.info("Modbus read value: {}", res);
+
+        Map<String, Boolean> bitmapRecords = res.getBitmap();
+        assertEquals(true, bitmapRecords.get("BIT_1"));
+        assertEquals(false, bitmapRecords.get("BIT_2"));
+        assertEquals(true, bitmapRecords.get("BIT_3"));
+        assertEquals(false, bitmapRecords.get("BIT_4"));
+        assertEquals(false, bitmapRecords.get("BIT_5"));
+        assertEquals(false, bitmapRecords.get("BIT_6"));
+        assertEquals(false, bitmapRecords.get("BIT_7"));
+
+        assertEquals(true, bitmapRecords.get("BIT_8"));
+        assertEquals(false, bitmapRecords.get("BIT_16"));
+        assertEquals(false, bitmapRecords.get("BIT_17"));
+        assertEquals(true, bitmapRecords.get("BIT_18"));
+    }
+
+    @Test
+    void testBitmapModification() throws Exception {
+
+        DataTypeProduct dataTypeProduct = V0Factory.eINSTANCE.createDataTypeProduct();
+        dataTypeProduct.setBitmap(createBitmap());
+
+        DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BITMAP, MODBUS_DATA_TYPE__INT32_U);
+        deviceFrame.getInterfaceList().getModbusInterface().getFunctionalProfileList()
+                .getFunctionalProfileListElement().get(0)
+                .getDataPointList().getDataPointListElement().get(0)
+                .getDataPoint().setDataType(dataTypeProduct);
+
+        SGrModbusDevice modbusDevice = new SGrModbusDevice(deviceFrame, genDriverAPI4Modbus);
+
+        int[] expectedModbusValue = new int[]{0x00000004, 0x0000010B};
+        when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(expectedModbusValue);
+
+
+        Value res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
+        LOG.info("Modbus read value: {}", res);
+
+        Map<String, Boolean> bitmapRecords = res.getBitmap();
+        assertEquals(true, bitmapRecords.get("BIT_1"));
+        assertEquals(false, bitmapRecords.get("BIT_2"));
+        assertEquals(true, bitmapRecords.get("BIT_3"));
+        assertEquals(false, bitmapRecords.get("BIT_4"));
+        assertEquals(false, bitmapRecords.get("BIT_5"));
+        assertEquals(false, bitmapRecords.get("BIT_6"));
+        assertEquals(false, bitmapRecords.get("BIT_7"));
+
+        assertEquals(true, bitmapRecords.get("BIT_8"));
+        assertEquals(false, bitmapRecords.get("BIT_16"));
+        assertEquals(false, bitmapRecords.get("BIT_17"));
+        assertEquals(true, bitmapRecords.get("BIT_18"));
+
+
+        // Set bits depending on returned value:
+        Mockito.reset(genDriverAPI4Modbus);
+        expectedModbusValue = new int[]{0x00000007, 0x00000100};
+
+        Map<String, Boolean>  modifiedBitmap = res.getBitmap();
+        modifiedBitmap.put("BIT_0", false);
+        modifiedBitmap.put("BIT_1", false);
+        modifiedBitmap.put("BIT_3", false);
+        modifiedBitmap.put("BIT_16", true);
+        modifiedBitmap.put("BIT_17", true);
+
+        modbusDevice.setVal("ActivePowerAC", "ActivePowerACL1", BitmapValue.of(modifiedBitmap));
+
+
+        verify(genDriverAPI4Modbus).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
+        LOG.info("Modbus write bitmap: {}", intArrayCaptor.getValue());
+        assertArrayEquals(expectedModbusValue, intArrayCaptor.getValue());
+
+        when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(intArrayCaptor.getValue());
+
+        res = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
+        LOG.info("Modbus read value: {}", res);
+
+        Map<String, Boolean> modifiedBits = res.getBitmap();
+
+        assertEquals(false, modifiedBits.get("BIT_0"));
+        assertEquals(false, modifiedBits.get("BIT_1"));
+        assertEquals(false, modifiedBits.get("BIT_2"));
+        assertEquals(false, modifiedBits.get("BIT_3"));
+        assertEquals(false, modifiedBits.get("BIT_4"));
+        assertEquals(false, modifiedBits.get("BIT_5"));
+        assertEquals(false, modifiedBits.get("BIT_6"));
+        assertEquals(false, modifiedBits.get("BIT_7"));
+
+        assertEquals(true, modifiedBits.get("BIT_8"));
+        assertEquals(true, modifiedBits.get("BIT_16"));
+        assertEquals(true, modifiedBits.get("BIT_17"));
+        assertEquals(true, modifiedBits.get("BIT_18"));
     }
 
     @Test
@@ -677,7 +805,7 @@ class SetGetValConversionTest {
 
         functionalProfile.getDataPointList().getDataPointListElement().add(modbDp(genericType, modbusType, "ActivePowerACL1", 1));
 
-        if (genericType != DATA_TYPE_PRODUCT__ENUM) {
+        if ((genericType != DATA_TYPE_PRODUCT__ENUM) && (genericType != DATA_TYPE_PRODUCT__BITMAP)) {
             // This does not work with enums. The genericValue and modbusValue of the previous datapoint will be set to <null>
             functionalProfile.getDataPointList().getDataPointListElement().add(modbDp(genericType, modbusType, "ActivePowerAC-ARRAY", 3));
             functionalProfile.getDataPointList().getDataPointListElement().add(blockDp(genericType, modbusType));
@@ -745,7 +873,9 @@ class SetGetValConversionTest {
         if (v0PackageType == DATA_TYPE_PRODUCT__ENUM) {
             dataPointType = V0Factory.eINSTANCE.createEnumMapProduct();
         }
-
+        if (v0PackageType == DATA_TYPE_PRODUCT__BITMAP) {
+            dataPointType = V0Factory.eINSTANCE.createBitmapProduct();
+        }
         dp.eSet(v0PackageType, dataPointType);
         return dp;
     }
@@ -848,5 +978,35 @@ class SetGetValConversionTest {
         enumRecord.setOrdinal(ordinal);
         enumRecord.setDescription("Description of " + literal);
         return enumRecord;
+    }
+
+    private static BitmapProduct createBitmap() {
+
+        BitmapProduct bitmap = V0Factory.eINSTANCE.createBitmapProduct();
+
+        EList<BitmapEntryProduct> bitmapEntries = bitmap.getBitmapEntry();
+        bitmapEntries.add(createBitmapEntry("BIT_0", new byte[]{1}));
+        bitmapEntries.add(createBitmapEntry("BIT_1", new byte[]{2}));
+        bitmapEntries.add(createBitmapEntry("BIT_2", new byte[]{4}));
+        bitmapEntries.add(createBitmapEntry("BIT_3", new byte[]{8}));
+        bitmapEntries.add(createBitmapEntry("BIT_4", new byte[]{16}));
+        bitmapEntries.add(createBitmapEntry("BIT_5", new byte[]{32}));
+        bitmapEntries.add(createBitmapEntry("BIT_6", new byte[]{64}));
+        bitmapEntries.add(createBitmapEntry("BIT_7", new byte[]{(byte)128}));
+
+        bitmapEntries.add(createBitmapEntry("BIT_8",  new byte[]{0x01, 0x00}));
+        bitmapEntries.add(createBitmapEntry("BIT_16", new byte[]{0x01, 0x00, 0x00}));
+        bitmapEntries.add(createBitmapEntry("BIT_17", new byte[]{0x02, 0x00, 0x00}));
+        bitmapEntries.add(createBitmapEntry("BIT_18", new byte[]{0x04, 0x00, 0x00}));
+
+        return bitmap;
+    }
+
+    private static BitmapEntryProduct createBitmapEntry(String name, byte[] hexMask) {
+        BitmapEntryProduct entry = V0Factory.eINSTANCE.createBitmapEntryProduct();
+        entry.setLiteral(name);
+        entry.setHexMask(hexMask);
+        entry.setDescription("Description of " + name);
+        return entry;
     }
 }

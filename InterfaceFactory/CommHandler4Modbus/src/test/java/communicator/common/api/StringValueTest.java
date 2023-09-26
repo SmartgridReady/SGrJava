@@ -56,7 +56,7 @@ class StringValueTest {
         assertEquals("Hello@SGr", resVal.getString());
     }
 
-    private Value value;
+    private StringValue value;
 
     private Stream<Fixture> getConversions() {
 

@@ -32,6 +32,8 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.EnumRecord;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Value;
+import communicator.common.runtime.GenDriverAPI4Modbus;
+import communicator.modbus.helper.GenDriverAPI4ModbusRTUMock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 // SmartGridready definitions
@@ -42,7 +44,6 @@ import com.smartgridready.ns.v0.V0Factory;
 import communicator.common.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
-
 
 
 public class HeatPumpTester {
@@ -81,9 +82,10 @@ public class HeatPumpTester {
 	// device selection
 	private static boolean  devRTU_IOPIsOn=false; 
 	private static boolean  devTCP_IOPIsOn=true; 
-	private static boolean  devStiebelISGIsOn=false; 
-	private static boolean  devCTAoptiHeatIsOn=true; 
-	private static boolean  devHovalTCPIsOn=false; 
+	private static boolean  devStiebelISGIsOn=true;
+	private static boolean  devCTAoptiHeatIsOn=false;
+	private static boolean  devHovalTCPIsOn=false;
+	private static GenDriverAPI4Modbus  mockModbusDriver = new GenDriverAPI4ModbusRTUMock();
 
 	public static void main( String argv[] ) {			
 
@@ -161,7 +163,7 @@ public class HeatPumpTester {
 			try {	
 				
 				DeviceDescriptionLoader<DeviceFrame> loader=new DeviceDescriptionLoader<>();
-				tstDesc=loader.load(aBaseDir, aDescriptionFile);	
+				tstDesc=loader.load(aBaseDir, aDescriptionFile);
 				
 				// replace device specific for RTU
 				//devHovalRTU= new SGrModbusDevice(tstDesc, mbRTU );
@@ -174,8 +176,11 @@ public class HeatPumpTester {
 			}	
 			
 			try {
-				// // replace device specific for TCP  (easymodus uses Driver instance per device)						
-				GenDriverAPI4ModbusTCP mbHovalTCP= new GenDriverAPI4ModbusTCP();
+				// // replace device specific for TCP  (easymodus uses Driver instance per device)
+				GenDriverAPI4Modbus mbHovalTCP = mockModbusDriver;
+				if (mockModbusDriver == null) {
+					mbHovalTCP = new GenDriverAPI4ModbusTCP();
+				}
 				devHovalTCP=new SGrModbusDevice(tstDesc, mbHovalTCP);							
 				//setting Hoval Lab 
 				mbHovalTCP.initDevice("192.168.0.35",502);						
@@ -303,7 +308,8 @@ public class HeatPumpTester {
 			     LOG.info("\n");
 			}
  
-        // testing getters
+        // testing gette
+		setMockIntegerType(true);
 		EnumRecord opModeVal = devHovalTCP.getVal("HeatPumpBase", "hovHPOpModeCmd").getEnum();
 		EnumRecord opStateVal = devHovalTCP.getVal("HeatPumpBase", "hovHPOpState").getEnum();
 		bVal1=devHovalTCP.getVal("HeatPumpBase", "ErrorNrSGr").getBoolean();
@@ -316,15 +322,15 @@ public class HeatPumpTester {
 		LOG.info(String.format(
 				"  HeatPumpBase:    hovHPOpModeCmd=" + opModeVal.getLiteral() + "/" + opModeVal.getOrdinal()
 						+ ",  HPOpState=" + opStateVal.getLiteral()+"/" + opStateVal.getOrdinal()
-						+ ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C"));
+						+ ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +"°C"));
 
 		LOG.info(String.format("    SupplyWaterTempStpt=" + fVal2 +" °C,  SupplyWaterTempStptFb=" + fVal3 + "°C, SupplyWaterTemp=" + fVal4 +  "°C,  ReturnSupplyWaterTemp=" + fVal5 +  " °C "));
 		LOG.info(" ");
 
-
-		EnumRecord hovHotWOpMode =  devHovalTCP.getVal("DomHotWaterCtrl", "hovDomHotWOpModeCmd").getEnum();
+		setMockIntegerType(true);
+		EnumRecord hovHotWOpMode =  devHovalTCP.getVal("DomHotWaterCtrl", "DomHotWOpMode").getEnum();
 		EnumRecord hovHotWOpState = devHovalTCP.getVal("DomHotWaterCtrl", "hovDomHotWState").getEnum();
-		fVal1=devHovalTCP.getVal("DomHotWaterCtrl", "DomHotWTempStptOffs").getFloat64();
+		fVal1=devHovalTCP.getVal("DomHotWaterCtrl", "DomHotWTempStpt").getFloat64();
 		fVal2=devHovalTCP.getVal("DomHotWaterCtrl", "DomHotWTempStptComf").getFloat64();
 		fVal3=devHovalTCP.getVal("DomHotWaterCtrl", "DomHotWTempStptEco").getFloat64();
 		fVal4=devHovalTCP.getVal("DomHotWaterCtrl", "ActDomHotWTemp").getFloat64();
@@ -336,8 +342,9 @@ public class HeatPumpTester {
 						+ ", DomHotWTempStptComf=" + fVal2 + " °C"));
 
 		LOG.info(String.format("        DomHotWTempStptComf=" + fVal2 + " °C,  DomHotWTempStptEco=" + fVal3 + " °C,   ActDomHotWTemp=" + fVal4 + " °C,  DomHotWTempStptFb=" + fVal5 + " °C "));  
-		LOG.info(" ");  
+		LOG.info(" ");
 
+		setMockIntegerType(false);
 		fVal1=devHovalTCP.getVal("PowerCtrl", "PowerCtrlStpt").getFloat64();
 		fVal2=devHovalTCP.getVal("PowerCtrl", "ActSpeed").getFloat64();
 		fVal3=devHovalTCP.getVal("BufferStorageCtrl", "CoolBufferTempStptOffs").getFloat64();
@@ -429,7 +436,7 @@ public class HeatPumpTester {
 		static void initStiebelISG(String aBaseDir, String aDescriptionFile ) {				
 			
 			DeviceFrame tmpDesc=null;
-			
+
 			try {	
 				
 				DeviceDescriptionLoader<DeviceFrame> loader=new DeviceDescriptionLoader<>();
@@ -446,8 +453,11 @@ public class HeatPumpTester {
 			{
 			  try {
 				
-				  // replace device specific for TCP  (easymodus uses Driver instance per device)						
-				  GenDriverAPI4ModbusTCP mbStiebelISG= new GenDriverAPI4ModbusTCP();
+				  // replace device specific for TCP  (easymodus uses Driver instance per device)
+				  GenDriverAPI4Modbus mbStiebelISG = mockModbusDriver;
+				  if (mockModbusDriver == null) {
+					  mbStiebelISG = new GenDriverAPI4ModbusTCP();
+				  }
 				  devStiebelISG=new SGrModbusDevice(tmpDesc, mbStiebelISG);							
 				  mbStiebelISG.initDevice("192.168.1.55",502);
 			   }
@@ -466,7 +476,9 @@ public class HeatPumpTester {
 		{
 			double fVal1=(double) 0.0, fVal2=(double) 0.0, fVal3=(double) 0.0, fVal4=(double) 0.0, fVal5=(double) 0.0;
 			double dVal1 = 0.0, dVal2 = 0.0;
-			int  iVal1=0, iVal2=0, iVal3=0, iVal4=0;
+			int iVal1, iVal2=0, iVal3=0, iVal4=0;
+			Value bitmapVal1;
+			Value bitmapVal2;
 			long lVal=0;
 			boolean bVal1=false,bVal2=false,bVal3=false;
 			String  sVal1="0.0", sVal2="0.0", sVal3="0.0", sVal4 ="0.0";
@@ -551,9 +563,10 @@ public class HeatPumpTester {
 
 				  
 				// testing
+				setMockIntegerType(true);
 				EnumRecord oEnumList= devStiebelISG.getVal("HeatPumpBase", "HPOpModeCmd").getEnum();
-				iVal1=(int)devStiebelISG.getVal("HeatPumpBase", "HPOpState").getInt16U();
-				iVal2=(int)devStiebelISG.getVal("HeatPumpBase", "stiHPOpState").getInt16U();
+				bitmapVal1 = devStiebelISG.getVal("HeatPumpBase", "HPOpState");
+				bitmapVal2 = devStiebelISG.getVal("HeatPumpBase", "stiHPOpState");
 				bVal1=devStiebelISG.getVal("HeatPumpBase", "ErrorNrSGr").getBoolean();
 				fVal1=devStiebelISG.getVal("HeatPumpBase", "OutsideAirTemp").getFloat64();
 				fVal2=devStiebelISG.getVal("HeatPumpBase", "SupplyWaterTemp").getFloat64();
@@ -562,38 +575,13 @@ public class HeatPumpTester {
 				LOG.info(String.format("  HeatPumpBase:      HPOpModeCmd=" + oEnumList.getLiteral() + ",  HPOpState=" + iVal2 + ",  ErrorNrSGr=" + bVal1 + ",  OutsideAir=" + fVal1 +" °C, SupplyWaterTemp=" + fVal2 +  "°C,  ReturnSupplyWaterTemp=" + fVal3 +  " °C,   SourceTemp=" + fVal4 +" °C "));
 				// oEnumList.unsetSgrHPOpMode(); // TODO what is this supposed to do?
 
-				LOG.info(String.format("    HPOpState bits set: iop=" + Integer.toBinaryString(iVal1)));
-				if (iVal1 != 0)  
-				{
-					// FIXME with bitmaps
-					/*
-					if(( (iVal1 & (1<<HPOpstateType.HPPUMPON_VALUE))) != 0)  LOG.info(String.format("HP_PUMP_ON, "));
-					if(( (iVal1 & (1<<HPOpstateType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HP_IN_HEATING_MODE, "));
-					if(( (iVal1 & (1<<HPOpstateType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DWH ON, "));
-					if(( (iVal1 & (1<<HPOpstateType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
-					if(( (iVal1 & (1<<HPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING_MODE_ACTIVE, "));
-					if(( (iVal1 & (1<<HPOpstateType.INDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
-					 */
-				}
-				 LOG.info(String.format("    stiHPOpState bits set:iop=" +  Integer.toBinaryString(iVal2)));
-				if (iVal2 != 0)  
-				{	// FIXME with bitmaps
-					/*
-					if(( (iVal2 & (1<<StiHPOpstateType.HP1PUMPON_VALUE))) != 0)  LOG.info(String.format("HP_1_ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.HP2PUMPON_VALUE))) != 0)  LOG.info(String.format("HP_2_ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.HEATUPPROGRAM_VALUE))) != 0)  LOG.info(String.format("HEAT PRORGRAMM, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.NHZSTAGESRUNNING_VALUE))) != 0)  LOG.info(String.format("NHZ Stage ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.HPINHEATINGMODE_VALUE))) != 0)  LOG.info(String.format("HEAT ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.HPINDHWMODE_VALUE))) != 0)  LOG.info(String.format("DHW ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.COMPRESSORRUNNING_VALUE))) != 0)  LOG.info(String.format("Compressor ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.SUMMERMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("Summermode ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.COOLINGMODEACTIVE_VALUE))) != 0)  LOG.info(String.format("COOLING ON, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.MINONEIWSINDEFROSTMODE_VALUE))) != 0)  LOG.info(String.format("DEFROSTING, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.SILENTMODE1ACTIVE_VALUE))) != 0)  LOG.info(String.format("Silent 1 Mode, "));
-					if(( (iVal2 & (1<<StiHPOpstateType.SILENTMODE2ACTIVE_VALUE))) != 0)  LOG.info(String.format("Silent 2 Mode (HP is off) "));
-					 */
-				}
-				LOG.info(String.format(" "));	
+				LOG.info("    HPOpState bits set = {}", Integer.toBinaryString(bitmapVal1.getInt32()));
+				bitmapVal1.getBitmap().forEach( (literal, value) -> LOG.info("        {} = {}", literal, value));
+
+
+				LOG.info("    stiHPOpState bits set = {}", Integer.toBinaryString(bitmapVal2.getInt32()));
+				bitmapVal2.getBitmap().forEach((literal, value) -> LOG.info("        {} = {}", literal, value));
+				LOG.info(" ");
 				
 				fVal1=devStiebelISG.getVal("DomHotWaterCtrl", "DomHotWTempStptComf").getFloat64();
 				fVal2=devStiebelISG.getVal("DomHotWaterCtrl", "DomHotWTempStptEco").getFloat64();
@@ -791,7 +779,8 @@ public class HeatPumpTester {
 						}
 						
 					      
-			            // testing getters	
+			            // testing getters
+
 						iVal1 =  (int)devCTAoptiHeat.getVal("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec").getInt16U();
 						boolean bRem = true;
 						if (iVal1==0) bRem = false; 
@@ -967,5 +956,11 @@ public class HeatPumpTester {
 		// ******************  ENUM Sample  ************************************ //
 		//SGrEnumListType oEnumListSet=V0Factory.eINSTANCE.createSGrEnumListType();
 		//oEnumListSet.setSgrEVState(SGrEVStateType.EVSTANDBY);
+
+		private static void setMockIntegerType(boolean isInteger) {
+			if (mockModbusDriver instanceof GenDriverAPI4ModbusRTUMock) {
+				((GenDriverAPI4ModbusRTUMock)mockModbusDriver).setIsIntegerType(isInteger);
+			}
+		}
 	
 }

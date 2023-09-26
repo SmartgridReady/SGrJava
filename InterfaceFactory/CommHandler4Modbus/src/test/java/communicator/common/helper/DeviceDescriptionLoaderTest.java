@@ -9,12 +9,14 @@ import utils.TestConfiguration;
 
 import java.util.Collection;
 
-public class DeviceDescriptionLoaderTest {
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+class DeviceDescriptionLoaderTest {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DeviceDescriptionLoaderTest.class);
 	
 	@Test
-	public void testLoadDeviceDescriptions() throws Exception {
+	void testLoadDeviceDescriptions() throws Exception {
 
 		TestConfiguration config = new ConfigurationLoader<TestConfiguration>()
 				.load("devicedescriptions.yaml", TestConfiguration.class);
@@ -22,32 +24,11 @@ public class DeviceDescriptionLoaderTest {
 		String folder = config.getDeviceDescFolder();
 		Collection<TestConfiguration.Description> files = config.getDescriptions();
 		
-		files.forEach( desc -> { 
-			
-			try {
-
-				LOG.info("Loading file: " + desc.file);
-				
-				DeviceDescriptionLoader<?> loader = new DeviceDescriptionLoader<>();
-				Object deviceDesc = loader.load(folder, desc.file);
-				
-				if (deviceDesc instanceof DeviceFrame) {
-					DeviceFrame device = ((DeviceFrame)deviceDesc);
-					System.out.println("Loaded MODBUS device" + device.getDeviceName() + " - " + device.getManufacturerName() + "\n");
-				} else if ( deviceDesc instanceof DeviceFrame) {
-					DeviceFrame device = ((DeviceFrame)deviceDesc);
-					System.out.println("Loaded RESTAPI device" + device.getDeviceName() + " - " + device.getManufacturerName() + "\n");
-				} else if ( deviceDesc instanceof DeviceFrame) {
-					DeviceFrame device = ((DeviceFrame)deviceDesc);
-					System.out.println("Loaded CONTACT device" + device.getDeviceName() + " - " + device.getManufacturerName() + "\n");
-				} else {
-					System.out.println("Device type " + deviceDesc.getClass().getName() + " not supported yet.");
-				}
-			} catch ( Exception e) {
-				LOG.error( "Unable to load file: " + desc.file + "\n");
-			}
-		});				
+		files.forEach( desc -> assertDoesNotThrow(() -> {
+			LOG.info("Loading file: " + desc.file);
+			DeviceDescriptionLoader<?> loader = new DeviceDescriptionLoader<>();
+			DeviceFrame deviceDesc = (DeviceFrame) loader.load(folder, desc.file);
+			LOG.info("Loaded device" + deviceDesc.getDeviceName() + " - " + deviceDesc.getManufacturerName() + "\n");
+		}));
 	}
-	
-
 }

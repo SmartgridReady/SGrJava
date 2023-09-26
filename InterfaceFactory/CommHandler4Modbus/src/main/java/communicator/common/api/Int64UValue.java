@@ -1,6 +1,7 @@
 package communicator.common.api;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 public class Int64UValue extends Value {
 
@@ -81,27 +82,32 @@ public class Int64UValue extends Value {
 
     @Override
     public EnumRecord getEnum() {
-        throw new IllegalArgumentException("Cannot convert from uint64 value to enum value");
+        throw new UnsupportedOperationException("Cannot convert from int64U value to a enum value.");
     }
 
     @Override
-    public void scaleDown(int mul, int powOf10) {
+    public Map<String, Boolean> getBitmap() {
+        throw new UnsupportedOperationException("Cannot convert from int64U value to a bitmap value.");
+    }
+
+    public NumberValue scaleDown(int mul, int powOf10) {
         if (mul != 1 || powOf10 !=0) {
             BigInteger val = value.divide(BigInteger.valueOf(mul));
             val = val.divide(BigInteger.valueOf((long) Math.pow(10.0, powOf10)));
             Value.checkInt64U(val);
-            value = val;
+            return Float64Value.of(val.doubleValue());
         }
+        return Float64Value.of(value.doubleValue());
     }
 
-    @Override
-    public void scaleUp(int mul, int powOf10) {
+    public NumberValue scaleUp(int mul, int powOf10) {
         if (mul != 1 || powOf10 !=0) {
             BigInteger val = value.multiply(BigInteger.valueOf(mul));
             val = val.multiply(BigInteger.valueOf((long) Math.pow(10.0, powOf10)));
             Value.checkInt64U(val);
-            value = val;
+            return Float64Value.of(val.doubleValue());
         }
+        return Float64Value.of(value.doubleValue());
     }
 
     @Override

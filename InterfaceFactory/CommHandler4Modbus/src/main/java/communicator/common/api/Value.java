@@ -6,6 +6,7 @@ import communicator.common.helper.DataTypeHelper;
 import communicator.modbus.helper.ConversionHelper;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 public abstract class Value  {
     public static final BigInteger UNSIGNED_LONG_MASK = BigInteger.ONE.shiftLeft(Long.SIZE).subtract(BigInteger.ONE);
@@ -23,8 +24,7 @@ public abstract class Value  {
     public abstract String getString();
     public abstract boolean getBoolean();
     public abstract EnumRecord getEnum();
-    public abstract void scaleDown(int mul, int powOf10);
-    public abstract void scaleUp(int mul, int powOf10);
+    public abstract Map<String, Boolean> getBitmap();
     public abstract void absValue();
     public abstract void roundToInt();
 

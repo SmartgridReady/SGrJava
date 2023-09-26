@@ -34,7 +34,11 @@ import com.smartgridready.ns.v0.ModbusLayer6Deviation;
 import com.smartgridready.ns.v0.RegisterType;
 import com.smartgridready.ns.v0.ScalingFactor;
 import com.smartgridready.ns.v0.TimeSyncBlockNotification;
+import communicator.common.api.BitmapValue;
 import communicator.common.api.EnumValue;
+import communicator.common.api.Int64UValue;
+import communicator.common.api.NumberValue;
+import communicator.common.api.StringValue;
 import communicator.common.api.Value;
 import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverAPI4Modbus;
@@ -286,9 +290,16 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		Value retVal;
 		if (bGotRegisters) {
 			retVal = Value.fromModbusRegister(mbType, mbregresp);
-			retVal.scaleUp(mul, pwof10);
 			if (genType.getEnum() != null) {
 				retVal = EnumValue.of(retVal.getInt64(), genType.getEnum());
+			} else if (genType.getBitmap() != null) {
+				retVal = BitmapValue.of(mbregresp, genType.getBitmap());
+			} else if (retVal instanceof NumberValue) {
+				retVal = ((NumberValue)retVal).scaleUp( mul, pwof10);
+			} else if (retVal instanceof Int64UValue) {
+				retVal = ((Int64UValue)retVal).scaleUp(mul, pwof10);
+			} else if (retVal instanceof StringValue) {
+				((StringValue) retVal).scaleUp(mul, pwof10);
 			}
 		} else {
 			retVal = Value.fromDiscreteInput(mbType, mbbitresp);
@@ -523,14 +534,25 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		int mbsize = dataPoint.getModbusDataPointConfiguration().getNumberOfRegisters();
 		BitOrder bitOrder = getModbusInterfaceDescription().getBitOrder();
 
-
 		IntBuffer mbRegBuf = IntBuffer.allocate(32);
-		sgrValue.scaleDown(mul, powof10);
 		if (bRegisterCMDs) {
 			if (sgrValue instanceof EnumValue) {
 				sgrValue = sgrValue.enumToOrdinalValue(genType.getEnum());
+				mbRegBuf.put(sgrValue.toModbusRegister(dMBType));
+			} else if (sgrValue instanceof BitmapValue) {
+				mbRegBuf.put(((BitmapValue) sgrValue).toModbusRegisters(mbsize, genType.getBitmap()));
+			} else if(sgrValue instanceof NumberValue) {
+				sgrValue = ((NumberValue<?>) sgrValue).scaleDown(mul, powof10);
+				mbRegBuf.put(sgrValue.toModbusRegister(dMBType));
+			} else if (sgrValue instanceof Int64UValue) {
+				sgrValue = ((Int64UValue) sgrValue).scaleDown(mul, powof10);
+				mbRegBuf.put(sgrValue.toModbusRegister(dMBType));
+			} else if (sgrValue instanceof StringValue) {
+				((StringValue) sgrValue).scaleDown(mul, powof10);
+				mbRegBuf.put(sgrValue.toModbusRegister(dMBType));
+			} else {
+				mbRegBuf.put(sgrValue.toModbusRegister(dMBType));
 			}
-			mbRegBuf.put(sgrValue.toModbusRegister(dMBType));
 		} else {
 			mbByteBuf.put(sgrValue.toModbusDiscreteVal(dMBType)[0]);
 		}

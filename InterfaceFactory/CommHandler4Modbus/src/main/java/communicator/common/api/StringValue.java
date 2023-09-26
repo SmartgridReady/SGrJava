@@ -1,6 +1,7 @@
 package communicator.common.api;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 public class StringValue extends Value {
 
@@ -97,10 +98,14 @@ public class StringValue extends Value {
 
     @Override
     public EnumRecord getEnum() {
-        throw new IllegalArgumentException("Cannot convert from String value to enum");
+        throw new UnsupportedOperationException("Cannot convert from String value to enum");
     }
 
     @Override
+    public Map<String, Boolean> getBitmap() {
+        throw new UnsupportedOperationException("Cannot convert from String to a bitmap.");
+    }
+
     public void scaleDown(int mul, int powOf10) {
         if (mul != 1 || powOf10 !=0) {
             double dVal = toDouble() / mul;
@@ -108,7 +113,6 @@ public class StringValue extends Value {
         }
     }
 
-    @Override
     public void scaleUp(int mul, int powOf10) {
         if (mul != 1 || powOf10 !=0) {
             double dVal = toDouble() * mul;

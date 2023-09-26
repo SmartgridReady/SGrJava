@@ -1,6 +1,7 @@
 package communicator.common.api;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 public class BooleanValue extends Value {
 
@@ -67,22 +68,17 @@ public class BooleanValue extends Value {
 
     @Override
     public EnumRecord getEnum() {
-        throw new IllegalArgumentException("Cannot convert from boolean to enum.");
+        throw new UnsupportedOperationException("Cannot convert from boolean to enum.");
+    }
+
+    @Override
+    public Map<String, Boolean> getBitmap() {
+        throw new UnsupportedOperationException("Cannot convert from boolean to bitmap.");
     }
 
     @Override
     public boolean getBoolean() {
         return value;
-    }
-
-    @Override
-    public void scaleDown(int mul, int powOf10) {
-        // no scaling for boolean
-    }
-
-    @Override
-    public void scaleUp(int mul, int powOf10) {
-        // no scaling for boolean
     }
 
     @Override
