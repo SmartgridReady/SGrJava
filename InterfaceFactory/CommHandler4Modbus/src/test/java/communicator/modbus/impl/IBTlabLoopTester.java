@@ -30,8 +30,10 @@ import communicator.common.api.EnumRecord;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
+import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.Parity;
 import communicator.modbus.api.GenDeviceApi4Modbus;
+import communicator.modbus.helper.GenDriverAPI4ModbusRTUMock;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
 import org.slf4j.Logger;
@@ -53,7 +55,7 @@ public class IBTlabLoopTester {
 	private static GenDeviceApi4Modbus devABBMeter = null;
 	private static GenDeviceApi4Modbus devTB_ABBMeter = null;
 	// we need a single driver instance for RTU and separate these by device addres
-	private static GenDriverAPI4ModbusRTU mbRTU = null;
+	private static GenDriverAPI4Modbus mbRTU = null;
 	
 	// Modbus TCP devices
 	private static GenDeviceApi4Modbus devVGT_SGCP = null;
@@ -86,6 +88,10 @@ public class IBTlabLoopTester {
 	// !! Schalter in Box umlegen für Test !!
 	private static boolean  devTB_ABBMeterTestIsOn = true;
 
+	// Set the mockModbusDriver to new GenDriverAPI4ModbusRTUMock() to mock the real devices.
+	// private static GenDriverAPI4Modbus  mockModbusDriver = new GenDriverAPI4ModbusRTUMock();
+	private static GenDriverAPI4Modbus mockModbusDriver = null;
+
 	public static void main( String argv[] ) {	
 		
 
@@ -95,8 +101,9 @@ public class IBTlabLoopTester {
 			//DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
-			mbRTU = new GenDriverAPI4ModbusRTU();
-			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface		
+			mbRTU = (mockModbusDriver == null ? new GenDriverAPI4ModbusRTU() : mockModbusDriver);
+
+			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface
 			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
 			if (devABBMeterTestIsOn)  {
 				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
@@ -181,6 +188,8 @@ public class IBTlabLoopTester {
 			
 			DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
 			DeviceFrame tstMeter = loader.load(aBaseDir,aDescriptionFile);
+
+
 			devWagoMeter =  new SGrModbusDevice(tstMeter, mbRTU );
 
 			
@@ -378,6 +387,8 @@ public class IBTlabLoopTester {
 	  				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + "  ");
 	  				Thread.sleep(10);
+					// TODO PowerFactor not defined in current ABB-meter EI-XML
+					/*
 	  				fVal1 = devABBMeter.getVal("PowerFactor", "PowerFactor").getFloat64();
 	  				Thread.sleep(10);
 	  				fVal2 = devABBMeter.getVal("PowerFactor", "PowerFactorL1").getFloat64();
@@ -387,6 +398,7 @@ public class IBTlabLoopTester {
 	  				fVal4 = devABBMeter.getVal("PowerFactor", "PowerFactorL3").getFloat64();
 	  				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + ",  " + fVal4 + "  ");
+					 */
 	  				Thread.sleep(10); 
 	  				sVal1 = devABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot").getString();
 	  				Thread.sleep(10);
@@ -520,6 +532,8 @@ public class IBTlabLoopTester {
 		  				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
 		  						+ fVal3 + "  ");
 		  				Thread.sleep(10);
+						// TODO PowerFactor not defined in ABB meter EI-XML
+					    /*
 		  				fVal1 = devTB_ABBMeter.getVal("PowerFactor", "PowerFactor").getFloat64();
 		  				Thread.sleep(10);
 		  				fVal2 = devTB_ABBMeter.getVal("PowerFactor", "PowerFactorL1").getFloat64();
@@ -529,6 +543,7 @@ public class IBTlabLoopTester {
 		  				fVal4 = devTB_ABBMeter.getVal("PowerFactor", "PowerFactorL3").getFloat64();
 		  				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
 		  						+ fVal3 + ",  " + fVal4 + "  ");
+					     */
 		  				Thread.sleep(10); 
 		  				sVal1 = devTB_ABBMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot").getString();
 		  				Thread.sleep(10);
@@ -620,7 +635,10 @@ public class IBTlabLoopTester {
 					DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
-					GenDriverAPI4ModbusTCP mbVGT_SGCP= new GenDriverAPI4ModbusTCP();
+					GenDriverAPI4Modbus mbVGT_SGCP = mockModbusDriver;
+					if (mbVGT_SGCP == null) {
+						mbVGT_SGCP = new GenDriverAPI4ModbusTCP();
+					}
 					devVGT_SGCP = new SGrModbusDevice(tstDesc, mbVGT_SGCP);	
 
 					mbVGT_SGCP.initDevice("192.168.1.50",502);
@@ -676,8 +694,8 @@ public class IBTlabLoopTester {
 						DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 						
 						// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
-						GenDriverAPI4ModbusTCP mbWbGaro= new GenDriverAPI4ModbusTCP();
-						devGaroWallbox = new SGrModbusDevice(tstDesc, mbWbGaro);							
+						GenDriverAPI4Modbus mbWbGaro = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP() : mockModbusDriver);
+						devGaroWallbox = new SGrModbusDevice(tstDesc, mbWbGaro);
 						mbWbGaro.initDevice("192.168.1.182",502);	
 						
 					}
@@ -712,9 +730,11 @@ public class IBTlabLoopTester {
 							 fVal3 = devGaroWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
 							 Thread.sleep(200);
 
+							 setMockIntegerType(true);
 							 EnumRecord oEnumList = devGaroWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 							 Thread.sleep(200);
 							 LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
+							 setMockIntegerType(false);
 
 							 oEnumList = devGaroWallbox.getVal("EVSEState", "ocppState").getEnum();
 							 Thread.sleep(200);
@@ -731,17 +751,20 @@ public class IBTlabLoopTester {
 								 
 							 fVal1 = devGaroWallbox.getVal("ActiveEnergyAC", "ActiveEnergyACL1").getFloat64();
 							 Thread.sleep(200);
-							 fVal2 = devGaroWallbox.getVal("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat64();
+							 fVal2 = devGaroWallbox.getVal("ActiveEnergyAC", "ActiveEnergyACL2").getFloat64();
 							 Thread.sleep(200);
-							 fVal3 = devGaroWallbox.getVal("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat64();
+							 fVal3 = devGaroWallbox.getVal("ActiveEnergyAC", "ActiveEnergyACL3").getFloat64();
 							 Thread.sleep(200);
 							 LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");	
-								
-							 Boolean evState = devGaroWallbox.getVal("EVState", "isSmartEV15118").getBoolean();
+
+							 // TODO was is isSmartEV15118, however in EI-XML isSmartEV15188 is defined only.
+							 Boolean evState = devGaroWallbox.getVal("EVState", "isSmartEV15188").getBoolean();
 							 Thread.sleep(200);
-							 EnumRecord evccid = devGaroWallbox.getVal("EVState", "EVCCID").getEnum();
+							 setMockIntegerType(true);
+							 String evccid = devGaroWallbox.getVal("EVState", "EVCCID").getString();
 							 Thread.sleep(200);
 							 LOG.info("  EVState  support (ISO/IEC 15118): " + evState + ",    EVCCID = " + evccid + "  ");
+							 setMockIntegerType(false);
 							 
 							 fVal1 = devGaroWallbox.getVal("Curtailment", "SafeCurrent").getFloat64();
 							 Thread.sleep(200);
@@ -777,7 +800,7 @@ public class IBTlabLoopTester {
 							DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
-							GenDriverAPI4ModbusTCP mbWbOMCCI= new GenDriverAPI4ModbusTCP();
+							GenDriverAPI4Modbus mbWbOMCCI = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP() : mockModbusDriver);
 							devOMCCIWallbox = new SGrModbusDevice(tstDesc, mbWbOMCCI);							
 							mbWbOMCCI.initDevice("192.168.1.183",502);	
 							
@@ -799,60 +822,61 @@ public class IBTlabLoopTester {
 						
 						
 							try {
-								 LOG.info("\n@:Testing TestBox: OMCCIWallbox: ");							
-								 if ((runtimeCnt%60)== 0)
-								 {
-									 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
-									 devOMCCIWallbox.setVal("Curtailment", "HemsCurrentLimit", Float64Value.of(CurtailCurrent));
-									 LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");
-								 }
-								 fVal1 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL1").getFloat64();
-								 Thread.sleep(200);
-								 fVal2 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL2").getFloat64();
-								 Thread.sleep(200);
-								 fVal3 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
-								 Thread.sleep(200);
+								LOG.info("\n@:Testing TestBox: OMCCIWallbox: ");
+								if ((runtimeCnt%60)== 0)
+								{
+									CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
+									devOMCCIWallbox.setVal("Curtailment", "HemsCurrentLimit", Float64Value.of(CurtailCurrent));
+									LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");
+								}
+								fVal1 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL1").getFloat32();
+								Thread.sleep(200);
+								fVal2 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL2").getFloat32();
+								Thread.sleep(200);
+								fVal3 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL3").getFloat32();
+								Thread.sleep(200);
 
-								 EnumRecord oEnumList = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
-								 Thread.sleep(200);
-								 LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
+								setMockIntegerType(true);
+								EnumRecord evseState = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
+								Thread.sleep(200);
+								LOG.info("  EV-StatusCode:                    " + evseState.getLiteral() + "  ");
+								EnumRecord sgrOCPPState = devOMCCIWallbox.getVal("EVSEState", "ocppState").getEnum();
+								Thread.sleep(200);
+								LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState.getLiteral() + "  ");
+								setMockIntegerType(false);
+								LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");
 
-								 oEnumList = devOMCCIWallbox.getVal("EVSEState", "ocppState").getEnum();
-								 Thread.sleep(200);
-								 LOG.info("  OCPP-StatusCode:                  " + oEnumList.getLiteral() + "  ");
-								 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
+								fVal1 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat32();
+								Thread.sleep(200);
+								fVal2 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL2").getFloat32();
+								Thread.sleep(200);
+								fVal3 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL3").getFloat32();
+								Thread.sleep(200);
+								LOG.info("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + "  ");
 
-								 fVal1 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat64();
-								 Thread.sleep(200);
-								 fVal2 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL2").getFloat64();
-								 Thread.sleep(200);
-								 fVal3 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL3").getFloat64();
-								 Thread.sleep(200);
-								 LOG.info("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + "  ");	
-									 
-								 fVal1 = devOMCCIWallbox.getVal("ActiveEnergyAC", "ActiveEnergyACL1").getFloat64();
-								 Thread.sleep(200);
-								 fVal2 = devOMCCIWallbox.getVal("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat64();
-								 Thread.sleep(200);
-								 fVal3 = devOMCCIWallbox.getVal("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat64();
-								 Thread.sleep(200);
-								 LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");	
-									
-								 //sVal1 = devOMCCIWallbox.getVal("EVState", "isSmartEV15118");
-								 //Thread.sleep(200);
-								 //??? sVal2 = devOMCCIWallbox.getVal("EVState", "EVCCID");
-								 Thread.sleep(200);
-								 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + "  ");
-								 
-								 fVal1 = devOMCCIWallbox.getVal("Curtailment", "SafeCurrent").getFloat64();
-								 Thread.sleep(200);
-								 fVal2 = devOMCCIWallbox.getVal("Curtailment", "HemsCurrentLimit").getFloat64();
-								 Thread.sleep(200);
-								 fVal3 = devOMCCIWallbox.getVal("Curtailment", "HWCurrentLimit").getFloat64();
-								 Thread.sleep(200);
-								 iVal1 = (int)devOMCCIWallbox.getVal("Curtailment", "maxReceiveTimeSec").getInt16U();
-								 Thread.sleep(200);
-								 LOG.info("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +"  ");
+								fVal1 = devOMCCIWallbox.getVal("ActiveEnergyAC", "ActiveEnergyACL1").getFloat32();
+								Thread.sleep(200);
+								fVal2 = devOMCCIWallbox.getVal("ActiveEnergyAC", "ActiveEnergyACL2").getFloat32();
+								Thread.sleep(200);
+								fVal3 = devOMCCIWallbox.getVal("ActiveEnergyAC", "ActiveEnergyACL3").getFloat32();
+								Thread.sleep(200);
+								LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");
+
+								//sVal1 = devOMCCIWallbox.getVal("EVState", "isSmartEV15118");
+								//Thread.sleep(200);
+								//??? sVal2 = devOMCCIWallbox.getVal("EVState", "EVCCID");
+								Thread.sleep(200);
+								LOG.info("  EVState  support (ISO/IEC 15188): " + sVal1 + ",    EVCCID = " + sVal2 + "  ");
+
+								fVal1 = devOMCCIWallbox.getVal("Curtailment", "SafeCurrent").getFloat32();
+								Thread.sleep(200);
+								fVal2 = devOMCCIWallbox.getVal("Curtailment", "HemsCurrentLimit").getFloat32();
+								Thread.sleep(200);
+								fVal3 = devOMCCIWallbox.getVal("Curtailment", "HWCurrentLimit").getFloat32();
+								Thread.sleep(200);
+								iVal1 = devOMCCIWallbox.getVal("Curtailment", "maxReceiveTimeSec").getInt16U();
+								Thread.sleep(200);
+								LOG.info("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +"  ");
 								 
 							}
 							catch ( Exception e)
@@ -876,7 +900,7 @@ public class IBTlabLoopTester {
 							DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
-							GenDriverAPI4ModbusTCP mbPVFroniusSymo = new GenDriverAPI4ModbusTCP();
+							GenDriverAPI4Modbus mbPVFroniusSymo = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP() : mockModbusDriver);
 							devFroniusSymo = new SGrModbusDevice(tstDesc, mbPVFroniusSymo);
 						    mbPVFroniusSymo.initDevice("192.168.1.181",502);
 						}
@@ -978,9 +1002,9 @@ public class IBTlabLoopTester {
 				
 				// replace device specific for RTU
 				//add devXXXX =  new SGrModbusDevice(tstDesc, mbRTU );
-				
+
 				// // replace device specific for TCP  (easymodus uses Driver instance per device)						
-				// GenDriverAPI4ModbusTCP mbXXXXX= new GenDriverAPI4ModbusTCP();
+				// GenDriverAPI4Modbus mbXXXXX = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP() : mockModbusDriver);
 				// devXXXXX = new SGrModbusDevice(tstDesc, mbWmbXXXXX);							
 				// mbXXXXX.initDevice("192.168.1.182",502);
 				
@@ -1021,6 +1045,11 @@ public class IBTlabLoopTester {
 					// add Exception counter here
 				}
 			}
-	
+
+	private static void setMockIntegerType(boolean isInteger) {
+		if (mockModbusDriver instanceof GenDriverAPI4ModbusRTUMock) {
+			((GenDriverAPI4ModbusRTUMock)mockModbusDriver).setIsIntegerType(isInteger);
+		}
 	}
+}
 	

@@ -147,6 +147,7 @@
                 <precisionPercent>2.2</precisionPercent>
                 <minVal>0.005</minVal>
                 <maxVal>380</maxVal>
+                <unitConversionMultiplicator>1.36</unitConversionMultiplicator>
               </genericAttributes>
               <modbusDataPointConfiguration>
                 <modbusDataType>

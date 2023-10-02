@@ -132,14 +132,14 @@ public abstract class SGrDeviceBase<
         throws GenDriverException {
 
         Optional<String> errorStr = Optional.ofNullable(dataPoint.getGenericAttributes())
-                .flatMap(attr -> checkOutOfRange(values, attr.getMaxVal(), Comparator.MAX));
+                .flatMap(attr -> Optional.ofNullable(attr.getMaxVal()).flatMap(val -> checkOutOfRange(values, val, Comparator.MAX)));
 
         if (errorStr.isPresent()) {
             throw new GenDriverException(errorStr.get());
         }
 
         errorStr = Optional.ofNullable(dataPoint.getGenericAttributes())
-                .flatMap(attr -> checkOutOfRange(values, attr.getMinVal(), Comparator.MIN));
+                .flatMap(attr -> Optional.ofNullable(attr.getMinVal()).flatMap(val -> checkOutOfRange(values, val, Comparator.MIN)));
 
         if (errorStr.isPresent()) {
             throw new GenDriverException(errorStr.get());

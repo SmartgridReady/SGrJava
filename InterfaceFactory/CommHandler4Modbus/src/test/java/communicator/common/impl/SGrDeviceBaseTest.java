@@ -163,6 +163,7 @@ class SGrDeviceBaseTest {
         expected.put("precisionPercent", "2.2");
         expected.put("flexAssistance.assists", "AT_NetServiceable");
         expected.put("flexAssistance.obligedTo", "OL_SHALL");
+        expected.put("unitConversionMultiplicator", "1.36");
 
         SGrModbusDevice device = createSGrModbusDevice();
 

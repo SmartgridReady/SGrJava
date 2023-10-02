@@ -36,6 +36,7 @@ import com.smartgridready.ns.v0.ScalingFactor;
 import com.smartgridready.ns.v0.TimeSyncBlockNotification;
 import communicator.common.api.BitmapValue;
 import communicator.common.api.EnumValue;
+import communicator.common.api.Float64Value;
 import communicator.common.api.Int64UValue;
 import communicator.common.api.NumberValue;
 import communicator.common.api.StringValue;
@@ -63,6 +64,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static communicator.common.impl.SGrDeviceBase.RwpDirections.READ;
 
@@ -233,6 +235,13 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 					arrIdx));
 		}
 
+		if (aDataPoint.getGenericAttributes() != null && aDataPoint.getGenericAttributes().isSetUnitConversionMultiplicator()) {
+			float unitConv = aDataPoint.getGenericAttributes().getUnitConversionMultiplicator();
+			if (resultList.get(0) instanceof NumberValue) {
+				resultList = resultList.stream().map(value -> Float64Value.of(unitConv * value.getFloat64())).collect(Collectors.toList());
+			}
+		}
+
 		return resultList.toArray(new Value[0]);
 	}
 
@@ -260,7 +269,6 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 				mbregresp = convertEndians(bitOrder, mbregresp, size);
 			}
 
-			// Attributes
 			if (aDataPoint.getModbusAttributes() != null)
 			{   // there are Modbus attributes available
 
@@ -295,7 +303,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 			} else if (genType.getBitmap() != null) {
 				retVal = BitmapValue.of(mbregresp, genType.getBitmap());
 			} else if (retVal instanceof NumberValue) {
-				retVal = ((NumberValue)retVal).scaleUp( mul, pwof10);
+				retVal = ((NumberValue<?>)retVal).scaleUp( mul, pwof10);
 			} else if (retVal instanceof Int64UValue) {
 				retVal = ((Int64UValue)retVal).scaleUp(mul, pwof10);
 			} else if (retVal instanceof StringValue) {
@@ -480,7 +488,6 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		}
 
 		int mbsize = aDataPoint.getModbusDataPointConfiguration().getNumberOfRegisters();
-		BitOrder bitOrder = modbusInterfaceDesc.getBitOrder();
 
 		// fill values & booleans, apply conversion scheme
 		if (modbusDataPointConfiguration.getRegisterType()==RegisterType.HOLD_REGISTER)

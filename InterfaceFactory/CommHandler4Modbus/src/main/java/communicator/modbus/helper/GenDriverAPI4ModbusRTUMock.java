@@ -21,11 +21,13 @@ package communicator.modbus.helper;
 
 import communicator.common.runtime.GenDriverAPI4Modbus;
 
+import java.nio.IntBuffer;
+
 public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 
 	private static final int[] REGISTER_INT_VAL = new int[]{0x00000000, 0x00000005};
 
-	public static final int[] REGISTER_FLOAT_VAL = new int[]{0x0000435c, 0x000051ec};
+	private static final int[] REGISTER_FLOAT_VAL = new int[]{0x0000435c, 0x000051ec};
 
 	private boolean returnInteger;
 
@@ -60,32 +62,42 @@ public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 
 	@Override
 	public void WriteMultipleCoils(int startingAdress, boolean[] values) {
+		// implementation not required yet
 	}
 	
 
 	@Override
 	public void WriteSingleCoil(int startingAdress, boolean value) {
+		// implementation not required yet
 	}
 
 	@Override
 	public void WriteMultipleRegisters(int startingAdress, int[] values) {
+		// implementation not required yet
 	}
 
 	@Override
 	public void WriteSingleRegister(int startingAdress, int value) {
+		// implementation not required yet
 	}
 
 
 	private int[] prepareReturnValue(int quantity) {
 
-		int[] registers = returnInteger ? REGISTER_INT_VAL : REGISTER_FLOAT_VAL;
+		int[] registers = returnInteger ? REGISTER_INT_VAL:REGISTER_FLOAT_VAL;
 
-		int[] result = registers;
-		if (quantity == 1) {
+		int[] result;
+		if (quantity==1) {
 			result = new int[1];
 			System.arraycopy(registers, 1, result, 0, 1);
+			return result;
+		} else {
+			IntBuffer buffer = IntBuffer.allocate(quantity);
+			for (int i=0; i<quantity/2; i++) {
+				buffer.put(registers);
+			}
+			return buffer.array();
 		}
-		return result;
 	}
 }
 
