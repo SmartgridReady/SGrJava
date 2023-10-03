@@ -731,6 +731,10 @@ class SetGetValConversionTest {
         LOG.info("Modbus read value: {}", res);
         assertEquals(expectedValue.getString(), res.getString().trim());
 
+
+        // Read the value again, will use the cache now...
+        res = modbusDevice.getVal("ActivePowerAC", "ActivePowerAC-BLOCK");
+        assertEquals(expectedValue.getString(), res.getString().trim());
     }
 
     private void doTestWriteAndReadBack(Fixture<int[]> fixture) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {

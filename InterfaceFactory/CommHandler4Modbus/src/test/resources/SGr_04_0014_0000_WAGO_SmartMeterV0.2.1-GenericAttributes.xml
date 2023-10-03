@@ -1013,7 +1013,7 @@
             <dataPointListElement>
               <dataPoint>
                 <dataPointName>ActiveEnergyACtot</dataPointName>
-                <dataDirection>R</dataDirection>
+                <dataDirection>RW</dataDirection>
                 <presenceLevel>R</presenceLevel>
                 <dataType>
                   <float64/>
@@ -1045,7 +1045,7 @@
                 <dataDirection>R</dataDirection>
                 <presenceLevel>R</presenceLevel>
                 <dataType>
-                  <float64/>
+                  <int64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
                 <legibleDescription>
@@ -1055,17 +1055,14 @@
               </dataPoint>
               <modbusDataPointConfiguration>
                 <modbusDataType>
-                  <float32/>
+                  <int32/>
                 </modbusDataType>
                 <address>24582</address>
                 <registerType>HoldRegister</registerType>
                 <numberOfRegisters>2</numberOfRegisters>
               </modbusDataPointConfiguration>
               <modbusAttributes>
-                <scalingFactor>
-                  <multiplicator>1</multiplicator>
-                  <powerof10>-2</powerof10>
-                </scalingFactor>
+                <layer6Deviation>2RegBase1000_H2L</layer6Deviation>
               </modbusAttributes>
             </dataPointListElement>
             <dataPointListElement>
@@ -1074,7 +1071,7 @@
                 <dataDirection>R</dataDirection>
                 <presenceLevel>R</presenceLevel>
                 <dataType>
-                  <float64/>
+                  <int64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
                 <legibleDescription>
@@ -1084,17 +1081,14 @@
               </dataPoint>
               <modbusDataPointConfiguration>
                 <modbusDataType>
-                  <float32/>
+                  <int32/>
                 </modbusDataType>
                 <address>24584</address>
                 <registerType>HoldRegister</registerType>
                 <numberOfRegisters>2</numberOfRegisters>
               </modbusDataPointConfiguration>
               <modbusAttributes>
-                <scalingFactor>
-                  <multiplicator>1</multiplicator>
-                  <powerof10>-2</powerof10>
-                </scalingFactor>
+                <layer6Deviation>2RegBase1000_L2H</layer6Deviation>
               </modbusAttributes>
             </dataPointListElement>
             <dataPointListElement>

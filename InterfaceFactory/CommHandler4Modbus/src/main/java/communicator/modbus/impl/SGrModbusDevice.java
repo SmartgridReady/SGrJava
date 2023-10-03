@@ -49,6 +49,7 @@ import communicator.common.runtime.GenDriverSocketException;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.modbus.helper.CacheRecord;
 import communicator.modbus.helper.ConversionHelper;
+import communicator.modbus.helper.EndiannessConversionHelper;
 import communicator.modbus.helper.ModbusReader;
 import communicator.modbus.helper.ModbusReaderResponse;
 import org.slf4j.Logger;
@@ -64,7 +65,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static communicator.common.impl.SGrDeviceBase.RwpDirections.READ;
 
@@ -235,13 +235,6 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 					arrIdx));
 		}
 
-		if (aDataPoint.getGenericAttributes() != null && aDataPoint.getGenericAttributes().isSetUnitConversionMultiplicator()) {
-			float unitConv = aDataPoint.getGenericAttributes().getUnitConversionMultiplicator();
-			if (resultList.get(0) instanceof NumberValue) {
-				resultList = resultList.stream().map(value -> Float64Value.of(unitConv * value.getFloat64())).collect(Collectors.toList());
-			}
-		}
-
 		return resultList.toArray(new Value[0]);
 	}
 
@@ -260,59 +253,75 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		int[] mbregresp = Arrays.copyOfRange(mbregrespSrc, arrOffset*size, (arrOffset+1)*size);
 		boolean[] mbbitresp = Arrays.copyOfRange(mbbitrespSrc, arrOffset*size, (arrOffset+1)*size);
 
-		ModbusDataType mbType  = aDataPoint.getModbusDataPointConfiguration().getModbusDataType();
-		DataTypeProduct genType = aDataPoint.getDataPoint().getDataType();
-
 		BitOrder bitOrder = modbusInterfaceDesc.getBitOrder();
-		if (bGotRegisters) {
-			if (bitOrder != BitOrder.BIG_ENDIAN) {
-				mbregresp = convertEndians(bitOrder, mbregresp, size);
-			}
-
-			if (aDataPoint.getModbusAttributes() != null)
-			{   // there are Modbus attributes available
-
-				// TODO unit-test this code
-				if (   !aDataPoint.getModbusAttributes().isSetSunssf()
-				    && (aDataPoint.getModbusAttributes().getScalingFactor() !=null))
-				{
-					ScalingFactor attrScaling = aDataPoint.getModbusAttributes().getScalingFactor();
-					mul = attrScaling.getMultiplicator();
-					pwof10 = attrScaling.getPowerof10();
-				}
-
-				if (aDataPoint.getModbusAttributes().isSetLayer6Deviation() )
-				{   // do we have Layer 6 deviations ?
-			       	l6dev = aDataPoint.getModbusAttributes().getLayer6Deviation().getValue();
-			       	mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
-				}
-			}
-
-
-			// Most significant int as returned from modbus can have the wrong sign:
-			// - after change byte order
-			// - if the modbus value is an unsigned number and MSB is set
-			mbregresp[0] = adjustSign(mbType, mbregresp[0]);
-	    }
 
 		Value retVal;
 		if (bGotRegisters) {
-			retVal = Value.fromModbusRegister(mbType, mbregresp);
-			if (genType.getEnum() != null) {
-				retVal = EnumValue.of(retVal.getInt64(), genType.getEnum());
-			} else if (genType.getBitmap() != null) {
-				retVal = BitmapValue.of(mbregresp, genType.getBitmap());
-			} else if (retVal instanceof NumberValue) {
-				retVal = ((NumberValue<?>)retVal).scaleUp( mul, pwof10);
-			} else if (retVal instanceof Int64UValue) {
-				retVal = ((Int64UValue)retVal).scaleUp(mul, pwof10);
-			} else if (retVal instanceof StringValue) {
-				((StringValue) retVal).scaleUp(mul, pwof10);
-			}
+
+			retVal = convertFromRegisters(aDataPoint, size, mul, pwof10, mbregresp, bitOrder);
 		} else {
+			ModbusDataType mbType  = aDataPoint.getModbusDataPointConfiguration().getModbusDataType();
 			retVal = Value.fromDiscreteInput(mbType, mbbitresp);
 		}
 		return retVal;				
+	}
+
+	private Value convertFromRegisters(ModbusDataPoint aDataPoint,
+									   int size,
+									   int mul,
+									   int pwof10,
+									   int[] mbregresp,
+									   BitOrder bitOrder) throws GenDriverException {
+
+		Value retVal;
+		int l6dev;
+
+		if (bitOrder!=BitOrder.BIG_ENDIAN) {
+			mbregresp = convertEndians(bitOrder, mbregresp, size);
+		}
+
+		if (aDataPoint.getModbusAttributes()!=null) {   // there are Modbus attributes available
+
+			// TODO unit-test this code
+			if (!aDataPoint.getModbusAttributes().isSetSunssf()
+					&& (aDataPoint.getModbusAttributes().getScalingFactor()!=null)) {
+				ScalingFactor attrScaling = aDataPoint.getModbusAttributes().getScalingFactor();
+				mul = attrScaling.getMultiplicator();
+				pwof10 = attrScaling.getPowerof10();
+			}
+
+			if (aDataPoint.getModbusAttributes().isSetLayer6Deviation()) {   // do we have Layer 6 deviations ?
+				l6dev = aDataPoint.getModbusAttributes().getLayer6Deviation().getValue();
+				mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
+			}
+		}
+
+		ModbusDataType mbType  = aDataPoint.getModbusDataPointConfiguration().getModbusDataType();
+		DataTypeProduct genType = aDataPoint.getDataPoint().getDataType();
+		// Most significant int as returned from modbus can have the wrong sign:
+		// - after change byte order
+		// - if the modbus value is an unsigned number and MSB is set
+		mbregresp[0] = adjustSign(mbType, mbregresp[0]);
+
+		retVal = Value.fromModbusRegister(mbType, mbregresp);
+		if (genType.getEnum()!=null) {
+			retVal = EnumValue.of(retVal.getInt64(), genType.getEnum());
+		} else if (genType.getBitmap()!=null) {
+			retVal = BitmapValue.of(mbregresp, genType.getBitmap());
+		} else if (retVal instanceof NumberValue) {
+			retVal = ((NumberValue<?>) retVal).scaleUp(mul, pwof10);
+		} else if (retVal instanceof Int64UValue) {
+			retVal = ((Int64UValue) retVal).scaleUp(mul, pwof10);
+		} else if (retVal instanceof StringValue) {
+			((StringValue) retVal).scaleUp(mul, pwof10);
+		}
+
+		float unitConversionFactor = getUnitConversionFactor(aDataPoint);
+		if (unitConversionFactor != 1.0f) {
+			retVal = Float64Value.of(retVal.getFloat64() * unitConversionFactor);
+		}
+
+		return retVal;
 	}
 
 	private int[] manageLayer6deviation(int mBlayer6Scheme, int[] mbregresp, int size) throws GenDriverException {
@@ -349,81 +358,24 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 
 	private int[] convertEndians(BitOrder mBconvScheme, int[] mbregresp, int size) throws GenDriverException{
 
-		if (LOG.isTraceEnabled()) {
-			LOG.trace("convertEndians mbregesp:");
-			for (int j : mbregresp) {
-				LOG.trace(String.format("int16: %d - %04x", j, j));
-			}
-		}
-
-		int c;
-		int[] mbregconv = new int[256];
-
 		try {
-			if (mBconvScheme.equals(BitOrder.CHANGE_BIT_ORDER)) {
-				throw new GenDriverException("CHANGE_BIT_ORDER is not supported yet. Check EID-XML.");
-			} else if (mBconvScheme.equals(BitOrder.CHANGE_BYTE_ORDER)) {
-				for (c = 0; c < size; c++) {
-					if (LOG.isDebugEnabled()) {
-						LOG.debug("mbregresp: {} ", mbregresp);
-						LOG.debug("mbregresp[0]: {} ", String.format("%08x", mbregresp[0]));
-					}
-					byte[] result = new byte[2];
-					result[1] = (byte) (mbregresp[c] >> 8);
-					result[0] = (byte) mbregresp[c];
+			switch (mBconvScheme) {
+				case CHANGE_BIT_ORDER:
+					throw new GenDriverException("CHANGE_BIT_ORDER is not supported yet. Check EID-XML.");
+				case CHANGE_BYTE_ORDER:
+					return EndiannessConversionHelper.changeByteOrder(mbregresp, size);
+				case CHANGE_WORD_ORDER:
+					return EndiannessConversionHelper.changeWordOrder(mbregresp, size);
+				case CHANGE_DWORD_ORDER:
+					return EndiannessConversionHelper.changeDWordOrder(mbregresp, size);
+				default:
+					throw new GenDriverException("Unsupported ByteOrder value. Unable to convert endianness.");
 
-					mbregconv[c] = Byte.toUnsignedInt(result[1])
-							+ (Byte.toUnsignedInt(result[0]) << 8);
-
-					if (LOG.isDebugEnabled()) {
-						LOG.debug(String.format("CHANGE_BYTE_ORDER converted %d: %02x, %02x, %08x", c, result[1], result[0], mbregconv[c]));
-						LOG.debug("mbregconv: {}", mbregconv);
-						LOG.debug("mbregconv[0]: {} ", String.format("%08x", mbregconv[0]));
-					}
-				}
-			} else if (mBconvScheme.equals(BitOrder.CHANGE_WORD_ORDER)) {
-				if (size==1) {
-					return mbregresp; // just one word, no conversion
-				}
-				if ((size % 2)==0) {
-					for (c = 0; c < size; c = c + 2) {
-						mbregconv[c] = mbregresp[c + 1];
-						mbregconv[c + 1] = mbregresp[c];
-					}
-				} else  // Q&A:CB NO swap here: is this really intended?
-				{
-					mbregconv = mbregresp;
-				}
-				for (int i = 0; i < size - 1; i++)
-					if (LOG.isDebugEnabled()) {
-						LOG.debug(String.format("CHANGE_WORD_ORDER converted %d: %08x, %08x", i, mbregresp[i], mbregconv[i]));
-					}
-
-			} else if (mBconvScheme.equals(BitOrder.CHANGE_DWORD_ORDER)) {
-				if ((size % 4) > 0) {
-					LOG.info("CHANGE_DWORD_ORDER: Input Array length does not match");
-					//rem/cb: check is DWORD change needed in case of (size % 4) > 0
-					mbregconv = mbregresp;
-				} else {   //rem/cb:  check array of WORDS: is DWORD change needed in case of size > 4
-					for (c = 0; c < size; c = c + 4) {
-						mbregconv[c + 1] = mbregresp[c + 3];
-						mbregconv[c    ] = mbregresp[c + 2];
-						mbregconv[c + 3] = mbregresp[c + 1];
-						mbregconv[c + 2] = mbregresp[c];
-						for (int i = 0; i < 4; i++) {
-							if (LOG.isDebugEnabled()) {
-								LOG.debug(String.format("CHANGE_DWORD_ORDER converted %d: %08x, %08x", i, mbregresp[i], mbregconv[i]));
-							}
-						}
-					}
-				}
 			}
 		} catch (IllegalArgumentException e1) {
 			LOG.error("***IllegalArgumentException: {}", e1.toString());
 			return mbregresp;
 		}
-
-		return mbregconv;
 	}
 
 	@Override
@@ -479,6 +431,8 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 				isSetAccessProt = true; // for future use
 			}
 		}
+
+
 		ModbusDataPointConfiguration modbusDataPointConfiguration = aDataPoint.getModbusDataPointConfiguration();
 		BigInteger regad = modbusDataPointConfiguration.getAddress();
 
@@ -513,6 +467,10 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		mbregsnd = Arrays.copyOfRange(mbRegBuf.array(), 0, nrRegisters * sgrValues.length);
 		mbbitsnd = Arrays.copyOfRange(ConversionHelper.byteArrToBooleanArr(mbByteBuf.array()), 0, nrRegisters * sgrValues.length);
 
+		writeToModbus(mbregsnd, mbbitsnd, bRegisterCMDs, bDiscreteCMDs, regad, mbsize);
+	}
+
+	private void writeToModbus(int[] mbregsnd, boolean[] mbbitsnd, boolean bRegisterCMDs, boolean bDiscreteCMDs, BigInteger regad, int mbsize) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		if (bRegisterCMDs) {
 			if (mbsize > 1)
 				drv4Modbus.WriteMultipleRegisters(regad.intValue(), mbregsnd);
@@ -540,8 +498,13 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		DataTypeProduct genType = dataPoint.getDataPoint().getDataType();
 		int mbsize = dataPoint.getModbusDataPointConfiguration().getNumberOfRegisters();
 		BitOrder bitOrder = getModbusInterfaceDescription().getBitOrder();
-
 		IntBuffer mbRegBuf = IntBuffer.allocate(32);
+
+		float unitConversionFactor = getUnitConversionFactor(dataPoint);
+		if (unitConversionFactor != 1.0f) {
+			sgrValue = Float64Value.of(sgrValue.getFloat64() / unitConversionFactor);
+		}
+
 		if (bRegisterCMDs) {
 			if (sgrValue instanceof EnumValue) {
 				sgrValue = sgrValue.enumToOrdinalValue(genType.getEnum());
@@ -622,4 +585,10 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		return getModbusInterface().getModbusInterfaceDescription();
 	}
 
+	private float getUnitConversionFactor(ModbusDataPoint aDataPoint) {
+		if (aDataPoint.getGenericAttributes() != null && aDataPoint.getGenericAttributes().isSetUnitConversionMultiplicator()) {
+			return aDataPoint.getGenericAttributes().getUnitConversionMultiplicator();
+		}
+		return 1.0f;
+	}
 }
