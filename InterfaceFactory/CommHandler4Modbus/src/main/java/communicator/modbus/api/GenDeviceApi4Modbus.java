@@ -16,52 +16,23 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package communicator.modbus.api;
-
-import com.smartgridready.ns.v0.DataType;
 import communicator.common.api.GenDeviceApi;
+import communicator.common.api.NumberValue;
+import communicator.common.api.Value;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
 
 /**
  * The API defines read and write operations for SmartGridReady devices.
- * The values can be provided as {@link String} or {@link DataType}
+ * The values can be provided as {@link String} or {@link NumberValue}
  * The implementing device will convert the data to their modbus format.
  *
  */
 public interface GenDeviceApi4Modbus extends GenDeviceApi {
 
     /**
-     * Read a numeric or string value read a from a modbus device register.
-     * Numeric values read from the device are converted to their String representations.
-     * 
-     * @param profileName The name of the functional profile.
-     * @param dataPointName The name of the datapoint.
-     * @return The value converted to {@link java.lang.String}
-     * @throws GenDriverException If a general exception occurred.
-     * @throws GenDriverSocketException In case of communication errors with the modbus device.
-     * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
-     */
-    String getVal(String profileName, String dataPointName)
-            throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
-
-    /**
-     * Write a numeric or string value to a modbus register.
-     * Numeric values are converted from their String representation to the numeric format as defined in the
-     * external interface XML for the given datapoint.
-     *
-     * @param profileName The name of the functional profile.
-     * @param dataPointName The name of the datapoint.
-     * @param value The value in string representation.
-     * @throws GenDriverException If a general exception occurred.
-     * @throws GenDriverSocketException In case of communication errors with the modbus device.
-     * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
-     */
-    String  setVal(String profileName, String dataPointName, String value)
-            throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
-
-    /**
-     * Read a value from the modbus device in its generic datapoint representation (see {@link DataType}).
+     * Read a value from the modbus device in its generic datapoint representation (see {@link Value}).
      *
      * @param profileName The name of the functional profile.
      * @param dataPointName The name of the datapoint.
@@ -70,83 +41,55 @@ public interface GenDeviceApi4Modbus extends GenDeviceApi {
      * @throws GenDriverSocketException In case of communication errors with the modbus device.
      * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
      *
-     * @see DataType
+     * @see Value
      */
-    DataType getValByGDPType(String profileName, String dataPointName)
+    Value getVal(String profileName, String dataPointName)
             throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
 
     /**
-     * Write a value to the modbus device using the generic datapoint representation (see {@link DataType}).
+     * Write a value to the modbus device using the generic datapoint representation (see {@link Value}).
      * The value is converted from the format given within the {@code value} parameter to the value required
      * by the modbus device (as defined within the external interface XML of the device).
      *
      * @param profileName The name of the functional profile.
      * @param dataPointName The name of the datapoint.
-     * @param value The value as {@link DataType}
+     * @param value The value as {@link Value}
      * @throws GenDriverException If a general exception occurred.
      * @throws GenDriverSocketException In case of communication errors with the modbus device.
      * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
      *
-     * @see DataType
+     * @see Value
      */
-    void setValByGDPType(String profileName, String dataPointName, DataType value)
+    void setVal(String profileName, String dataPointName, Value value)
             throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
 
-    /**
-     * Read an array of numeric or string values from the modbus device. The values are converted to their string
-     * representation.
-     *
-     * @param profileName The name of the functional profile.
-     * @param dataPointName The name of the datapoint.
-     * @return The values read from the device in their string representation.
-     * @throws GenDriverException If a general exception occurred.
-     * @throws GenDriverSocketException In case of communication errors with the modbus device.
-     * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
-     */
-    String[] getValArr(String profileName, String dataPointName)
-            throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
 
     /**
      * Read an array of numeric or string values from the modbus device. The values are converted to their
-     * generic datapoint representation as defined within the external interface XML (see {@link DataType}).
+     * generic datapoint representation as defined within the external interface XML (see {@link Value}).
      *
      * @param profileName The name of the functional profile.
      * @param dataPointName The name of the datapoint.
-     * @return The values in their {@link DataType} representation.
+     * @return The values in their {@link Value} representation.
      * @throws GenDriverException If a general exception occurred.
      * @throws GenDriverSocketException In case of communication errors with the modbus device.
      * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
      */
-    DataType[] getValArrByGDPType(String profileName, String dataPointName)
+    Value[] getValArr(String profileName, String dataPointName)
             throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
 
     /**
-     * Write an array of values to the modbus device. The values are converted from their string
+     * Write an array of value to the modbus device. The values are converted from generic Value
      * representation to the modbus format as defined within the external interface XML for the given
      * datapoint.
      *
      * @param profileName The name of the functional profile.
      * @param dataPointName The name of the datapoint.
-     * @param values The values in their string representation.
+     * @param values The values in their {@link Value} representation.
      * @throws GenDriverException If a general exception occurred.
      * @throws GenDriverSocketException In case of communication errors with the modbus device.
      * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
      */
-    void setValArr(String profileName, String dataPointName, String[] values)
-            throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
-
-    /**
-     * Write an array of value to the modbus device. The values are converted from generic datatype
-     * representation to the modbus format as defined within the external interface XML for the given
-     * datapoint.
-     *
-     * @param profileName The name of the functional profile.
-     * @param dataPointName The name of the datapoint.
-     * @param values The values in their {@link DataType} representation.
-     * @throws GenDriverException If a general exception occurred.
-     * @throws GenDriverSocketException In case of communication errors with the modbus device.
-     * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
-     */
-    void setValArrByGDPType(String profileName, String dataPointName, DataType[] values)
+    void setValArr(String profileName, String dataPointName, Value[] values)
             throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
 }

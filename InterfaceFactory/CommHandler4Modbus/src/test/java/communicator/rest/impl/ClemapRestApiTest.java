@@ -1,6 +1,7 @@
 package communicator.rest.impl;
 
-import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
+import com.smartgridready.ns.v0.DeviceFrame;
+import communicator.common.api.StringValue;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.rest.api.GenDeviceApi4Rest;
 import communicator.rest.exception.RestApiAuthenticationException;
@@ -45,9 +46,9 @@ class ClemapRestApiTest {
 		props.put("sensor_id", "63343431ecf2cf013a1e5a9f");
 		
 	
-		DeviceDescriptionLoader<SGrRestAPIDeviceFrame> loader = new DeviceDescriptionLoader<>();						
+		DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
 		
-		SGrRestAPIDeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
+		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
 		GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
  
 		try {
@@ -74,14 +75,14 @@ class ClemapRestApiTest {
 		props.put("password", "Holdrio99");
 		props.put("baseUri", "https://b1.cloud.clemap.com:3032");
 
-		DeviceDescriptionLoader<SGrRestAPIDeviceFrame> loader = new DeviceDescriptionLoader<>();						
+		DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
 		
-		SGrRestAPIDeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);	
+		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
 		SGrRestApiDevice clemapConfigurator =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
 		
 		try {
 			clemapConfigurator.authenticate();
-			LOG.info("Response: {}", clemapConfigurator.setVal("Configuration", "CreateMeterGroup", METER_GROUP_CONFIG_JSON));
+			LOG.info("Response: {}", clemapConfigurator.setVal("Configuration", "CreateMeterGroup", StringValue.of(METER_GROUP_CONFIG_JSON)));
 		} catch (RestApiAuthenticationException | RestApiServiceCallException | RestApiResponseParseException | IOException e) {
 			LOG.info("Error: " + e.getMessage());
 			throw e;

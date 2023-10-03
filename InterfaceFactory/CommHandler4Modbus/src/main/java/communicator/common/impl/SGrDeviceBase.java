@@ -1,16 +1,15 @@
 package communicator.common.impl;
 
-import com.smartgridready.ns.v0.SGrAttr4GenericType;
-import com.smartgridready.ns.v0.DataType;
-import com.smartgridready.ns.v0.SGrDataPointBaseType;
-import com.smartgridready.ns.v0.SGrDeviceBaseType;
-import com.smartgridready.ns.v0.SGrFunctionalProfileBaseType;
-import com.smartgridready.ns.v0.SGrRWPType;
+import com.smartgridready.ns.v0.DataDirection;
+import com.smartgridready.ns.v0.DataPointBase;
+import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.FunctionalProfileBase;
+import com.smartgridready.ns.v0.GenericAttributes;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.V0Package;
 import communicator.common.api.GenDeviceApi;
+import communicator.common.api.Value;
 import communicator.common.runtime.GenDriverException;
-import communicator.modbus.helper.GenType2StringConversion;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -28,18 +27,18 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class SGrDeviceBase<
-        D extends SGrDeviceBaseType,
-        F extends SGrFunctionalProfileBaseType,
-        P extends SGrDataPointBaseType> implements GenDeviceApi {
+        D extends DeviceFrame,
+        F extends FunctionalProfileBase,
+        P extends DataPointBase> implements GenDeviceApi {
 
     protected final D device;
 
-    protected enum DataDirection {
-        READ(Stream.of(SGrRWPType.R, SGrRWPType.RW, SGrRWPType.RWP).collect(Collectors.toSet())),
-        WRITE(Stream.of(SGrRWPType.W, SGrRWPType.RW, SGrRWPType.RWP).collect(Collectors.toSet()));
+    public enum RwpDirections {
+        READ(Stream.of(DataDirection.R, DataDirection.RW, DataDirection.RWP).collect(Collectors.toSet())),
+        WRITE(Stream.of(DataDirection.W, DataDirection.RW, DataDirection.RWP).collect(Collectors.toSet()));
 
-        private final Set<SGrRWPType> opAllowedTypes;
-        DataDirection(Set<SGrRWPType> opAllowedTypes) {
+        private final Set<DataDirection> opAllowedTypes;
+        RwpDirections(Set<DataDirection> opAllowedTypes) {
             this.opAllowedTypes = opAllowedTypes;
         }
     }
@@ -72,7 +71,7 @@ public abstract class SGrDeviceBase<
 
         Map<String, String> result = new HashMap<>();
 
-        SGrAttr4GenericType genericType = getGenAttributesByGDPType(profileName, dataPointName);
+        GenericAttributes genericType = getGenAttributesByGDPType(profileName, dataPointName);
         getFeatureThatIsSet(genericType).forEach(feature ->
                 result.putAll(featuresToStringMap(feature, genericType)));
 
@@ -80,15 +79,15 @@ public abstract class SGrDeviceBase<
     }
 
     @Override
-    public SGrAttr4GenericType getGenAttributesByGDPType(String profileName, String dataPointName) throws GenDriverException {
+    public GenericAttributes getGenAttributesByGDPType(String profileName, String dataPointName) throws GenDriverException {
 
         // Merge all generic properties into one result
-        SGrAttr4GenericType result = V0Factory.eINSTANCE.createSGrAttr4GenericType();
+        GenericAttributes result = V0Factory.eINSTANCE.createGenericAttributes();
 
         if (profileName!=null && dataPointName!=null) {
             // Datapoint attributes have precedence over functional profile and device properties
             P dataPoint = findDatapoint(profileName, dataPointName);
-            Optional<SGrAttr4GenericType> attrOpt = Optional.ofNullable(dataPoint.getGenAttribute());
+            Optional<GenericAttributes> attrOpt = Optional.ofNullable(dataPoint.getGenericAttributes());
             attrOpt.ifPresent(attr -> getFeatureThatIsSet(attr)
                     .forEach(feature -> result.eSet(feature, attr.eGet(feature))));
         }
@@ -98,20 +97,20 @@ public abstract class SGrDeviceBase<
         if (profileName!=null) {
             Optional<F> profileOpt = findProfile(profileName);
             profileOpt.ifPresent(profile -> {
-                Optional<SGrAttr4GenericType> attrOpt = Optional.ofNullable(profile.getGenAttribute());
+                Optional<GenericAttributes> attrOpt = Optional.ofNullable(profile.getGenericAttributes());
                 attrOpt.ifPresent(attr -> mergeAttribute(result, attr));
             });
         }
 
         // Add additional properties that are set on device level
         // Do not overwrite the attributes already set by the functional profile
-        Optional<SGrAttr4GenericType> attrOpt = Optional.ofNullable(device.getGenAttribute());
+        Optional<GenericAttributes> attrOpt = Optional.ofNullable(device.getGenericAttributes());
         attrOpt.ifPresent(attr -> mergeAttribute(result, attr));
 
         return result;
     }
 
-    private void mergeAttribute(SGrAttr4GenericType result, SGrAttr4GenericType attr) {
+    private void mergeAttribute(GenericAttributes result, GenericAttributes attr) {
         getFeatureThatIsSet(attr)
                 .stream()
                 .filter(feature -> !result.eIsSet(feature))
@@ -129,55 +128,40 @@ public abstract class SGrDeviceBase<
         }
     }
 
-    public void checkOutOfRange(String value, SGrDataPointBaseType dataPoint)
+    public void checkOutOfRange(Value[] values, DataPointBase dataPoint)
         throws GenDriverException {
 
-        DataType genVal =
-                GenType2StringConversion.format(value, dataPoint.getDataPoint().getDataType());
-
-        checkOutOfRange(new DataType[]{genVal}, dataPoint);
-    }
-
-    public void checkOutOfRange(DataType[] values, SGrDataPointBaseType dataPoint)
-        throws GenDriverException {
-
-
-        Optional<String> errorStr = Optional.ofNullable(dataPoint.getGenAttribute())
-                .flatMap(attr -> checkOutOfRange(values, attr.getMaxVal(), Comparator.MAX));
+        Optional<String> errorStr = Optional.ofNullable(dataPoint.getGenericAttributes())
+                .flatMap(attr -> Optional.ofNullable(attr.getMaxVal()).flatMap(val -> checkOutOfRange(values, val, Comparator.MAX)));
 
         if (errorStr.isPresent()) {
             throw new GenDriverException(errorStr.get());
         }
 
-        errorStr = Optional.ofNullable(dataPoint.getGenAttribute())
-                .flatMap(attr -> checkOutOfRange(values, attr.getMinVal(), Comparator.MIN));
+        errorStr = Optional.ofNullable(dataPoint.getGenericAttributes())
+                .flatMap(attr -> Optional.ofNullable(attr.getMinVal()).flatMap(val -> checkOutOfRange(values, val, Comparator.MIN)));
 
         if (errorStr.isPresent()) {
             throw new GenDriverException(errorStr.get());
         }
     }
 
-    public void checkReadWritePermission(SGrDataPointBaseType dataPoint, DataDirection direction) throws GenDriverException {
+    public void checkReadWritePermission(DataPointBase dataPoint, RwpDirections direction) throws GenDriverException {
 
-        SGrRWPType dRWPType = dataPoint.getDataPoint().getRwpDatadirection();
+        DataDirection dRWPType = dataPoint.getDataPoint().getDataDirection();
         if (!direction.opAllowedTypes.contains(dRWPType)) {
             throw new GenDriverException(String.format(
                     "Operation %s not allowed on datapoint %s",
                     direction.name(),
-                    dataPoint.getDataPoint().getDatapointName()));
+                    dataPoint.getDataPoint().getDataPointName()));
         }
     }
 
-    protected Optional<String> checkOutOfRange(DataType[] values, BigDecimal limit, Comparator comparator) {
+    protected Optional<String> checkOutOfRange(Value[] values, BigDecimal limit, Comparator comparator) {
 
-        List<Double> outOfRangeValues = Arrays.stream(values)
-                .flatMap(value -> getFeatureThatIsSet(value).stream()
-                        .map(value::eGet)
-                        .filter(Number.class::isInstance)
-                        .map(Number.class::cast)
-                        .map(Number::doubleValue)
-                        .filter(val -> comparator.getCmpFunc().test(BigDecimal.valueOf(val), limit)))
-                .collect(Collectors.toList());
+        List<Value> outOfRangeValues = Arrays.stream(values)
+                        .filter(val -> comparator.getCmpFunc().test(BigDecimal.valueOf(val.getFloat64()), limit))
+                        .collect(Collectors.toList());
 
         if (!outOfRangeValues.isEmpty()) {
             return Optional.of(
@@ -187,16 +171,10 @@ public abstract class SGrDeviceBase<
         return Optional.empty();
     }
 
-    private List<EStructuralFeature> getFeatureThatIsSet(SGrAttr4GenericType genericAttribute) {
+    private List<EStructuralFeature> getFeatureThatIsSet(GenericAttributes genericAttribute) {
 
-        EList<EStructuralFeature> features = V0Package.eINSTANCE.getSGrAttr4GenericType().getEStructuralFeatures();
+        EList<EStructuralFeature> features = V0Package.eINSTANCE.getGenericAttributes().getEStructuralFeatures();
         return features.stream().filter(genericAttribute::eIsSet).collect(Collectors.toList());
-    }
-
-    private List<EStructuralFeature> getFeatureThatIsSet(DataType dataPoint) {
-
-        EList<EStructuralFeature> features = V0Package.eINSTANCE.getDataType().getEStructuralFeatures();
-        return features.stream().filter(dataPoint::eIsSet).collect(Collectors.toList());
     }
 
     private static Map<String, String> featuresToStringMap(EStructuralFeature feature, EObject data) {

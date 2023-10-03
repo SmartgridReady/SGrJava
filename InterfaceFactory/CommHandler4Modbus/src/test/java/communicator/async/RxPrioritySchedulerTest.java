@@ -1,5 +1,7 @@
 package communicator.async;
 
+import communicator.common.api.Float32Value;
+import communicator.common.api.Value;
 import communicator.modbus.impl.SGrModbusDevice;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Scheduler;
@@ -7,6 +9,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.internal.schedulers.IoScheduler;
 import io.reactivex.rxjava3.internal.schedulers.RxThreadFactory;
 import io.reactivex.rxjava3.internal.schedulers.SingleScheduler;
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -15,21 +18,23 @@ import org.mockito.stubbing.Answer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(value = MockitoExtension.class)
-public class RxPrioritySchedulerTest {
+class RxPrioritySchedulerTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(RxPrioritySchedulerTest.class);
 
     @Mock
     SGrModbusDevice wagoModbusDevice;
 
-    private String withDelay(long delay, String value) throws Exception {
-        Thread.sleep(delay);
-        LOG.info("Delay {}ms, val={} is over.", delay, value);
+    private Value withDelay(Value value) {
+        Awaitility.await().pollDelay(Duration.ofMillis(500)).until(()-> true);
+        LOG.info("Delay {}ms, val={} is over.", 500, value);
         return value;
     }
 
@@ -41,13 +46,13 @@ public class RxPrioritySchedulerTest {
         Scheduler observingThread = new SingleScheduler();
 
         when(wagoModbusDevice.getVal("VoltageAC", "VoltageL1")).thenAnswer(
-                (Answer<String>) invocation -> withDelay(500, "220V"));
+                (Answer<Value>) invocation -> withDelay(Float32Value.of(220f)));
 
         when(wagoModbusDevice.getVal("VoltageAC", "VoltageL2")).thenAnswer(
-                (Answer<String>) invocation -> withDelay(500, "180V"));
+                (Answer<Value>) invocation -> withDelay(Float32Value.of(180f)));
 
         // Priority scheduler
-        Observable<String> voltage1 = Observable.fromCallable(
+        Observable<Value> voltage1 = Observable.fromCallable(
                         () -> wagoModbusDevice.getVal("VoltageAC", "VoltageL1"))
                 .subscribeOn(schedulerMinPrio);
 
@@ -64,15 +69,15 @@ public class RxPrioritySchedulerTest {
                 .subscribeOn(schedulerMaxPrio).observeOn(observingThread)
                 .subscribe(this::assertVoltage, this::failOnError);
 
-        Thread.sleep(1000);
+        Awaitility.await().pollDelay(Duration.ofMillis(1000));
 
         dispose1.dispose();
         dispose2.dispose();
     }
 
-    private void assertVoltage(String voltage) {
+    private void assertVoltage(Value voltage) {
         LOG.info("Received Voltage {}", voltage);
-        assertTrue(voltage.equals("220V") || voltage.equals("180V"));
+        assertTrue(voltage.getString().equals("220.0") || voltage.getString().equals("180.0"));
     }
 
     private void failOnError(Throwable t) {

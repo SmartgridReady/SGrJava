@@ -29,10 +29,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 // WIP/cb import com.smartgridready.ns.v0.SGrBool2BitRankType;
-import com.smartgridready.ns.v0.SGrEVStateType;
-import com.smartgridready.ns.v0.SGrEnumListType;
-import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
-import com.smartgridready.ns.v0.SGrOCPPStateType;
+import com.smartgridready.ns.v0.DeviceFrame;
+import communicator.common.api.EnumRecord;
+import communicator.common.api.Float32Value;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.common.runtime.Parity;
 import communicator.common.helper.DeviceDescriptionLoader;
@@ -71,12 +70,7 @@ public class IOPdemoBOX {
 	
 	// device selection
 	private static boolean  devIOPMeterTestIsOn = true; 
-	private static boolean  devOMCCIWallboxTestIsOn = true; 
-
-
-	// shell for enumerations
-	private static SGrEnumListType oEnumList = null;
-	
+	private static boolean  devOMCCIWallboxTestIsOn = true;
 		
 	public static void main( String argv[] ) {	
 			
@@ -158,8 +152,8 @@ public class IOPdemoBOX {
 			
 			try {	
 				rtuAddr = deviceAddr;
-				DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-				SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+				DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+				DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 				devIOPMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
 			}
@@ -179,105 +173,105 @@ public class IOPdemoBOX {
 	 				mbRTU.setUnitIdentifier(rtuAddr);	
 				    LOG.info("\n@:Testing IOPMeterData: ");
 	  				Thread.sleep(25);
-	  				fVal1 = devIOPMeter.getValByGDPType("VoltageAC", "VoltageL1").getFloat64();
+	  				fVal1 = devIOPMeter.getVal("VoltageAC", "VoltageL1").getFloat64();
 	  				Thread.sleep(10);            
-	  				fVal2 = devIOPMeter.getValByGDPType("VoltageAC", "VoltageL2").getFloat64();
+	  				fVal2 = devIOPMeter.getVal("VoltageAC", "VoltageL2").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal3 = devIOPMeter.getValByGDPType("VoltageAC", "VoltageL3").getFloat64();
+	  				fVal3 = devIOPMeter.getVal("VoltageAC", "VoltageL3").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal4 = devIOPMeter.getValByGDPType("Frequency", "Frequency").getFloat64();
+	  				fVal4 = devIOPMeter.getVal("Frequency", "Frequency").getFloat64();
 	  				LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + ",  " + fVal4 + "  ");
 	  				Thread.sleep(10);
-	  				fVal1 = devIOPMeter.getValByGDPType("VoltageAC", "VoltageACL1-L2").getFloat64();
+	  				fVal1 = devIOPMeter.getVal("VoltageAC", "VoltageACL1-L2").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal2 = devIOPMeter.getValByGDPType("VoltageAC", "VoltageACL1-L3").getFloat64();
+	  				fVal2 = devIOPMeter.getVal("VoltageAC", "VoltageACL1-L3").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal3 = devIOPMeter.getValByGDPType("VoltageAC", "VoltageACL2-L3").getFloat64();
+	  				fVal3 = devIOPMeter.getVal("VoltageAC", "VoltageACL2-L3").getFloat64();
 	  				LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + "  ");
 	  				Thread.sleep(10);
-	  				fVal1 = devIOPMeter.getValByGDPType("CurrentAC", "CurrentACL1").getFloat64();
+	  				fVal1 = devIOPMeter.getVal("CurrentAC", "CurrentACL1").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal2 = devIOPMeter.getValByGDPType("CurrentAC", "CurrentACL2").getFloat64();
+	  				fVal2 = devIOPMeter.getVal("CurrentAC", "CurrentACL2").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal3 = devIOPMeter.getValByGDPType("CurrentAC", "CurrentACL3").getFloat64();
+	  				fVal3 = devIOPMeter.getVal("CurrentAC", "CurrentACL3").getFloat64();
 	  				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + "  ");
 	  				Thread.sleep(10);
-	  				fVal1 = devIOPMeter.getValByGDPType("PowerFactor", "PowerFactor").getFloat64();
+	  				fVal1 = devIOPMeter.getVal("PowerFactor", "PowerFactor").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal2 = devIOPMeter.getValByGDPType("PowerFactor", "PowerFactorL1").getFloat64();
+	  				fVal2 = devIOPMeter.getVal("PowerFactor", "PowerFactorL1").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal3 = devIOPMeter.getValByGDPType("PowerFactor", "PowerFactorL2").getFloat64();
+	  				fVal3 = devIOPMeter.getVal("PowerFactor", "PowerFactorL2").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal4 = devIOPMeter.getValByGDPType("PowerFactor", "PowerFactorL3").getFloat64();
+	  				fVal4 = devIOPMeter.getVal("PowerFactor", "PowerFactorL3").getFloat64();
 	  				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + ",  " + fVal4 + "  ");
 	  				Thread.sleep(10); 
-	  				sVal1 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot");
+	  				sVal1 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot").getString();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL1");
+	  				sVal2 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL1").getString();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL2");
+	  				sVal3 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL2").getString();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL3");
+	  				sVal4 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL3").getString();
 	  				LOG.info("  ActiveEnergyAC [kWh]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3
 	  						+ ",  " + sVal4 + "  ");
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACtot");
+	  				sVal1 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACtot").getString();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL1");
+	  				sVal2 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL1").getString();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL2");
+	  				sVal3 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL2").getString();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL3");
+	  				sVal4 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL3").getString();
 	  				LOG.info("  ActivePowerAC [W]:           " + sVal1 + ", " + sVal2 + ",  " + sVal3
 	  						+ ",  " + sVal4 + "  ");
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACtot");
+	  				sVal1 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACtot").getString();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL1");
+	  				sVal2 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL1").getString();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL2");
+	  				sVal3 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL2").getString();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL3");
+	  				sVal4 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL3").getString();
 	  				LOG.info("  ReactivePowerAC [var]:       " + sVal1 + ", " + sVal2 + ",  " + sVal3
 	  						+ ",  " + sVal4 + "  ");
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACtot");
+	  				sVal1 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACtot").getString();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL1");
+	  				sVal2 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL1").getString();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL2");
+	  				sVal3 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL2").getString();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL3");
+	  				sVal4 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL3").getString();
 	  				LOG.info("  ApparentPowerAC [va]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
 	  						+ ",  " + sVal4 + "  ");
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
+	  				sVal1 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC").getString();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC");
+	  				sVal2 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC").getString();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC");
+	  				sVal3 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC").getString();
 	  				LOG.info("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
 
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC");
+	  				sVal1 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC").getString();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC");
+	  				sVal2 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC").getString();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC");
+	  				sVal3 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC").getString();
 	  				LOG.info("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
 	  				
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACtot");
+	  				sVal1 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACtot").getString();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL1");
+	  				sVal2 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL1").getString();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL2");
+	  				sVal3 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL2").getString();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL3");
+	  				sVal4 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL3").getString();
 	  				LOG.info("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
 	  						+ ",  " + sVal4 + "  ");
 							
@@ -299,8 +293,8 @@ public class IOPdemoBOX {
 				//TODO: complete and use full OMCCI EI.xml
 				try {	
 					
-					DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-					SGrModbusDeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);	
+					DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+					DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 					
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 					GenDriverAPI4ModbusTCP mbWbOMCCI= new GenDriverAPI4ModbusTCP();
@@ -320,8 +314,6 @@ public class IOPdemoBOX {
 			{
 				double fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0;
 				String  sVal1 = "0.0", sVal2 = "0.0";
-				SGrEVStateType sgrEVState = null;
-				SGrOCPPStateType sgrOCPPState = null;
 				int     iVal1  = 0;
 				float CurtailCurrent;
 				
@@ -331,55 +323,54 @@ public class IOPdemoBOX {
 						 if ((runtimeCnt%60)== 0)
 						 {
 							 CurtailCurrent = (float) 7.0 + (float)((runtimeCnt/60)%4) ;
-							 devOMCCIWallbox.setVal("Curtailment", "HemsCurrentLimit", String.valueOf(CurtailCurrent));
+							 devOMCCIWallbox.setVal("Curtailment", "HemsCurrentLimit", Float32Value.of(CurtailCurrent));
 							 LOG.info("  Setting HemsCurrentLimit to :     " + CurtailCurrent + "  ");
 						 }
-						 fVal1 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat64();
+						 fVal1 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL1").getFloat64();
 						 Thread.sleep(200);
-						 fVal2 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL2").getFloat64();
+						 fVal2 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL2").getFloat64();
 						 Thread.sleep(200);
-						 fVal3 = devOMCCIWallbox.getValByGDPType("CurrentAC", "CurrentACL3").getFloat64();
+						 fVal3 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
 						 Thread.sleep(200);
-						 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "EV-StatusCode").getEnum();
+
+						 EnumRecord oEnumList = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 						 Thread.sleep(200);
-						 sgrEVState = oEnumList.getSgrEVState();
-						 LOG.info("  EV-StatusCode:                    " + sgrEVState+ "  ");
-						 
-						 oEnumList = devOMCCIWallbox.getValByGDPType("EVSEState", "ocppState").getEnum();
+						 LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
+
+						 oEnumList = devOMCCIWallbox.getVal("EVSEState", "ocppState").getEnum();
 						 Thread.sleep(200);
-						 sgrOCPPState = oEnumList.getSgrOCPPState();
-						 LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState + "  ");
+						 LOG.info("  OCPP-StatusCode:                  " + oEnumList.getLiteral() + "  ");
 						 LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");		 
 
-						 fVal1 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL1").getFloat64();
+						 fVal1 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat64();
 						 Thread.sleep(200);
-						 fVal2 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL2").getFloat64();
+						 fVal2 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL2").getFloat64();
 						 Thread.sleep(200);
-						 fVal3 = devOMCCIWallbox.getValByGDPType("ActivePowerAC", "ActivePowerACL3").getFloat64();
+						 fVal3 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL3").getFloat64();
 						 Thread.sleep(200);
 						 LOG.info("  PowerAC[kW]:                      P[1L]= " + fVal1 + ",  P[L2] = "  + fVal2 + ",  P[L3] = "  + fVal3 + "  ");	
 							 
-						 fVal1 = devOMCCIWallbox.getValByGDPType("ActiveEnergyAC", "ActiveEnergyACL1").getFloat64();
+						 fVal1 = devOMCCIWallbox.getVal("ActiveEnergyAC", "ActiveEnergyACL1").getFloat64();
 						 Thread.sleep(200);
-						 fVal2 = devOMCCIWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat64();
+						 fVal2 = devOMCCIWallbox.getVal("ActiveEEnergyAC", "ActiveEnergyACL2").getFloat64();
 						 Thread.sleep(200);
-						 fVal3 = devOMCCIWallbox.getValByGDPType("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat64();
+						 fVal3 = devOMCCIWallbox.getVal("ActiveEEnergyAC", "ActiveEnergyACL3").getFloat64();
 						 Thread.sleep(200);
 						 LOG.info("  EnergyAC[kWh] L1/L2/L3:           W[1] = " + fVal1 + "  W[2] = "  + fVal2 + "  W[3] = "  + fVal3 + "  ");	
 							
-						 //sVal1 = devOMCCIWallbox.getVal("EVState", "isSmartEV15118");
-						 //Thread.sleep(200);
-						 //??? sVal2 = devOMCCIWallbox.getVal("EVState", "EVCCID");
+						 boolean bVal = devOMCCIWallbox.getVal("EVState", "isSmartEV15118").getBoolean();
 						 Thread.sleep(200);
-						 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + sVal2 + "  ");
+						 EnumRecord enumRecord = devOMCCIWallbox.getVal("EVState", "EVCCID").getEnum();
+						 Thread.sleep(200);
+						 LOG.info("  EVState  support (ISO/IEC 15118): " + sVal1 + ",    EVCCID = " + enumRecord.getLiteral() + "  ");
 						 
-						 fVal1 = devOMCCIWallbox.getValByGDPType("Curtailment", "SafeCurrent").getFloat64();
+						 fVal1 = devOMCCIWallbox.getVal("Curtailment", "SafeCurrent").getFloat64();
 						 Thread.sleep(200);
-						 fVal2 = devOMCCIWallbox.getValByGDPType("Curtailment", "HemsCurrentLimit").getFloat64();
+						 fVal2 = devOMCCIWallbox.getVal("Curtailment", "HemsCurrentLimit").getFloat64();
 						 Thread.sleep(200);
-						 fVal3 = devOMCCIWallbox.getValByGDPType("Curtailment", "HWCurrentLimit").getFloat64();
+						 fVal3 = devOMCCIWallbox.getVal("Curtailment", "HWCurrentLimit").getFloat64();
 						 Thread.sleep(200);
-						 iVal1 = (int)devOMCCIWallbox.getValByGDPType("Curtailment", "maxReceiveTimeSec").getInt16U();
+						 iVal1 = (int)devOMCCIWallbox.getVal("Curtailment", "maxReceiveTimeSec").getInt16U();
 						 Thread.sleep(200);
 						 LOG.info("  Curtailment:                      SafeCurrent = " + fVal1 + "  HemsCurrentLimit = "  + fVal2 + "  HWCurrentLimit = "  + fVal3 +  "  maxReceiveTimeSec = "  + iVal1 +"  ");
 						 

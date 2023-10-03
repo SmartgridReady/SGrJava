@@ -1,7 +1,12 @@
 package communicator.rest.impl;
 
-import com.smartgridready.ns.v0.RestServiceCall;
-import com.smartgridready.ns.v0.SGrRestAPIDeviceFrame;
+import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.RestApiServiceCall;
+import communicator.common.api.Float32Value;
+import communicator.common.api.Float64Value;
+import communicator.common.api.Int32UValue;
+import communicator.common.api.StringValue;
+import communicator.common.api.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.api.GenDeviceApi4Rest;
@@ -50,7 +55,7 @@ class SGrRestAPIDeviceTest {
 	@Mock
 	RestServiceClient restServiceClientReq;
 	
-	static SGrRestAPIDeviceFrame deviceFrame;
+	static DeviceFrame deviceFrame;
 			
 	private static final String CLEMAP_AUTH_RESP = "{\r\n"
 			+ "    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6ImFjY2VzcyJ9.eyJ1c2VySWQiOiI2MzM0MzI5MWVjZjJjZjAxM2ExZTVhOWQiLCJpYXQiOjE2NjgwOTI1NzMsImV4cCI6MTY2ODE3ODk3MywiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiNjMzNDMyOTFlY2YyY2YwMTNhMWU1YTlkIiwianRpIjoiNTU2NmU2M2QtNTVmOC00MDEyLWJlYTUtOTJjYWE0NDIwYzQ3In0.xVOrspfi1E61Jb0BXBt37wgqGcnkPueMcHh1_zI-xXM\",\r\n"
@@ -68,6 +73,7 @@ class SGrRestAPIDeviceTest {
 			+ "}";
 	
 	private static final String CLEMAP_METER_RESP = "[{\"sensor_id\":\"63343431ecf2cf013a1e5a9f\",\"opm\":{\"value\":1,\"last_updt\":\"2022-11-07T15:19:54.560Z\"},\"ten_sec\":{\"p_l1\":1.5,\"p_l2\":2,\"p_l3\":4.0,\"q_l1\":2.3,\"q_l2\":0,\"q_l3\":4,\"last_upd\":\"2022-11-07T15:21:50.000Z\"},\"one_min\":{\"p_l1\":0.003,\"p_l2\":0,\"p_l3\":0,\"q_l1\":-0.002,\"q_l2\":0,\"q_l3\":0,\"avg_energy_l1\":0,\"avg_energy_l2\":0,\"avg_energy_l3\":0,\"v_l1\":227.869,\"v_l2\":0,\"v_l3\":0,\"i_l1\":0.001,\"i_l2\":0,\"i_l3\":0,\"s_l1\":0.173,\"s_l2\":0,\"s_l3\":0,\"pf_l1\":0.085,\"pf_l2\":1,\"pf_l3\":1,\"last_update\":\"2022-11-07T15:19:47.579Z\"}}]";
+
 	
 	@BeforeAll
 	static void initDeviceFrame() {
@@ -76,13 +82,13 @@ class SGrRestAPIDeviceTest {
 	
 	
 	@Test
-	void testgetValSuccessWithBearerAuthentication() throws Exception {
+	void testGetValSuccessWithBearerAuthentication() throws Exception {
 
 		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
@@ -90,10 +96,10 @@ class SGrRestAPIDeviceTest {
 		// when
 		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
-		String res = device.getVal("ActivePowerAC", "ActivePowerACtot");
+		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
 		// then		
-		assertEquals("7.5", res);
+		assertEquals("7.5", res.getString());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -101,10 +107,11 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithTokenRenewal() throws Exception {
 		
 		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
+				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		when(restServiceClientReq.callService()).thenReturn(Either.left( 
@@ -114,10 +121,10 @@ class SGrRestAPIDeviceTest {
 		// when
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
-		String res = device.getVal("ActivePowerAC", "ActivePowerACtot");
+		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
 		// then		
-		assertEquals("7.5", res);
+		assertEquals(7.5f, res.getFloat32());
 		
 	}
 	
@@ -125,10 +132,11 @@ class SGrRestAPIDeviceTest {
 	void testSetVal() throws Exception {
 		
 		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
+				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));		
 		when(restServiceClientReq.callService()).thenReturn(Either.right("OK"));
 		
@@ -136,28 +144,29 @@ class SGrRestAPIDeviceTest {
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
 
-		String res = device.setVal("ActivePowerAC", "ActivePowerACtot", "100");
+		Value res = device.setVal("ActivePowerAC", "ActivePowerACtot", Int32UValue.of(100));
 
 		// then		
-		assertEquals("OK", res);
+		assertEquals("OK", res.getString());
 	}
 
 	@ParameterizedTest
 	@CsvSource({
 			"0.004, Values [0.004] out of range. MIN value=0.005",
-			"101, Values [101.0] out of range. MAX value=100"})
+			"101, Values [101] out of range. MAX value=100"})
 	void testSetValOutOfRange(String value, String expectedResponse) throws Exception {
 
 		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getRestAPIInterfaceDesc().getRestAPIBearer().getServiceCall());
+		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
+				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
 
-		Exception exception = assertThrows(GenDriverException.class, () -> device.setVal("ActivePowerAC", "ActivePowerACtot", value));
+		Exception exception = assertThrows(GenDriverException.class, () -> device.setVal("ActivePowerAC", "ActivePowerACtot", StringValue.of(value)));
 		assertEquals(expectedResponse, exception.getMessage());
 	}
 
@@ -188,24 +197,24 @@ class SGrRestAPIDeviceTest {
 
 		if (expectedErrorMsg == null) {
 			if(isWrite) {
-				assertDoesNotThrow(() -> restApiDevice.setVal("ActivePowerAC", dataPointName, "380"));
+				assertDoesNotThrow(() -> restApiDevice.setVal("ActivePowerAC", dataPointName, Float32Value.of(380)));
 			} else {
 				assertDoesNotThrow(() -> restApiDevice.getVal("ActivePowerAC", dataPointName));
 			}
 		} else {
 			GenDriverException e = isWrite ?
-					assertThrows(GenDriverException.class, () -> restApiDevice.setVal("ActivePowerAC", dataPointName, "380"))
+					assertThrows(GenDriverException.class, () -> restApiDevice.setVal("ActivePowerAC", dataPointName, Float64Value.of(380)))
 					: assertThrows(GenDriverException.class, () -> restApiDevice.getVal("ActivePowerAC", dataPointName));
 			assertEquals(expectedErrorMsg, e.getMessage());
 		}
 	}
 
 
-	private static SGrRestAPIDeviceFrame createSGrRestAPIDeviceFrame() {
+	private static DeviceFrame createSGrRestAPIDeviceFrame() {
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		URL devDescUrl = classloader.getResource("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
 
-		DeviceDescriptionLoader<SGrRestAPIDeviceFrame> loader = new DeviceDescriptionLoader<>();
+		DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
 		return loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 	}
 }

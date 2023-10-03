@@ -18,31 +18,29 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.http.client;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.Properties;
-
+import com.smartgridready.ns.v0.HeaderEntry;
+import com.smartgridready.ns.v0.HeaderList;
+import com.smartgridready.ns.v0.RestApiServiceCall;
+import com.smartgridready.ns.v0.V0Factory;
+import io.vavr.control.Either;
 import org.apache.hc.core5.http.HttpResponse;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.smartgridready.ns.v0.HeaderEntry;
-import com.smartgridready.ns.v0.HeaderList;
-import com.smartgridready.ns.v0.RestServiceCall;
-import com.smartgridready.ns.v0.V0Factory;
-
-import io.vavr.control.Either;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Properties;
 
 public abstract class RestServiceClient {
 	
 	private final String baseUri;	
 	
-	private final RestServiceCall restServiceCall;
+	private final RestApiServiceCall restServiceCall;
 	
-	protected RestServiceClient(String baseUri, RestServiceCall serviceCall) {		
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall) {
 		this(baseUri, serviceCall, new Properties());
 	}
 	
-	protected RestServiceClient(String baseUri, RestServiceCall serviceCall, Properties substitutions) {
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, Properties substitutions) {
 		this.baseUri = replacePropertyPlaceholders(baseUri, substitutions);
 		this.restServiceCall = cloneRestServiceCallWithSubstitutions(serviceCall, substitutions);
 	}
@@ -66,14 +64,14 @@ public abstract class RestServiceClient {
 		return replacePropertyPlaceholders(baseUri, substitutions);
 	}
 	
-	public RestServiceCall getRestServiceCall() {
+	public RestApiServiceCall getRestServiceCall() {
 		return restServiceCall;
 	}
 	
-	private RestServiceCall cloneRestServiceCallWithSubstitutions(RestServiceCall restServiceCall, Properties substitutions) {
+	private RestApiServiceCall cloneRestServiceCallWithSubstitutions(RestApiServiceCall restServiceCall, Properties substitutions) {
 		
 		// handle substitutions, do this on a clone, do not modify the EI loaded from XML.
-		RestServiceCall clone = EcoreUtil.copy(restServiceCall);
+		RestApiServiceCall clone = EcoreUtil.copy(restServiceCall);
 		clone.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
 		clone.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));	
 		clone.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));

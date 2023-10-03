@@ -1,6 +1,6 @@
 package communicator.modbus.impl;
 
-import com.smartgridready.ns.v0.SGrModbusDeviceFrame;
+import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import io.vavr.Tuple2;
@@ -32,8 +32,8 @@ public class WagoTester {
 
         try {
 
-            DeviceDescriptionLoader<SGrModbusDeviceFrame> loader = new DeviceDescriptionLoader<>();
-            SGrModbusDeviceFrame devDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
+            DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+            DeviceFrame devDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
             GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
             mbRTU.initTrspService("COM3", 19200);
@@ -43,10 +43,10 @@ public class WagoTester {
             final List<Tuple2<String, String>> datapPoints = new ArrayList<>();
 
             System.out.print("\nWago test .");
-            devDesc.getFpListElement().forEach( fp -> {
-                    String fpName = fp.getFunctionalProfile().getProfileName();
-                    fp.getDpListElement().forEach( dp -> {
-                            datapPoints.add(new Tuple2<>(fpName, dp.getDataPoint().getDatapointName()));
+            devDesc.getInterfaceList().getModbusInterface().getFunctionalProfileList().getFunctionalProfileListElement().forEach( fp -> {
+                    String fpName = fp.getFunctionalProfile().getFunctionalProfileName();
+                    fp.getDataPointList().getDataPointListElement().forEach( dp -> {
+                            datapPoints.add(new Tuple2<>(fpName, dp.getDataPoint().getDataPointName()));
                                 try {                                	
                                 	System.out.print(".");
                                     Thread.sleep(500);
@@ -81,7 +81,7 @@ public class WagoTester {
         record.dpName = dataPoint._2;
 
         try {
-            record.readVal = wagoMeter.getVal(dataPoint._1, dataPoint._2);
+            record.readVal = wagoMeter.getVal(dataPoint._1, dataPoint._2).getString();
 
         } catch (Exception e) {
             record.exception = e.getMessage();

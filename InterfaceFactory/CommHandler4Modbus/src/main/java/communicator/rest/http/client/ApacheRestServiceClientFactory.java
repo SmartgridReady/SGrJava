@@ -20,16 +20,16 @@ package communicator.rest.http.client;
 
 import java.util.Properties;
 
-import com.smartgridready.ns.v0.RestServiceCall;
+import com.smartgridready.ns.v0.RestApiServiceCall;
 
 public class ApacheRestServiceClientFactory implements RestServiceClientFactory {
 		
 	@Override
-	public RestServiceClient create(String baseUri, RestServiceCall restServiceCall) {
+	public RestServiceClient create(String baseUri, RestApiServiceCall restServiceCall) {
 		return new ApacheRestServiceClient(baseUri, restServiceCall);
 	}
 	
-	public RestServiceClient create(String baseUri, RestServiceCall restServiceCall, Properties substitutions) {
+	public RestServiceClient create(String baseUri, RestApiServiceCall restServiceCall, Properties substitutions) {
 		return new ApacheRestServiceClient(baseUri, restServiceCall, substitutions);
 	}
 }
