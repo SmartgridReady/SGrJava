@@ -46,7 +46,7 @@ public class WriteExec<V> extends Processor implements Executable {
                   disposable = observable.subscribe(this::handleSuccess, this::handleError);
               }
           } catch (Throwable e) {
-            handleError(e);
+                handleError(e);
           }
     }
     public void setWriteValue(V value) {
@@ -54,7 +54,19 @@ public class WriteExec<V> extends Processor implements Executable {
     }
     
     private void handleSuccess(AsyncResult<V> result) {
-        LOG.info("WriteExec RESULT {} - {} - {}", result.getProfileName(), result.getDatapointName(), result.getExecStatus().name());
+        switch (result.getExecStatus()) {
+            case SUCCESS:
+                LOG.info("WriteExec RESULT {} - {} SUCCESS, value={}", result.getProfileName(), result.getDatapointName(), result.getValue());
+                break;
+            case ERROR:
+                LOG.error("WriteExec RESULT {} - {} ERROR, error={}", result.getProfileName(), result.getDatapointName(), getExecThrowable().getMessage());
+                break;
+            case PROCESSING:
+                LOG.warn("WriteExec RESULT {} - {} PROCESSING. Handle success called while still processing. This is unexpected behavior.", result.getProfileName(), result.getDatapointName());
+                break;
+            default:
+                LOG.error("Unhandled execution status.");
+        }
         notifyFinished();
     }
     

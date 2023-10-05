@@ -49,7 +49,19 @@ public class ReadExec<R> extends Processor implements Executable {
     }
 
     public void handleSuccess(AsyncResult<R> result) {
-        LOG.info("ReadExec RESULT {} - {} SUCCESS, value={}", result.getProfileName(), result.getDatapointName(), result.getValue());
+        switch (result.getExecStatus()) {
+            case SUCCESS:
+                LOG.info("ReadExec RESULT {} - {} SUCCESS, value={}", result.getProfileName(), result.getDatapointName(), result.getValue());
+                break;
+            case ERROR:
+                LOG.error("ReadExec RESULT {} - {} ERROR, error={}", result.getProfileName(), result.getDatapointName(), getExecThrowable().getMessage());
+                break;
+            case PROCESSING:
+                LOG.warn("ReadExec RESULT {} - {} PROCESSING. Handle success called while still processing. This is unexpected behavior.", result.getProfileName(), result.getDatapointName());
+                break;
+            default:
+                LOG.error("Unhandled execution status.");
+        }
         notifyFinished();
     }
     
