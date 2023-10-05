@@ -86,8 +86,8 @@ public class HeatPumpTester {
 	private static boolean  devRTU_IOPIsOn=false;
 	private static boolean  devTCP_IOPIsOn=true; 
 	private static boolean  devStiebelISGIsOn=false;
-	private static boolean  devCTAoptiHeatIsOn=false;
-	private static boolean  devHovalTCPIsOn=true;
+	private static boolean  devCTAoptiHeatIsOn=true;
+	private static boolean  devHovalTCPIsOn=false;
 
 	// Set the mockModbusDriver to new GenDriverAPI4ModbusRTUMock() to mock the real devices.
 	//private static GenDriverAPI4Modbus  mockModbusDriver = new GenDriverAPI4ModbusRTUMock();
