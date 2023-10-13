@@ -715,7 +715,7 @@ public class HeatPumpTester {
 					      
 			            // testing getters
 						setMockIntegerType(true);
-						iVal1 =  (int)devCTAoptiHeat.getVal("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec").getInt16U();
+						iVal1 =  (int)devCTAoptiHeat.getVal("DeviceInformation","ctaRemoteCtrlTimeSec").getInt16U();
 						boolean bRem = true;
 						if (iVal1==0) bRem = false; 
 						LOG.info(String.format("  ctaRemoteCtrlTimeSec: "  + bRem + "  ctaRemoteCtrlTimeSec=" + iVal1));
