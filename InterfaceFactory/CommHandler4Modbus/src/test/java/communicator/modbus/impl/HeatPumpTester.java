@@ -756,9 +756,9 @@ public class HeatPumpTester {
 						LOG.info(String.format("  BufferStorageCtrl : ActHeatBufferTempUpper=" + fVal2 + " °C,  ActHeatBufferTempLower=" + fVal3  + " °C   HeatBufferTempStptOffset=" + fVal1 + " °C"));  
 						LOG.info(String.format(" "));	
 						
-						iVal1 = (int)devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHCOpModeCmd").getInt16();
-						iVal2 = (int)devCTAoptiHeat.getVal("HeatCoolCtrl", "HeatCoolOpState").getInt16();
-						LOG.info(String.format("  HeatCoolCtrl: HeatCoolCtrlOpModeCmd="+ iVal1 + ",  HeatCoolOpState=" + iVal2));   				
+						oEnumListSet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHCOpModeCmd").getEnum();
+						oEnumListGet = devCTAoptiHeat.getVal("HeatCoolCtrl", "HeatCoolOpState").getEnum();
+						LOG.info(String.format("  HeatCoolCtrl: HeatCoolCtrlOpModeCmd="+ oEnumListSet.getLiteral() + " / " + oEnumListSet.getOrdinal() + ",  HeatCoolOpState=" + oEnumListGet.getLiteral() + " / " + oEnumListGet.getOrdinal()));   				
 						fVal1 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTempStpt").getFloat64();
 						fVal2 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTemp").getFloat64();
 						// not yet supported fVal4 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat64();
