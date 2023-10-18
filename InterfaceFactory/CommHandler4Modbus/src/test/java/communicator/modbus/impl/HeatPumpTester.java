@@ -625,6 +625,10 @@ public class HeatPumpTester {
 					devCTAoptiHeat=new SGrModbusDevice(tstDesc, mbCTAoptiHeat);							
 					mbCTAoptiHeat.initDevice("192.168.1.55",502);
 					
+					// set back remote control enabler
+					devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteHCTempSetptEnable",BooleanValue.of(false) );  
+					
+					
 				}
 				
 				catch ( Exception e )
@@ -663,18 +667,40 @@ public class HeatPumpTester {
 						  // read the device manual carefully before testing any setpoint
 				  
 					      // test setters
-					      /* Important Remark
-					       * ctaRemoteCtrlTimeSec is a time counter counting down all setpoints of ths device.
-					       * Activating this counter means that all remote setpoints become valid again
-					       * 
+					      /* Important Remark related to Device level activity controls
+					       * ctaRemoteCtrlTimeSec is a time counter counting down activce tine fpr remote setpoints setpoints of this device.
+					       * Activating this counter means that the selected  remote setpoints become valid again
+ 
 					       */
+						  
+						  //*  set ctaRemoteCtrlTimeSec  
+						  //  enable remote control for setpoints (NOT modeCmd's)
+						  iVal1 = 60;
+						  devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteCtrlTimeSec", Int16UValue.of(iVal1));
+						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + iVal1));
+						  Thread.sleep(25);
+						  //*/
+
+						  //* set HeatCool  remote setpoint enabled
+						  fVal1 = (float) 22.6;
+						  devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteHCTempSetptEnable",BooleanValue.of(true) );  
+						  LOG.info(String.format("ctaRemoteHCTempSetptEnable enabled"));
+						  devCTAoptiHeat.setVal("HeatCoolCtrl","SupplyWaterTempStpt",Float64Value.of(fVal1));
+						  LOG.info(String.format("Setting HeatCoolCtrl: SupplyWaterTempStpt="  + fVal1 )); 
+						  //*/   
+						  
+						  /* set HeatCool  remote setpoint value
+						      
+						  */   
 						  
 						  /* set power
 						  //TODO: read timeout beim Schreiben klären
-						  // TODO ctaRemoteCtrlTimeSec not defined in EI-XML
-						  //  devCTAoptiHeat.setVal("PowerCtrl","ctaRemoteCtrlTimeSec", Int16UValue.of(20));
-						  // LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
+						  //  enable remote control for setpoints (NOT modeCmd's)
+						  devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteCtrlTimeSec", Int16UValue.of(60));
+						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
 						  Thread.sleep(25);
+						  
+						  
 						  devCTAoptiHeat.setVal("PowerCtrl","PowerCtrlStpt",Float64Value.of(38.0f));
 						  LOG.info(String.format("Setting PowerCtrl: PowerCtrlStpt="  + gdtValue.getFloat64()));
 						  
@@ -756,9 +782,9 @@ public class HeatPumpTester {
 						LOG.info(String.format("  BufferStorageCtrl : ActHeatBufferTempUpper=" + fVal2 + " °C,  ActHeatBufferTempLower=" + fVal3  + " °C   HeatBufferTempStptOffset=" + fVal1 + " °C"));  
 						LOG.info(String.format(" "));	
 						
-						oEnumListSet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHCOpModeCmd").getEnum();
-						oEnumListGet = devCTAoptiHeat.getVal("HeatCoolCtrl", "HeatCoolOpState").getEnum();
-						LOG.info(String.format("  HeatCoolCtrl: HeatCoolCtrlOpModeCmd="+ oEnumListSet.getLiteral() + " / " + oEnumListSet.getOrdinal() + ",  HeatCoolOpState=" + oEnumListGet.getLiteral() + " / " + oEnumListGet.getOrdinal()));   				
+						oEnumListSet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHeatCoolCtrlOpModeCmd").getEnum();
+						oEnumListGet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHeatCoolOpState").getEnum();
+						LOG.info(String.format("  HeatCoolCtrl: ctaHCOpModeCmd="+ oEnumListSet.getLiteral() + " / " + oEnumListSet.getOrdinal() + ",  ctaHeatCoolOpState=" + oEnumListGet.getLiteral() + " / " + oEnumListGet.getOrdinal()));   				
 						fVal1 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTempStpt").getFloat64();
 						fVal2 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTemp").getFloat64();
 						// not yet supported fVal4 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat64();
