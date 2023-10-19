@@ -673,24 +673,28 @@ public class HeatPumpTester {
  
 					       */
 						  
-						  //*  set ctaRemoteCtrlTimeSec  
+						  /*  set ctaRemoteCtrlTimeSec  
 						  //  enable remote control for setpoints (NOT modeCmd's)
 						  iVal1 = 60;
 						  devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteCtrlTimeSec", Int16UValue.of(iVal1));
 						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + iVal1));
 						  Thread.sleep(25);
-						  //*/
+						  */
 
-						  //* set HeatCool  remote setpoint enabled
+						  /* set HeatCool  remote setpoint enabled
 						  fVal1 = (float) 22.6;
 						  devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteHCTempSetptEnable",BooleanValue.of(true) );  
 						  LOG.info(String.format("ctaRemoteHCTempSetptEnable enabled"));
 						  devCTAoptiHeat.setVal("HeatCoolCtrl","SupplyWaterTempStpt",Float64Value.of(fVal1));
 						  LOG.info(String.format("Setting HeatCoolCtrl: SupplyWaterTempStpt="  + fVal1 )); 
-						  //*/   
+						  */   
 						  
 						  /* set HeatCool  remote setpoint value
-						      
+						  // remark:  ctaRemoteHCTempSetptEnable must be false,  ctaRemoteCtrlTimeSec must be 0
+						  String sLiteral =  "HC_HEAT_ECO";
+  						  devCTAoptiHeat.setVal("HeatCoolCtrl", "ctaHCOpModeCmd", EnumValue.of(sLiteral.intern()));
+						  LOG.info(String.format("Setting ctaHCOpModeCmd="+ sLiteral.intern())); 
+						  // oEnumListSet.getLiteral() + "/" + oEnumListSet.getOrdinal());
 						  */   
 						  
 						  /* set power
@@ -782,9 +786,9 @@ public class HeatPumpTester {
 						LOG.info(String.format("  BufferStorageCtrl : ActHeatBufferTempUpper=" + fVal2 + " °C,  ActHeatBufferTempLower=" + fVal3  + " °C   HeatBufferTempStptOffset=" + fVal1 + " °C"));  
 						LOG.info(String.format(" "));	
 						
-						oEnumListSet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHeatCoolCtrlOpModeCmd").getEnum();
-						oEnumListGet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHeatCoolOpState").getEnum();
-						LOG.info(String.format("  HeatCoolCtrl: ctaHCOpModeCmd="+ oEnumListSet.getLiteral() + " / " + oEnumListSet.getOrdinal() + ",  ctaHeatCoolOpState=" + oEnumListGet.getLiteral() + " / " + oEnumListGet.getOrdinal()));   				
+						oEnumListSet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHCOpModeCmd").getEnum();
+						oEnumListGet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHCOpState").getEnum();
+						LOG.info(String.format("  HeatCoolCtrl: ctaHCOpModeCmd="+ oEnumListSet.getLiteral() + " / " + oEnumListSet.getOrdinal() + ",  ctaHCOpState=" + oEnumListGet.getLiteral() + " / " + oEnumListGet.getOrdinal()));   				
 						fVal1 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTempStpt").getFloat64();
 						fVal2 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTemp").getFloat64();
 						// not yet supported fVal4 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat64();
