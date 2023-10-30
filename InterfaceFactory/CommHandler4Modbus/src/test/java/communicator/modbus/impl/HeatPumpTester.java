@@ -669,9 +669,9 @@ public class HeatPumpTester {
 				  
 					      // test setters
 					      /* Important Remark related to Device level activity controls
-					       * ctaRemoteCtrlTimeSec is a time counter counting down activce tine fpr remote setpoints setpoints of this device.
+					       * ctaRemoteCtrlTimeSec is a time counter counting down activce tine fpr remote setpoints  of this device.
 					       * Activating this counter means that the selected  remote setpoints become valid again
- 
+					       * THIS IS ONLY USED FOR Setpoints, NOT  for OpModeCmds
 					       */
 						  
 						  /*  set ctaRemoteCtrlTimeSec  
@@ -690,46 +690,40 @@ public class HeatPumpTester {
 						  LOG.info(String.format("Setting HeatCoolCtrl: SupplyWaterTempStpt="  + fVal1 )); 
 						  */   
 						  
-						  /* set HeatCool  remote setpoint value
+						  /* set HeatCoolOpModeCmd  
 						  // remark:  ctaRemoteHCTempSetptEnable must be false,  ctaRemoteCtrlTimeSec must be 0
 						  String sLiteral =  "HC_HEAT_ECO";
   						  devCTAoptiHeat.setVal("HeatCoolCtrl", "ctaHCOpModeCmd", EnumValue.of(sLiteral.intern()));
 						  LOG.info(String.format("Setting ctaHCOpModeCmd="+ sLiteral.intern())); 
 						  */   
 						  
-						  /* set power
-						  //TODO: read timeout beim Schreiben klären
-						  //  enable remote control for setpoints (NOT modeCmd's)
-						  devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteCtrlTimeSec", Int16UValue.of(60));
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
+						  
+						  /*  Set DomHotWSetPoint
+						  fVal1 = (float) 51.1;
 						  Thread.sleep(25);
+						  devCTAoptiHeat.setVal("DomHotWaterCtrl", "DomHotWTempStpt",Float64Value.of(fVal1));
+						  */
+						  
+						  /*  Set DomHotWCtrl
+						  String sLiteral = "DHW_OFF";						   
+						  devCTAoptiHeat.setVal("DomHotWaterCtrl", "ctaDomHotWOpModeCmd", EnumValue.of(sLiteral.intern()));
+						  LOG.info(String.format("Setting ctaDomHotWOpMode ="+ sLiteral.intern())); 
+					      */
 						  
 						  
-						  devCTAoptiHeat.setVal("PowerCtrl","PowerCtrlStpt",Float64Value.of(38.0f));
-						  LOG.info(String.format("Setting PowerCtrl: PowerCtrlStpt="  + gdtValue.getFloat32()));
+						  ///* set power
+						  fVal1 = (float) 38.0;
+						  devCTAoptiHeat.setVal("PowerCtrl","PowerCtrlStpt",Float32Value.of(fVal1));
+						  LOG.info(String.format("Setting PowerCtrl: PowerCtrlStpt="  + fVal1));
+						  //*/
 						  
 						  /* set storage buffer
-						  //TODO: read timeout beim Schreiben klären
-						  devCTAoptiHeat.setVal("BufferStorageCtrl","ctaRemoteCtrlTimeSec",Int16UValue.of(20));
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-						  Thread.sleep(25);
-						  devCTAoptiHeat.setVal("BufferStorageCtrl","HeatBufferTempStptOffset",Float64Value.of(25));
-						  LOG.info(String.format("Setting BufferStorageCtrl: HeatBufferTempStptOffset="  + gdtValue.getFloat32()));
-					      
-						  /*  Set DomHotWSetPoint
-						 //TODO: read timeout beim Schreiben klären
-						  devCTAoptiHeat.setVal("DomHotWCtrl","ctaRemoteCtrlTimeSec",Int16UValue.of(20));
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-						  Thread.sleep(25);
-						  devCTAoptiHeat.setVal("DomHotWCtrl", "DomHotWTempStpt",Float64Value.of(51.0d));
-						
-						  /*  Set DomHotWCtrl
-						  * /TODO: read timeout beim Schreiben klären
-						  devCTAoptiHeat.setVal("DomHotWCtrl","ctaRemoteCtrlTimeSec",Int16UValue.of(20));
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-						  Thread.sleep(25);
-						  devCTAoptiHeat.setVal("DomHotWCtrl", "ctaDomHotWOpMode", EnumValue.of("DHW_ON"));
-					      
+						  fVal1 = (float) 25.0;
+						  devCTAoptiHeat.setVal("BufferStorageCtrl","HeatBufferTempStptOffset",Float64Value.of(fVal1));
+						  LOG.info(String.format("Setting BufferStorageCtrl: HeatBufferTempStptOffset="  + fVal1));
+					      */
+
+						  
 						  /* control SG-Ready by enum SGReadyStateLv2Type
 						  devCTAoptiHeat.setVal("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec",Int16UValue.of(120));
 						  devCTAoptiHeat.setVal("SG-ReadyStates_bwp", "SGReadyCmd", EnumValue.of("HP_NORMAL"));
@@ -793,13 +787,8 @@ public class HeatPumpTester {
 						fVal2 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTemp").getFloat32();
 						// not yet supported fVal4 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat32();
 						LOG.info(String.format("                SupplyWaterTempStpt=" + fVal1 + " °C,  SupplyWaterTemp=" + fVal2 + " °C "));  			
-						LOG.info(String.format(" "));	
-						
-						fVal1 = devCTAoptiHeat.getVal("RoomTempCtrl", "RoomZoneTempStpt").getFloat32();
-						fVal2 = devCTAoptiHeat.getVal("RoomTempCtrl", "RoomZoneTemp").getFloat32();
-						LOG.info(String.format("  RoomTempCtrl: RoomZoneTemp=" + fVal2 + " °C,  RoomZoneTempStpt=" + fVal1 + "  °C "));       
-						LOG.info(String.format(" "));	
-						
+						LOG.info(String.format(" "));						
+					
 						EnumRecord oEnumList = devCTAoptiHeat.getVal("SG-ReadyStates_bwp", "SGReadyOpModeCmd").getEnum();
 						LOG.info(String.format("  SGReady-bwp:  SGReadyCmd=" + oEnumList.getLiteral()));
 						//oEnumList.unsetSgreadyStateLv2(); // TODO what is this supposed to do
