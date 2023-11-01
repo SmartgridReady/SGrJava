@@ -711,11 +711,11 @@ public class HeatPumpTester {
 					      */
 						  
 						  
-						  ///* set power
+						  /* set power
 						  fVal1 = (float) 38.0;
 						  devCTAoptiHeat.setVal("PowerCtrl","PowerCtrlStpt",Float32Value.of(fVal1));
 						  LOG.info(String.format("Setting PowerCtrl: PowerCtrlStpt="  + fVal1));
-						  //*/
+						  */
 						  
 						  /* set storage buffer
 						  fVal1 = (float) 25.0;
@@ -724,16 +724,11 @@ public class HeatPumpTester {
 					      */
 
 						  
-						  /* control SG-Ready by enum SGReadyStateLv2Type
-						  devCTAoptiHeat.setVal("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec",Int16UValue.of(120));
-						  devCTAoptiHeat.setVal("SG-ReadyStates_bwp", "SGReadyCmd", EnumValue.of("HP_NORMAL"));
-						  LOG.info("  Setting  ReadyStates_bwp:SGReadyCmd=HP_NORMAL");
-						  // oEnumList.unsetSgreadyStateLv2();
-						  // ctaRemoteCtrlTimeSec is a second counter starting @max 3000 in order to allow using setpoints for external controls
-						  devCTAoptiHeat.setVal("SG-ReadyStates_bwp","ctaRemoteCtrlTimeSec",Int16UValue.of(20));
-						  LOG.info(String.format("Setting ctaRemoteCtrlTimeSec="  + gdtValue.getInt16U()));
-						  LOG.info("\n");
-						  */
+						  //* control SG-Ready by enum SGReadyStateLv2Type
+						  String sLiteral = "HP_NORMAL";
+						  devCTAoptiHeat.setVal("SG-ReadyStates_bwp", "SGReadyOpModeCmd", EnumValue.of(sLiteral.intern()));
+						  LOG.info("  Setting  ReadyStates_bwp:SGReadyCmd="+ sLiteral.intern()); 
+						  //*/
 						}
 						
 					      
@@ -785,13 +780,13 @@ public class HeatPumpTester {
 						LOG.info(String.format("  HeatCoolCtrl: ctaHCOpModeCmd="+ oEnumListSet.getLiteral() + " / " + oEnumListSet.getOrdinal() + ",  ctaHCOpState=" + oEnumListGet.getLiteral() + " / " + oEnumListGet.getOrdinal()));   				
 						fVal1 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTempStpt").getFloat32();
 						fVal2 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTemp").getFloat32();
-						// not yet supported fVal4 = devCTAoptiHeat.getValByGDPType("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat32();
-						LOG.info(String.format("                SupplyWaterTempStpt=" + fVal1 + " °C,  SupplyWaterTemp=" + fVal2 + " °C "));  			
+						fVal3 = devCTAoptiHeat.getVal("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat32();
+						
+						LOG.info(String.format("       SupplyWaterTempStpt=" + fVal1 + " °C,  SupplyWaterTemp=" + fVal2 + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C " ));  			
 						LOG.info(String.format(" "));						
 					
-						EnumRecord oEnumList = devCTAoptiHeat.getVal("SG-ReadyStates_bwp", "SGReadyOpModeCmd").getEnum();
-						LOG.info(String.format("  SGReady-bwp:  SGReadyCmd=" + oEnumList.getLiteral()));
-						//oEnumList.unsetSgreadyStateLv2(); // TODO what is this supposed to do
+						EnumRecord oEnumList = devCTAoptiHeat.getVal("SG-ReadyStates_bwp", "SGReadyState").getEnum();
+						LOG.info(String.format("  SGReady-bwp:  SGReadyState=" + oEnumList.getLiteral()));
 						LOG.info(String.format(" "));	
 						
 
