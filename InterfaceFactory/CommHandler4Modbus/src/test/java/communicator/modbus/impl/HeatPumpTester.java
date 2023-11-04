@@ -671,7 +671,7 @@ public class HeatPumpTester {
 					      /* Important Remark related to Device level activity controls
 					       * ctaRemoteCtrlTimeSec is a time counter counting down activce tine fpr remote setpoints  of this device.
 					       * Activating this counter means that the selected  remote setpoints become valid again
-					       * THIS IS ONLY USED FOR Setpoints, NOT  for OpModeCmds
+					       * THIS IS ONLY USED FOR Setpoints in HeatCool functional profiles, NOT  for OpModeCmds
 					       */
 						  
 						  /*  set ctaRemoteCtrlTimeSec  
@@ -682,18 +682,18 @@ public class HeatPumpTester {
 						  Thread.sleep(25);
 						  */
 
-						  /* set HeatCool  remote setpoint enabled
+						  /* set HeatCool_1  remote setpoint enabled
 						  fVal1 = (float) 22.6;
-						  devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteHCTempSetptEnable",BooleanValue.of(true) );  
+						  devCTAoptiHeat.setVal("HeatCoolCtrl_1","ctaRemoteHCTempSetptEnable",BooleanValue.of(true) );  
 						  LOG.info(String.format("ctaRemoteHCTempSetptEnable enabled"));
-						  devCTAoptiHeat.setVal("HeatCoolCtrl","SupplyWaterTempStpt",Float64Value.of(fVal1));
-						  LOG.info(String.format("Setting HeatCoolCtrl: SupplyWaterTempStpt="  + fVal1 )); 
+						  devCTAoptiHeat.setVal("HeatCoolCtrl_1","SupplyWaterTempStpt",Float64Value.of(fVal1));
+						  LOG.info(String.format("Setting HeatCoolCtrl_1: SupplyWaterTempStpt="  + fVal1 )); 
 						  */   
 						  
 						  /* set HeatCoolOpModeCmd  
 						  // remark:  ctaRemoteHCTempSetptEnable must be false,  ctaRemoteCtrlTimeSec must be 0
 						  String sLiteral =  "HC_HEAT_ECO";
-  						  devCTAoptiHeat.setVal("HeatCoolCtrl", "ctaHCOpModeCmd", EnumValue.of(sLiteral.intern()));
+  						  devCTAoptiHeat.setVal("HeatCoolCtrl_1", "ctaHCOpModeCmd", EnumValue.of(sLiteral.intern()));
 						  LOG.info(String.format("Setting ctaHCOpModeCmd="+ sLiteral.intern())); 
 						  */   
 						  
@@ -724,11 +724,11 @@ public class HeatPumpTester {
 					      */
 
 						  
-						  //* control SG-Ready by enum SGReadyStateLv2Type
+						  /* control SG-Ready by enum SGReadyStateLv2Type
 						  String sLiteral = "HP_NORMAL";
 						  devCTAoptiHeat.setVal("SG-ReadyStates_bwp", "SGReadyOpModeCmd", EnumValue.of(sLiteral.intern()));
 						  LOG.info("  Setting  ReadyStates_bwp:SGReadyCmd="+ sLiteral.intern()); 
-						  //*/
+						  */
 						}
 						
 					      
@@ -775,12 +775,12 @@ public class HeatPumpTester {
 						LOG.info(String.format("  BufferStorageCtrl : ActHeatBufferTempUpper=" + fVal2 + " °C,  ActHeatBufferTempLower=" + fVal3  + " °C   HeatBufferTempStptOffset=" + fVal1 + " °C"));  
 						LOG.info(String.format(" "));	
 						
-						oEnumListSet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHCOpModeCmd").getEnum();
-						oEnumListGet = devCTAoptiHeat.getVal("HeatCoolCtrl", "ctaHCOpState").getEnum();
-						LOG.info(String.format("  HeatCoolCtrl: ctaHCOpModeCmd="+ oEnumListSet.getLiteral() + " / " + oEnumListSet.getOrdinal() + ",  ctaHCOpState=" + oEnumListGet.getLiteral() + " / " + oEnumListGet.getOrdinal()));   				
-						fVal1 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTempStpt").getFloat32();
-						fVal2 = devCTAoptiHeat.getVal("HeatCoolCtrl", "SupplyWaterTemp").getFloat32();
-						fVal3 = devCTAoptiHeat.getVal("HeatCoolCtrl", "ReturnSupplyWaterTemp").getFloat32();
+						oEnumListSet = devCTAoptiHeat.getVal("HeatCoolCtrl_1", "ctaHCOpModeCmd").getEnum();
+						oEnumListGet = devCTAoptiHeat.getVal("HeatCoolCtrl_1", "ctaHCOpState").getEnum();
+						LOG.info(String.format("  HeatCoolCtrl_1: ctaHCOpModeCmd="+ oEnumListSet.getLiteral() + " / " + oEnumListSet.getOrdinal() + ",  ctaHCOpState=" + oEnumListGet.getLiteral() + " / " + oEnumListGet.getOrdinal()));   				
+						fVal1 = devCTAoptiHeat.getVal("HeatCoolCtrl_1", "SupplyWaterTempStpt").getFloat32();
+						fVal2 = devCTAoptiHeat.getVal("HeatCoolCtrl_1", "SupplyWaterTemp").getFloat32();
+						fVal3 = devCTAoptiHeat.getVal("HeatCoolCtrl_1", "ReturnSupplyWaterTemp").getFloat32();
 						
 						LOG.info(String.format("       SupplyWaterTempStpt=" + fVal1 + " °C,  SupplyWaterTemp=" + fVal2 + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C " ));  			
 						LOG.info(String.format(" "));						
