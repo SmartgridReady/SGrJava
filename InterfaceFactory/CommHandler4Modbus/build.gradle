@@ -113,11 +113,11 @@ publishing {
 
     repositories {
         maven {
-            name = "Github"
-            url = uri("https://maven.pkg.github.com/SmartgridReady/SGrJavaPackages")
+            name = "Nexus"
+            url = uri("https://nexus.library.smartgridready.ch/repository/maven-releases/")
             credentials {
-                username = findProperty("github.username")
-                password = findProperty("github.token")
+                username = findProperty("nexus.username")
+                password = findProperty("nexus.password")
             }
         }
     }
@@ -129,9 +129,6 @@ publishing {
             version = '1.0.0'
 
             from components.java
-            pom {
-                url.set("https://github.com/SmartgridReady/SGrJavaPackages.git")
-            }
         }
     }
 }
