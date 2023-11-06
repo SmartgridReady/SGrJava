@@ -225,8 +225,7 @@ public class IBTlabLoopTester {
 				fVal2 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L3").getFloat64();
 				Thread.sleep(10);
 				fVal3 = devWagoMeter.getVal("VoltageAC", "VoltageACL2-L3").getFloat64();
-				LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
-						+ fVal3 + "  ");
+				LOG.info(String.format("  VoltageAC L12/13/23 [V]:           %.2f,  %.2f, %.2f", fVal1,  fVal2 , fVal3 ));
 				Thread.sleep(10);
 				fVal1 = devWagoMeter.getVal("CurrentAC", "CurrentACL1").getFloat64();
 				Thread.sleep(10);

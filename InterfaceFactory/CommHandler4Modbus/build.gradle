@@ -46,7 +46,7 @@ dependencies {
 	implementation project(':InterfaceFactory:emfEI4Modbus')
     
     implementation group: 'ch.smartgridready', name: 'sgr-driver-api', version: '1.0.0'
-    implementation group: 'ch.smartgridready', name: 'easymodbus', version: '1.0.0'         
+    implementation group: 'ch.smartgridready', name: 'easymodbus', version: '1.0.0'
     implementation group: 'org.apache.httpcomponents.client5', name: 'httpclient5', version: '5.1.3'
     implementation group: 'org.apache.httpcomponents.client5', name: 'httpclient5-fluent', version: '5.1.3'
     implementation group: 'io.burt', name: 'jmespath-core', version: '0.5.1'
