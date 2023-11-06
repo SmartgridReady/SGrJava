@@ -624,7 +624,7 @@ public class HeatPumpTester {
 						mbCTAoptiHeat = new GenDriverAPI4ModbusTCP();
 					}
 					devCTAoptiHeat=new SGrModbusDevice(tstDesc, mbCTAoptiHeat);							
-					mbCTAoptiHeat.initDevice("192.168.1.55",502);
+					//mbCTAoptiHeat.initDevice("192.168.1.55",502);
 					
 					// set back remote control enabler
 					devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteHCTempSetptEnable",BooleanValue.of(false) );  
