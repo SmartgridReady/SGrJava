@@ -11,9 +11,11 @@ import com.smartgridready.ns.v0.EnumEntryProductRecord;
 import com.smartgridready.ns.v0.EnumMapProduct;
 import com.smartgridready.ns.v0.FunctionalProfileDescription;
 import com.smartgridready.ns.v0.InterfaceList;
+import com.smartgridready.ns.v0.ModbusBoolean;
 import com.smartgridready.ns.v0.ModbusDataPoint;
 import com.smartgridready.ns.v0.ModbusDataPointConfiguration;
 import com.smartgridready.ns.v0.ModbusDataPointList;
+import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.ModbusFunctionalProfile;
 import com.smartgridready.ns.v0.ModbusFunctionalProfileList;
 import com.smartgridready.ns.v0.ModbusInterface;
@@ -46,6 +48,7 @@ import communicator.modbus.helper.ModbusReaderResponse;
 import io.vavr.Tuple2;
 import org.eclipse.emf.common.util.EList;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -69,6 +72,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -121,6 +125,7 @@ import static org.mockito.Mockito.when;
  * </ul>
  *
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
 class SetGetValConversionTest {
 
@@ -413,6 +418,76 @@ class SetGetValConversionTest {
         doTestWriteAndReadBack(fixture);
     }
 
+
+    private static class BooleanMapping {
+        boolean writeVal;
+        boolean mappingDefinedForFalse;
+        int mappingVal;
+        int[] expectedModbusVal;
+        boolean expectedReadVal;
+
+        public BooleanMapping(
+                boolean writeVal, boolean mappingDefinedForFalse, int mappingVal,
+                int[] expectedModbusVal, boolean expectedReadVal) {
+            this.writeVal = writeVal;
+            this.mappingDefinedForFalse = mappingDefinedForFalse;
+            this.mappingVal = mappingVal;
+            this.expectedModbusVal = expectedModbusVal;
+            this.expectedReadVal = expectedReadVal;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("writeVal=%b, mappingForFalse=%b, mappingVal=%d", writeVal, mappingDefinedForFalse, mappingVal);
+        }
+    }
+
+    private Stream<BooleanMapping> booleanConversionsWithMappings() {
+
+        List<BooleanMapping> testSet = new LinkedList<>();
+        testSet.add(new BooleanMapping(false, true,  255, new int[]{255}, false));
+        testSet.add(new BooleanMapping(false, false, 255, new int[]{0},   false));
+        testSet.add(new BooleanMapping(true, true,    15, new int[]{0}, true));
+        testSet.add(new BooleanMapping(true, false,   15, new int[]{15}, true));
+        return testSet.stream();
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("booleanConversionsWithMappings")
+    void testBooleanRegisterConversionWithMapping(BooleanMapping mapping) throws Exception {
+
+        Fixture<int[]> fixture =
+                new Fixture<>(
+                        BooleanValue.of(mapping.writeVal),
+                        BooleanValue.of(mapping.expectedReadVal),
+                        mapping.expectedModbusVal,
+                        deviceFrame(true, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
+
+        // Add a boolean mapping to the modbus datapoint.
+        ModbusDataPoint modbusDataPoint = fixture.getDeviceFrame()
+                .getInterfaceList()
+                .getModbusInterface()
+                .getFunctionalProfileList()
+                .getFunctionalProfileListElement().get(0)
+                .getDataPointList().getDataPointListElement().get(0);
+
+
+        ModbusBoolean modbusBoolean = V0Factory.eINSTANCE.createModbusBoolean();
+        if (mapping.mappingDefinedForFalse) {
+            modbusBoolean.setFalseValue(mapping.mappingVal);
+        } else {
+            modbusBoolean.setTrueValue(mapping.mappingVal);
+        }
+
+        ModbusDataType modbusDataTypeBoolean = V0Factory.eINSTANCE.createModbusDataType();
+        modbusDataTypeBoolean.setBoolean(modbusBoolean);
+        modbusDataPoint.getModbusDataPointConfiguration().setModbusDataType(modbusDataTypeBoolean);
+
+        // Test
+        doTestWriteAndReadBack(fixture);
+    }
+
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void testBooleanDiscreteValConversion(boolean bVal)  throws Exception {
@@ -422,7 +497,6 @@ class SetGetValConversionTest {
 
         doTestWriteAndReadBack(fixture);
     }
-
 
     static Stream<Tuple2<BitOrder, Boolean>> booleanConversions() {
 
@@ -887,7 +961,11 @@ class SetGetValConversionTest {
     private static ModbusDataTypeImpl modbusDP(int v0PackageType) {
 
         ModbusDataTypeImpl dp = (ModbusDataTypeImpl) V0Factory.eINSTANCE.createModbusDataType();
-        dp.eSet(v0PackageType, V0Factory.eINSTANCE.createEmptyType());
+        if (v0PackageType == MODBUS_DATA_TYPE__BOOLEAN) {
+            dp.eSet(v0PackageType, V0Factory.eINSTANCE.createModbusBoolean());
+        } else {
+            dp.eSet(v0PackageType, V0Factory.eINSTANCE.createEmptyType());
+        }
         return dp;
     }
 
