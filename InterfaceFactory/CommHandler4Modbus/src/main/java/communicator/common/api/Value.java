@@ -1,6 +1,7 @@
 package communicator.common.api;
 
 import com.smartgridready.ns.v0.EnumMapProduct;
+import com.smartgridready.ns.v0.ModbusBoolean;
 import com.smartgridready.ns.v0.ModbusDataType;
 import communicator.common.helper.DataTypeHelper;
 import communicator.modbus.helper.ConversionHelper;
@@ -10,7 +11,6 @@ import java.util.Map;
 
 public abstract class Value  {
     public static final BigInteger UNSIGNED_LONG_MASK = BigInteger.ONE.shiftLeft(Long.SIZE).subtract(BigInteger.ONE);
-
     public abstract byte getInt8();
     public abstract short getInt8U();
     public abstract short getInt16();
@@ -64,7 +64,8 @@ public abstract class Value  {
             return ConversionHelper.convStringToRegisters(getString());
         }
         if (modbusDataType.getBoolean() != null) {
-            return ConversionHelper.shortToRegister(getBoolean() ? (short)1 : (short)0);
+            short booleanAsShort = mapBooleanToShort(modbusDataType.getBoolean(), getBoolean());
+            return ConversionHelper.shortToRegister(booleanAsShort);
         }
 
         throw new IllegalArgumentException(
@@ -119,7 +120,8 @@ public abstract class Value  {
             return StringValue.of(ConversionHelper.convRegistersToString(registers, 0, registers.length * 2));
         }
         if (modbusDataType.getBoolean() != null) {
-            return BooleanValue.of(ConversionHelper.byteBufFromRegisters(registers).getShort() != 0);
+            short booleanAsShort = ConversionHelper.byteBufFromRegisters(registers).getShort();
+            return BooleanValue.of(mapShortToBoolean(modbusDataType.getBoolean(), booleanAsShort));
         }
 
         throw new IllegalArgumentException(String.format("Modbus register type %s to Value.class conversion from register not supported.",
@@ -192,5 +194,33 @@ public abstract class Value  {
         if (value < -Float.MAX_VALUE || value > Float.MAX_VALUE) {
             throw new IllegalArgumentException(String.format("Cannot convert value %f to float32. Value out of range", value));
         }
+    }
+
+    private static short mapBooleanToShort(ModbusBoolean modbusBoolean, boolean value) {
+
+        if (modbusBoolean.isSetFalseValue()) {
+            // mapping of false value is defined
+            return value ? 0 : (short)modbusBoolean.getFalseValue();
+        }
+        if (modbusBoolean.isSetTrueValue()) {
+            // mapping of true value is defined
+            return value ? (short)modbusBoolean.getTrueValue() : 0;
+        }
+        // no mapping defined
+        return value ? (short)1 : (short)0;
+    }
+
+    private static boolean mapShortToBoolean(ModbusBoolean modbusBoolean, short value) {
+
+        if (modbusBoolean.isSetFalseValue()) {
+            // check if mapped value for false matches the value received from modbus
+            return value != modbusBoolean.getFalseValue();
+        }
+        if (modbusBoolean.isSetTrueValue() && value == modbusBoolean.getTrueValue()) {
+            // check mapped value for true matches the value received from modbus
+            return value == modbusBoolean.getTrueValue();
+        }
+        // no mapping defined
+        return value != 0;
     }
 }

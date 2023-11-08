@@ -15,13 +15,14 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 @TestInstance(PER_CLASS) // Needed to have a non static @MethodSource
 public class BooleanValueTest {
 
     private static final ModbusDataType modbusDataTypeBoolean = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusDataTypeBoolean.setBoolean(V0Factory.eINSTANCE.createEmptyType());}
+    static { modbusDataTypeBoolean.setBoolean(V0Factory.eINSTANCE.createModbusBoolean());}
 
     private Value value;
 
@@ -82,16 +83,16 @@ public class BooleanValueTest {
     void fromModbusConversion() {
 
         Value value = Value.fromDiscreteInput(modbusDataTypeBoolean, new boolean[]{true} );
-        assertEquals(true, value.getBoolean());
+        assertTrue(value.getBoolean());
 
         value = Value.fromDiscreteInput(modbusDataTypeBoolean, new boolean[]{false} );
-        assertEquals(false, value.getBoolean());
+        assertTrue(value.getBoolean());
 
         value = Value.fromModbusRegister(modbusDataTypeBoolean, new int[]{0x1});
-        assertEquals(true, value.getBoolean());
+        assertTrue(value.getBoolean());
 
         value = Value.fromModbusRegister(modbusDataTypeBoolean, new int[]{0x0});
-        assertEquals(false, value.getBoolean());
+        assertTrue(value.getBoolean());
 
     }
 
