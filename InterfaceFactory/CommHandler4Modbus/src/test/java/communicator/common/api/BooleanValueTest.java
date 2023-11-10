@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
@@ -86,13 +87,13 @@ public class BooleanValueTest {
         assertTrue(value.getBoolean());
 
         value = Value.fromDiscreteInput(modbusDataTypeBoolean, new boolean[]{false} );
-        assertTrue(value.getBoolean());
+        assertFalse(value.getBoolean());
 
         value = Value.fromModbusRegister(modbusDataTypeBoolean, new int[]{0x1});
         assertTrue(value.getBoolean());
 
         value = Value.fromModbusRegister(modbusDataTypeBoolean, new int[]{0x0});
-        assertTrue(value.getBoolean());
+        assertFalse(value.getBoolean());
 
     }
 
