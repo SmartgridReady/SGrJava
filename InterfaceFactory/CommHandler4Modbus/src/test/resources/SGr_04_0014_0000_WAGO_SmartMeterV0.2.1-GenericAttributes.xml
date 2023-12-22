@@ -63,17 +63,45 @@
     <generalRemarks>WAGO/ls</generalRemarks>
     <levelOfOperation>4</levelOfOperation>
   </deviceInformation>
-  <genericAttributes>
-    <specialQualityRequirement>METAS</specialQualityRequirement>
-    <curtailment>40</curtailment>
-    <minLoad>20</minLoad>
-    <maxLockTimeMinutes>10</maxLockTimeMinutes>
-    <precisionPercent>2.5</precisionPercent>
-    <flexAssistance>
-      <assists>AT_NetServiceable</assists>
-      <obligedTo>OL_SHALL</obligedTo>
-    </flexAssistance>
-  </genericAttributes>
+  <genericAttributeList>
+    <genericAttributeListElement>
+      <name>SpecialQualityRequirement</name>
+      <dataType>
+        <string/>
+      </dataType>
+      <value>METAS</value>
+      <unit>NONE</unit>
+    </genericAttributeListElement>
+    <genericAttributeListElement>
+      <name>Curtailment</name>
+      <dataType>
+        <float32/>
+      </dataType>
+      <value>40.5</value>
+      <unit>PERCENT</unit>
+    </genericAttributeListElement>
+    <genericAttributeListElement>
+      <name>FlexDirManagement</name>
+      <genericAttributeList>
+        <genericAttributeListElement>
+          <name>assists</name>
+          <dataType>
+            <string/>
+          </dataType>
+          <value>TNO</value>
+          <unit>NONE</unit>
+        </genericAttributeListElement>
+        <genericAttributeListElement>
+          <name>obligedTo</name>
+          <dataType>
+            <string/>
+          </dataType>
+          <value>SHALL</value>
+          <unit>NONE</unit>
+        </genericAttributeListElement>
+      </genericAttributeList>
+    </genericAttributeListElement>
+  </genericAttributeList>
   <interfaceList>
     <modbusInterface>
       <modbusInterfaceDescription>
@@ -126,9 +154,16 @@
               <language>de</language>
             </legibleDescription>
           </functionalProfile>
-          <genericAttributes>
-            <curtailment>30</curtailment>
-          </genericAttributes>
+          <genericAttributeList>
+            <genericAttributeListElement>
+              <name>LoadReduction</name>
+              <dataType>
+                <float32/>
+              </dataType>
+              <value>20.5</value>
+              <unit>PERCENT</unit>
+            </genericAttributeListElement>
+          </genericAttributeList>
           <dataPointList>
             <dataPointListElement>
               <dataPoint>
@@ -139,16 +174,23 @@
                   <float64/>
                 </dataType>
                 <unit>VOLTS</unit>
+                <minimumValue>0.005</minimumValue>
+                <maximumValue>380</maximumValue>
+                <unitConversionMultiplicator>1.36</unitConversionMultiplicator>
                 <alternativeNames>
                   <manufName>L1 Spannung</manufName>
                 </alternativeNames>
               </dataPoint>
-              <genericAttributes>
-                <precisionPercent>2.2</precisionPercent>
-                <minVal>0.005</minVal>
-                <maxVal>380</maxVal>
-                <unitConversionMultiplicator>1.36</unitConversionMultiplicator>
-              </genericAttributes>
+              <genericAttributeList>
+                <genericAttributeListElement>
+                  <name>PercisionPercent</name>
+                  <dataType>
+                    <float32/>
+                  </dataType>
+                  <value>2.2</value>
+                  <unit>PERCENT</unit>
+                </genericAttributeListElement>
+              </genericAttributeList>
               <modbusDataPointConfiguration>
                 <modbusDataType>
                   <float32/>
