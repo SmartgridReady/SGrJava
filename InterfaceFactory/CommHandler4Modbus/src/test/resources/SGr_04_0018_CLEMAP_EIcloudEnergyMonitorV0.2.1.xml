@@ -65,11 +65,9 @@
                   <float64/>
                 </dataType>
                 <unit>KILOWATTS</unit>
+                <minimumValue>0.005</minimumValue>
+                <maximumValue>100</maximumValue>
               </dataPoint>
-              <genericAttributes>
-                <minVal>0.005</minVal>
-                <maxVal>100</maxVal>
-              </genericAttributes>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>
                 <restApiServiceCall>

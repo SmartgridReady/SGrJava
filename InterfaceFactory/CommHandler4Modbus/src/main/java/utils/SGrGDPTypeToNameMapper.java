@@ -1,11 +1,18 @@
 package utils;
 
+import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.V0Package;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SGrGDPTypeToNameMapper {
+
+    private SGrGDPTypeToNameMapper() {}
 
     static final Map<Integer, String> SGR_MODBUS_TYPE_TO_NAME = new HashMap<>();
     static {
@@ -55,5 +62,17 @@ public class SGrGDPTypeToNameMapper {
 
     public static String getGenericName(int aGenType) {
         return SGR_GENERIC_TYPE_TO_NAME.get(aGenType);
+    }
+
+    public static List<String> getGenericNamesOfValuesSet(DataTypeProduct dataTypeProduct) {
+        final List<String> featureNamesWithValuesSet = new ArrayList<>();
+
+        if (dataTypeProduct != null) {
+            EList<EStructuralFeature> features = V0Package.eINSTANCE.getDataTypeProduct().getEStructuralFeatures();
+            features.stream()
+                    .filter(dataTypeProduct::eIsSet)
+                    .forEach(feature -> featureNamesWithValuesSet.add(getGenericName(feature.getFeatureID())));
+        }
+        return featureNamesWithValuesSet;
     }
 }

@@ -153,7 +153,7 @@ class SGrRestAPIDeviceTest {
 	@ParameterizedTest
 	@CsvSource({
 			"0.004, Values [0.004] out of range. MIN value=0.005",
-			"101, Values [101] out of range. MAX value=100"})
+			"101, Values [101] out of range. MAX value=100.0"})
 	void testSetValOutOfRange(String value, String expectedResponse) throws Exception {
 
 		// given

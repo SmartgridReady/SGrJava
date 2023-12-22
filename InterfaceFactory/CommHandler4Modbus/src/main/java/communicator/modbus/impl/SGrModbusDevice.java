@@ -586,8 +586,8 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	}
 
 	private float getUnitConversionFactor(ModbusDataPoint aDataPoint) {
-		if (aDataPoint.getGenericAttributes() != null && aDataPoint.getGenericAttributes().getUnitConversionMultiplicator() != null) {
-			return (float) aDataPoint.getGenericAttributes().getUnitConversionMultiplicator();
+		if (aDataPoint.getDataPoint().isSetUnitConversionMultiplicator()) {
+			return aDataPoint.getDataPoint().getUnitConversionMultiplicator();
 		}
 		return 1.0f;
 	}
