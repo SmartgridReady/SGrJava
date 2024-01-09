@@ -21,12 +21,19 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
+def integrationTest = sourceSets.create('integrationTest')
+
+configurations[integrationTest.implementationConfigurationName].extendsFrom(configurations.testImplementation)
+configurations[integrationTest.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly)
 
 sourceSets {
         main.java.srcDirs = ['src/main/java']
         main.resources.srcDirs = ['src/main/resources']
         test.java.srcDirs = ['src/test/java']
         test.resources.srcDirs = ['src/test/resources']
+
+        integrationTest.java.srcDirs = ['src/test/java','src/main/java']
+        integrationTest.resources.srcDirs = ['src/test/resources', 'src/main/resources']
 }
 
 java {
@@ -54,8 +61,6 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
     implementation group: 'io.vavr', name: 'vavr', version: '0.10.4'
 
-
-
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.ecore', version: '2.24.0'
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.ecore.xmi', version: '2.16.0'	
 	implementation group: 'org.eclipse.emf', name: 'org.eclipse.emf.common', version: '2.24.0'
@@ -77,11 +82,13 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     testImplementation group: 'org.awaitility', name: 'awaitility', version: '4.2.0'
-
 }
 
 test {
     useJUnitPlatform()
+    filter {
+        excludeTestsMatching("communicator.modbus.integrationtest.*")
+    }
 }
 
 jar {
@@ -121,7 +128,7 @@ publishing {
     }
 
     publications {
-        impl(MavenPublication) {
+        mavenJava(MavenPublication) {
             groupId = 'ch.smartgridready'
             artifactId = 'commhandler4modbus'
             version = '1.0.1'
@@ -129,4 +136,22 @@ publishing {
             from components.java
         }
     }
+}
+
+
+def integrationTestTask = tasks.register('integrationTest', Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+    useJUnitPlatform()
+
+    testClassesDirs = integrationTest.output.classesDirs
+    classpath = configurations[integrationTest.runtimeClasspathConfigurationName] + integrationTest.output
+
+    setTestNameIncludePatterns(['communicator.modbus.integrationtest.*'])
+
+    shouldRunAfter(tasks.named('build'))
+}
+
+tasks.named('check') {
+    dependsOn(integrationTestTask)
 }

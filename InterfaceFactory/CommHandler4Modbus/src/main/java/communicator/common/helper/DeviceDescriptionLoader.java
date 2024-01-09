@@ -74,7 +74,7 @@ public class DeviceDescriptionLoader<C> {
 	 */
 	@SuppressWarnings("unchecked")
 	public C load( String aBaseDir, String aDescriptionFile, Properties properties ) {	
-		
+
 		try {
 
 			// XML namespace eNS_URI "http://www.smartgridready.com/ns/V0/" map to "com.smartgridready.ns.v0.V0Package" classes.
@@ -88,8 +88,8 @@ public class DeviceDescriptionLoader<C> {
 					getAdapterFactory(), 
 					new BasicCommandStack());
 			
-			domain.getResourceSet().setPackageRegistry( EPackage.Registry.INSTANCE );			
-			
+			domain.getResourceSet().setPackageRegistry( EPackage.Registry.INSTANCE );
+
 			Resource resource = domain.createResource( aBaseDir + aDescriptionFile );
 			
 			File deviceDescFile = new File( aBaseDir + aDescriptionFile);

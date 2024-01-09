@@ -42,26 +42,22 @@ public class WagoTester {
 
             final List<Tuple2<String, String>> datapPoints = new ArrayList<>();
 
-            System.out.print("\nWago test .");
             devDesc.getInterfaceList().getModbusInterface().getFunctionalProfileList().getFunctionalProfileListElement().forEach( fp -> {
                     String fpName = fp.getFunctionalProfile().getFunctionalProfileName();
-                    fp.getDataPointList().getDataPointListElement().forEach( dp -> {
-                            datapPoints.add(new Tuple2<>(fpName, dp.getDataPoint().getDataPointName()));
-                                try {                                	
-                                	System.out.print(".");
-                                    Thread.sleep(500);
-                                } catch (InterruptedException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            }
-                    );
+                    fp.getDataPointList().getDataPointListElement().forEach( dp -> datapPoints.add(new Tuple2<>(fpName, dp.getDataPoint().getDataPointName())));
                 }
             );
             
             System.out.println();
 
             final List<ProtocolRecord> protocol = new ArrayList<>();
-            datapPoints.forEach( tuple -> protocol.add(checkDataPoint(tuple, devWagoMeter)));
+            System.out.print("Wago Test: .");
+            for (Tuple2<String, String> tuple : datapPoints) {
+                protocol.add(checkDataPoint(tuple, devWagoMeter));
+                Thread.sleep(100);
+                System.out.print(".");
+            }
+            System.out.println();
 
             protocol.forEach(System.out::println);
 
@@ -82,7 +78,6 @@ public class WagoTester {
 
         try {
             record.readVal = wagoMeter.getVal(dataPoint._1, dataPoint._2).getString();
-
         } catch (Exception e) {
             record.exception = e.getMessage();
         }
