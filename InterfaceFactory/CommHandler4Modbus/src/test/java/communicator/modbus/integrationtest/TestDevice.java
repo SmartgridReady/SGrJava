@@ -22,23 +22,20 @@ import java.util.List;
 import java.util.Properties;
 import java.util.function.Function;
 
-public class TestsystemBase {
+public class TestDevice {
 
-    private static SGrModbusDevice testSystem;
+    private SGrModbusDevice testSystem;
 
-    private static DeviceFrame deviceDescriptor;
+    private DeviceFrame deviceDescriptor;
 
     public static class DataPointDescriptor {
 
         public String functionalProfile;
         public String dataPoint;
-
         public boolean isReadable;
         public boolean isWritable;
         public RegisterType registerType;
-
         public DataTypeProduct genericType;
-
         public ModbusDataType modbusType;
 
         @Override
@@ -53,7 +50,7 @@ public class TestsystemBase {
         }
     }
 
-    protected static void init() throws Exception {
+    protected void init() throws Exception {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL propertyUrl = classloader.getResource("wago-testsystem.properties");
         if (propertyUrl==null) {
@@ -81,9 +78,10 @@ public class TestsystemBase {
         testSystem = new SGrModbusDevice(deviceDescriptor, driver);
     }
 
-    public static void loadDeviceDescriptionFile(File file,
-                                                 Function<String, Tuple2<String, Integer>> getIpConnParams,
-                                                 Function<String, Tuple3<String, Integer, Integer>> getComPortConnParams ) throws Exception {
+    public void loadDeviceDescriptionFile(
+            File file,
+            Function<String, Tuple2<String, Integer>> getIpConnParams,
+            Function<String, Tuple3<String, Integer, Integer>> getComPortConnParams ) throws Exception {
 
         String filePath = file.getPath().replace("\\", "/");
         deviceDescriptor = new DeviceDescriptionLoader<DeviceFrame>().load("", filePath);
@@ -103,11 +101,11 @@ public class TestsystemBase {
         }
     }
 
-    public static SGrModbusDevice getTestSystem() {
+    public SGrModbusDevice getTestSystem() {
         return testSystem;
     }
 
-    public static List<DataPointDescriptor> getDataPoints() {
+    public List<DataPointDescriptor> getDataPoints() {
 
         List<DataPointDescriptor> dataPoints = new ArrayList<>();
 

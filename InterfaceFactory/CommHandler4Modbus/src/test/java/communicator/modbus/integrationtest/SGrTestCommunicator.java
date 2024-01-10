@@ -28,6 +28,8 @@ public class SGrTestCommunicator extends JFrame {
     private JTextField readValueField;
     private JTextField writeValueField;
 
+    private final TestDevice testDevice = new TestDevice();
+
     // Custom TreeCellRenderer to customize node labels
     private static class CustomTreeCellRenderer extends DefaultTreeCellRenderer {
         @Override
@@ -40,8 +42,8 @@ public class SGrTestCommunicator extends JFrame {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
             Object userObject = node.getUserObject();
 
-            if (userObject instanceof TestsystemBase.DataPointDescriptor) {
-                setText(((TestsystemBase.DataPointDescriptor)userObject).dataPoint);
+            if (userObject instanceof TestDevice.DataPointDescriptor) {
+                setText(((TestDevice.DataPointDescriptor)userObject).dataPoint);
             } else {
                 setText(userObject.toString());
             }
@@ -52,7 +54,7 @@ public class SGrTestCommunicator extends JFrame {
     public SGrTestCommunicator() throws Exception {
         super("SGr Communicator");
 
-        TestsystemBase.init();
+        testDevice.init();
 
         createMainMenu();
         createNavigationTree();
@@ -71,8 +73,8 @@ public class SGrTestCommunicator extends JFrame {
     private void createNavigationTree() {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Functional profiles");
 
-        java.util.List<TestsystemBase.DataPointDescriptor> dataPoints = TestsystemBase.getDataPoints();
-        Map<String, java.util.List<TestsystemBase.DataPointDescriptor>> fpMap = dataPoints.stream().collect(Collectors.groupingBy(dp -> dp.functionalProfile));
+        java.util.List<TestDevice.DataPointDescriptor> dataPoints = testDevice.getDataPoints();
+        Map<String, java.util.List<TestDevice.DataPointDescriptor>> fpMap = dataPoints.stream().collect(Collectors.groupingBy(dp -> dp.functionalProfile));
 
         fpMap.forEach((fpName, dpList) -> {
             DefaultMutableTreeNode fpNode = new DefaultMutableTreeNode(fpName);
@@ -93,8 +95,8 @@ public class SGrTestCommunicator extends JFrame {
 
         DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
 
-        java.util.List<TestsystemBase.DataPointDescriptor> dataPoints = TestsystemBase.getDataPoints();
-        Map<String, java.util.List<TestsystemBase.DataPointDescriptor>> fpMap = dataPoints.stream().collect(Collectors.groupingBy(dp -> dp.functionalProfile));
+        java.util.List<TestDevice.DataPointDescriptor> dataPoints = testDevice.getDataPoints();
+        Map<String, java.util.List<TestDevice.DataPointDescriptor>> fpMap = dataPoints.stream().collect(Collectors.groupingBy(dp -> dp.functionalProfile));
 
         root.removeAllChildren();
         fpMap.forEach((fpName, dpList) -> {
@@ -141,9 +143,9 @@ public class SGrTestCommunicator extends JFrame {
         infoPanel.setLayout(new GridBagLayout());
 
 
-        if (selectedNode.getUserObject() instanceof TestsystemBase.DataPointDescriptor) {
+        if (selectedNode.getUserObject() instanceof TestDevice.DataPointDescriptor) {
 
-            TestsystemBase.DataPointDescriptor dpDescriptor = (TestsystemBase.DataPointDescriptor)selectedNode.getUserObject();
+            TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor)selectedNode.getUserObject();
 
             JLabel fpLabel = new JLabel("Functional Profile:");
             JLabel fpName = new JLabel(dpDescriptor.functionalProfile);
@@ -182,9 +184,9 @@ public class SGrTestCommunicator extends JFrame {
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new GridBagLayout());
 
-        if (selectedNode.getUserObject() instanceof TestsystemBase.DataPointDescriptor) {
+        if (selectedNode.getUserObject() instanceof TestDevice.DataPointDescriptor) {
 
-            TestsystemBase.DataPointDescriptor dpDescriptor = (TestsystemBase.DataPointDescriptor) selectedNode.getUserObject();
+            TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
             int gridy = 0;
             if (dpDescriptor.isWritable) {
                 addComponent(actionPanel, createWritePanel(selectedNode),0, gridy++);
@@ -213,10 +215,10 @@ public class SGrTestCommunicator extends JFrame {
 
     private void onWriteButtonClicked(DefaultMutableTreeNode selectedNode) {
 
-        TestsystemBase.DataPointDescriptor dpDescriptor = (TestsystemBase.DataPointDescriptor) selectedNode.getUserObject();
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
         Value value = StringValue.of(writeValueField.getText());
         try {
-            SGrModbusDevice device = TestsystemBase.getTestSystem();
+            SGrModbusDevice device = testDevice.getTestSystem();
 
             device.setVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint, value);
 
@@ -247,9 +249,9 @@ public class SGrTestCommunicator extends JFrame {
 
     private void onReadButtonClicked(DefaultMutableTreeNode selectedNode) {
 
-        TestsystemBase.DataPointDescriptor dpDescriptor = (TestsystemBase.DataPointDescriptor) selectedNode.getUserObject();
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
         try {
-            SGrModbusDevice device = TestsystemBase.getTestSystem();
+            SGrModbusDevice device = testDevice.getTestSystem();
             Value readVal = device.getVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
             readValueField.setText(readVal.getString());
         } catch (Exception e) {
@@ -301,10 +303,11 @@ public class SGrTestCommunicator extends JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             try {
                 java.io.File selectedFile = fileChooser.getSelectedFile();
-                TestsystemBase.loadDeviceDescriptionFile(
+                testDevice.loadDeviceDescriptionFile(
                         selectedFile,
                         this::ipConnParamDialog,
                         this::comPortConnParamDialog);
+
                 updateNavigationTree();
                 navigationTree.revalidate();
                 navigationTree.repaint();
@@ -312,7 +315,6 @@ public class SGrTestCommunicator extends JFrame {
                 showMessageDialog("Failed to load EI-XML", e);
             }
         }
-
     }
 
     private Tuple2<String, Integer> ipConnParamDialog(String msg) {

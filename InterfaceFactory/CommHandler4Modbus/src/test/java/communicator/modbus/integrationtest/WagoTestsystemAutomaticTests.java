@@ -10,6 +10,7 @@ import communicator.common.runtime.GenDriverSocketException;
 import org.apache.logging.log4j.util.TriConsumer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +21,8 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class WagoTestsystemAutomaticTests extends TestsystemBase {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class WagoTestsystemAutomaticTests extends TestDevice {
 
     private static final Logger LOG = LoggerFactory.getLogger(WagoTestsystemAutomaticTests.class);
 
@@ -33,7 +35,7 @@ class WagoTestsystemAutomaticTests extends TestsystemBase {
     private static final int STEP_INT16_OUTPUT_BY = 200;
 
     @BeforeAll
-    static void beforeAll() throws Exception {
+    public void beforeAll() throws Exception {
         init();
     }
 
@@ -140,7 +142,7 @@ class WagoTestsystemAutomaticTests extends TestsystemBase {
         assertTrue(Math.abs(iInValue - iOutValue) <= AD_CONV_FAULT_TOLERANCE_INT_16, errorMessage);
     }
 
-    private static void checkDiscreteIO(int i, boolean value) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+    private void checkDiscreteIO(int i, boolean value) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
         String bit = String.format("Bit%d", i);
         getTestSystem().setVal("DiscreteDigital_OUT", bit, BooleanValue.of(value));
         Value res = getTestSystem().getVal("DiscreteDigital_IN", "Bit0");
