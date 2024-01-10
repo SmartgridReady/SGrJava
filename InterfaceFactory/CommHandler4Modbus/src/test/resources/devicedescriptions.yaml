@@ -12,7 +12,7 @@ descriptions:
 -   file: SGr_04_0016_xxxx_ABBMeterV0.2.1.xml
 -   file: SGr_04_0017_xxxx_HOVAL_HeatPumpV0.2.1.xml
 -   file: SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml
--   file:  SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml
+-   file: SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml
 -   file: SGr_04_0020_xxxx_Heliotherm_HeatPumpV0.2.1.xml
 -   file: SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml
 -   file: SGr_04_0033_0000_CTA_HeatPumpV0.2.1.xml
@@ -23,3 +23,4 @@ descriptions:
 -   file: SontexSupercal5V0.2.1.xml
 -   file: abb_terra_01.xml
 -   file: mvpEi4Modbus_0000_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml
+-   file: SGr_02_mmmm_dddd_SwiSBox_Actuator.xml
