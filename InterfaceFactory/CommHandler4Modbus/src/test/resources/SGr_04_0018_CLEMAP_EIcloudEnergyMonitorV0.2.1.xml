@@ -60,8 +60,7 @@
               <dataPoint>
                 <dataPointName>ActivePowerACtot</dataPointName>
                 <dataDirection>RW</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATTS</unit>
@@ -94,8 +93,7 @@
               <dataPoint>
                 <dataPointName>ActivePowerACL1</dataPointName>
                 <dataDirection>RW</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATTS</unit>
@@ -122,8 +120,7 @@
               <dataPoint>
                 <dataPointName>ActivePowerACL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATTS</unit>
@@ -150,8 +147,7 @@
               <dataPoint>
                 <dataPointName>ActivePowerACL3</dataPointName>
                 <dataDirection>W</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATTS</unit>

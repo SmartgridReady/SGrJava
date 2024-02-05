@@ -95,7 +95,7 @@ public abstract class SGrDeviceBase<
             return dataPoint.orElseThrow(() ->
                     new GenDriverException("Data-point with name " + datapointName + " not found"));
         } else {
-            throw new GenDriverException("Functional profile with name " + datapointName + " not found");
+            throw new GenDriverException("Functional profile with name " + profileName + " not found");
         }
     }
 

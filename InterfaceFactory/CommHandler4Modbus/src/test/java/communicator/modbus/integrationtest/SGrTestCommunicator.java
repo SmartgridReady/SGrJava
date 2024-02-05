@@ -1,5 +1,6 @@
 package communicator.modbus.integrationtest;
 
+import com.smartgridready.ns.v0.RegisterType;
 import communicator.common.api.StringValue;
 import communicator.common.api.Value;
 import communicator.common.helper.DataTypeHelper;
@@ -16,6 +17,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class SGrTestCommunicator extends JFrame {
@@ -76,7 +78,9 @@ public class SGrTestCommunicator extends JFrame {
         java.util.List<TestDevice.DataPointDescriptor> dataPoints = testDevice.getDataPoints();
         Map<String, java.util.List<TestDevice.DataPointDescriptor>> fpMap = dataPoints.stream().collect(Collectors.groupingBy(dp -> dp.functionalProfile));
 
-        fpMap.forEach((fpName, dpList) -> {
+        Map<String, java.util.List<TestDevice.DataPointDescriptor>> sortedMap = new TreeMap<>(fpMap);
+
+        sortedMap.forEach((fpName, dpList) -> {
             DefaultMutableTreeNode fpNode = new DefaultMutableTreeNode(fpName);
             dpList.forEach(dp -> fpNode.add(new DefaultMutableTreeNode(dp)));
             root.add(fpNode);
@@ -154,11 +158,27 @@ public class SGrTestCommunicator extends JFrame {
             JLabel rwLabel = new JLabel("RW permission:");
             JLabel rwPermission = new JLabel((dpDescriptor.isReadable ? "R":"") + (dpDescriptor.isWritable ? "W":""));
             JLabel dpTypeLabel = new JLabel("Register type:");
-            JLabel dpType = new JLabel(dpDescriptor.registerType.name());
+            JLabel dpType = new JLabel(dpDescriptor.modbusRegisterType.name());
             JLabel genericTypeLabel = new JLabel("Generic type:");
             JLabel genericType = new JLabel(DataTypeHelper.getGenDataTypeName(dpDescriptor.genericType));
+            JLabel unitLabel = new JLabel("Unit");
+            JLabel unit = new JLabel(dpDescriptor.units);
+            JLabel minValLabel = new JLabel("MinValue");
+            JLabel minVal = new JLabel(dpDescriptor.minVal);
+            JLabel maxValLabel = new JLabel("MaxValue");
+            JLabel maxVal = new JLabel(dpDescriptor.maxVal);
+            JLabel unitConversionFactorLabel = new JLabel("UnitConversionFactor");
+            JLabel unitConversionFactor = new JLabel(dpDescriptor.conversionFactor);
+
             JLabel modubusTypeLabel = new JLabel("Modbus type;");
             JLabel modbusType = new JLabel(DataTypeHelper.getModbusDataTypeName(dpDescriptor.modbusType));
+            JLabel modbusAddressLabel = new JLabel(
+                    (dpDescriptor.modbusRegisterType == RegisterType.COIL || dpDescriptor.modbusRegisterType == RegisterType.DISCRETE_INPUT) ?
+                    "Modbus bit address:" : "Modbus register address:");
+            JLabel modbusAddress = new JLabel(dpDescriptor.modbusAddress);
+            JLabel modbusNoOfRegistersLabel = new JLabel("No of modbus registers:");
+            JLabel modbusNoOfRegisters = new JLabel(dpDescriptor.modbusNbOfRegisters);
+
 
             addComponent(infoPanel, fpLabel,  0, 0);
             addComponent(infoPanel, fpName, 1, 0);
@@ -169,9 +189,21 @@ public class SGrTestCommunicator extends JFrame {
             addComponent(infoPanel, dpTypeLabel, 0, 3);
             addComponent(infoPanel, dpType, 1, 3);
             addComponent(infoPanel, genericTypeLabel, 0, 4);
-            addComponent(infoPanel, genericType, 1, 4 );
-            addComponent(infoPanel, modubusTypeLabel, 0, 5);
-            addComponent(infoPanel, modbusType, 1, 5);
+            addComponent(infoPanel, genericType, 1, 4);
+            addComponent(infoPanel, unitLabel, 0, 5);
+            addComponent(infoPanel, unit, 1, 5);
+            addComponent(infoPanel, minValLabel, 0, 6);
+            addComponent(infoPanel, minVal, 1, 6);
+            addComponent(infoPanel, maxValLabel, 0, 7);
+            addComponent(infoPanel, maxVal, 1, 7);
+            addComponent(infoPanel, unitConversionFactorLabel, 0, 8);
+            addComponent(infoPanel, unitConversionFactor, 1, 8);
+            addComponent(infoPanel, modubusTypeLabel, 0, 9);
+            addComponent(infoPanel, modbusType, 1, 9);
+            addComponent(infoPanel, modbusAddressLabel, 0, 10);
+            addComponent(infoPanel, modbusAddress, 1, 10);
+            addComponent(infoPanel, modbusNoOfRegistersLabel, 0, 11);
+            addComponent(infoPanel, modbusNoOfRegisters, 1, 11);
         } else {
            JLabel nameLabel = new JLabel(selectedNode.getUserObject().toString());
            addComponent(infoPanel, nameLabel, 0, 0);
