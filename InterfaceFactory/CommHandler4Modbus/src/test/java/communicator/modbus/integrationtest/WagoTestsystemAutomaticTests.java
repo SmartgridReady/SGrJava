@@ -2,7 +2,7 @@ package communicator.modbus.integrationtest;
 
 import communicator.common.api.BitmapValue;
 import communicator.common.api.BooleanValue;
-import communicator.common.api.Int16Value;
+import communicator.common.api.Float64Value;
 import communicator.common.api.Value;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,8 +33,6 @@ class WagoTestsystemAutomaticTests extends TestDevice {
     private static final float AD_CONV_FAULT_TOLERANCE_24V =  (float)AD_CONV_FAULT_TOLERANCE_INT_16 * MAX_VOLTAGE / MAX_RESOLUTION_INT_16;
     private static final int AD_DATAPOINT_MAX_INDEX = 8;
 
-    private static final int STEP_INT16_OUTPUT_BY = 200;
-
     @BeforeAll
     public void beforeAll() throws Exception {
         init();
@@ -42,45 +41,54 @@ class WagoTestsystemAutomaticTests extends TestDevice {
     @Test
     void analogInputOutput() throws Exception {
 
-        // Check Connector1
-        checkAnalogDatapoint(1, WagoTestsystemAutomaticTests::assertFloatValues);
-
         // Check Connector2 - Connector8
-        for (int i=2; i<=AD_DATAPOINT_MAX_INDEX; i++) {
-            checkAnalogDatapoint(i, WagoTestsystemAutomaticTests::assertIntegerValues);
+        for (int i=1; i<=AD_DATAPOINT_MAX_INDEX; i++) {
+            checkAnalogDatapoint(i, WagoTestsystemAutomaticTests::assertFloatValues);
         }
     }
 
     @Test
     void digitalRegisterIO() throws Exception {
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i <= 8; i++) {
 
-            String bit = String.format("Bit%d", i);
+            String relais = String.format("Relais_%d", i);
+            String sensor = String.format("Sensor_%d", i);
             Map<String, Boolean> bitMap = new HashMap<>();
-            bitMap.put(bit, true);
+            bitMap.put(relais, true);
             BitmapValue bitmapValue = BitmapValue.of(bitMap);
-            getTestSystem().setVal("RegisterDigital_OUT", "Register1", bitmapValue);
+            getTestSystem().setVal("DigitalRegister_M2_OUT_1", "Register", bitmapValue);
 
-            Value res = getTestSystem().getVal("RegisterDigital_IN", "Register1");
-            assertEquals(bitmapValue.getBitmap().get(bit), res.getBitmap().get(bit));
+            // check the digital IN sensor (relais output shortcut to sensor input)
+            Value res = getTestSystem().getVal("DigitalRegister_M2_IN_2", "Register");
+            assertEquals(bitmapValue.getBitmap().get(relais), res.getBitmap().get(sensor), "Check sensor=" + sensor);
 
-            res = getTestSystem().getVal("RegisterDigital_OUT", "Register1");
-            assertEquals(bitmapValue.getBitmap().get(bit), res.getBitmap().get(bit));
+            res = getTestSystem().getVal("DigitalRegister_M2_OUT_1", "Register");
+            assertEquals(bitmapValue.getBitmap().get(relais), res.getBitmap().get(relais), "Check relais=" + relais);
+
+
+            // Read bit as discrete input
+            String fpName = String.format("DigitalDiscrete_M2_IN_%d", i);
+            res = getTestSystem().getVal(fpName, "Sensor");
+            assertTrue(res.getBoolean(), "Check functional profile=" + fpName);
 
             // Reset all bits to false
-            getTestSystem().setVal("RegisterDigital_OUT", "Register1", BitmapValue.of(new HashMap<>()));
+            getTestSystem().setVal("DigitalRegister_M2_OUT_1", "Register", BitmapValue.of(new HashMap<>()));
+
+            // Read bit as discrete input
+            res = getTestSystem().getVal(fpName, "Sensor");
+            assertFalse(res.getBoolean());
         }
     }
 
     @Test
     void digitalDiscreteIO() throws Exception {
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i <= 8; i++) {
             checkDiscreteIO(i, true);
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i <= 8; i++) {
             checkDiscreteIO(i, false);
         }
     }
@@ -89,28 +97,29 @@ class WagoTestsystemAutomaticTests extends TestDevice {
     void readout_EI_XML() {
 
         List<DataPointDescriptor> dps = getDataPoints();
+        assertFalse(dps.isEmpty());
         dps.forEach(System.out::println);
     }
 
     void checkAnalogDatapoint(int dataPointIndex, TriConsumer<String, Value, Value> assertFunction)
             throws Exception {
 
-        for (int i = 0; i< MAX_RESOLUTION_INT_16; i=i+STEP_INT16_OUTPUT_BY) {
+        for (int i = 0; i <= 48; i++) {
 
-            String dataPointName = String.format("Connector%d", dataPointIndex);
+            String functionalProfileNameOut = String.format("VoltageDC_OUT_%d", dataPointIndex);
+            String functionalProfileNameIn = String.format("VoltageDC_IN_%d", dataPointIndex);
 
-            Int16Value voltConn1Out = Int16Value.of((short) i);
-            getTestSystem().setVal("VoltageDC_OUT", dataPointName, voltConn1Out);
+            Float64Value voltConn1Out = Float64Value.of(i*0.5f);
+            getTestSystem().setVal(functionalProfileNameOut, "VoltageDC", voltConn1Out);
 
-            Value voltConn1In = getTestSystem().getVal("VoltageDC_IN", dataPointName);
-
-            assertFunction.accept(dataPointName, voltConn1Out, voltConn1In);
+            Value voltConn1In = getTestSystem().getVal(functionalProfileNameIn, "VoltageDC");
+            assertFunction.accept(functionalProfileNameIn, voltConn1Out, voltConn1In);
         }
     }
 
     private static void assertFloatValues(String dataPointName, Value outValue, Value inValue) {
 
-        float fOutValue = outValue.getFloat32() * MAX_VOLTAGE / MAX_RESOLUTION_INT_16;
+        float fOutValue = outValue.getFloat32();
         float fInValue =  inValue.getFloat32();
 
         LOG.info(String.format("DC voltage %s: set: %.6f \t-> get: %.6f", dataPointName, fOutValue, fInValue));
@@ -125,27 +134,11 @@ class WagoTestsystemAutomaticTests extends TestDevice {
         assertTrue(Math.abs(fInValue - fOutValue) <= AD_CONV_FAULT_TOLERANCE_24V, errorMessage);
     }
 
-    private static void assertIntegerValues(String dataPointName, Value outValue, Value inValue) {
-
-        int iOutValue = outValue.getInt16();
-        int iInValue =  inValue.getInt16();
-
-        LOG.info(String.format("DC voltage %s: set: %d \t-> get: %d", dataPointName, iOutValue, iInValue));
-        String errorMessage = String.format(
-                "%s: ABS(VoltageIN - VoltageOUT) > FAULT_TOLERANCE=%d, Vout=%d Vin=%d diff=%d",
-                dataPointName,
-                AD_CONV_FAULT_TOLERANCE_INT_16,
-                iOutValue,
-                iInValue,
-                Math.abs(iInValue - iOutValue));
-
-        assertTrue(Math.abs(iInValue - iOutValue) <= AD_CONV_FAULT_TOLERANCE_INT_16, errorMessage);
-    }
-
     private void checkDiscreteIO(int i, boolean value) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
-        String bit = String.format("Bit%d", i);
-        getTestSystem().setVal("DiscreteDigital_OUT", bit, BooleanValue.of(value));
-        Value res = getTestSystem().getVal("DiscreteDigital_IN", "Bit0");
-        assertEquals(value, res.getBoolean());
+        String sensor = String.format("DigitalDiscrete_M1_IN_%d", i);
+        String relais = String.format("DigitalDiscrete_M1_OUT_%d", i);
+        getTestSystem().setVal(relais, "Relais", BooleanValue.of(value));
+        Value res = getTestSystem().getVal(sensor, "Sensor");
+        assertEquals(value, res.getBoolean(), "Relais=" + relais + " Sensor=" + sensor);
     }
 }

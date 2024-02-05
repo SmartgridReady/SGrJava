@@ -1,7 +1,9 @@
 package communicator.modbus.integrationtest;
 
+import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.ModbusDataPointConfiguration;
 import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.RegisterType;
 import communicator.common.helper.DataTypeHelper;
@@ -34,19 +36,35 @@ public class TestDevice {
         public String dataPoint;
         public boolean isReadable;
         public boolean isWritable;
-        public RegisterType registerType;
+        public RegisterType modbusRegisterType;
         public DataTypeProduct genericType;
         public ModbusDataType modbusType;
+        public String modbusAddress;
+        public String modbusNbOfRegisters;
 
+        public String minVal;
+
+        public String  maxVal;
+
+        public String conversionFactor;
+
+        public String units;
         @Override
         public String toString() {
             return "FP=" + functionalProfile +
                     " DP=" + dataPoint + " "
                     + (isReadable ? "R" : "") + " "
                     + (isWritable ? "W" : "") + " "
-                    + registerType.name()
+                    + modbusRegisterType.name()
                     + " GenType=" + DataTypeHelper.getGenDataTypeName(genericType)
-                    + " ModbusType=" + DataTypeHelper.getModbusDataTypeName(modbusType);
+                    + " ModbusType=" + DataTypeHelper.getModbusDataTypeName(modbusType)
+                    + " ModbusAddress=" + modbusAddress
+                    + " ModbusRegisterType=" + modbusRegisterType
+                    + " ModbusNoOfRegisters=" + modbusNbOfRegisters
+                    + " Units=" + units
+                    + " MinValue=" + minVal
+                    + " MaxValue=" + maxVal
+                    + " UnitConversionFactor=" + conversionFactor;
         }
     }
 
@@ -112,15 +130,25 @@ public class TestDevice {
         deviceDescriptor.getInterfaceList().getModbusInterface().getFunctionalProfileList()
                 .getFunctionalProfileListElement().forEach(fp -> {
                     String fpName = fp.getFunctionalProfile().getFunctionalProfileName();
-                    fp.getDataPointList().getDataPointListElement().forEach(dp -> {
+                    fp.getDataPointList().getDataPointListElement().forEach(dataPoint -> {
                             DataPointDescriptor dpDesc = new DataPointDescriptor();
                             dpDesc.functionalProfile = fpName;
-                            dpDesc.dataPoint = dp.getDataPoint().getDataPointName();
-                            dpDesc.isReadable = dp.getDataPoint().getDataDirection().getLiteral().contains("R");
-                            dpDesc.isWritable = dp.getDataPoint().getDataDirection().getLiteral().contains("W");
-                            dpDesc.registerType = dp.getModbusDataPointConfiguration().getRegisterType();
-                            dpDesc.genericType = dp.getDataPoint().getDataType();
-                            dpDesc.modbusType = dp.getModbusDataPointConfiguration().getModbusDataType();
+
+                            DataPointDescription dp = dataPoint.getDataPoint();
+                            dpDesc.dataPoint = dp.getDataPointName();
+                            dpDesc.isReadable = dp.getDataDirection().getLiteral().contains("R");
+                            dpDesc.isWritable = dp.getDataDirection().getLiteral().contains("W");
+                            dpDesc.genericType = dp.getDataType();
+                            dpDesc.units = dp.getUnit().getName();
+                            dpDesc.minVal = dp.isSetMinimumValue() ? String.valueOf(dp.getMinimumValue()) : "n.a";
+                            dpDesc.maxVal = dp.isSetMaximumValue() ? String.valueOf(dp.getMaximumValue()) : "n.a";
+                            dpDesc.conversionFactor = dp.isSetUnitConversionMultiplicator() ? String.valueOf(dp.getUnitConversionMultiplicator()) : "n.a";
+
+                            ModbusDataPointConfiguration modbusDp = dataPoint.getModbusDataPointConfiguration();
+                            dpDesc.modbusRegisterType = modbusDp.getRegisterType();
+                            dpDesc.modbusType = modbusDp.getModbusDataType();
+                            dpDesc.modbusAddress = modbusDp.getAddress().toString();
+                            dpDesc.modbusNbOfRegisters = String.valueOf(modbusDp.getNumberOfRegisters());
                             dataPoints.add(dpDesc);
                     });
                 });
