@@ -1,12 +1,19 @@
 package communicator.modbus.integrationtest;
 
+import com.smartgridready.ns.v0.BitmapEntryProduct;
+import com.smartgridready.ns.v0.EnumEntryProductRecord;
 import com.smartgridready.ns.v0.RegisterType;
+import communicator.common.api.BitmapValue;
+import communicator.common.api.BooleanValue;
+import communicator.common.api.EnumValue;
 import communicator.common.api.StringValue;
 import communicator.common.api.Value;
 import communicator.common.helper.DataTypeHelper;
+import communicator.common.runtime.GenDriverException;
 import communicator.modbus.impl.SGrModbusDevice;
 import io.vavr.Tuple2;
 import io.vavr.Tuple3;
+import org.eclipse.emf.common.util.EList;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -15,8 +22,10 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
@@ -63,11 +72,11 @@ public class SGrTestCommunicator extends JFrame {
         createDetailsPanel();
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(navigationTree), detailsPanel);
-        splitPane.setDividerLocation(200);
+        splitPane.setDividerLocation(300);
         add(splitPane);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
+        setSize(1000, 600);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -115,7 +124,6 @@ public class SGrTestCommunicator extends JFrame {
     private void createDetailsPanel() {
         detailsPanel = new JPanel();
         detailsPanel.setLayout(new GridBagLayout());
-        detailsPanel.setPreferredSize(new Dimension(600, 60));
 
         JLabel detailsLabel = new JLabel("Details Panel");
         detailsLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -219,12 +227,20 @@ public class SGrTestCommunicator extends JFrame {
         if (selectedNode.getUserObject() instanceof TestDevice.DataPointDescriptor) {
 
             TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
-            int gridy = 0;
-            if (dpDescriptor.isWritable) {
-                addComponent(actionPanel, createWritePanel(selectedNode),0, gridy++);
-            }
-            if (dpDescriptor.isReadable) {
-                addComponent(actionPanel, createReadPanel(selectedNode),0, gridy);
+            if (dpDescriptor.genericType.getBitmap() != null) {
+                addComponent(actionPanel, createBitmapPanel(selectedNode), 0, 0);
+            } else if (dpDescriptor.genericType.getEnum() != null) {
+                addComponent(actionPanel, createEnumPanel(selectedNode), 0, 0);
+            } else if (dpDescriptor.genericType.getBoolean() != null) {
+                addComponent(actionPanel, createBooleanPanel(selectedNode), 0, 0);
+            } else {
+                int gridy = 0;
+                if (dpDescriptor.isWritable) {
+                    addComponent(actionPanel, createWritePanel(selectedNode), 0, gridy++);
+                }
+                if (dpDescriptor.isReadable) {
+                    addComponent(actionPanel, createReadPanel(selectedNode), 0, gridy);
+                }
             }
         }
         return  actionPanel;
@@ -263,7 +279,7 @@ public class SGrTestCommunicator extends JFrame {
 
     private JPanel createReadPanel(DefaultMutableTreeNode selectedNode) {
 
-        JPanel readPanel = new JPanel();
+        JPanel readPanel = new JPanel(new GridBagLayout());
 
         JLabel readLabel = new JLabel("Read value:  ");
         readValueField = new JTextField(32);
@@ -278,6 +294,156 @@ public class SGrTestCommunicator extends JFrame {
 
         return readPanel;
     }
+
+    private JPanel createBitmapPanel(DefaultMutableTreeNode selectedNode) {
+
+        JPanel bitmapPanel = new JPanel(new GridBagLayout());
+
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
+
+        EList<BitmapEntryProduct> bitmapEntries = dpDescriptor.genericType.getBitmap().getBitmapEntry();
+        Optional<BitmapValue> currentBitmap = getCurrentBitmap(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
+
+        for (int i = 0; i<bitmapEntries.size(); i++) {
+            JCheckBox checkBox = new JCheckBox(bitmapEntries.get(i).getLiteral());
+
+            currentBitmap.ifPresent(bitmapValue -> checkBox.setSelected(bitmapValue.getBitmap().get(checkBox.getText())));
+
+            if (dpDescriptor.isWritable) {
+                checkBox.addItemListener(checkBoxEvent -> onCheckboxChanged(checkBoxEvent, selectedNode));
+            } else {
+                checkBox.setEnabled(false);
+            }
+            addComponent(bitmapPanel, checkBox, i % 4, i / 4);
+        }
+
+        return bitmapPanel;
+    }
+
+    private Optional<BitmapValue> getCurrentBitmap(String functionalProfile, String dataPoint) {
+
+        try {
+            Value value = testDevice.getTestSystem().getVal(functionalProfile, dataPoint);
+            if (value instanceof BitmapValue) {
+                return Optional.of((BitmapValue)testDevice.getTestSystem().getVal(functionalProfile, dataPoint));
+            } else {
+                showMessageDialog("Read bitmap value failed", new GenDriverException("Read datapoint is not a bitmap."));
+            }
+        } catch (Exception e) {
+            showMessageDialog("Read bitmap value failed.", e);
+        }
+        return Optional.empty();
+    }
+
+    private void onCheckboxChanged(ItemEvent event, DefaultMutableTreeNode selectedNode) {
+
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
+        try {
+            SGrModbusDevice device = testDevice.getTestSystem();
+
+            // Get the current bitmap values
+            Value currentValue = device.getVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
+            JCheckBox checkbox = (JCheckBox)event.getItem();
+
+            // Modify the changed bitmap bit
+            Map<String, Boolean> bitmap = currentValue.getBitmap();
+            bitmap.put(checkbox.getText(), event.getStateChange() == ItemEvent.SELECTED);
+            device.setVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint, BitmapValue.of(bitmap));
+
+        } catch (Exception e) {
+            showMessageDialog("Write bitmap value failed.", e);
+        }
+    }
+
+    private JPanel createEnumPanel(DefaultMutableTreeNode selectedNode) {
+
+        JPanel bitmapPanel = new JPanel(new GridBagLayout());
+
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
+
+        EList<EnumEntryProductRecord> enumEntries = dpDescriptor.genericType.getEnum().getEnumEntry();
+        Optional<EnumValue> currentEnum = getCurrentEnum(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
+
+        JLabel selectedEnum = new JLabel("Current enum value");
+        JComboBox<String> comboBox = new JComboBox<>(enumEntries.stream().map(EnumEntryProductRecord::getLiteral).toArray(String[]::new));
+        currentEnum.ifPresent( enumValue ->  {
+            comboBox.setSelectedItem(enumValue.getEnum().getLiteral());
+            comboBox.addItemListener(e -> onComboboxChanged(e, selectedNode));
+        });
+
+        addComponent(bitmapPanel, selectedEnum, 0, 0);
+        addComponent(bitmapPanel, comboBox, 1, 0);
+
+        return bitmapPanel;
+    }
+
+    private void onComboboxChanged(ItemEvent event, DefaultMutableTreeNode selectedNode) {
+
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
+        if(event.getStateChange() == ItemEvent.SELECTED) {
+            String selectedItem = (String) event.getItem();
+            try {
+                testDevice.getTestSystem().setVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint, EnumValue.of(selectedItem));
+            } catch (Exception e) {
+                showMessageDialog("Write enum value failed.", e);
+            }
+        }
+    }
+
+
+    private Optional<EnumValue> getCurrentEnum(String functionalProfile, String dataPoint) {
+
+        try {
+            Value enumValue = testDevice.getTestSystem().getVal(functionalProfile, dataPoint);
+            if (enumValue instanceof EnumValue) {
+                return Optional.of((EnumValue) enumValue);
+            } else {
+                showMessageDialog("Read enum value failed.", new GenDriverException("Read datapoint is not an enum."));
+            }
+        } catch (Exception e) {
+            showMessageDialog("Read enum value failed.", e);
+
+        }
+        return Optional.empty();
+    }
+
+    private JPanel createBooleanPanel(DefaultMutableTreeNode selectedNode) {
+
+        JPanel booleanPanel = new JPanel(new GridBagLayout());
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
+
+        JCheckBox checkBox = new JCheckBox(dpDescriptor.dataPoint);
+        if (!dpDescriptor.isWritable) {
+            checkBox.setEnabled(false);
+        } else {
+            checkBox.addItemListener(e -> onBooleanChecked(e, selectedNode));
+        }
+
+        try {
+            Value value = testDevice.getTestSystem().getVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
+            checkBox.setSelected(value.getBoolean());
+        } catch (Exception e) {
+            showMessageDialog("Read digital input failed.", e);
+        }
+
+        addComponent(booleanPanel, checkBox, 0, 0);
+        return booleanPanel;
+    }
+
+    private void onBooleanChecked(ItemEvent event, DefaultMutableTreeNode selectedNode) {
+
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
+
+        try {
+            testDevice.getTestSystem().setVal(
+                    dpDescriptor.functionalProfile,
+                    dpDescriptor.dataPoint,
+                    BooleanValue.of(event.getStateChange() == ItemEvent.SELECTED));
+        } catch (Exception e) {
+            showMessageDialog("Write digital datapoint failed.", e);
+        }
+    }
+
 
     private void onReadButtonClicked(DefaultMutableTreeNode selectedNode) {
 

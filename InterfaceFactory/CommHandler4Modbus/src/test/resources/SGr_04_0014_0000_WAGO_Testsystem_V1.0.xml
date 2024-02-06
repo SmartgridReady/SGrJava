@@ -1805,6 +1805,61 @@
             </dataPointListElement>
           </dataPointList>
         </functionalProfileListElement>
+
+        <functionalProfileListElement>
+          <functionalProfile>
+            <functionalProfileName>DigitalRegister_M2_OUT_Enum</functionalProfileName>
+            <functionalProfileIdentification>
+              <specificationOwnerIdentification>0</specificationOwnerIdentification>
+              <functionalProfileCategory>Actuator</functionalProfileCategory>
+              <functionalProfileType>DigitalOutput</functionalProfileType>
+              <levelOfOperation>4</levelOfOperation>
+              <versionNumber>
+                <primaryVersionNumber>0</primaryVersionNumber>
+                <secondaryVersionNumber>2</secondaryVersionNumber>
+                <subReleaseVersionNumber>3</subReleaseVersionNumber>
+              </versionNumber>
+            </functionalProfileIdentification>
+          </functionalProfile>
+          <dataPointList>
+            <dataPointListElement>
+              <dataPoint>
+                <dataPointName>Register</dataPointName>
+                <dataDirection>RW</dataDirection>
+                <dataType>
+                  <enum>
+                    <enumEntry>
+                      <literal>ENUM_00</literal>
+                      <ordinal>0</ordinal>
+                    </enumEntry>
+                    <enumEntry>
+                      <literal>ENUM_01</literal>
+                      <ordinal>1</ordinal>
+                    </enumEntry>
+                    <enumEntry>
+                      <literal>ENUM_10</literal>
+                      <ordinal>2</ordinal>
+                    </enumEntry>
+                    <enumEntry>
+                      <literal>ENUM_11</literal>
+                      <ordinal>3</ordinal>
+                    </enumEntry>
+                    <hexMask>03</hexMask>
+                  </enum>
+                </dataType>
+                <unit>NONE</unit>
+              </dataPoint>
+              <modbusDataPointConfiguration>
+                <modbusDataType>
+                  <int16/>
+                </modbusDataType>
+                <address>2000</address>
+                <registerType>HoldRegister</registerType>
+                <numberOfRegisters>1</numberOfRegisters>
+              </modbusDataPointConfiguration>
+            </dataPointListElement>
+          </dataPointList>
+        </functionalProfileListElement>
       </functionalProfileList>
     </modbusInterface>
   </interfaceList>
