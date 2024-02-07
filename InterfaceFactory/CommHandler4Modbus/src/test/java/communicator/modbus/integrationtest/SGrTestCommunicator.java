@@ -24,6 +24,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
@@ -76,7 +77,7 @@ public class SGrTestCommunicator extends JFrame {
         add(splitPane);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 600);
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -250,7 +251,7 @@ public class SGrTestCommunicator extends JFrame {
         JPanel writePanel = new JPanel(new GridBagLayout());
 
         JLabel writeLabel   = new JLabel("Write value:");
-        writeValueField = new JTextField(32);
+        writeValueField = new JTextField(16);
         JButton writeButton = new JButton("Write");
         writeButton.addActionListener(event -> onWriteButtonClicked(selectedNode));
 
@@ -282,7 +283,7 @@ public class SGrTestCommunicator extends JFrame {
         JPanel readPanel = new JPanel(new GridBagLayout());
 
         JLabel readLabel = new JLabel("Read value:  ");
-        readValueField = new JTextField(32);
+        readValueField = new JTextField(16);
         readValueField.setEditable(false);
         JButton readButton = new JButton("Read");
         readButton.addActionListener(event -> onReadButtonClicked(selectedNode));
@@ -295,6 +296,18 @@ public class SGrTestCommunicator extends JFrame {
         return readPanel;
     }
 
+    private void onReadButtonClicked(DefaultMutableTreeNode selectedNode) {
+
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
+        try {
+            SGrModbusDevice device = testDevice.getTestSystem();
+            Value readVal = device.getVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
+            readValueField.setText(readVal.getString());
+        } catch (Exception e) {
+            showMessageDialog("Get value from device failed.", e);
+        }
+    }
+
     private JPanel createBitmapPanel(DefaultMutableTreeNode selectedNode) {
 
         JPanel bitmapPanel = new JPanel(new GridBagLayout());
@@ -304,9 +317,10 @@ public class SGrTestCommunicator extends JFrame {
         EList<BitmapEntryProduct> bitmapEntries = dpDescriptor.genericType.getBitmap().getBitmapEntry();
         Optional<BitmapValue> currentBitmap = getCurrentBitmap(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
 
+        Map<String, JCheckBox> checkBoxMap = new HashMap<>();
+
         for (int i = 0; i<bitmapEntries.size(); i++) {
             JCheckBox checkBox = new JCheckBox(bitmapEntries.get(i).getLiteral());
-
             currentBitmap.ifPresent(bitmapValue -> checkBox.setSelected(bitmapValue.getBitmap().get(checkBox.getText())));
 
             if (dpDescriptor.isWritable) {
@@ -314,9 +328,13 @@ public class SGrTestCommunicator extends JFrame {
             } else {
                 checkBox.setEnabled(false);
             }
+            checkBoxMap.put(checkBox.getText(), checkBox);
             addComponent(bitmapPanel, checkBox, i % 4, i / 4);
         }
 
+        JButton refreshButton = new JButton("Refresh");
+        refreshButton.addActionListener(e -> onRefreshBitmapClicked(selectedNode, checkBoxMap));
+        addComponent(bitmapPanel, refreshButton, 0, bitmapEntries.size());
         return bitmapPanel;
     }
 
@@ -355,6 +373,15 @@ public class SGrTestCommunicator extends JFrame {
         }
     }
 
+    private void onRefreshBitmapClicked(DefaultMutableTreeNode selectedNode, Map<String, JCheckBox> checkBoxList) {
+
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
+        Optional<BitmapValue> bitmapValue = getCurrentBitmap(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
+        bitmapValue.ifPresent(bitmapValue1 ->
+                bitmapValue1.getBitmap().forEach((key, value) ->
+                        Optional.ofNullable(checkBoxList.get(key)).ifPresent(cb -> cb.setSelected(value))));
+    }
+
     private JPanel createEnumPanel(DefaultMutableTreeNode selectedNode) {
 
         JPanel bitmapPanel = new JPanel(new GridBagLayout());
@@ -373,6 +400,10 @@ public class SGrTestCommunicator extends JFrame {
 
         addComponent(bitmapPanel, selectedEnum, 0, 0);
         addComponent(bitmapPanel, comboBox, 1, 0);
+
+        JButton refreshButton = new JButton("Refresh");
+        refreshButton.addActionListener(e -> onRefreshEnum(comboBox, selectedNode));
+        addComponent(bitmapPanel, refreshButton, 2, 0);
 
         return bitmapPanel;
     }
@@ -407,6 +438,17 @@ public class SGrTestCommunicator extends JFrame {
         return Optional.empty();
     }
 
+    private void onRefreshEnum(JComboBox<String> comboBox, DefaultMutableTreeNode selectedNode) {
+
+        TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
+        try {
+            Value value = testDevice.getTestSystem().getVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
+            comboBox.setSelectedItem(value.getEnum().getLiteral());
+        } catch (Exception e) {
+            showMessageDialog("Read enum failed.", e);
+        }
+    }
+
     private JPanel createBooleanPanel(DefaultMutableTreeNode selectedNode) {
 
         JPanel booleanPanel = new JPanel(new GridBagLayout());
@@ -425,8 +467,12 @@ public class SGrTestCommunicator extends JFrame {
         } catch (Exception e) {
             showMessageDialog("Read digital input failed.", e);
         }
-
         addComponent(booleanPanel, checkBox, 0, 0);
+
+        JButton buttonRefresh = new JButton("Refresh");
+        buttonRefresh.addActionListener(event -> onBooleanRefresh(checkBox, selectedNode));
+        addComponent(booleanPanel, buttonRefresh, 0, 1);
+
         return booleanPanel;
     }
 
@@ -444,16 +490,13 @@ public class SGrTestCommunicator extends JFrame {
         }
     }
 
-
-    private void onReadButtonClicked(DefaultMutableTreeNode selectedNode) {
-
+    private void onBooleanRefresh(JCheckBox checkBox, DefaultMutableTreeNode selectedNode) {
         TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
         try {
-            SGrModbusDevice device = testDevice.getTestSystem();
-            Value readVal = device.getVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
-            readValueField.setText(readVal.getString());
+            Value value = testDevice.getTestSystem().getVal(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
+            checkBox.setSelected(value.getBoolean());
         } catch (Exception e) {
-            showMessageDialog("Get value from device failed.", e);
+            showMessageDialog("Read digital input failed.", e);
         }
     }
 
