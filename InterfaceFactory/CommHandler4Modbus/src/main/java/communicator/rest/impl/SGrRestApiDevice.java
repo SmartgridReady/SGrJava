@@ -29,6 +29,7 @@ import com.smartgridready.ns.v0.RestApiInterface;
 import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import communicator.common.api.StringValue;
+import communicator.common.api.Value;
 import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.api.GenDeviceApi4Rest;
@@ -37,14 +38,12 @@ import communicator.rest.exception.RestApiResponseParseException;
 import communicator.rest.exception.RestApiServiceCallException;
 import communicator.rest.http.authentication.Authenticator;
 import communicator.rest.http.authentication.AuthenticatorFactory;
-import communicator.rest.http.authentication.DummyHttpAuthenticator;
 import communicator.rest.http.client.RestServiceClient;
 import communicator.rest.http.client.RestServiceClientFactory;
 import communicator.rest.http.client.RestServiceClientUtils;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
-import communicator.common.api.Value;
 import io.vavr.control.Either;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
@@ -64,21 +63,20 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	private static final Logger LOG = LoggerFactory.getLogger(SGrRestApiDevice.class);
 	
 	private final DeviceFrame deviceDescription;
-	private Authenticator httpAuthenticator;
+	private final Authenticator httpAuthenticator;
 	private final RestServiceClientFactory restServiceClientFactory;
 	
-	public SGrRestApiDevice(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
+	public SGrRestApiDevice(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws RestApiAuthenticationException {
 		super(deviceDescription);
 		this.deviceDescription = deviceDescription;
 		this.restServiceClientFactory = restServiceClientFactory;
-		this.httpAuthenticator = new DummyHttpAuthenticator();
+
+		RestApiAuthenticationMethod authMethod = getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
+		this.httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
 	}	
 	
 	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
-		RestApiAuthenticationMethod authMethod =
-				getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
-				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
-				httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
+		httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
 	}
 		
 	@Override
@@ -91,12 +89,12 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}
 
 	@Override
-	public Value setVal(String profileName, String dataPointName, communicator.common.api.Value value)
+	public void setVal(String profileName, String dataPointName, communicator.common.api.Value value)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 
 		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
 		checkReadWritePermission(dataPoint, RwpDirections.WRITE);
-		return doReadWriteVal(dataPoint, value);
+		doReadWriteVal(dataPoint, value);
 	}
 
 	private Value doReadWriteVal(RestApiDataPoint dataPoint, Value value)

@@ -1,7 +1,9 @@
 package communicator.rest.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.RestApiServiceCall;
+import com.smartgridready.ns.v0.V0Factory;
 import communicator.common.api.Float32Value;
 import communicator.common.api.Float64Value;
 import communicator.common.api.Int32UValue;
@@ -54,6 +56,9 @@ class SGrRestAPIDeviceTest {
 	
 	@Mock
 	RestServiceClient restServiceClientReq;
+
+	@Mock
+	RestApiServiceCall restServiceCall;
 	
 	static DeviceFrame deviceFrame;
 			
@@ -144,10 +149,7 @@ class SGrRestAPIDeviceTest {
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 		device.authenticate();
 
-		Value res = device.setVal("ActivePowerAC", "ActivePowerACtot", Int32UValue.of(100));
-
-		// then		
-		assertEquals("OK", res.getString());
+		assertDoesNotThrow(() -> device.setVal("ActivePowerAC", "ActivePowerACtot", Int32UValue.of(100)));
 	}
 
 	@ParameterizedTest
@@ -192,8 +194,14 @@ class SGrRestAPIDeviceTest {
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 
+		Mockito.lenient().when(restServiceClientFactory.create(any(), any())).thenReturn(restServiceClient);
 		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), any())).thenReturn(restServiceClient);
 		Mockito.lenient().when(restServiceClient.callService()).thenReturn(Either.right("{}"));
+		Mockito.lenient().when(restServiceClient.getRestServiceCall()).thenReturn(restServiceCall);
+
+		ResponseQuery query = V0Factory.eINSTANCE.createResponseQuery();
+		query.setQuery("token");
+		Mockito.lenient().when(restServiceCall.getResponseQuery()).thenReturn(query);
 
 		if (expectedErrorMsg == null) {
 			if(isWrite) {

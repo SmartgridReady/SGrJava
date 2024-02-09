@@ -79,8 +79,7 @@ public interface GenDeviceApi4Rest extends GenDeviceApi {
      * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
      * @throws RestApiResponseParseException If parsing of the service response failed.
      * @throws GenDriverException If a common error occurred
-     * @return StringValue with the httpResponse
      */
-    Value setVal(String profileName, String dataPointName, Value value)
+     void setVal(String profileName, String dataPointName, Value value)
             throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
 }
