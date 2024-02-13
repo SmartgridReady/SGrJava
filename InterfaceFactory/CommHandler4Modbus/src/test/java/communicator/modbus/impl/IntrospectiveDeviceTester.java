@@ -41,10 +41,10 @@ public class IntrospectiveDeviceTester {
             //Tuple2<DeviceFrame, SGrDeviceBase> device = createWagoDevice();
 
             // Uncomment to test Smart-me meter
-            //Tuple2<DeviceFrame, SGrDeviceBase<?, ?, ?>> device = createSmartMeDevice();
+            Tuple2<DeviceFrame, SGrDeviceBase<?, ?, ?>> device = createSmartMeDevice();
 
             // Uncomment to test Clemap meter
-            Tuple2<DeviceFrame, SGrDeviceBase<?, ?, ?>> device = createSmartMeDevice();
+            // Tuple2<DeviceFrame, SGrDeviceBase<?, ?, ?>> device = createSmartMeDevice();
 
 
             DeviceFrame devDesc = device._1;

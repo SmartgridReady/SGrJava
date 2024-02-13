@@ -63,9 +63,10 @@
                     <dataType>
                   <float64/>
                 </dataType>
-                <unit>KILOWATTS</unit>
+                <unit>MEGAWATT_HOURS</unit>
                 <minimumValue>0.005</minimumValue>
                 <maximumValue>100</maximumValue>
+                <unitConversionMultiplicator>0.001</unitConversionMultiplicator>
               </dataPoint>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>
@@ -96,7 +97,7 @@
                     <dataType>
                   <float64/>
                 </dataType>
-                <unit>KILOWATTS</unit>
+                <unit>KILOWATT_HOURS</unit>
               </dataPoint>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>
@@ -123,7 +124,7 @@
                     <dataType>
                   <float64/>
                 </dataType>
-                <unit>KILOWATTS</unit>
+                <unit>KILOWATT_HOURS</unit>
               </dataPoint>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>
@@ -150,7 +151,7 @@
                     <dataType>
                   <float64/>
                 </dataType>
-                <unit>KILOWATTS</unit>
+                <unit>KILOWATT_HOURS</unit>
               </dataPoint>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>

@@ -21,6 +21,8 @@ package communicator.rest.impl;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.ResponseQuery;
+import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.ns.v0.RestApiAuthenticationMethod;
 import com.smartgridready.ns.v0.RestApiDataPoint;
 import com.smartgridready.ns.v0.RestApiDataPointConfiguration;
@@ -28,6 +30,7 @@ import com.smartgridready.ns.v0.RestApiFunctionalProfile;
 import com.smartgridready.ns.v0.RestApiInterface;
 import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import com.smartgridready.ns.v0.RestApiServiceCall;
+import communicator.common.api.Float64Value;
 import communicator.common.api.StringValue;
 import communicator.common.api.Value;
 import communicator.common.impl.SGrDeviceBase;
@@ -54,6 +57,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.function.DoubleBinaryOperator;
 
 public class SGrRestApiDevice extends SGrDeviceBase<
 		DeviceFrame,
@@ -101,7 +105,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 		
 		String host = getRestApiInterfaceDescription().getRestApiUri();
-		
+
 		Optional<RestApiDataPointConfiguration> dpDescriptionOpt
 				= Optional.ofNullable(dataPoint.getRestApiDataPointConfiguration());
 
@@ -110,6 +114,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 			if (value != null) {
 				checkOutOfRange(new Value[]{value}, dataPoint);
+				value = applyUnitConversion(dataPoint, value, this::divide);
 				substitutions.put("value", value.getString());
 			}
 
@@ -119,8 +124,10 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
 
 			if (value == null) {
-				return StringValue.of(parseJsonResponse(serviceCall.getResponseQuery().getQuery(), response));
+				value = handleServiceResponse(dpDescription, response);
+				return applyUnitConversion(dataPoint, value, this::multiply);
 			}
+
 			return StringValue.of(response);
 		}
 		throw  new GenDriverException("Missing 'restAPIDataPoint' description in device description XML file");
@@ -150,7 +157,24 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 			throw new RestApiServiceCallException(result.getLeft());
 		}
 	}
-	
+
+	private Value handleServiceResponse(RestApiDataPointConfiguration dpDescription, String response) throws RestApiResponseParseException{
+
+		Optional<ResponseQuery> queryOpt = Optional.ofNullable(dpDescription.getRestApiServiceCall())
+				.map(RestApiServiceCall::getResponseQuery);
+
+		if (queryOpt.isPresent()) {
+			ResponseQuery responseQuery = queryOpt.get();
+			if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
+				return StringValue.of(parseJsonResponse(responseQuery.getQuery(), response));
+			} else if (responseQuery.isSetQueryType()) {
+				throw new RestApiResponseParseException("Response query type " + responseQuery.getQueryType().getName() + " not supported yet");
+			}
+		}
+		// return plain response
+		return StringValue.of(response);
+	}
+
 
 	private String parseJsonResponse(String jmesPath, String jsonResp) throws RestApiResponseParseException {
 		
@@ -204,5 +228,36 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 	private RestApiInterfaceDescription getRestApiInterfaceDescription() {
 		return getRestApiInterface().getRestApiInterfaceDescription();
+	}
+
+	private Value applyUnitConversion(RestApiDataPoint dataPoint, Value value, DoubleBinaryOperator conversionFunction) {
+
+		if (dataPoint.getDataPoint().isSetUnitConversionMultiplicator()
+				&& isNumeric(value)
+				&& dataPoint.getDataPoint().getUnitConversionMultiplicator() != 0.0) {
+			return Float64Value.of(conversionFunction.applyAsDouble(value.getFloat64(), dataPoint.getDataPoint().getUnitConversionMultiplicator()));
+		}
+		return value;
+	}
+
+	private boolean isNumeric(Value value) {
+		if (value == null) {
+			return false;
+		}
+
+		try {
+			value.getFloat64();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private double divide(double dividend, double divisor) {
+		return  dividend / divisor;
+	}
+
+	private double multiply(double factor1, double factor2) {
+		return  factor1 * factor2;
 	}
 }

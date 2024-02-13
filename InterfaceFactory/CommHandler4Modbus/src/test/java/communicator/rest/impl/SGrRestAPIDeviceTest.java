@@ -23,6 +23,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -38,6 +39,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(value = MockitoExtension.class)
@@ -59,6 +61,8 @@ class SGrRestAPIDeviceTest {
 
 	@Mock
 	RestApiServiceCall restServiceCall;
+
+	ArgumentCaptor<Properties> propertiesCaptor = ArgumentCaptor.forClass(Properties.class);
 	
 	static DeviceFrame deviceFrame;
 			
@@ -104,7 +108,7 @@ class SGrRestAPIDeviceTest {
 		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
 		// then		
-		assertEquals("7.5", res.getString());
+		assertEquals("0.0075", String.format("%.4f",res.getFloat32()));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -129,7 +133,7 @@ class SGrRestAPIDeviceTest {
 		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
 		// then		
-		assertEquals(7.5f, res.getFloat32());
+		assertEquals("0.0075", String.format("%.4f", res.getFloat32()));
 		
 	}
 	
@@ -215,6 +219,28 @@ class SGrRestAPIDeviceTest {
 					: assertThrows(GenDriverException.class, () -> restApiDevice.getVal("ActivePowerAC", dataPointName));
 			assertEquals(expectedErrorMsg, e.getMessage());
 		}
+	}
+
+	@Test
+	void  unitConversion() throws Exception {
+
+		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+
+		Mockito.lenient().when(restServiceClientFactory.create(any(), any())).thenReturn(restServiceClient);
+		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), any())).thenReturn(restServiceClient);
+		Mockito.lenient().when(restServiceClient.callService()).thenReturn(Either.right("{}"));
+		Mockito.lenient().when(restServiceClient.getRestServiceCall()).thenReturn(restServiceCall);
+
+		ResponseQuery query = V0Factory.eINSTANCE.createResponseQuery();
+		query.setQuery("token");
+		Mockito.lenient().when(restServiceCall.getResponseQuery()).thenReturn(query);
+
+		restApiDevice.setVal("ActivePowerAC", "ActivePowerACtot", Float32Value.of(0.099f));
+
+		verify(restServiceClientFactory).create(any(), any(), propertiesCaptor.capture());
+		assertEquals(99,
+				Math.round(
+						Float.parseFloat(String.valueOf(propertiesCaptor.getValue().get("value")))));
 	}
 
 
