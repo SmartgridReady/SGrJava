@@ -48,7 +48,7 @@ class ClemapRestApiTest {
 	
 		DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
 		
-		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
+		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml", props);
 		GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
  
 		try {
@@ -82,7 +82,7 @@ class ClemapRestApiTest {
 		
 		try {
 			clemapConfigurator.authenticate();
-			LOG.info("Response: {}", clemapConfigurator.setVal("Configuration", "CreateMeterGroup", StringValue.of(METER_GROUP_CONFIG_JSON)));
+			clemapConfigurator.setVal("Configuration", "CreateMeterGroup", StringValue.of(METER_GROUP_CONFIG_JSON));
 		} catch (RestApiAuthenticationException | RestApiServiceCallException | RestApiResponseParseException | IOException e) {
 			LOG.info("Error: " + e.getMessage());
 			throw e;

@@ -18,10 +18,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.http.client;
 
+import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import org.eclipse.emf.common.util.EList;
-
-import com.smartgridready.ns.v0.HeaderEntry;
 
 public class RestServiceClientUtils {
 	
@@ -32,9 +31,9 @@ public class RestServiceClientUtils {
 		StringBuilder sb = new StringBuilder();
 
 		if (restServiceCall != null) {
-			sb.append(String.format("%nRequest method: %s%n", restServiceCall.getRequestMethod().getName()));
+			sb.append(String.format("%nRequest method: %s%n", restServiceCall.getRequestMethod() != null ? restServiceCall.getRequestMethod().getName() : "n.a"));
 			sb.append(String.format("Request path:   %s%n", restServiceCall.getRequestPath()));
-			sb.append(String.format("Headers: %n%s", printHeaders(restServiceCall.getRequestHeader().getHeader())));
+			sb.append(String.format("Headers: %s%n", restServiceCall.getRequestHeader() != null ? printHeaders( restServiceCall.getRequestHeader().getHeader()) : "n.a"));
 			sb.append(String.format("Request body:   %s%n", restServiceCall.getRequestBody()));
 		}
 		return sb.toString();		

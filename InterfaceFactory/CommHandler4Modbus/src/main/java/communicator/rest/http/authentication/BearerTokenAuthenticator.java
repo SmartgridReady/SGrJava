@@ -18,22 +18,13 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.http.authentication;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.Base64.Decoder;
-import java.util.Optional;
-
-import com.smartgridready.ns.v0.DeviceFrame;
-import com.smartgridready.ns.v0.RestApiInterfaceDescription;
-import org.apache.hc.core5.http.HttpResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import communicator.rest.exception.RestApiResponseParseException;
+import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.ResponseQuery;
+import com.smartgridready.ns.v0.ResponseQueryType;
+import com.smartgridready.ns.v0.RestApiInterfaceDescription;
+import com.smartgridready.ns.v0.RestApiServiceCall;
 import communicator.rest.exception.RestApiServiceCallException;
 import communicator.rest.http.client.RestServiceClient;
 import communicator.rest.http.client.RestServiceClientFactory;
@@ -42,6 +33,15 @@ import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
 import io.vavr.control.Either;
+import org.apache.hc.core5.http.HttpResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.Base64.Decoder;
+import java.util.Optional;
 
 public class BearerTokenAuthenticator implements Authenticator {
 	
@@ -49,16 +49,16 @@ public class BearerTokenAuthenticator implements Authenticator {
 	
 	public static final int TOKEN_EXPIRY_THRESHOLD_MS = 60000; // one minute
 	
-	private Optional<String> bearerToken = Optional.empty();	
+	private String bearerToken;
 	
 	@Override
 	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory)
-			throws IOException, RestApiServiceCallException, RestApiResponseParseException {
+			throws IOException, RestApiServiceCallException {
 		
-		if (!bearerToken.isPresent() || isBearerTokenExpired()) {
+		if (bearerToken == null || isBearerTokenExpired()) {
 			authenticate(deviceDescription, restServiceClientFactory);			
 		}
-		return "Bearer " + bearerToken.get();
+		return "Bearer " + bearerToken;
 	}	
 	
 	@Override
@@ -68,7 +68,7 @@ public class BearerTokenAuthenticator implements Authenticator {
 	
 	@Override
 	public void renewToken(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException {
-		bearerToken = Optional.empty();
+		bearerToken = null;
 		authenticate(deviceDescription, restServiceClientFactory);		
 	}
 	
@@ -94,9 +94,9 @@ public class BearerTokenAuthenticator implements Authenticator {
 		Either<HttpResponse, String> result = restServiceClient.callService();			
 		if (result.isRight()) {
 			LOG.info("Received response: {}", result.get());
-			bearerToken = parseResponse(result.get(), restServiceClient.getRestServiceCall().getResponseQuery().getQuery());
-			if (bearerToken.isPresent()) { 
-				LOG.debug("Received bearer token={}", bearerToken.get());
+			bearerToken = handleResponse(result.get(), restServiceClient.getRestServiceCall());
+			if (bearerToken != null) {
+				LOG.debug("Received bearer token={}", bearerToken);
 			} else {
 				LOG.error("Bearer token missing in response.");
 			}
@@ -105,9 +105,22 @@ public class BearerTokenAuthenticator implements Authenticator {
 			LOG.error("Authenticate failed with http status={}", result.getLeft().getCode());
 			throw new RestApiServiceCallException(result.getLeft());
 		}				
-	}	
+	}
+
+	private String handleResponse(String result, RestApiServiceCall restApiServiceCall) throws IOException {
+
+		Optional<String> queryOpt = Optional.ofNullable(restApiServiceCall.getResponseQuery())
+				.filter(responseQuery -> responseQuery.isSetQueryType()
+						&& responseQuery.getQueryType() == ResponseQueryType.JMES_PATH_EXPRESSION)
+				.map(ResponseQuery::getQuery);
+
+		if (queryOpt.isPresent()) {
+			return parseResponse(result, queryOpt.get());
+		}
+		return result;
+	}
 	
-	private Optional<String> parseResponse(String jsonResp, String jmesPath) throws IOException {
+	private String parseResponse(String jsonResp, String jmesPath) throws IOException {
 		
 		JmesPath<JsonNode> path = new JacksonRuntime();
 		Expression<JsonNode> expression = path.compile(jmesPath);
@@ -117,17 +130,17 @@ public class BearerTokenAuthenticator implements Authenticator {
 		JsonNode res = expression.search(jsonNode);
 		
 		if (res != null) {
-			return Optional.of(res.asText());
+			return res.asText();
 		}
 		
 		LOG.error("Unable to extract bearer token from http response.");
-		return Optional.empty();		
+		return null;
 	}
 	
 	private boolean isBearerTokenExpired() {
 		
 		try {
-			String[] tokenParts = bearerToken.get().split("\\.");		
+			String[] tokenParts = bearerToken.split("\\.");
 			if (tokenParts.length >= 2) {
 				
 				Decoder decoder = Base64.getDecoder();
@@ -141,7 +154,7 @@ public class BearerTokenAuthenticator implements Authenticator {
 				jsonNode = mapper.readTree(jsonBody);
 				JsonNode res = expression.search(jsonNode);
 				long expiryTimestamp = res.asLong(0);			
-				long currentTimestamp = System.currentTimeMillis() / 1000l;				
+				long currentTimestamp = System.currentTimeMillis() / 1000L;
 				return (expiryTimestamp + TOKEN_EXPIRY_THRESHOLD_MS < currentTimestamp);
 			}
 		} catch (Exception e) {
