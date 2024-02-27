@@ -87,7 +87,7 @@ public abstract class RestServiceClient {
 	private static String replacePropertyPlaceholders(String template, Properties properties) {
 
 		String convertedTemplate = template;		
-		if (properties != null) {
+		if (template != null && properties != null) {
 			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
 				convertedTemplate = convertedTemplate.replaceAll("\\{\\{" + entry.getKey() + "\\}\\}", (String)entry.getValue());
 			}

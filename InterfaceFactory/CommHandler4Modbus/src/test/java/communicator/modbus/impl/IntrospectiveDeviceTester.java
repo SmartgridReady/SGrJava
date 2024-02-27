@@ -7,9 +7,11 @@ import communicator.rest.http.client.ApacheRestServiceClientFactory;
 import communicator.rest.impl.SGrRestApiDevice;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import io.vavr.Tuple2;
+import io.vavr.Tuple3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,26 +40,34 @@ public class IntrospectiveDeviceTester {
         try {
 
             // Uncomment to test WAGO smart meter
-            //Tuple2<DeviceFrame, SGrDeviceBase> device = createWagoDevice();
+            // Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createWagoDevice();
 
             // Uncomment to test Smart-me meter
-            Tuple2<DeviceFrame, SGrDeviceBase<?, ?, ?>> device = createSmartMeDevice();
+            // Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createSmartMeDevice();
 
             // Uncomment to test Clemap meter
-            // Tuple2<DeviceFrame, SGrDeviceBase<?, ?, ?>> device = createSmartMeDevice();
+            // Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createSmartMeDevice();
+
+            // Uncomment to test Swisspower tariff device
+            // Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createSwisspowerDevice();
+
+            // Uncomment to test GroupE tariff device
+            Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createGroupEDevice();
 
 
             DeviceFrame devDesc = device._1;
             SGrDeviceBase<?,?,?> deviceBase = device._2;
+            Properties properties = device._3;
 
             // List containing data points to be read.
-            final List<Tuple2<String, String>> datapPoints = new ArrayList<>();
+            final List<Tuple3<String, String, Properties>> datapPoints = new ArrayList<>();
 
             // Fill REST interface datapoints if any
             Optional.ofNullable(devDesc.getInterfaceList().getRestApiInterface()).ifPresent(restApiIf ->
                     restApiIf.getFunctionalProfileList().getFunctionalProfileListElement().forEach(fp-> {
                         String fpName = fp.getFunctionalProfile().getFunctionalProfileName();
-                        fp.getDataPointList().getDataPointListElement().forEach( dp -> datapPoints.add(new Tuple2<>(fpName, dp.getDataPoint().getDataPointName())));
+                        fp.getDataPointList().getDataPointListElement().forEach( dp ->
+                                datapPoints.add(new Tuple3<>(fpName, dp.getDataPoint().getDataPointName(), properties)));
 
             }));
 
@@ -65,7 +75,8 @@ public class IntrospectiveDeviceTester {
             Optional.ofNullable(devDesc.getInterfaceList().getModbusInterface()).ifPresent(modbusIf ->
                     modbusIf.getFunctionalProfileList().getFunctionalProfileListElement().forEach(fp -> {
                         String fpName = fp.getFunctionalProfile().getFunctionalProfileName();
-                        fp.getDataPointList().getDataPointListElement().forEach( dp -> datapPoints.add(new Tuple2<>(fpName, dp.getDataPoint().getDataPointName())));
+                        fp.getDataPointList().getDataPointListElement().forEach( dp ->
+                                datapPoints.add(new Tuple3<>(fpName, dp.getDataPoint().getDataPointName(), properties)));
                 }
             ));
             
@@ -73,7 +84,7 @@ public class IntrospectiveDeviceTester {
 
             final List<ProtocolRecord> protocol = new ArrayList<>();
             System.out.print("Introspective reading test: .");
-            for (Tuple2<String, String> tuple : datapPoints) {
+            for (Tuple3<String, String, Properties> tuple : datapPoints) {
                 protocol.add(checkDataPoint(tuple, deviceBase));
                 Thread.sleep(100);
                 System.out.print(".");
@@ -89,7 +100,7 @@ public class IntrospectiveDeviceTester {
         }
     }
 
-    private static ProtocolRecord checkDataPoint(Tuple2<String,String> dataPoint, SGrDeviceBase<?, ?, ?> wagoMeter) {
+    private static ProtocolRecord checkDataPoint(Tuple3<String,String, Properties> dataPoint, SGrDeviceBase<?, ?, ?> device) {
 
         ProtocolRecord record = new ProtocolRecord();
         record.readVal = "-";
@@ -98,24 +109,29 @@ public class IntrospectiveDeviceTester {
         record.dpName = dataPoint._2;
 
         try {
-            record.readVal = wagoMeter.getVal(dataPoint._1, dataPoint._2).getString();
+            if (dataPoint._3 != null) {
+                SGrRestApiDevice restApiDevice = (SGrRestApiDevice) device;
+                record.readVal = restApiDevice.getVal(dataPoint._1, dataPoint._2, dataPoint._3).getString();
+            } else {
+                record.readVal = device.getVal(dataPoint._1, dataPoint._2).getString();
+            }
         } catch (Exception e) {
             record.exception = e.getMessage();
         }
         return record;
     }
 
-    private static Tuple2<DeviceFrame, SGrDeviceBase<?, ?, ?>> createWagoDevice() throws Exception {
+    private static Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> createWagoDevice() throws Exception {
 
         DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
         DeviceFrame devDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
         GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
         mbRTU.initTrspService("COM3", 19200);
-        return new Tuple2<>(devDesc, new SGrModbusDevice(devDesc, mbRTU));
+        return new Tuple3<>(devDesc, new SGrModbusDevice(devDesc, mbRTU), null);
     }
 
-    private static Tuple2<DeviceFrame, SGrDeviceBase<?, ?, ?>> createSmartMeDevice() throws Exception {
+    private static Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> createSmartMeDevice() throws Exception {
 
         Properties properties = new Properties();
         properties.put("username", "smith83@gmx.ch");
@@ -128,10 +144,10 @@ public class IntrospectiveDeviceTester {
                 properties);
 
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheRestServiceClientFactory());
-        return new Tuple2<>(devDesc, restApiDevice);
+        return new Tuple3<>(devDesc, restApiDevice, null);
     }
 
-    private static Tuple2<DeviceFrame, SGrDeviceBase<?, ?, ?>> createClemapDevice() throws Exception {
+    private static Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> createClemapDevice() throws Exception {
 
         Properties properties = new Properties();
         properties.put("username", "hfurrer@ergonomics.ch");
@@ -145,7 +161,41 @@ public class IntrospectiveDeviceTester {
                 properties);
 
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheRestServiceClientFactory());
-        return new Tuple2<>(devDesc, restApiDevice);
+        return new Tuple3<>(devDesc, restApiDevice, null);
+    }
+
+    private static Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> createSwisspowerDevice() throws Exception {
+
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        URL deviceDescUrl = classloader.getResource("SGr_05_Swisspower_Dynamic_Tariffs_0.0.1.xml");
+
+        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
+
+        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheRestServiceClientFactory());
+
+        Properties parameters = new Properties();
+        parameters.put("point", "CH1018601234500000000000000011642");
+        parameters.put("start_timestamp", "2024-02-14T00:00:00+02:00");
+        parameters.put("end_timestamp", "2024-02-16T02:00:00+02:00");
+        return new Tuple3<>(devDesc, restApiDevice, parameters);
+    }
+
+
+    private static Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> createGroupEDevice() throws Exception {
+
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        URL deviceDescUrl = classloader.getResource("SGr_05_GroupeE_Dynamic_Tariffs_0.0.1.xml");
+
+        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
+
+        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheRestServiceClientFactory());
+
+        Properties parameters = new Properties();
+        parameters.put("start_timestamp", "2023-09-06T00:00:00+02:00");
+        parameters.put("end_timestamp", "2023-09-07T02:00:00+02:00");
+        return new Tuple3<>(devDesc, restApiDevice, parameters);
     }
 
 }
