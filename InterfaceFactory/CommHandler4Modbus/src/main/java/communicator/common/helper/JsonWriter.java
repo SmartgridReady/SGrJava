@@ -17,19 +17,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class JsonBuilder {
+public class JsonWriter {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private final Map<String, String> keywordMap;
 
-    public JsonBuilder(Map<String, String> keywordMap) {
+    public JsonWriter(Map<String, String> keywordMap) {
         this.keywordMap = keywordMap;
     }
 
     public String buildJson(Collection<Map<String, Object>> flatDataRecords) throws JsonProcessingException {
 
-        JsonBuilder builder = new JsonBuilder(keywordMap);
+        JsonWriter builder = new JsonWriter(keywordMap);
 
         // Group by first level group.
         List<Map.Entry<String, String>> keywordsForIteration = builder.getKeywordsForIteration(1);
@@ -61,10 +61,10 @@ public class JsonBuilder {
 
         // Build up the JsonNode
         ArrayNode rootNode = objectMapper.createArrayNode(); // Assuming below the root node is an array
-        firstLevelGroups.forEach((groupKey, flatRecordsBeloningToGroup) -> {
+        firstLevelGroups.forEach((groupKey, flatRecordsBelongingToGroup) -> {
             // Add a node for each group to the array node
             ObjectNode firstLevelNode = objectMapper.createObjectNode();
-            flatRecordsBeloningToGroup.forEach(flatRecord -> {
+            flatRecordsBelongingToGroup.forEach(flatRecord -> {
                 flatRecord.forEach((valueNames, values) ->
                         // Pick all first level elements, map the elementNames get the values and add the elements to the  firstLevel node.
                         keywordsForIteration.forEach(mappingEntry -> {
@@ -76,7 +76,7 @@ public class JsonBuilder {
                             }
                         }));
                 // Then add the second level nodes to the first level node.
-                addSecondLevelNodes(firstLevelNode, flatRecordsBeloningToGroup);
+                addSecondLevelNodes(firstLevelNode, flatRecordsBelongingToGroup);
             });
             // We have finished adding the first level node.
             rootNode.add(firstLevelNode);
@@ -133,6 +133,7 @@ public class JsonBuilder {
 
         Map<String, String> result = new LinkedHashMap<>();
         keywords.forEach(entry -> {
+            // noinspection RegExpRedundantEscape
             Pattern pattern = Pattern.compile("\\[\\*\\]\\.(.*?)$");
             Matcher matcher = pattern.matcher(entry.getValue());
             if (matcher.find()) {
@@ -149,11 +150,13 @@ public class JsonBuilder {
         Map<String, Map<String, String>> result = new LinkedHashMap<>();
 
         keywords.forEach(entry -> {
+            // noinspection RegExpRedundantEscape
             Pattern pattern = Pattern.compile("\\[\\*\\]\\.(.*?)\\[\\*\\]");
             Matcher matcher = pattern.matcher(entry.getValue());
             if (matcher.find()) {
                 String groupKey = matcher.group(1);
                 Map<String, String> valueNames = Optional.ofNullable(result.get(groupKey)).orElse(new LinkedHashMap<>());
+                // noinspection RegExpRedundantEscape
                 String valueName = entry.getValue().replaceAll("\\[\\*\\]\\.(.*?)\\[\\*\\]\\.", "");
                 valueNames.put(entry.getKey(), valueName);
                 result.put(groupKey, valueNames);

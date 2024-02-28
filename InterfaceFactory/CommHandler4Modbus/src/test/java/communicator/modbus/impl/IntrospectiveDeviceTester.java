@@ -6,7 +6,6 @@ import communicator.common.impl.SGrDeviceBase;
 import communicator.rest.http.client.ApacheRestServiceClientFactory;
 import communicator.rest.impl.SGrRestApiDevice;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
-import io.vavr.Tuple2;
 import io.vavr.Tuple3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
+@SuppressWarnings({"DataFlowIssue","java:S2925"})
 public class IntrospectiveDeviceTester {
 
     private static final Logger LOG = LoggerFactory.getLogger(GetValArrayTester.class);
@@ -38,22 +38,16 @@ public class IntrospectiveDeviceTester {
     public static void main( String[] argv ) {
 
         try {
+            Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device;
 
-            // Uncomment to test WAGO smart meter
-            // Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createWagoDevice();
-
-            // Uncomment to test Smart-me meter
-            // Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createSmartMeDevice();
-
-            // Uncomment to test Clemap meter
-            // Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createSmartMeDevice();
-
-            // Uncomment to test Swisspower tariff device
-            // Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createSwisspowerDevice();
-
-            // Uncomment to test GroupE tariff device
-            Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device = createGroupEDevice();
-
+            String useDevice = "GROUPE-E";
+            switch (useDevice) {
+                case "SMART-ME": device = createSmartMeDevice(); break;
+                case "CLEMAP": device = createClemapDevice(); break;
+                case "SWISSPOWER": device = createSwisspowerDevice();break;
+                case "GROUPE-E": device = createGroupeEDevice(); break;
+                default: device = createWagoDevice();
+            }
 
             DeviceFrame devDesc = device._1;
             SGrDeviceBase<?,?,?> deviceBase = device._2;
@@ -182,7 +176,7 @@ public class IntrospectiveDeviceTester {
     }
 
 
-    private static Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> createGroupEDevice() throws Exception {
+    private static Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> createGroupeEDevice() throws Exception {
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL deviceDescUrl = classloader.getResource("SGr_05_GroupeE_Dynamic_Tariffs_0.0.1.xml");

@@ -1,0 +1,34 @@
+[
+  {
+    "start_timestamp": "2023-09-06T00:00:00+02:00",
+    "end_timestamp": "2023-09-06T00:15:00+02:00",
+    "vario_plus": 32.09,
+    "vario_grid": 9.23,
+    "dt_plus": 25.08,
+    "unit": "Rp./kWh"
+  },
+  {
+    "start_timestamp": "2023-09-06T00:15:00+02:00",
+    "end_timestamp": "2023-09-06T00:30:00+02:00",
+    "vario_plus": 31.25,
+    "vario_grid": 8.46,
+    "dt_plus": 25.08,
+    "unit": "Rp./kWh"
+  },
+  {
+    "start_timestamp": "2023-09-06T00:30:00+02:00",
+    "end_timestamp": "2023-09-06T00:45:00+02:00",
+    "vario_plus": 29.89,
+    "vario_grid": 7.2,
+    "dt_plus": 25.08,
+    "unit": "Rp./kWh"
+  },
+  {
+    "start_timestamp": "2023-09-06T00:45:00+02:00",
+    "end_timestamp": "2023-09-06T01:00:00+02:00",
+    "vario_plus": 28.65,
+    "vario_grid": 6.06,
+    "dt_plus": 25.08,
+    "unit": "Rp./kWh"
+  }
+]

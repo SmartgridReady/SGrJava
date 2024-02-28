@@ -215,8 +215,9 @@
                     <jmesPathMappings>
                       <mapping><from>prices[*].start_timestamp</from><to>[*].start_time</to></mapping>
                       <mapping><from>prices[*].end_timestamp</from><to>[*].end_time</to></mapping>
-                      <mapping><from>prices[*].price</from><to>[*].tariffs[*].tariff</to></mapping>
+                      <mapping><from>prices[*].price</from><to>[*].tariffs[*].tariff</to><name>$standard</name></mapping>
                       <mapping><from>prices[*].unit</from><to>[*].tariffs[*].unit</to></mapping>
+                      <mapping><from>$standard</from><to>[*].tariffs[*].name</to></mapping>
                     </jmesPathMappings>
                   </responseQuery>
                 </restApiServiceCall>

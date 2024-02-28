@@ -18,11 +18,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.impl;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartgridready.ns.v0.DeviceFrame;
-import com.smartgridready.ns.v0.JMESPathMapping;
-import com.smartgridready.ns.v0.JMESPathMappingRecord;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.ns.v0.RestApiAuthenticationMethod;
@@ -35,7 +31,6 @@ import com.smartgridready.ns.v0.RestApiServiceCall;
 import communicator.common.api.Float64Value;
 import communicator.common.api.StringValue;
 import communicator.common.api.Value;
-import communicator.common.helper.JsonBuilder;
 import communicator.common.helper.JsonMapper;
 import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverException;
@@ -48,23 +43,16 @@ import communicator.rest.http.authentication.AuthenticatorFactory;
 import communicator.rest.http.client.RestServiceClient;
 import communicator.rest.http.client.RestServiceClientFactory;
 import communicator.rest.http.client.RestServiceClientUtils;
-import io.burt.jmespath.Expression;
-import io.burt.jmespath.JmesPath;
-import io.burt.jmespath.jackson.JacksonRuntime;
 import io.vavr.control.Either;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
-import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.DoubleBinaryOperator;
 
 public class SGrRestApiDevice extends SGrDeviceBase<
@@ -186,119 +174,15 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		if (queryOpt.isPresent()) {
 			ResponseQuery responseQuery = queryOpt.get();
 			if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
-				return StringValue.of(parseJsonResponse(responseQuery.getQuery(), response));
+				return JsonMapper.parseJsonResponse(responseQuery.getQuery(), response);
 			} else if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
-				return mapJsonResponse(responseQuery.getJmesPathMappings(), response);
+				return JsonMapper.mapJsonResponse(responseQuery.getJmesPathMappings(), response);
 			} else if (responseQuery.isSetQueryType()) {
 				throw new RestApiResponseParseException("Response query type " + responseQuery.getQueryType().getName() + " not supported yet");
 			}
 		}
 		// return plain response
 		return StringValue.of(response);
-	}
-
-
-	private String parseJsonResponse(String jmesPath, String jsonResp) throws RestApiResponseParseException {
-		
-		if (jmesPath.trim().isEmpty()) {
-			// no parsing required
-			return jsonResp;
-		}
-		
-		JmesPath<JsonNode> path = new JacksonRuntime();
-		Expression<JsonNode> expression = path.compile(jmesPath);
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		try {
-			JsonNode jsonNode = mapper.readTree(jsonResp);			
-			JsonNode res = expression.search(jsonNode);
-			return res.asText();
-		} catch (IOException e) {
-			throw new RestApiResponseParseException("Parsing JSON response failed: " + e.getMessage(), e);
-		}
-	}
-
-	private Value mapJsonResponse(JMESPathMapping jmesPathMapping, String response) throws RestApiResponseParseException {
-
-		// Build mapping tables from EI-XML mappings
-		Map<String, String> mapFrom = new HashMap<>();
-		Map<String, String> mapTo = new HashMap<>();
-		Map<String, String> names = new HashMap<>();
-		EList<JMESPathMappingRecord> mappingRecords = jmesPathMapping.getMapping();
-		for (int i = 0; i < mappingRecords.size(); i++) {
-			mapFrom.put(String.valueOf(i), mappingRecords.get(i).getFrom());
-			if (mappingRecords.get(i).getFrom().startsWith("$")) {
-				mapTo.put(mappingRecords.get(i).getFrom(), mappingRecords.get(i).getTo());
-			} else {
-				mapTo.put(String.valueOf(i), mappingRecords.get(i).getTo());
-			}
-			if (mappingRecords.get(i).getName() != null) {
-				names.put(String.valueOf(i), mappingRecords.get(i).getName());
-			}
-		}
-
-		final String errorMsg = ("Unable to map JSON response according the JSONMapping rules in EI-XML");
-		try {
-			Map<JsonMapper.Key, Map<String, Object>> flatRepresentation = JsonMapper.mapToFlatList(response, mapFrom);
-			if (flatRepresentation != null) {
-				if (LOG.isDebugEnabled()) {
-					LOG.debug("Flat representation of JSON response: {}", flatRepresentation.values());
-				}
-
-				Map<Integer, Map<String, Object>> enhancedMap = enhanceWithNamings(flatRepresentation, names);
-
-				JsonBuilder builder = new JsonBuilder(mapTo);
-				return StringValue.of(builder.buildJson(enhancedMap.values()));
-			} else {
-				throw new RestApiResponseParseException(errorMsg);
-			}
-		} catch (Exception e) {
-			throw new RestApiResponseParseException(errorMsg, e);
-		}
-	}
-
-	private  Map<Integer, Map<String, Object>> enhanceWithNamings(
-			Map<JsonMapper.Key, Map<String, Object>> flatRepresentation, Map<String, String> names) {
-
-		Map<Integer, Map<String, Object>> enhanced = new HashMap<>();
-
-		final AtomicInteger key = new AtomicInteger(0);
-		flatRepresentation.forEach( (valuesKey, valuesMap) -> {
-			for (int i = 0; i < valuesMap.size(); i++) {
-				if (!names.isEmpty()) {
-					enhanced.putAll(flattenNamedRecords(key, valuesMap, names));
-				} else {
-					enhanced.put( (key.getAndIncrement()), valuesMap);
-				}
-			}
-		});
-		return enhanced;
-	}
-
-	private Map<Integer, Map<String, Object>> flattenNamedRecords(
-			AtomicInteger currentRecordKey,
-			Map<String, Object> valuesMap,
-			Map<String, String> names) {
-
-		Map<Integer, Map<String, Object>> flattenedRecords = new HashMap<>();
-
-		HashMap<String, Object> unnamedValues = new HashMap<>();
-		valuesMap.forEach((key, value) -> {
-			 if (!names.containsKey(key)) {
-				 unnamedValues.put(key, value);
-			 }
-		});
-
-		names.forEach((nameKey, nameValue) -> {
-			// Create a separate record for each name
-			Map<String, Object> newValues = new HashMap<>(unnamedValues);
-			newValues.put(nameValue, nameValue.replace("$", ""));
-			newValues.put(nameKey, valuesMap.get(nameKey));
-			flattenedRecords.put(currentRecordKey.getAndIncrement(), newValues);
-		});
-
-		return flattenedRecords;
 	}
 
 	private RestApiDataPoint findProfileDataPoint(String profileName, String dataPointName) throws GenDriverException {

@@ -1,187 +1,132 @@
 package communicator.common.helper;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smartgridready.ns.v0.JMESPathMapping;
+import com.smartgridready.ns.v0.JMESPathMappingRecord;
+import communicator.common.api.StringValue;
+import communicator.common.api.Value;
+import communicator.rest.exception.RestApiResponseParseException;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
-import org.apache.commons.lang3.SerializationUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.eclipse.emf.common.util.EList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicInteger;
 
-// Maps a received Json value into the required SmartGridready Json output value.
-// The timestamps are converted to a canonical format first and afterwards
-public class JsonMapper
-{
-    private static final JmesPath<JsonNode> jmespath = new JacksonRuntime();
+public class JsonMapper {
 
-    private final Map<String, String> keywordMapInput;
+    public static final Logger LOG = LoggerFactory.getLogger(JsonMapper.class);
 
-    public JsonMapper(Map<String, String> keywordMapInput) {
-        this.keywordMapInput = keywordMapInput;
+    private JsonMapper() {
+        throw new IllegalStateException("Helper class");
     }
 
-    public static class Key implements Comparable<Key>, Serializable {
+    public static Value parseJsonResponse(String jmesPath, String jsonResp) throws RestApiResponseParseException {
 
-        private final List<Integer> indices = new ArrayList<>();
-
-        public void add(int index) {
-            indices.add(index);
+        if (jmesPath.trim().isEmpty()) {
+            // no parsing required
+            return StringValue.of(jsonResp);
         }
 
-        public String key() {
-            StringBuilder sb = new StringBuilder();
-            indices.forEach(sb::append);
-            return sb.toString();
-        }
+        JmesPath<JsonNode> path = new JacksonRuntime();
+        Expression<JsonNode> expression = path.compile(jmesPath);
 
-        public int indexAt(int iteration) {
-            return indices.get(iteration);
-        }
+        ObjectMapper mapper = new ObjectMapper();
 
-        @Override
-        public int compareTo(Key o) {
-            return key().compareTo(o.key());
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            return o instanceof Key && this.compareTo((Key)o) == 0;
-        }
-
-        @Override
-        public int hashCode() {
-            return key().hashCode();
-        }
-
-        public static Key copy(Key srcKey) {
-            return SerializationUtils.clone(srcKey);
+        try {
+            JsonNode jsonNode = mapper.readTree(jsonResp);
+            JsonNode res = expression.search(jsonNode);
+            return StringValue.of(res.asText());
+        } catch (IOException e) {
+            throw new RestApiResponseParseException("Parsing JSON response failed: " + e.getMessage(), e);
         }
     }
 
-    public static Map<Key, Map<String, Object>> mapToFlatList(String jsonFile, Map<String, String> keywordMapInput)
-            throws JsonProcessingException {
+    public static Value mapJsonResponse(JMESPathMapping jmesPathMapping, String response) throws RestApiResponseParseException {
 
-        JsonMapper mapper = new JsonMapper(keywordMapInput);
-
-        ObjectMapper parser = new ObjectMapper();
-        JsonNode root = parser.readTree(jsonFile);
-
-        return mapper.parseJsonTree(root, null, 1);
-    }
-
-    private Map<Key, Map<String, Object>> parseJsonTree(JsonNode node, Map<Key, Map<String, Object>> parentData, int iteration) {
-
-        Map<Key, Map<String, Object>> recordMap = new TreeMap<>(); // TreeMap to keep the order of element occurrence
-
-        // Get all keywords for the given iteration depth
-        Set<Map.Entry<String, String>> keywords = getKeywordsForIteration(iteration);
-
-        if (iteration <= determineRequiredIterations(keywordMapInput)) {
-            if (parentData == null) {
-                processChildElements(node, iteration, recordMap, keywords, 0, null);
+        // Build mapping tables from EI-XML mappings
+        Map<String, String> mapFrom = new HashMap<>();
+        Map<String, String> mapTo = new HashMap<>();
+        Map<String, String> names = new HashMap<>();
+        EList<JMESPathMappingRecord> mappingRecords = jmesPathMapping.getMapping();
+        for (int i = 0; i < mappingRecords.size(); i++) {
+            mapFrom.put(String.valueOf(i), mappingRecords.get(i).getFrom());
+            if (mappingRecords.get(i).getFrom().startsWith("$")) {
+                mapTo.put(mappingRecords.get(i).getFrom(), mappingRecords.get(i).getTo());
             } else {
-                int parentIndex = 0;
-                for (Map.Entry<Key, Map<String, Object>> parentRec : parentData.entrySet()) {
-                    processChildElements(node, iteration, recordMap, keywords, parentIndex, parentRec);
-                    parentIndex++;
-                }
+                mapTo.put(String.valueOf(i), mappingRecords.get(i).getTo());
             }
-            return parseJsonTree(node, recordMap, ++iteration);
-        } else {
-            return parentData;
+            if (mappingRecords.get(i).getName() != null) {
+                names.put(String.valueOf(i), mappingRecords.get(i).getName());
+            }
+        }
+
+        final String errorMsg = ("Unable to map JSON response according the JSONMapping rules in EI-XML");
+        try {
+            Map<JsonReader.Key, Map<String, Object>> flatRepresentation = JsonReader.mapToFlatList(response, mapFrom);
+            if (flatRepresentation != null) {
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug("Flat representation of JSON response: {}", flatRepresentation.values());
+                }
+
+                Map<Integer, Map<String, Object>> enhancedMap = enhanceWithNamings(flatRepresentation, names);
+
+                JsonWriter builder = new JsonWriter(mapTo);
+                return StringValue.of(builder.buildJson(enhancedMap.values()));
+            } else {
+                throw new RestApiResponseParseException(errorMsg);
+            }
+        } catch (Exception e) {
+            throw new RestApiResponseParseException(errorMsg, e);
         }
     }
 
-    private Set<Map.Entry<String, String>> getKeywordsForIteration(int iteration) {
-        final int iterationDepth = iteration;
-        return keywordMapInput.entrySet().stream()
-                .filter(entry -> StringUtils.countMatches(entry.getValue(), "[*]")==iterationDepth)
-                .collect(Collectors.toSet());
-    }
+    private  static Map<Integer, Map<String, Object>> enhanceWithNamings(
+            Map<JsonReader.Key, Map<String, Object>> flatRepresentation, Map<String, String> names) {
 
-    private static void processChildElements(JsonNode node,
-                                             int iteration,
-                                             Map<Key, Map<String, Object>> recordMap,
-                                             Set<Map.Entry<String, String>> keywords,
-                                             int parentIndex,
-                                             Map.Entry<Key, Map<String, Object>> parentRec) {
+        Map<Integer, Map<String, Object>> enhanced = new HashMap<>();
 
-        // Count the number of child records for the given parent record
-        Optional<Map.Entry<String, String>> kwOpt = keywords.stream().findFirst();
-        if (kwOpt.isPresent()) {
-            int noOfElem = getNoOfElem(node, parentIndex, kwOpt.get(), iteration);
-
-            // loop over the child records
-            for (int i = 0; i < noOfElem; i++) {
-                Key key = parentRec == null ? new Key() : Key.copy(parentRec.getKey());
-                key.add(i);
-                if (parentRec == null) {
-                    // process the root node.
-                    recordMap.put(key, new HashMap<>());
+        final AtomicInteger key = new AtomicInteger(0);
+        flatRepresentation.forEach( (valuesKey, valuesMap) -> {
+            for (int i = 0; i < valuesMap.size(); i++) {
+                if (!names.isEmpty()) {
+                    enhanced.putAll(flattenNamedRecords(key, valuesMap, names));
                 } else {
-                    // process the child nodes, mix-in the values of the parent node.
-                    recordMap.put(key, new HashMap<>(parentRec.getValue()));
+                    enhanced.put( (key.getAndIncrement()), valuesMap);
                 }
-
-                final int iter = iteration;
-                keywords.forEach(kw -> addChildElement(node, recordMap, key, kw, iter));
             }
-        }
+        });
+        return enhanced;
     }
 
-    private static void addChildElement(
-            JsonNode node,
-            Map<Key, Map<String, Object>> recordMap,
-            Key key,
-            Map.Entry<String, String> kw,
-            int iteration) {
+    private static Map<Integer, Map<String, Object>> flattenNamedRecords(
+            AtomicInteger currentRecordKey,
+            Map<String, Object> valuesMap,
+            Map<String, String> names) {
 
-        String pattern = kw.getValue();
+        Map<Integer, Map<String, Object>> flattenedRecords = new HashMap<>();
 
-        for (int i=0; i<iteration; i++) {
-            pattern = pattern.replaceFirst("\\[\\*\\]", String.format("[%d]", key.indexAt(i)));
-        }
-        Expression<JsonNode> expression = jmespath.compile(pattern);
-        JsonNode value = expression.search(node);
+        HashMap<String, Object> unnamedValues = new HashMap<>();
+        valuesMap.forEach((key, value) -> {
+            if (!names.containsKey(key)) {
+                unnamedValues.put(key, value);
+            }
+        });
 
-        if (value.isTextual()) {
-            recordMap.get(key).put(kw.getKey(), value.asText());
-        }
-        if (value.isFloatingPointNumber()) {
-            recordMap.get(key).put(kw.getKey(), value.asDouble());
-        }
-    }
+        names.forEach((nameKey, nameValue) -> {
+            // Create a separate record for each name
+            Map<String, Object> newValues = new HashMap<>(unnamedValues);
+            newValues.put(nameValue, nameValue.replace("$", ""));
+            newValues.put(nameKey, valuesMap.get(nameKey));
+            flattenedRecords.put(currentRecordKey.getAndIncrement(), newValues);
+        });
 
-    private static int getNoOfElem(JsonNode node,
-                                   int parentIndex,
-                                   Map.Entry<String, String> keyword,
-                                   int iteration) {
-
-        // Get count the number of records
-        String searchPattern = keyword.getValue();
-        for (int i=1; i < iteration; i++) {
-            searchPattern = keyword.getValue().replaceFirst("\\[\\*\\]", String.format("[%d]", parentIndex));
-        }
-        Expression<JsonNode> jmesQuery = jmespath.compile(searchPattern + " | length(@)");
-        JsonNode result = jmesQuery.search(node);
-        return result.asInt();
-    }
-
-    private static int determineRequiredIterations(Map<String, String> keywordMap) {
-        return keywordMap.values().stream()
-                .map(value -> StringUtils.countMatches(value, "[*]"))
-                .max(Comparator.naturalOrder()).orElse(0);
+        return flattenedRecords;
     }
 }
