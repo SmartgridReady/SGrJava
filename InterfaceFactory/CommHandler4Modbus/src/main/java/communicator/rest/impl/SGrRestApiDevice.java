@@ -18,8 +18,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.impl;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
@@ -33,6 +31,7 @@ import com.smartgridready.ns.v0.RestApiServiceCall;
 import communicator.common.api.Float64Value;
 import communicator.common.api.StringValue;
 import communicator.common.api.Value;
+import communicator.common.helper.JsonMapper;
 import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.api.GenDeviceApi4Rest;
@@ -44,9 +43,6 @@ import communicator.rest.http.authentication.AuthenticatorFactory;
 import communicator.rest.http.client.RestServiceClient;
 import communicator.rest.http.client.RestServiceClientFactory;
 import communicator.rest.http.client.RestServiceClientUtils;
-import io.burt.jmespath.Expression;
-import io.burt.jmespath.JmesPath;
-import io.burt.jmespath.jackson.JacksonRuntime;
 import io.vavr.control.Either;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
@@ -89,7 +85,16 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
 		checkReadWritePermission(dataPoint, RwpDirections.READ);
-		return doReadWriteVal(dataPoint, null);
+		return doReadWriteVal(dataPoint, null, null);
+	}
+
+	@Override
+	public Value getVal(String profileName, String dataPointName, Properties parameters)
+			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
+
+		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
+		checkReadWritePermission(dataPoint, RwpDirections.READ);
+		return doReadWriteVal(dataPoint, null, parameters);
 	}
 
 	@Override
@@ -98,10 +103,10 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
 		checkReadWritePermission(dataPoint, RwpDirections.WRITE);
-		doReadWriteVal(dataPoint, value);
+		doReadWriteVal(dataPoint, value, null);
 	}
 
-	private Value doReadWriteVal(RestApiDataPoint dataPoint, Value value)
+	private Value doReadWriteVal(RestApiDataPoint dataPoint, Value value, Properties parameters)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 		
 		String host = getRestApiInterfaceDescription().getRestApiUri();
@@ -116,6 +121,9 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 				checkOutOfRange(new Value[]{value}, dataPoint);
 				value = applyUnitConversion(dataPoint, value, this::divide);
 				substitutions.put("value", value.getString());
+			}
+			if (parameters != null) {
+				substitutions.putAll(parameters);
 			}
 
 			RestApiDataPointConfiguration dpDescription = dpDescriptionOpt.get();
@@ -166,35 +174,15 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		if (queryOpt.isPresent()) {
 			ResponseQuery responseQuery = queryOpt.get();
 			if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
-				return StringValue.of(parseJsonResponse(responseQuery.getQuery(), response));
+				return JsonMapper.parseJsonResponse(responseQuery.getQuery(), response);
+			} else if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
+				return JsonMapper.mapJsonResponse(responseQuery.getJmesPathMappings(), response);
 			} else if (responseQuery.isSetQueryType()) {
 				throw new RestApiResponseParseException("Response query type " + responseQuery.getQueryType().getName() + " not supported yet");
 			}
 		}
 		// return plain response
 		return StringValue.of(response);
-	}
-
-
-	private String parseJsonResponse(String jmesPath, String jsonResp) throws RestApiResponseParseException {
-		
-		if (jmesPath.trim().isEmpty()) {
-			// no parsing required
-			return jsonResp;
-		}
-		
-		JmesPath<JsonNode> path = new JacksonRuntime();
-		Expression<JsonNode> expression = path.compile(jmesPath);
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		try {
-			JsonNode jsonNode = mapper.readTree(jsonResp);			
-			JsonNode res = expression.search(jsonNode);
-			return res.asText();
-		} catch (IOException e) {
-			throw new RestApiResponseParseException("Parsing JSON response failed: " + e.getMessage(), e);
-		}
 	}
 
 	private RestApiDataPoint findProfileDataPoint(String profileName, String dataPointName) throws GenDriverException {
