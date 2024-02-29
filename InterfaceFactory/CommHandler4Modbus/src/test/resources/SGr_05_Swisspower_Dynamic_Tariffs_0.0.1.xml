@@ -21,23 +21,6 @@
         <restApiInterfaceSelection>URI</restApiInterfaceSelection>
         <restApiUri>https://esit.code-fabrik.ch</restApiUri>
         <restApiAuthenticationMethod>NoSecurityScheme</restApiAuthenticationMethod>
-        <restApiBearer>
-          <restApiServiceCall>
-            <requestHeader>
-              <header>
-                <headerName>Accept</headerName>
-                <value>application/json</value>
-              </header>
-            </requestHeader>
-            <requestMethod>POST</requestMethod>
-            <requestPath>/authentication</requestPath>
-            <requestBody>{"strategy": "local", "email": "{{username}}", "password": "{{password}}"}</requestBody>
-            <responseQuery>
-              <queryType>JMESPathExpression</queryType>
-              <query>accessToken</query>
-            </responseQuery>
-          </restApiServiceCall>
-        </restApiBearer>
       </restApiInterfaceDescription>
       <functionalProfileList>
         <functionalProfileListElement>
@@ -155,42 +138,11 @@
                       <p/>
                       Parameters of request in the product are
                       <ul>
+                        <li><strong>point</strong> - string - the point-id that identifies the consumer location</li>
                         <li><strong>start_time</strong> - date - the start date of the requested interval</li>
                         <li><strong>end_time</strong> - date - the end date of the requested interval</li>
-                        <li><strong>tariffs</strong> - string - comma-separated list of requested tariffs (optional)</li>
                       </ul>
-                      <p/>
-                      The JMES queries for the elements of the result structure are
-<pre>
-&lt;json&gt;
-  &lt;array&gt;
-    &lt;elem&gt;
-      &lt;key&gt;startTime&lt;/key&gt;
-      &lt;date/&gt;
-      <span style="color:blue">&lt;query&gt;[*].start_time&lt;/query&gt;</span>
-    &lt;/elem&gt;
-    &lt;elem&gt;
-      &lt;key&gt;endTime&lt;/key&gt;
-      &lt;date/&gt;
-      <span style="color:blue">&lt;query&gt;[*].end_time&lt;/query&gt;</span>
-    &lt;/elem&gt;
-    &lt;array&gt;
-      &lt;name&gt;tariffs&lt;/name&gt;
-      &lt;elem&gt;
-        &lt;key&gt;tariff&lt;/key&gt;
-        &lt;string/&gt;
-        <span style="color:blue">&lt;query&gt;[*].tariffs[*].tariff&lt;/query&gt;</span>
-      &lt;/elem&gt;
-      &lt;elem&gt;
-        &lt;key&gt;value&lt;/key&gt;
-        &lt;number/&gt;
-        <span style="color:blue">&lt;query&gt;[*].tariffs[*].value&lt;/query&gt;</span>
-      &lt;/elem&gt;
-    &lt;/array&gt;
-  &lt;/array&gt;
-&lt;/json&gt;
-</pre>
-                    ]]>
+                      <p/>]]>
                   </textElement>
                   <language>en</language>
                 </legibleDescription>
@@ -216,8 +168,8 @@
                       <mapping><from>prices[*].start_timestamp</from><to>[*].start_time</to></mapping>
                       <mapping><from>prices[*].end_timestamp</from><to>[*].end_time</to></mapping>
                       <mapping><from>prices[*].price</from><to>[*].tariffs[*].tariff</to><name>$standard</name></mapping>
-                      <mapping><from>prices[*].unit</from><to>[*].tariffs[*].unit</to></mapping>
                       <mapping><from>$standard</from><to>[*].tariffs[*].name</to></mapping>
+                      <mapping><from>prices[*].unit</from><to>[*].tariffs[*].unit</to></mapping>
                     </jmesPathMappings>
                   </responseQuery>
                 </restApiServiceCall>

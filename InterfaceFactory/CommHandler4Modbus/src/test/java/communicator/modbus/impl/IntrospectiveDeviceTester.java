@@ -40,7 +40,7 @@ public class IntrospectiveDeviceTester {
         try {
             Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> device;
 
-            String useDevice = "GROUPE-E";
+            String useDevice = "SWISSPOWER";
             switch (useDevice) {
                 case "SMART-ME": device = createSmartMeDevice(); break;
                 case "CLEMAP": device = createClemapDevice(); break;
