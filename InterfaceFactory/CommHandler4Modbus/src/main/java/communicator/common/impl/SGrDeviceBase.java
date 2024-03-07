@@ -1,6 +1,6 @@
 package communicator.common.impl;
 
-import com.smartgridready.ns.v0.DataDirection;
+import com.smartgridready.ns.v0.DataDirectionProduct;
 import com.smartgridready.ns.v0.DataPointBase;
 import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DeviceFrame;
@@ -28,11 +28,11 @@ public abstract class SGrDeviceBase<
     protected final D device;
 
     public enum RwpDirections {
-        READ(Stream.of(DataDirection.R, DataDirection.RW, DataDirection.RWP).collect(Collectors.toSet())),
-        WRITE(Stream.of(DataDirection.W, DataDirection.RW, DataDirection.RWP).collect(Collectors.toSet()));
+        READ(Stream.of(DataDirectionProduct.R, DataDirectionProduct.RW, DataDirectionProduct.RWP).collect(Collectors.toSet())),
+        WRITE(Stream.of(DataDirectionProduct.W, DataDirectionProduct.RW, DataDirectionProduct.RWP).collect(Collectors.toSet()));
 
-        private final Set<DataDirection> opAllowedTypes;
-        RwpDirections(Set<DataDirection> opAllowedTypes) {
+        private final Set<DataDirectionProduct> opAllowedTypes;
+        RwpDirections(Set<DataDirectionProduct> opAllowedTypes) {
             this.opAllowedTypes = opAllowedTypes;
         }
     }
@@ -115,7 +115,7 @@ public abstract class SGrDeviceBase<
 
     public void checkReadWritePermission(DataPointBase dataPoint, RwpDirections direction) throws GenDriverException {
 
-        DataDirection dRWPType = dataPoint.getDataPoint().getDataDirection();
+        DataDirectionProduct dRWPType = dataPoint.getDataPoint().getDataDirection();
         if (!direction.opAllowedTypes.contains(dRWPType)) {
             throw new GenDriverException(String.format(
                     "Operation %s not allowed on datapoint %s",
