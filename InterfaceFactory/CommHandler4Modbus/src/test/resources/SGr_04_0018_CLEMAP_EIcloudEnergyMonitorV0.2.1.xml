@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="/xsl/SGr.xsl"?>
 <DeviceFrame xmlns="http://www.smartgridready.com/ns/V0/"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd" >
+             xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/Product/Product.xsd" >
   <deviceName>CLEMAP Energy Monitor</deviceName>
   <manufacturerName>CLEMAP</manufacturerName>
   <specificationOwnerIdentification>0</specificationOwnerIdentification>
@@ -60,16 +60,14 @@
               <dataPoint>
                 <dataPointName>ActivePowerACtot</dataPointName>
                 <dataDirection>RW</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
-                <unit>KILOWATTS</unit>
+                <unit>MEGAWATT_HOURS</unit>
+                <minimumValue>0.005</minimumValue>
+                <maximumValue>100</maximumValue>
+                <unitConversionMultiplicator>0.001</unitConversionMultiplicator>
               </dataPoint>
-              <genericAttributes>
-                <minVal>0.005</minVal>
-                <maxVal>100</maxVal>
-              </genericAttributes>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>
                 <restApiServiceCall>
@@ -96,11 +94,10 @@
               <dataPoint>
                 <dataPointName>ActivePowerACL1</dataPointName>
                 <dataDirection>RW</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
-                <unit>KILOWATTS</unit>
+                <unit>KILOWATT_HOURS</unit>
               </dataPoint>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>
@@ -124,11 +121,10 @@
               <dataPoint>
                 <dataPointName>ActivePowerACL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
-                <unit>KILOWATTS</unit>
+                <unit>KILOWATT_HOURS</unit>
               </dataPoint>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>
@@ -152,11 +148,10 @@
               <dataPoint>
                 <dataPointName>ActivePowerACL3</dataPointName>
                 <dataDirection>W</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
-                <unit>KILOWATTS</unit>
+                <unit>KILOWATT_HOURS</unit>
               </dataPoint>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>

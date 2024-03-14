@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="/xsl/SGr.xsl"?>
 <DeviceFrame xmlns="http://www.smartgridready.com/ns/V0/"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd">
+             xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/Product/Product.xsd">
   <deviceName>WAGOMeterV0.2.1</deviceName>
   <manufacturerName>WAGO</manufacturerName>
   <specificationOwnerIdentification>0</specificationOwnerIdentification>
@@ -63,17 +63,45 @@
     <generalRemarks>WAGO/ls</generalRemarks>
     <levelOfOperation>4</levelOfOperation>
   </deviceInformation>
-  <genericAttributes>
-    <specialQualityRequirement>METAS</specialQualityRequirement>
-    <curtailment>40</curtailment>
-    <minLoad>20</minLoad>
-    <maxLockTimeMinutes>10</maxLockTimeMinutes>
-    <precisionPercent>2.5</precisionPercent>
-    <flexAssistance>
-      <assists>AT_NetServiceable</assists>
-      <obligedTo>OL_SHALL</obligedTo>
-    </flexAssistance>
-  </genericAttributes>
+  <genericAttributeList>
+    <genericAttributeListElement>
+      <name>SpecialQualityRequirement</name>
+      <dataType>
+        <string/>
+      </dataType>
+      <value>METAS</value>
+      <unit>NONE</unit>
+    </genericAttributeListElement>
+    <genericAttributeListElement>
+      <name>Curtailment</name>
+      <dataType>
+        <float32/>
+      </dataType>
+      <value>40.5</value>
+      <unit>PERCENT</unit>
+    </genericAttributeListElement>
+    <genericAttributeListElement>
+      <name>FlexDirManagement</name>
+      <genericAttributeList>
+        <genericAttributeListElement>
+          <name>assists</name>
+          <dataType>
+            <string/>
+          </dataType>
+          <value>TNO</value>
+          <unit>NONE</unit>
+        </genericAttributeListElement>
+        <genericAttributeListElement>
+          <name>obligedTo</name>
+          <dataType>
+            <string/>
+          </dataType>
+          <value>SHALL</value>
+          <unit>NONE</unit>
+        </genericAttributeListElement>
+      </genericAttributeList>
+    </genericAttributeListElement>
+  </genericAttributeList>
   <interfaceList>
     <modbusInterface>
       <modbusInterfaceDescription>
@@ -126,29 +154,42 @@
               <language>de</language>
             </legibleDescription>
           </functionalProfile>
-          <genericAttributes>
-            <curtailment>30</curtailment>
-          </genericAttributes>
+          <genericAttributeList>
+            <genericAttributeListElement>
+              <name>LoadReduction</name>
+              <dataType>
+                <float32/>
+              </dataType>
+              <value>20.5</value>
+              <unit>PERCENT</unit>
+            </genericAttributeListElement>
+          </genericAttributeList>
           <dataPointList>
             <dataPointListElement>
               <dataPoint>
                 <dataPointName>VoltageL1</dataPointName>
                 <dataDirection>RW</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>VOLTS</unit>
+                <minimumValue>0.005</minimumValue>
+                <maximumValue>380</maximumValue>
+                <unitConversionMultiplicator>1.36</unitConversionMultiplicator>
                 <alternativeNames>
                   <manufName>L1 Spannung</manufName>
                 </alternativeNames>
               </dataPoint>
-              <genericAttributes>
-                <precisionPercent>2.2</precisionPercent>
-                <minVal>0.005</minVal>
-                <maxVal>380</maxVal>
-                <unitConversionMultiplicator>1.36</unitConversionMultiplicator>
-              </genericAttributes>
+              <genericAttributeList>
+                <genericAttributeListElement>
+                  <name>PercisionPercent</name>
+                  <dataType>
+                    <float32/>
+                  </dataType>
+                  <value>2.2</value>
+                  <unit>PERCENT</unit>
+                </genericAttributeListElement>
+              </genericAttributeList>
               <modbusDataPointConfiguration>
                 <modbusDataType>
                   <float32/>
@@ -162,8 +203,7 @@
               <dataPoint>
                 <dataPointName>VoltageL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>VOLTS</unit>
@@ -184,8 +224,7 @@
               <dataPoint>
                 <dataPointName>VoltageL3</dataPointName>
                 <dataDirection>W</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>VOLTS</unit>
@@ -206,8 +245,7 @@
               <dataPoint>
                 <dataPointName>VoltageACL1-L2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>VOLTS</unit>
@@ -228,8 +266,7 @@
               <dataPoint>
                 <dataPointName>VoltageACL1-L3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>VOLTS</unit>
@@ -250,8 +287,7 @@
               <dataPoint>
                 <dataPointName>VoltageACL2-L3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>VOLTS</unit>
@@ -290,8 +326,7 @@
               <dataPoint>
                 <dataPointName>Frequency</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>HERTZ</unit>
@@ -341,8 +376,7 @@
               <dataPoint>
                 <dataPointName>CurrentACL1</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>AMPERES</unit>
@@ -367,8 +401,7 @@
               <dataPoint>
                 <dataPointName>CurrentACL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>AMPERES</unit>
@@ -396,8 +429,7 @@
               <dataPoint>
                 <dataPointName>CurrentACL3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>AMPERES</unit>
@@ -450,8 +482,7 @@
               <dataPoint>
                 <dataPointName>ActivePowerACtot</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATTS</unit>
@@ -479,8 +510,7 @@
               <dataPoint>
                 <dataPointName>ActivePowerACL1</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATTS</unit>
@@ -508,8 +538,7 @@
               <dataPoint>
                 <dataPointName>ActivePowerACL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATTS</unit>
@@ -537,8 +566,7 @@
               <dataPoint>
                 <dataPointName>ActivePowerACL3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATTS</unit>
@@ -591,8 +619,7 @@
               <dataPoint>
                 <dataPointName>ReactivePowerACtot</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOVOLT_AMPERES_REACTIVE</unit>
@@ -620,8 +647,7 @@
               <dataPoint>
                 <dataPointName>ReactivePowerACL1</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOVOLT_AMPERES_REACTIVE</unit>
@@ -649,8 +675,7 @@
               <dataPoint>
                 <dataPointName>ReactivePowerACL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOVOLT_AMPERES_REACTIVE</unit>
@@ -678,8 +703,7 @@
               <dataPoint>
                 <dataPointName>ReactivePowerACL3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOVOLT_AMPERES_REACTIVE</unit>
@@ -732,8 +756,7 @@
               <dataPoint>
                 <dataPointName>ApparentPowerACtot</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOVOLT_AMPERES</unit>
@@ -761,8 +784,7 @@
               <dataPoint>
                 <dataPointName>ApparentPowerACL1</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOVOLT_AMPERES</unit>
@@ -790,8 +812,7 @@
               <dataPoint>
                 <dataPointName>ApparentPowerACL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOVOLT_AMPERES</unit>
@@ -819,8 +840,7 @@
               <dataPoint>
                 <dataPointName>ApparentPowerACL3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOVOLT_AMPERES</unit>
@@ -870,8 +890,7 @@
               <dataPoint>
                 <dataPointName>PowerFactor</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>NONE</unit>
@@ -899,8 +918,7 @@
               <dataPoint>
                 <dataPointName>PowerFactorL1</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>NONE</unit>
@@ -928,8 +946,7 @@
               <dataPoint>
                 <dataPointName>PowerFactorL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>NONE</unit>
@@ -957,8 +974,7 @@
               <dataPoint>
                 <dataPointName>PowerFactorL3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>NONE</unit>
@@ -1008,8 +1024,7 @@
               <dataPoint>
                 <dataPointName>ActiveEnergyACtot</dataPointName>
                 <dataDirection>RW</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1037,8 +1052,7 @@
               <dataPoint>
                 <dataPointName>ActiveEnergyACL1</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <int64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1063,8 +1077,7 @@
               <dataPoint>
                 <dataPointName>ActiveEnergyACL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <int64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1089,8 +1102,7 @@
               <dataPoint>
                 <dataPointName>ActiveEnergyACL3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>R</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1136,8 +1148,7 @@
               <dataPoint>
                 <dataPointName>ReactiveEnergyACtot</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1155,8 +1166,7 @@
               <dataPoint>
                 <dataPointName>ReactiveEnergyACL1</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1174,8 +1184,7 @@
               <dataPoint>
                 <dataPointName>ReactiveEnergyACL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1193,8 +1202,7 @@
               <dataPoint>
                 <dataPointName>ReactiveEnergyACL3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1230,8 +1238,7 @@
               <dataPoint>
                 <dataPointName>ActiveImportAC</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1249,8 +1256,7 @@
               <dataPoint>
                 <dataPointName>ActiveExportAC</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1268,8 +1274,7 @@
               <dataPoint>
                 <dataPointName>ActiveNetAC</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1306,8 +1311,7 @@
               <dataPoint>
                 <dataPointName>ReactiveImportAC</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1325,8 +1329,7 @@
               <dataPoint>
                 <dataPointName>ReactiveExportAC</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1344,8 +1347,7 @@
               <dataPoint>
                 <dataPointName>ReactiveNetAC</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>KILOWATT_HOURS</unit>
@@ -1382,8 +1384,7 @@
               <dataPoint>
                 <dataPointName>PwrQuadACtot</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>NONE</unit>
@@ -1401,8 +1402,7 @@
               <dataPoint>
                 <dataPointName>PwrQuadACL1</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>NONE</unit>
@@ -1420,8 +1420,7 @@
               <dataPoint>
                 <dataPointName>PwrQuadACL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>NONE</unit>
@@ -1439,8 +1438,7 @@
               <dataPoint>
                 <dataPointName>PwrQuadACL3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>M</presenceLevel>
-                <dataType>
+                    <dataType>
                   <float64/>
                 </dataType>
                 <unit>NONE</unit>
@@ -1482,8 +1480,7 @@
               <dataPoint>
                 <dataPointName>CurrentDirL1</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <string/>
                 </dataType>
                 <unit>NONE</unit>
@@ -1501,8 +1498,7 @@
               <dataPoint>
                 <dataPointName>CurrentDirL2</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <string/>
                 </dataType>
                 <unit>NONE</unit>
@@ -1520,8 +1516,7 @@
               <dataPoint>
                 <dataPointName>CurrentDirL3</dataPointName>
                 <dataDirection>R</dataDirection>
-                <presenceLevel>O</presenceLevel>
-                <dataType>
+                    <dataType>
                   <string/>
                 </dataType>
                 <unit>NONE</unit>

@@ -17,19 +17,13 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.http.authentication;
 
-import java.io.IOException;
-
 import com.smartgridready.ns.v0.DeviceFrame;
-
-import communicator.rest.exception.RestApiResponseParseException;
-import communicator.rest.exception.RestApiServiceCallException;
 import communicator.rest.http.client.RestServiceClientFactory;
 
 public class DummyHttpAuthenticator implements Authenticator {	
 
 	@Override
-	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory)
-			throws IOException, RestApiServiceCallException, RestApiResponseParseException {
+	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
 		return null;
 	}
 

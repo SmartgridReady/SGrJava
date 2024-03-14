@@ -28,6 +28,7 @@ import communicator.rest.exception.RestApiServiceCallException;
 import communicator.rest.impl.SGrRestApiDevice;
 
 import java.io.IOException;
+import java.util.Properties;
 
 public interface GenDeviceApi4Rest extends GenDeviceApi {
 
@@ -63,6 +64,22 @@ public interface GenDeviceApi4Rest extends GenDeviceApi {
             throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
 
     /**
+     * Reads a value in its string representation from the REST API device.
+     *
+     * @param profileName The name of the functional profile.
+     * @param dataPointName The name of the datapoint within the functional profile.
+     * @param parameters Key value pairs with request parameters
+     * @return The value read from the device.
+     * @throws IOException If the communication with the server failed.
+     * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
+     * @throws RestApiResponseParseException If parsing of the service response failed.
+     * @throws GenDriverException If a common error occured.
+     */
+    Value getVal(String profileName, String dataPointName, Properties parameters)
+            throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
+
+
+    /**
      * Writes a value to the REST API device.
      * The value may be provided as:
      * <ul>
@@ -79,8 +96,7 @@ public interface GenDeviceApi4Rest extends GenDeviceApi {
      * @throws RestApiServiceCallException If the service call could not be executed on the remote side.
      * @throws RestApiResponseParseException If parsing of the service response failed.
      * @throws GenDriverException If a common error occurred
-     * @return StringValue with the httpResponse
      */
-    Value setVal(String profileName, String dataPointName, Value value)
+     void setVal(String profileName, String dataPointName, Value value)
             throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException;
 }

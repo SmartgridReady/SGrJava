@@ -70,16 +70,15 @@ public abstract class RestServiceClient {
 	
 	private RestApiServiceCall cloneRestServiceCallWithSubstitutions(RestApiServiceCall restServiceCall, Properties substitutions) {
 		
-		// handle substitutions, do this on a clone, do not modify the EI loaded from XML.
+		// Handle substitutions, do this on a clone, do not modify the EI loaded from XML. Substitutions can
+		// appear within the request path, request body or even the response query.
 		RestApiServiceCall clone = EcoreUtil.copy(restServiceCall);
 		clone.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
 		clone.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));	
 		clone.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
 		
 		HeaderList headers = clone.getRequestHeader();
-		headers.getHeader().forEach( header -> {
-			header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions));
-		});
+		headers.getHeader().forEach( header -> header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions)));
 		return clone;
 	}
 	
@@ -88,7 +87,7 @@ public abstract class RestServiceClient {
 	private static String replacePropertyPlaceholders(String template, Properties properties) {
 
 		String convertedTemplate = template;		
-		if (properties != null) {
+		if (template != null && properties != null) {
 			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
 				convertedTemplate = convertedTemplate.replaceAll("\\{\\{" + entry.getKey() + "\\}\\}", (String)entry.getValue());
 			}

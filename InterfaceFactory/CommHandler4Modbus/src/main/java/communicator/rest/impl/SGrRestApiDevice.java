@@ -18,9 +18,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.rest.impl;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.ResponseQuery;
+import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.ns.v0.RestApiAuthenticationMethod;
 import com.smartgridready.ns.v0.RestApiDataPoint;
 import com.smartgridready.ns.v0.RestApiDataPointConfiguration;
@@ -28,7 +28,10 @@ import com.smartgridready.ns.v0.RestApiFunctionalProfile;
 import com.smartgridready.ns.v0.RestApiInterface;
 import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import com.smartgridready.ns.v0.RestApiServiceCall;
+import communicator.common.api.Float64Value;
 import communicator.common.api.StringValue;
+import communicator.common.api.Value;
+import communicator.common.helper.JsonMapper;
 import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.api.GenDeviceApi4Rest;
@@ -37,14 +40,9 @@ import communicator.rest.exception.RestApiResponseParseException;
 import communicator.rest.exception.RestApiServiceCallException;
 import communicator.rest.http.authentication.Authenticator;
 import communicator.rest.http.authentication.AuthenticatorFactory;
-import communicator.rest.http.authentication.DummyHttpAuthenticator;
 import communicator.rest.http.client.RestServiceClient;
 import communicator.rest.http.client.RestServiceClientFactory;
 import communicator.rest.http.client.RestServiceClientUtils;
-import io.burt.jmespath.Expression;
-import io.burt.jmespath.JmesPath;
-import io.burt.jmespath.jackson.JacksonRuntime;
-import communicator.common.api.Value;
 import io.vavr.control.Either;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
@@ -55,6 +53,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.function.DoubleBinaryOperator;
 
 public class SGrRestApiDevice extends SGrDeviceBase<
 		DeviceFrame,
@@ -64,21 +63,20 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	private static final Logger LOG = LoggerFactory.getLogger(SGrRestApiDevice.class);
 	
 	private final DeviceFrame deviceDescription;
-	private Authenticator httpAuthenticator;
+	private final Authenticator httpAuthenticator;
 	private final RestServiceClientFactory restServiceClientFactory;
 	
-	public SGrRestApiDevice(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
+	public SGrRestApiDevice(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws RestApiAuthenticationException {
 		super(deviceDescription);
 		this.deviceDescription = deviceDescription;
 		this.restServiceClientFactory = restServiceClientFactory;
-		this.httpAuthenticator = new DummyHttpAuthenticator();
+
+		RestApiAuthenticationMethod authMethod = getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
+		this.httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
 	}	
 	
 	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
-		RestApiAuthenticationMethod authMethod =
-				getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
-				httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
-				httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
+		httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
 	}
 		
 	@Override
@@ -87,23 +85,32 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
 		checkReadWritePermission(dataPoint, RwpDirections.READ);
-		return doReadWriteVal(dataPoint, null);
+		return doReadWriteVal(dataPoint, null, null);
 	}
 
 	@Override
-	public Value setVal(String profileName, String dataPointName, communicator.common.api.Value value)
+	public Value getVal(String profileName, String dataPointName, Properties parameters)
+			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
+
+		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
+		checkReadWritePermission(dataPoint, RwpDirections.READ);
+		return doReadWriteVal(dataPoint, null, parameters);
+	}
+
+	@Override
+	public void setVal(String profileName, String dataPointName, communicator.common.api.Value value)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 
 		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
 		checkReadWritePermission(dataPoint, RwpDirections.WRITE);
-		return doReadWriteVal(dataPoint, value);
+		doReadWriteVal(dataPoint, value, null);
 	}
 
-	private Value doReadWriteVal(RestApiDataPoint dataPoint, Value value)
+	private Value doReadWriteVal(RestApiDataPoint dataPoint, Value value, Properties parameters)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 		
 		String host = getRestApiInterfaceDescription().getRestApiUri();
-		
+
 		Optional<RestApiDataPointConfiguration> dpDescriptionOpt
 				= Optional.ofNullable(dataPoint.getRestApiDataPointConfiguration());
 
@@ -112,7 +119,11 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 			if (value != null) {
 				checkOutOfRange(new Value[]{value}, dataPoint);
+				value = applyUnitConversion(dataPoint, value, this::divide);
 				substitutions.put("value", value.getString());
+			}
+			if (parameters != null) {
+				substitutions.putAll(parameters);
 			}
 
 			RestApiDataPointConfiguration dpDescription = dpDescriptionOpt.get();
@@ -121,8 +132,10 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
 
 			if (value == null) {
-				return StringValue.of(parseJsonResponse(serviceCall.getResponseQuery().getQuery(), response));
+				value = handleServiceResponse(dpDescription, response);
+				return applyUnitConversion(dataPoint, value, this::multiply);
 			}
+
 			return StringValue.of(response);
 		}
 		throw  new GenDriverException("Missing 'restAPIDataPoint' description in device description XML file");
@@ -152,27 +165,24 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 			throw new RestApiServiceCallException(result.getLeft());
 		}
 	}
-	
 
-	private String parseJsonResponse(String jmesPath, String jsonResp) throws RestApiResponseParseException {
-		
-		if (jmesPath.trim().isEmpty()) {
-			// no parsing required
-			return jsonResp;
+	private Value handleServiceResponse(RestApiDataPointConfiguration dpDescription, String response) throws RestApiResponseParseException{
+
+		Optional<ResponseQuery> queryOpt = Optional.ofNullable(dpDescription.getRestApiServiceCall())
+				.map(RestApiServiceCall::getResponseQuery);
+
+		if (queryOpt.isPresent()) {
+			ResponseQuery responseQuery = queryOpt.get();
+			if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
+				return JsonMapper.parseJsonResponse(responseQuery.getQuery(), response);
+			} else if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
+				return JsonMapper.mapJsonResponse(responseQuery.getJmesPathMappings(), response);
+			} else if (responseQuery.isSetQueryType()) {
+				throw new RestApiResponseParseException("Response query type " + responseQuery.getQueryType().getName() + " not supported yet");
+			}
 		}
-		
-		JmesPath<JsonNode> path = new JacksonRuntime();
-		Expression<JsonNode> expression = path.compile(jmesPath);
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		try {
-			JsonNode jsonNode = mapper.readTree(jsonResp);			
-			JsonNode res = expression.search(jsonNode);
-			return res.asText();
-		} catch (IOException e) {
-			throw new RestApiResponseParseException("Parsing JSON response failed: " + e.getMessage(), e);
-		}
+		// return plain response
+		return StringValue.of(response);
 	}
 
 	private RestApiDataPoint findProfileDataPoint(String profileName, String dataPointName) throws GenDriverException {
@@ -206,5 +216,36 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 	private RestApiInterfaceDescription getRestApiInterfaceDescription() {
 		return getRestApiInterface().getRestApiInterfaceDescription();
+	}
+
+	private Value applyUnitConversion(RestApiDataPoint dataPoint, Value value, DoubleBinaryOperator conversionFunction) {
+
+		if (dataPoint.getDataPoint().isSetUnitConversionMultiplicator()
+				&& isNumeric(value)
+				&& dataPoint.getDataPoint().getUnitConversionMultiplicator() != 0.0) {
+			return Float64Value.of(conversionFunction.applyAsDouble(value.getFloat64(), dataPoint.getDataPoint().getUnitConversionMultiplicator()));
+		}
+		return value;
+	}
+
+	private boolean isNumeric(Value value) {
+		if (value == null) {
+			return false;
+		}
+
+		try {
+			value.getFloat64();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private double divide(double dividend, double divisor) {
+		return  dividend / divisor;
+	}
+
+	private double multiply(double factor1, double factor2) {
+		return  factor1 * factor2;
 	}
 }

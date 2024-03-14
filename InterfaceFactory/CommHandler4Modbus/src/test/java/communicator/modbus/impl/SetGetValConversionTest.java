@@ -3,7 +3,7 @@ package communicator.modbus.impl;
 import com.smartgridready.ns.v0.BitOrder;
 import com.smartgridready.ns.v0.BitmapEntryProduct;
 import com.smartgridready.ns.v0.BitmapProduct;
-import com.smartgridready.ns.v0.DataDirection;
+import com.smartgridready.ns.v0.DataDirectionProduct;
 import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.DeviceFrame;
@@ -939,7 +939,7 @@ class SetGetValConversionTest {
         DataPointDescription genDpDesc = V0Factory.eINSTANCE.createDataPointDescription();
         genDpDesc.setDataPointName(dpName);
         genDpDesc.setDataType(basicDP(genType));
-        genDpDesc.setDataDirection(DataDirection.RW);
+        genDpDesc.setDataDirection(DataDirectionProduct.RW);
         genDpDesc.setArrayLength(arrLen);
         return genDpDesc;
     }

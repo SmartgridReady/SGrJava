@@ -1,5 +1,6 @@
 package communicator.common.api;
 
+import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.EnumMapProduct;
 import com.smartgridready.ns.v0.ModbusBoolean;
 import com.smartgridready.ns.v0.ModbusDataType;
@@ -126,6 +127,51 @@ public abstract class Value  {
 
         throw new IllegalArgumentException(String.format("Modbus register type %s to Value.class conversion from register not supported.",
                 DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+    }
+
+    public static Value fromString(DataTypeProduct dataType, String value) {
+
+        if (dataType.getFloat64() != null) {
+            return Float64Value.of(Double.parseDouble(value));
+        }
+        if (dataType.getFloat32() != null) {
+            return Float32Value.of(Float.parseFloat(value));
+        }
+        if (dataType.getInt64() != null) {
+            return Int64Value.of(Long.parseLong(value));
+        }
+        if (dataType.getInt64U() != null) {
+            long signedLong = Long.parseLong(value);
+            return Int64UValue.of(BigInteger.valueOf(signedLong).and(UNSIGNED_LONG_MASK));
+        }
+        if (dataType.getInt32() != null) {
+            return Int32Value.of(Integer.parseInt(value));
+        }
+        if (dataType.getInt32U() != null) {
+            return Int32UValue.of(Long.parseLong(value));
+        }
+        if (dataType.getInt16() != null) {
+            return Int16Value.of(Short.parseShort(value));
+        }
+        if (dataType.getInt16U() != null) {
+            return Int16UValue.of(Integer.parseInt(value));
+        }
+        if (dataType.getInt8() != null) {
+            return Int8Value.of((byte)Short.parseShort(value));
+        }
+        if (dataType.getInt8U() != null) {
+            return Int8UValue.of(Short.parseShort(value));
+        }
+        if (dataType.getString() != null) {
+            return StringValue.of(value);
+        }
+        if (dataType.getBoolean() != null) {
+            return BooleanValue.of(Boolean.parseBoolean(value));
+        }
+
+        throw new IllegalArgumentException(String.format("Generic type %s conversion from String to Value.class conversion from register not supported.",
+                DataTypeHelper.getGenDataTypeName(dataType)));
+
     }
 
     @SuppressWarnings("unused")
