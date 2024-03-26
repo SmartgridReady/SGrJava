@@ -32,8 +32,8 @@ sourceSets {
         test.java.srcDirs = ['src/test/java']
         test.resources.srcDirs = ['src/test/resources']
 
-        integrationTest.java.srcDirs = ['src/test/java','src/main/java']
-        integrationTest.resources.srcDirs = ['src/test/resources', 'src/main/resources']
+        integrationTest.java.srcDirs = ['src/test/java']
+        integrationTest.resources.srcDirs = ['src/test/resources']
 }
 
 java {
