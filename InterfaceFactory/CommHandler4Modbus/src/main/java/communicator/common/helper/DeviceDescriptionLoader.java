@@ -19,10 +19,12 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Properties;
+import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -44,14 +46,35 @@ public class DeviceDescriptionLoader<C> {
 	private static ComposedAdapterFactory composedAdapterFactory;
 
 	/**
+	 * Load an external device description from an EI-XML input stream.
+	 *
+	 * @param aDescriptionFile The external interface file name.
+	 * @param aDescriptionStream The external interface EI-XML input stream.
+	 * @return An instance of the device description for the given EI-XML
+	 */
+	public C load(String aDescriptionFile, InputStream aDescriptionStream) {
+		return load(aDescriptionFile, aDescriptionStream, null);
+	}
+
+	/**
 	 * Load an external device description from its EI-XML file.
 	 *
 	 * @param aBaseDir The path to the folder where the external interface file resides.
 	 * @param aDescriptionFile The external interface file name.
 	 * @return An instance of the device description for the given EI-XML
 	 */
-	public C load( String aBaseDir, String aDescriptionFile) {
+	public C load(String aBaseDir, String aDescriptionFile) {
 		return load(aBaseDir, aDescriptionFile, null);
+	}
+
+	/**
+	 * Load an external device description from its EI-XML content.
+	 *
+	 * @param deviceDescXml The external interface file XML content.
+	 * @return An instance of the device description for the given EI-XML
+	 */
+	public C load(String deviceDescXml) {
+		return load(deviceDescXml, (Properties) null);
 	}
 
 	/**
@@ -63,7 +86,7 @@ public class DeviceDescriptionLoader<C> {
 	 * <pre>
 	 *   Properties properties = new Properties();
 	 *   properties.put("ipAddress", "127.0.0.1");
-	 *   deviceDescriptionLoader.load( "./EI-XML", "MySGr-Device.xml", properties);
+	 *   deviceDescriptionLoader.load("./EI-XML", "MySGr-Device.xml", properties);
 	 * </pre>
 	 * will replace {@code {{ipAddress}}} within the EI-XML with  the value 127.0.0.1
 	 *
@@ -72,44 +95,106 @@ public class DeviceDescriptionLoader<C> {
 	 * @param properties Key value pairs that replaces tags like {@code {{keyName}}} with the property {@code value}
 	 * @return An instance of the device description for the given EI-XML.
 	 */
-	@SuppressWarnings("unchecked")
-	public C load( String aBaseDir, String aDescriptionFile, Properties properties ) {	
-
+	public C load(String aBaseDir, String aDescriptionFile, Properties properties) {	
 		try {
-
-			// XML namespace eNS_URI "http://www.smartgridready.com/ns/V0/" map to "com.smartgridready.ns.v0.V0Package" classes.
-			EPackage.Registry.INSTANCE.put( com.smartgridready.ns.v0.V0Package.eNS_URI, com.smartgridready.ns.v0.V0Package.eINSTANCE);
+			// using java.nio.Path would be better, but absolute paths seem to cause problems on Windows
+			String aDescriptionPath = aBaseDir + File.separator + aDescriptionFile;
 			
-			// Use XMIResourceFactory to parse *.xml files.
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( )
-    			.put("xml", new XMIResourceFactoryImpl() );
- 
-			AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(
-					getAdapterFactory(), 
-					new BasicCommandStack());
-			
-			domain.getResourceSet().setPackageRegistry( EPackage.Registry.INSTANCE );
-
-			Resource resource = domain.createResource( aBaseDir + aDescriptionFile );
-			
-			File deviceDescFile = new File( aBaseDir + aDescriptionFile);
+			File deviceDescFile = new File(aDescriptionPath);
 			String deviceDescXml = FileUtils.readFileToString(deviceDescFile, StandardCharsets.UTF_8);
 			
-			deviceDescXml = replacePropertyPlaceholders(deviceDescXml, properties);
-			
-			InputStream is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8);			
-			resource.load(is, null);
-										
-			return (C) resource.getAllContents().next();
-			
-		} catch ( Exception e ) {
-			LOG.error( "Error loading XML: ", e);
+			return createResource(aDescriptionPath.toString(), deviceDescXml, properties);
+		} catch (Exception e) {
+			LOG.error("Error loading XML: ", e);
 			return null;
 		}
 	}
+
+	/**
+	 * Load an external device description from an EI-XML input stream and replace placeholder
+	 * tags with the values given by the {@code properties} parameter.
+	 * <p>
+	 * Example properties:
+	 * <p>
+	 * <pre>
+	 *   Properties properties = new Properties();
+	 *   properties.put("ipAddress", "127.0.0.1");
+	 *   InputStream input = FileUtils.openInputStream(new File("MySGr-Device.xml"));
+	 *   deviceDescriptionLoader.load("MySGr-Device.xml", input, properties);
+	 * </pre>
+	 * will replace {@code {{ipAddress}}} within the EI-XML with  the value 127.0.0.1
+	 *
+	 * @param aDescriptionFile The external interface file name.
+	 * @param aDescriptionStream The external interface EI-XML input stream.
+	 * @param properties Key value pairs that replaces tags like {@code {{keyName}}} with the property {@code value}
+	 * @return An instance of the device description for the given EI-XML.
+	 */
+	public C load(String aDescriptionFile, InputStream aDescriptionStream, Properties properties) {
+		try {
+			String deviceDescXml = new String(aDescriptionStream.readAllBytes(), StandardCharsets.UTF_8);
+			return createResource(aDescriptionFile, deviceDescXml, properties);
+		} catch (Exception e) {
+			LOG.error("Error loading XML: ", e);
+			return null;
+		}
+	}
+
+	/**
+	 * Load an external device description from its EI-XML file and replace placeholder
+	 * tags with the values given by the {@code properties} parameter.
+	 * <p>
+	 * Example properties:
+	 * <p>
+	 * <pre>
+	 *   Properties properties = new Properties();
+	 *   properties.put("ipAddress", "127.0.0.1");
+	 *   String xml = "<xml>...</xml>";
+	 *   deviceDescriptionLoader.load(xml, properties);
+	 * </pre>
+	 * will replace {@code {{ipAddress}}} within the EI-XML with  the value 127.0.0.1
+	 *
+	 * @param deviceDescXml The EI-XML file content.
+	 * @param properties Key value pairs that replaces tags like {@code {{keyName}}} with the property {@code value}
+	 * @return An instance of the device description for the given EI-XML.
+	 */
+	public C load(String deviceDescXml, Properties properties) {	
+		try {
+			// create random file name
+			String aDescriptionPath = UUID.randomUUID().toString() + ".xml";
+			return createResource(aDescriptionPath, deviceDescXml, properties);
+		} catch (Exception e) {
+			LOG.error("Error loading XML: ", e);
+			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private C createResource(String resourcePath, String deviceDescXml, Properties properties) throws IOException {
+		// XML namespace eNS_URI "http://www.smartgridready.com/ns/V0/" map to "com.smartgridready.ns.v0.V0Package" classes.
+		EPackage.Registry.INSTANCE.put(com.smartgridready.ns.v0.V0Package.eNS_URI, com.smartgridready.ns.v0.V0Package.eINSTANCE);
+
+		// Use XMIResourceFactory to parse *.xml files.
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+			.put("xml", new XMIResourceFactoryImpl());
+
+		AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(
+				getAdapterFactory(), 
+				new BasicCommandStack());
+
+		domain.getResourceSet().setPackageRegistry(EPackage.Registry.INSTANCE);
+
+		Resource resource = domain.createResource(resourcePath);
+
+		// replace property placeholders
+		deviceDescXml = replacePropertyPlaceholders(deviceDescXml, properties);
+
+		InputStream is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8);
+		resource.load(is, null);
+
+		return (C) resource.getAllContents().next();		
+	}
 	
 	private String replacePropertyPlaceholders(String deviceDescriptionXml, Properties properties) {
-
 		String convertedXml = deviceDescriptionXml;
 		if (properties != null) {
 			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
@@ -118,8 +203,7 @@ public class DeviceDescriptionLoader<C> {
 		}
 		return convertedXml;
 	}
-	
-	
+
 	/**
 	 * Return an ComposedAdapterFactory for all registered models
 	 * 
@@ -131,5 +215,5 @@ public class DeviceDescriptionLoader<C> {
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		}
 		return composedAdapterFactory;
-	}		
+	}
 }
