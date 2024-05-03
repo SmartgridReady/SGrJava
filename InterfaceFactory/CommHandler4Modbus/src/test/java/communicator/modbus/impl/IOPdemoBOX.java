@@ -22,7 +22,6 @@ The purpose of this class is to offer a test environment to show Device Interope
 
 
  */
-
 package communicator.modbus.impl;
 
 import java.time.LocalDateTime;
@@ -30,8 +29,8 @@ import java.time.format.DateTimeFormatter;
 
 // WIP/cb import com.smartgridready.ns.v0.SGrBool2BitRankType;
 import com.smartgridready.ns.v0.DeviceFrame;
-import communicator.common.api.EnumRecord;
-import communicator.common.api.Float32Value;
+import communicator.common.api.values.EnumRecord;
+import communicator.common.api.values.Float32Value;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.common.runtime.Parity;
 import communicator.common.helper.DeviceDescriptionLoader;
@@ -43,6 +42,7 @@ import org.slf4j.LoggerFactory;
 
 
 
+@SuppressWarnings("java:S2925")
 public class IOPdemoBOX {
 	
 

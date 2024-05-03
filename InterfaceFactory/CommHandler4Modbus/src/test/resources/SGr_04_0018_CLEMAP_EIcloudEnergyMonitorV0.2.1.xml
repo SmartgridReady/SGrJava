@@ -15,6 +15,24 @@
     <softwareRevision>1.0.0</softwareRevision>
     <manufacturerSpecificationIdentification>CLEMAP</manufacturerSpecificationIdentification>
   </deviceInformation>
+  <configurationList>
+    <configurationListElement>
+      <name>baseUri</name>
+      <dataType>
+        <string/>
+      </dataType>
+      <configurationDescription>
+        <textElement>The base URI to connect to the service</textElement>
+        <language>en</language>
+        <label>BaseURI</label>
+      </configurationDescription>
+      <configurationDescription>
+        <textElement>Die Basis-URI des service</textElement>
+        <language>de</language>
+        <label>BaseURI</label>
+      </configurationDescription>
+    </configurationListElement>
+</configurationList>
   <interfaceList>
     <restApiInterface>
       <restApiInterfaceDescription>

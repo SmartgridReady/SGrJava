@@ -1,18 +1,29 @@
 package communicator.common.impl;
 
+import com.smartgridready.ns.v0.ConfigurationList;
+import com.smartgridready.ns.v0.ConfigurationListElement;
 import com.smartgridready.ns.v0.DataDirectionProduct;
 import com.smartgridready.ns.v0.DataPointBase;
 import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
+import com.smartgridready.ns.v0.GenericAttributeListProduct;
+import com.smartgridready.ns.v0.Language;
+import com.smartgridready.ns.v0.V0Factory;
 import communicator.common.api.GenDeviceApi;
-import communicator.common.api.GenericAtributeLevel;
-import communicator.common.api.GenericAttribute;
-import communicator.common.api.Value;
+import communicator.common.api.dto.ConfigurationValue;
+import communicator.common.api.dto.DataPoint;
+import communicator.common.api.dto.DeviceInfo;
+import communicator.common.api.dto.FunctionalProfile;
+import communicator.common.api.dto.GenericAttribute;
+import communicator.common.api.dto.OperationEnvironment;
+import communicator.common.api.values.Value;
 import communicator.common.runtime.GenDriverException;
+import utils.SGrGDPTypeToNameMapper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -59,34 +70,6 @@ public abstract class SGrDeviceBase<
     protected abstract Optional<F> findProfile(String profileName);
 
     protected abstract Optional<P> findDataPointForProfile(F functionalProfile, String datapointName);
-
-    @Override
-    public List<GenericAttribute> getGenAttributes(String profileName, String dataPointName) throws GenDriverException {
-
-        List<GenericAttribute> result = new ArrayList<>();
-
-        // Add additional attributes that are set on device level
-        Optional.ofNullable(device.getGenericAttributeList()).flatMap(attrList ->
-                Optional.ofNullable(attrList.getGenericAttributeListElement())).ifPresent(attrListElem ->
-                attrListElem.forEach(attr ->
-                        result.add(GenericAttribute.of(attr, GenericAtributeLevel.DEVICE))));
-
-        // Add additional attributes that are set on functional profile level
-        if (profileName!=null) {
-            findProfile(profileName).flatMap(profile -> Optional.ofNullable(profile.getGenericAttributeList()))
-                    .flatMap(attrList -> Optional.ofNullable(attrList.getGenericAttributeListElement())).ifPresent(attrListElem -> attrListElem.forEach(attr ->
-                            result.add(GenericAttribute.of(attr, GenericAtributeLevel.FUNCTIONAL_PROFILE))));
-        }
-
-        // Attributes that are set on device level
-        if (profileName!=null && dataPointName!=null) {
-            Optional.ofNullable(findDatapoint(profileName, dataPointName))
-                    .flatMap(dataPoint -> Optional.ofNullable(dataPoint.getGenericAttributeList())).flatMap(attrList -> Optional.ofNullable(attrList.getGenericAttributeListElement())).ifPresent(attrListElem -> attrListElem.forEach(attr ->
-                            result.add(GenericAttribute.of(attr, GenericAtributeLevel.DATA_POINT))));
-        }
-
-        return result;
-    }
 
     protected P findDatapoint(String profileName, String datapointName) throws GenDriverException {
         Optional<F> functionalProfile = findProfile(profileName);
@@ -137,6 +120,127 @@ public abstract class SGrDeviceBase<
         return Optional.empty();
     }
 
+    @Override
+    public DeviceInfo getDeviceInfo() throws GenDriverException {
 
+       var deviceWithInterface = DeviceWithInterface.of(device);
 
+        var genericAttributes = Optional.ofNullable(device.getGenericAttributeList())
+                .map(GenericAttributeListProduct::getGenericAttributeListElement)
+                .map(genericAttributeProducts -> genericAttributeProducts.stream()
+                        .map(GenericAttribute::of)
+                        .collect(Collectors.toList()));
+
+        var versionNo = device.getDeviceInformation().getVersionNumber();
+        var versionStr = versionNo != null ? String.format("%s.%s.%s",
+                versionNo.getPrimaryVersionNumber(), versionNo.getSecondaryVersionNumber(), versionNo.getSubReleaseVersionNumber()) : "-";
+
+        return new DeviceInfo(
+                device.getDeviceName(),
+                device.getManufacturerName(),
+                versionStr,
+                device.getDeviceInformation().getSoftwareRevision(),
+                device.getDeviceInformation().getHardwareRevision(),
+                device.getDeviceInformation().getDeviceCategory(),
+                deviceWithInterface.getInterfaceType(),
+                device.getDeviceInformation().isIsLocalControl() ? OperationEnvironment.LOCAL : OperationEnvironment.CLOUD,
+                genericAttributes.orElse(new ArrayList<>()),
+                getDeviceConfigurationInfo(),
+                getFunctionalProfiles());
+    }
+
+    @Override
+    public List<ConfigurationValue> getDeviceConfigurationInfo() {
+        return Optional.ofNullable(device.getConfigurationList())
+                .map(ConfigurationList::getConfigurationListElement).orElseGet(()
+                        -> V0Factory.eINSTANCE.createConfigurationList().getConfigurationListElement())
+                .stream()
+                .map(this::mapToConfigurationValue).collect(Collectors.toList());
+    }
+
+    private ConfigurationValue mapToConfigurationValue(ConfigurationListElement configurationListElement) {
+
+        var descriptions = new EnumMap<Language, String>(Language.class);
+        configurationListElement.getConfigurationDescription().forEach(description -> descriptions.put(description.getLanguage(), description.getTextElement()));
+
+        return new ConfigurationValue(
+                configurationListElement.getName(),
+                SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(configurationListElement.getDataType()).stream().findFirst().orElse("UNDEFINED"),
+                descriptions);
+
+    }
+
+    @Override
+    public List<FunctionalProfile> getFunctionalProfiles() throws GenDriverException {
+
+        List<FunctionalProfile> functionalProfiles = new ArrayList<>();
+
+        var deviceWithInterface = DeviceWithInterface.of(device);
+        for (var functionalProfile : deviceWithInterface.getFunctionalProfiles()) {
+            functionalProfiles.add(getFunctionalProfile(functionalProfile.getFunctionalProfile().getFunctionalProfileName()));
+        }
+        return functionalProfiles;
+    }
+
+    @Override
+    public FunctionalProfile getFunctionalProfile(String functionalProfileName) throws GenDriverException {
+
+        var functionalProfile = findProfile(functionalProfileName)
+                .orElseThrow(() -> new GenDriverException("Functional profile with name='" + functionalProfileName + "' not found"));
+
+        var fp = functionalProfile.getFunctionalProfile();
+
+        var genericAttributes = Optional.ofNullable(functionalProfile.getGenericAttributeList())
+                .map(GenericAttributeListProduct::getGenericAttributeListElement)
+                .map(genericAttributeProducts -> genericAttributeProducts.stream()
+                        .map(GenericAttribute::of)
+                        .collect(Collectors.toList()));
+
+        return new FunctionalProfile(
+                fp.getFunctionalProfileName(),
+                fp.getFunctionalProfileIdentification().getFunctionalProfileType(),
+                fp.getFunctionalProfileIdentification().getFunctionalProfileCategory(),
+                genericAttributes.orElse(List.of()),
+                getDataPoints(functionalProfileName));
+    }
+
+    @Override
+    public List<DataPoint> getDataPoints(String functionalProfileName) throws GenDriverException {
+
+        var functionalProfile = findProfile(functionalProfileName)
+                .orElseThrow(() -> new GenDriverException("Functional profile with name='" + functionalProfileName + "' not found"));
+
+        List<DataPoint> result = new ArrayList<>();
+
+        var dataPoints = FunctionalProfileWithDatapoints.of(functionalProfile).getDataPoints();
+        if (dataPoints != null) {
+            for (var dataPoint : dataPoints) {
+                result.add(getDataPoint(functionalProfileName, dataPoint.getDataPoint().getDataPointName()));
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public DataPoint getDataPoint(String functionalProfileName, String dataPointName) throws GenDriverException {
+
+        var dataPointElem =  findDatapoint(functionalProfileName, dataPointName);
+        var dataPoint = dataPointElem.getDataPoint();
+
+        var genericAttributes = Optional.ofNullable(dataPointElem.getGenericAttributeList())
+                .map(GenericAttributeListProduct::getGenericAttributeListElement)
+                        .map(genericAttributeProducts -> genericAttributeProducts.stream()
+                                .map(GenericAttribute::of)
+                                .collect(Collectors.toList()));
+        return new DataPoint(
+                dataPoint.getDataPointName(),
+                SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(dataPoint.getDataType()).stream().findFirst().orElse(null),
+                dataPoint.getUnit() != null ? dataPoint.getUnit() : null,
+                dataPoint.getDataDirection() != null ? dataPoint.getDataDirection() : null,
+                dataPoint.isSetMinimumValue() ? dataPoint.getMinimumValue() : null,
+                dataPoint.isSetMaximumValue() ? dataPoint.getMaximumValue() : null,
+                dataPoint.isSetArrayLength() ? dataPoint.getArrayLength() : null,
+                genericAttributes.orElse(List.of())
+        );
+    }
 }

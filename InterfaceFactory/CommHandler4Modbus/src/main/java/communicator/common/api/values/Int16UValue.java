@@ -1,4 +1,4 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
 public class Int16UValue extends NumberValue<Integer> {
 
@@ -19,6 +19,7 @@ public class Int16UValue extends NumberValue<Integer> {
 
     @Override
     public void roundToInt() {
+        // is already an int
     }
 
     public static Int16UValue of(int value) {

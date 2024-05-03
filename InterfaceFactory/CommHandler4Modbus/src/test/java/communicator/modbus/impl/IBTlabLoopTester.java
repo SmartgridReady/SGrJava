@@ -25,10 +25,10 @@ and significant traffic load conditions
 package communicator.modbus.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
-import communicator.common.api.BooleanValue;
-import communicator.common.api.EnumRecord;
-import communicator.common.api.Float64Value;
-import communicator.common.api.Value;
+import communicator.common.api.values.BooleanValue;
+import communicator.common.api.values.EnumRecord;
+import communicator.common.api.values.Float64Value;
+import communicator.common.api.values.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.Parity;
@@ -92,6 +92,7 @@ public class IBTlabLoopTester {
 	// private static GenDriverAPI4Modbus  mockModbusDriver = new GenDriverAPI4ModbusRTUMock();
 	private static GenDriverAPI4Modbus mockModbusDriver = null;
 
+	@SuppressWarnings("java:S2925")
 	public static void main( String argv[] ) {	
 		
 

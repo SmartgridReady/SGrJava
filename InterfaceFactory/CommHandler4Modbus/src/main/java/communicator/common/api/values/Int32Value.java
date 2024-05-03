@@ -1,4 +1,4 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
 public class Int32Value extends NumberValue<Integer> {
 

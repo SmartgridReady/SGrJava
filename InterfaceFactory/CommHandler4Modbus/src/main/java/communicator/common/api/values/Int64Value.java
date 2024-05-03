@@ -1,13 +1,13 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
-public class Int32UValue extends NumberValue<Long> {
-    private Int32UValue(long value) {
+public class Int64Value extends NumberValue<Long> {
+
+    private Int64Value(long value) {
         this.value = value;
     }
 
     @Override
     protected void setValue(double value) {
-        checkInt32U((long)value);
         this.value = (long)value;
     }
 
@@ -18,9 +18,10 @@ public class Int32UValue extends NumberValue<Long> {
 
     @Override
     public void roundToInt() {
+        // is already int
     }
 
-    public static Int32UValue of(long value) {
-        return new Int32UValue(value);
+    public static Int64Value of(long value) {
+        return new Int64Value(value);
     }
 }

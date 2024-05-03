@@ -1,7 +1,9 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
 import com.smartgridready.ns.v0.EnumEntryProductRecord;
 import com.smartgridready.ns.v0.EnumMapProduct;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -205,5 +207,21 @@ public class EnumValue extends Value {
     @Override
     public String toString() {
         return enumRecord.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this==o) return true;
+
+        if (o==null || getClass()!=o.getClass()) return false;
+
+        EnumValue enumValue = (EnumValue) o;
+
+        return new EqualsBuilder().append(enumRecord, enumValue.enumRecord).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(enumRecord).toHashCode();
     }
 }

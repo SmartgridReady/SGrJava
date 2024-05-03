@@ -1,4 +1,4 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
 public class Int16Value extends NumberValue<Short> {
 

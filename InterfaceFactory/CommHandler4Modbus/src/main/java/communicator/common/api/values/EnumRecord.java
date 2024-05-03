@@ -1,4 +1,7 @@
-package communicator.common.api;
+package communicator.common.api.values;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class EnumRecord {
 
@@ -29,5 +32,21 @@ public class EnumRecord {
         return (literal!=null ? literal:"undef")
                 + ":" + (ordinal!=null ? ordinal.toString():"undef")
                 + " | " + (description!=null ? description:"");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this==o) return true;
+
+        if (o==null || getClass()!=o.getClass()) return false;
+
+        EnumRecord that = (EnumRecord) o;
+
+        return new EqualsBuilder().append(literal, that.literal).append(ordinal, that.ordinal).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(literal).append(ordinal).toHashCode();
     }
 }

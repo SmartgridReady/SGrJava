@@ -95,15 +95,17 @@ class Mqtt5MessagingClientTest {
                             Message.of("{ \"sensorId\": 2, \"value\": \"100K\" }"),
                             TEST_TOPIC,
                             messageFilter2,
-                            1000));
+                            2000));
 
             // futureFilter1 should receive sensorId=1 message only
             Either<Throwable, Message> result1 = futureFilter1.join();
+            LOG.info("Result for filter1: {}", result1.isLeft() ? result1.getLeft().getMessage() : result1.get().getPayload());
             assertTrue(result1.isRight());
             assertEquals("{ \"sensorId\": 1, \"value\": \"50K\" }", result1.get().getPayload());
 
             // futureFilter2 should receive sensorId=2 message only
             Either<Throwable, Message> result2 = futureFilter2.join();
+            LOG.info("Result for filter2: {}", result2.isLeft() ? result2.getLeft().getMessage() : result2.get().getPayload());
             assertTrue(result2.isRight());
             assertEquals("{ \"sensorId\": 2, \"value\": \"100K\" }", result2.get().getPayload());
         }

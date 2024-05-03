@@ -1,4 +1,7 @@
-package communicator.common.api;
+package communicator.common.api.values;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -95,7 +98,8 @@ public abstract class NumberValue<T extends Number> extends Value {
        return value.toString();
     }
 
-    public NumberValue scaleDown(int mul, int powOf10) {
+    @SuppressWarnings("java:S1452")
+    public NumberValue<? extends Number> scaleDown(int mul, int powOf10) {
 
         if (mul != 1 || powOf10 !=0) {
             double dVal = value.doubleValue() / mul;
@@ -104,7 +108,8 @@ public abstract class NumberValue<T extends Number> extends Value {
         return this;
     }
 
-    public NumberValue scaleUp(int mul, int powOf10) {
+    @SuppressWarnings("java:S1452")
+    public NumberValue<? extends Number> scaleUp(int mul, int powOf10) {
         if(mul != 1 || powOf10 != 0) {
             double dVal = value.doubleValue() * Math.pow(10.0, powOf10);
             return Float64Value.of(dVal * mul);
@@ -113,4 +118,20 @@ public abstract class NumberValue<T extends Number> extends Value {
     }
 
     protected abstract void setValue(double value);
+
+    @Override
+    public boolean equals(Object o) {
+        if (this==o) return true;
+
+        if (o==null || getClass()!=o.getClass()) return false;
+
+        NumberValue<?> that = (NumberValue<?>) o;
+
+        return new EqualsBuilder().append(value, that.value).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(value).toHashCode();
+    }
 }

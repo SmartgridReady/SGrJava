@@ -25,20 +25,20 @@ import com.smartgridready.ns.v0.TimeSyncBlockNotification;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.impl.DataTypeProductImpl;
 import com.smartgridready.ns.v0.impl.ModbusDataTypeImpl;
-import communicator.common.api.BitmapValue;
-import communicator.common.api.BooleanValue;
-import communicator.common.api.EnumValue;
-import communicator.common.api.Float32Value;
-import communicator.common.api.Float64Value;
-import communicator.common.api.Int16UValue;
-import communicator.common.api.Int16Value;
-import communicator.common.api.Int32UValue;
-import communicator.common.api.Int32Value;
-import communicator.common.api.Int64UValue;
-import communicator.common.api.Int64Value;
-import communicator.common.api.Int8Value;
-import communicator.common.api.StringValue;
-import communicator.common.api.Value;
+import communicator.common.api.values.BitmapValue;
+import communicator.common.api.values.BooleanValue;
+import communicator.common.api.values.EnumValue;
+import communicator.common.api.values.Float32Value;
+import communicator.common.api.values.Float64Value;
+import communicator.common.api.values.Int16UValue;
+import communicator.common.api.values.Int16Value;
+import communicator.common.api.values.Int32UValue;
+import communicator.common.api.values.Int32Value;
+import communicator.common.api.values.Int64UValue;
+import communicator.common.api.values.Int64Value;
+import communicator.common.api.values.Int8Value;
+import communicator.common.api.values.StringValue;
+import communicator.common.api.values.Value;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
@@ -188,7 +188,7 @@ class SetGetValConversionTest {
     static final class ValueProvider {
 
         Supplier<Value> randomGen;
-        static ValueProvider of( Supplier<communicator.common.api.Value> randomGen) {
+        static ValueProvider of( Supplier<Value> randomGen) {
             ValueProvider vp = new ValueProvider();
             vp.randomGen = randomGen;
             return vp;

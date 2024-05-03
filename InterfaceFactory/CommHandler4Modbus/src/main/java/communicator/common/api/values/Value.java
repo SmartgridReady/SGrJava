@@ -1,4 +1,4 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.EnumMapProduct;

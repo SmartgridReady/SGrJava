@@ -1,4 +1,7 @@
-package communicator.common.api;
+package communicator.common.api.values;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigInteger;
 import java.util.Map;
@@ -147,5 +150,21 @@ public class StringValue extends Value {
 
     private double toDouble() {
         return Double.parseDouble(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this==o) return true;
+
+        if (o==null || getClass()!=o.getClass()) return false;
+
+        StringValue that = (StringValue) o;
+
+        return new EqualsBuilder().append(value, that.value).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(value).toHashCode();
     }
 }

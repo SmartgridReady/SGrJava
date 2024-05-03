@@ -1,5 +1,10 @@
 package communicator.common.api;
 
+import communicator.common.api.dto.ConfigurationValue;
+import communicator.common.api.dto.DataPoint;
+import communicator.common.api.dto.DeviceInfo;
+import communicator.common.api.dto.FunctionalProfile;
+import communicator.common.api.values.Value;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
@@ -10,15 +15,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface GenDeviceApi {
-
-    /**
-     * Lists the generic attributes of a device
-     * @param profileName The name of the functional profile
-     * @param dataPointName The data point name
-     * @return a list with the generic attributes of the device
-     * @throws GenDriverException if an error occurred
-     */
-    List<GenericAttribute> getGenAttributes(String profileName, String dataPointName) throws GenDriverException;
 
     /**
      * Get a value for a given data point
@@ -51,4 +47,18 @@ public interface GenDeviceApi {
     void setVal(String profileName, String dataPointName, Value value) throws
             GenDriverException, GenDriverSocketException, GenDriverModbusException,
             RestApiServiceCallException, RestApiResponseParseException, IOException;
+
+
+    DeviceInfo getDeviceInfo() throws GenDriverException;
+
+    List<ConfigurationValue> getDeviceConfigurationInfo();
+
+    List<FunctionalProfile> getFunctionalProfiles() throws GenDriverException;
+
+    FunctionalProfile getFunctionalProfile(String functionalProfileName) throws GenDriverException;
+
+    List<DataPoint> getDataPoints(String functionalProfileName) throws GenDriverException;
+
+    DataPoint getDataPoint(String functionalProfileName, String dataPointName) throws GenDriverException;
+
 }

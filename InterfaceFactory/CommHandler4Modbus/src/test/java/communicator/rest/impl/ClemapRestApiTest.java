@@ -1,7 +1,7 @@
 package communicator.rest.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
-import communicator.common.api.StringValue;
+import communicator.common.api.values.StringValue;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.rest.api.GenDeviceApi4Rest;
 import communicator.rest.exception.RestApiAuthenticationException;
