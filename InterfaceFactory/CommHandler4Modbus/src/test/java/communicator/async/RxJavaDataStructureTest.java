@@ -3,8 +3,8 @@ package communicator.async;
 
 import communicator.async.callable.AsyncResult;
 import communicator.async.callable.DeviceReadCallable;
-import communicator.common.api.Float32Value;
-import communicator.common.api.Value;
+import communicator.common.api.values.Float32Value;
+import communicator.common.api.values.Value;
 import communicator.modbus.impl.SGrModbusDevice;
 import communicator.rest.impl.SGrRestApiDevice;
 import io.reactivex.rxjava3.core.Observable;

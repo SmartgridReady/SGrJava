@@ -1,4 +1,4 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
 public class Int8Value extends NumberValue<Byte> {
 
@@ -18,6 +18,7 @@ public class Int8Value extends NumberValue<Byte> {
 
     @Override
     public void roundToInt() {
+        // is already int
     }
 
     public static Int8Value of(byte value) {

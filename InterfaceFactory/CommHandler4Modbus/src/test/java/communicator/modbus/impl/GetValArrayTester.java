@@ -1,7 +1,7 @@
 package communicator.modbus.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
-import communicator.common.api.Value;
+import communicator.common.api.values.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
@@ -14,8 +14,9 @@ public class GetValArrayTester {
 		
 	private static final Logger LOG = LoggerFactory.getLogger(GetValArrayTester.class);
 	
-	private static final String XML_BASE_DIR = ""; 
-	
+	private static final String XML_BASE_DIR = "";
+
+	@SuppressWarnings("java:S2925")
 	public static void main( String[] argv ) {
 		
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
@@ -49,7 +50,7 @@ public class GetValArrayTester {
 						voltages[0].getFloat32(),
 						voltages[1].getFloat32(),
 						voltages[2].getFloat32());
-				
+
 				Thread.sleep(1000);
 				voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
 				LOG.info("WAGO Meter Voltages AC run 3: L1: {}V - L2 {}V - L3: {}V", 

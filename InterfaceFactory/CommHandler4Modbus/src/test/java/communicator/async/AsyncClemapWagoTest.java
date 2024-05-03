@@ -6,7 +6,7 @@ import communicator.async.process.Parallel;
 import communicator.async.process.Processor;
 import communicator.async.process.ReadExec;
 import communicator.async.process.Sequence;
-import communicator.common.api.Value;
+import communicator.common.api.values.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.modbus.impl.SGrModbusDevice;
 import communicator.rest.http.client.ApacheRestServiceClientFactory;
@@ -138,7 +138,6 @@ public class AsyncClemapWagoTest {
     private static SGrModbusDevice createWagoDevice() throws Exception {
         DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
         DeviceFrame deviceDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
-
 
         wagoDriver = new GenDriverAPI4ModbusRTU();
         wagoDriver.initTrspService("COM3", 19200);

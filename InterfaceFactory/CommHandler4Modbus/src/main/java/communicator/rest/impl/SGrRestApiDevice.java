@@ -28,9 +28,9 @@ import com.smartgridready.ns.v0.RestApiFunctionalProfile;
 import com.smartgridready.ns.v0.RestApiInterface;
 import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import com.smartgridready.ns.v0.RestApiServiceCall;
-import communicator.common.api.Float64Value;
-import communicator.common.api.StringValue;
-import communicator.common.api.Value;
+import communicator.common.api.values.Float64Value;
+import communicator.common.api.values.StringValue;
+import communicator.common.api.values.Value;
 import communicator.common.helper.JsonHelper;
 import communicator.common.impl.SGrDeviceBase;
 import communicator.common.runtime.GenDriverException;
@@ -98,7 +98,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}
 
 	@Override
-	public void setVal(String profileName, String dataPointName, communicator.common.api.Value value)
+	public void setVal(String profileName, String dataPointName, Value value)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {
 
 		RestApiDataPoint dataPoint = findProfileDataPoint(profileName, dataPointName);
@@ -166,7 +166,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		}
 	}
 
-	private Value handleServiceResponse(RestApiDataPointConfiguration dpDescription, String response) throws GenDriverException, RestApiResponseParseException{
+	private Value handleServiceResponse(RestApiDataPointConfiguration dpDescription, String response) throws GenDriverException {
 
 		Optional<ResponseQuery> queryOpt = Optional.ofNullable(dpDescription.getRestApiServiceCall())
 				.map(RestApiServiceCall::getResponseQuery);
@@ -177,7 +177,6 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 				return JsonHelper.parseJsonResponse(responseQuery.getQuery(), response);
 			} else if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
 				return JsonHelper.mapJsonResponse(responseQuery.getJmesPathMappings(), response);
-			} else if (responseQuery.isSetQueryType()) {
 			}
 		}
 		// return plain response

@@ -3,6 +3,8 @@ package communicator.common.api;
 import com.smartgridready.ns.v0.BitmapEntryProduct;
 import com.smartgridready.ns.v0.BitmapProduct;
 import com.smartgridready.ns.v0.V0Factory;
+import communicator.common.api.values.BitmapValue;
+import communicator.common.api.values.Value;
 import org.eclipse.emf.common.util.EList;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
 public class Float32Value extends NumberValue<Float> {
 
@@ -26,4 +26,6 @@ public class Float32Value extends NumberValue<Float> {
     public static Float32Value of(float value) {
         return new Float32Value(value);
     }
+
+
 }

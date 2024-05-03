@@ -19,7 +19,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package communicator.rest.api;
 
 import communicator.common.api.GenDeviceApi;
-import communicator.common.api.Value;
+import communicator.common.api.values.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverException;
 import communicator.rest.exception.RestApiAuthenticationException;

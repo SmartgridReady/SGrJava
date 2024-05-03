@@ -1,6 +1,6 @@
 package communicator.messaging.impl;
 
-import communicator.common.api.Value;
+import communicator.common.api.values.Value;
 
 import java.time.Instant;
 

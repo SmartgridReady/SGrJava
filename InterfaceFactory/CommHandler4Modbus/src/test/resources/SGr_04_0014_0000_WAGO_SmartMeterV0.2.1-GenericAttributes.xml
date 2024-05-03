@@ -62,6 +62,11 @@
     <nominalPower>4 Watt</nominalPower>
     <generalRemarks>WAGO/ls</generalRemarks>
     <levelOfOperation>4</levelOfOperation>
+    <versionNumber>
+      <primaryVersionNumber>0</primaryVersionNumber>
+      <secondaryVersionNumber>2</secondaryVersionNumber>
+      <subReleaseVersionNumber>3</subReleaseVersionNumber>
+    </versionNumber>
   </deviceInformation>
   <genericAttributeList>
     <genericAttributeListElement>
@@ -173,6 +178,7 @@
                   <float64/>
                 </dataType>
                 <unit>VOLTS</unit>
+                <arrayLength>1</arrayLength>
                 <minimumValue>0.005</minimumValue>
                 <maximumValue>380</maximumValue>
                 <unitConversionMultiplicator>1.36</unitConversionMultiplicator>
@@ -182,7 +188,7 @@
               </dataPoint>
               <genericAttributeList>
                 <genericAttributeListElement>
-                  <name>PercisionPercent</name>
+                  <name>PrecisionPercent</name>
                   <dataType>
                     <float32/>
                   </dataType>

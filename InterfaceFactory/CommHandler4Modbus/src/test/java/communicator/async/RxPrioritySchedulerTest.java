@@ -1,7 +1,7 @@
 package communicator.async;
 
-import communicator.common.api.Float32Value;
-import communicator.common.api.Value;
+import communicator.common.api.values.Float32Value;
+import communicator.common.api.values.Value;
 import communicator.modbus.impl.SGrModbusDevice;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Scheduler;

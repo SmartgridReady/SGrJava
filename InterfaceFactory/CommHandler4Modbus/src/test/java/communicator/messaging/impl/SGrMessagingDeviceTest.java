@@ -1,8 +1,8 @@
 package communicator.messaging.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
-import communicator.common.api.StringValue;
-import communicator.common.api.Value;
+import communicator.common.api.values.StringValue;
+import communicator.common.api.values.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverException;
 import io.vavr.control.Either;

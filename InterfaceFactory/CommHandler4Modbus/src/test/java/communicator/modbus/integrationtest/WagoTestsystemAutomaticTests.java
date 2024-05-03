@@ -1,9 +1,9 @@
 package communicator.modbus.integrationtest;
 
-import communicator.common.api.BitmapValue;
-import communicator.common.api.BooleanValue;
-import communicator.common.api.Float64Value;
-import communicator.common.api.Value;
+import communicator.common.api.values.BitmapValue;
+import communicator.common.api.values.BooleanValue;
+import communicator.common.api.values.Float64Value;
+import communicator.common.api.values.Value;
 import org.apache.logging.log4j.util.TriConsumer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

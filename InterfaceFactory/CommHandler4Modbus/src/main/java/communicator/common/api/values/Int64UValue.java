@@ -1,4 +1,4 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
 import java.math.BigInteger;
 import java.util.Map;
@@ -90,7 +90,7 @@ public class Int64UValue extends Value {
         throw new UnsupportedOperationException("Cannot convert from int64U value to a bitmap value.");
     }
 
-    public NumberValue scaleDown(int mul, int powOf10) {
+    public NumberValue<Double> scaleDown(int mul, int powOf10) {
         if (mul != 1 || powOf10 !=0) {
             BigInteger val = value.divide(BigInteger.valueOf(mul));
             val = val.divide(BigInteger.valueOf((long) Math.pow(10.0, powOf10)));
@@ -100,7 +100,7 @@ public class Int64UValue extends Value {
         return Float64Value.of(value.doubleValue());
     }
 
-    public NumberValue scaleUp(int mul, int powOf10) {
+    public NumberValue<Double> scaleUp(int mul, int powOf10) {
         if (mul != 1 || powOf10 !=0) {
             BigInteger val = value.multiply(BigInteger.valueOf(mul));
             val = val.multiply(BigInteger.valueOf((long) Math.pow(10.0, powOf10)));

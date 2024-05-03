@@ -2,6 +2,8 @@ package communicator.common.api;
 
 import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.V0Factory;
+import communicator.common.api.values.BooleanValue;
+import communicator.common.api.values.Value;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;

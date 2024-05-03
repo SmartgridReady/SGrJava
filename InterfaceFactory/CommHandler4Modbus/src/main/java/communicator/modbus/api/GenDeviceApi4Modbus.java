@@ -17,8 +17,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package communicator.modbus.api;
 import communicator.common.api.GenDeviceApi;
-import communicator.common.api.NumberValue;
-import communicator.common.api.Value;
+import communicator.common.api.values.NumberValue;
+import communicator.common.api.values.Value;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;

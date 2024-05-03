@@ -3,7 +3,7 @@ package communicator.modbus.impl;
 import java.net.URL;
 
 import com.smartgridready.ns.v0.DeviceFrame;
-import communicator.common.api.Value;
+import communicator.common.api.values.Value;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import communicator.common.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 
+@SuppressWarnings("java:S2925")
 public class GetValBlockTransferTester {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(GetValArrayTester.class);

@@ -3,6 +3,10 @@ package communicator.common.api;
 import com.smartgridready.ns.v0.EnumEntryProductRecord;
 import com.smartgridready.ns.v0.EnumMapProduct;
 import com.smartgridready.ns.v0.V0Factory;
+import communicator.common.api.values.EnumValue;
+import communicator.common.api.values.Int32Value;
+import communicator.common.api.values.Int64Value;
+import communicator.common.api.values.Value;
 import org.eclipse.emf.common.util.EList;
 import org.junit.jupiter.api.Test;
 

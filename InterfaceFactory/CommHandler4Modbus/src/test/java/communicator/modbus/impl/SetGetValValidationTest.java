@@ -1,9 +1,9 @@
 package communicator.modbus.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
-import communicator.common.api.Float32Value;
-import communicator.common.api.Float64Value;
-import communicator.common.api.Int64Value;
+import communicator.common.api.values.Float32Value;
+import communicator.common.api.values.Float64Value;
+import communicator.common.api.values.Int64Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;

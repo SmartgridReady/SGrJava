@@ -1,8 +1,10 @@
-package communicator.common.api;
+package communicator.common.api.values;
 
 import com.smartgridready.ns.v0.BitmapEntryProduct;
 import com.smartgridready.ns.v0.BitmapProduct;
 import communicator.modbus.helper.ConversionHelper;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -185,5 +187,22 @@ public class BitmapValue extends Value {
         return value.stream()
                 .map( bitmapRecord -> String.format("%s=%b : %s", bitmapRecord.getLiteral(), bitmapRecord.getValue(), bitmapRecord.getDescription()))
                 .collect(Collectors.joining("; ", "{", "}"));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this==o) return true;
+
+        if (o==null || getClass()!=o.getClass()) return false;
+
+        BitmapValue that = (BitmapValue) o;
+
+        return new EqualsBuilder().append(modbusValue, that.modbusValue).isEquals()
+                && EqualsBuilder.reflectionEquals(this.value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(value).append(modbusValue).toHashCode();
     }
 }

@@ -29,13 +29,11 @@ import java.time.format.DateTimeFormatter;
 
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.DeviceFrame;
-import communicator.common.api.BooleanValue;
-import communicator.common.api.EnumRecord;
-import communicator.common.api.EnumValue;
-import communicator.common.api.Float32Value;
-import communicator.common.api.Float64Value;
-import communicator.common.api.Int16UValue;
-import communicator.common.api.Value;
+import communicator.common.api.values.BooleanValue;
+import communicator.common.api.values.EnumRecord;
+import communicator.common.api.values.EnumValue;
+import communicator.common.api.values.Float64Value;
+import communicator.common.api.values.Value;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.modbus.helper.GenDriverAPI4ModbusRTUMock;
 import org.slf4j.Logger;
@@ -50,6 +48,7 @@ import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
 
 
+@SuppressWarnings("java:S2925")
 public class HeatPumpTester {
 
 	private static final Logger LOG = LoggerFactory.getLogger(HeatPumpTester.class);
