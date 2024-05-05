@@ -70,8 +70,15 @@ public class IOPdemoBOX {
 	
 	// device selection
 	private static boolean  devIOPMeterTestIsOn = true; 
-	private static boolean  devOMCCIWallboxTestIsOn = true;
-		
+	private static boolean  devOMCCIWallboxTestIsOn = false;
+	
+	
+	// DEVICE FILE SELECTION
+	public static String eidMeter = "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml";
+	public static byte rtuMeterAddr = (byte)7;
+	//public static String eidMeter = "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml";
+	//public static byte rtuMeterAddr = (byte)1;
+	
 	public static void main( String argv[] ) {	
 			
 		try {
@@ -80,24 +87,14 @@ public class IOPdemoBOX {
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
-			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface		
-			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
+			mbRTU.initTrspService("COM4", 9600, Parity.NONE);	// for mobile RTU Interface		
+			//mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
  
-			int IOPDeviceSelection = 2;
 
 			// TestBox
-			if (devIOPMeterTestIsOn)  {
-				
-				if (IOPDeviceSelection==1)
-				{
-					LOG.info(" -init WagoMeter as IOP demonstrator @: " + dtf.format(LocalDateTime.now())+ " ");
-					initIOPMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml",(byte)7);
-				}
-				else
-				{	LOG.info("make sure  the switch in the testbox is set to EXT.");
-					LOG.info(" -init ABB M23 Meter as IOP demonstrator @:" + dtf.format(LocalDateTime.now())+ " ");
-					initIOPMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml",(byte)1);
-				}
+			if (devIOPMeterTestIsOn)  {				
+			  	   LOG.info(" -init eidMeter as IOP demonstrator @: " + dtf.format(LocalDateTime.now())+ " ");
+					initIOPMeter(XML_BASE_DIR, eidMeter,rtuMeterAddr);
 			}	
 			if (devOMCCIWallboxTestIsOn) {
 				//TODO: complete and use OMCCI EI.xml
@@ -199,6 +196,7 @@ public class IOPdemoBOX {
 	  				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + "  ");
 	  				Thread.sleep(10);
+	  				/*
 	  				fVal1 = devIOPMeter.getVal("PowerFactor", "PowerFactor").getFloat64();
 	  				Thread.sleep(10);
 	  				fVal2 = devIOPMeter.getVal("PowerFactor", "PowerFactorL1").getFloat64();
@@ -208,7 +206,7 @@ public class IOPdemoBOX {
 	  				fVal4 = devIOPMeter.getVal("PowerFactor", "PowerFactorL3").getFloat64();
 	  				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
 	  						+ fVal3 + ",  " + fVal4 + "  ");
-	  				Thread.sleep(10); 
+	  				Thread.sleep(10); */
 	  				sVal1 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot").getString();
 	  				Thread.sleep(10);
 	  				sVal2 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL1").getString();

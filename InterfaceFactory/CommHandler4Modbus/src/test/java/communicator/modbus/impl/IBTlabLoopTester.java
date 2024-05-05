@@ -104,8 +104,8 @@ public class IBTlabLoopTester {
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = (mockModbusDriver == null ? new GenDriverAPI4ModbusRTU() : mockModbusDriver);
 
-			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface
-			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
+			mbRTU.initTrspService("COM4", 9600, Parity.NONE);	// for mobile RTU Interface
+			//mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
 			if (devABBMeterTestIsOn)  {
 				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
 			}
