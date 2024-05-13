@@ -38,8 +38,10 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.smartgridready.ns.v0.DeviceFrame;
 
-public class DeviceDescriptionLoader<C> {
+
+public class DeviceDescriptionLoader {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DeviceDescriptionLoader.class);
 
@@ -52,7 +54,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param aDescriptionStream The external interface EI-XML input stream.
 	 * @return An instance of the device description for the given EI-XML
 	 */
-	public C load(String aDescriptionFile, InputStream aDescriptionStream) {
+	public DeviceFrame load(String aDescriptionFile, InputStream aDescriptionStream) {
 		return load(aDescriptionFile, aDescriptionStream, null);
 	}
 
@@ -63,7 +65,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param aDescriptionFile The external interface file name.
 	 * @return An instance of the device description for the given EI-XML
 	 */
-	public C load(String aBaseDir, String aDescriptionFile) {
+	public DeviceFrame load(String aBaseDir, String aDescriptionFile) {
 		return load(aBaseDir, aDescriptionFile, null);
 	}
 
@@ -73,7 +75,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param deviceDescXml The external interface file XML content.
 	 * @return An instance of the device description for the given EI-XML
 	 */
-	public C load(String deviceDescXml) {
+	public DeviceFrame load(String deviceDescXml) {
 		return load(deviceDescXml, (Properties) null);
 	}
 
@@ -95,7 +97,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param properties Key value pairs that replaces tags like {@code {{keyName}}} with the property {@code value}
 	 * @return An instance of the device description for the given EI-XML.
 	 */
-	public C load(String aBaseDir, String aDescriptionFile, Properties properties) {	
+	public DeviceFrame load(String aBaseDir, String aDescriptionFile, Properties properties) {	
 		try {
 			// using java.nio.Path would be better, but absolute paths seem to cause problems on Windows
 			String aDescriptionPath = aBaseDir + File.separator + aDescriptionFile;
@@ -129,7 +131,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param properties Key value pairs that replaces tags like {@code {{keyName}}} with the property {@code value}
 	 * @return An instance of the device description for the given EI-XML.
 	 */
-	public C load(String aDescriptionFile, InputStream aDescriptionStream, Properties properties) {
+	public DeviceFrame load(String aDescriptionFile, InputStream aDescriptionStream, Properties properties) {
 		try {
 			String deviceDescXml = new String(aDescriptionStream.readAllBytes(), StandardCharsets.UTF_8);
 			return createResource(aDescriptionFile, deviceDescXml, properties);
@@ -157,7 +159,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param properties Key value pairs that replaces tags like {@code {{keyName}}} with the property {@code value}
 	 * @return An instance of the device description for the given EI-XML.
 	 */
-	public C load(String deviceDescXml, Properties properties) {	
+	public DeviceFrame load(String deviceDescXml, Properties properties) {	
 		try {
 			// create random file name
 			String aDescriptionPath = UUID.randomUUID().toString() + ".xml";
@@ -168,8 +170,7 @@ public class DeviceDescriptionLoader<C> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private C createResource(String resourcePath, String deviceDescXml, Properties properties) throws IOException {
+	private DeviceFrame createResource(String resourcePath, String deviceDescXml, Properties properties) throws IOException {
 		// XML namespace eNS_URI "http://www.smartgridready.com/ns/V0/" map to "com.smartgridready.ns.v0.V0Package" classes.
 		EPackage.Registry.INSTANCE.put(com.smartgridready.ns.v0.V0Package.eNS_URI, com.smartgridready.ns.v0.V0Package.eINSTANCE);
 
@@ -185,20 +186,75 @@ public class DeviceDescriptionLoader<C> {
 
 		Resource resource = domain.createResource(resourcePath);
 
+		// load the XML for the first time, in order to get configuration list
+		InputStream is = null;
+		try {
+			is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8);
+			resource.load(is, null);
+		} catch (IOException e) {
+			// ignore value errors
+		} finally {
+			if (is != null) {
+				is.close();
+			}
+		}
+
+		if (!resource.isLoaded()) {
+			throw new IOException(String.format("Resource '%s' could not be loaded", resource.getURI()));
+		}
+
+		Properties finalProperties = getFinalProperties((DeviceFrame) resource.getAllContents().next(), properties);
+
+		resource.unload();
+
 		// replace property placeholders
-		deviceDescXml = replacePropertyPlaceholders(deviceDescXml, properties);
+		deviceDescXml = replacePropertyPlaceholders(deviceDescXml, finalProperties);
 
-		InputStream is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8);
-		resource.load(is, null);
+		// load the XML for the second time, in order to get actual device description
+		try {
+			is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8);
+			resource.load(is, null);
+		} catch (IOException e) {
+			// ignore value errors
+		} finally {
+			if (is != null) {
+				is.close();
+			}
+		}
 
-		return (C) resource.getAllContents().next();		
+		DeviceFrame result = (DeviceFrame) resource.getAllContents().next();
+
+		resource.unload();
+
+		return result;		
+	}
+
+	private static Properties getFinalProperties(DeviceFrame deviceDescription, Properties properties) {
+		final Properties finalProperties = new Properties();
+		if (null != deviceDescription.getConfigurationList()) {
+			deviceDescription.getConfigurationList().getConfigurationListElement().forEach(c -> {
+				String value = (null != c.getDefaultValue()) ? c.getDefaultValue() : "";
+				finalProperties.setProperty(c.getName(), value);
+				LOG.debug("adding default property '{}':'{}'", c.getName(), value);
+			});
+		}
+
+		if (properties != null) {
+			properties.entrySet().forEach(entry -> {
+				finalProperties.setProperty((String) entry.getKey(), (String) entry.getValue());
+				LOG.debug("overriding property '{}':'{}'", entry.getKey(), entry.getValue());
+			});
+		}
+
+		return finalProperties;
 	}
 	
-	private String replacePropertyPlaceholders(String deviceDescriptionXml, Properties properties) {
+	private static String replacePropertyPlaceholders(String deviceDescriptionXml, Properties properties) {
 		String convertedXml = deviceDescriptionXml;
 		if (properties != null) {
 			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
 				convertedXml = convertedXml.replaceAll("\\{\\{" + entry.getKey() + "\\}\\}", (String)entry.getValue());
+				LOG.debug("replaced property '{}':'{}'", entry.getKey(), entry.getValue());
 			}
 		}
 		return convertedXml;

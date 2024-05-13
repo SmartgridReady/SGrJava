@@ -85,7 +85,7 @@ class SetGetValValidationTest {
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL deviceDescUrl = classloader.getResource("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
-        DeviceFrame deviceDesc = new DeviceDescriptionLoader<DeviceFrame>()
+        DeviceFrame deviceDesc = new DeviceDescriptionLoader()
                 .load("", Optional.ofNullable(deviceDescUrl != null ? deviceDescUrl.getPath() : null).orElse(""));
 
         return new SGrModbusDevice(deviceDesc, modbusDriver);

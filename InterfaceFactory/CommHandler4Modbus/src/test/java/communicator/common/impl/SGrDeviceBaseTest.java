@@ -288,7 +288,7 @@ class SGrDeviceBaseTest {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL devDescUrl = classloader.getResource(deviceDescriptionXml);
 
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 
         return new SGrModbusDevice(devDesc, null);
@@ -300,7 +300,7 @@ class SGrDeviceBaseTest {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL devDescUrl = classloader.getResource(deviceDescriptionXml);
 
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
         return new SGrRestApiDevice(devDesc, new ApacheRestServiceClientFactory());
 
