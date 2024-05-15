@@ -187,16 +187,10 @@ public class DeviceDescriptionLoader {
 		Resource resource = domain.createResource(resourcePath);
 
 		// load the XML for the first time, in order to get configuration list
-		InputStream is = null;
-		try {
-			is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8);
+		try (InputStream is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8)) {
 			resource.load(is, null);
 		} catch (IOException e) {
 			// ignore value errors
-		} finally {
-			if (is != null) {
-				is.close();
-			}
 		}
 
 		if (!resource.isLoaded()) {
@@ -211,15 +205,10 @@ public class DeviceDescriptionLoader {
 		deviceDescXml = replacePropertyPlaceholders(deviceDescXml, finalProperties);
 
 		// load the XML for the second time, in order to get actual device description
-		try {
-			is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8);
+		try (InputStream is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8)) {
 			resource.load(is, null);
 		} catch (IOException e) {
 			// ignore value errors
-		} finally {
-			if (is != null) {
-				is.close();
-			}
 		}
 
 		DeviceFrame result = (DeviceFrame) resource.getAllContents().next();
