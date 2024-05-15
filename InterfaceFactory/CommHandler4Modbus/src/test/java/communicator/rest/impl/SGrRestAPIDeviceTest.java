@@ -248,7 +248,7 @@ class SGrRestAPIDeviceTest {
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		URL devDescUrl = classloader.getResource("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
 
-		DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+		DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		return loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 	}
 }

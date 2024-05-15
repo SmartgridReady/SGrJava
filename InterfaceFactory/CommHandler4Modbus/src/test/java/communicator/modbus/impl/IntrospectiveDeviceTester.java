@@ -117,7 +117,7 @@ public class IntrospectiveDeviceTester {
 
     private static Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> createWagoDevice() throws Exception {
 
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
         GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
@@ -132,7 +132,7 @@ public class IntrospectiveDeviceTester {
         properties.put("password", "lapo83");
         properties.put("device_id", "08fffe1c-f3ae-4afe-bd70-bc0a73d7ac31");
 
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load( XML_BASE_DIR,
                 "SGr_02_mmmm_8288089799_Smart-me_SubMeterElectricity_V1.0.0.xml",
                 properties);
@@ -149,7 +149,7 @@ public class IntrospectiveDeviceTester {
         properties.put("baseUri", "https://cloud.clemap.com:3032");
         properties.put("sensor_id", "63343431ecf2cf013a1e5a9f");
 
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load( XML_BASE_DIR,
                 "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml",
                 properties);
@@ -163,7 +163,7 @@ public class IntrospectiveDeviceTester {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL deviceDescUrl = classloader.getResource("SGr_05_Swisspower_Dynamic_Tariffs_0.0.1.xml");
 
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
 
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheRestServiceClientFactory());
@@ -181,7 +181,7 @@ public class IntrospectiveDeviceTester {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL deviceDescUrl = classloader.getResource("SGr_05_GroupeE_Dynamic_Tariffs_0.0.1.xml");
 
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
 
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheRestServiceClientFactory());

@@ -221,7 +221,7 @@ class SGrMessagingDeviceTest {
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL deviceDescFile = classloader.getResource("SGr_XX_HiveMQ_MQTT_Cloud.xml");
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 
         Properties properties= new Properties();
         properties.put("host", BROKER_HOST);
