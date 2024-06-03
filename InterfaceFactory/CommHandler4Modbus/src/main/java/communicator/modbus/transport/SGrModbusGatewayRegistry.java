@@ -42,11 +42,15 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
             Integer refCount = gatewayRefCount.getOrDefault(gateway, Integer.valueOf(0));
             refCount = refCount.intValue() + 1;
             gatewayRefCount.put(gateway, refCount);
+
+            LOG.info("Attached Modbus gateway '{}', refcount={}", gatewayIdentifier, refCount);
         } else {
             // create and register new gateway
             gateway = createModbusGateway(gatewayIdentifier, interfaceDescription);
             gateways.put(gatewayIdentifier, gateway);
             gatewayRefCount.put(gateway, Integer.valueOf(1));
+
+            LOG.info("Registered Modbus gateway '{}'", gatewayIdentifier);
         }
 
         return gateway;
@@ -73,9 +77,15 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
                     
                     gatewayRefCount.remove(gateway);
                     gateways.remove(gatewayIdentifier);
+
+                    LOG.info("Removed Modbus gateway '{}'", gatewayIdentifier);
+                } else {
+                    LOG.info("Detached Modbus gateway '{}', refcount={}", gatewayIdentifier, refCount);
                 }
             } else {
                 gateways.remove(gatewayIdentifier);
+
+                LOG.info("Removed Modbus gateway '{}'", gatewayIdentifier);
             }
         }
     }
@@ -90,6 +100,8 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
         gateways.clear();
         gatewayRefCount.clear();
+        
+        LOG.info("Removed all Modbus gateways");
     }
 
     private GenDriverAPI4Modbus createModbusGateway(String identifier, ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
@@ -110,6 +122,9 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
                 GenDriverAPI4Modbus mbRTU = new GenDriverAPI4ModbusRTU();
                 mbRTU.initTrspService(portName, baudrate, parity, dataBits, stopBits);
+
+                LOG.info("Created Modbus RTU serial gateway '{}'", identifier);
+
                 return mbRTU;
             } else if (isTcp && !isSerial) {
                 // use TCP/IP over RTU gateway
@@ -119,6 +134,9 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
                 GenDriverAPI4Modbus mbRTU = new GenDriverAPI4ModbusRTU();
                 mbRTU.initDevice(address, port);
+
+                LOG.info("Created Modbus RTU over TCP/IP gateway '{}'", identifier);
+
                 return mbRTU;
             }
         } else if (modbusType == ModbusType.TCP) {
@@ -130,6 +148,9 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
                 GenDriverAPI4Modbus mbTCP = new GenDriverAPI4ModbusTCP();
                 mbTCP.initDevice(address, port);
+
+                LOG.info("Created Modbus TCP gateway '{}'", identifier);
+
                 return mbTCP;
             }
         }
