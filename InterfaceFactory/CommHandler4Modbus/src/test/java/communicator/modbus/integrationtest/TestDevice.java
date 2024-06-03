@@ -7,16 +7,12 @@ import com.smartgridready.ns.v0.ModbusDataPointConfiguration;
 import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.ModbusInterface;
 import com.smartgridready.ns.v0.RegisterType;
-import com.smartgridready.ns.v0.RestApiInterface;
 import communicator.common.helper.DataTypeHelper;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.impl.SGrDeviceBase;
-import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.modbus.impl.SGrModbusDevice;
-import communicator.rest.http.client.ApacheRestServiceClientFactory;
-import communicator.rest.impl.SGrRestApiDevice;
-import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
-import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
+import communicator.modbus.transport.ModbusGatewayRegistry;
+import communicator.modbus.transport.SGrModbusGatewayRegistry;
 import io.vavr.Tuple2;
 import io.vavr.Tuple3;
 
@@ -30,6 +26,8 @@ import java.util.Properties;
 import java.util.function.Function;
 
 public class TestDevice {
+
+    private static final ModbusGatewayRegistry modbusGatewayRegistry = new SGrModbusGatewayRegistry();
 
     private SGrDeviceBase<?, ?, ?> testSystem;
 
@@ -94,11 +92,7 @@ public class TestDevice {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         deviceDescriptor = loader.load("", deviceDescriptionUrl.getPath());
 
-        GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP();
-        driver.initDevice(testsystemIp, Integer.parseInt(testsystemPort));
-        driver.setUnitIdentifier((short) 1);
-
-        testSystem = new SGrModbusDevice(deviceDescriptor, driver);
+        testSystem = new SGrModbusDevice(deviceDescriptor, modbusGatewayRegistry);
     }
 
     public void loadDeviceDescriptionFile(
@@ -110,18 +104,8 @@ public class TestDevice {
         deviceDescriptor = new DeviceDescriptionLoader().load("", filePath);
 
         ModbusInterface modbusInterface = deviceDescriptor.getInterfaceList().getModbusInterface();
-        if (modbusInterface != null && modbusInterface.getModbusInterfaceDescription().getModbusTcp() != null) {
-            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP();
-            Tuple2<String, Integer> connParams = getIpConnParams.apply("Enter IP Address and Port");
-            driver.initDevice(connParams._1, connParams._2 );
-            testSystem = new SGrModbusDevice(deviceDescriptor,driver );
-        }
-        if (modbusInterface != null && modbusInterface.getModbusInterfaceDescription().getModbusRtu() != null) {
-            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusRTU();
-            Tuple3<String, Integer, Integer> connParams = getComPortConnParams.apply("Enter COMx port, baud rate and modbus identifier.");
-            driver.initTrspService(connParams._1, connParams._2);
-            driver.setUnitIdentifier(connParams._3.shortValue());
-            testSystem = new SGrModbusDevice(deviceDescriptor, driver);
+        if (modbusInterface != null) {
+            testSystem = new SGrModbusDevice(deviceDescriptor, modbusGatewayRegistry);
         }
 
         if (deviceDescriptor.getInterfaceList().getRestApiInterface() != null ) {
@@ -131,7 +115,6 @@ public class TestDevice {
         if (deviceDescriptor.getInterfaceList().getMessagingInterface() != null ) {
             throw new IllegalArgumentException("Messaging devices are not supported yet.");
         }
-
     }
 
     public SGrDeviceBase<?, ?, ?> getTestSystem() {

@@ -9,9 +9,10 @@ import communicator.async.process.Sequence;
 import communicator.common.api.values.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.modbus.impl.SGrModbusDevice;
+import communicator.modbus.transport.ModbusGatewayRegistry;
+import communicator.modbus.transport.SGrModbusGatewayRegistry;
 import communicator.rest.http.client.ApacheRestServiceClientFactory;
 import communicator.rest.impl.SGrRestApiDevice;
-import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.internal.schedulers.IoScheduler;
 import io.reactivex.rxjava3.internal.schedulers.RxThreadFactory;
@@ -37,7 +38,7 @@ public class AsyncClemapWagoTest {
 
     private static SGrRestApiDevice clemapDevice;
 
-    private static GenDriverAPI4ModbusRTU wagoDriver;
+    private static ModbusGatewayRegistry modbusGatewayRegistry = new SGrModbusGatewayRegistry();
 
     @BeforeAll
     public static void createDevices() throws Exception {
@@ -47,7 +48,7 @@ public class AsyncClemapWagoTest {
 
     @AfterAll
     public static void closeDevices() throws Exception {
-        wagoDriver.disconnect();
+        modbusGatewayRegistry.detachAllGateways();
     }
 
     @Test
@@ -136,13 +137,14 @@ public class AsyncClemapWagoTest {
     }
 
     private static SGrModbusDevice createWagoDevice() throws Exception {
-        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
-        DeviceFrame deviceDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
-        wagoDriver = new GenDriverAPI4ModbusRTU();
-        wagoDriver.initTrspService("COM3", 19200);
-        wagoDriver.setUnitIdentifier((byte)1);
-        return new SGrModbusDevice(deviceDesc, wagoDriver);
+        Properties props = new Properties();
+        props.put("port_name", "COM3");
+
+        DeviceFrame deviceDesc = new DeviceDescriptionLoader()
+                .load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml", props);
+
+        return new SGrModbusDevice(deviceDesc, modbusGatewayRegistry);
     }
 
     private static SGrRestApiDevice createClemapDevice() throws Exception {

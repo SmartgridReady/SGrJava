@@ -5,18 +5,22 @@ import java.net.URL;
 import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.values.Value;
 import communicator.modbus.api.GenDeviceApi4Modbus;
+import communicator.modbus.transport.ModbusGatewayRegistry;
+import communicator.modbus.transport.SGrModbusGatewayRegistry;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import communicator.common.helper.DeviceDescriptionLoader;
-import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 
 @SuppressWarnings("java:S2925")
 public class GetValBlockTransferTester {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(GetValArrayTester.class);
 	
-	private static final String XML_BASE_DIR = ""; 
+	private static final String XML_BASE_DIR = "";
+
+	private static final ModbusGatewayRegistry modbusGatewayRegistry = new SGrModbusGatewayRegistry();
 	
 	public static void main( String[] argv ) {
 		
@@ -26,18 +30,10 @@ public class GetValBlockTransferTester {
 	try {
 			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 			DeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ? deviceDesc.getPath() : null);
-			
-			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
-			mbRTU.initTrspService("COM3", 19200);
 
-			GenDeviceApi4Modbus devWagoMeter = new SGrModbusDevice(tstMeter, mbRTU );
+			GenDeviceApi4Modbus devWagoMeter = new SGrModbusDevice(tstMeter, modbusGatewayRegistry);
 			
 			try {	
-				// set device address of devWagoMeter
-					
-				mbRTU.setUnitIdentifier((byte) 1);				
-				
-				
 				// Voltages from device
 				Value voltage1 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L2");
 				Value voltage2 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L3");

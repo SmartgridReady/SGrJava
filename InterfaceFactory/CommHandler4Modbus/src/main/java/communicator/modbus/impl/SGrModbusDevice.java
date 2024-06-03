@@ -52,6 +52,9 @@ import communicator.modbus.helper.ConversionHelper;
 import communicator.modbus.helper.EndiannessConversionHelper;
 import communicator.modbus.helper.ModbusReader;
 import communicator.modbus.helper.ModbusReaderResponse;
+import communicator.modbus.helper.ModbusUtil;
+import communicator.modbus.transport.ModbusGatewayRegistry;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,16 +81,25 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrModbusDevice.class);
 
+	private final ModbusGatewayRegistry drvRegistry;
+
 	private final GenDriverAPI4Modbus drv4Modbus;
 
 	private final DeviceFrame myDeviceDescription;
 
 	private final Map<TimeSyncBlockNotification, CacheRecord<ModbusReaderResponse>> myTimeSyncBlockReadCache = new HashMap<>();
 
-	public SGrModbusDevice(DeviceFrame aDeviceDescription, GenDriverAPI4Modbus aRtuDriver) {
+	public SGrModbusDevice(DeviceFrame aDeviceDescription, ModbusGatewayRegistry aGatewayRegistry) throws GenDriverException {
 		super(aDeviceDescription);
 		myDeviceDescription = aDeviceDescription;
-		drv4Modbus = aRtuDriver;
+		drvRegistry = aGatewayRegistry;
+
+		drv4Modbus = drvRegistry.attachGateway(getModbusInterfaceDescription());
+	}
+
+	@Override
+	public void disconnect() throws GenDriverException {
+		drvRegistry.detachGateway(getModbusInterfaceDescription());
 	}
 
 	@Override
@@ -163,10 +175,12 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 			CacheRecord<ModbusReaderResponse> mbCacheRecord = myTimeSyncBlockReadCache.get(blockNotificationType);
 			ModbusReaderResponse mbResponse;
 			if (mbCacheRecord == null || mbCacheRecord.isExpired(blockNotificationType.getTimeToLiveMs())) {
+				short unitIdentifier = ModbusUtil.getModbusSlaveId(modbusInterfaceDesc);
 
 				LOG.debug("Reading time sync block from modbus device");
 				mbResponse = ModbusReader.read(
 						drv4Modbus,
+						unitIdentifier,
 						blockNotificationType.getRegisterType(),
 						blockAddress.intValue(),
 						modbusInterfaceDesc.isFirstRegisterAddressIsOne(),
@@ -208,6 +222,8 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		ModbusInterfaceDescription modbusInterfaceDesc = getModbusInterfaceDescription();
 		ModbusDataPointConfiguration mbRegRef = aDataPoint.getModbusDataPointConfiguration();
 
+		short unitIdentifier = ModbusUtil.getModbusSlaveId(modbusInterfaceDesc);
+
 		boolean bMBfirstRegOne = modbusInterfaceDesc.isFirstRegisterAddressIsOne();
 
 		LOG.debug("Reading value from modbus device.");
@@ -216,6 +232,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 
 		ModbusReaderResponse mbResponse = ModbusReader.read(
 				drv4Modbus,
+				unitIdentifier,
 				mbRegRef.getRegisterType(),
 				mbRegRef.getAddress().intValue(),
 				bMBfirstRegOne,
@@ -467,20 +484,38 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		mbregsnd = Arrays.copyOfRange(mbRegBuf.array(), 0, nrRegisters * sgrValues.length);
 		mbbitsnd = Arrays.copyOfRange(ConversionHelper.byteArrToBooleanArr(mbByteBuf.array()), 0, nrRegisters * sgrValues.length);
 
-		writeToModbus(mbregsnd, mbbitsnd, bRegisterCMDs, bDiscreteCMDs, regad, mbsize);
+		// TODO get from interface description
+		short unitIdentifier = 0xff;
+
+		writeToModbus(unitIdentifier, mbregsnd, mbbitsnd, bRegisterCMDs, bDiscreteCMDs, regad, mbsize);
 	}
 
-	private void writeToModbus(int[] mbregsnd, boolean[] mbbitsnd, boolean bRegisterCMDs, boolean bDiscreteCMDs, BigInteger regad, int mbsize) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+	private void writeToModbus(short unitIdentifier, int[] mbregsnd, boolean[] mbbitsnd, boolean bRegisterCMDs, boolean bDiscreteCMDs, BigInteger regad, int mbsize) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+		// shared Modbus driver instances require exclusive access
 		if (bRegisterCMDs) {
-			if (mbsize > 1)
-				drv4Modbus.WriteMultipleRegisters(regad.intValue(), mbregsnd);
-			else
-				drv4Modbus.WriteSingleRegister(regad.intValue(), mbregsnd[0]);
+			if (mbsize > 1) {
+				synchronized (drv4Modbus) {
+					drv4Modbus.setUnitIdentifier(unitIdentifier);
+					drv4Modbus.WriteMultipleRegisters(regad.intValue(), mbregsnd);
+				}
+			} else {
+				synchronized (drv4Modbus) {
+					drv4Modbus.setUnitIdentifier(unitIdentifier);
+					drv4Modbus.WriteSingleRegister(regad.intValue(), mbregsnd[0]);
+				}
+			}
 		} else if (bDiscreteCMDs) {
-			if (mbsize > 1)
-				drv4Modbus.WriteMultipleCoils(regad.intValue(), mbbitsnd);
-			else
-				drv4Modbus.WriteSingleCoil(regad.intValue(), mbbitsnd[0]);
+			if (mbsize > 1) {
+				synchronized (drv4Modbus) {
+					drv4Modbus.setUnitIdentifier(unitIdentifier);
+					drv4Modbus.WriteMultipleCoils(regad.intValue(), mbbitsnd);
+				}
+			} else {
+				synchronized (drv4Modbus) {
+					drv4Modbus.setUnitIdentifier(unitIdentifier);
+					drv4Modbus.WriteSingleCoil(regad.intValue(), mbbitsnd[0]);
+				}
+			}
 		}
 	}
 

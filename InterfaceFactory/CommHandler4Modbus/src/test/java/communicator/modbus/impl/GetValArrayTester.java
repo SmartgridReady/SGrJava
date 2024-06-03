@@ -4,7 +4,7 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import communicator.common.api.values.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.modbus.api.GenDeviceApi4Modbus;
-import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
+import communicator.modbus.transport.SGrModbusGatewayRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,17 +24,13 @@ public class GetValArrayTester {
 		
 		try {	
 			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
-			DeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ?deviceDesc.getPath() : null);
+			DeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ? deviceDesc.getPath() : null);
 			
-			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
-			mbRTU.initTrspService("COM3", 19200);	
-			
-			GenDeviceApi4Modbus devWagoMeter = new SGrModbusDevice(tstMeter, mbRTU );
+			GenDeviceApi4Modbus devWagoMeter = new SGrModbusDevice(tstMeter, new SGrModbusGatewayRegistry());
 			
 			try {	
 				// set device address of devWagoMeter
-					
-				mbRTU.setUnitIdentifier((byte) 1);
+
 				Value[] voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
 				
 				// Voltages as GDP type
