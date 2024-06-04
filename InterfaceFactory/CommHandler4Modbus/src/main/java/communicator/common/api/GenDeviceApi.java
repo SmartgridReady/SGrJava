@@ -61,4 +61,7 @@ public interface GenDeviceApi {
 
     DataPoint getDataPoint(String functionalProfileName, String dataPointName) throws GenDriverException;
 
+    void connect() throws GenDriverException;
+
+    void disconnect() throws GenDriverException;
 }
