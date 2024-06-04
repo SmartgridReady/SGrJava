@@ -23,8 +23,8 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
     private static final Logger LOG = LoggerFactory.getLogger(SGrModbusGatewayRegistry.class);
 
-    private final Map<String, GenDriverAPI4Modbus> gateways;
-    private final Map<GenDriverAPI4Modbus, Integer> gatewayRefCount;
+    private final Map<String, ModbusGatewayInstance> gateways;
+    private final Map<ModbusGatewayInstance, Integer> gatewayRefCount;
 
     public SGrModbusGatewayRegistry() {
         gateways = new HashMap<>();
@@ -36,24 +36,29 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
         String gatewayIdentifier = ModbusUtil.getModbusGatewayIdentifier(interfaceDescription);
 
-        GenDriverAPI4Modbus gateway = gateways.get(gatewayIdentifier);
-        if (gateway != null) {
+        ModbusGatewayInstance gatewayInstance = gateways.get(gatewayIdentifier);
+        if (gatewayInstance != null) {
+            // verify that interface parameters match
+            if (!ModbusUtil.interfaceParametersMatch(interfaceDescription, gatewayInstance.getInterfaceDescription())) {
+                throw new GenDriverException("Interface parameters do not match");
+            }
+
             // use existing gateway
-            Integer refCount = gatewayRefCount.getOrDefault(gateway, Integer.valueOf(0));
+            Integer refCount = gatewayRefCount.getOrDefault(gatewayInstance, Integer.valueOf(0));
             refCount = refCount.intValue() + 1;
-            gatewayRefCount.put(gateway, refCount);
+            gatewayRefCount.put(gatewayInstance, refCount);
 
             LOG.info("Attached Modbus gateway '{}', refcount={}", gatewayIdentifier, refCount);
         } else {
             // create and register new gateway
-            gateway = createModbusGateway(gatewayIdentifier, interfaceDescription);
-            gateways.put(gatewayIdentifier, gateway);
-            gatewayRefCount.put(gateway, Integer.valueOf(1));
+            gatewayInstance = createModbusGateway(gatewayIdentifier, interfaceDescription);
+            gateways.put(gatewayIdentifier, gatewayInstance);
+            gatewayRefCount.put(gatewayInstance, Integer.valueOf(1));
 
             LOG.info("Registered Modbus gateway '{}'", gatewayIdentifier);
         }
 
-        return gateway;
+        return gatewayInstance.getGateway();
     }
 
     @Override
@@ -61,21 +66,21 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
         String gatewayIdentifier = ModbusUtil.getModbusGatewayIdentifier(interfaceDescription);
 
-        GenDriverAPI4Modbus gateway = gateways.get(gatewayIdentifier);
-        if (gateway != null) {
-            Integer refCount = gatewayRefCount.get(gateway);
+        ModbusGatewayInstance gatewayInstance = gateways.get(gatewayIdentifier);
+        if (gatewayInstance != null) {
+            Integer refCount = gatewayRefCount.get(gatewayInstance);
             if (refCount != null) {
                 refCount = refCount.intValue() - 1;
-                gatewayRefCount.put(gateway, refCount);
+                gatewayRefCount.put(gatewayInstance, refCount);
                 if (refCount <= 0) {
                     // disconnect gateway and remove from registry
                     try {
-                        gateway.disconnect();
+                        gatewayInstance.getGateway().disconnect();
                     } catch (GenDriverException e) {
                         LOG.error("Error disconnecting Modbus gateway: {}", e.getMessage());
                     }
                     
-                    gatewayRefCount.remove(gateway);
+                    gatewayRefCount.remove(gatewayInstance);
                     gateways.remove(gatewayIdentifier);
 
                     LOG.info("Removed Modbus gateway '{}'", gatewayIdentifier);
@@ -92,9 +97,9 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
     @Override
     public synchronized void detachAllGateways() {
-        for (GenDriverAPI4Modbus gw: gateways.values()) {
+        for (ModbusGatewayInstance gw: gateways.values()) {
             try {
-                gw.disconnect();
+                gw.getGateway().disconnect();
             } catch (Exception e) {}
         }
 
@@ -104,7 +109,7 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
         LOG.info("Removed all Modbus gateways");
     }
 
-    private GenDriverAPI4Modbus createModbusGateway(String identifier, ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
+    private ModbusGatewayInstance createModbusGateway(String identifier, ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
         // distinguish RTU or TCP protocol
         ModbusType modbusType = getModbusType(interfaceDescription);
         if (modbusType == ModbusType.RTU) {
@@ -125,7 +130,7 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
                 LOG.info("Created Modbus RTU serial gateway '{}'", identifier);
 
-                return mbRTU;
+                return new ModbusGatewayInstance(identifier, interfaceDescription, mbRTU);
             } else if (isTcp && !isSerial) {
                 // use TCP/IP over RTU gateway
                 ModbusTcp tcp = interfaceDescription.getModbusTcp();
@@ -137,7 +142,7 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
                 LOG.info("Created Modbus RTU over TCP/IP gateway '{}'", identifier);
 
-                return mbRTU;
+                return new ModbusGatewayInstance(identifier, interfaceDescription, mbRTU);
             }
         } else if (modbusType == ModbusType.TCP) {
             // Modbus TCP
@@ -151,7 +156,7 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
                 LOG.info("Created Modbus TCP gateway '{}'", identifier);
 
-                return mbTCP;
+                return new ModbusGatewayInstance(identifier, interfaceDescription, mbTCP);
             }
         }
 
@@ -175,5 +180,54 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
         UNKNOWN,
         RTU,
         TCP
-    } 
+    }
+
+    private static class ModbusGatewayInstance {
+
+        private String identifier;
+        private ModbusInterfaceDescription interfaceDescription;
+        private GenDriverAPI4Modbus gateway;
+
+        public ModbusGatewayInstance(String identifier, ModbusInterfaceDescription interfaceDescription, GenDriverAPI4Modbus gateway) {
+            this.identifier = identifier;
+            this.interfaceDescription = interfaceDescription;
+            this.gateway = gateway;
+        }
+
+        public String getIdentifier() {
+            return identifier;
+        }
+
+        public ModbusInterfaceDescription getInterfaceDescription() {
+            return interfaceDescription;
+        }
+
+        public GenDriverAPI4Modbus getGateway() {
+            return gateway;
+        }
+
+        @Override
+        public int hashCode() {
+            return identifier == null ? 0 : identifier.hashCode();
+        }
+
+        @Override
+        public boolean equals(final Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (other == null) {
+                return false;
+            }
+            if (getClass() == other.getClass()) {
+                return true;
+            }
+            
+            final ModbusGatewayInstance otherInstance = (ModbusGatewayInstance) other;
+            return (
+                (identifier == null && otherInstance.identifier == null) ||
+                (identifier != null && identifier.equals(otherInstance.identifier))
+            );
+        }
+    }
 }

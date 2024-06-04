@@ -1,6 +1,7 @@
 package communicator.modbus.helper;
 
 import java.util.Map;
+import java.util.Objects;
 
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 import com.smartgridready.ns.v0.ModbusRtu;
@@ -112,5 +113,48 @@ public class ModbusUtil {
             (value != null) &&
             !value.isEmpty()
         );
+    }
+
+    public static boolean interfaceParametersMatch(ModbusInterfaceDescription interface1, ModbusInterfaceDescription interface2) {
+        if (
+            (null == interface1.getModbusRtu() && null != interface2.getModbusRtu()) ||
+            (null != interface1.getModbusRtu() && null == interface2.getModbusRtu())
+        ) {
+            return false;
+        } else if (null != interface1.getModbusRtu() && null != interface2.getModbusRtu()) {
+            ModbusRtu rtu1 = interface1.getModbusRtu();
+            ModbusRtu rtu2 = interface2.getModbusRtu();
+            if (
+                !(
+                    Objects.equals(rtu1.getPortName(), rtu2.getPortName()) &&
+                    Objects.equals(rtu1.getBaudRateSelected(), rtu2.getBaudRateSelected()) &&
+                    Objects.equals(rtu1.getByteLenSelected(), rtu2.getByteLenSelected()) &&
+                    Objects.equals(rtu1.getParitySelected(), rtu2.getParitySelected()) &&
+                    Objects.equals(rtu1.getStopBitLenSelected(), rtu2.getStopBitLenSelected())
+                )
+            ) {
+                return false;
+            }
+        }
+
+        if (
+            (null == interface1.getModbusTcp() && null != interface2.getModbusTcp()) ||
+            (null != interface1.getModbusTcp() && null == interface2.getModbusTcp())
+        ) {
+            return false;
+        } else if (null != interface1.getModbusTcp() && null != interface2.getModbusTcp()) {
+            ModbusTcp tcp1 = interface1.getModbusTcp();
+            ModbusTcp tcp2 = interface2.getModbusTcp();
+            if (
+                !(
+                    Objects.equals(tcp1.getAddress(), tcp2.getAddress()) &&
+                    Objects.equals(tcp1.getPort(), tcp2.getPort())
+                )
+            ) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
