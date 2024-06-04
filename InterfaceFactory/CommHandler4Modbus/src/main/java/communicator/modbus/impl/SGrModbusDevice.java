@@ -98,6 +98,11 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	}
 
 	@Override
+	public void connect() throws GenDriverException {
+		// TODO init transport here
+	}
+
+	@Override
 	public void disconnect() throws GenDriverException {
 		drvRegistry.detachGateway(getModbusInterfaceDescription());
 	}

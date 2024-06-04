@@ -92,10 +92,4 @@ public interface GenDeviceApi4Modbus extends GenDeviceApi {
      */
     void setValArr(String profileName, String dataPointName, Value[] values)
             throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
-
-    /**
-     * Disconnect Modbus device.
-     * @throws GenDriverException
-     */
-    void disconnect() throws GenDriverException;
 }

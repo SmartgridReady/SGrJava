@@ -253,6 +253,23 @@ public class SGrMessagingDevice extends SGrDeviceBase<
         messagingClient.close();
     }
 
+    @Override
+	public void connect() throws GenDriverException {
+		// TODO
+        if (messagingClient == null) {
+            throw new GenDriverException("No messaging client");
+        }
+	}
+
+	@Override
+	public void disconnect() throws GenDriverException {
+        try {
+		    close();
+        } catch (IOException e) {
+            throw new GenDriverException("Error closing messaging client", e);
+        }
+	}
+
     private MessagingInterface getMessagingInterface() {
         return Optional.ofNullable(device.getInterfaceList().getMessagingInterface()).orElseThrow(() -> new IllegalArgumentException("No messaging interface defined in EI-XML"));
     }

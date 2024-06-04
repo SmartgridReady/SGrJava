@@ -73,8 +73,23 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 		RestApiAuthenticationMethod authMethod = getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
 		this.httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
-	}	
+	}
+
+	@Override
+	public void connect() throws GenDriverException {
+		try {
+		    authenticate();
+        } catch (Exception e) {
+            throw new GenDriverException("Error authenticating", e);
+        }
+	}
+
+	@Override
+	public void disconnect() throws GenDriverException {
+        // nothing
+	}
 	
+	@Override
 	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
 		httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
 	}
