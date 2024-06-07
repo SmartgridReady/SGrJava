@@ -117,22 +117,24 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		Properties substitutions = new Properties();
 		if (dpDescriptionOpt.isPresent()) {
 
+			RwpDirections rwpDirection = RwpDirections.READ;
 			if (value != null) {
 				checkOutOfRange(new Value[]{value}, dataPoint);
 				value = applyUnitConversion(dataPoint, value, this::divide);
 				substitutions.put("value", value.getString());
+				rwpDirection = RwpDirections.WRITE;
 			}
 			if (parameters != null) {
 				substitutions.putAll(parameters);
 			}
 
 			RestApiDataPointConfiguration dpDescription = dpDescriptionOpt.get();
-			RestApiServiceCall serviceCall = dpDescription.getRestApiServiceCall();
+			RestApiServiceCall serviceCall = evaluateRestApiServiceCall(dpDescription, rwpDirection);
 			RestServiceClient restServiceClient = restServiceClientFactory.create(host, serviceCall, substitutions);
 			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
 
 			if (value == null) {
-				value = handleServiceResponse(dpDescription, response);
+				value = handleServiceResponse(serviceCall, response);
 				return applyUnitConversion(dataPoint, value, this::multiply);
 			}
 
@@ -166,13 +168,10 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		}
 	}
 
-	private Value handleServiceResponse(RestApiDataPointConfiguration dpDescription, String response) throws GenDriverException {
+	private Value handleServiceResponse(RestApiServiceCall restApiServiceCall, String response) throws GenDriverException {
 
-		Optional<ResponseQuery> queryOpt = Optional.ofNullable(dpDescription.getRestApiServiceCall())
-				.map(RestApiServiceCall::getResponseQuery);
-
-		if (queryOpt.isPresent()) {
-			ResponseQuery responseQuery = queryOpt.get();
+		if (restApiServiceCall.getResponseQuery() != null) {
+			ResponseQuery responseQuery = restApiServiceCall.getResponseQuery();
 			if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
 				return JsonHelper.parseJsonResponse(responseQuery.getQuery(), response);
 			} else if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
@@ -181,6 +180,32 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		}
 		// return plain response
 		return StringValue.of(response);
+	}
+
+	private RestApiServiceCall evaluateRestApiServiceCall(RestApiDataPointConfiguration dataPointConfiguration, RwpDirections rwpDirections)
+		throws GenDriverException {
+
+		if (dataPointConfiguration.getRestApiServiceCall() != null) {
+			return dataPointConfiguration.getRestApiServiceCall();
+		}
+
+		if (dataPointConfiguration.getRestApiReadServiceCall() != null && RwpDirections.READ == rwpDirections) {
+			return dataPointConfiguration.getRestApiReadServiceCall();
+		}
+
+		if (dataPointConfiguration.getRestApiReadServiceCall1() != null && RwpDirections.READ == rwpDirections) {
+			return dataPointConfiguration.getRestApiReadServiceCall1();
+		}
+
+		if (dataPointConfiguration.getRestApiWriteServiceCall() != null && RwpDirections.WRITE == rwpDirections) {
+			return dataPointConfiguration.getRestApiWriteServiceCall();
+		}
+
+		if (dataPointConfiguration.getRestApiWriteServiceCall1() != null && RwpDirections.WRITE == rwpDirections) {
+			return dataPointConfiguration.getRestApiWriteServiceCall1();
+		}
+		throw new GenDriverException(
+				"No suitable service call found for " + rwpDirections.name() + " operation. Check the EI-XML of your device");
 	}
 
 	private RestApiDataPoint findProfileDataPoint(String profileName, String dataPointName) throws GenDriverException {

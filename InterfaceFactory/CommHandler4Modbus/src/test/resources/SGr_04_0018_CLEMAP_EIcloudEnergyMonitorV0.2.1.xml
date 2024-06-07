@@ -191,6 +191,89 @@
             </dataPointListElement>
           </dataPointList>
         </functionalProfileListElement>
+        <functionalProfileListElement>
+          <functionalProfile>
+            <functionalProfileName>GPIO</functionalProfileName>
+            <functionalProfileIdentification>
+              <specificationOwnerIdentification>0</specificationOwnerIdentification>
+              <functionalProfileCategory>Actuator</functionalProfileCategory>
+              <functionalProfileType>Relais</functionalProfileType>
+              <levelOfOperation>4m</levelOfOperation>
+              <versionNumber>
+                <primaryVersionNumber>0</primaryVersionNumber>
+                <secondaryVersionNumber>2</secondaryVersionNumber>
+                <subReleaseVersionNumber>1</subReleaseVersionNumber>
+              </versionNumber>
+            </functionalProfileIdentification>
+          </functionalProfile>
+          <dataPointList>
+            <dataPointListElement>
+              <dataPoint>
+                <dataPointName>ContactR</dataPointName>
+                <dataDirection>R</dataDirection>
+                <dataType>
+                  <boolean/>
+                </dataType>
+                <unit>NONE</unit>
+              </dataPoint>
+              <restApiDataPointConfiguration>
+                <dataType>JSON_boolean</dataType>
+                <restApiReadServiceCall>
+                  <requestMethod>GET</requestMethod>
+                  <requestPath>/digitaltwins/?sensor_id={{sensor_id}}&amp;pin=0</requestPath>
+                  <responseQuery>
+                    <queryType>JMESPathExpression</queryType>
+                    <query>value</query>
+                  </responseQuery>
+                </restApiReadServiceCall>
+              </restApiDataPointConfiguration>
+            </dataPointListElement>
+            <dataPointListElement>
+              <dataPoint>
+                <dataPointName>ContactW</dataPointName>
+                <dataDirection>W</dataDirection>
+                <dataType>
+                  <boolean/>
+                </dataType>
+                <unit>NONE</unit>
+              </dataPoint>
+              <restApiDataPointConfiguration>
+                <dataType>JSON_boolean</dataType>
+                <restApiWriteServiceCall>
+                  <requestMethod>POST</requestMethod>
+                  <requestPath>/digitaltwins/?sensor_id={{sensor_id}}</requestPath>
+                  <requestBody>{ "pin" : 1, "value" : "{{value}}" }</requestBody>
+                </restApiWriteServiceCall>
+              </restApiDataPointConfiguration>
+            </dataPointListElement>
+            <dataPointListElement>
+              <dataPoint>
+                <dataPointName>ContactRW</dataPointName>
+                <dataDirection>RW</dataDirection>
+                <dataType>
+                  <boolean/>
+                </dataType>
+                <unit>NONE</unit>
+              </dataPoint>
+              <restApiDataPointConfiguration>
+                <dataType>JSON_boolean</dataType>
+                <restApiReadServiceCall>
+                  <requestMethod>GET</requestMethod>
+                  <requestPath>/digitaltwins/?sensor_id={{sensor_id}}&amp;pin=2</requestPath>
+                  <responseQuery>
+                    <queryType>JMESPathExpression</queryType>
+                    <query>value</query>
+                  </responseQuery>
+                </restApiReadServiceCall>
+                <restApiWriteServiceCall>
+                  <requestMethod>POST</requestMethod>
+                  <requestPath>/digitaltwins/?sensor_id={{sensor_id}}&amp;pin=2</requestPath>
+                  <requestBody>{ "pin" : 2, "value" : "{{value}}" }</requestBody>
+                </restApiWriteServiceCall>
+              </restApiDataPointConfiguration>
+            </dataPointListElement>
+          </dataPointList>
+        </functionalProfileListElement>
       </functionalProfileList>
     </restApiInterface>
   </interfaceList>
