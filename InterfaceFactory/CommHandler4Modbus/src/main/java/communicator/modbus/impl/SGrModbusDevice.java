@@ -89,12 +89,31 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 
 	private final Map<TimeSyncBlockNotification, CacheRecord<ModbusReaderResponse>> myTimeSyncBlockReadCache = new HashMap<>();
 
+	/**
+	 * Construct with shared Modbus gateway registry.
+	 * @param aDeviceDescription the EID description
+	 * @param aGatewayRegistry the Modbus gateway
+	 * @throws GenDriverException when gateway cannot be created
+	 */
 	public SGrModbusDevice(DeviceFrame aDeviceDescription, ModbusGatewayRegistry aGatewayRegistry) throws GenDriverException {
 		super(aDeviceDescription);
 		myDeviceDescription = aDeviceDescription;
 		drvRegistry = aGatewayRegistry;
 
 		drv4Modbus = drvRegistry.attachGateway(getModbusInterfaceDescription());
+	}
+
+	/**
+	 * Construct with directly attached gateway (for simple cases).
+	 * @param aDeviceDescription the EID description
+	 * @param aGateway the Modbus gateway
+	 */
+	public SGrModbusDevice(DeviceFrame aDeviceDescription, GenDriverAPI4Modbus aGateway) {
+		super(aDeviceDescription);
+		myDeviceDescription = aDeviceDescription;
+		drvRegistry = null;
+
+		drv4Modbus = aGateway;
 	}
 
 	@Override
@@ -104,7 +123,11 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 
 	@Override
 	public void disconnect() throws GenDriverException {
-		drvRegistry.detachGateway(getModbusInterfaceDescription());
+		if (drvRegistry != null) {
+			drvRegistry.detachGateway(getModbusInterfaceDescription());
+		} else {
+			drv4Modbus.disconnect();
+		}
 	}
 
 	@Override
