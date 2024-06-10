@@ -20,6 +20,7 @@ import communicator.common.api.values.StringValue;
 import communicator.common.api.values.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.impl.SGrDeviceBase.Comparator;
+import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import communicator.modbus.impl.SGrModbusDevice;
 import communicator.rest.http.client.ApacheRestServiceClientFactory;
@@ -291,7 +292,7 @@ class SGrDeviceBaseTest {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 
-        return new SGrModbusDevice(devDesc, null);
+        return new SGrModbusDevice(devDesc, (GenDriverAPI4Modbus) null);
     }
 
     @SuppressWarnings("SameParameterValue")

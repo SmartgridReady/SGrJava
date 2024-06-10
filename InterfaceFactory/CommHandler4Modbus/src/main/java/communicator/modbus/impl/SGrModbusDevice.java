@@ -52,6 +52,7 @@ import communicator.common.runtime.GenDriverSocketException;
 import communicator.common.runtime.Parity;
 import communicator.common.runtime.StopBits;
 import communicator.modbus.api.GenDeviceApi4Modbus;
+import communicator.modbus.api.ModbusGatewayFactory;
 import communicator.modbus.helper.CacheRecord;
 import communicator.modbus.helper.ConversionHelper;
 import communicator.modbus.helper.EndiannessConversionHelper;
@@ -96,6 +97,12 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		super(aDeviceDescription);
 		myDeviceDescription = aDeviceDescription;
 		drv4Modbus = aRtuDriver;
+	}
+
+	public SGrModbusDevice(DeviceFrame aDeviceDescription, ModbusGatewayFactory aGatewayFactory) throws GenDriverException {
+		super(aDeviceDescription);
+		myDeviceDescription = aDeviceDescription;
+		drv4Modbus = aGatewayFactory.create(getModbusInterfaceDescription());
 	}
 
 	@Override

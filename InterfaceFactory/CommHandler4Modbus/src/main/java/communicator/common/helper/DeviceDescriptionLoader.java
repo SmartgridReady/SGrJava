@@ -27,14 +27,6 @@ import java.util.Properties;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +37,7 @@ public class DeviceDescriptionLoader {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DeviceDescriptionLoader.class);
 
-	private static ComposedAdapterFactory composedAdapterFactory;
+	private final XmlResourceLoader<DeviceFrame> resourceLoader = new XmlResourceLoader<>();
 
 	/**
 	 * Load an external device description from an EI-XML input stream.
@@ -105,7 +97,7 @@ public class DeviceDescriptionLoader {
 			File deviceDescFile = new File(aDescriptionPath);
 			String deviceDescXml = FileUtils.readFileToString(deviceDescFile, StandardCharsets.UTF_8);
 			
-			return createResource(aDescriptionPath.toString(), deviceDescXml, properties);
+			return loadDeviceFrame(aDescriptionPath.toString(), deviceDescXml, properties);
 		} catch (Exception e) {
 			LOG.error("Error loading XML: ", e);
 			return null;
@@ -134,7 +126,7 @@ public class DeviceDescriptionLoader {
 	public DeviceFrame load(String aDescriptionFile, InputStream aDescriptionStream, Properties properties) {
 		try {
 			String deviceDescXml = new String(aDescriptionStream.readAllBytes(), StandardCharsets.UTF_8);
-			return createResource(aDescriptionFile, deviceDescXml, properties);
+			return loadDeviceFrame(aDescriptionFile, deviceDescXml, properties);
 		} catch (Exception e) {
 			LOG.error("Error loading XML: ", e);
 			return null;
@@ -163,59 +155,22 @@ public class DeviceDescriptionLoader {
 		try {
 			// create random file name
 			String aDescriptionPath = UUID.randomUUID().toString() + ".xml";
-			return createResource(aDescriptionPath, deviceDescXml, properties);
+			return loadDeviceFrame(aDescriptionPath, deviceDescXml, properties);
 		} catch (Exception e) {
 			LOG.error("Error loading XML: ", e);
 			return null;
 		}
 	}
 
-	private DeviceFrame createResource(String resourcePath, String deviceDescXml, Properties properties) throws IOException {
-		// XML namespace eNS_URI "http://www.smartgridready.com/ns/V0/" map to "com.smartgridready.ns.v0.V0Package" classes.
-		EPackage.Registry.INSTANCE.put(com.smartgridready.ns.v0.V0Package.eNS_URI, com.smartgridready.ns.v0.V0Package.eINSTANCE);
-
-		// Use XMIResourceFactory to parse *.xml files.
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-			.put("xml", new XMIResourceFactoryImpl());
-
-		AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(
-				getAdapterFactory(), 
-				new BasicCommandStack());
-
-		domain.getResourceSet().setPackageRegistry(EPackage.Registry.INSTANCE);
-
-		Resource resource = domain.createResource(resourcePath);
-
-		// load the XML for the first time, in order to get configuration list
-		try (InputStream is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8)) {
-			resource.load(is, null);
-		} catch (IOException e) {
-			// ignore value errors
-		}
-
-		if (!resource.isLoaded()) {
-			throw new IOException(String.format("Resource '%s' could not be loaded", resource.getURI()));
-		}
-
-		Properties finalProperties = getFinalProperties((DeviceFrame) resource.getAllContents().next(), properties);
-
-		resource.unload();
+	private DeviceFrame loadDeviceFrame(String resourcePath, String deviceDescXml, Properties properties) throws IOException {
+		// get properties from intermediate description
+		DeviceFrame intermediateDeviceDescription = resourceLoader.load(resourcePath, deviceDescXml, false);
+		Properties finalProperties = getFinalProperties(intermediateDeviceDescription, properties);
 
 		// replace property placeholders
 		deviceDescXml = replacePropertyPlaceholders(deviceDescXml, finalProperties);
 
-		// load the XML for the second time, in order to get actual device description
-		try (InputStream is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8)) {
-			resource.load(is, null);
-		} catch (IOException e) {
-			// ignore value errors
-		}
-
-		DeviceFrame result = (DeviceFrame) resource.getAllContents().next();
-
-		resource.unload();
-
-		return result;		
+		return resourceLoader.load(resourcePath, deviceDescXml, true);		
 	}
 
 	private static Properties getFinalProperties(DeviceFrame deviceDescription, Properties properties) {
@@ -247,18 +202,5 @@ public class DeviceDescriptionLoader {
 			}
 		}
 		return convertedXml;
-	}
-
-	/**
-	 * Return an ComposedAdapterFactory for all registered models
-	 * 
-	 * @return a ComposedAdapterFactory
-	 */
-	protected synchronized static AdapterFactory getAdapterFactory() {
-		if (composedAdapterFactory == null) {
-			composedAdapterFactory = new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		}
-		return composedAdapterFactory;
 	}
 }
