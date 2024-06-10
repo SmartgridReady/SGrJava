@@ -104,7 +104,7 @@ class SGrRestAPIDeviceTest {
 		
 		// when
 		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
-		device.authenticate();
+		device.connect();
 		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
 		// then		
@@ -129,7 +129,7 @@ class SGrRestAPIDeviceTest {
 		
 		// when
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
-		device.authenticate();
+		device.connect();
 		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
 		// then		
@@ -151,7 +151,7 @@ class SGrRestAPIDeviceTest {
 		
 		// when
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
-		device.authenticate();
+		device.connect();
 
 		assertDoesNotThrow(() -> device.setVal("ActivePowerAC", "ActivePowerACtot", Int32UValue.of(100)));
 	}
@@ -170,7 +170,7 @@ class SGrRestAPIDeviceTest {
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
 
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
-		device.authenticate();
+		device.connect();
 
 		Exception exception = assertThrows(GenDriverException.class, () -> device.setVal("ActivePowerAC", "ActivePowerACtot", StringValue.of(value)));
 		assertEquals(expectedResponse, exception.getMessage());
@@ -192,9 +192,9 @@ class SGrRestAPIDeviceTest {
 
 	@ParameterizedTest
 	@MethodSource("rwPermissionChecks")
-	void writePermissionCheckModbus(String testName, String dataPointName, boolean isWrite, String expectedErrorMsg) throws Exception {
+	void writePermissionCheckRest(String testName, String dataPointName, boolean isWrite, String expectedErrorMsg) throws Exception {
 
-		LOG.info("Testing writePermissionCheckModbus: {}", testName);
+		LOG.info("Testing writePermissionCheckRest: {}", testName);
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 
@@ -222,7 +222,7 @@ class SGrRestAPIDeviceTest {
 	}
 
 	@Test
-	void  unitConversion() throws Exception {
+	void unitConversion() throws Exception {
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 
