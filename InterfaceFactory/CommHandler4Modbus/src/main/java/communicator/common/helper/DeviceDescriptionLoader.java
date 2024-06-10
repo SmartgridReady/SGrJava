@@ -254,7 +254,7 @@ public class DeviceDescriptionLoader {
 	 * 
 	 * @return a ComposedAdapterFactory
 	 */
-	protected static AdapterFactory getAdapterFactory() {
+	protected synchronized static AdapterFactory getAdapterFactory() {
 		if (composedAdapterFactory == null) {
 			composedAdapterFactory = new ComposedAdapterFactory(
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);

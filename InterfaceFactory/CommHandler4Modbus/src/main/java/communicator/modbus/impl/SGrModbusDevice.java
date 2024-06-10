@@ -97,7 +97,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 
 	@Override
 	public void disconnect() throws GenDriverException {
-		drvRegistry.detachGateway(getModbusInterfaceDescription());
+		drv4Modbus.disconnect();
 	}
 
 	@Override
