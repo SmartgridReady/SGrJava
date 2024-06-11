@@ -20,9 +20,13 @@ package communicator.rest.http.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Properties;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import org.apache.commons.io.IOUtils;
@@ -31,21 +35,28 @@ import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
+import org.apache.hc.core5.http.NameValuePair;
+import org.apache.hc.core5.http.message.BasicNameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.HttpMethod;
 
 import io.vavr.control.Either;
 
 
 public class ApacheRestServiceClient extends RestServiceClient {
+	private static final Logger LOG = LoggerFactory.getLogger(ApacheRestServiceClient.class);
 	
 	private static final EnumMap<HttpMethod, Function<String, Request>> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
+
 	static {
 		HTTP_METHOD_MAP.put(HttpMethod.GET, Request::get);
 		HTTP_METHOD_MAP.put(HttpMethod.POST, Request::post);
 		HTTP_METHOD_MAP.put(HttpMethod.PUT, Request::put);
 		HTTP_METHOD_MAP.put(HttpMethod.PATCH, Request::patch);
-		HTTP_METHOD_MAP.put(HttpMethod.DELETE, Request::delete);				
+		HTTP_METHOD_MAP.put(HttpMethod.DELETE, Request::delete);
 	}	
 
 	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall) {
@@ -66,24 +77,70 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		
 		Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(getRestServiceCall().getRequestMethod());
 		Request httpReq = requestFactoryFunct.apply(uri);
+		
+		String contentTypeHeader = null;
 
 		if (getRestServiceCall().getRequestHeader() != null) {
-			getRestServiceCall().getRequestHeader().getHeader().forEach(headerEntry ->
-					httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue()));
+			for (HeaderEntry headerEntry: getRestServiceCall().getRequestHeader().getHeader()) {
+				httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue());
+				if (headerEntry.getHeaderName().equalsIgnoreCase("Content-Type")) {
+					contentTypeHeader = headerEntry.getValue();
+				}
+			}
 		}
 		
 		if (getRestServiceCall().getRequestBody() != null) {
-			httpReq.bodyString(getRestServiceCall().getRequestBody(), ContentType.APPLICATION_JSON);
+			String content = getRestServiceCall().getRequestBody();
+			if (contentTypeHeader != null) {
+				switch (contentTypeHeader) {
+					case "application/json":
+						LOG.debug("REST request JSON body = '{}'", content);
+						httpReq.bodyString(content, ContentType.APPLICATION_JSON);
+						break;
+
+					case "application/x-www-form-urlencoded":
+						httpReq.bodyForm(getFormParameters(content));
+						break;
+
+					default:
+						LOG.debug("REST request plain body = '{}'", content);
+						httpReq.bodyString(content, ContentType.TEXT_PLAIN);
+						break;
+				}
+			} else {
+				LOG.debug("REST request plain body = '{}'", content);
+				httpReq.bodyString(content, ContentType.TEXT_PLAIN);
+			}
 		}
 		
 		HttpResponse httpResp = httpReq.execute().returnResponse();
-		if (httpResp.getCode() < HttpStatus.SC_CLIENT_ERROR) {						
-			try ( InputStream is = ((ClassicHttpResponse)httpResp).getEntity().getContent() ) {					
+		if (httpResp.getCode() < HttpStatus.SC_CLIENT_ERROR) {
+			try ( InputStream is = ((ClassicHttpResponse)httpResp).getEntity().getContent() ) {
 				
 				String jsonResp = IOUtils.toString(is, StandardCharsets.UTF_8);
 				return Either.right(jsonResp);
 			}
 		}
-		return Either.left(httpResp);		
+		return Either.left(httpResp);
+	}
+
+	private Iterable<NameValuePair> getFormParameters(String body) {
+		if ((body == null) || body.isEmpty()) {
+			return Collections.emptyList();
+		}
+
+		// TODO support multiple occurrences of '=', e.g. in values
+		List<NameValuePair> formParams = new ArrayList<>();
+		String[] pArr = body.split("&");
+		for (String p: pArr) {
+			String[] kv = p.split("=", 2);
+			if (kv.length > 1) {
+				formParams.add(new BasicNameValuePair(kv[0], kv[1]));
+			} else if (kv.length > 0) {
+				formParams.add(new BasicNameValuePair(kv[0], ""));
+			}
+		}
+
+		return formParams;
 	}
 }
