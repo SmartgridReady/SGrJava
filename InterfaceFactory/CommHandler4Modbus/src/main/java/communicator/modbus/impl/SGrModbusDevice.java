@@ -512,8 +512,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		mbregsnd = Arrays.copyOfRange(mbRegBuf.array(), 0, nrRegisters * sgrValues.length);
 		mbbitsnd = Arrays.copyOfRange(ConversionHelper.byteArrToBooleanArr(mbByteBuf.array()), 0, nrRegisters * sgrValues.length);
 
-		// TODO get from interface description
-		short unitIdentifier = 0xff;
+		short unitIdentifier = ModbusUtil.getModbusSlaveId(modbusInterfaceDesc);
 
 		writeToModbus(unitIdentifier, mbregsnd, mbbitsnd, bRegisterCMDs, bDiscreteCMDs, regad, mbsize);
 	}

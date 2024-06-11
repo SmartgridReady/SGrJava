@@ -36,8 +36,6 @@ import communicator.common.api.values.Float64Value;
 import communicator.common.api.values.Value;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.modbus.helper.GenDriverAPI4ModbusRTUMock;
-import communicator.modbus.helper.ModbusGatewayRegistryMock;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 // SmartGridready definitions
@@ -91,7 +89,9 @@ public class HeatPumpTester {
 	private static boolean  devCTAoptiHeatIsOn=true;
 	private static boolean  devHovalTCPIsOn=false;
 
-	private static final ModbusGatewayRegistryMock gatewayRegistryMock = new ModbusGatewayRegistryMock();
+	// Set the mockModbusDriver to new GenDriverAPI4ModbusRTUMock() to mock the real devices.
+	//private static GenDriverAPI4Modbus  mockModbusDriver = new GenDriverAPI4ModbusRTUMock();
+	private static GenDriverAPI4Modbus  mockModbusDriver = null;
 
 	public static void main( String argv[] ) {			
 
@@ -181,7 +181,14 @@ public class HeatPumpTester {
 			
 			try {
 				// // replace device specific for TCP  (easymodus uses Driver instance per device)
-				devHovalTCP= new SGrModbusDevice(tstDesc, gatewayRegistryMock);
+				GenDriverAPI4Modbus mbHovalTCP = mockModbusDriver;
+				if (mockModbusDriver == null) {
+					mbHovalTCP = new GenDriverAPI4ModbusTCP();
+				}
+				devHovalTCP=new SGrModbusDevice(tstDesc, mbHovalTCP);							
+				//setting Hoval Lab 
+				mbHovalTCP.initDevice("192.168.0.35",502);						
+				//mbHovalTCP.initDevice("192.168.1.55",502);
 			}
 			
 			catch ( Exception e )
@@ -421,7 +428,12 @@ public class HeatPumpTester {
 			  try {
 				
 				  // replace device specific for TCP  (easymodus uses Driver instance per device)
-				  devStiebelISG= new SGrModbusDevice(tmpDesc, gatewayRegistryMock);							
+				  GenDriverAPI4Modbus mbStiebelISG = mockModbusDriver;
+				  if (mockModbusDriver == null) {
+					  mbStiebelISG = new GenDriverAPI4ModbusTCP();
+				  }
+				  devStiebelISG=new SGrModbusDevice(tmpDesc, mbStiebelISG);							
+				  mbStiebelISG.initDevice("192.168.1.55",502);
 			   }
 			
 			  catch ( Exception e )
@@ -602,7 +614,12 @@ public class HeatPumpTester {
 					
 				try {
 					// // replace device specific for TCP  (easymodus uses Driver instance per device)
-					devCTAoptiHeat= new SGrModbusDevice(tstDesc, gatewayRegistryMock);							
+					GenDriverAPI4Modbus mbCTAoptiHeat = mockModbusDriver;
+					if (mockModbusDriver == null) {
+						mbCTAoptiHeat = new GenDriverAPI4ModbusTCP();
+					}
+					devCTAoptiHeat=new SGrModbusDevice(tstDesc, mbCTAoptiHeat);							
+					//mbCTAoptiHeat.initDevice("192.168.1.55",502);
 					
 					// set back remote control enabler
 					devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteHCTempSetptEnable",BooleanValue.of(false) );  
@@ -878,6 +895,8 @@ public class HeatPumpTester {
 
 
 	private static void setMockIntegerType(boolean isInteger) {
-		gatewayRegistryMock.setIsIntegerType(isInteger);
-	}
+			if (mockModbusDriver instanceof GenDriverAPI4ModbusRTUMock) {
+				((GenDriverAPI4ModbusRTUMock)mockModbusDriver).setIsIntegerType(isInteger);
+			}
+		}
 }

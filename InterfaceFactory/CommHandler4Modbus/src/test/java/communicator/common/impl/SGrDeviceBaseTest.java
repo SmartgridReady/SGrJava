@@ -20,9 +20,9 @@ import communicator.common.api.values.StringValue;
 import communicator.common.api.values.Value;
 import communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.impl.SGrDeviceBase.Comparator;
+import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import communicator.modbus.impl.SGrModbusDevice;
-import communicator.modbus.transport.SGrModbusGatewayRegistry;
 import communicator.rest.http.client.ApacheRestServiceClientFactory;
 import communicator.rest.impl.SGrRestApiDevice;
 import org.junit.jupiter.api.Test;
@@ -78,7 +78,7 @@ class SGrDeviceBaseTest {
 
     @ParameterizedTest
     @MethodSource("checkRangeArguments")
-    void checkRange(Value[] values, Comparator comparator, double limit, Expect expect) throws Exception {
+    void checkRange(Value[] values, Comparator comparator, double limit, Expect expect) {
 
         SGrModbusDevice device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
 
@@ -90,7 +90,7 @@ class SGrDeviceBaseTest {
     }
 
     @Test
-    void getDeviceInfo() throws Exception {
+    void getDeviceInfo() throws GenDriverException {
 
         var device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
         var deviceInfo = device.getDeviceInfo();
@@ -140,7 +140,7 @@ class SGrDeviceBaseTest {
 
 
     @Test
-    void getDeviceInfoDeviceData() throws Exception {
+    void getDeviceInfoDeviceData() throws GenDriverException {
 
         var device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
         var deviceInfo = device.getDeviceInfo();
@@ -284,7 +284,7 @@ class SGrDeviceBaseTest {
     }
 
     @SuppressWarnings("SameParameterValue")
-    private static SGrModbusDevice createSGrModbusDevice(String deviceDescriptionXml) throws Exception {
+    private static SGrModbusDevice createSGrModbusDevice(String deviceDescriptionXml) {
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL devDescUrl = classloader.getResource(deviceDescriptionXml);
@@ -292,7 +292,7 @@ class SGrDeviceBaseTest {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 
-        return new SGrModbusDevice(devDesc, new SGrModbusGatewayRegistry());
+        return new SGrModbusDevice(devDesc, (GenDriverAPI4Modbus) null);
     }
 
     @SuppressWarnings("SameParameterValue")

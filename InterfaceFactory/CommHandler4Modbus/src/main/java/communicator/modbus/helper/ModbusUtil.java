@@ -57,7 +57,7 @@ public class ModbusUtil {
         );
     }
 
-    public static Short getModbusSlaveId(ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
+    public static Short getModbusSlaveId(ModbusInterfaceDescription interfaceDescription) {
         // distinguish between Serial and TCP
         boolean isSerial = isRtuOverSerial(interfaceDescription);
         boolean isTcp = isRtuOverTcp(interfaceDescription);
@@ -69,8 +69,7 @@ public class ModbusUtil {
             return hasValue(tcp.getSlaveId()) ? Short.valueOf(tcp.getSlaveId()) : DEFAULT_SLAVE_ID;
         }
 
-        // cannot be both or none
-        throw new GenDriverException("Could not get slave ID");
+        return DEFAULT_SLAVE_ID;
     }
 
     public static String getModbusGatewayIdentifier(ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
