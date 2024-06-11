@@ -106,7 +106,7 @@ public class SGrDeviceBuilder {
      * Builds the SGr device using the previously set builder parameters.
      * @return an SGr device object
      * @throws GenDriverException 
-     * @throws RestApiAuthenticationException 
+     * @throws RestApiAuthenticationException
      */
     public GenDeviceApi build() throws GenDriverException, RestApiAuthenticationException {
         if (eidSource == null) {
@@ -175,14 +175,14 @@ public class SGrDeviceBuilder {
     /**
      * An interface for EID data sources.
      */
-    private static interface EidSource {
+    private interface EidSource {
     
         DeviceFrame load(DeviceDescriptionLoader loader, Properties properties);
     }
 
     private static class PathEidSource implements EidSource {
 
-        private Path path;
+        private final Path path;
 
         public PathEidSource(Path path) {
             this.path = path;
@@ -198,7 +198,7 @@ public class SGrDeviceBuilder {
 
     private static class StreamEidSource implements EidSource {
 
-        private InputStream inputStream;
+        private final InputStream inputStream;
 
         public StreamEidSource(InputStream inputStream) {
             this.inputStream = inputStream;
@@ -206,13 +206,13 @@ public class SGrDeviceBuilder {
 
         @Override
         public DeviceFrame load(DeviceDescriptionLoader loader, Properties properties) {
-            return loader.load("eid", inputStream, properties);
+            return loader.load("eid.xml", inputStream, properties);
         }
     }
 
     private static class TextEidSource implements EidSource {
 
-        private String content;
+        private final String content;
 
         public TextEidSource(String content) {
             this.content = content;

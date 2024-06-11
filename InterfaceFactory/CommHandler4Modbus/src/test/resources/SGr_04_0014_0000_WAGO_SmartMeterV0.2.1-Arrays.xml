@@ -64,6 +64,7 @@
     <modbusInterfaceSelection>RTU</modbusInterfaceSelection>
     <modbusRtu>
       <slaveAddr>1</slaveAddr>
+      <portName>{{portName}}</portName>
       <baudRateSelected>9600</baudRateSelected>
       <byteLenSelected>8</byteLenSelected>
       <paritySelected>EVEN</paritySelected>
