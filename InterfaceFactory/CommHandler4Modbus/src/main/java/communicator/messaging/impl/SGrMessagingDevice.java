@@ -41,19 +41,21 @@ public class SGrMessagingDevice extends SGrDeviceBase<
 
     private static final long SYNC_READ_TIMEOUT_MSEC = 60000;
 
-    private final MessagingClient messagingClient;
+    private final MessagingInterfaceDescription interfaceDescription;
+
+    private MessagingClient messagingClient;
 
     private final Map<MessageCacheKey, MessageCacheRecord> messageCache = new HashMap<>();
 
     public SGrMessagingDevice(DeviceFrame deviceDescription) throws GenDriverException {
         super(deviceDescription);
 
-        MessagingInterfaceDescription ifDesc = Optional.ofNullable(deviceDescription.getInterfaceList())
-                .map(InterfaceList::getMessagingInterface)
-                .map(MessagingInterface::getMessagingInterfaceDescription)
-                .orElseThrow(() -> new GenDriverException("Missing messaging interface description in EI-XML"));
+        interfaceDescription = Optional.ofNullable(deviceDescription.getInterfaceList())
+            .map(InterfaceList::getMessagingInterface)
+            .map(MessagingInterface::getMessagingInterfaceDescription)
+            .orElseThrow(() -> new GenDriverException("Missing messaging interface description in EI-XML"));
 
-        messagingClient = MessagingClientFactory.createClient(ifDesc);
+        messagingClient = null;
     }
 
     @Override
@@ -109,6 +111,9 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     }
 
     private Value getValueFromDevice(long timeoutMs, MessagingDataPoint dataPoint, String outMessageTopic, String outMessageTemplate, String inMessageTopic, MessageFilter messageFilter) throws GenDriverException {
+        if (messagingClient == null) {
+            throw new GenDriverException("Not connected");
+        }
 
         Either<Throwable, Message> result = messagingClient.readSync(
                 outMessageTopic,
@@ -147,6 +152,9 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     @Override
     public void setVal(String profileName, String dataPointName, Value value)
             throws GenDriverException {
+        if (messagingClient == null) {
+            throw new GenDriverException("Not connected");
+        }
 
         MessagingDataPoint dataPoint = findDatapoint(profileName, dataPointName);
         checkReadWritePermission(dataPoint, RwpDirections.WRITE);
@@ -169,6 +177,9 @@ public class SGrMessagingDevice extends SGrDeviceBase<
 
     @Override
     public void subscribe(String profileName, String dataPointName, Consumer<Either<Throwable, Value>> callbackFunction) throws GenDriverException {
+        if (messagingClient == null) {
+            throw new GenDriverException("Not connected");
+        }
 
         MessagingDataPoint dataPoint = findDatapoint(profileName, dataPointName);
         checkReadWritePermission(dataPoint, RwpDirections.READ);
@@ -230,6 +241,9 @@ public class SGrMessagingDevice extends SGrDeviceBase<
 
     @Override
     public void unsubscribe(String profileName, String dataPointName) throws GenDriverException {
+        if (messagingClient == null) {
+            throw new GenDriverException("Not connected");
+        }
 
         MessagingDataPoint dataPoint = findDatapoint(profileName, dataPointName);
 
@@ -249,9 +263,30 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     }
 
     @Override
-    public void close() throws IOException {
-        messagingClient.close();
+    public synchronized void close() throws IOException {
+        if (messagingClient != null) {
+            messagingClient.close();
+            messagingClient = null;
+        }
     }
+
+    @Override
+	public synchronized void connect() throws GenDriverException {
+        if (messagingClient == null) {
+            messagingClient = MessagingClientFactory.createClient(interfaceDescription);
+        }
+	}
+
+	@Override
+	public void disconnect() throws GenDriverException {
+        try {
+		    close();
+        } catch (IOException e) {
+            throw new GenDriverException("Error closing messaging client", e);
+        } finally {
+            messagingClient = null;
+        }
+	}
 
     private MessagingInterface getMessagingInterface() {
         return Optional.ofNullable(device.getInterfaceList().getMessagingInterface()).orElseThrow(() -> new IllegalArgumentException("No messaging interface defined in EI-XML"));
