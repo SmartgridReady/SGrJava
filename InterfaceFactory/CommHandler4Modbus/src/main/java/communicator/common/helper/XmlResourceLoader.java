@@ -34,9 +34,11 @@ public class XmlResourceLoader<T> {
         domain.getResourceSet().setPackageRegistry(EPackage.Registry.INSTANCE);
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "unused"})
     public T load(String resourcePath, String xmlContent, boolean validate) throws IOException {
-        Resource resource = domain.createResource(resourcePath);
+
+        // TODO I think it is it OK to use always the same resource name since we do not store the resource back the filesystem.
+        Resource resource = domain.createResource("eid.xml");
 
 		try (InputStream is = IOUtils.toInputStream(xmlContent,  StandardCharsets.UTF_8)) {
 			resource.load(is, null);
