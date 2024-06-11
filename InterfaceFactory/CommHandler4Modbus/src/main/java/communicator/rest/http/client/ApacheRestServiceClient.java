@@ -66,9 +66,11 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		
 		Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(getRestServiceCall().getRequestMethod());
 		Request httpReq = requestFactoryFunct.apply(uri);
-		
-		getRestServiceCall().getRequestHeader().getHeader().forEach(headerEntry -> 
-			httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue()));
+
+		if (getRestServiceCall().getRequestHeader() != null) {
+			getRestServiceCall().getRequestHeader().getHeader().forEach(headerEntry ->
+					httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue()));
+		}
 		
 		if (getRestServiceCall().getRequestBody() != null) {
 			httpReq.bodyString(getRestServiceCall().getRequestBody(), ContentType.APPLICATION_JSON);
