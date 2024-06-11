@@ -24,21 +24,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.Arrays;
 
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.client5.http.fluent.Request;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
 import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.HttpMethod;
@@ -47,9 +48,9 @@ import io.vavr.control.Either;
 
 
 public class ApacheRestServiceClient extends RestServiceClient {
-	private static final Logger LOG = LoggerFactory.getLogger(ApacheRestServiceClient.class);
 	
 	private static final EnumMap<HttpMethod, Function<String, Request>> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
+	private static final Map<ContentType, Function21<Request, String, Request>> BODY_ENCODE_MAP = new HashMap<>();
 
 	static {
 		HTTP_METHOD_MAP.put(HttpMethod.GET, Request::get);
@@ -57,6 +58,10 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		HTTP_METHOD_MAP.put(HttpMethod.PUT, Request::put);
 		HTTP_METHOD_MAP.put(HttpMethod.PATCH, Request::patch);
 		HTTP_METHOD_MAP.put(HttpMethod.DELETE, Request::delete);
+
+		BODY_ENCODE_MAP.put(ContentType.TEXT_PLAIN, ApacheRestServiceClient::encodePlainBody);
+		BODY_ENCODE_MAP.put(ContentType.APPLICATION_JSON, ApacheRestServiceClient::encodeJsonBody);
+		BODY_ENCODE_MAP.put(ContentType.APPLICATION_FORM_URLENCODED, ApacheRestServiceClient::encodeFormDataBody);
 	}	
 
 	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall) {
@@ -78,39 +83,24 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(getRestServiceCall().getRequestMethod());
 		Request httpReq = requestFactoryFunct.apply(uri);
 		
-		String contentTypeHeader = null;
+		ContentType contentTypeHeader = ContentType.WILDCARD;
 
 		if (getRestServiceCall().getRequestHeader() != null) {
 			for (HeaderEntry headerEntry: getRestServiceCall().getRequestHeader().getHeader()) {
-				httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue());
-				if (headerEntry.getHeaderName().equalsIgnoreCase("Content-Type")) {
-					contentTypeHeader = headerEntry.getValue();
+				if (headerEntry.getHeaderName().equalsIgnoreCase(HttpHeaders.CONTENT_TYPE)) {
+					// content type header will be set later
+					contentTypeHeader = ContentType.parse(headerEntry.getValue());
+				} else {
+					httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue());
 				}
 			}
 		}
 		
 		if (getRestServiceCall().getRequestBody() != null) {
 			String content = getRestServiceCall().getRequestBody();
-			if (contentTypeHeader != null) {
-				switch (contentTypeHeader) {
-					case "application/json":
-						LOG.debug("REST request JSON body = '{}'", content);
-						httpReq.bodyString(content, ContentType.APPLICATION_JSON);
-						break;
 
-					case "application/x-www-form-urlencoded":
-						httpReq.bodyForm(getFormParameters(content));
-						break;
-
-					default:
-						LOG.debug("REST request plain body = '{}'", content);
-						httpReq.bodyString(content, ContentType.TEXT_PLAIN);
-						break;
-				}
-			} else {
-				LOG.debug("REST request plain body = '{}'", content);
-				httpReq.bodyString(content, ContentType.TEXT_PLAIN);
-			}
+			Function21<Request, String, Request> bodyEncodeFunct = BODY_ENCODE_MAP.getOrDefault(contentTypeHeader, ApacheRestServiceClient::encodePlainBody);
+			bodyEncodeFunct.apply(httpReq, content);
 		}
 		
 		HttpResponse httpResp = httpReq.execute().returnResponse();
@@ -124,23 +114,38 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		return Either.left(httpResp);
 	}
 
-	private Iterable<NameValuePair> getFormParameters(String body) {
+	static Request encodePlainBody(Request httpReq, String content) {
+		return httpReq.bodyString(content, ContentType.TEXT_PLAIN);
+	}
+
+	static Request encodeJsonBody(Request httpReq, String content) {
+		return httpReq.bodyString(content, ContentType.APPLICATION_JSON);
+	}
+
+	static Request encodeFormDataBody(Request httpReq, String content) {
+		return httpReq.bodyForm(getFormParameters(content));
+	}
+
+	static Iterable<NameValuePair> getFormParameters(String body) {
 		if ((body == null) || body.isEmpty()) {
 			return Collections.emptyList();
 		}
 
-		// TODO support multiple occurrences of '=', e.g. in values
-		List<NameValuePair> formParams = new ArrayList<>();
-		String[] pArr = body.split("&");
-		for (String p: pArr) {
+		// TODO support multiple occurrences of '=' and '&' in values
+		final List<NameValuePair> formParams = new ArrayList<>();
+
+		Arrays.asList(body.split("&")).forEach(p -> {
 			String[] kv = p.split("=", 2);
-			if (kv.length > 1) {
+			if ((kv.length > 1) && !kv[0].isEmpty()) {
 				formParams.add(new BasicNameValuePair(kv[0], kv[1]));
-			} else if (kv.length > 0) {
-				formParams.add(new BasicNameValuePair(kv[0], ""));
 			}
-		}
+		});
 
 		return formParams;
+	}
+
+	@FunctionalInterface
+	private interface Function21<InA, InB, R> {
+		public R apply(InA a, InB b);
 	}
 }
