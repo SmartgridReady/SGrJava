@@ -94,10 +94,6 @@
                       <headerName>Accept</headerName>
                       <value>application/json</value>
                     </header>
-                    <header>
-                      <headerName>Authentication</headerName>
-                      <value>Bearer {{bearerToken}}</value>
-                    </header>
                   </requestHeader>
                   <requestMethod>GET</requestMethod>
                   <requestPath>/digitaltwins/?sensor_id={{sensor_id}}</requestPath>
@@ -240,6 +236,16 @@
               <restApiDataPointConfiguration>
                 <dataType>JSON_boolean</dataType>
                 <restApiWriteServiceCall>
+                  <requestHeader>
+                    <header>
+                      <headerName>Accept</headerName>
+                      <value>application/json</value>
+                    </header>
+                    <header>
+                      <headerName>Content-Type</headerName>
+                      <value>application/json</value>
+                    </header>
+                  </requestHeader>
                   <requestMethod>POST</requestMethod>
                   <requestPath>/digitaltwins/?sensor_id={{sensor_id}}</requestPath>
                   <requestBody>{ "pin" : 1, "value" : "{{value}}" }</requestBody>
@@ -266,6 +272,16 @@
                   </responseQuery>
                 </restApiReadServiceCall>
                 <restApiWriteServiceCall>
+                  <requestHeader>
+                    <header>
+                      <headerName>Accept</headerName>
+                      <value>application/json</value>
+                    </header>
+                    <header>
+                      <headerName>Content-Type</headerName>
+                      <value>application/json</value>
+                    </header>
+                  </requestHeader>
                   <requestMethod>POST</requestMethod>
                   <requestPath>/digitaltwins/?sensor_id={{sensor_id}}&amp;pin=2</requestPath>
                   <requestBody>{ "pin" : 2, "value" : "{{value}}" }</requestBody>

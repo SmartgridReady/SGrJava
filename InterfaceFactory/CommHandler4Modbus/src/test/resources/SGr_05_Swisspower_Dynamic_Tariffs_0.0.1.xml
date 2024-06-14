@@ -155,10 +155,6 @@
                       <headerName>Accept</headerName>
                       <value>application/json</value>
                     </header>
-                    <header>
-                      <headerName>Authentication</headerName>
-                      <value>Bearer {{bearerToken}}</value>
-                    </header>
                   </requestHeader>
                   <requestMethod>GET</requestMethod>
                   <requestPath>/api/v1/tariffs?point={{point}}&amp;start_timestamp={{start_timestamp}}&amp;end_timestamp={{end_timestamp}}</requestPath>

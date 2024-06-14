@@ -221,16 +221,18 @@ class SGrRestAPIDeviceTest {
 
 			assertDoesNotThrow(() -> device.setVal("GPIO", dataPointName, StringValue.of("on")));
 
-			verify(httpClientRequest, times(3)).addHeader(stringCaptor1.capture(), stringCaptor2.capture());
+			verify(httpClientRequest, times(4)).addHeader(stringCaptor1.capture(), stringCaptor2.capture());
 			var headerKeys = stringCaptor1.getAllValues();
 			assertEquals("Accept", headerKeys.get(0));
 			assertEquals("Accept", headerKeys.get(1));
-			assertEquals("Authorization", headerKeys.get(2));
+			assertEquals("Accept", headerKeys.get(2));
+			assertEquals("Authorization", headerKeys.get(3));
 
 			var headerValues = stringCaptor2.getAllValues();
 			assertEquals("application/json", headerValues.get(0));
 			assertEquals("application/json", headerValues.get(1));
-			assertEquals("Bearer null", headerValues.get(2));
+			assertEquals("application/json", headerValues.get(2));
+			assertEquals("Bearer null", headerValues.get(3));
 
 			verify(httpClientRequest, times(3)).bodyString(stringCaptor1.capture(), any());
 			assertEquals(

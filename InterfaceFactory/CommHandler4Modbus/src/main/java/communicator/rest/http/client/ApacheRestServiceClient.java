@@ -32,6 +32,7 @@ import java.util.Arrays;
 
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import org.apache.commons.io.IOUtils;
+import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.client5.http.fluent.Request;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;
@@ -50,7 +51,7 @@ import io.vavr.control.Either;
 public class ApacheRestServiceClient extends RestServiceClient {
 	
 	private static final EnumMap<HttpMethod, Function<String, Request>> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
-	private static final Map<ContentType, Function21<Request, String, Request>> BODY_ENCODE_MAP = new HashMap<>();
+	private static final Map<String, Function21<Request, String, Request>> BODY_ENCODE_MAP = new HashMap<>();
 
 	static {
 		HTTP_METHOD_MAP.put(HttpMethod.GET, Request::get);
@@ -59,9 +60,9 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		HTTP_METHOD_MAP.put(HttpMethod.PATCH, Request::patch);
 		HTTP_METHOD_MAP.put(HttpMethod.DELETE, Request::delete);
 
-		BODY_ENCODE_MAP.put(ContentType.TEXT_PLAIN, ApacheRestServiceClient::encodePlainBody);
-		BODY_ENCODE_MAP.put(ContentType.APPLICATION_JSON, ApacheRestServiceClient::encodeJsonBody);
-		BODY_ENCODE_MAP.put(ContentType.APPLICATION_FORM_URLENCODED, ApacheRestServiceClient::encodeFormDataBody);
+		BODY_ENCODE_MAP.put(ContentType.TEXT_PLAIN.getMimeType(), ApacheRestServiceClient::encodePlainBody);
+		BODY_ENCODE_MAP.put(ContentType.APPLICATION_JSON.getMimeType(), ApacheRestServiceClient::encodeJsonBody);
+		BODY_ENCODE_MAP.put(ContentType.APPLICATION_FORM_URLENCODED.getMimeType(), ApacheRestServiceClient::encodeFormDataBody);
 	}	
 
 	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall) {
@@ -83,13 +84,13 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(getRestServiceCall().getRequestMethod());
 		Request httpReq = requestFactoryFunct.apply(uri);
 		
-		ContentType contentTypeHeader = ContentType.WILDCARD;
+		ContentType requestContentType = ContentType.DEFAULT_TEXT;
 
 		if (getRestServiceCall().getRequestHeader() != null) {
 			for (HeaderEntry headerEntry: getRestServiceCall().getRequestHeader().getHeader()) {
 				if (headerEntry.getHeaderName().equalsIgnoreCase(HttpHeaders.CONTENT_TYPE)) {
-					// content type header will be set later
-					contentTypeHeader = ContentType.parse(headerEntry.getValue());
+					// content type header will be set later in body encode function
+					requestContentType = ContentType.parse(headerEntry.getValue());
 				} else {
 					httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue());
 				}
@@ -99,16 +100,23 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		if (getRestServiceCall().getRequestBody() != null) {
 			String content = getRestServiceCall().getRequestBody();
 
-			Function21<Request, String, Request> bodyEncodeFunct = BODY_ENCODE_MAP.getOrDefault(contentTypeHeader, ApacheRestServiceClient::encodePlainBody);
+			Function21<Request, String, Request> bodyEncodeFunct = BODY_ENCODE_MAP.get(requestContentType.getMimeType());
+			if (bodyEncodeFunct == null) {
+				throw new IOException(String.format("Cannot encode request body of content type '%s'", requestContentType.getMimeType()));
+			}
+			
 			bodyEncodeFunct.apply(httpReq, content);
 		}
 		
 		HttpResponse httpResp = httpReq.execute().returnResponse();
-		if (httpResp.getCode() < HttpStatus.SC_CLIENT_ERROR) {
-			try ( InputStream is = ((ClassicHttpResponse)httpResp).getEntity().getContent() ) {
+		if ((httpResp.getCode() >= HttpStatus.SC_OK) && (httpResp.getCode() < HttpStatus.SC_CLIENT_ERROR)) {
+			try (InputStream is = ((ClassicHttpResponse)httpResp).getEntity().getContent()) {
 				
-				String jsonResp = IOUtils.toString(is, StandardCharsets.UTF_8);
-				return Either.right(jsonResp);
+				String contentTypeStr = ((ClassicHttpResponse)httpResp).getEntity().getContentType();
+				ContentType contentType = (contentTypeStr != null) ? ContentType.parse(contentTypeStr) : ContentType.DEFAULT_TEXT;
+				
+				String content = IOUtils.toString(is, contentType.getCharset());
+				return Either.right(content);
 			}
 		}
 		return Either.left(httpResp);
@@ -123,7 +131,7 @@ public class ApacheRestServiceClient extends RestServiceClient {
 	}
 
 	static Request encodeFormDataBody(Request httpReq, String content) {
-		return httpReq.bodyForm(getFormParameters(content));
+		return httpReq.body(new UrlEncodedFormEntity(getFormParameters(content)));
 	}
 
 	static Iterable<NameValuePair> getFormParameters(String body) {
