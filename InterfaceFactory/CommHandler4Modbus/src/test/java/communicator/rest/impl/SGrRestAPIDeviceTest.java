@@ -39,14 +39,13 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Stream;
 
 import static org.apache.hc.core5.http.HttpStatus.SC_OK;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -87,6 +86,8 @@ class SGrRestAPIDeviceTest {
 	ArgumentCaptor<String> stringCaptor2 = ArgumentCaptor.forClass(String.class);
 
 	ArgumentCaptor<Properties> propertiesCaptor = ArgumentCaptor.forClass(Properties.class);
+
+	ArgumentCaptor<HttpEntity> httpEntityCaptor = ArgumentCaptor.forClass(HttpEntity.class);
 	
 	static DeviceFrame deviceFrame;
 			
@@ -234,16 +235,13 @@ class SGrRestAPIDeviceTest {
 			assertEquals("application/json", headerValues.get(2));
 			assertEquals("Bearer null", headerValues.get(3));
 
-			// TODO how to capture argument in new implementation?
+			verify(httpClientRequest, times(3)).body(httpEntityCaptor.capture());
 
-			verify(httpClientRequest, times(3)).body(any());
-
-			/*
-			assertEquals(
-					String.format("{ \"pin\" : %d, \"value\" : \"on\" }", "ContactW".equals(dataPointName) ? 1 : 2),
-					stringCaptor1.getValue()
+			assertArrayEquals(
+					String.format("{ \"pin\" : %d, \"value\" : \"on\" }", "ContactW".equals(dataPointName) ? 1 : 2)
+							.getBytes(StandardCharsets.UTF_8),
+					Objects.requireNonNull(httpEntityCaptor.getValue().getContent().readAllBytes())
 			);
-			*/
 		}
 	}
 
