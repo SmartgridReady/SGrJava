@@ -22,14 +22,12 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.function.Function;
-import java.util.Arrays;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
@@ -65,7 +63,6 @@ public class ApacheRestServiceClient extends RestServiceClient {
 
 		BODY_ENCODE_MAP.put(ContentType.TEXT_PLAIN.getMimeType(), ApacheRestServiceClient::encodeStringBody);
 		BODY_ENCODE_MAP.put(ContentType.APPLICATION_JSON.getMimeType(), ApacheRestServiceClient::encodeStringBody);
-		BODY_ENCODE_MAP.put(ContentType.APPLICATION_FORM_URLENCODED.getMimeType(), ApacheRestServiceClient::encodeFormDataBody);
 	}	
 
 	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall) {
@@ -109,7 +106,7 @@ public class ApacheRestServiceClient extends RestServiceClient {
 
 		Request httpReq = requestFactoryFunct.apply(uri.toString());
 		
-		ContentType requestContentType = ContentType.DEFAULT_TEXT;
+		ContentType requestContentType = ContentType.TEXT_PLAIN;
 
 		if (serviceCall.getRequestHeader() != null) {
 			for (HeaderEntry headerEntry: serviceCall.getRequestHeader().getHeader()) {
@@ -158,28 +155,6 @@ public class ApacheRestServiceClient extends RestServiceClient {
 
 	static Request encodeStringBody(Request httpReq, String content, ContentType contentType) {
 		return httpReq.body(new StringEntity(content, contentType));
-	}
-
-	static Request encodeFormDataBody(Request httpReq, String content, ContentType contentType) {
-		return httpReq.body(new UrlEncodedFormEntity(getFormParameters(content)));
-	}
-
-	static Iterable<NameValuePair> getFormParameters(String body) {
-		if ((body == null) || body.isEmpty()) {
-			return Collections.emptyList();
-		}
-
-		// TODO support multiple occurrences of '=' and '&' in values
-		final List<NameValuePair> formParams = new ArrayList<>();
-
-		Arrays.asList(body.split("&")).forEach(p -> {
-			String[] kv = p.split("=", 2);
-			if ((kv.length > 1) && !kv[0].isEmpty()) {
-				formParams.add(new BasicNameValuePair(kv[0], kv[1]));
-			}
-		});
-
-		return formParams;
 	}
 
 	@FunctionalInterface
