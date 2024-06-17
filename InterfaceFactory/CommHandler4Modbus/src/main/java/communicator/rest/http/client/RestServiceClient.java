@@ -20,6 +20,7 @@ package communicator.rest.http.client;
 
 import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.HeaderList;
+import com.smartgridready.ns.v0.ParameterList;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import com.smartgridready.ns.v0.V0Factory;
 import io.vavr.control.Either;
@@ -78,6 +79,18 @@ public abstract class RestServiceClient {
 		if (clone.getResponseQuery() != null) {
 			clone.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
 		}
+
+		ParameterList queryParams = clone.getRequestQuery();
+		if (queryParams != null) {
+			queryParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
+		} else {
+			clone.setRequestQuery(V0Factory.eINSTANCE.createParameterList());
+		}
+
+		ParameterList formParams = clone.getRequestForm();
+		if (formParams != null) {
+			formParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
+		}
 		
 		HeaderList headers = clone.getRequestHeader();
 		if (headers != null) {
@@ -85,6 +98,7 @@ public abstract class RestServiceClient {
 		} else {
 			clone.setRequestHeader(V0Factory.eINSTANCE.createHeaderList());
 		}
+
 		return clone;
 	}
 	
