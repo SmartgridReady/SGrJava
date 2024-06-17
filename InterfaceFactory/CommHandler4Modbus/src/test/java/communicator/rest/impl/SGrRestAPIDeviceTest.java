@@ -39,7 +39,6 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Stream;
@@ -204,7 +203,7 @@ class SGrRestAPIDeviceTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"ContactW", "ContactRW"})
+	@ValueSource(strings = {"ContactW", "ContactRW", "IORegister"})
 	void testSetValWithWriteServiceCallV2(String dataPointName) throws Exception {
 
 		try (MockedStatic<Request> httpClient =  Mockito.mockStatic(Request.class)) {
@@ -237,13 +236,24 @@ class SGrRestAPIDeviceTest {
 
 			verify(httpClientRequest, times(3)).body(httpEntityCaptor.capture());
 
-			assertArrayEquals(
-					String.format("{ \"pin\" : %d, \"value\" : \"on\" }", "ContactW".equals(dataPointName) ? 1 : 2)
-							.getBytes(StandardCharsets.UTF_8),
-					Objects.requireNonNull(httpEntityCaptor.getValue().getContent().readAllBytes())
-			);
+			String expected = "";
+			switch (dataPointName) {
+				case "ContactW":
+					expected = "{ \"pin\" : 1, \"value\" : \"on\" }"; // Json body
+					break;
+				case "ContactRW":
+					expected = "{ \"pin\" : 2, \"value\" : \"on\" }"; // Json body
+					break;
+				case "IORegister":
+					expected = "pins%3D1..7=124";  // Form data with URL encoding
+					break;
+				default:
+					fail("Unhandled dataPoint: " + dataPointName);
+			}
+			assertArrayEquals(expected.getBytes(StandardCharsets.UTF_8), httpEntityCaptor.getValue().getContent().readAllBytes());
 		}
 	}
+
 
 	@ParameterizedTest
 	@CsvSource({
