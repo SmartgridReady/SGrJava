@@ -89,7 +89,17 @@ public class ApacheRestServiceClient extends RestServiceClient {
 
 			// add request path
 			if (serviceCall.getRequestPath() != null) {
-				uriBuilder.appendPath(serviceCall.getRequestPath());
+				int startQueryPos = serviceCall.getRequestPath().indexOf('?', 0);
+				if (startQueryPos >= 0) {
+					// split path and query (old style)
+					String path = serviceCall.getRequestPath().substring(0, startQueryPos);
+					String query = serviceCall.getRequestPath().substring(startQueryPos + 1);
+					uriBuilder.appendPath(path);
+					uriBuilder.setCustomQuery(query);
+				} else {
+					// just set path (new style)
+					uriBuilder.appendPath(serviceCall.getRequestPath());
+				}
 			}
 
 			// add query parameters

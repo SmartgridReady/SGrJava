@@ -83,8 +83,6 @@ public abstract class RestServiceClient {
 		ParameterList queryParams = clone.getRequestQuery();
 		if (queryParams != null) {
 			queryParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
-		} else {
-			clone.setRequestQuery(V0Factory.eINSTANCE.createParameterList());
 		}
 
 		ParameterList formParams = clone.getRequestForm();
