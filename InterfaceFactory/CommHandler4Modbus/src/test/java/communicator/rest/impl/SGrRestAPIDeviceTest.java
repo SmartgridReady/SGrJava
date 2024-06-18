@@ -44,9 +44,7 @@ import java.util.Properties;
 import java.util.stream.Stream;
 
 import static org.apache.hc.core5.http.HttpStatus.SC_OK;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -87,6 +85,8 @@ class SGrRestAPIDeviceTest {
 	ArgumentCaptor<String> stringCaptor2 = ArgumentCaptor.forClass(String.class);
 
 	ArgumentCaptor<Properties> propertiesCaptor = ArgumentCaptor.forClass(Properties.class);
+
+	ArgumentCaptor<HttpEntity> httpEntityCaptor = ArgumentCaptor.forClass(HttpEntity.class);
 	
 	static DeviceFrame deviceFrame;
 			
@@ -203,7 +203,7 @@ class SGrRestAPIDeviceTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"ContactW", "ContactRW"})
+	@ValueSource(strings = {"ContactW", "ContactRW", "IORegister"})
 	void testSetValWithWriteServiceCallV2(String dataPointName) throws Exception {
 
 		try (MockedStatic<Request> httpClient =  Mockito.mockStatic(Request.class)) {
@@ -221,24 +221,39 @@ class SGrRestAPIDeviceTest {
 
 			assertDoesNotThrow(() -> device.setVal("GPIO", dataPointName, StringValue.of("on")));
 
-			verify(httpClientRequest, times(3)).addHeader(stringCaptor1.capture(), stringCaptor2.capture());
+			verify(httpClientRequest, times(4)).addHeader(stringCaptor1.capture(), stringCaptor2.capture());
 			var headerKeys = stringCaptor1.getAllValues();
 			assertEquals("Accept", headerKeys.get(0));
 			assertEquals("Accept", headerKeys.get(1));
-			assertEquals("Authorization", headerKeys.get(2));
+			assertEquals("Accept", headerKeys.get(2));
+			assertEquals("Authorization", headerKeys.get(3));
 
 			var headerValues = stringCaptor2.getAllValues();
 			assertEquals("application/json", headerValues.get(0));
 			assertEquals("application/json", headerValues.get(1));
-			assertEquals("Bearer null", headerValues.get(2));
+			assertEquals("application/json", headerValues.get(2));
+			assertEquals("Bearer null", headerValues.get(3));
 
-			verify(httpClientRequest, times(3)).bodyString(stringCaptor1.capture(), any());
-			assertEquals(
-					String.format("{ \"pin\" : %d, \"value\" : \"on\" }", "ContactW".equals(dataPointName) ? 1 : 2),
-					stringCaptor1.getValue()
-			);
+			verify(httpClientRequest, times(3)).body(httpEntityCaptor.capture());
+
+			String expected = "";
+			switch (dataPointName) {
+				case "ContactW":
+					expected = "{ \"pin\" : 1, \"value\" : \"on\" }"; // Json body
+					break;
+				case "ContactRW":
+					expected = "{ \"pin\" : 2, \"value\" : \"on\" }"; // Json body
+					break;
+				case "IORegister":
+					expected = "pins%3D1..7=124";  // Form data with URL encoding
+					break;
+				default:
+					fail("Unhandled dataPoint: " + dataPointName);
+			}
+			assertArrayEquals(expected.getBytes(StandardCharsets.UTF_8), httpEntityCaptor.getValue().getContent().readAllBytes());
 		}
 	}
+
 
 	@ParameterizedTest
 	@CsvSource({

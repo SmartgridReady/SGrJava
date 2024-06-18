@@ -19,19 +19,31 @@ package communicator.rest.http.client;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.function.Function;
 
-import com.smartgridready.ns.v0.RestApiServiceCall;
 import org.apache.commons.io.IOUtils;
+import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.client5.http.fluent.Request;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
+import org.apache.hc.core5.http.NameValuePair;
+import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.hc.core5.http.message.BasicNameValuePair;
+import org.apache.hc.core5.net.URIBuilder;
 
+import com.smartgridready.ns.v0.RestApiServiceCall;
+import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.HttpMethod;
 
 import io.vavr.control.Either;
@@ -40,12 +52,17 @@ import io.vavr.control.Either;
 public class ApacheRestServiceClient extends RestServiceClient {
 	
 	private static final EnumMap<HttpMethod, Function<String, Request>> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
+	private static final Map<String, Function31<Request, String, ContentType, Request>> BODY_ENCODE_MAP = new HashMap<>();
+
 	static {
 		HTTP_METHOD_MAP.put(HttpMethod.GET, Request::get);
 		HTTP_METHOD_MAP.put(HttpMethod.POST, Request::post);
 		HTTP_METHOD_MAP.put(HttpMethod.PUT, Request::put);
 		HTTP_METHOD_MAP.put(HttpMethod.PATCH, Request::patch);
-		HTTP_METHOD_MAP.put(HttpMethod.DELETE, Request::delete);				
+		HTTP_METHOD_MAP.put(HttpMethod.DELETE, Request::delete);
+
+		BODY_ENCODE_MAP.put(ContentType.TEXT_PLAIN.getMimeType(), ApacheRestServiceClient::encodeStringBody);
+		BODY_ENCODE_MAP.put(ContentType.APPLICATION_JSON.getMimeType(), ApacheRestServiceClient::encodeStringBody);
 	}	
 
 	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall) {
@@ -58,32 +75,112 @@ public class ApacheRestServiceClient extends RestServiceClient {
 
 	@Override
 	public Either<HttpResponse, String> callService() throws IOException {
-		
-		String uri = getBaseUri();
-		if (getRestServiceCall().getRequestPath() != null) {
-			uri = uri.concat(getRestServiceCall().getRequestPath());
-		}
-		
-		Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(getRestServiceCall().getRequestMethod());
-		Request httpReq = requestFactoryFunct.apply(uri);
 
-		if (getRestServiceCall().getRequestHeader() != null) {
-			getRestServiceCall().getRequestHeader().getHeader().forEach(headerEntry ->
-					httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue()));
+		RestApiServiceCall serviceCall = getRestServiceCall();
+
+		Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(serviceCall.getRequestMethod());
+		if (requestFactoryFunct == null) {
+			throw new IOException(String.format("invalid HTTP method '%s'", serviceCall.getRequestMethod()));
 		}
-		
-		if (getRestServiceCall().getRequestBody() != null) {
-			httpReq.bodyString(getRestServiceCall().getRequestBody(), ContentType.APPLICATION_JSON);
+
+		URI uri;
+		try {
+			uri = buildUri(serviceCall);
+		} catch (URISyntaxException e) {
+			throw new IOException("Cannot build request URI", e);
+		}
+
+		Request httpReq = requestFactoryFunct.apply(uri.toString());
+		ContentType requestContentType = prepareHttpHeaders(serviceCall, httpReq);
+
+		if (serviceCall.getRequestForm() != null) {
+			// add url-encoded form parameters instead of body
+			final List<NameValuePair> formParams = new ArrayList<>();
+			serviceCall.getRequestForm().getParameter().forEach(p ->
+				formParams.add(new BasicNameValuePair(p.getName(), p.getValue())));
+
+			httpReq.body(new UrlEncodedFormEntity(formParams));
+		} else if (serviceCall.getRequestBody() != null) {
+			// add body based on MIME type of content-type header
+			String content = serviceCall.getRequestBody();
+
+			Function31<Request, String, ContentType, Request> bodyEncodeFunct = BODY_ENCODE_MAP.get(requestContentType.getMimeType());
+			if (bodyEncodeFunct == null) {
+				throw new IOException(String.format("Cannot encode request body of content type '%s'", requestContentType.getMimeType()));
+			}
+			
+			bodyEncodeFunct.apply(httpReq, content, requestContentType);
 		}
 		
 		HttpResponse httpResp = httpReq.execute().returnResponse();
-		if (httpResp.getCode() < HttpStatus.SC_CLIENT_ERROR) {						
-			try ( InputStream is = ((ClassicHttpResponse)httpResp).getEntity().getContent() ) {					
+		if ((httpResp.getCode() >= HttpStatus.SC_OK) && (httpResp.getCode() < HttpStatus.SC_CLIENT_ERROR)) {
+			try (InputStream is = ((ClassicHttpResponse)httpResp).getEntity().getContent()) {
 				
-				String jsonResp = IOUtils.toString(is, StandardCharsets.UTF_8);
-				return Either.right(jsonResp);
+				String contentTypeStr = ((ClassicHttpResponse)httpResp).getEntity().getContentType();
+				ContentType contentType = (contentTypeStr != null) ? ContentType.parse(contentTypeStr) : ContentType.DEFAULT_TEXT;
+				
+				String content = IOUtils.toString(is, contentType.getCharset());
+				return Either.right(content);
 			}
 		}
-		return Either.left(httpResp);		
+		return Either.left(httpResp);
+	}
+
+	private URI buildUri(RestApiServiceCall serviceCall) throws URISyntaxException {
+		URI uri;
+		final URIBuilder uriBuilder = new URIBuilder(getBaseUri());
+
+		// add request path
+		if (serviceCall.getRequestPath() != null) {
+			int startQueryPos = serviceCall.getRequestPath().indexOf('?');
+			if (startQueryPos >= 0) {
+				// split path and query (old style)
+				String path = serviceCall.getRequestPath().substring(0, startQueryPos);
+				String query = serviceCall.getRequestPath().substring(startQueryPos + 1);
+				uriBuilder.appendPath(path);
+				uriBuilder.setCustomQuery(query);
+			} else {
+				// just set path (new style)
+				uriBuilder.appendPath(serviceCall.getRequestPath());
+			}
+		}
+
+		// add query parameters
+		if (serviceCall.getRequestQuery() != null) {
+			serviceCall.getRequestQuery().getParameter().forEach(p ->
+				uriBuilder.addParameter(p.getName(), p.getValue()));
+		}
+
+		uri = uriBuilder.build();
+		return uri;
+	}
+
+
+	private static ContentType prepareHttpHeaders(RestApiServiceCall serviceCall, Request httpReq) {
+		ContentType requestContentType = ContentType.TEXT_PLAIN;
+
+		if (serviceCall.getRequestHeader() != null) {
+			for (HeaderEntry headerEntry: serviceCall.getRequestHeader().getHeader()) {
+				if (headerEntry.getHeaderName().equalsIgnoreCase(HttpHeaders.CONTENT_TYPE)) {
+					// content type header will be set later in body encode function
+					requestContentType = ContentType.parse(headerEntry.getValue());
+				} else {
+					httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue());
+				}
+			}
+		}
+		return requestContentType;
+	}
+
+
+	static Request encodeStringBody(Request httpReq, String content, ContentType contentType) {
+		return httpReq.body(new StringEntity(content, contentType));
+	}
+
+
+	@SuppressWarnings("UnusedReturnValue")
+	@FunctionalInterface
+	private interface Function31<A, B, C, R> {
+		R apply(A a, B b, C c);
 	}
 }

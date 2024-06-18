@@ -28,6 +28,9 @@ import com.smartgridready.ns.v0.RestApiFunctionalProfile;
 import com.smartgridready.ns.v0.RestApiInterface;
 import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import com.smartgridready.ns.v0.RestApiServiceCall;
+import com.smartgridready.ns.v0.RestApiValueMapping;
+import com.smartgridready.ns.v0.ValueMapping;
+
 import communicator.common.api.values.Float64Value;
 import communicator.common.api.values.StringValue;
 import communicator.common.api.values.Value;
@@ -85,7 +88,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}
 
 	@Override
-	public void disconnect() throws GenDriverException {
+	public void disconnect() {
         // nothing
 	}
 	
@@ -132,19 +135,25 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 		Properties substitutions = new Properties();
 		if (dpDescriptionOpt.isPresent()) {
 
-			RwpDirections rwpDirection = RwpDirections.READ;
+			RwpDirections rwpDirection = (value != null) ? RwpDirections.WRITE : RwpDirections.READ;
+
+			RestApiDataPointConfiguration dpDescription = dpDescriptionOpt.get();
+			RestApiServiceCall serviceCall = evaluateRestApiServiceCall(dpDescription, rwpDirection);
+
 			if (value != null) {
 				checkOutOfRange(new Value[]{value}, dataPoint);
 				value = applyUnitConversion(dataPoint, value, this::divide);
-				substitutions.put("value", value.getString());
-				rwpDirection = RwpDirections.WRITE;
+
+				// substitute value mappings generic -> device
+				substitutions.put(
+					"value",
+					(serviceCall.getValueMapping() != null) ? getMappedDeviceValue(value.getString(), serviceCall.getValueMapping()) : value.getString()
+				);
 			}
 			if (parameters != null) {
 				substitutions.putAll(parameters);
 			}
 
-			RestApiDataPointConfiguration dpDescription = dpDescriptionOpt.get();
-			RestApiServiceCall serviceCall = evaluateRestApiServiceCall(dpDescription, rwpDirection);
 			RestServiceClient restServiceClient = restServiceClientFactory.create(host, serviceCall, substitutions);
 			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
 
@@ -193,8 +202,13 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 				return JsonHelper.mapJsonResponse(responseQuery.getJmesPathMappings(), response);
 			}
 		}
+
 		// return plain response
-		return StringValue.of(response);
+		
+		// substitute value mappings device -> generic
+		return StringValue.of(
+			(restApiServiceCall.getValueMapping() != null) ? getMappedGenericValue(response, restApiServiceCall.getValueMapping()) : response
+		);
 	}
 
 	private RestApiServiceCall evaluateRestApiServiceCall(RestApiDataPointConfiguration dataPointConfiguration, RwpDirections rwpDirections)
@@ -285,5 +299,25 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 	private double multiply(double factor1, double factor2) {
 		return  factor1 * factor2;
+	}
+
+	private String getMappedDeviceValue(String genericValue, RestApiValueMapping valueMapping) {
+		for (ValueMapping mapping: valueMapping.getMapping()) {
+			if (genericValue.equals(mapping.getGenericValue())) {
+				return mapping.getDeviceValue();
+			}
+		}
+
+		return genericValue;
+	}
+
+	private String getMappedGenericValue(String deviceValue, RestApiValueMapping valueMapping) {
+		for (ValueMapping mapping: valueMapping.getMapping()) {
+			if (deviceValue.equals(mapping.getDeviceValue())) {
+				return mapping.getGenericValue();
+			}
+		}
+
+		return deviceValue;
 	}
 }
