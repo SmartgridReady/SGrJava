@@ -156,4 +156,21 @@ public class ModbusUtil {
 
         return true;
     }
+
+    public static ModbusType getModbusType(ModbusInterfaceDescription interfaceDescription) {
+        String modbusType = interfaceDescription
+                .getModbusInterfaceSelection()
+                .getName();
+
+        switch (modbusType) {
+            case "TCPIP":
+                return ModbusType.TCP;
+
+            case "RTU":
+                return ModbusType.RTU;
+
+            default:
+                return ModbusType.UNKNOWN;
+        }
+    }
 }

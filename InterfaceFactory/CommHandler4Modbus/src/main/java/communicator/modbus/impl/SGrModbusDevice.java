@@ -31,6 +31,8 @@ import com.smartgridready.ns.v0.ModbusFunctionalProfile;
 import com.smartgridready.ns.v0.ModbusInterface;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 import com.smartgridready.ns.v0.ModbusLayer6Deviation;
+import com.smartgridready.ns.v0.ModbusRtu;
+import com.smartgridready.ns.v0.ModbusTcp;
 import com.smartgridready.ns.v0.RegisterType;
 import com.smartgridready.ns.v0.ScalingFactor;
 import com.smartgridready.ns.v0.TimeSyncBlockNotification;
@@ -42,16 +44,21 @@ import communicator.common.api.values.NumberValue;
 import communicator.common.api.values.StringValue;
 import communicator.common.api.values.Value;
 import communicator.common.impl.SGrDeviceBase;
+import communicator.common.runtime.DataBits;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import communicator.common.runtime.GenDriverModbusException;
 import communicator.common.runtime.GenDriverSocketException;
+import communicator.common.runtime.Parity;
+import communicator.common.runtime.StopBits;
 import communicator.modbus.api.GenDeviceApi4Modbus;
+import communicator.modbus.api.ModbusGatewayFactory;
 import communicator.modbus.helper.CacheRecord;
 import communicator.modbus.helper.ConversionHelper;
 import communicator.modbus.helper.EndiannessConversionHelper;
 import communicator.modbus.helper.ModbusReader;
 import communicator.modbus.helper.ModbusReaderResponse;
+import communicator.modbus.helper.ModbusType;
 import communicator.modbus.helper.ModbusUtil;
 import communicator.modbus.transport.ModbusGatewayRegistry;
 
@@ -103,6 +110,14 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		drv4Modbus = drvRegistry.attachGateway(getModbusInterfaceDescription());
 	}
 
+	public SGrModbusDevice(DeviceFrame aDeviceDescription, ModbusGatewayFactory aGatewayFactory) throws GenDriverException {
+		super(aDeviceDescription);
+		myDeviceDescription = aDeviceDescription;
+		drvRegistry = null;
+
+		drv4Modbus = aGatewayFactory.create(getModbusInterfaceDescription());
+	}
+
 	/**
 	 * Construct with directly attached gateway (for simple cases).
 	 * @param aDeviceDescription the EID description
@@ -118,7 +133,41 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 
 	@Override
 	public void connect() throws GenDriverException {
-		// TODO init transport here
+		// distinguish RTU or TCP protocol
+		ModbusInterfaceDescription interfaceDescription = getModbusInterfaceDescription();
+        ModbusType modbusType = ModbusUtil.getModbusType(interfaceDescription);
+        if (modbusType == ModbusType.RTU) {
+            // distinguish between Serial and TCP gateway
+            boolean isSerial = ModbusUtil.isRtuOverSerial(interfaceDescription);
+            boolean isTcp = ModbusUtil.isRtuOverTcp(interfaceDescription);
+            if (isSerial && !isTcp) {
+                // use serial gateway
+                ModbusRtu serial = interfaceDescription.getModbusRtu();
+                String portName = serial.getPortName();
+                int baudrate = ModbusUtil.getSerialBaudrate(serial.getBaudRateSelected());
+                Parity parity = ModbusUtil.getSerialParity(serial.getParitySelected());
+                DataBits dataBits = ModbusUtil.getSerialDataBits(serial.getByteLenSelected());
+                StopBits stopBits = ModbusUtil.getSerialStopBits(serial.getStopBitLenSelected());
+
+                drv4Modbus.initTrspService(portName, baudrate, parity, dataBits, stopBits);
+            } else if (isTcp && !isSerial) {
+                // use TCP/IP over RTU gateway
+                ModbusTcp tcp = interfaceDescription.getModbusTcp();
+                String address = tcp.getAddress();
+                int port = ModbusUtil.hasValue(tcp.getPort()) ? Integer.valueOf(tcp.getPort()) : ModbusUtil.DEFAULT_MODBUS_TCP_PORT;
+
+                drv4Modbus.initDevice(address, port);
+            }
+        } else if (modbusType == ModbusType.TCP) {
+            // Modbus TCP
+            ModbusTcp tcp = interfaceDescription.getModbusTcp();
+            if (tcp != null) {
+                String address = tcp.getAddress();
+                int port = ModbusUtil.hasValue(tcp.getPort()) ? Integer.valueOf(tcp.getPort()) : ModbusUtil.DEFAULT_MODBUS_TCP_PORT;
+
+                drv4Modbus.initDevice(address, port);
+            }
+        }
 	}
 
 	@Override

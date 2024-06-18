@@ -21,12 +21,7 @@ import communicator.common.api.values.Value;
 import communicator.common.runtime.GenDriverException;
 import utils.SGrGDPTypeToNameMapper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -165,7 +160,7 @@ public abstract class SGrDeviceBase<
 
         return new ConfigurationValue(
                 configurationListElement.getName(),
-                SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(configurationListElement.getDataType()).stream().findFirst().orElse("UNDEFINED"),
+                SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(configurationListElement.getDataType()).stream().filter(Objects::nonNull).findFirst().orElse("UNDEFINED"),
                 descriptions);
 
     }
@@ -234,7 +229,7 @@ public abstract class SGrDeviceBase<
                                 .collect(Collectors.toList()));
         return new DataPoint(
                 dataPoint.getDataPointName(),
-                SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(dataPoint.getDataType()).stream().findFirst().orElse(null),
+                SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(dataPoint.getDataType()).stream().filter(Objects::nonNull).findFirst().orElse("UNDEFINED"),
                 dataPoint.getUnit() != null ? dataPoint.getUnit() : null,
                 dataPoint.getDataDirection() != null ? dataPoint.getDataDirection() : null,
                 dataPoint.isSetMinimumValue() ? dataPoint.getMinimumValue() : null,
