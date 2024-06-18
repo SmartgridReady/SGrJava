@@ -9,6 +9,7 @@ import communicator.common.runtime.StopBits;
 import communicator.messaging.impl.SGrMessagingDevice;
 import communicator.modbus.api.GenDeviceApi4Modbus;
 import communicator.modbus.api.ModbusGatewayFactory;
+import communicator.modbus.transport.ModbusGatewayRegistry;
 import communicator.rest.http.client.RestServiceClient;
 import communicator.rest.http.client.RestServiceClientFactory;
 import communicator.rest.impl.SGrRestApiDevice;
@@ -33,6 +34,9 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(value = MockitoExtension.class)
 public class SGrDeviceBuilderTest {
+
+    @Mock
+    ModbusGatewayRegistry modbusGatewayRegistry;
 
     @Mock
     ModbusGatewayFactory modbusGatewayFactory;
@@ -93,6 +97,33 @@ public class SGrDeviceBuilderTest {
         assertInstanceOf(GenDeviceApi4Modbus.class, device);
         device.connect();
         verify(modbusDriver).initDevice("127.0.0.1", 502);
+
+        device.disconnect();
+        verify(modbusDriver).disconnect();
+    }
+
+    @Test
+    void buildModbusDeviceTcpWithSharedRegistry() throws Exception {
+
+        var properties = new Properties();
+        properties.put("ipaddress", "127.0.0.1");
+
+        when(modbusGatewayRegistry.attachGateway(any())).thenReturn(modbusDriver);
+
+        GenDeviceApi device = new SGrDeviceBuilder()
+                .useModbusGatewayFactory(modbusGatewayFactory)
+                .useSharedModbusGatewayRegistry(modbusGatewayRegistry)
+                .useRestServiceClientFactory(restServiceClientFactory)
+                .properties(properties)
+                .eid(loadResourceAsString("SGr_04_0014_0000_WAGO_Testsystem_V1.0.xml"))
+                .build();
+
+        assertInstanceOf(GenDeviceApi4Modbus.class, device);
+        device.connect();
+        verify(modbusDriver).initDevice("127.0.0.1", 502);
+
+        device.disconnect();
+        verify(modbusGatewayRegistry).detachGateway(any());
     }
 
     @Test
@@ -113,6 +144,33 @@ public class SGrDeviceBuilderTest {
         assertInstanceOf(GenDeviceApi4Modbus.class, device);
         device.connect();
         verify(modbusDriver).initTrspService("COM3", 9600, Parity.EVEN, DataBits.EIGHT, StopBits.ONE);
+
+        device.disconnect();
+        verify(modbusDriver).disconnect();
+    }
+
+    @Test
+    void buildModbusDeviceRtuWithSharedRegistry() throws Exception {
+
+        var properties = new Properties();
+        properties.put("portName", "COM3");
+
+        when(modbusGatewayRegistry.attachGateway(any())).thenReturn(modbusDriver);
+
+        GenDeviceApi device = new SGrDeviceBuilder()
+                .useModbusGatewayFactory(modbusGatewayFactory)
+                .useSharedModbusGatewayRegistry(modbusGatewayRegistry)
+                .useRestServiceClientFactory(restServiceClientFactory)
+                .properties(properties)
+                .eid(loadResourceAsPath("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml"))
+                .build();
+
+        assertInstanceOf(GenDeviceApi4Modbus.class, device);
+        device.connect();
+        verify(modbusDriver).initTrspService("COM3", 9600, Parity.EVEN, DataBits.EIGHT, StopBits.ONE);
+
+        device.disconnect();
+        verify(modbusGatewayRegistry).detachGateway(any());
     }
 
     @SuppressWarnings("resource") // we are just checking the instance.
