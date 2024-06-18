@@ -85,56 +85,19 @@ public class ApacheRestServiceClient extends RestServiceClient {
 
 		URI uri;
 		try {
-			final URIBuilder uriBuilder = new URIBuilder(getBaseUri());
-
-			// add request path
-			if (serviceCall.getRequestPath() != null) {
-				int startQueryPos = serviceCall.getRequestPath().indexOf('?', 0);
-				if (startQueryPos >= 0) {
-					// split path and query (old style)
-					String path = serviceCall.getRequestPath().substring(0, startQueryPos);
-					String query = serviceCall.getRequestPath().substring(startQueryPos + 1);
-					uriBuilder.appendPath(path);
-					uriBuilder.setCustomQuery(query);
-				} else {
-					// just set path (new style)
-					uriBuilder.appendPath(serviceCall.getRequestPath());
-				}
-			}
-
-			// add query parameters
-			if (serviceCall.getRequestQuery() != null) {
-				serviceCall.getRequestQuery().getParameter().forEach(p -> {
-					uriBuilder.addParameter(p.getName(), p.getValue());
-				});
-			}
-
-			uri = uriBuilder.build();
+			uri = buildUri(serviceCall);
 		} catch (URISyntaxException e) {
 			throw new IOException("Cannot build request URI", e);
 		}
 
 		Request httpReq = requestFactoryFunct.apply(uri.toString());
-		
-		ContentType requestContentType = ContentType.TEXT_PLAIN;
+		ContentType requestContentType = prepareHttpHeaders(serviceCall, httpReq);
 
-		if (serviceCall.getRequestHeader() != null) {
-			for (HeaderEntry headerEntry: serviceCall.getRequestHeader().getHeader()) {
-				if (headerEntry.getHeaderName().equalsIgnoreCase(HttpHeaders.CONTENT_TYPE)) {
-					// content type header will be set later in body encode function
-					requestContentType = ContentType.parse(headerEntry.getValue());
-				} else {
-					httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue());
-				}
-			}
-		}
-		
 		if (serviceCall.getRequestForm() != null) {
 			// add url-encoded form parameters instead of body
 			final List<NameValuePair> formParams = new ArrayList<>();
-			serviceCall.getRequestForm().getParameter().forEach(p -> {
-				formParams.add(new BasicNameValuePair(p.getName(), p.getValue()));
-			});
+			serviceCall.getRequestForm().getParameter().forEach(p ->
+				formParams.add(new BasicNameValuePair(p.getName(), p.getValue())));
 
 			httpReq.body(new UrlEncodedFormEntity(formParams));
 		} else if (serviceCall.getRequestBody() != null) {
@@ -163,12 +126,61 @@ public class ApacheRestServiceClient extends RestServiceClient {
 		return Either.left(httpResp);
 	}
 
+	private URI buildUri(RestApiServiceCall serviceCall) throws URISyntaxException {
+		URI uri;
+		final URIBuilder uriBuilder = new URIBuilder(getBaseUri());
+
+		// add request path
+		if (serviceCall.getRequestPath() != null) {
+			int startQueryPos = serviceCall.getRequestPath().indexOf('?');
+			if (startQueryPos >= 0) {
+				// split path and query (old style)
+				String path = serviceCall.getRequestPath().substring(0, startQueryPos);
+				String query = serviceCall.getRequestPath().substring(startQueryPos + 1);
+				uriBuilder.appendPath(path);
+				uriBuilder.setCustomQuery(query);
+			} else {
+				// just set path (new style)
+				uriBuilder.appendPath(serviceCall.getRequestPath());
+			}
+		}
+
+		// add query parameters
+		if (serviceCall.getRequestQuery() != null) {
+			serviceCall.getRequestQuery().getParameter().forEach(p ->
+				uriBuilder.addParameter(p.getName(), p.getValue()));
+		}
+
+		uri = uriBuilder.build();
+		return uri;
+	}
+
+
+	private static ContentType prepareHttpHeaders(RestApiServiceCall serviceCall, Request httpReq) {
+		ContentType requestContentType = ContentType.TEXT_PLAIN;
+
+		if (serviceCall.getRequestHeader() != null) {
+			for (HeaderEntry headerEntry: serviceCall.getRequestHeader().getHeader()) {
+				if (headerEntry.getHeaderName().equalsIgnoreCase(HttpHeaders.CONTENT_TYPE)) {
+					// content type header will be set later in body encode function
+					requestContentType = ContentType.parse(headerEntry.getValue());
+				} else {
+					httpReq.addHeader(headerEntry.getHeaderName(), headerEntry.getValue());
+				}
+			}
+		}
+		return requestContentType;
+	}
+
+
 	static Request encodeStringBody(Request httpReq, String content, ContentType contentType) {
 		return httpReq.body(new StringEntity(content, contentType));
 	}
 
+
+	@SuppressWarnings("UnusedReturnValue")
 	@FunctionalInterface
-	private interface Function31<InA, InB, InC, R> {
-		public R apply(InA a, InB b, InC c);
+	private interface Function31<A, B, C, R> {
+		R apply(A a, B b, C c);
 	}
 }
