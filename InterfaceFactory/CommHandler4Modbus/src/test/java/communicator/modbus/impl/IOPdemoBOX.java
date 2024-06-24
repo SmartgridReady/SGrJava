@@ -74,10 +74,10 @@ public class IOPdemoBOX {
 	
 	
 	// DEVICE FILE SELECTION
-	public static String eidMeter = "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml";
-	public static byte rtuMeterAddr = (byte)7;
-	//public static String eidMeter = "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml";
-	//public static byte rtuMeterAddr = (byte)1;
+	//public static String eidMeter = "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml";
+	//public static byte rtuMeterAddr = (byte)7;
+	public static String eidMeter = "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml";
+	public static byte rtuMeterAddr = (byte)1;
 	
 	public static void main( String argv[] ) {	
 			
@@ -87,13 +87,13 @@ public class IOPdemoBOX {
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
-			mbRTU.initTrspService("COM4", 9600, Parity.NONE);	// for mobile RTU Interface		
-			//mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
+			//mbRTU.initTrspService("COM4", 9600, Parity.NONE);	// for mobile RTU Interface		
+			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
  
 
 			// TestBox
 			if (devIOPMeterTestIsOn)  {				
-			  	   LOG.info(" -init eidMeter as IOP demonstrator @: " + dtf.format(LocalDateTime.now())+ " ");
+			  	   LOG.info(" -init " + eidMeter + " as IOP demonstrator @: " + dtf.format(LocalDateTime.now())+ " ");
 					initIOPMeter(XML_BASE_DIR, eidMeter,rtuMeterAddr);
 			}	
 			if (devOMCCIWallboxTestIsOn) {
@@ -112,9 +112,9 @@ public class IOPdemoBOX {
 				{
 					
 				   // loop data & test reporting 
-					LOG.info("\n\n>>>Time=" + dtf.format(LocalDateTime.now())+" ------> LOOP=" +	runtimeCnt + "  Exceptions:");	
-					if (devIOPMeterTestIsOn)     LOG.info("   IOPMeter=" +  devIOPMeterExceptions+ ",");
-				    if (devOMCCIWallboxTestIsOn) LOG.info("   OMCCIWallbox=" + devOMCCIWallboxExceptions+ ",");
+					LOG.info("\n\n>>>Time=" + dtf.format(LocalDateTime.now())+" ------> LOOP=" +	runtimeCnt );	
+					if (devIOPMeterTestIsOn)     LOG.info("IOPMeter     exceptions=" +  devIOPMeterExceptions+ ",");
+				    if (devOMCCIWallboxTestIsOn) LOG.info("OMCCIWallbox exceptions=" + devOMCCIWallboxExceptions+ ",");
 					
 				    //_____Next loop 
 					if (devIOPMeterTestIsOn)    tstIOPMeter();					
@@ -168,7 +168,7 @@ public class IOPdemoBOX {
 			
 				try {
 	 				mbRTU.setUnitIdentifier(rtuAddr);	
-				    LOG.info("\n@:Testing IOPMeterData: ");
+				    LOG.info("@:Testing IOPMeterData: ");
 	  				Thread.sleep(25);
 	  				fVal1 = devIOPMeter.getVal("VoltageAC", "VoltageL1").getFloat64();
 	  				Thread.sleep(10);            
@@ -177,101 +177,102 @@ public class IOPdemoBOX {
 	  				fVal3 = devIOPMeter.getVal("VoltageAC", "VoltageL3").getFloat64();
 	  				Thread.sleep(10);
 	  				fVal4 = devIOPMeter.getVal("Frequency", "Frequency").getFloat64();
-	  				LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
-	  						+ fVal3 + ",  " + fVal4 + "  ");
+	  				LOG.info(String.format("  VoltageAC         L1=%3.2f V,    L2=%3.2f V,      L3=%3.2f V   Frequency=%2.2f Hz",fVal1,fVal2,fVal3,fVal4));
 	  				Thread.sleep(10);
+	  				
 	  				fVal1 = devIOPMeter.getVal("VoltageAC", "VoltageACL1-L2").getFloat64();
 	  				Thread.sleep(10);
 	  				fVal2 = devIOPMeter.getVal("VoltageAC", "VoltageACL1-L3").getFloat64();
 	  				Thread.sleep(10);
 	  				fVal3 = devIOPMeter.getVal("VoltageAC", "VoltageACL2-L3").getFloat64();
-	  				LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
-	  						+ fVal3 + "  ");
+	  				LOG.info(String.format("  VoltageAC         L1-L2=%3.2f V  L1-L3=%3.2f V  L2-L3=%3.2f V", fVal1, fVal2, fVal3));
 	  				Thread.sleep(10);
+	  				
 	  				fVal1 = devIOPMeter.getVal("CurrentAC", "CurrentACL1").getFloat64();
 	  				Thread.sleep(10);
 	  				fVal2 = devIOPMeter.getVal("CurrentAC", "CurrentACL2").getFloat64();
 	  				Thread.sleep(10);
 	  				fVal3 = devIOPMeter.getVal("CurrentAC", "CurrentACL3").getFloat64();
-	  				LOG.info("  CurrentAC L1/2/3 [A]:              " + fVal1 + ",  " + fVal2 + ",  "
-	  						+ fVal3 + "  ");
+	  				LOG.info(String.format("  CurrentAC         L1=%2.3f A,     L2=%2.3f A,     L3=%3.3f A", fVal1, fVal2, fVal3));
 	  				Thread.sleep(10);
-	  				/*
-	  				fVal1 = devIOPMeter.getVal("PowerFactor", "PowerFactor").getFloat64();
+	  				
+	  				/*  not implemented yet with ABB
+	  				fVal4 = devIOPMeter.getVal("PowerFactor", "PowerFactor").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal2 = devIOPMeter.getVal("PowerFactor", "PowerFactorL1").getFloat64();
+	  				fVal1 = devIOPMeter.getVal("PowerFactor", "PowerFactorL1").getFloat64();
 	  				Thread.sleep(10);
-	  				fVal3 = devIOPMeter.getVal("PowerFactor", "PowerFactorL2").getFloat64();
+	  				fVal2 = devIOPMeter.getVal("PowerFactor", "PowerFactorL2").getFloat64();
+	  				Thread.sleep(10);	  				
+	  				fVal3 = devIOPMeter.getVal("PowerFactor", "PowerFactorL3").getFloat64();
+	  				LOG.info(String.format("  Powerfactor       L1=%1.2f        L2=%1.2f        L3=%1.2f       total=%1.2f",fVal1,fVal2,fVal3,fVal4));
 	  				Thread.sleep(10);
-	  				fVal4 = devIOPMeter.getVal("PowerFactor", "PowerFactorL3").getFloat64();
-	  				LOG.info("  Powerfactor tot/L1/L2/L3:          " + fVal1 + ",  " + fVal2 + ",  "
-	  						+ fVal3 + ",  " + fVal4 + "  ");
-	  				Thread.sleep(10); */
-	  				sVal1 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot").getString();
+	  				*/
+	  				fVal4 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACtot").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL1").getString();
+	  				fVal1 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL1").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL2").getString();
+	  				fVal2 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL2").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL3").getString();
-	  				LOG.info("  ActiveEnergyAC [kWh]:         " + sVal1 + ",  " + sVal2 + ",  " + sVal3
-	  						+ ",  " + sVal4 + "  ");
+	  				fVal3 = devIOPMeter.getVal("ActiveEnergyAC", "ActiveEnergyACL3").getFloat64();
+	  				LOG.info(String.format("  ActiveEnergyAC    L1=%3.2f kWh    L2=%3.2f kWh     L3=%3.2f kWh   total=%3.2f kWh",fVal1,fVal2,fVal3,fVal4));
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACtot").getString();
+	  				
+	  				fVal4 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACtot").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL1").getString();
+	  				fVal1 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL1").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL2").getString();
+	  				fVal2 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL2").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL3").getString();
-	  				LOG.info("  ActivePowerAC [W]:           " + sVal1 + ", " + sVal2 + ",  " + sVal3
-	  						+ ",  " + sVal4 + "  ");
+	  				fVal3 = devIOPMeter.getVal("ActivePowerAC", "ActivePowerACL3").getFloat64();
+	  				LOG.info(String.format("  ActivePowerAC     L1=%3.2f W       L2=%3.2f W       L=%3.2f W       total=%3.2f W",fVal1,fVal2,fVal3,fVal4));
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACtot").getString();
+	  				
+	  				fVal4 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACtot").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL1").getString();
+	  				fVal1 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL1").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL2").getString();
+	  				fVal2 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL2").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL3").getString();
-	  				LOG.info("  ReactivePowerAC [var]:       " + sVal1 + ", " + sVal2 + ",  " + sVal3
-	  						+ ",  " + sVal4 + "  ");
+	  				fVal3 = devIOPMeter.getVal("ReactivePowerAC", "ReactivePowerACL3").getFloat64();
+	  				LOG.info(String.format("  ReactivePowerAC   L1=%3.2f var     L2=%3.2f var     L3=%3.2f var    total=%3.2f var",fVal1,fVal2,fVal3,fVal4));
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACtot").getString();
+	  				
+	  				fVal4 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACtot").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL1").getString();
+	  				fVal2 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL1").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL2").getString();
+	  				fVal2 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL2").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL3").getString();
-	  				LOG.info("  ApparentPowerAC [va]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
-	  						+ ",  " + sVal4 + "  ");
+	  				fVal3 = devIOPMeter.getVal("ApparentPowerAC", "ApparentPowerACL3").getFloat64();
+	  				LOG.info(String.format("  ApparentPowerAC   L1=%3.2f va      L2=%3.2f va      L3=%3.2f va     total=%3.2f va",fVal1,fVal2,fVal3,fVal4));
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC").getString();
-	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC").getString();
-	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC").getString();
-	  				LOG.info("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
-
-	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC").getString();
-	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC").getString();
-	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC").getString();
-	  				LOG.info("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
 	  				
 	  				Thread.sleep(10);
-	  				sVal1 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACtot").getString();
+	  				fVal4 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACtot").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal2 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL1").getString();
+	  				fVal1 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL1").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal3 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL2").getString();
+	  				fVal2 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL2").getFloat64();
 	  				Thread.sleep(10);
-	  				sVal4 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL3").getString();
-	  				LOG.info("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
-	  						+ ",  " + sVal4 + "  ");
+	  				fVal3 = devIOPMeter.getVal("PowerQuadrant", "PwrQuadACL3").getFloat64();
+	  				LOG.info(String.format("  PowerQuadrant     L1=%1.0f           L2=%1.0f            L3=%1.0f         total=%1.0f",fVal1,fVal2,fVal3,fVal4));
+	  				Thread.sleep(10);
+
+	  				fVal1 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC").getFloat64();
+	  				Thread.sleep(10);
+	  				fVal2 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC").getFloat64();
+	  				Thread.sleep(10);
+	  				fVal3 = devIOPMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC").getFloat64();
+	  				LOG.info(String.format("  ActiveEnerBalanceAC       Import=%3.2f kwh     Export=%3.2f kWh      Netto=%3.2f kWh",fVal1,fVal2,fVal3));
+	  				Thread.sleep(10);
+	  				
+	  				fVal1 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC").getFloat64();
+	  				Thread.sleep(10);
+	  				fVal2 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC").getFloat64();
+	  				Thread.sleep(10);
+	  				fVal3 = devIOPMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC").getFloat64();
+	  				LOG.info(String.format("  ReactiveEnerBalanceAC     Import=%3.2f kvarh   Export=%3.2f kvarh    Netto=%3.2f kvarh",fVal1,fVal2,fVal3));
+	  				
 							
 				}
 				catch ( Exception e)
