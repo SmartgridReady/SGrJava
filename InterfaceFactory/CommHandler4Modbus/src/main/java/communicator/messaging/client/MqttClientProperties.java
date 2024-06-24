@@ -3,6 +3,7 @@ package communicator.messaging.client;
 public enum MqttClientProperties {
 
     USE_SSL("ssl"),
+    SSL_VERIFY_CERTIFICATE("ssl.verifycertificate"),
     CLIENT_ID("client.id"),
     BASIC_AUTH_USERNAME("auth.basic.username"),
     BASIC_AUTH_PASSWORD("auth.basic.password"),

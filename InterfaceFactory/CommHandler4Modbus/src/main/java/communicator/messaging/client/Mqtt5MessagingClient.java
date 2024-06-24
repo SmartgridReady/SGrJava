@@ -13,6 +13,8 @@ import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5PublishResult;
 import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
 import com.hivemq.client.mqtt.mqtt5.message.unsubscribe.unsuback.Mqtt5UnsubAck;
 import com.smartgridready.ns.v0.MessageFilter;
+
+import communicator.common.helper.StringHelper;
 import communicator.common.runtime.GenDriverException;
 import communicator.messaging.api.Message;
 import io.vavr.control.Either;
@@ -20,7 +22,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.naming.OperationNotSupportedException;
+import javax.net.ssl.TrustManagerFactory;
+
 import java.nio.charset.StandardCharsets;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -255,15 +262,36 @@ public class Mqtt5MessagingClient implements MessagingClient {
             }
             if (properties.containsKey(MqttClientProperties.USE_SSL)
                     && Boolean.parseBoolean(properties.get(MqttClientProperties.USE_SSL))) { // SSL/TLS
-                clientBuilder = clientBuilder.sslWithDefaultConfig();
+
+                if (properties.containsKey(MqttClientProperties.SSL_VERIFY_CERTIFICATE)
+                    && Boolean.parseBoolean(properties.get(MqttClientProperties.SSL_VERIFY_CERTIFICATE))) {
+                        try {
+                            // enable certificate verification with system trust manager
+                            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+                            TrustManagerFactory.getDefaultAlgorithm());
+                            trustManagerFactory.init((KeyStore) null);
+
+                            clientBuilder = clientBuilder
+                                .sslConfig()
+                                .trustManagerFactory(trustManagerFactory)
+                                .applySslConfig();
+                        } catch (NoSuchAlgorithmException | KeyStoreException e) {
+                            LOG.warn("Cannot initialize TLS trust manager: {}", e.getMessage());
+                            clientBuilder = clientBuilder.sslWithDefaultConfig();
+                        }
+                } else {
+                    clientBuilder = clientBuilder.sslWithDefaultConfig();
+                }
             }
-            if (properties.containsKey(MqttClientProperties.BASIC_AUTH_USERNAME) &&
-                    properties.containsKey(MqttClientProperties.BASIC_AUTH_PASSWORD)
-            ) { // Basic auth
+            if (properties.containsKey(MqttClientProperties.BASIC_AUTH_USERNAME)
+                    && properties.containsKey(MqttClientProperties.BASIC_AUTH_PASSWORD)
+                    && StringHelper.isNotEmpty(properties.get(MqttClientProperties.BASIC_AUTH_USERNAME))
+            ) { // Basic auth - when user name is not empty
                 clientBuilder = clientBuilder.simpleAuth()
                         .username(properties.get(MqttClientProperties.BASIC_AUTH_USERNAME))
                         .password(properties.get(MqttClientProperties.BASIC_AUTH_PASSWORD)
-                                .getBytes(StandardCharsets.UTF_8)).applySimpleAuth();
+                                .getBytes(StandardCharsets.UTF_8))
+                        .applySimpleAuth();
             }
         }
         return clientBuilder.build();
