@@ -23,8 +23,7 @@ public class GetValArrayTester {
 		URL deviceDesc = classloader.getResource("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-Arrays.xml");
 		
 		try {	
-			
-			DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 			DeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ?deviceDesc.getPath() : null);
 			
 			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();

@@ -91,7 +91,7 @@ public class TestDevice {
             throw new IOException(String.format("Resource file %s not found.", deviceDescriptionFile));
         }
 
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         deviceDescriptor = loader.load("", deviceDescriptionUrl.getPath());
 
         GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP();
@@ -107,7 +107,7 @@ public class TestDevice {
             Function<String, Tuple3<String, Integer, Integer>> getComPortConnParams ) throws Exception {
 
         String filePath = file.getPath().replace("\\", "/");
-        deviceDescriptor = new DeviceDescriptionLoader<DeviceFrame>().load("", filePath);
+        deviceDescriptor = new DeviceDescriptionLoader().load("", filePath);
 
         ModbusInterface modbusInterface = deviceDescriptor.getInterfaceList().getModbusInterface();
         if (modbusInterface != null && modbusInterface.getModbusInterfaceDescription().getModbusTcp() != null) {

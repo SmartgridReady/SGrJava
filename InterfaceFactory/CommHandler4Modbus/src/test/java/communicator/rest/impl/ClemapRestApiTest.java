@@ -44,9 +44,8 @@ class ClemapRestApiTest {
 		props.put("password", "Holdrio99");
 		props.put("baseUri", "https://cloud.clemap.com:3032");
 		props.put("sensor_id", "63343431ecf2cf013a1e5a9f");
-		
 	
-		DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+		DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		
 		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml", props);
 		GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
@@ -75,7 +74,7 @@ class ClemapRestApiTest {
 		props.put("password", "Holdrio99");
 		props.put("baseUri", "https://b1.cloud.clemap.com:3032");
 
-		DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+		DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		
 		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
 		SGrRestApiDevice clemapConfigurator =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());

@@ -38,6 +38,7 @@ public class SGrGDPTypeToNameMapper {
     static final Map<Integer, String> SGR_GENERIC_TYPE_TO_NAME = new HashMap<>();
     static {
         // Generic IF types
+        SGR_GENERIC_TYPE_TO_NAME.put(V0Package.DATA_TYPE_PRODUCT__BOOLEAN, "BOOLEAN");
         SGR_GENERIC_TYPE_TO_NAME.put(V0Package.DATA_TYPE_PRODUCT__INT8, "INT8");
         SGR_GENERIC_TYPE_TO_NAME.put(V0Package.DATA_TYPE_PRODUCT__INT8_U, "INT8U");
         SGR_GENERIC_TYPE_TO_NAME.put(V0Package.DATA_TYPE_PRODUCT__INT16, "INT16");

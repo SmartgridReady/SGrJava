@@ -17,14 +17,14 @@ class FunctionalProfileWithDatapoints {
 
     private FunctionalProfileWithDatapoints(FunctionalProfileBase functionalProfile) {
 
-        if (functionalProfile instanceof ModbusFunctionalProfile)  {
+        if (functionalProfile instanceof ModbusFunctionalProfile) {
             dataPoints = ((ModbusFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
         }
-        else if (functionalProfile instanceof RestApiFunctionalProfile && ((RestApiFunctionalProfile) functionalProfile).getDataPointList() instanceof EList<?>)  {
-            dataPoints =  ((RestApiFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
+        else if (functionalProfile instanceof RestApiFunctionalProfile) {
+            dataPoints = ((RestApiFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
         }
         else if (functionalProfile instanceof MessagingFunctionalProfile) {
-            dataPoints =  ((MessagingFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
+            dataPoints = ((MessagingFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
         }
         else if (functionalProfile instanceof ContactFunctionalProfile) {
             dataPoints = ((ContactFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
@@ -33,7 +33,7 @@ class FunctionalProfileWithDatapoints {
             dataPoints = ((GenericFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
         }
         else {
-            dataPoints =  V0Factory.eINSTANCE.createModbusDataPointList().getDataPointListElement();
+            dataPoints = V0Factory.eINSTANCE.createGenericDataPointList().getDataPointListElement();
         }
     }
 

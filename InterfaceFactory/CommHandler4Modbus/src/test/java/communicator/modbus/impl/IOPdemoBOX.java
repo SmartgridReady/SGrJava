@@ -83,7 +83,7 @@ public class IOPdemoBOX {
 			
 		try {
 			
-			//DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+			//DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
@@ -149,7 +149,7 @@ public class IOPdemoBOX {
 			
 			try {	
 				rtuAddr = deviceAddr;
-				DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+				DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 				DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 				devIOPMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
@@ -291,8 +291,7 @@ public class IOPdemoBOX {
 			static void initOMCCIWallbox(String aBaseDir, String aDescriptionFile ) {				
 				//TODO: complete and use full OMCCI EI.xml
 				try {	
-					
-					DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+					DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 					DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 					
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)

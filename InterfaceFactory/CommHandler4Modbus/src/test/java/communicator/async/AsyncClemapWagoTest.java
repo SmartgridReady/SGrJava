@@ -136,7 +136,7 @@ public class AsyncClemapWagoTest {
     }
 
     private static SGrModbusDevice createWagoDevice() throws Exception {
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame deviceDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
         wagoDriver = new GenDriverAPI4ModbusRTU();
@@ -153,7 +153,7 @@ public class AsyncClemapWagoTest {
         props.put("baseUri", "https://cloud.clemap.com:3032");
         props.put("sensor_id", "63343431ecf2cf013a1e5a9f");
 
-        DeviceFrame deviceDesc = new DeviceDescriptionLoader<DeviceFrame>()
+        DeviceFrame deviceDesc = new DeviceDescriptionLoader()
                 .load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
 
         SGrRestApiDevice clemapDevice = new SGrRestApiDevice(deviceDesc, new ApacheRestServiceClientFactory());

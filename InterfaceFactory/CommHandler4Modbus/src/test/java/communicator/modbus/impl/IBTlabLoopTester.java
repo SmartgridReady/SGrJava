@@ -85,7 +85,7 @@ public class IBTlabLoopTester {
 	// TestBox
 	private static boolean  devWagoMeterTestIsOn = true; 
 	private static boolean  devOMCCIWallboxTestIsOn = true; 
-	// !! Schalter in Box umlegen für Test !!
+	// !! Schalter in Box umlegen fï¿½r Test !!
 	private static boolean  devTB_ABBMeterTestIsOn = true;
 
 	// Set the mockModbusDriver to new GenDriverAPI4ModbusRTUMock() to mock the real devices.
@@ -99,7 +99,7 @@ public class IBTlabLoopTester {
 		
 		try {
 			
-			//DeviceDescriptionLoader<SGrModbusDeviceDescriptionType> loader = new DeviceDescriptionLoader<>();
+			//DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = (mockModbusDriver == null ? new GenDriverAPI4ModbusRTU() : mockModbusDriver);
@@ -186,8 +186,7 @@ public class IBTlabLoopTester {
 	static void initWagoMeter(String aBaseDir, String aDescriptionFile ) {				
 		
 		try {	
-			
-			DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 			DeviceFrame tstMeter = loader.load(aBaseDir,aDescriptionFile);
 
 
@@ -339,8 +338,7 @@ public class IBTlabLoopTester {
 		static void initABBMeter(String aBaseDir, String aDescriptionFile ) {				
 			
 			try {	
-				
-				DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+				DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 				DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 				devABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
@@ -482,8 +480,7 @@ public class IBTlabLoopTester {
 		static void initTB_ABBMeter(String aBaseDir, String aDescriptionFile ) {				
 			
 			try {	
-				
-				DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+				DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 				DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 				devTB_ABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 				
@@ -630,8 +627,7 @@ public class IBTlabLoopTester {
 			static void initVGT_SGCP(String aBaseDir, String aDescriptionFile ) {				
 				
 				try {	
-					
-					DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+					DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 					DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
@@ -689,8 +685,7 @@ public class IBTlabLoopTester {
 				static void initGaroWallbox(String aBaseDir, String aDescriptionFile ) {				
 					
 					try {	
-						
-						DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+						DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 						DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 						
 						// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
@@ -795,8 +790,7 @@ public class IBTlabLoopTester {
 					static void initOMCCIWallbox(String aBaseDir, String aDescriptionFile ) {				
 						//TODO: complete and use full OMCCI EI.xml
 						try {	
-							
-							DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+							DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 							DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
@@ -895,8 +889,7 @@ public class IBTlabLoopTester {
 					static void initFroniusSymo(String aBaseDir, String aDescriptionFile ) {				
 						
 						try {	
-							
-							DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+							DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 							DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
@@ -996,8 +989,7 @@ public class IBTlabLoopTester {
 		static void initEmptyDevFrame(String aBaseDir, String aDescriptionFile ) {				
 			
 			try {	
-				
-				DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+				DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 				DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 				
 				// replace device specific for RTU

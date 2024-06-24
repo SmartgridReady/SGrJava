@@ -20,6 +20,7 @@ package communicator.rest.http.client;
 
 import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.HeaderList;
+import com.smartgridready.ns.v0.ParameterList;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import com.smartgridready.ns.v0.V0Factory;
 import io.vavr.control.Either;
@@ -44,15 +45,14 @@ public abstract class RestServiceClient {
 		this.baseUri = replacePropertyPlaceholders(baseUri, substitutions);
 		this.restServiceCall = cloneRestServiceCallWithSubstitutions(serviceCall, substitutions);
 	}
-	
-		
+
+	@SuppressWarnings("UnusedReturnValue")
 	public RestServiceClient addHeader(String key, String value) {
 		
 		HeaderEntry headerEntry = V0Factory.eINSTANCE.createHeaderEntry();
 		headerEntry.setHeaderName(key);
-		headerEntry.setValue(value);		
+		headerEntry.setValue(value);
 		restServiceCall.getRequestHeader().getHeader().add(headerEntry);
-		
 		return this;
 	}
 
@@ -74,11 +74,29 @@ public abstract class RestServiceClient {
 		// appear within the request path, request body or even the response query.
 		RestApiServiceCall clone = EcoreUtil.copy(restServiceCall);
 		clone.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
-		clone.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));	
-		clone.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
+		clone.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));
+
+		if (clone.getResponseQuery() != null) {
+			clone.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
+		}
+
+		ParameterList queryParams = clone.getRequestQuery();
+		if (queryParams != null) {
+			queryParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
+		}
+
+		ParameterList formParams = clone.getRequestForm();
+		if (formParams != null) {
+			formParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
+		}
 		
 		HeaderList headers = clone.getRequestHeader();
-		headers.getHeader().forEach( header -> header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions)));
+		if (headers != null) {
+			headers.getHeader().forEach(header -> header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions)));
+		} else {
+			clone.setRequestHeader(V0Factory.eINSTANCE.createHeaderList());
+		}
+
 		return clone;
 	}
 	
@@ -89,6 +107,7 @@ public abstract class RestServiceClient {
 		String convertedTemplate = template;		
 		if (template != null && properties != null) {
 			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+				// noinspection RegExpRedundantEscape
 				convertedTemplate = convertedTemplate.replaceAll("\\{\\{" + entry.getKey() + "\\}\\}", (String)entry.getValue());
 			}
 		}
