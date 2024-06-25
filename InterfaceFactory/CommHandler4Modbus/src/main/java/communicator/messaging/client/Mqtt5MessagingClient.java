@@ -23,12 +23,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.naming.OperationNotSupportedException;
-import javax.net.ssl.TrustManagerFactory;
 
 import java.nio.charset.StandardCharsets;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -266,22 +262,18 @@ public class Mqtt5MessagingClient implements MessagingClient {
 
                 if (properties.containsKey(MqttClientProperties.SSL_VERIFY_CERTIFICATE)
                     && Boolean.parseBoolean(properties.get(MqttClientProperties.SSL_VERIFY_CERTIFICATE))) {
-                        try {
-                            // enable certificate verification with system trust manager
-                            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
-                            TrustManagerFactory.getDefaultAlgorithm());
-                            trustManagerFactory.init((KeyStore) null);
 
-                            clientBuilder = clientBuilder
-                                .sslConfig()
-                                .trustManagerFactory(trustManagerFactory)
-                                .applySslConfig();
-                        } catch (NoSuchAlgorithmException | KeyStoreException e) {
-                            LOG.warn("Cannot initialize TLS trust manager: {}", e.getMessage());
-                            clientBuilder = clientBuilder.sslWithDefaultConfig();
-                        }
-                } else {
+                    // enable certificate verification with default trust manager
                     clientBuilder = clientBuilder.sslWithDefaultConfig();
+                    LOG.debug("SSL default config");
+                } else {
+                    // remove trust manager, no verification
+                    clientBuilder = clientBuilder
+                                .sslConfig()
+                                .hostnameVerifier(NonValidatingHostnameVerifier.getInstance())
+                                .trustManagerFactory(NonValidatingTrustManagerFactory.getInstance())
+                                .applySslConfig();
+                    LOG.debug("SSL config without certificate validation");
                 }
             }
             if (properties.containsKey(MqttClientProperties.BASIC_AUTH_USERNAME)

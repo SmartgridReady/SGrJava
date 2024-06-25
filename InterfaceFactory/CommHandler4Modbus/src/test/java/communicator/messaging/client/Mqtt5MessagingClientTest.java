@@ -34,6 +34,10 @@ class Mqtt5MessagingClientTest {
 
     private static final int BROKER_PORT = 8883;
 
+    private static final boolean BROKER_TLS = true;
+
+    private static final boolean BROKER_TLS_VERIFY = false;
+
     @Test
     void sendReceiveSync() throws Exception {
 
@@ -209,10 +213,10 @@ class Mqtt5MessagingClientTest {
 
     private Map<MqttClientProperties, String> createClientProperties() {
         Map<MqttClientProperties, String> properties = new HashMap<>();
-        properties.put(MqttClientProperties.USE_SSL, "true");
-        properties.put(MqttClientProperties.SSL_VERIFY_CERTIFICATE, "true");
-        properties.put(MqttClientProperties.BASIC_AUTH_USERNAME, "smartgrid");
-        properties.put(MqttClientProperties.BASIC_AUTH_PASSWORD, "1SmartGrid!");
+        properties.put(MqttClientProperties.USE_SSL, String.valueOf(BROKER_TLS));
+        properties.put(MqttClientProperties.SSL_VERIFY_CERTIFICATE, String.valueOf(BROKER_TLS_VERIFY));
+        properties.put(MqttClientProperties.BASIC_AUTH_USERNAME, "user");
+        properties.put(MqttClientProperties.BASIC_AUTH_PASSWORD, "password");
         return properties;
     }
 
