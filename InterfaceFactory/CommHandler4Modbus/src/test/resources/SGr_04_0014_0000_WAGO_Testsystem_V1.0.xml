@@ -1831,18 +1831,22 @@
                     <enumEntry>
                       <literal>ENUM_00</literal>
                       <ordinal>0</ordinal>
+                      <description>Register bits 00</description>
                     </enumEntry>
                     <enumEntry>
                       <literal>ENUM_01</literal>
                       <ordinal>1</ordinal>
+                      <description>Register bits 01</description>
                     </enumEntry>
                     <enumEntry>
                       <literal>ENUM_10</literal>
                       <ordinal>2</ordinal>
+                      <description>Register bits 10</description>
                     </enumEntry>
                     <enumEntry>
                       <literal>ENUM_11</literal>
                       <ordinal>3</ordinal>
+                      <description>Register bits 11</description>
                     </enumEntry>
                     <hexMask>03</hexMask>
                   </enum>

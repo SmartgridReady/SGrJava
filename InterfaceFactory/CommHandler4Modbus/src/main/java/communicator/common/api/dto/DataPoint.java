@@ -8,7 +8,7 @@ import java.util.List;
 public class DataPoint {
 
     private final String name;
-    private final String dataType;
+    private final DataType dataType;
     private final Units unit;
     private final DataDirectionProduct permissions;
     private final Double minimumValue;
@@ -18,7 +18,7 @@ public class DataPoint {
 
     @SuppressWarnings("java:S107")
     public DataPoint(String name,
-                     String dataType,
+                     DataType dataType,
                      Units unit,
                      DataDirectionProduct permissions,
                      Double minimumValue,
@@ -39,7 +39,7 @@ public class DataPoint {
         return name;
     }
 
-    public String getDataType() {
+    public DataType getDataType() {
         return dataType;
     }
 
