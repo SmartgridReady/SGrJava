@@ -14,6 +14,7 @@ import communicator.common.api.dto.FunctionalProfile;
 import communicator.common.api.dto.GenericAttribute;
 import communicator.common.api.dto.InterfaceType;
 import communicator.common.api.dto.OperationEnvironment;
+import communicator.common.api.values.EnumValue;
 import communicator.common.api.values.Float64Value;
 import communicator.common.api.values.Int64Value;
 import communicator.common.api.values.StringValue;
@@ -31,19 +32,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SGrDeviceBaseTest {
 
@@ -179,6 +171,41 @@ class SGrDeviceBaseTest {
     }
 
     @Test
+    void getEnumDataPoint() throws Exception {
+        var device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_Testsystem_V1.0.xml");
+        var dataPoint = device.getDataPoint("DigitalRegister_M2_OUT_Enum", "Register");
+
+        List<EnumValue> expected = new ArrayList<>();
+        expected.add(EnumValue.of("ENUM_00", 0L, "Register bits 00"));
+        expected.add(EnumValue.of("ENUM_01", 1L, "Register bits 01"));
+        expected.add(EnumValue.of("ENUM_10", 2L, "Register bits 10"));
+        expected.add(EnumValue.of("ENUM_11", 3L, "Register bits 11"));
+
+        assertEquals("ENUM", dataPoint.getDataType().getTypeName());
+        assertArrayEquals(expected.toArray(), dataPoint.getDataType().getRange().toArray());
+    }
+
+    @Test
+    void getBitmapDataPoint() throws Exception {
+
+        var device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_Testsystem_V1.0.xml");
+        var dataPoint = device.getDataPoint("DigitalRegister_M1_IN_1", "Register");
+
+        List<Value> expected = new ArrayList<>();
+        expected.add(StringValue.of("Sensor_1"));
+        expected.add(StringValue.of("Sensor_2"));
+        expected.add(StringValue.of("Sensor_3"));
+        expected.add(StringValue.of("Sensor_4"));
+        expected.add(StringValue.of("Sensor_5"));
+        expected.add(StringValue.of("Sensor_6"));
+        expected.add(StringValue.of("Sensor_7"));
+        expected.add(StringValue.of("Sensor_8"));
+
+        assertEquals("BITMAP", dataPoint.getDataType().getTypeName());
+        assertIterableEquals(expected, dataPoint.getDataType().getRange());
+    }
+
+    @Test
     void getConfiguration() throws Exception {
         var device = createSGrRestApiDevice("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
         var configuration = device.getDeviceConfigurationInfo();
@@ -259,8 +286,15 @@ class SGrDeviceBaseTest {
     }
 
     private void checkVoltageL1DataPoint(DataPoint dataPoint) {
+
+        var expectedRange = new ArrayList<Value>();
+        expectedRange.add(Float64Value.of(-Double.MAX_VALUE));
+        expectedRange.add(Float64Value.of(Double.MAX_VALUE));
+
         assertEquals("VoltageL1", dataPoint.getName());
-        assertEquals("FLOAT64", dataPoint.getDataType());
+        assertEquals("FLOAT64", dataPoint.getDataType().getTypeName());
+        assertIterableEquals(expectedRange, dataPoint.getDataType().getRange());
+
         assertEquals(0.005, dataPoint.getMinimumValue());
         assertEquals(380.0, dataPoint.getMaximumValue());
         assertEquals(DataDirectionProduct.RW, dataPoint.getPermissions());
