@@ -14,10 +14,11 @@ import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
 import com.hivemq.client.mqtt.mqtt5.message.unsubscribe.unsuback.Mqtt5UnsubAck;
 import com.smartgridready.ns.v0.MessageFilter;
 
-import communicator.common.helper.StringHelper;
 import communicator.common.runtime.GenDriverException;
 import communicator.messaging.api.Message;
 import io.vavr.control.Either;
+import utils.StringUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -285,7 +286,7 @@ public class Mqtt5MessagingClient implements MessagingClient {
             }
             if (properties.containsKey(MqttClientProperties.BASIC_AUTH_USERNAME)
                     && properties.containsKey(MqttClientProperties.BASIC_AUTH_PASSWORD)
-                    && StringHelper.isNotEmpty(properties.get(MqttClientProperties.BASIC_AUTH_USERNAME))
+                    && StringUtil.isNotEmpty(properties.get(MqttClientProperties.BASIC_AUTH_USERNAME))
             ) { // Basic auth - when user name is not empty
                 clientBuilder = clientBuilder.simpleAuth()
                         .username(properties.get(MqttClientProperties.BASIC_AUTH_USERNAME))

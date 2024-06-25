@@ -210,6 +210,7 @@ class Mqtt5MessagingClientTest {
     private Map<MqttClientProperties, String> createClientProperties() {
         Map<MqttClientProperties, String> properties = new HashMap<>();
         properties.put(MqttClientProperties.USE_SSL, "true");
+        properties.put(MqttClientProperties.SSL_VERIFY_CERTIFICATE, "true");
         properties.put(MqttClientProperties.BASIC_AUTH_USERNAME, "smartgrid");
         properties.put(MqttClientProperties.BASIC_AUTH_PASSWORD, "1SmartGrid!");
         return properties;
