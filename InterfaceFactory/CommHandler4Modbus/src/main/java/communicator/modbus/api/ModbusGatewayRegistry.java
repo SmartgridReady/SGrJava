@@ -1,9 +1,11 @@
-package communicator.modbus.transport;
+package communicator.modbus.api;
+
+import java.util.List;
 
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
-import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
+
 
 /**
  * An interface for a Modbus gateway registry.
@@ -16,7 +18,7 @@ public interface ModbusGatewayRegistry {
      * @return a Modbus gateway instance
      * @throws GenDriverException
      */
-    public GenDriverAPI4Modbus attachGateway(ModbusInterfaceDescription interfaceDescription) throws GenDriverException;
+    public ModbusGateway attachGateway(ModbusInterfaceDescription interfaceDescription) throws GenDriverException;
 
     /**
      * Disconnects the Modbus transport gateway of a given device.
@@ -25,5 +27,14 @@ public interface ModbusGatewayRegistry {
      */
     public void detachGateway(ModbusInterfaceDescription interfaceDescription) throws GenDriverException;
 
+    /**
+     * Disconnects the Modbus transport gateway of a given device.
+     * @param identifier the transport identifier
+     * @throws GenDriverException
+     */
+    public void detachGateway(String identifier) throws GenDriverException;
+
     public void detachAllGateways();
+
+    public List<String> getAllGatewayIdentifiers();
 }

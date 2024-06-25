@@ -11,13 +11,12 @@ import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
 import communicator.common.api.dto.InterfaceType;
 import communicator.common.helper.DeviceDescriptionLoader;
-import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import communicator.messaging.impl.SGrMessagingDevice;
 import communicator.modbus.api.ModbusGatewayFactory;
-import communicator.modbus.impl.DefaultModbusGatewayFactory;
+import communicator.modbus.api.ModbusGatewayRegistry;
+import communicator.modbus.impl.SGrModbusGatewayFactory;
 import communicator.modbus.impl.SGrModbusDevice;
-import communicator.modbus.transport.ModbusGatewayRegistry;
 import communicator.rest.exception.RestApiAuthenticationException;
 import communicator.rest.http.client.ApacheRestServiceClientFactory;
 import communicator.rest.http.client.RestServiceClientFactory;
@@ -42,7 +41,7 @@ public class SGrDeviceBuilder {
 
         // default implementations
         this.restServiceClientFactory = new ApacheRestServiceClientFactory();
-        this.modbusGatewayFactory = new DefaultModbusGatewayFactory();
+        this.modbusGatewayFactory = new SGrModbusGatewayFactory();
     }
 
     /**
@@ -143,14 +142,11 @@ public class SGrDeviceBuilder {
                 if (modbusGatewayRegistry != null) {
                     // use shared modbus gateway registry
                     return new SGrModbusDevice(deviceFrame, modbusGatewayRegistry);
-                } else {
+                } else if (modbusGatewayFactory != null) {
                     // use modbus factory directly
-                    if (modbusGatewayFactory == null) {
-                        throw new GenDriverException("No Modbus gateway factory defined");
-                    }
-                    GenDriverAPI4Modbus modbusGateway = modbusGatewayFactory.create(interfaceDescription);
-                    return new SGrModbusDevice(deviceFrame, modbusGateway);
+                    return new SGrModbusDevice(deviceFrame, modbusGatewayFactory);
                 }
+                throw new GenDriverException("No Modbus gateway registry or factory defined");
 
             case RESTAPI:
                 if (restServiceClientFactory == null) {
