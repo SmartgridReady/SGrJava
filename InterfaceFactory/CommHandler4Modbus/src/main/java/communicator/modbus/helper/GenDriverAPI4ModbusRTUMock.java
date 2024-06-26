@@ -19,7 +19,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package communicator.modbus.helper;
 
+import communicator.common.runtime.DataBits;
 import communicator.common.runtime.GenDriverAPI4Modbus;
+import communicator.common.runtime.GenDriverException;
+import communicator.common.runtime.Parity;
+import communicator.common.runtime.StopBits;
 
 import java.nio.IntBuffer;
 
@@ -30,6 +34,7 @@ public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 	private static final int[] REGISTER_FLOAT_VAL = new int[]{0x0000435c, 0x000051ec};
 
 	private boolean returnInteger;
+	private boolean isConnected = false;
 
 	public void setIsIntegerType(boolean returnInteger) {
 		this.returnInteger = returnInteger;
@@ -46,8 +51,38 @@ public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 	}
 
 	@Override
+	public boolean initTrspService(String comPort) throws GenDriverException {
+		return connect();
+	}
+
+	@Override
+	public boolean initTrspService(String comPort, int baudRate) throws GenDriverException {
+		return connect();
+	}
+
+	@Override
+	public boolean initTrspService(String comPort, int baudRate, Parity parity) throws GenDriverException {
+		return connect();
+	}
+
+	@Override
+	public boolean initTrspService(String comPort, int baudRate, Parity parity, DataBits dataBits) throws GenDriverException {
+		return connect();
+	}
+
+	@Override
+	public boolean initTrspService(String comPort, int baudRate, Parity parity, DataBits dataBits, StopBits stopBits) throws GenDriverException {
+		return connect();
+	}
+
+	@Override
+	public void initDevice(String ipAddress, int port) throws GenDriverException {
+		connect();
+   	}
+
+	@Override
 	public void disconnect() {
-		// nothing to do
+		isConnected = false;
 	}
 
 	@Override
@@ -81,6 +116,14 @@ public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 		// implementation not required yet
 	}
 
+	private boolean connect() throws GenDriverException {
+		if (isConnected) {
+			throw new GenDriverException("Do not connect twice");
+		}
+
+		isConnected = true;
+		return isConnected;
+	}
 
 	private int[] prepareReturnValue(int quantity) {
 

@@ -44,8 +44,7 @@ public class ModbusUtil {
         ModbusRtu rtu = interfaceDescription.getModbusRtu();
         return (
             (rtu != null) &&
-            (rtu.getPortName() != null) &&
-            !rtu.getPortName().isEmpty()
+            isNonEmptyString(rtu.getPortName())
         );
     }
 
@@ -53,24 +52,23 @@ public class ModbusUtil {
         ModbusTcp tcp = interfaceDescription.getModbusTcp();
         return (
             (tcp != null) &&
-            hasValue(tcp.getAddress())
+            isNonEmptyString(tcp.getAddress())
         );
     }
 
-    public static Short getModbusSlaveId(ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
+    public static Short getModbusSlaveId(ModbusInterfaceDescription interfaceDescription) {
         // distinguish between Serial and TCP
         boolean isSerial = isRtuOverSerial(interfaceDescription);
         boolean isTcp = isRtuOverTcp(interfaceDescription);
         if (isSerial && !isTcp) {
             ModbusRtu serial = interfaceDescription.getModbusRtu();
-            return hasValue(serial.getSlaveAddr()) ? Short.valueOf(serial.getSlaveAddr()) : DEFAULT_SLAVE_ID;
+            return isNonEmptyString(serial.getSlaveAddr()) ? Short.valueOf(serial.getSlaveAddr()) : DEFAULT_SLAVE_ID;
         } else if (isTcp && !isSerial) {
             ModbusTcp tcp = interfaceDescription.getModbusTcp();
-            return hasValue(tcp.getSlaveId()) ? Short.valueOf(tcp.getSlaveId()) : DEFAULT_SLAVE_ID;
+            return isNonEmptyString(tcp.getSlaveId()) ? Short.valueOf(tcp.getSlaveId()) : DEFAULT_SLAVE_ID;
         }
 
-        // cannot be both or none
-        throw new GenDriverException("Could not get slave ID");
+        return DEFAULT_SLAVE_ID;
     }
 
     public static String getModbusGatewayIdentifier(ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
@@ -84,7 +82,7 @@ public class ModbusUtil {
         } else if (isTcp && !isSerial) {
             ModbusTcp tcp = interfaceDescription.getModbusTcp();
             String address = tcp.getAddress();
-            int port = hasValue(tcp.getPort()) ? Integer.valueOf(tcp.getPort()) : DEFAULT_MODBUS_TCP_PORT;
+            int port = isNonEmptyString(tcp.getPort()) ? Integer.valueOf(tcp.getPort()) : DEFAULT_MODBUS_TCP_PORT;
             return String.format("tcp:%s:%d", address, port);
         }
 
@@ -105,10 +103,10 @@ public class ModbusUtil {
     }
 
     public static int getSerialBaudrate(String baudRate) {
-        return hasValue(baudRate) ? Integer.valueOf(baudRate) : DEFAULT_BAUDRATE;
+        return isNonEmptyString(baudRate) ? Integer.valueOf(baudRate) : DEFAULT_BAUDRATE;
     }
 
-    public static boolean hasValue(String value) {
+    public static boolean isNonEmptyString(String value) {
         return (
             (value != null) &&
             !value.isEmpty()

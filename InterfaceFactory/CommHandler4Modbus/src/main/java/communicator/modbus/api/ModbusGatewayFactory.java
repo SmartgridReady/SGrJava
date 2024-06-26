@@ -2,7 +2,6 @@ package communicator.modbus.api;
 
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
-import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 
 /**
@@ -16,5 +15,5 @@ public interface ModbusGatewayFactory {
      * @return an instance of a Modbus gateway
      * @throws GenDriverException
      */
-    GenDriverAPI4Modbus create(ModbusInterfaceDescription interfaceDescription)  throws GenDriverException;
+    ModbusGateway create(ModbusInterfaceDescription interfaceDescription) throws GenDriverException;
 }
