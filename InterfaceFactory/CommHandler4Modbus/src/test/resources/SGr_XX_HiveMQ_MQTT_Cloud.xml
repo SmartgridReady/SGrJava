@@ -38,6 +38,8 @@
           <messageBrokerListElement>
             <host>{{host}}</host>
             <port>{{port}}</port>
+            <tls>true</tls>
+            <tlsVerifyCertificate>true</tlsVerifyCertificate>
           </messageBrokerListElement>
         </messageBrokerList>
         <messageBrokerAuthentication>

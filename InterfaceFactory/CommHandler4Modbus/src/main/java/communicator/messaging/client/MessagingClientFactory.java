@@ -46,6 +46,12 @@ public class MessagingClientFactory {
             clientProperties.put(MqttClientProperties.CLIENT_ID, interfaceDescription.getClientId());
         }
 
+        if (messageBroker.isSetTls()) {
+            clientProperties.put(MqttClientProperties.USE_SSL, String.valueOf(messageBroker.isTls()));
+        } else {
+            clientProperties.put(MqttClientProperties.USE_SSL, String.valueOf(true));
+        }
+
         return new Mqtt5MessagingClient(messageBroker.getHost(), Integer.parseInt(messageBroker.getPort()), clientProperties);
     }
 
@@ -55,7 +61,6 @@ public class MessagingClientFactory {
         if (authentication != null && authentication.getBasicAuthentication() != null) {
             properties.put(MqttClientProperties.BASIC_AUTH_USERNAME, Optional.ofNullable(authentication.getBasicAuthentication().getUsername()).orElse(""));
             properties.put(MqttClientProperties.BASIC_AUTH_PASSWORD, Optional.ofNullable(authentication.getBasicAuthentication().getPassword()).orElse(""));
-            properties.put(MqttClientProperties.USE_SSL, String.valueOf(true));
         }
 
         if(authentication != null && authentication.getClientCertificateAuthentication() != null) {

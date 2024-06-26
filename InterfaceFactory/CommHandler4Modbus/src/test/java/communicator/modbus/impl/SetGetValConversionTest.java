@@ -20,6 +20,8 @@ import com.smartgridready.ns.v0.ModbusFunctionalProfile;
 import com.smartgridready.ns.v0.ModbusFunctionalProfileList;
 import com.smartgridready.ns.v0.ModbusInterface;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
+import com.smartgridready.ns.v0.ModbusInterfaceSelection;
+import com.smartgridready.ns.v0.ModbusRtu;
 import com.smartgridready.ns.v0.RegisterType;
 import com.smartgridready.ns.v0.TimeSyncBlockNotification;
 import com.smartgridready.ns.v0.V0Factory;
@@ -902,8 +904,15 @@ class SetGetValConversionTest {
 
         ModbusInterfaceDescription mbDesc = V0Factory.eINSTANCE.createModbusInterfaceDescription();
 
+        ModbusRtu mbRtu = V0Factory.eINSTANCE.createModbusRtu();
+        mbRtu.setSlaveAddr(String.valueOf(1));
+        mbRtu.setPortName("COM123");    // required or interface is not recognized as serial RTU
+
         mbDesc.setFirstRegisterAddressIsOne(firstRegisterOne);
         mbDesc.setBitOrder(modbusConversionScheme);
+
+        mbDesc.setModbusInterfaceSelection(ModbusInterfaceSelection.RTU);
+        mbDesc.setModbusRtu(mbRtu);
 
         return mbDesc;
     }

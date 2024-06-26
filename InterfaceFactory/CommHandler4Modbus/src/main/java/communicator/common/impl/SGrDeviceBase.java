@@ -7,12 +7,14 @@ import com.smartgridready.ns.v0.DataPointBase;
 import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
-import com.smartgridready.ns.v0.GenericAttributeListProduct;
 import com.smartgridready.ns.v0.Language;
 import com.smartgridready.ns.v0.V0Factory;
+import com.smartgridready.ns.v0.GenericAttributeListProduct;
+
 import communicator.common.api.GenDeviceApi;
 import communicator.common.api.dto.ConfigurationValue;
 import communicator.common.api.dto.DataPoint;
+import communicator.common.api.dto.DataType;
 import communicator.common.api.dto.DeviceInfo;
 import communicator.common.api.dto.FunctionalProfile;
 import communicator.common.api.dto.GenericAttribute;
@@ -227,9 +229,10 @@ public abstract class SGrDeviceBase<
                         .map(genericAttributeProducts -> genericAttributeProducts.stream()
                                 .map(GenericAttribute::of)
                                 .collect(Collectors.toList()));
+
         return new DataPoint(
                 dataPoint.getDataPointName(),
-                SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(dataPoint.getDataType()).stream().filter(Objects::nonNull).findFirst().orElse("UNDEFINED"),
+                SGrGDPTypeToNameMapper.mapToDataTypeDto(dataPoint.getDataType()).stream().findFirst().orElse(new DataType("UNKNOWN", List.of())),
                 dataPoint.getUnit() != null ? dataPoint.getUnit() : null,
                 dataPoint.getDataDirection() != null ? dataPoint.getDataDirection() : null,
                 dataPoint.isSetMinimumValue() ? dataPoint.getMinimumValue() : null,

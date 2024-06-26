@@ -29,6 +29,7 @@ import communicator.common.runtime.GenDriverSocketException;
 public class ModbusReader {
    
     public static ModbusReaderResponse read(GenDriverAPI4Modbus drv4Modbus,
+                                            short unitIdentifier,
                                             RegisterType regType,
     										int regAddr,
                                             boolean isFirstRegAddrOne,
@@ -40,14 +41,27 @@ public class ModbusReader {
         if (isFirstRegAddrOne) {
             regAddr = regAddr - 1;
         }
+        // shared Modbus driver instances require exclusive access
         if (RegisterType.HOLD_REGISTER == regType) {
-            response.setMbregresp(drv4Modbus.ReadHoldingRegisters(regAddr, length));
+            synchronized(drv4Modbus) {
+                drv4Modbus.setUnitIdentifier(unitIdentifier);
+                response.setMbregresp(drv4Modbus.ReadHoldingRegisters(regAddr, length));
+            }
         } else if (RegisterType.INPUT_REGISTER == regType) {
-            response.setMbregresp(drv4Modbus.ReadInputRegisters(regAddr, length));
+            synchronized(drv4Modbus) {
+                drv4Modbus.setUnitIdentifier(unitIdentifier);
+                response.setMbregresp(drv4Modbus.ReadInputRegisters(regAddr, length));
+            }
         } else if (RegisterType.DISCRETE_INPUT == regType) {
-            response.setMbbitresp(drv4Modbus.ReadDiscreteInputs(regAddr, length));
+            synchronized(drv4Modbus) {
+                drv4Modbus.setUnitIdentifier(unitIdentifier);
+                response.setMbbitresp(drv4Modbus.ReadDiscreteInputs(regAddr, length));
+            }
         } else if (RegisterType.COIL == regType) {
-            response.setMbbitresp(drv4Modbus.ReadCoils(regAddr, length));
+            synchronized(drv4Modbus) {
+                drv4Modbus.setUnitIdentifier(unitIdentifier);
+                response.setMbbitresp(drv4Modbus.ReadCoils(regAddr, length));
+            }
         } else {
             throw new GenDriverException("ModbusReader, unhandled register type requested.");
         }

@@ -88,7 +88,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}
 
 	@Override
-	public void disconnect() {
+	public void disconnect() throws GenDriverException {
         // nothing
 	}
 	
