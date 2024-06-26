@@ -41,9 +41,13 @@ class SGrMessagingDeviceTest {
 
         try (SGrMessagingDevice msgDevice = createMessagingDevice()) {
 
+            msgDevice.connect();
+
             Value safeCurrent = msgDevice.getVal(FUNCIONAL_PROFILE, "SafeCurrent");
             LOG.info("Safe current read: {}", safeCurrent.getString());
             assertEquals("12 Amperes", safeCurrent.getString());
+
+            msgDevice.disconnect();
         }
     }
 
@@ -51,6 +55,8 @@ class SGrMessagingDeviceTest {
     void setValSynch() throws Exception {
 
         try (SGrMessagingDevice msgDevice = createMessagingDevice()) {
+
+            msgDevice.connect();
 
             // Will be satisfied on callback
             CompletableFuture<Either<Throwable, Value>> future = new CompletableFuture<>();
@@ -68,6 +74,8 @@ class SGrMessagingDeviceTest {
                 assertEquals(expected, result.get().getString());
                 return true;
             });
+
+            msgDevice.disconnect();
         }
     }
 
@@ -75,6 +83,8 @@ class SGrMessagingDeviceTest {
     void subscribe() throws Exception {
 
         try (SGrMessagingDevice msgDevice = createMessagingDevice()) {
+
+            msgDevice.connect();
 
             List<String> safeCurrents = new ArrayList<>();
             List<String> maxReceiveTimes = new ArrayList<>();
@@ -114,6 +124,8 @@ class SGrMessagingDeviceTest {
             Awaitility.await().until(() -> safeCurrents.size()==20 && maxReceiveTimes.size()==20);
             System.out.println(safeCurrents);
             System.out.println(maxReceiveTimes);
+
+            msgDevice.disconnect();
         }
     }
 
@@ -121,6 +133,8 @@ class SGrMessagingDeviceTest {
     void unsubscribe() throws Exception {
 
         try (SGrMessagingDevice msgDevice = createMessagingDevice()) {
+
+            msgDevice.connect();
 
             final SynchronousQueue<Value> resultsMin = new SynchronousQueue<>();
             final SynchronousQueue<Value> resultsMax = new SynchronousQueue<>();
@@ -156,13 +170,17 @@ class SGrMessagingDeviceTest {
 
             assertTrue(ex.getMessage().contains("No value available"));
             assertTrue(ex.getMessage().contains("Try calling subscribe()"));
+
+            msgDevice.disconnect();
         }
     }
 
     @Test
     void getValFromCache() throws Exception {
 
-        try (SGrMessagingDevice msgDevice = createMessagingDevice()){
+        try (SGrMessagingDevice msgDevice = createMessagingDevice()) {
+
+            msgDevice.connect();
 
             final SynchronousQueue<Value> resultsMin = new SynchronousQueue<>();
             final SynchronousQueue<Value> resultsMax = new SynchronousQueue<>();
@@ -200,6 +218,7 @@ class SGrMessagingDeviceTest {
             res = msgDevice.getVal(FUNCIONAL_PROFILE, CHARGING_CURRENT_MAX);
             assertEquals("100", res.getString());
 
+            msgDevice.disconnect();
         }
     }
 
@@ -221,7 +240,7 @@ class SGrMessagingDeviceTest {
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL deviceDescFile = classloader.getResource("SGr_XX_HiveMQ_MQTT_Cloud.xml");
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 
         Properties properties= new Properties();
         properties.put("host", BROKER_HOST);

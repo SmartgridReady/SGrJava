@@ -31,8 +31,8 @@ class DeviceDescriptionLoaderTest {
 		
 		files.forEach(desc -> assertDoesNotThrow(() -> {
 			LOG.info("Loading file: " + desc.file);
-			DeviceDescriptionLoader<?> loader = new DeviceDescriptionLoader<>();
-			DeviceFrame deviceDesc = (DeviceFrame) loader.load(folder, desc.file);
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
+			DeviceFrame deviceDesc = loader.load(folder, desc.file);
 			LOG.info("Loaded device" + deviceDesc.getDeviceName() + " - " + deviceDesc.getManufacturerName() + "\n");
 		}));
 	}
@@ -48,9 +48,9 @@ class DeviceDescriptionLoaderTest {
 		
 		files.forEach(desc -> assertDoesNotThrow(() -> {
 			LOG.info("Loading file: " + desc.file);
-			DeviceDescriptionLoader<?> loader = new DeviceDescriptionLoader<>();
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 			InputStream is = FileUtils.openInputStream(new File(folder + File.separator + desc.file));
-			DeviceFrame deviceDesc = (DeviceFrame) loader.load(desc.file, is);
+			DeviceFrame deviceDesc = loader.load(desc.file, is);
 			LOG.info("Loaded device" + deviceDesc.getDeviceName() + " - " + deviceDesc.getManufacturerName() + "\n");
 		}));
 	}
@@ -66,9 +66,9 @@ class DeviceDescriptionLoaderTest {
 		
 		files.forEach(desc -> assertDoesNotThrow(() -> {
 			LOG.info("Loading file: " + desc.file);
-			DeviceDescriptionLoader<?> loader = new DeviceDescriptionLoader<>();
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 			String xml = FileUtils.readFileToString(new File(folder + File.separator + desc.file), StandardCharsets.UTF_8);
-			DeviceFrame deviceDesc = (DeviceFrame) loader.load(xml);
+			DeviceFrame deviceDesc = loader.load(xml);
 			LOG.info("Loaded device" + deviceDesc.getDeviceName() + " - " + deviceDesc.getManufacturerName() + "\n");
 		}));
 	}

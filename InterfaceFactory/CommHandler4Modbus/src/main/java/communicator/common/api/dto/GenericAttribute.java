@@ -13,6 +13,7 @@ import utils.SGrGDPTypeToNameMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class GenericAttribute {
             List<GenericAttribute> children) {
         this.name = name;
         this.value = (dataType != null && value != null) ? Value.fromString(dataType, value) : null;
-        this.dataType = SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(dataType).stream().findFirst().orElse(null);
+        this.dataType = SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(dataType).stream().filter(Objects::nonNull).findFirst().orElse("UNDEFINED");
         this.unit = unit;
         this.children = children;
     }

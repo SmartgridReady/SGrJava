@@ -35,7 +35,7 @@ public class JsonMapperTestBase {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL deviceDescUrl = classloader.getResource(eiXmlFileName);
 
-        DeviceDescriptionLoader<DeviceFrame> loader = new DeviceDescriptionLoader<>();
+        DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
 
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheRestServiceClientFactory());

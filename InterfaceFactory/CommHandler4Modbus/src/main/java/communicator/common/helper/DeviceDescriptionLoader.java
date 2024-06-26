@@ -27,23 +27,17 @@ import java.util.Properties;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.smartgridready.ns.v0.DeviceFrame;
 
-public class DeviceDescriptionLoader<C> {
+
+public class DeviceDescriptionLoader {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DeviceDescriptionLoader.class);
 
-	private static ComposedAdapterFactory composedAdapterFactory;
+	private final XmlResourceLoader<DeviceFrame> resourceLoader = new XmlResourceLoader<>();
 
 	/**
 	 * Load an external device description from an EI-XML input stream.
@@ -52,7 +46,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param aDescriptionStream The external interface EI-XML input stream.
 	 * @return An instance of the device description for the given EI-XML
 	 */
-	public C load(String aDescriptionFile, InputStream aDescriptionStream) {
+	public DeviceFrame load(String aDescriptionFile, InputStream aDescriptionStream) {
 		return load(aDescriptionFile, aDescriptionStream, null);
 	}
 
@@ -63,7 +57,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param aDescriptionFile The external interface file name.
 	 * @return An instance of the device description for the given EI-XML
 	 */
-	public C load(String aBaseDir, String aDescriptionFile) {
+	public DeviceFrame load(String aBaseDir, String aDescriptionFile) {
 		return load(aBaseDir, aDescriptionFile, null);
 	}
 
@@ -73,7 +67,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param deviceDescXml The external interface file XML content.
 	 * @return An instance of the device description for the given EI-XML
 	 */
-	public C load(String deviceDescXml) {
+	public DeviceFrame load(String deviceDescXml) {
 		return load(deviceDescXml, (Properties) null);
 	}
 
@@ -95,7 +89,7 @@ public class DeviceDescriptionLoader<C> {
 	 * @param properties Key value pairs that replaces tags like {@code {{keyName}}} with the property {@code value}
 	 * @return An instance of the device description for the given EI-XML.
 	 */
-	public C load(String aBaseDir, String aDescriptionFile, Properties properties) {	
+	public DeviceFrame load(String aBaseDir, String aDescriptionFile, Properties properties) {	
 		try {
 			// using java.nio.Path would be better, but absolute paths seem to cause problems on Windows
 			String aDescriptionPath = aBaseDir + File.separator + aDescriptionFile;
@@ -103,7 +97,7 @@ public class DeviceDescriptionLoader<C> {
 			File deviceDescFile = new File(aDescriptionPath);
 			String deviceDescXml = FileUtils.readFileToString(deviceDescFile, StandardCharsets.UTF_8);
 			
-			return createResource(aDescriptionPath.toString(), deviceDescXml, properties);
+			return loadDeviceFrame(aDescriptionPath.toString(), deviceDescXml, properties);
 		} catch (Exception e) {
 			LOG.error("Error loading XML: ", e);
 			return null;
@@ -129,10 +123,10 @@ public class DeviceDescriptionLoader<C> {
 	 * @param properties Key value pairs that replaces tags like {@code {{keyName}}} with the property {@code value}
 	 * @return An instance of the device description for the given EI-XML.
 	 */
-	public C load(String aDescriptionFile, InputStream aDescriptionStream, Properties properties) {
+	public DeviceFrame load(String aDescriptionFile, InputStream aDescriptionStream, Properties properties) {
 		try {
 			String deviceDescXml = new String(aDescriptionStream.readAllBytes(), StandardCharsets.UTF_8);
-			return createResource(aDescriptionFile, deviceDescXml, properties);
+			return loadDeviceFrame(aDescriptionFile, deviceDescXml, properties);
 		} catch (Exception e) {
 			LOG.error("Error loading XML: ", e);
 			return null;
@@ -157,63 +151,56 @@ public class DeviceDescriptionLoader<C> {
 	 * @param properties Key value pairs that replaces tags like {@code {{keyName}}} with the property {@code value}
 	 * @return An instance of the device description for the given EI-XML.
 	 */
-	public C load(String deviceDescXml, Properties properties) {	
+	public DeviceFrame load(String deviceDescXml, Properties properties) {	
 		try {
 			// create random file name
 			String aDescriptionPath = UUID.randomUUID().toString() + ".xml";
-			return createResource(aDescriptionPath, deviceDescXml, properties);
+			return loadDeviceFrame(aDescriptionPath, deviceDescXml, properties);
 		} catch (Exception e) {
 			LOG.error("Error loading XML: ", e);
 			return null;
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private C createResource(String resourcePath, String deviceDescXml, Properties properties) throws IOException {
-		// XML namespace eNS_URI "http://www.smartgridready.com/ns/V0/" map to "com.smartgridready.ns.v0.V0Package" classes.
-		EPackage.Registry.INSTANCE.put(com.smartgridready.ns.v0.V0Package.eNS_URI, com.smartgridready.ns.v0.V0Package.eINSTANCE);
-
-		// Use XMIResourceFactory to parse *.xml files.
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
-			.put("xml", new XMIResourceFactoryImpl());
-
-		AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(
-				getAdapterFactory(), 
-				new BasicCommandStack());
-
-		domain.getResourceSet().setPackageRegistry(EPackage.Registry.INSTANCE);
-
-		Resource resource = domain.createResource(resourcePath);
+	private DeviceFrame loadDeviceFrame(String resourcePath, String deviceDescXml, Properties properties) throws IOException {
+		// get properties from intermediate description
+		DeviceFrame intermediateDeviceDescription = resourceLoader.load(resourcePath, deviceDescXml, false);
+		Properties finalProperties = getFinalProperties(intermediateDeviceDescription, properties);
 
 		// replace property placeholders
-		deviceDescXml = replacePropertyPlaceholders(deviceDescXml, properties);
+		deviceDescXml = replacePropertyPlaceholders(deviceDescXml, finalProperties);
 
-		InputStream is = IOUtils.toInputStream(deviceDescXml,  StandardCharsets.UTF_8);
-		resource.load(is, null);
+		return resourceLoader.load(resourcePath, deviceDescXml, true);		
+	}
 
-		return (C) resource.getAllContents().next();		
+	private static Properties getFinalProperties(DeviceFrame deviceDescription, Properties properties) {
+		final Properties finalProperties = new Properties();
+		if (null != deviceDescription.getConfigurationList()) {
+			deviceDescription.getConfigurationList().getConfigurationListElement().forEach(c -> {
+				String value = (null != c.getDefaultValue()) ? c.getDefaultValue() : "";
+				finalProperties.setProperty(c.getName(), value);
+				LOG.debug("adding default property '{}':'{}'", c.getName(), value);
+			});
+		}
+
+		if (properties != null) {
+			properties.entrySet().forEach(entry -> {
+				finalProperties.setProperty((String) entry.getKey(), (String) entry.getValue());
+				LOG.debug("overriding property '{}':'{}'", entry.getKey(), entry.getValue());
+			});
+		}
+
+		return finalProperties;
 	}
 	
-	private String replacePropertyPlaceholders(String deviceDescriptionXml, Properties properties) {
+	private static String replacePropertyPlaceholders(String deviceDescriptionXml, Properties properties) {
 		String convertedXml = deviceDescriptionXml;
 		if (properties != null) {
 			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
 				convertedXml = convertedXml.replaceAll("\\{\\{" + entry.getKey() + "\\}\\}", (String)entry.getValue());
+				LOG.debug("replaced property '{}':'{}'", entry.getKey(), entry.getValue());
 			}
 		}
 		return convertedXml;
-	}
-
-	/**
-	 * Return an ComposedAdapterFactory for all registered models
-	 * 
-	 * @return a ComposedAdapterFactory
-	 */
-	protected static AdapterFactory getAdapterFactory() {
-		if (composedAdapterFactory == null) {
-			composedAdapterFactory = new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		}
-		return composedAdapterFactory;
 	}
 }
