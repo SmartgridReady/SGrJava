@@ -10,7 +10,17 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java'
     id 'maven-publish'
+    id 'com.palantir.git-version' version '3.1.0'
 }
+
+def versionDetails = versionDetails()
+
+def snapshot =
+        (versionDetails.commitDistance > 0
+                || ! versionDetails.isCleanTag
+                ||  "master" != versionDetails.branchName) ? "-SNAPSHOT" : ""
+
+version = versionDetails.lastTag + snapshot
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
