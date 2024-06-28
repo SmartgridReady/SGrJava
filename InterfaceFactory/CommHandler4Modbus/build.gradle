@@ -142,7 +142,6 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'ch.smartgridready'
             artifactId = 'commhandler4modbus'
-            version = '1.0.1'
 
             from components.java
         }
