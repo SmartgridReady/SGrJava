@@ -85,14 +85,14 @@ public class IBTlabLoopTester {
 	// TestBox
 	private static boolean  devWagoMeterTestIsOn = true; 
 	private static boolean  devOMCCIWallboxTestIsOn = true; 
-	// !! Schalter in Box umlegen f�r Test !!
-	private static boolean  devTB_ABBMeterTestIsOn = true;
+	// !! Schalter in Box umlegen fuer Test !!
+	private static boolean  devTB_ABBMeterTestIsOn = false;
 
 	// Set the mockModbusDriver to new GenDriverAPI4ModbusRTUMock() to mock the real devices.
 	// private static GenDriverAPI4Modbus  mockModbusDriver = new GenDriverAPI4ModbusRTUMock();
 	private static GenDriverAPI4Modbus mockModbusDriver = null;
 
-	@SuppressWarnings("java:S2925")
+	//@SuppressWarnings("java:S2925")
 	public static void main( String argv[] ) {	
 		
 
@@ -121,7 +121,7 @@ public class IBTlabLoopTester {
 
 			// TestBox
 			if (devTB_ABBMeterTestIsOn)  {
-				LOG.info(" -init TestBox: devTB_ABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initTB_ABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
+				LOG.info(" -init TestBox: devTB_ABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initTB_ABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeter_V0.2.1.xml");
 			}
 			if (devWagoMeterTestIsOn) {
 				LOG.info(" -init TestBox: devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ " ");

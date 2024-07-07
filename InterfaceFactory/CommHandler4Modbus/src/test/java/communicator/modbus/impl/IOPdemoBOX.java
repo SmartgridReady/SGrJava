@@ -87,8 +87,8 @@ public class IOPdemoBOX {
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = new GenDriverAPI4ModbusRTU();
-			//mbRTU.initTrspService("COM4", 9600, Parity.NONE);	// for mobile RTU Interface		
-			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
+			mbRTU.initTrspService("COM4", 9600, Parity.NONE);	// for mobile RTU Interface		
+			//mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
  
 
 			// TestBox
