@@ -50,7 +50,7 @@ configurations {
 }
 
 dependencies {
-    implementation project(':SGrSpecification')
+    implementation group: 'com.smartgridready', name: 'sgr-specification', version: '1.1.0-SNAPSHOT'
 
     implementation group: 'ch.smartgridready', name: 'sgr-driver-api', version: '1.1.0'
     implementation group: 'ch.smartgridready', name: 'easymodbus', version: '1.1.0'
@@ -103,24 +103,7 @@ test {
 }
 
 jar {
-
-    from sourceSets.main.allSource
-
-    duplicatesStrategy=DuplicatesStrategy.EXCLUDE
-    exclude('**/ECLIPSE_.SF', '**/ECLIPSE_.DSA', '**/ECLIPSE_.RSA')
     exclude('log4j2.xml')
-
-    // Remove this after project cleanup
-    exclude('*.lnk', '.project')
-
-    from {
-        // configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
-        configurations.extraLibs.collect {
-            if(it.name.matches("SGrSpecification(.*).jar")) {
-                zipTree(it)
-            }
-        }
-    }
 }
 
 tasks."compileJava".dependsOn ':SGrSpecification:publishToMavenLocal'
@@ -140,8 +123,8 @@ publishing {
 
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'ch.smartgridready'
-            artifactId = 'commhandler4modbus'
+            groupId = 'com.smartgridready'
+            artifactId = 'sgr-commhandler'
             version = rootProject.version
 
             from components.java
@@ -158,7 +141,7 @@ def integrationTestTask = tasks.register('integrationTest', Test) {
     testClassesDirs = integrationTest.output.classesDirs
     classpath = configurations[integrationTest.runtimeClasspathConfigurationName] + integrationTest.output
 
-    setTestNameIncludePatterns(['ch.smartgridready.communicator.modbus.integrationtest.*'])
+    setTestNameIncludePatterns(['com.smartgridready.communicator.modbus.integrationtest.*'])
 
     shouldRunAfter(tasks.named('build'))
 }

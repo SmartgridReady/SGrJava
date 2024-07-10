@@ -66,3 +66,28 @@ task model2Java(type: Exec) {
     }
 }
 
+
+publishing {
+
+    repositories {
+        maven {
+            name = "Nexus"
+            url = uri("https://nexus.library.smartgridready.ch/repository/maven-releases/")
+            credentials {
+                username = findProperty("nexus.username")
+                password = findProperty("nexus.password")
+            }
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.smartgridready'
+            artifactId = 'sgr-specification'
+            version = rootProject.version
+
+            from components.java
+        }
+    }
+}
+
