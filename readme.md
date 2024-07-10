@@ -9,9 +9,10 @@
 
 ## Summary
 SGrJava is home for the SmartgridReady core components, the communication handler implementations.
-Current list of communication handlers:
-- CommHandler4Modbus
-- CommHandler4Rest (planned)
+Current list of interfaces supported by the communication handler:
+- Modbus
+- REST API's
+- MQTT
 
 A communication handler maps the SmartgridReady generic interface to a device/product specific interface. The interface mapping is defined within an external interface description in XML. (see https://github.com/SmartgridReady/SGrSpecifications/tree/master/XMLInstances/ExtInterfaces)
 
@@ -20,15 +21,15 @@ The external interface description XML describes for every functionalprofile-dat
 ## Description
 
 SGrJava conists of two subprojects:
-- CommHandler4Modbus
-- emfEI4Modbus
+- CommHandler
+- ExternalInterfaceDescription
 
-### Commhandler4Modbus
+### Commhandler
 Commhandler4Modbus is the realization of the commmunication-handler for modbus RTU and TCP. It depends in emfEI4Modbus, that provides the classes needed to load XML device descriptions. The basic implementation class is ```SGrDevice```, that implements all the generic interface methods to access an SGr compliant device.
 
 
-### emfEI4Modbus
-emfEI4Modbus provides the Java-XML binding of XML device descriptions. The classes can be generated from an XML-Schema that provides the model for the device descriptions. Eclipse EMF (Eclipse Modeling Framework) tools are then used to generate the generate Java classes. For details see [Generate emfEI4Modbus classes](#generate-emfei4modbus-classes-afte-xml-schema-updates).
+### ExternalInterfaceDescription
+ExternalInterfaceDescription provides the Java-XML binding of XML device descriptions. The classes can be generated from an XML-Schema that provides the model for the device descriptions. Eclipse EMF (Eclipse Modeling Framework) tools are then used to generate the generate Java classes. For details see [Generate emfEI4Modbus classes](#generate-emfei4modbus-classes-afte-xml-schema-updates).
 
 
 ## Build and publish for development

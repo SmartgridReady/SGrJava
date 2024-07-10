@@ -1,4 +1,4 @@
-# CommHandler4Modbus - Blocktransfer Implementation
+# CommHandler Modbus - Blocktransfer Implementation
 
 ## General description
 Modbus blocktransfer is a feature that improves the performance of the modbus communication.
@@ -49,7 +49,7 @@ Adding the datapoints by adding a <b>sgr:blockCashName</b> element to the <b>sgr
 ## Using within the Communicator
 The blocktransfer feature is completely transparent to the commhandler client. The client calls
 'getVal()', 'getValByGDPType()' etc. as before. The caching mechanism operates in the background.
-If you enable the DEBUG logs for the CommHandler4Modbus you can watch the cache being involved:
+If you enable the DEBUG logs for the CommHandler you can watch the cache being involved:
 ```
 // Call Garo-Wallbox
 fVal1 = devGaroWallbox.getValByGDPType("CurrentAC", "CurrentACL1").getFloat32();
