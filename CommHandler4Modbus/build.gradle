@@ -50,7 +50,7 @@ configurations {
 }
 
 dependencies {
-    implementation project(':InterfaceFactory:emfEI4Modbus')
+    implementation project(':emfEI4Modbus')
 
     implementation group: 'ch.smartgridready', name: 'sgr-driver-api', version: '1.1.0'
     implementation group: 'ch.smartgridready', name: 'easymodbus', version: '1.1.0'
@@ -123,7 +123,7 @@ jar {
     }
 }
 
-tasks."compileJava".dependsOn ':InterfaceFactory:emfEI4Modbus:publishToMavenLocal'
+tasks."compileJava".dependsOn ':emfEI4Modbus:publishToMavenLocal'
 
 publishing {
 
