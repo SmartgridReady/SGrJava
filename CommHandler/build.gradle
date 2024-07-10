@@ -93,7 +93,7 @@ dependencies {
 test {
     useJUnitPlatform()
     filter {
-        excludeTestsMatching("communicator.modbus.integrationtest.*")
+        excludeTestsMatching("com.smartgridready.communicator.modbus.integrationtest.*")
     }
     // this workaround is required to run some tests under JDKs > 17.
     // otherwise EqualsBuilder.reflectionEquals(...) may fail due to inaccessible fields, e.g. serialVersionUID.
@@ -158,7 +158,7 @@ def integrationTestTask = tasks.register('integrationTest', Test) {
     testClassesDirs = integrationTest.output.classesDirs
     classpath = configurations[integrationTest.runtimeClasspathConfigurationName] + integrationTest.output
 
-    setTestNameIncludePatterns(['communicator.modbus.integrationtest.*'])
+    setTestNameIncludePatterns(['ch.smartgridready.communicator.modbus.integrationtest.*'])
 
     shouldRunAfter(tasks.named('build'))
 }
