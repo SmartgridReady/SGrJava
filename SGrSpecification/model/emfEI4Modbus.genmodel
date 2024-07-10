@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="C:/emfEI4Modbus/./src/main/java/." modelPluginID="emfEI4Modbus"
+    modelName="EmfEI4Modbus" importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0"
+    copyrightFields="false">
+  <foreignModel>../../../SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd</foreignModel>
+  <genPackages prefix="V0" basePackage="com.smartgridready.ns" resource="XML" disposableProviderFactory="true"
+      loadInitialization="true" literalsInterface="false" ecorePackage="v0.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//BaudRate">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_300"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_600"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_1200"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_2400"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_4800"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_5600"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_9600"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_14400"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_19200"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_38400"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_57600"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_115200"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_128000"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_230400"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BaudRate/_256000"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//BitOrder">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BitOrder/BigEndian"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BitOrder/ChangeDWordOrder"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BitOrder/ChangeWordOrder"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BitOrder/ChangeByteOrder"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//BitOrder/ChangeBitOrder"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//ByteLength">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ByteLength/_7"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ByteLength/_8"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//CommunicatorCategory">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CommunicatorCategory/SmartHome"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CommunicatorCategory/LightControl"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CommunicatorCategory/PowerBalancer"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//CommunicatorCategory/AccountingSystem"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//DataDirectionFunctionalProfile">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DataDirectionFunctionalProfile/R"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DataDirectionFunctionalProfile/W"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DataDirectionFunctionalProfile/RW"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//DataDirectionProduct">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DataDirectionProduct/C"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DataDirectionProduct/R"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DataDirectionProduct/W"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DataDirectionProduct/RW"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DataDirectionProduct/RWP"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//DeviceCategory">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Battery"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Compressor"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/DeviceInformation"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/DHWCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/DHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Dishwasher"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Dryer"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/ElectricalImmersionHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Fan"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/GasHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Generic"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HeatingBufferStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HeatingCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HeatingObject"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HeatingZone"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HeatPumpAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HeatSinkCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HeatSourceCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HeatSourceUnit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HVACController"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/HVACRoom"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/InstantDHWHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Inverter"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/OilHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Pump"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/RefrigerantCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/SmartEnergyAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/SolarDHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/SolarThermalCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/SubMeterElectricity"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/TemperatureSensor"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Washer"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/BatterySystem"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/ElectricityGenerationSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/ElectricityStorageSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/SGCP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Household"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/PVSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/EV"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/EVSE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/ChargingStation"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/Actuator"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//DeviceCategory/CEM"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//EmptyValue">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//EmptyValue/_0"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//FunctionalProfileCategory">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Battery"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Compressor"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/DeviceInformation"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/DHWCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/DHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Dishwasher"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Dryer"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/ElectricalImmersionHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Fan"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/GasHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Metering"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HeatingBufferStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HeatingCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HeatingObject"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HeatingZone"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HeatPumpControl"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HeatSinkCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HeatSourceCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HeatSourceUnit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HVACController"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/HVACRoom"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/InstantDHWHeater"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Inverter"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/OilHeatingAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Pump"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/RefrigerantCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/SmartEnergyAppliance"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/SolarDHWStorage"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/SolarThermalCircuit"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/SubMeterElectricity"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/TemperatureSensor"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Washer"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/BatterySystem"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/ElectricityGenerationSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/ElectricityStorageSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/SGCP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Household"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/PVSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/EV"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/EVSE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/ChargingOutlet"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/CEM"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Actuator"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Sensor"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/Controller"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/EnvCondition"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/FlexBuildingCampus"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/DynamicTariff"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//FunctionalProfileCategory/R50"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//HovType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HovType/tbd"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//HttpMethod">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/GET"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/POST"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/PUT"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/PATCH"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//HttpMethod/DELETE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//Language">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Language/de"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Language/en"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Language/fr"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Language/it"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//LevelOfOperation">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/m"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_1"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_2"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_3"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_4"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_5"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_6"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_1m"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_2m"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_3m"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_4m"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_5m"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//LevelOfOperation/_6m"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//MasterFunctionsSupported">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/Primitives"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReadDiscreteInputs"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReadCoils"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/WriteSingleCoil"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/WriteMultipleCoils"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReadInputRegisters"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReadMultipleHoldingRegisters"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/WriteSingleHoldingRegister"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/WriteMultipleHoldingRegisters"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReadWriteMultipleRegisters"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/MaskWriteRegister"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReadFIFOQueue"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReadFileRecord"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/WriteFileRecord"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReadExceptionStatus"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/Diagnostic"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/GetComEventCounter"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/GetComEventLog"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReportSlaveID"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MasterFunctionsSupported/ReadDeviceIdentification"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//MeasuredValueSource">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MeasuredValueSource/measuredValue"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MeasuredValueSource/calculatedValue"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MeasuredValueSource/empiricalValue"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//MeasuredValueType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MeasuredValueType/value"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MeasuredValueType/min"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MeasuredValueType/max"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MeasuredValueType/average"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MeasuredValueType/stdDev"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//MessagingPlatformType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MessagingPlatformType/MQTT5"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//MessagingPlatformType/Kafka"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//ModbusExceptionCode">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/IllegalFunction"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/IllegalAddress"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/IllegalDataValue"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/SlaveFailure"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/ACK"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/SlaveBusy"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/NACK"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/MemoryParityErr"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/GtwyPathErr"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusExceptionCode/GtwyTargetErr"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//ModbusInterfaceSelection">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusInterfaceSelection/RTU"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusInterfaceSelection/TCPIP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusInterfaceSelection/UDPIP"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusInterfaceSelection/RTUASCII"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusInterfaceSelection/TCPIPASCII"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusInterfaceSelection/UDPIPASCII"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//ModbusLayer6Deviation">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusLayer6Deviation/_2RegBase1000L2H"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ModbusLayer6Deviation/_2RegBase1000H2L"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//ObligLVlType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ObligLVlType/OLSHALL"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ObligLVlType/OLSHOULD"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ObligLVlType/OLMAY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//Parity">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Parity/EVEN"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Parity/ODD"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Parity/NONE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//PowerSource">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//PowerSource/unknown"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//PowerSource/mains1Phase"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//PowerSource/mains3Phase"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//PowerSource/mains1PhaseMains3Phase"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//PowerSource/battery"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//PowerSource/dc"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//PresenceLevel">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//PresenceLevel/M"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//PresenceLevel/R"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//PresenceLevel/O"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//RegisterType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RegisterType/Coil"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RegisterType/DiscreteInput"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RegisterType/InputRegister"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RegisterType/HoldRegister"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//ReleaseState">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ReleaseState/Draft"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ReleaseState/Review"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ReleaseState/Published"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ReleaseState/Revoked"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//ResponseQueryType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ResponseQueryType/JMESPathExpression"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ResponseQueryType/XPathExpression"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ResponseQueryType/RegularExpression"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//ResponseQueryType/JMESPathMapping"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//RestApiAuthenticationMethod">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiAuthenticationMethod/NoSecurityScheme"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiAuthenticationMethod/BearerSecurityScheme"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiAuthenticationMethod/ApiKeySecurityScheme"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiAuthenticationMethod/BasicSecurityScheme"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiAuthenticationMethod/DigestSecurityScheme"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiAuthenticationMethod/PskSecurityScheme"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiAuthenticationMethod/OAuth2SecurityScheme"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiAuthenticationMethod/HawkSecurityScheme"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiAuthenticationMethod/AwsSignatureSecurityScheme"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//RestApiDataType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiDataType/null"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiDataType/JSONNumber"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiDataType/JSONString"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiDataType/JSONBoolean"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiDataType/JSONObject"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiDataType/JSONArray"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//RestApiInterfaceSelection">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiInterfaceSelection/TCPV4"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiInterfaceSelection/TCPV6"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//RestApiInterfaceSelection/URI"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//SGCPServiceType">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGCPServiceType/ATNetServiceable"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGCPServiceType/ATSysServiceable"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//SGCPServiceType/ATEnerServiceable"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//StopBitLength">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StopBitLength/_1"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StopBitLength/_15"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//StopBitLength/_2"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="v0.ecore#//Units">
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/AMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/BARS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/CUBICMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/CUBICMETERSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/DEGREESCELSIUS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/DEGREESKELVIN"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/DEGREESPHASE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/HERTZ"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/HOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/JOULES"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/KILOGRAMS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/KILOVOLTAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/KILOVOLTAMPEREHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/KILOVOLTAMPERESREACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/KILOVOLTAMPERESREACTIVEHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/KILOWATTHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/KILOWATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/MEGAWATTHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/METERS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/METERSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/METERSPERSECONDPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/MINUTES"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/NOUNITS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/OHMS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/PARTSPERMILLION"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/PASCALS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/PERHOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/PERCENT"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/PERCENTRELATIVEHUMIDITY"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/POWERFACTOR"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/RADIANS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/RADIANSPERSECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/REVOLUTIONSPERMINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/SECONDS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/SQUAREMETERS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/VOLTAMPERES"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/VOLTAMPERESREACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/VOLTS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/WATTHOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/WATTS"/>
+      <genEnumLiterals ecoreEnumLiteral="v0.ecore#//Units/NONE"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="v0.ecore#//BaudRateObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//BaudRateParameter"/>
+    <genDataTypes ecoreDataType="v0.ecore#//BitOrderObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//BitRank"/>
+    <genDataTypes ecoreDataType="v0.ecore#//BitRankObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ByteLengthObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ByteLengthParameter"/>
+    <genDataTypes ecoreDataType="v0.ecore#//CommunicatorCategoryObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//DataDirectionFunctionalProfileObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//DataDirectionProductObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//DeviceCategoryObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//EmptyOrDecimal"/>
+    <genDataTypes ecoreDataType="v0.ecore#//EmptyOrDouble"/>
+    <genDataTypes ecoreDataType="v0.ecore#//EmptyOrFloat"/>
+    <genDataTypes ecoreDataType="v0.ecore#//EmptyOrUnsignedLong"/>
+    <genDataTypes ecoreDataType="v0.ecore#//EmptyValueObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//FunctionalProfileCategoryObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//HovTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//HttpMethodObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//LanguageObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//LevelOfOperationObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//MasterFunctionsSupportedObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//MeasuredValueSourceObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//MeasuredValueTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//MessagingPlatformTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ModbusExceptionCodeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ModbusInterfaceSelectionObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ModbusIpAddress"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ModbusLayer6DeviationObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ObligLVlTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ParityObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ParityParameter"/>
+    <genDataTypes ecoreDataType="v0.ecore#//PowerSourceObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//PrecisionPercent"/>
+    <genDataTypes ecoreDataType="v0.ecore#//PresenceLevelObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//RegisterTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ReleaseStateObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//ResponseQueryTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//RestApiAuthenticationMethodObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//RestApiDataTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//RestApiInterfaceSelectionObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//SGCPServiceTypeObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//SpecificationOwnerIdentification"/>
+    <genDataTypes ecoreDataType="v0.ecore#//StopBitLengthObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//StopBitLengthParameter"/>
+    <genDataTypes ecoreDataType="v0.ecore#//TextElementType"/>
+    <genDataTypes ecoreDataType="v0.ecore#//UnitsObject"/>
+    <genDataTypes ecoreDataType="v0.ecore#//UnsignedIntParameter"/>
+    <genClasses ecoreClass="v0.ecore#//AccessProtectionEnabled">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AccessProtectionEnabled/modbusExceptionCode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AccessProtectionEnabled/isEnabled"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//AlternativeNames">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AlternativeNames/sLV1Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AlternativeNames/workName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AlternativeNames/manufName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AlternativeNames/iec61850Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AlternativeNames/sarefName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AlternativeNames/eebusName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AlternativeNames/sunSpecName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AlternativeNames/hpBwpName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//AlternativeNames/en17609Name"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//BitmapEntryFunctionalProfile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//BitmapEntryFunctionalProfile/literal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//BitmapEntryFunctionalProfile/description"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//BitmapEntryProduct">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//BitmapEntryProduct/literal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//BitmapEntryProduct/hexMask"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//BitmapEntryProduct/description"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//BitmapFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//BitmapFunctionalProfile/bitmapEntry"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//BitmapProduct">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//BitmapProduct/bitmapEntry"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ChangeLog">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ChangeLog/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ChangeLog/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ChangeLog/author"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ChangeLog/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//CommunicatorBase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorBase/communicatorName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorBase/manufacturerName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//CommunicatorBase/releaseNotes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorBase/specificationOwnerIdentification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//CommunicatorBase/communicatorInformation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//CommunicatorBase/genericAttributeList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//CommunicatorFrame">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//CommunicatorFrame/functionalProfileListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//CommunicatorFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//CommunicatorFunctionalProfile/genericAttributeList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//CommunicatorFunctionalProfile/dataPointListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//CommunicatorInformation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//CommunicatorInformation/alternativeNames"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//CommunicatorInformation/legibleDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//CommunicatorInformation/supportedTransportServices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorInformation/communicatorCategory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorInformation/versionNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorInformation/brandName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorInformation/manufacturerSpecificationIdentification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorInformation/manufacturerLabel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorInformation/generalRemarks"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorInformation/levelOfOperation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorInformation/isLocalControl"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//CommunicatorTransportService">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorTransportService/modbus"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//CommunicatorTransportService/rest"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ConfigurationDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ConfigurationDescription/label"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ConfigurationList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ConfigurationList/configurationListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ConfigurationListElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ConfigurationListElement/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ConfigurationListElement/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ConfigurationListElement/defaultValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ConfigurationListElement/configurationDescription"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ContactFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ContactFunctionalProfile/dataPointList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ContactFunctionalProfileList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ContactFunctionalProfileList/functionalProfileListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ContactInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ContactInterface/contactInterfaceDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ContactInterface/functionalProfileList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ContactInterfaceDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ContactInterfaceDescription/numberOfContacts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ContactInterfaceDescription/contactStabilisationTimeMs"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ContactsDataPointList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ContactsDataPointList/dataPointListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//DataPointBase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointBase/dataPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointBase/genericAttributeList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//DataPointDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointDescription/dataPointName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointDescription/dataDirection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointDescription/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointDescription/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointDescription/unit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointDescription/arrayLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointDescription/minimumValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointDescription/maximumValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointDescription/unitConversionMultiplicator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointDescription/alternativeNames"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointDescription/legibleDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointDescription/programmerHints"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//DataPointType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointType/dataPointName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointType/dataDirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointType/presenceLevel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointType/requestParams"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointType/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointType/unit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataPointType/arrayLength"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointType/alternativeNames"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataPointType/legibleDescription"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//DataTypeFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/enum"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/bitmap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/json"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/boolean"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/int8"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/int16"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/int32"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/int64"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/int8U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/int16U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/int32U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/int64U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/float32"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/float64"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/dateTime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeFunctionalProfile/string"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//DataTypeProduct">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/enum"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/bitmap"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DataTypeProduct/json"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/boolean"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/int8"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/int16"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/int32"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/int64"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/int8U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/int16U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/int32U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/int64U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/float32"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/float64"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/dateTime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DataTypeProduct/string"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//DeviceFrame">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceFrame/deviceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceFrame/manufacturerName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceFrame/specificationOwnerIdentification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DeviceFrame/releaseNotes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DeviceFrame/deviceInformation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DeviceFrame/configurationList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DeviceFrame/genericAttributeList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DeviceFrame/interfaceList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//DeviceInformation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DeviceInformation/alternativeNames"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DeviceInformation/legibleDescription"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/deviceCategory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/isLocalControl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/softwareRevision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/hardwareRevision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/brandName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/powerSource"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/nominalPower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/manufacturerSpecificationIdentification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/manufacturerLabel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/generalRemarks"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DeviceInformation/levelOfOperation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DeviceInformation/versionNumber"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DeviceInformation/programmerHints"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/communicatorFrame"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/deviceFrame"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//DocumentRoot/functionalProfileFrame"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//EmptyType"/>
+    <genClasses ecoreClass="v0.ecore#//Enum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//Enum/enumEntry"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//Enum/hexMask"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//EnumEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumEntry/literal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumEntry/ordinal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumEntry/description"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//EnumEntryProductRecord">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumEntryProductRecord/literal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumEntryProductRecord/ordinal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumEntryProductRecord/description"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//EnumEntryRecordFunctionalProfile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumEntryRecordFunctionalProfile/literal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumEntryRecordFunctionalProfile/description"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//EnumMapFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//EnumMapFunctionalProfile/enumEntry"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumMapFunctionalProfile/hexMask"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//EnumMapProduct">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//EnumMapProduct/enumEntry"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//EnumMapProduct/hexMask"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//FunctionalProfileBase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileBase/functionalProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileBase/genericAttributeList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//FunctionalProfileDataPoint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileDataPoint/dataPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileDataPoint/genericAttributeList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//FunctionalProfileDataPointList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileDataPointList/dataPointListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//FunctionalProfileDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//FunctionalProfileDescription/functionalProfileName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileDescription/functionalProfileIdentification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileDescription/alternativeNames"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileDescription/legibleDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileDescription/programmerHints"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//FunctionalProfileFrameType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileFrameType/releaseNotes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileFrameType/functionalProfile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileFrameType/genericAttributeList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileFrameType/dataPointList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//FunctionalProfileIdentification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//FunctionalProfileIdentification/specificationOwnerIdentification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//FunctionalProfileIdentification/functionalProfileCategory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//FunctionalProfileIdentification/functionalProfileType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//FunctionalProfileIdentification/levelOfOperation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileIdentification/versionNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//FunctionalProfileType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/functionalProfileIdentification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/alternativeNames"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//FunctionalProfileType/legibleDescription"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericAttributeFunctionalProfile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//GenericAttributeFunctionalProfile/name"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericAttributeListFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericAttributeListFunctionalProfile/genericAttributeListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericAttributeListProduct">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericAttributeListProduct/genericAttributeListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericAttributeListProductEnd">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericAttributeListProductEnd/genericAttributeListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericAttributeProduct">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//GenericAttributeProduct/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericAttributeProduct/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//GenericAttributeProduct/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//GenericAttributeProduct/unit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericAttributeProduct/genericAttributeList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericAttributeProductEnd">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//GenericAttributeProductEnd/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericAttributeProductEnd/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//GenericAttributeProductEnd/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//GenericAttributeProductEnd/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericDataPointList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericDataPointList/dataPointListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericFunctionalProfile/dataPointList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericFunctionalProfileList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericFunctionalProfileList/functionalProfileListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//GenericInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//GenericInterface/functionalProfileList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//HeaderEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//HeaderEntry/headerName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//HeaderEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//HeaderList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//HeaderList/header"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//InMessage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//InMessage/topic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//InMessage/filter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//InMessage/responseQuery"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//InterfaceList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//InterfaceList/modbusInterface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//InterfaceList/restApiInterface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//InterfaceList/contactInterface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//InterfaceList/genericInterface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//InterfaceList/messagingInterface"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//JMESPathFilterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JMESPathFilterType/query"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JMESPathFilterType/matchesRegex"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//JMESPathMapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//JMESPathMapping/mapping"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//JMESPathMappingRecord">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JMESPathMappingRecord/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JMESPathMappingRecord/to"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JMESPathMappingRecord/name"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//JSonArrayOutputFunctionalProfile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JSonArrayOutputFunctionalProfile/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute v0.ecore#//JSonArrayOutputFunctionalProfile/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference v0.ecore#//JSonArrayOutputFunctionalProfile/array"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference v0.ecore#//JSonArrayOutputFunctionalProfile/elem"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//JSonElemFunctionalProfile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JSonElemFunctionalProfile/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JSonElemFunctionalProfile/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JSonElemFunctionalProfile/string"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//JSonElemFunctionalProfile/number"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//JSonOutputFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute v0.ecore#//JSonOutputFunctionalProfile/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference v0.ecore#//JSonOutputFunctionalProfile/array"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference v0.ecore#//JSonOutputFunctionalProfile/elem"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//LegibleDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//LegibleDescription/textElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//LegibleDescription/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//LegibleDescription/uri"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MasterFunctionsSupportedList">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MasterFunctionsSupportedList/masterFunctionsSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessageBrokerAuthentication">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessageBrokerAuthentication/basicAuthentication"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessageBrokerAuthentication/clientCertificateAuthentication"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessageBrokerAuthenticationBasic">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerAuthenticationBasic/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerAuthenticationBasic/password"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessageBrokerAuthenticationClientCertificate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerAuthenticationClientCertificate/keystorePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerAuthenticationClientCertificate/keystorePassword"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerAuthenticationClientCertificate/truststorePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerAuthenticationClientCertificate/truststorePassword"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessageBrokerList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessageBrokerList/messageBrokerListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessageBrokerListElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerListElement/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerListElement/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerListElement/tls"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageBrokerListElement/tlsVerifyCertificate"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessageDataPointList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessageDataPointList/dataPointListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessageFilter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessageFilter/plaintextFilter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessageFilter/jmespathFilter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessageFilter/xpapathFilter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessageFilter/regexFilter"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessageQueryType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageQueryType/queryType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessageQueryType/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessagingDataPoint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingDataPoint/messagingDataPointConfiguration"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessagingDataPointConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingDataPointConfiguration/messagingDataType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingDataPointConfiguration/readCmdMessage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingDataPointConfiguration/writeCmdMessage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingDataPointConfiguration/inMessage"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessagingDataType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingDataType/number"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingDataType/string"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingDataType/jSONArray"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingDataType/jSONObject"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessagingFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingFunctionalProfile/dataPointList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessagingFunctionalProfileList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingFunctionalProfileList/functionalProfileListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessagingInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingInterface/messagingInterfaceDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingInterface/functionalProfileList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//MessagingInterfaceDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessagingInterfaceDescription/platform"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingInterfaceDescription/messageBrokerList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//MessagingInterfaceDescription/clientId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//MessagingInterfaceDescription/messageBrokerAuthentication"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusAttributes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusAttributes/scalingFactor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusAttributes/stepByIncrement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusAttributes/sunssf"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusAttributes/pollingLatencyMs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusAttributes/accessProtection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusAttributes/layer6Deviation"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusBoolean">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusBoolean/trueValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusBoolean/falseValue"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusDataPoint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataPoint/modbusDataPointConfiguration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusDataPoint/blockCacheIdentification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataPoint/modbusAttributes"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusDataPointConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataPointConfiguration/modbusDataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusDataPointConfiguration/address"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusDataPointConfiguration/bitRank"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusDataPointConfiguration/registerType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusDataPointConfiguration/numberOfRegisters"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusDataPointList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataPointList/dataPointListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusDataType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/boolean"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/int8"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/int16"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/int32"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/int64"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/int8U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/int16U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/int32U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/int64U"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/float32"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/float64"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/dateTime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/string"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/enum"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusDataType/bitmap"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusFunctionalProfile/modbusAttributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusFunctionalProfile/dataPointList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusFunctionalProfileList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusFunctionalProfileList/functionalProfileListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusInterface/modbusInterfaceDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusInterface/modbusAttributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusInterface/functionalProfileList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusInterface/timeSyncBlockNotification"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusInterfaceDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusInterfaceDescription/modbusInterfaceSelection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusInterfaceDescription/modbusTcp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusInterfaceDescription/modbusRtu"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusInterfaceDescription/firstRegisterAddressIsOne"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusInterfaceDescription/bitOrder"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusInterfaceDescription/masterFunctionsSupportedList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusRtu">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusRtu/slaveAddr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusRtu/portName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusRtu/baudRateSelected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusRtu/byteLenSelected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusRtu/paritySelected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusRtu/stopBitLenSelected"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ModbusRtu/serialInterfaceCapability"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ModbusTcp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusTcp/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusTcp/address"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ModbusTcp/slaveId"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//OutMessage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//OutMessage/topic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//OutMessage/template"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ParameterEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ParameterEntry/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ParameterEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ParameterList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ParameterList/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//PlaintextFilterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//PlaintextFilterType/matchesRegex"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RegexFilterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RegexFilterType/query"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RegexFilterType/matchesRegex"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ReleaseNotes">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ReleaseNotes/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ReleaseNotes/remarks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ReleaseNotes/changeLog"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RequestParam">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RequestParam/param"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ResponseQuery">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ResponseQuery/queryType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ResponseQuery/query"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//ResponseQuery/jmesPathMappings"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiBasic">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestApiBasic/restBasicUsername"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestApiBasic/restBasicPassword"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiBearer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiBearer/restApiServiceCall"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiDataPoint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiDataPoint/restApiDataPointConfiguration"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiDataPointConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestApiDataPointConfiguration/dataType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiDataPointConfiguration/restApiServiceCall"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiDataPointConfiguration/restApiWriteServiceCall"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiDataPointConfiguration/restApiReadServiceCall"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiDataPointConfiguration/restApiReadServiceCall1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiDataPointConfiguration/restApiWriteServiceCall1"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiDataPointList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiDataPointList/dataPointListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiFunctionalProfile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiFunctionalProfile/dataPointList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiFunctionalProfileList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiFunctionalProfileList/functionalProfileListElement"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiInterface/restApiInterfaceDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiInterface/functionalProfileList"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiInterfaceDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestApiInterfaceDescription/restApiInterfaceSelection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestApiInterfaceDescription/restApiUri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestApiInterfaceDescription/restApiAuthenticationMethod"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiInterfaceDescription/restApiBearer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiInterfaceDescription/restApiBasic"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiServiceCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiServiceCall/requestHeader"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestApiServiceCall/requestMethod"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestApiServiceCall/requestPath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiServiceCall/requestQuery"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiServiceCall/requestForm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//RestApiServiceCall/requestBody"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiServiceCall/responseQuery"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiServiceCall/valueMapping"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//RestApiValueMapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//RestApiValueMapping/mapping"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ScalingFactor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ScalingFactor/multiplicator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ScalingFactor/powerof10"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//SerialInterfaceCapability">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SerialInterfaceCapability/baudRatesSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SerialInterfaceCapability/byteLenSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SerialInterfaceCapability/paritySupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//SerialInterfaceCapability/stopBitLenSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//TimeSyncBlockNotification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//TimeSyncBlockNotification/blockCacheIdentification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//TimeSyncBlockNotification/firstAddress"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//TimeSyncBlockNotification/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//TimeSyncBlockNotification/registerType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//TimeSyncBlockNotification/timeToLiveMs"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//TransportServices">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference v0.ecore#//TransportServices/transportService"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//ValueMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ValueMapping/genericValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//ValueMapping/deviceValue"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//VersionNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//VersionNumber/primaryVersionNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//VersionNumber/secondaryVersionNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//VersionNumber/subReleaseVersionNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="v0.ecore#//XPathFilterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//XPathFilterType/query"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute v0.ecore#//XPathFilterType/matchesRegex"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

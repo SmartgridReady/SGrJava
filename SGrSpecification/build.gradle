@@ -57,7 +57,7 @@ task model2Java(type: Exec) {
     doFirst {
         def generatedSrc = fileTree('src')
         generatedSrc.each { File file -> delete(file) }
-        delete('model/emfEI4Modbus.genmodel')
+        delete('model/SGrSpecification.genmodel')
         delete('model.v0.ecore')
     }
 

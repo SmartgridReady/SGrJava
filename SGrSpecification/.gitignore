@@ -8,5 +8,5 @@ build
 
 # Ignore generated sources
 /src
-/model/emfEI4Modbus.genmodel
+/model/SGrSpecification.genmodel
 /model/v0.ecore

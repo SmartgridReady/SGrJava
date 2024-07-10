@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>CommHandler4Modbus</name>
+	<name>CommHandler</name>
 	<comment></comment>
 	<projects>
 		<project>testJavaCommunicator</project>

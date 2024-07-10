@@ -50,7 +50,7 @@ configurations {
 }
 
 dependencies {
-    implementation project(':emfEI4Modbus')
+    implementation project(':SGrSpecification')
 
     implementation group: 'ch.smartgridready', name: 'sgr-driver-api', version: '1.1.0'
     implementation group: 'ch.smartgridready', name: 'easymodbus', version: '1.1.0'
@@ -116,14 +116,14 @@ jar {
     from {
         // configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
         configurations.extraLibs.collect {
-            if(it.name.matches("emfEI4Modbus(.*).jar")) {
+            if(it.name.matches("SGrSpecification(.*).jar")) {
                 zipTree(it)
             }
         }
     }
 }
 
-tasks."compileJava".dependsOn ':emfEI4Modbus:publishToMavenLocal'
+tasks."compileJava".dependsOn ':SGrSpecification:publishToMavenLocal'
 
 publishing {
 

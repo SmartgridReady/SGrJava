@@ -9,4 +9,4 @@
 
 rootProject.name = 'SGrJava'
 
-include 'emfEI4Modbus', 'CommHandler'
+include 'SGrSpecification', 'CommHandler'
