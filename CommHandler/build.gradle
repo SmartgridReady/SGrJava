@@ -15,6 +15,13 @@ repositories {
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()
+
+    maven {
+        url "https://nexus.library.smartgridready.ch/repository/maven-releases/"
+    }
+    maven {
+        url "https://nexus.library.smartgridready.ch/repository/maven-snapshots/"
+    }
 }
 
 
@@ -114,6 +121,15 @@ publishing {
         maven {
             name = "Nexus"
             url = uri("https://nexus.library.smartgridready.ch/repository/maven-releases/")
+            credentials {
+                username = findProperty("nexus.username")
+                password = findProperty("nexus.password")
+            }
+        }
+
+        maven {
+            name = "NexusSnapshots"
+            url = uri("https://nexus.library.smartgridready.ch/repository/maven-snapshots/")
             credentials {
                 username = findProperty("nexus.username")
                 password = findProperty("nexus.password")

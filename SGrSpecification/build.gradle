@@ -15,6 +15,12 @@ repositories {
     mavenCentral()
 }
 
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
+
 def os = System.getProperty('os.name').toLowerCase()
 
 apply plugin: 'java'
@@ -53,7 +59,8 @@ task model2Java(type: Exec) {
     if (os.contains('win')) {
         commandLine 'cmd', '/K', 'model2Java.bat', project.findProperty('xsd2java.eclipse.home'), project.findProperty('xsd2java.xsd.resource')
     } else {
-        commandLine 'docker', 'exec', 'eclipse-ide', '/host/projectdir/SGrJava/SGrJava/model2Java.sh'
+        // commandLine 'docker', 'exec', 'eclipse-ide', '/host/projectdir/workspace/SGrJava/model2Java.sh'
+        commandLine './model2Java.sh'
     }
 
     inputs.files(fileTree('../../SGrSpecifications/SchemaDatabase/SGr'))
@@ -61,11 +68,13 @@ task model2Java(type: Exec) {
 
     standardOutput = new ByteArrayOutputStream()
 
-    doFirst {
-        def generatedSrc = fileTree('src')
-        generatedSrc.each { File file -> delete(file) }
-        delete('model/SGrSpecification.genmodel')
-        delete('model.v0.ecore')
+    if (os.contains('win')) {
+        doFirst {
+            def generatedSrc = fileTree('src')
+            generatedSrc.each { File file -> delete(file) }
+            delete('model/SGrSpecification.genmodel')
+            delete('model.v0.ecore')
+        }
     }
 
     doLast {
@@ -79,7 +88,7 @@ publishing {
     repositories {
         maven {
             name = "Nexus"
-            url = uri("https://nexus.library.smartgridready.ch/repository/maven-releases/")
+            url = uri("https://nexus.library.smartgridready.ch/repository/maven-snapshots/")
             credentials {
                 username = findProperty("nexus.username")
                 password = findProperty("nexus.password")
