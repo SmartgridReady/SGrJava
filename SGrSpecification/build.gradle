@@ -15,6 +15,8 @@ repositories {
     mavenCentral()
 }
 
+def os = System.getProperty('os.name').toLowerCase()
+
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
@@ -47,7 +49,12 @@ clean.doFirst {
 task model2Java(type: Exec) {
 
     workingDir '../'
-    commandLine 'cmd', '/K', 'model2Java.bat', project.findProperty('xsd2java.eclipse.home'), project.findProperty('xsd2java.xsd.resource')
+
+    if (os.contains('win')) {
+        commandLine 'cmd', '/K', 'model2Java.bat', project.findProperty('xsd2java.eclipse.home'), project.findProperty('xsd2java.xsd.resource')
+    } else {
+        commandLine 'docker', 'exec', 'eclipse-ide', '/host/projectdir/SGrJava/SGrJava/model2Java.sh'
+    }
 
     inputs.files(fileTree('../../SGrSpecifications/SchemaDatabase/SGr'))
     outputs.files(fileTree('model'), fileTree('src'))
