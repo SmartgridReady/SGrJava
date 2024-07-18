@@ -120,21 +120,19 @@ publishing {
     repositories {
         maven {
             name = "Nexus"
-            url = uri("https://nexus.library.smartgridready.ch/repository/maven-releases/")
+
+            if (rootProject.version.toString().contains('SNAPSHOT')) {
+                url = uri("https://nexus.library.smartgridready.ch/repository/maven-snapshots/")
+            } else {
+                url = uri("https://nexus.library.smartgridready.ch/repository/maven-releases")
+            }
+
             credentials {
                 username = findProperty("nexus.username")
                 password = findProperty("nexus.password")
             }
         }
 
-        maven {
-            name = "NexusSnapshots"
-            url = uri("https://nexus.library.smartgridready.ch/repository/maven-snapshots/")
-            credentials {
-                username = findProperty("nexus.username")
-                password = findProperty("nexus.password")
-            }
-        }
     }
 
     publications {

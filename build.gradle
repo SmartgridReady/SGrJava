@@ -39,18 +39,3 @@ allprojects {
         options.encoding = 'UTF-8'
     }
 }
-
-tasks.register('publish2MavenLocal') {
-    group '!_smartgridready_publishing_!'
-    description 'Publish to the local Maven repository for development'
-
-    dependsOn ':CommHandler:publishToMavenLocal'
-}
-
-
-tasks.register('publish2GitHub') {
-    group '!_smartgridready_publishing_!'
-    description 'Publish public release to the GitHub repository'
-
-    dependsOn ':CommHandler:publishAllPublicationsToGithubRepository'
-}
