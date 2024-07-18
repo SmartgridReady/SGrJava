@@ -59,7 +59,6 @@ task model2Java(type: Exec) {
     if (os.contains('win')) {
         commandLine 'cmd', '/K', 'model2Java.bat', project.findProperty('xsd2java.eclipse.home'), project.findProperty('xsd2java.xsd.resource')
     } else {
-        // commandLine 'docker', 'exec', 'eclipse-ide', '/host/projectdir/workspace/SGrJava/model2Java.sh'
         commandLine './model2Java.sh'
     }
 
@@ -88,7 +87,13 @@ publishing {
     repositories {
         maven {
             name = "Nexus"
-            url = uri("https://nexus.library.smartgridready.ch/repository/maven-snapshots/")
+
+            if (rootProject.version.toString().contains('SNAPSHOT')) {
+                url = uri("https://nexus.library.smartgridready.ch/repository/maven-snapshots/")
+            } else {
+                url = uri("https://nexus.library.smartgridready.ch/repository/maven-releases")
+            }
+
             credentials {
                 username = findProperty("nexus.username")
                 password = findProperty("nexus.password")
