@@ -1,0 +1,56 @@
+name: CI
+on:
+  push:
+    branches: [ '**' ]
+
+jobs:
+  allocate-volume-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create testvol
+        run: docker volume create testvol
+
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/smartgridready/eclipse-ide:latest
+      volumes:
+        - testvol:/host/projectdir
+      options: --cpus 1
+    steps:
+      - name: List host dir
+        run: ls -la /host
+
+      - name: Clean projects
+        run: |
+          rm -Rf /host/projectdir/SGrJava
+          rm -Rf /host/projectdir/SGrSpecifications
+
+      - name: Checkout SGrJava
+        run: |
+          git clone https://github.com/SmartGridready/SGrJava.git /host/projectdir/SGrJava
+          cd /host/projectdir/SGrJava
+          # checkout the branch that has been pushed
+          git checkout ${GITHUB_REF#refs/heads/}
+
+      - name: Checkout SGrSpecifications
+        run: |
+          git clone https://github.com/SmartGridready/SGrSpecifications.git /host/projectdir/SGrSpecifications
+          cd /host/projectdir/SGrSpecifications
+          git checkout 'master'
+
+      - name: Set Permissions
+        run: |
+          chmod 777 /host/projectdir/SGrJava/gradlew
+          chmod 777 /host/projectdir/SGrJava/model2Java.sh
+
+      - name: Set Display for eclipse
+        run: |
+          Xvfb :99 -screen 0 1024x768x16 &
+          export DISPLAY=:99
+
+
+      - name: Run Gradle
+        run: |
+          cd /host/projectdir/SGrJava
+          ./gradlew build
