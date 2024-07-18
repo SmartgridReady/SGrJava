@@ -53,4 +53,4 @@ jobs:
       - name: Run Gradle
         run: |
           cd /host/projectdir/SGrJava
-          ./gradlew build publishMavenJavaPublicationToNexusRepository -P nexus.user=smartgrid nexus.password=${{ secrets.NEXUS_PASSWORD }}
+          ./gradlew build publishMavenJavaPublicationToNexusRepository -Pnexus.user=smartgrid -Pnexus.password=${{ secrets.NEXUS_PASSWORD }}
