@@ -10,7 +10,7 @@ jobs:
       - name: Create testvol
         run: docker volume create testvol
 
-  container-test-job:
+  build-job:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/smartgridready/eclipse-ide:latest
