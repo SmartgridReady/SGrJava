@@ -5,7 +5,7 @@
 [Description](#description)<br>
 [Build and publish for development](#build-and-publish-for-development)<br>
 [Build and publish a release](#build-and-publish-a-release)<br>
-[Generate SGrSpecification classes](#generate-sgrspecification-classes-afte-xml-schema-updates)<br>
+[Generate SGrSpecification classes](#manually-creating-the-sgrspecification-classes-after-xml-schema-updates-deprecated)<br>
 
 ## Summary
 SGrJava is home for the SmartgridReady core components, the communication handler implementations.
@@ -29,7 +29,7 @@ Commhandler4Modbus is the realization of the commmunication-handler for modbus R
 
 
 ### ExternalInterfaceDescription
-ExternalInterfaceDescription provides the Java-XML binding of XML device descriptions. The classes can be generated from an XML-Schema that provides the model for the device descriptions. Eclipse EMF (Eclipse Modeling Framework) tools are then used to generate the generate Java classes. For details see [Generate SGrSpecification classes](#generate-sgrspecification-classes-afte-xml-schema-updates).
+ExternalInterfaceDescription provides the Java-XML binding of XML device descriptions. The classes can be generated from an XML-Schema that provides the model for the device descriptions. Eclipse EMF (Eclipse Modeling Framework) tools are then used to generate the generate Java classes. For details see [Generate SGrSpecification classes](#manually-creating-the-sgrspecification-classes-after-xml-schema-updates-deprecated).
 
 
 ## Build and publish for development
