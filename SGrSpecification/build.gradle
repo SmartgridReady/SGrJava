@@ -15,6 +15,14 @@ repositories {
     mavenCentral()
 }
 
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
+
+def os = System.getProperty('os.name').toLowerCase()
+
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
@@ -47,18 +55,25 @@ clean.doFirst {
 task model2Java(type: Exec) {
 
     workingDir '../'
-    commandLine 'cmd', '/K', 'model2Java.bat', project.findProperty('xsd2java.eclipse.home'), project.findProperty('xsd2java.xsd.resource')
+
+    if (os.contains('win')) {
+        commandLine 'cmd', '/K', 'model2Java.bat', project.findProperty('xsd2java.eclipse.home'), project.findProperty('xsd2java.xsd.resource')
+    } else {
+        commandLine './model2Java.sh'
+    }
 
     inputs.files(fileTree('../../SGrSpecifications/SchemaDatabase/SGr'))
     outputs.files(fileTree('model'), fileTree('src'))
 
     standardOutput = new ByteArrayOutputStream()
 
-    doFirst {
-        def generatedSrc = fileTree('src')
-        generatedSrc.each { File file -> delete(file) }
-        delete('model/SGrSpecification.genmodel')
-        delete('model.v0.ecore')
+    if (os.contains('win')) {
+        doFirst {
+            def generatedSrc = fileTree('src')
+            generatedSrc.each { File file -> delete(file) }
+            delete('model/SGrSpecification.genmodel')
+            delete('model.v0.ecore')
+        }
     }
 
     doLast {
@@ -72,7 +87,13 @@ publishing {
     repositories {
         maven {
             name = "Nexus"
-            url = uri("https://nexus.library.smartgridready.ch/repository/maven-releases/")
+
+            if (rootProject.version.toString().contains('SNAPSHOT')) {
+                url = uri("https://nexus.library.smartgridready.ch/repository/maven-snapshots/")
+            } else {
+                url = uri("https://nexus.library.smartgridready.ch/repository/maven-releases")
+            }
+
             credentials {
                 username = findProperty("nexus.username")
                 password = findProperty("nexus.password")
