@@ -18,11 +18,12 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.smartgridready.communicator.rest.http.client;
 
-import java.util.Properties;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequest;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
 
-import com.smartgridready.ns.v0.RestApiServiceCall;
-
-public interface RestServiceClientFactory {
-	public RestServiceClient create(String baseUri, RestApiServiceCall serviceCall);
-	public RestServiceClient create(String baseUri, RestApiServiceCall serviceCall, Properties substitutions);
+public class ApacheHttpRequestFactory implements GenHttpRequestFactory {
+	@Override
+	public GenHttpRequest create() {
+		return new ApacheHttpRequest();
+	}
 }

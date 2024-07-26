@@ -24,7 +24,7 @@ import com.smartgridready.communicator.common.impl.SGrDeviceBase.Comparator;
 import communicator.common.runtime.GenDriverAPI4Modbus;
 import communicator.common.runtime.GenDriverException;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
-import com.smartgridready.communicator.rest.http.client.ApacheRestServiceClientFactory;
+import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -337,7 +337,7 @@ class SGrDeviceBaseTest {
 
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
-        return new SGrRestApiDevice(devDesc, new ApacheRestServiceClientFactory());
+        return new SGrRestApiDevice(devDesc, new ApacheHttpRequestFactory());
 
     }
 

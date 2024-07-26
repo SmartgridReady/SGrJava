@@ -7,7 +7,7 @@ import com.smartgridready.communicator.rest.api.GenDeviceApi4Rest;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.communicator.rest.exception.RestApiResponseParseException;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
-import com.smartgridready.communicator.rest.http.client.ApacheRestServiceClientFactory;
+import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ class ClemapRestApiTest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ClemapRestApiTest.class);
 
-	private static final String XML_BASE_DIR="../../../SGrSpecifications/XMLInstances/ExtInterfaces/";
+	private static final String XML_BASE_DIR="../../SGrSpecifications/XMLInstances/ExtInterfaces/";
 	
 	private static final String METER_GROUP_CONFIG_JSON = "{\r\n"
 			+ "    \"name\": \"ErgoMeters\",\r\n"
@@ -48,17 +48,17 @@ class ClemapRestApiTest {
 		DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		
 		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml", props);
-		GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
  
 		try {
+			GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheHttpRequestFactory());
 			clemapMonitor.authenticate();
-			LOG.info("ACtot: " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACtot"));
-			LOG.info("ACL1 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL1"));
-			LOG.info("ACL2 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL2"));
-			LOG.info("ACL3 : " + clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL3"));
+			LOG.info("ACtot: {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACtot"));
+			LOG.info("ACL1 : {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL1"));
+			LOG.info("ACL2 : {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL2"));
+			LOG.info("ACL3 : {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL3"));
 			
 		} catch (RestApiAuthenticationException | RestApiServiceCallException | RestApiResponseParseException | IOException e) {
-			LOG.info("Error: " + e.getMessage());
+			LOG.info("Error : {}",  e.getMessage());
 			throw e;
 		}						
 	}
@@ -77,13 +77,13 @@ class ClemapRestApiTest {
 		DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		
 		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
-		SGrRestApiDevice clemapConfigurator =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheRestServiceClientFactory());
+		SGrRestApiDevice clemapConfigurator =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheHttpRequestFactory());
 		
 		try {
 			clemapConfigurator.authenticate();
 			clemapConfigurator.setVal("Configuration", "CreateMeterGroup", StringValue.of(METER_GROUP_CONFIG_JSON));
 		} catch (RestApiAuthenticationException | RestApiServiceCallException | RestApiResponseParseException | IOException e) {
-			LOG.info("Error: " + e.getMessage());
+			LOG.info("Error: {}", e.getMessage());
 			throw e;
 		}
 	}	

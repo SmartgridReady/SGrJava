@@ -20,20 +20,19 @@ package com.smartgridready.communicator.rest.http.authentication;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smartgridready.communicator.rest.api.client.GenHttpResponse;
+import com.smartgridready.communicator.rest.http.client.RestServiceClient;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
-import com.smartgridready.communicator.rest.http.client.RestServiceClient;
-import com.smartgridready.communicator.rest.http.client.RestServiceClientFactory;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
 import com.smartgridready.communicator.rest.http.client.RestServiceClientUtils;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
-import io.vavr.control.Either;
-import org.apache.hc.core5.http.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,11 +51,11 @@ public class BearerTokenAuthenticator implements Authenticator {
 	private String bearerToken;
 	
 	@Override
-	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory)
+	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory)
 			throws IOException, RestApiServiceCallException {
 		
 		if (bearerToken == null || isBearerTokenExpired()) {
-			authenticate(deviceDescription, restServiceClientFactory);			
+			authenticate(deviceDescription, httpRequestFactory);
 		}
 		return "Bearer " + bearerToken;
 	}	
@@ -67,19 +66,20 @@ public class BearerTokenAuthenticator implements Authenticator {
 	}
 	
 	@Override
-	public void renewToken(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException {
+	public void renewToken(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory) throws IOException, RestApiServiceCallException {
 		bearerToken = null;
-		authenticate(deviceDescription, restServiceClientFactory);		
+		authenticate(deviceDescription, httpRequestFactory);
 	}
 	
-	private void authenticate(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException {
+	private void authenticate(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory) throws IOException, RestApiServiceCallException {
 		
 		RestApiInterfaceDescription ifDescription =
 				deviceDescription.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription();
 
 		String host = ifDescription.getRestApiUri();
-		
-		RestServiceClient restServiceClient = restServiceClientFactory.create(host, ifDescription.getRestApiBearer().getRestApiServiceCall());
+
+		RestServiceClient restServiceClient = RestServiceClient.of(host, ifDescription.getRestApiBearer().getRestApiServiceCall(), httpRequestFactory);
+
 		requestBearerToken(restServiceClient);
 	}
 	
@@ -87,14 +87,14 @@ public class BearerTokenAuthenticator implements Authenticator {
 		
 		if (LOG.isInfoEnabled()) {
 				LOG.debug("Calling REST service: {} - {}", 
-							restServiceClient.getBaseUri(), 
+							restServiceClient.getBaseUri(),
 							RestServiceClientUtils.printServiceCall(restServiceClient.getRestServiceCall()));
 		}
 		
-		Either<HttpResponse, String> result = restServiceClient.callService();			
-		if (result.isRight()) {
-			LOG.info("Received response: {}", result.get());
-			bearerToken = handleResponse(result.get(), restServiceClient.getRestServiceCall());
+		GenHttpResponse result = restServiceClient.callService();
+		if (result!=null && result.isOk()) {
+			LOG.info("Received response: {}", result.getResponse());
+			bearerToken = handleResponse(result.getResponse(), restServiceClient.getRestServiceCall());
 			if (bearerToken != null) {
 				LOG.debug("Received bearer token={}", bearerToken);
 			} else {
@@ -102,8 +102,9 @@ public class BearerTokenAuthenticator implements Authenticator {
 			}
 			
 		} else {
-			LOG.error("Authenticate failed with http status={}", result.getLeft().getCode());
-			throw new RestApiServiceCallException(result.getLeft());
+			LOG.error("Authenticate failed with http status={}", result != null ? result.getResponseCode() : -1);
+			throw new RestApiServiceCallException(
+					result != null ? result : GenHttpResponse.of("", -1, "No response received"));
 		}				
 	}
 

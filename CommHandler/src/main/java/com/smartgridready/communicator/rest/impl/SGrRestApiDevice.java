@@ -18,6 +18,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.smartgridready.communicator.rest.impl;
 
+import com.smartgridready.communicator.rest.api.client.GenHttpResponse;
+import com.smartgridready.communicator.rest.http.client.RestServiceClient;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
@@ -43,12 +45,9 @@ import com.smartgridready.communicator.rest.exception.RestApiResponseParseExcept
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
 import com.smartgridready.communicator.rest.http.authentication.Authenticator;
 import com.smartgridready.communicator.rest.http.authentication.AuthenticatorFactory;
-import com.smartgridready.communicator.rest.http.client.RestServiceClient;
-import com.smartgridready.communicator.rest.http.client.RestServiceClientFactory;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
 import com.smartgridready.communicator.rest.http.client.RestServiceClientUtils;
-import io.vavr.control.Either;
 import org.apache.hc.core5.http.HttpHeaders;
-import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,12 +66,12 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	
 	private final DeviceFrame deviceDescription;
 	private final Authenticator httpAuthenticator;
-	private final RestServiceClientFactory restServiceClientFactory;
+	private final GenHttpRequestFactory httpRequestFactory;
 	
-	public SGrRestApiDevice(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws RestApiAuthenticationException {
+	public SGrRestApiDevice(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory) throws RestApiAuthenticationException {
 		super(deviceDescription);
 		this.deviceDescription = deviceDescription;
-		this.restServiceClientFactory = restServiceClientFactory;
+		this.httpRequestFactory = httpRequestFactory;
 
 		RestApiAuthenticationMethod authMethod = getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
 		this.httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
@@ -94,7 +93,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	
 	@Override
 	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
-		httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory);
+		httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, httpRequestFactory);
 	}
 		
 	@Override
@@ -154,7 +153,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 				substitutions.putAll(parameters);
 			}
 
-			RestServiceClient restServiceClient = restServiceClientFactory.create(host, serviceCall, substitutions);
+			RestServiceClient restServiceClient = RestServiceClient.of(host, serviceCall, httpRequestFactory, substitutions);
 			String response = handleServiceCall(restServiceClient, httpAuthenticator.isTokenRenewalSupported());
 
 			if (value == null) {
@@ -169,26 +168,27 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 	private String handleServiceCall(RestServiceClient serviceClient, boolean tryTokenRenewal) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
 		
-		serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory));
-		
+		serviceClient.addHeader(HttpHeaders.AUTHORIZATION,
+				httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, httpRequestFactory));
+
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Calling REST service: {} - {}", 
 						serviceClient.getBaseUri(), 
 						RestServiceClientUtils.printServiceCall(serviceClient.getRestServiceCall()));
 		}
-		
-		Either<HttpResponse, String> result = serviceClient.callService();		
-		if (result.isRight()) {
-			LOG.debug("Received response: {}", result.get());
-			return result.get();
-		} else if (tryTokenRenewal && result.getLeft().getCode() == HttpStatus.SC_UNAUTHORIZED) {
+
+		GenHttpResponse result = serviceClient.callService();
+		if (result.isOk()) {
+			LOG.debug("Received response: {}", result.getResponse());
+			return result.getResponse();
+		} else if (tryTokenRenewal && result.getResponseCode() == HttpStatus.SC_UNAUTHORIZED) {
 			LOG.info("Authorisation error received. Trying with token renewal");
-			httpAuthenticator.renewToken(deviceDescription, restServiceClientFactory);
-			serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, restServiceClientFactory));
+			httpAuthenticator.renewToken(deviceDescription, httpRequestFactory);
+			serviceClient.addHeader(HttpHeaders.AUTHORIZATION, httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, httpRequestFactory));
 			// recurse into handleServiceCall, set tryTokenRenewal always to false here!
 			return handleServiceCall(serviceClient, false); 
 		} else {
-			throw new RestApiServiceCallException(result.getLeft());
+			throw new RestApiServiceCallException(result);
 		}
 	}
 

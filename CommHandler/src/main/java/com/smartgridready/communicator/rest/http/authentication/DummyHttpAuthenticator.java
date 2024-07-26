@@ -18,12 +18,12 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.smartgridready.communicator.rest.http.authentication;
 
 import com.smartgridready.ns.v0.DeviceFrame;
-import com.smartgridready.communicator.rest.http.client.RestServiceClientFactory;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
 
-public class DummyHttpAuthenticator implements Authenticator {	
+public class DummyHttpAuthenticator implements Authenticator {
 
 	@Override
-	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
+	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory) {
 		return null;
 	}
 

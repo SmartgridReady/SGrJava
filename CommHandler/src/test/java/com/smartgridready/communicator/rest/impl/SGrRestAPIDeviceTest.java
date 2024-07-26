@@ -1,5 +1,8 @@
 package com.smartgridready.communicator.rest.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequest;
+import com.smartgridready.communicator.rest.api.client.GenHttpResponse;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.RestApiServiceCall;
@@ -12,15 +15,12 @@ import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import communicator.common.runtime.GenDriverException;
 import com.smartgridready.communicator.rest.api.GenDeviceApi4Rest;
-import com.smartgridready.communicator.rest.http.client.ApacheRestServiceClientFactory;
-import com.smartgridready.communicator.rest.http.client.RestServiceClient;
-import com.smartgridready.communicator.rest.http.client.RestServiceClientFactory;
-import io.vavr.control.Either;
+import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
 import org.apache.hc.client5.http.fluent.Content;
 import org.apache.hc.client5.http.fluent.Request;
 import org.apache.hc.client5.http.fluent.Response;
 import org.apache.hc.core5.http.*;
-import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,7 +45,6 @@ import java.util.stream.Stream;
 
 import static org.apache.hc.core5.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -55,17 +54,11 @@ class SGrRestAPIDeviceTest {
 	private static final Logger LOG = LoggerFactory.getLogger(SGrRestAPIDeviceTest.class);
 
 	@Mock
-	RestServiceClientFactory restServiceClientFactory;
+	GenHttpRequestFactory httpClientFactory;
 
 	@Mock
-	RestServiceClient restServiceClient;
+	GenHttpRequest httpClient;
 	
-	@Mock
-	RestServiceClient restServiceClientAuth;
-	
-	@Mock
-	RestServiceClient restServiceClientReq;
-
 	@Mock
 	RestApiServiceCall restServiceCall;
 
@@ -73,19 +66,16 @@ class SGrRestAPIDeviceTest {
  	Request httpClientRequest;
 
 	@Mock
-	Response response;
+	Response httpResponse;
 
 	@Mock
- 	ClassicHttpResponse httpResponse;
+ 	ClassicHttpResponse classicHttpResponse;
 
 	@Mock
 	HttpEntity httpEntity;
 
 	ArgumentCaptor<String> stringCaptor1 = ArgumentCaptor.forClass(String.class);
 	ArgumentCaptor<String> stringCaptor2 = ArgumentCaptor.forClass(String.class);
-
-	ArgumentCaptor<Properties> propertiesCaptor = ArgumentCaptor.forClass(Properties.class);
-
 	ArgumentCaptor<HttpEntity> httpEntityCaptor = ArgumentCaptor.forClass(HttpEntity.class);
 	
 	static DeviceFrame deviceFrame;
@@ -118,41 +108,32 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithBearerAuthentication() throws Exception {
 
 		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(httpClientFactory.create()).thenReturn(httpClient);
+		when(httpClient.execute()).thenReturn(GenHttpResponse.of(CLEMAP_AUTH_RESP), GenHttpResponse.of(CLEMAP_METER_RESP));
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
-		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
-
-		when(restServiceClientReq.callService()).thenReturn(Either.right(CLEMAP_METER_RESP));
-		
 		// when
-		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		device.connect();
 		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
 		// then		
 		assertEquals("0.0075", String.format("%.4f",res.getFloat32()));
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Test
 	void testGetValSuccessWithTokenRenewal() throws Exception {
 		
 		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
-
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
-				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
-		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
-
-		when(restServiceClientReq.callService()).thenReturn(Either.left( 
-				new BasicClassicHttpResponse(401, "Needs token renewal.")),
-				Either.right(CLEMAP_METER_RESP));
+		when(httpClientFactory.create()).thenReturn(httpClient);
+		when(httpClient.execute()).thenReturn(
+				GenHttpResponse.of(CLEMAP_AUTH_RESP),	// authentication response on connect()
+				GenHttpResponse.of(CLEMAP_AUTH_RESP),	// authentication webservice call getting cached token, however token is expired.
+				GenHttpResponse.of("", 401, "Needs token renewal."), // webservice coll to query datapoint
+				GenHttpResponse.of(CLEMAP_AUTH_RESP),   // response to token renewasl
+				GenHttpResponse.of(CLEMAP_METER_RESP)); // response of read datapoint result
 		
 		// when
-		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		device.connect();
 		Value res = device.getVal("ActivePowerAC", "ActivePowerACtot");
 		
@@ -166,16 +147,14 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithReadServiceCallV2(String dataPointName) throws Exception {
 
 		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(httpClientFactory.create()).thenReturn(httpClient);
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
-		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
-
-		when(restServiceClientReq.callService()).thenReturn(Either.right("{ \"value\" : \"on\" }"));
+		when(httpClient.execute()).thenReturn(
+				GenHttpResponse.of(CLEMAP_AUTH_RESP),
+				GenHttpResponse.of("{ \"value\" : \"on\" }"));
 
 		// when
-		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		device.authenticate();
 		Value res = device.getVal("GPIO", dataPointName);
 
@@ -186,17 +165,15 @@ class SGrRestAPIDeviceTest {
 	@Test
 	void testSetVal() throws Exception {
 		
-		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
-
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
-				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
-		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));		
-		when(restServiceClientReq.callService()).thenReturn(Either.right("OK"));
+		//given
+		when(httpClientFactory.create()).thenReturn(httpClient);
+		when(httpClient.execute()).thenReturn(
+				GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response on connect.
+				GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response when trying to get cached token, however token is expired
+				GenHttpResponse.of("OK"));
 		
 		// when
-		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		device.connect();
 
 		assertDoesNotThrow(() -> device.setVal("ActivePowerAC", "ActivePowerACtot", Int32UValue.of(100)));
@@ -208,15 +185,15 @@ class SGrRestAPIDeviceTest {
 
 		try (MockedStatic<Request> httpClient =  Mockito.mockStatic(Request.class)) {
 			httpClient.when(() -> Request.post(anyString())).thenReturn(httpClientRequest);
-			when(httpClientRequest.execute()).thenReturn(response);
-			when(response.returnResponse()).thenReturn(httpResponse);
-			when(httpResponse.getCode()).thenReturn(SC_OK);
-			when((httpResponse).getEntity()).thenReturn(httpEntity);
+			when(httpClientRequest.execute()).thenReturn(httpResponse);
+			when(httpResponse.returnResponse()).thenReturn(classicHttpResponse);
+			when(classicHttpResponse.getCode()).thenReturn(SC_OK);
+			when((classicHttpResponse).getEntity()).thenReturn(httpEntity);
 			when(httpEntity.getContent())
 					.thenReturn(new Content("".getBytes(StandardCharsets.UTF_8), ContentType.TEXT_PLAIN).asStream());
 
 			// when
-			SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, new ApacheRestServiceClientFactory());
+			SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, new ApacheHttpRequestFactory());
 			device.authenticate();
 
 			assertDoesNotThrow(() -> device.setVal("GPIO", dataPointName, StringValue.of("on")));
@@ -225,14 +202,14 @@ class SGrRestAPIDeviceTest {
 			var headerKeys = stringCaptor1.getAllValues();
 			assertEquals("Accept", headerKeys.get(0));
 			assertEquals("Accept", headerKeys.get(1));
-			assertEquals("Accept", headerKeys.get(2));
-			assertEquals("Authorization", headerKeys.get(3));
+			assertEquals("Authorization", headerKeys.get(2));
+			assertEquals("Accept", headerKeys.get(3));
 
 			var headerValues = stringCaptor2.getAllValues();
 			assertEquals("application/json", headerValues.get(0));
 			assertEquals("application/json", headerValues.get(1));
-			assertEquals("application/json", headerValues.get(2));
-			assertEquals("Bearer null", headerValues.get(3));
+			assertEquals("Bearer null", headerValues.get(2));
+			assertEquals("application/json", headerValues.get(3));
 
 			verify(httpClientRequest, times(3)).body(httpEntityCaptor.capture());
 
@@ -261,14 +238,10 @@ class SGrRestAPIDeviceTest {
 			"101, Values [101] out of range. MAX value=100.0"})
 	void testSetValOutOfRange(String value, String expectedResponse) throws Exception {
 
-		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(httpClientFactory.create()).thenReturn(httpClient);
+		when(httpClient.execute()).thenReturn(GenHttpResponse.of(CLEMAP_AUTH_RESP));
 
-		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
-				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
-		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
-
-		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		device.connect();
 
 		Exception exception = assertThrows(GenDriverException.class, () -> device.setVal("ActivePowerAC", "ActivePowerACtot", StringValue.of(value)));
@@ -295,12 +268,11 @@ class SGrRestAPIDeviceTest {
 
 		LOG.info("Testing writePermissionCheckRest: {}", testName);
 
-		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+		Mockito.lenient().when(httpClientFactory.create()).thenReturn(httpClient);
 
-		Mockito.lenient().when(restServiceClientFactory.create(any(), any())).thenReturn(restServiceClient);
-		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), any())).thenReturn(restServiceClient);
-		Mockito.lenient().when(restServiceClient.callService()).thenReturn(Either.right("{}"));
-		Mockito.lenient().when(restServiceClient.getRestServiceCall()).thenReturn(restServiceCall);
+		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, httpClientFactory);
+
+		Mockito.lenient().when(httpClient.execute()).thenReturn(GenHttpResponse.of("{}"));
 
 		ResponseQuery query = V0Factory.eINSTANCE.createResponseQuery();
 		query.setQuery("token");
@@ -321,25 +293,38 @@ class SGrRestAPIDeviceTest {
 	}
 
 	@Test
-	void unitConversion() throws Exception {
+	void unitConversionWrite() throws Exception {
 
-		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+		// Write conversion
+		when(httpClientFactory.create()).thenReturn(httpClient);
+		Mockito.lenient().when(httpClient.execute()).thenReturn(
+				GenHttpResponse.of(CLEMAP_AUTH_RESP),
+				GenHttpResponse.of(CLEMAP_METER_RESP));
 
-		Mockito.lenient().when(restServiceClientFactory.create(any(), any())).thenReturn(restServiceClient);
-		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), any())).thenReturn(restServiceClient);
-		Mockito.lenient().when(restServiceClient.callService()).thenReturn(Either.right("{}"));
-		Mockito.lenient().when(restServiceClient.getRestServiceCall()).thenReturn(restServiceCall);
-
-		ResponseQuery query = V0Factory.eINSTANCE.createResponseQuery();
-		query.setQuery("token");
-		Mockito.lenient().when(restServiceCall.getResponseQuery()).thenReturn(query);
+		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 
 		restApiDevice.setVal("ActivePowerAC", "ActivePowerACtot", Float32Value.of(0.099f));
+		verify(httpClient, times(2)).setBody(stringCaptor1.capture());
 
-		verify(restServiceClientFactory).create(any(), any(), propertiesCaptor.capture());
-		assertEquals(99,
-				Math.round(
-						Float.parseFloat(String.valueOf(propertiesCaptor.getValue().get("value")))));
+		var objectMapper = new ObjectMapper();
+		var jsonBody = objectMapper.readTree(stringCaptor1.getValue());
+		var convertedValue = Math.round(jsonBody.get("value").asDouble());
+		assertEquals(99, convertedValue );
+
+	}
+
+	@Test
+	void unitConversionRead() throws Exception {
+
+		when(httpClientFactory.create()).thenReturn(httpClient);
+		Mockito.lenient().when(httpClient.execute()).thenReturn(
+				GenHttpResponse.of(CLEMAP_AUTH_RESP),
+				GenHttpResponse.of(CLEMAP_METER_RESP));
+
+		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, httpClientFactory);
+		var result = restApiDevice.getVal("ActivePowerAC", "ActivePowerACtot");
+
+		assertEquals("0.0075", String.format("%.4f", result.getFloat32()));
 	}
 
 

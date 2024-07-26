@@ -15,61 +15,68 @@ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR B
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package com.smartgridready.communicator.rest.http.client;
 
-import com.smartgridready.ns.v0.HeaderEntry;
-import com.smartgridready.ns.v0.HeaderList;
-import com.smartgridready.ns.v0.ParameterList;
-import com.smartgridready.ns.v0.RestApiServiceCall;
-import com.smartgridready.ns.v0.V0Factory;
-import io.vavr.control.Either;
-import org.apache.hc.core5.http.HttpResponse;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Properties;
 
-public abstract class RestServiceClient {
-	
-	private final String baseUri;	
-	
+import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
+import com.smartgridready.communicator.rest.api.client.GenHttpResponse;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequest;
+import com.smartgridready.ns.v0.HeaderList;
+import com.smartgridready.ns.v0.ParameterList;
+import com.smartgridready.ns.v0.V0Factory;
+import org.apache.hc.core5.net.URIBuilder;
+
+import com.smartgridready.ns.v0.RestApiServiceCall;
+import com.smartgridready.ns.v0.HeaderEntry;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+
+public class RestServiceClient {
+
+	private final String baseUri;
+
 	private final RestApiServiceCall restServiceCall;
-	
-	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall) {
-		this(baseUri, serviceCall, new Properties());
-	}
-	
-	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, Properties substitutions) {
-		this.baseUri = replacePropertyPlaceholders(baseUri, substitutions);
-		this.restServiceCall = cloneRestServiceCallWithSubstitutions(serviceCall, substitutions);
+	private final GenHttpRequestFactory httpRequestFactory;
+	//private final GenHttpRequest httpClient;
+
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpRequestFactory httpRequestFactory) {
+		this(baseUri, serviceCall, httpRequestFactory, new Properties());
 	}
 
-	@SuppressWarnings("UnusedReturnValue")
-	public RestServiceClient addHeader(String key, String value) {
-		
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpRequestFactory httpRequestFactory, Properties substitutions) {
+		this.baseUri = replacePropertyPlaceholders(baseUri, substitutions);
+		this.restServiceCall = cloneRestServiceCallWithSubstitutions(serviceCall, substitutions);
+		this.httpRequestFactory = httpRequestFactory;
+	}
+
+	public void addHeader(String key, String value) {
+
 		HeaderEntry headerEntry = V0Factory.eINSTANCE.createHeaderEntry();
 		headerEntry.setHeaderName(key);
 		headerEntry.setValue(value);
 		restServiceCall.getRequestHeader().getHeader().add(headerEntry);
-		return this;
 	}
 
 	public String getBaseUri() {
 		return getBaseUri(new Properties());
 	}
-	
+
 	public String getBaseUri(Properties substitutions) {
 		return replacePropertyPlaceholders(baseUri, substitutions);
 	}
-	
+
 	public RestApiServiceCall getRestServiceCall() {
 		return restServiceCall;
 	}
-	
+
 	private RestApiServiceCall cloneRestServiceCallWithSubstitutions(RestApiServiceCall restServiceCall, Properties substitutions) {
-		
+
 		// Handle substitutions, do this on a clone, do not modify the EI loaded from XML. Substitutions can
 		// appear within the request path, request body or even the response query.
 		RestApiServiceCall clone = EcoreUtil.copy(restServiceCall);
@@ -89,7 +96,7 @@ public abstract class RestServiceClient {
 		if (formParams != null) {
 			formParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
 		}
-		
+
 		HeaderList headers = clone.getRequestHeader();
 		if (headers != null) {
 			headers.getHeader().forEach(header -> header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions)));
@@ -99,12 +106,70 @@ public abstract class RestServiceClient {
 
 		return clone;
 	}
-	
-	public abstract Either<HttpResponse, String> callService() throws IOException;
-	
+
+	public GenHttpResponse callService() throws IOException {
+
+		RestApiServiceCall serviceCall = getRestServiceCall();
+		GenHttpRequest httpRequest = httpRequestFactory.create();
+
+		httpRequest.setHttpMethod(serviceCall.getRequestMethod());
+		try {
+			httpRequest.setUri(buildUri(serviceCall));
+		} catch (URISyntaxException e) {
+			throw new IOException("Cannot build request URI", e);
+		}
+
+		if (restServiceCall.getRequestHeader() != null) {
+			restServiceCall.getRequestHeader().getHeader().forEach( headerEntry ->
+					httpRequest.addHeader(headerEntry.getHeaderName(), headerEntry.getValue())
+			);
+		}
+
+		if (serviceCall.getRequestForm() != null) {
+			serviceCall.getRequestForm().getParameter().forEach(
+					p -> httpRequest.addFormParam(p.getName(), p.getValue())
+			);
+
+		} else if (serviceCall.getRequestBody() != null) {
+			String content = serviceCall.getRequestBody();
+			httpRequest.setBody(content);
+		}
+
+		return httpRequest.execute();
+	}
+
+	private URI buildUri(RestApiServiceCall serviceCall) throws URISyntaxException {
+		URI uri;
+		final URIBuilder uriBuilder = new URIBuilder(getBaseUri());
+
+		// add request path
+		if (serviceCall.getRequestPath() != null) {
+			int startQueryPos = serviceCall.getRequestPath().indexOf('?');
+			if (startQueryPos >= 0) {
+				// split path and query (old style)
+				String path = serviceCall.getRequestPath().substring(0, startQueryPos);
+				String query = serviceCall.getRequestPath().substring(startQueryPos + 1);
+				uriBuilder.appendPath(path);
+				uriBuilder.setCustomQuery(query);
+			} else {
+				// just set path (new style)
+				uriBuilder.appendPath(serviceCall.getRequestPath());
+			}
+		}
+
+		// add query parameters
+		if (serviceCall.getRequestQuery() != null) {
+			serviceCall.getRequestQuery().getParameter().forEach(p ->
+				uriBuilder.addParameter(p.getName(), p.getValue()));
+		}
+
+		uri = uriBuilder.build();
+		return uri;
+	}
+
 	private static String replacePropertyPlaceholders(String template, Properties properties) {
 
-		String convertedTemplate = template;		
+		String convertedTemplate = template;
 		if (template != null && properties != null) {
 			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
 				// noinspection RegExpRedundantEscape
@@ -112,5 +177,13 @@ public abstract class RestServiceClient {
 			}
 		}
 		return convertedTemplate;
-	}		 	
+	}
+
+	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpRequestFactory httpRequestFactory) {
+		return new RestServiceClient(baseUri, serviceCall, httpRequestFactory);
+	}
+
+	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpRequestFactory httpRequestFactory, Properties substitutions) {
+		return new RestServiceClient(baseUri, serviceCall, httpRequestFactory, substitutions);
+	}
 }

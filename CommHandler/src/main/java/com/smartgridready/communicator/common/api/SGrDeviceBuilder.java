@@ -18,8 +18,8 @@ import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.impl.SGrModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
-import com.smartgridready.communicator.rest.http.client.ApacheRestServiceClientFactory;
-import com.smartgridready.communicator.rest.http.client.RestServiceClientFactory;
+import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
 
 /**
@@ -30,7 +30,7 @@ public class SGrDeviceBuilder {
     private EidSource eidSource;
     private Properties properties;
 
-    private RestServiceClientFactory restServiceClientFactory;
+    private GenHttpRequestFactory httpClientFactory;
     private ModbusGatewayFactory modbusGatewayFactory;
     private ModbusGatewayRegistry modbusGatewayRegistry;
 
@@ -40,7 +40,7 @@ public class SGrDeviceBuilder {
         this.modbusGatewayRegistry = null;
 
         // default implementations
-        this.restServiceClientFactory = new ApacheRestServiceClientFactory();
+        this.httpClientFactory = new ApacheHttpRequestFactory();
         this.modbusGatewayFactory = new SGrModbusGatewayFactory();
     }
 
@@ -76,11 +76,11 @@ public class SGrDeviceBuilder {
 
     /**
      * Sets the REST API service client factory.
-     * @param restServiceClientFactory an instance of a REST API service client factory
+     * @param httpClientFactory an instance of a REST API service client factory
      * @return the same instance of the builder object
      */
-    public SGrDeviceBuilder useRestServiceClientFactory(RestServiceClientFactory restServiceClientFactory) {
-        this.restServiceClientFactory = restServiceClientFactory;
+    public SGrDeviceBuilder useRestServiceClientFactory(GenHttpRequestFactory httpClientFactory) {
+        this.httpClientFactory = httpClientFactory;
         return this;
     }
 
@@ -149,10 +149,10 @@ public class SGrDeviceBuilder {
                 throw new GenDriverException("No Modbus gateway registry or factory defined");
 
             case RESTAPI:
-                if (restServiceClientFactory == null) {
+                if (httpClientFactory == null) {
                     throw new GenDriverException("No REST API service client factory defined");
                 }
-                return new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
+                return new SGrRestApiDevice(deviceFrame, httpClientFactory);
 
             case MESSAGING:
                 return new SGrMessagingDevice(deviceFrame);

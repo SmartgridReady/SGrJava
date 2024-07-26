@@ -9,7 +9,7 @@ import com.smartgridready.communicator.async.process.Sequence;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
-import com.smartgridready.communicator.rest.http.client.ApacheRestServiceClientFactory;
+import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import io.reactivex.rxjava3.core.Scheduler;
@@ -156,7 +156,7 @@ public class AsyncClemapWagoTest {
         DeviceFrame deviceDesc = new DeviceDescriptionLoader()
                 .load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
 
-        SGrRestApiDevice clemapDevice = new SGrRestApiDevice(deviceDesc, new ApacheRestServiceClientFactory());
+        SGrRestApiDevice clemapDevice = new SGrRestApiDevice(deviceDesc, new ApacheHttpRequestFactory());
         clemapDevice.authenticate();
         return clemapDevice;
     }

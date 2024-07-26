@@ -16,20 +16,9 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.smartgridready.communicator.rest.http.client;
 
-import java.util.Properties;
+package com.smartgridready.communicator.rest.api.client;
 
-import com.smartgridready.ns.v0.RestApiServiceCall;
-
-public class ApacheRestServiceClientFactory implements RestServiceClientFactory {
-		
-	@Override
-	public RestServiceClient create(String baseUri, RestApiServiceCall restServiceCall) {
-		return new ApacheRestServiceClient(baseUri, restServiceCall);
-	}
-	
-	public RestServiceClient create(String baseUri, RestApiServiceCall restServiceCall, Properties substitutions) {
-		return new ApacheRestServiceClient(baseUri, restServiceCall, substitutions);
-	}
+public interface GenHttpRequestFactory {
+	GenHttpRequest create();
 }

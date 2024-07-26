@@ -4,7 +4,7 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.RestApiBasic;
 import com.smartgridready.communicator.rest.exception.RestApiResponseParseException;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
-import com.smartgridready.communicator.rest.http.client.RestServiceClientFactory;
+import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class BasicAuthenticator implements Authenticator {
 
     @Override
-    public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) {
+    public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory) {
 
         StringBuilder headerValue = new StringBuilder("Basic ");
 
@@ -32,8 +32,8 @@ public class BasicAuthenticator implements Authenticator {
     }
 
     @Override
-    public void renewToken(DeviceFrame deviceDescription, RestServiceClientFactory restServiceClientFactory) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
-        Authenticator.super.renewToken(deviceDescription, restServiceClientFactory);
+    public void renewToken(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
+        Authenticator.super.renewToken(deviceDescription, httpRequestFactory);
     }
 
     private String encodeUsernameAndPassword(RestApiBasic restApiBasic) {

@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="/xsl/SGr.xsl"?>
 <DeviceFrame xmlns="http://www.smartgridready.com/ns/V0/"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../../SGrSpecifications/SchemaDatabase/SGr/Product/Product.xsd" >
+             xsi:schemaLocation="http://www.smartgridready.com/ns/V0/ ../../../../../SGrSpecifications/SchemaDatabase/SGr/Product/Product.xsd" >
   <deviceName>CLEMAP Energy Monitor</deviceName>
   <manufacturerName>CLEMAP</manufacturerName>
   <specificationOwnerIdentification>0</specificationOwnerIdentification>
@@ -92,7 +92,7 @@
               </dataPoint>
               <restApiDataPointConfiguration>
                 <dataType>JSON_number</dataType>
-                <restApiServiceCall>
+                <restApiReadServiceCall>
                   <requestHeader>
                     <header>
                       <headerName>Accept</headerName>
@@ -106,7 +106,12 @@
                     <queryType>JMESPathExpression</queryType>
                     <query>sum([[0].ten_sec.p_l1,[0].ten_sec.p_l2,[0].ten_sec.p_l3])</query>
                   </responseQuery>
-                </restApiServiceCall>
+                </restApiReadServiceCall>
+                <restApiWriteServiceCall>
+                  <requestMethod>POST</requestMethod>
+                  <requestPath>/digitaltwins?sensor_id={{sensor_id}}</requestPath>
+                  <requestBody>{ "value": {{value}} }</requestBody>
+                </restApiWriteServiceCall>
               </restApiDataPointConfiguration>
             </dataPointListElement>
             <dataPointListElement>

@@ -18,24 +18,16 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.smartgridready.communicator.rest.exception;
 
-import org.apache.hc.core5.http.HttpResponse;
+import com.smartgridready.communicator.rest.api.client.GenHttpResponse;
 
 public class RestApiServiceCallException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 	
-	private final HttpResponse httpResponse;
-	
-	public RestApiServiceCallException(HttpResponse httpResponse) {
+	public RestApiServiceCallException(GenHttpResponse httpResponse) {
 		
 		super(	"REST service call failed. HttpStatus: " 
-				+ httpResponse.getCode() + " - reason: " 
-				+ httpResponse.getReasonPhrase());
-		
-		this.httpResponse = httpResponse;	
+				+ httpResponse.getResponseCode() + " - reason: "
+				+ httpResponse.getReason());
 	}
-
-	public HttpResponse getHttpResponse() {
-		return httpResponse;
-	}	
 }
