@@ -4,7 +4,7 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
-import communicator.common.runtime.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
 import io.vavr.control.Either;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;

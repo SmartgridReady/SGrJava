@@ -1,9 +1,9 @@
 package com.smartgridready.communicator.async.callable;
 
 import com.smartgridready.communicator.async.process.ExecStatus;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.GenDriverModbusException;
-import communicator.common.runtime.GenDriverSocketException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverModbusException;
+import com.smartgridready.driver.modbus.api.GenDriverSocketException;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.communicator.rest.exception.RestApiResponseParseException;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;

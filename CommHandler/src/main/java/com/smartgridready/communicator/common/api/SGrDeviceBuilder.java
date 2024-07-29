@@ -11,7 +11,7 @@ import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
 import com.smartgridready.communicator.common.api.dto.InterfaceType;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
-import communicator.common.runtime.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
@@ -19,7 +19,7 @@ import com.smartgridready.communicator.modbus.impl.SGrModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
-import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
+import com.smartgridready.driver.http.api.GenHttpRequestFactory;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
 
 /**
@@ -96,7 +96,7 @@ public class SGrDeviceBuilder {
 
     /**
      * Sets the shared Modbus gateway registry.
-     * @param modbusGatewayFactory an instance of a Modbus gateway registry
+     * @param modbusGatewayRegistry an instance of a Modbus gateway registry
      * @return the same instance of the builder object
      */
     public SGrDeviceBuilder useSharedModbusGatewayRegistry(ModbusGatewayRegistry modbusGatewayRegistry) {

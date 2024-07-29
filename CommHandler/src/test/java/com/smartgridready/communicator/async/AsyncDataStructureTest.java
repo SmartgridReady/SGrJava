@@ -12,7 +12,7 @@ import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.communicator.common.api.values.Float64Value;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
-import communicator.common.runtime.GenDriverModbusException;
+import com.smartgridready.driver.modbus.api.GenDriverModbusException;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
@@ -29,6 +29,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -212,9 +213,9 @@ class AsyncDataStructureTest {
             assertEquals(expectedExceptionMessage, clemap_actPowerAC_tot.getExecThrowable().getMessage());
             assertEquals(expectedExceptionMessage, garo_wallbox_A_hems_curr_lim.getExecThrowable().getMessage());
             assertEquals(expectedExceptionMessage, garo_wallbox_B_hems_curr_lim.getExecThrowable().getMessage());
-            assertTrue( wago_voltageAC_l1.getExecThrowable() instanceof GenDriverModbusException);
-            assertTrue( clemap_actPowerAC_tot.getExecThrowable() instanceof RestApiAuthenticationException);
-            assertTrue( garo_wallbox_A_hems_curr_lim.getExecThrowable() instanceof GenDriverModbusException);
+            assertInstanceOf( GenDriverModbusException.class, wago_voltageAC_l1.getExecThrowable());
+            assertInstanceOf( RestApiAuthenticationException.class, clemap_actPowerAC_tot.getExecThrowable());
+            assertInstanceOf(GenDriverModbusException.class, garo_wallbox_A_hems_curr_lim.getExecThrowable());
         }
     }
 

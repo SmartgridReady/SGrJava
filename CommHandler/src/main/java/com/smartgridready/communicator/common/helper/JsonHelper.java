@@ -7,7 +7,7 @@ import com.smartgridready.ns.v0.JMESPathMapping;
 import com.smartgridready.ns.v0.JMESPathMappingRecord;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
-import communicator.common.runtime.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;

@@ -20,7 +20,7 @@ import com.smartgridready.communicator.common.api.dto.FunctionalProfile;
 import com.smartgridready.communicator.common.api.dto.GenericAttribute;
 import com.smartgridready.communicator.common.api.dto.OperationEnvironment;
 import com.smartgridready.communicator.common.api.values.Value;
-import communicator.common.runtime.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
 import com.smartgridready.utils.SGrGDPTypeToNameMapper;
 
 import java.util.*;

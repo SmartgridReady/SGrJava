@@ -1,15 +1,15 @@
 package com.smartgridready.communicator.modbus.impl;
 
-import communicator.common.runtime.GenDriverAPI4Modbus;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.GenDriverModbusException;
-import communicator.common.runtime.GenDriverSocketException;
-import com.smartgridready.communicator.modbus.api.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.modbus.api.GenDriverAPI4Modbus;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverModbusException;
+import com.smartgridready.driver.modbus.api.GenDriverSocketException;
+import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
 
 class GenDriverAPI4ModbusLegacyWrapper implements GenDriverAPI4ModbusConnectable {
 
     private boolean isConnected;
-    private GenDriverAPI4Modbus transport;
+    private final GenDriverAPI4Modbus transport;
 
     public GenDriverAPI4ModbusLegacyWrapper(GenDriverAPI4Modbus transport) {
         isConnected = false;

@@ -5,9 +5,9 @@ import com.smartgridready.communicator.common.api.dto.DataPoint;
 import com.smartgridready.communicator.common.api.dto.DeviceInfo;
 import com.smartgridready.communicator.common.api.dto.FunctionalProfile;
 import com.smartgridready.communicator.common.api.values.Value;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.GenDriverModbusException;
-import communicator.common.runtime.GenDriverSocketException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverModbusException;
+import com.smartgridready.driver.modbus.api.GenDriverSocketException;
 import com.smartgridready.communicator.rest.exception.RestApiResponseParseException;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
 

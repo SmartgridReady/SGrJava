@@ -19,11 +19,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.smartgridready.communicator.modbus.helper;
 
-import communicator.common.runtime.DataBits;
-import communicator.common.runtime.GenDriverAPI4Modbus;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.Parity;
-import communicator.common.runtime.StopBits;
+import com.smartgridready.driver.modbus.api.DataBits;
+import com.smartgridready.driver.modbus.api.GenDriverAPI4Modbus;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.Parity;
+import com.smartgridready.driver.modbus.api.StopBits;
 
 import java.nio.IntBuffer;
 

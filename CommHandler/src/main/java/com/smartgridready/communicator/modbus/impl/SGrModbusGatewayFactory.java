@@ -4,11 +4,11 @@ import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 import com.smartgridready.ns.v0.ModbusRtu;
 import com.smartgridready.ns.v0.ModbusTcp;
 
-import communicator.common.runtime.DataBits;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.Parity;
-import communicator.common.runtime.StopBits;
-import com.smartgridready.communicator.modbus.api.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.modbus.api.DataBits;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.Parity;
+import com.smartgridready.driver.modbus.api.StopBits;
+import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
 import com.smartgridready.communicator.modbus.helper.ModbusType;

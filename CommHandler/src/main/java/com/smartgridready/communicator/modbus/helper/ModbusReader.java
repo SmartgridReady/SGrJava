@@ -19,10 +19,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.smartgridready.communicator.modbus.helper;
 
 import com.smartgridready.ns.v0.RegisterType;
-import communicator.common.runtime.GenDriverAPI4Modbus;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.GenDriverModbusException;
-import communicator.common.runtime.GenDriverSocketException;
+import com.smartgridready.driver.modbus.api.GenDriverAPI4Modbus;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverModbusException;
+import com.smartgridready.driver.modbus.api.GenDriverSocketException;
 
 
 
@@ -43,6 +43,8 @@ public class ModbusReader {
         }
         // shared Modbus driver instances require exclusive access
         if (RegisterType.HOLD_REGISTER == regType) {
+            // TODO synchronize on method parameter is dangerous and may result in unpredictable behaviour
+            // consider using a specific synch object.
             synchronized(drv4Modbus) {
                 drv4Modbus.setUnitIdentifier(unitIdentifier);
                 response.setMbregresp(drv4Modbus.ReadHoldingRegisters(regAddr, length));

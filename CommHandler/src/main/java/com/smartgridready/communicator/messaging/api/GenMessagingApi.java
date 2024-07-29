@@ -2,7 +2,7 @@ package com.smartgridready.communicator.messaging.api;
 
 import com.smartgridready.communicator.common.api.GenDeviceApi;
 import com.smartgridready.communicator.common.api.values.Value;
-import communicator.common.runtime.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
 import io.vavr.control.Either;
 
 import java.io.Closeable;

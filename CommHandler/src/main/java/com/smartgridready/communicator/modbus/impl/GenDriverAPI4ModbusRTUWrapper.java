@@ -1,10 +1,10 @@
 package com.smartgridready.communicator.modbus.impl;
 
-import communicator.common.runtime.DataBits;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.Parity;
-import communicator.common.runtime.StopBits;
-import com.smartgridready.communicator.modbus.api.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.modbus.api.DataBits;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.Parity;
+import com.smartgridready.driver.modbus.api.StopBits;
+import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import com.smartgridready.utils.StringUtil;
 
@@ -12,14 +12,14 @@ class GenDriverAPI4ModbusRTUWrapper extends GenDriverAPI4ModbusRTU implements Ge
 
     private boolean isConnected;
 
-    private String serialPort;
-    private int baudrate;
-    private Parity parity;
-    private DataBits dataBits;
-    private StopBits stopBits;
+    private final String serialPort;
+    private final int baudrate;
+    private final Parity parity;
+    private final DataBits dataBits;
+    private final StopBits stopBits;
 
-    private String tcpAddress;
-    private int tcpPort;
+    private final String tcpAddress;
+    private final int tcpPort;
 
     public GenDriverAPI4ModbusRTUWrapper(String serialPort, int baudRate, Parity parity, DataBits dataBits, StopBits stopBits, String tcpAddress, int tcpPort) {
         super();

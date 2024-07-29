@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import com.smartgridready.ns.v0.DeviceFrame;
 
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
-import communicator.common.runtime.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 

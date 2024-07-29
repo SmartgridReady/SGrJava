@@ -1,12 +1,13 @@
 package com.smartgridready.communicator.modbus.api;
 
+import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
 public class ModbusGateway {
 
-    private String identifier;
-    private ModbusInterfaceDescription interfaceDescription;
-    private GenDriverAPI4ModbusConnectable transport;
+    private final String identifier;
+    private final ModbusInterfaceDescription interfaceDescription;
+    private final GenDriverAPI4ModbusConnectable transport;
 
     public ModbusGateway(String identifier, ModbusInterfaceDescription interfaceDescription, GenDriverAPI4ModbusConnectable transport) {
         this.identifier = identifier;

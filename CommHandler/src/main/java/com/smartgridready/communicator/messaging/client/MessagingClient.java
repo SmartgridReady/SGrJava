@@ -3,7 +3,7 @@ package com.smartgridready.communicator.messaging.client;
 import com.smartgridready.ns.v0.JMESPathFilterType;
 import com.smartgridready.ns.v0.MessageFilter;
 import com.smartgridready.communicator.common.helper.JsonHelper;
-import communicator.common.runtime.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
 import com.smartgridready.communicator.messaging.api.Message;
 import io.vavr.control.Either;
 

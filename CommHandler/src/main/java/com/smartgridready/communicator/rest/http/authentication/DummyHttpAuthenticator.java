@@ -18,7 +18,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.smartgridready.communicator.rest.http.authentication;
 
 import com.smartgridready.ns.v0.DeviceFrame;
-import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
+import com.smartgridready.driver.http.api.GenHttpRequestFactory;
 
 public class DummyHttpAuthenticator implements Authenticator {
 

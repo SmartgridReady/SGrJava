@@ -1,15 +1,15 @@
 package com.smartgridready.communicator.modbus.impl;
 
-import communicator.common.runtime.GenDriverException;
-import com.smartgridready.communicator.modbus.api.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
 import com.smartgridready.communicator.modbus.helper.ModbusUtil;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
 
 class GenDriverAPI4ModbusTCPWrapper extends GenDriverAPI4ModbusTCP implements GenDriverAPI4ModbusConnectable {
 
     private boolean isConnected;
-    private String tcpAddress;
-    private int tcpPort;
+    private final String tcpAddress;
+    private final int tcpPort;
 
     public GenDriverAPI4ModbusTCPWrapper(String tcpAddress, int tcpPort) {
         super();

@@ -1,8 +1,8 @@
 package com.smartgridready.communicator.rest.http.client;
 
-import com.smartgridready.communicator.rest.api.client.GenHttpResponse;
-import com.smartgridready.communicator.rest.api.client.GenHttpRequest;
-import com.smartgridready.ns.v0.HttpMethod;
+import com.smartgridready.driver.http.api.GenHttpResponse;
+import com.smartgridready.driver.http.api.GenHttpRequest;
+import com.smartgridready.driver.http.api.HttpMethod;
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.client5.http.fluent.Request;
@@ -57,7 +57,7 @@ public class ApacheHttpRequest implements GenHttpRequest {
 
         Function<String, Request> requestFactoryFunct = HTTP_METHOD_MAP.get(httpMethod);
         if (requestFactoryFunct == null) {
-            throw new IOException(String.format("invalid HTTP method '%s'", httpMethod.getLiteral()));
+            throw new IOException(String.format("invalid HTTP method '%s'", httpMethod.name()));
         }
 
         Request httpReq = requestFactoryFunct.apply(uri.toString());

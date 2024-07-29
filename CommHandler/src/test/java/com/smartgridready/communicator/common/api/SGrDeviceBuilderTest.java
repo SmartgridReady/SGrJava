@@ -1,13 +1,13 @@
 package com.smartgridready.communicator.common.api;
 
-import com.smartgridready.communicator.rest.api.client.GenHttpRequest;
-import com.smartgridready.communicator.rest.api.client.GenHttpResponse;
+import com.smartgridready.driver.http.api.GenHttpRequest;
+import com.smartgridready.driver.http.api.GenHttpResponse;
 import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
 import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
-import com.smartgridready.communicator.modbus.api.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;

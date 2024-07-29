@@ -7,10 +7,10 @@ import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 import com.smartgridready.ns.v0.ModbusRtu;
 import com.smartgridready.ns.v0.ModbusTcp;
 
-import communicator.common.runtime.DataBits;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.StopBits;
-import communicator.common.runtime.Parity;
+import com.smartgridready.driver.modbus.api.DataBits;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.StopBits;
+import com.smartgridready.driver.modbus.api.Parity;
 
 public class ModbusUtil {
 
@@ -62,10 +62,10 @@ public class ModbusUtil {
         boolean isTcp = isRtuOverTcp(interfaceDescription);
         if (isSerial && !isTcp) {
             ModbusRtu serial = interfaceDescription.getModbusRtu();
-            return isNonEmptyString(serial.getSlaveAddr()) ? Short.valueOf(serial.getSlaveAddr()) : DEFAULT_SLAVE_ID;
+            return isNonEmptyString(serial.getSlaveAddr()) ? Short.parseShort(serial.getSlaveAddr()) : DEFAULT_SLAVE_ID;
         } else if (isTcp && !isSerial) {
             ModbusTcp tcp = interfaceDescription.getModbusTcp();
-            return isNonEmptyString(tcp.getSlaveId()) ? Short.valueOf(tcp.getSlaveId()) : DEFAULT_SLAVE_ID;
+            return isNonEmptyString(tcp.getSlaveId()) ? Short.parseShort(tcp.getSlaveId()) : DEFAULT_SLAVE_ID;
         }
 
         return DEFAULT_SLAVE_ID;
@@ -82,7 +82,7 @@ public class ModbusUtil {
         } else if (isTcp && !isSerial) {
             ModbusTcp tcp = interfaceDescription.getModbusTcp();
             String address = tcp.getAddress();
-            int port = isNonEmptyString(tcp.getPort()) ? Integer.valueOf(tcp.getPort()) : DEFAULT_MODBUS_TCP_PORT;
+            int port = isNonEmptyString(tcp.getPort()) ? Integer.parseInt(tcp.getPort()) : DEFAULT_MODBUS_TCP_PORT;
             return String.format("tcp:%s:%d", address, port);
         }
 
@@ -103,7 +103,7 @@ public class ModbusUtil {
     }
 
     public static int getSerialBaudrate(String baudRate) {
-        return isNonEmptyString(baudRate) ? Integer.valueOf(baudRate) : DEFAULT_BAUDRATE;
+        return isNonEmptyString(baudRate) ? Integer.parseInt(baudRate) : DEFAULT_BAUDRATE;
     }
 
     public static boolean isNonEmptyString(String value) {

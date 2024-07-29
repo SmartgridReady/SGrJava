@@ -18,7 +18,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.smartgridready.communicator.rest.impl;
 
-import com.smartgridready.communicator.rest.api.client.GenHttpResponse;
+import com.smartgridready.driver.http.api.GenHttpResponse;
 import com.smartgridready.communicator.rest.http.client.RestServiceClient;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ResponseQuery;
@@ -38,14 +38,14 @@ import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.JsonHelper;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
-import communicator.common.runtime.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
 import com.smartgridready.communicator.rest.api.GenDeviceApi4Rest;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.communicator.rest.exception.RestApiResponseParseException;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
 import com.smartgridready.communicator.rest.http.authentication.Authenticator;
 import com.smartgridready.communicator.rest.http.authentication.AuthenticatorFactory;
-import com.smartgridready.communicator.rest.api.client.GenHttpRequestFactory;
+import com.smartgridready.driver.http.api.GenHttpRequestFactory;
 import com.smartgridready.communicator.rest.http.client.RestServiceClientUtils;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpStatus;

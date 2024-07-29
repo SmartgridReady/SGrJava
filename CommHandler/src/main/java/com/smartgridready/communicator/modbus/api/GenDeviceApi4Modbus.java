@@ -19,9 +19,9 @@ package com.smartgridready.communicator.modbus.api;
 import com.smartgridready.communicator.common.api.GenDeviceApi;
 import com.smartgridready.communicator.common.api.values.NumberValue;
 import com.smartgridready.communicator.common.api.values.Value;
-import communicator.common.runtime.GenDriverException;
-import communicator.common.runtime.GenDriverModbusException;
-import communicator.common.runtime.GenDriverSocketException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverModbusException;
+import com.smartgridready.driver.modbus.api.GenDriverSocketException;
 
 /**
  * The API defines read and write operations for SmartGridReady devices.

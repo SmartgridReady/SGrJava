@@ -2,7 +2,7 @@ package com.smartgridready.communicator.modbus.api;
 
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
-import communicator.common.runtime.GenDriverException;
+import com.smartgridready.driver.modbus.api.GenDriverException;
 
 /**
  * An interface to create Modbus gateways (or transports).
