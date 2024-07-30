@@ -18,7 +18,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.smartgridready.communicator.rest.exception;
 
-import com.smartgridready.driver.http.api.GenHttpResponse;
+import com.smartgridready.driver.api.http.GenHttpResponse;
 
 public class RestApiServiceCallException extends Exception {
 

@@ -1,10 +1,10 @@
 package com.smartgridready.communicator.modbus.impl;
 
-import com.smartgridready.driver.modbus.api.DataBits;
-import com.smartgridready.driver.modbus.api.GenDriverException;
-import com.smartgridready.driver.modbus.api.Parity;
-import com.smartgridready.driver.modbus.api.StopBits;
-import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.api.modbus.DataBits;
+import com.smartgridready.driver.api.common.GenDriverException;
+import com.smartgridready.driver.api.modbus.Parity;
+import com.smartgridready.driver.api.modbus.StopBits;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusConnectable;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import com.smartgridready.utils.StringUtil;
 

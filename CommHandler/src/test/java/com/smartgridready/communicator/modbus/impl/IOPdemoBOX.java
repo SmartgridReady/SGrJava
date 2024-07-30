@@ -32,7 +32,7 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.communicator.common.api.values.EnumRecord;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
-import com.smartgridready.driver.modbus.api.Parity;
+import com.smartgridready.driver.api.modbus.Parity;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;

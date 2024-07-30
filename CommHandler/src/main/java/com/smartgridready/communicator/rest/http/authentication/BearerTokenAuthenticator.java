@@ -20,7 +20,7 @@ package com.smartgridready.communicator.rest.http.authentication;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.smartgridready.driver.http.api.GenHttpResponse;
+import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.communicator.rest.http.client.RestServiceClient;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ResponseQuery;
@@ -28,7 +28,7 @@ import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
-import com.smartgridready.driver.http.api.GenHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpRequestFactory;
 import com.smartgridready.communicator.rest.http.client.RestServiceClientUtils;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;

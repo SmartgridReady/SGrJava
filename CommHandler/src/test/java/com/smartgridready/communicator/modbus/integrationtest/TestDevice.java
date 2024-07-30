@@ -10,7 +10,7 @@ import com.smartgridready.ns.v0.RegisterType;
 import com.smartgridready.communicator.common.helper.DataTypeHelper;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
-import com.smartgridready.driver.modbus.api.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;

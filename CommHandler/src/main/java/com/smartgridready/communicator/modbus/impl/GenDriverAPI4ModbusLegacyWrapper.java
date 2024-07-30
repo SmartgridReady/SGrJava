@@ -1,10 +1,10 @@
 package com.smartgridready.communicator.modbus.impl;
 
-import com.smartgridready.driver.modbus.api.GenDriverAPI4Modbus;
-import com.smartgridready.driver.modbus.api.GenDriverException;
-import com.smartgridready.driver.modbus.api.GenDriverModbusException;
-import com.smartgridready.driver.modbus.api.GenDriverSocketException;
-import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.common.GenDriverException;
+import com.smartgridready.driver.api.modbus.GenDriverModbusException;
+import com.smartgridready.driver.api.modbus.GenDriverSocketException;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusConnectable;
 
 class GenDriverAPI4ModbusLegacyWrapper implements GenDriverAPI4ModbusConnectable {
 

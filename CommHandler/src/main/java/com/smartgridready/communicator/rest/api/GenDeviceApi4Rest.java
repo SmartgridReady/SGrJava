@@ -21,7 +21,7 @@ package com.smartgridready.communicator.rest.api;
 import com.smartgridready.communicator.common.api.GenDeviceApi;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
-import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.communicator.rest.exception.RestApiResponseParseException;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;

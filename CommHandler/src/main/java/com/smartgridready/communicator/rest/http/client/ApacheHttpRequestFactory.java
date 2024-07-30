@@ -18,8 +18,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.smartgridready.communicator.rest.http.client;
 
-import com.smartgridready.driver.http.api.GenHttpRequest;
-import com.smartgridready.driver.http.api.GenHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpRequest;
+import com.smartgridready.driver.api.http.GenHttpRequestFactory;
 
 public class ApacheHttpRequestFactory implements GenHttpRequestFactory {
 	@Override

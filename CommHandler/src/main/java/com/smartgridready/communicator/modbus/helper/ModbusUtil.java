@@ -7,10 +7,10 @@ import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 import com.smartgridready.ns.v0.ModbusRtu;
 import com.smartgridready.ns.v0.ModbusTcp;
 
-import com.smartgridready.driver.modbus.api.DataBits;
-import com.smartgridready.driver.modbus.api.GenDriverException;
-import com.smartgridready.driver.modbus.api.StopBits;
-import com.smartgridready.driver.modbus.api.Parity;
+import com.smartgridready.driver.api.modbus.DataBits;
+import com.smartgridready.driver.api.common.GenDriverException;
+import com.smartgridready.driver.api.modbus.StopBits;
+import com.smartgridready.driver.api.modbus.Parity;
 
 public class ModbusUtil {
 

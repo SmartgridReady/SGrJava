@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
-import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.api.common.GenDriverException;
 
 
 /**

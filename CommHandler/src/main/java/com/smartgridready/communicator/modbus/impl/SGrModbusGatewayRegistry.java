@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
-import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;

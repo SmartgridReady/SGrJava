@@ -16,7 +16,7 @@ import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.JsonHelper;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
-import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.messaging.api.GenMessagingApi;
 import com.smartgridready.communicator.messaging.api.Message;
 import com.smartgridready.communicator.messaging.client.MessagingClient;

@@ -1,7 +1,7 @@
 package com.smartgridready.communicator.modbus.impl;
 
-import com.smartgridready.driver.modbus.api.GenDriverException;
-import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.api.common.GenDriverException;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusConnectable;
 import com.smartgridready.communicator.modbus.helper.ModbusUtil;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
 

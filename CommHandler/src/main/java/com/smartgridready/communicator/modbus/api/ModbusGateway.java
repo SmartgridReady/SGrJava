@@ -1,6 +1,6 @@
 package com.smartgridready.communicator.modbus.api;
 
-import com.smartgridready.driver.modbus.api.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusConnectable;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
 public class ModbusGateway {

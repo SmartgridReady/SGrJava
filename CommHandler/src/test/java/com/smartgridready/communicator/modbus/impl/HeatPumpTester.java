@@ -34,7 +34,7 @@ import com.smartgridready.communicator.common.api.values.EnumRecord;
 import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.communicator.common.api.values.Float64Value;
 import com.smartgridready.communicator.common.api.values.Value;
-import com.smartgridready.driver.modbus.api.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
 import com.smartgridready.communicator.modbus.helper.GenDriverAPI4ModbusRTUMock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

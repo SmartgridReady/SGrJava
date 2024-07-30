@@ -4,7 +4,7 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.RestApiBasic;
 import com.smartgridready.communicator.rest.exception.RestApiResponseParseException;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
-import com.smartgridready.driver.http.api.GenHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpRequestFactory;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

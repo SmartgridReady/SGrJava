@@ -4,7 +4,7 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
-import com.smartgridready.driver.modbus.api.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

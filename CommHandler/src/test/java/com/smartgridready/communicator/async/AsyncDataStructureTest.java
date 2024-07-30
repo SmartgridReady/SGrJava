@@ -12,7 +12,7 @@ import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.communicator.common.api.values.Float64Value;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
-import com.smartgridready.driver.modbus.api.GenDriverModbusException;
+import com.smartgridready.driver.api.modbus.GenDriverModbusException;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;

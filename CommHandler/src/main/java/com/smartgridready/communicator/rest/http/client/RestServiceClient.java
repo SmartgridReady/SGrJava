@@ -26,10 +26,10 @@ import java.util.Optional;
 import java.util.Properties;
 
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
-import com.smartgridready.driver.http.api.GenHttpRequestFactory;
-import com.smartgridready.driver.http.api.GenHttpResponse;
-import com.smartgridready.driver.http.api.GenHttpRequest;
-import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.api.http.GenHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpResponse;
+import com.smartgridready.driver.api.http.GenHttpRequest;
+import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.ns.v0.HeaderList;
 import com.smartgridready.ns.v0.HttpMethod;
 import com.smartgridready.ns.v0.ParameterList;
@@ -49,13 +49,13 @@ public class RestServiceClient {
 	private final RestApiServiceCall restServiceCall;
 	private final GenHttpRequestFactory httpRequestFactory;
 
-	private static final Map<HttpMethod, com.smartgridready.driver.http.api.HttpMethod> HTTP_METHOD_MAP = new HashMap<>();
+	private static final Map<HttpMethod, com.smartgridready.driver.api.http.HttpMethod> HTTP_METHOD_MAP = new HashMap<>();
 	static {
-		HTTP_METHOD_MAP.put(HttpMethod.GET, com.smartgridready.driver.http.api.HttpMethod.GET);
-		HTTP_METHOD_MAP.put(HttpMethod.POST, com.smartgridready.driver.http.api.HttpMethod.POST);
-		HTTP_METHOD_MAP.put(HttpMethod.PUT, com.smartgridready.driver.http.api.HttpMethod.PUT);
-		HTTP_METHOD_MAP.put(HttpMethod.PATCH, com.smartgridready.driver.http.api.HttpMethod.PATCH);
-		HTTP_METHOD_MAP.put(HttpMethod.DELETE, com.smartgridready.driver.http.api.HttpMethod.DELETE);
+		HTTP_METHOD_MAP.put(HttpMethod.GET, com.smartgridready.driver.api.http.HttpMethod.GET);
+		HTTP_METHOD_MAP.put(HttpMethod.POST, com.smartgridready.driver.api.http.HttpMethod.POST);
+		HTTP_METHOD_MAP.put(HttpMethod.PUT, com.smartgridready.driver.api.http.HttpMethod.PUT);
+		HTTP_METHOD_MAP.put(HttpMethod.PATCH, com.smartgridready.driver.api.http.HttpMethod.PATCH);
+		HTTP_METHOD_MAP.put(HttpMethod.DELETE, com.smartgridready.driver.api.http.HttpMethod.DELETE);
 	}
 
 	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpRequestFactory httpRequestFactory) {
@@ -200,7 +200,7 @@ public class RestServiceClient {
 		return new RestServiceClient(baseUri, serviceCall, httpRequestFactory, substitutions);
 	}
 
-	private static com.smartgridready.driver.http.api.HttpMethod mapHttpMethod(HttpMethod httpMethod) throws IOException {
+	private static com.smartgridready.driver.api.http.HttpMethod mapHttpMethod(HttpMethod httpMethod) throws IOException {
 		return Optional.ofNullable(HTTP_METHOD_MAP.get(httpMethod))
 				.orElseThrow(() -> new IOException("Unsupported HTTP method: " + httpMethod.getName()));
 	}

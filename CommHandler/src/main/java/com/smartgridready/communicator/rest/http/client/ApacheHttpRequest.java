@@ -1,8 +1,8 @@
 package com.smartgridready.communicator.rest.http.client;
 
-import com.smartgridready.driver.http.api.GenHttpResponse;
-import com.smartgridready.driver.http.api.GenHttpRequest;
-import com.smartgridready.driver.http.api.HttpMethod;
+import com.smartgridready.driver.api.http.GenHttpResponse;
+import com.smartgridready.driver.api.http.GenHttpRequest;
+import com.smartgridready.driver.api.http.HttpMethod;
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.client5.http.fluent.Request;

@@ -14,7 +14,7 @@ import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
 import com.hivemq.client.mqtt.mqtt5.message.unsubscribe.unsuback.Mqtt5UnsubAck;
 import com.smartgridready.ns.v0.MessageFilter;
 
-import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.messaging.api.Message;
 import io.vavr.control.Either;
 import com.smartgridready.utils.StringUtil;

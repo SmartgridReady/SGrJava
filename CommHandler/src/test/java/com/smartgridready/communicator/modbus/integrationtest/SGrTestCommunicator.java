@@ -10,7 +10,7 @@ import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DataTypeHelper;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
-import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.api.common.GenDriverException;
 import io.vavr.Tuple2;
 import io.vavr.Tuple3;
 import org.eclipse.emf.common.util.EList;

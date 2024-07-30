@@ -1,8 +1,8 @@
 package com.smartgridready.communicator.rest.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.smartgridready.driver.http.api.GenHttpRequest;
-import com.smartgridready.driver.http.api.GenHttpResponse;
+import com.smartgridready.driver.api.http.GenHttpRequest;
+import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.RestApiServiceCall;
@@ -13,10 +13,10 @@ import com.smartgridready.communicator.common.api.values.Int32UValue;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
-import com.smartgridready.driver.modbus.api.GenDriverException;
+import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.rest.api.GenDeviceApi4Rest;
 import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
-import com.smartgridready.driver.http.api.GenHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpRequestFactory;
 import org.apache.hc.client5.http.fluent.Content;
 import org.apache.hc.client5.http.fluent.Request;
 import org.apache.hc.client5.http.fluent.Response;
