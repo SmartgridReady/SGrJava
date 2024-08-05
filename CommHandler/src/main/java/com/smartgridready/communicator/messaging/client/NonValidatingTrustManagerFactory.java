@@ -1,8 +1,6 @@
 package com.smartgridready.communicator.messaging.client;
 
-import java.security.InvalidAlgorithmParameterException;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
 
 import javax.net.ssl.ManagerFactoryParameters;
 import javax.net.ssl.TrustManager;
@@ -28,12 +26,12 @@ class NonValidatingTrustManagerFactory extends TrustManagerFactory {
     private static class NonValidatingTrustManagerFactorySpi extends TrustManagerFactorySpi {
 
         @Override
-        protected void engineInit(KeyStore ks) throws KeyStoreException {
+        protected void engineInit(KeyStore ks)  {
             // nothing
         }
 
         @Override
-        protected void engineInit(ManagerFactoryParameters spec) throws InvalidAlgorithmParameterException {
+        protected void engineInit(ManagerFactoryParameters spec) {
             // nothing
         }
 

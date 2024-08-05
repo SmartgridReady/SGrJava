@@ -25,11 +25,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
-import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
 import com.smartgridready.driver.api.http.GenHttpRequestFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.driver.api.http.GenHttpRequest;
-import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.ns.v0.HeaderList;
 import com.smartgridready.ns.v0.HttpMethod;
 import com.smartgridready.ns.v0.ParameterList;

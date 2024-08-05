@@ -1,5 +1,8 @@
 package com.smartgridready.communicator.messaging.impl;
 
+import com.smartgridready.driver.api.messaging.Message;
+import com.smartgridready.driver.api.messaging.MessagingClient;
+import com.smartgridready.driver.api.messaging.MessagingClientFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.InMessage;
 import com.smartgridready.ns.v0.InterfaceList;
@@ -18,9 +21,6 @@ import com.smartgridready.communicator.common.helper.JsonHelper;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.messaging.api.GenMessagingApi;
-import com.smartgridready.communicator.messaging.api.Message;
-import com.smartgridready.communicator.messaging.client.MessagingClient;
-import com.smartgridready.communicator.messaging.client.MessagingClientFactory;
 import io.vavr.control.Either;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,11 +43,14 @@ public class SGrMessagingDevice extends SGrDeviceBase<
 
     private final MessagingInterfaceDescription interfaceDescription;
 
+    private final MessagingClientFactory messagingClientFactory;
+
     private MessagingClient messagingClient;
 
     private final Map<MessageCacheKey, MessageCacheRecord> messageCache = new HashMap<>();
 
-    public SGrMessagingDevice(DeviceFrame deviceDescription) throws GenDriverException {
+    public SGrMessagingDevice(DeviceFrame deviceDescription,
+                              MessagingClientFactory messagingClientFactory) throws GenDriverException {
         super(deviceDescription);
 
         interfaceDescription = Optional.ofNullable(deviceDescription.getInterfaceList())
@@ -55,6 +58,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
             .map(MessagingInterface::getMessagingInterfaceDescription)
             .orElseThrow(() -> new GenDriverException("Missing messaging interface description in EI-XML"));
 
+        this.messagingClientFactory = messagingClientFactory;
         messagingClient = null;
     }
 
@@ -273,7 +277,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     @Override
 	public synchronized void connect() throws GenDriverException {
         if (messagingClient == null) {
-            messagingClient = MessagingClientFactory.createClient(interfaceDescription);
+            messagingClient = messagingClientFactory.create(interfaceDescription);
         }
 	}
 

@@ -12,12 +12,18 @@ import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5Publish;
 import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5PublishResult;
 import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
 import com.hivemq.client.mqtt.mqtt5.message.unsubscribe.unsuback.Mqtt5UnsubAck;
+import com.smartgridready.communicator.common.helper.JsonHelper;
+import com.smartgridready.driver.api.messaging.Message;
+import com.smartgridready.driver.api.messaging.MessagingClient;
+import com.smartgridready.ns.v0.JMESPathFilterType;
+import com.smartgridready.ns.v0.MessageBrokerAuthentication;
+import com.smartgridready.ns.v0.MessageBrokerAuthenticationBasic;
+import com.smartgridready.ns.v0.MessageBrokerListElement;
 import com.smartgridready.ns.v0.MessageFilter;
 
 import com.smartgridready.driver.api.common.GenDriverException;
-import com.smartgridready.communicator.messaging.api.Message;
+import com.smartgridready.ns.v0.MessagingInterfaceDescription;
 import io.vavr.control.Either;
-import com.smartgridready.utils.StringUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,34 +31,31 @@ import org.slf4j.LoggerFactory;
 import javax.naming.OperationNotSupportedException;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.hivemq.client.mqtt.MqttGlobalPublishFilter.ALL;
 
-public class Mqtt5MessagingClient implements MessagingClient {
+public class HiveMqtt5MessagingClient implements MessagingClient {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Mqtt5MessagingClient.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HiveMqtt5MessagingClient.class);
+    private static final String MESSAGE_LOG_TEMPLATE ="Received topic={} message={} client={}";
 
-    private final String host;
-    private final int port;
-    private final Map<MqttClientProperties, String> properties;
+    private final MessagingInterfaceDescription interfaceDescription;
 
     private final Mqtt5BlockingClient syncClient;
 
     private final Mqtt5AsyncClient asyncClient;
 
-    public Mqtt5MessagingClient(String host,
-                                int port,
-                                Map<MqttClientProperties, String> properties) {
-        this.host = host;
-        this.port = port;
-        this.properties = properties;
+    public HiveMqtt5MessagingClient(MessagingInterfaceDescription messagingInterfaceDesc
+                                      /*Map<MqttClientProperties, String> properties */) {
+        this.interfaceDescription = messagingInterfaceDesc;
 
         syncClient = createClient().toBlocking();
         syncClient.connect();
@@ -93,7 +96,7 @@ public class Mqtt5MessagingClient implements MessagingClient {
 
         // Validate the message payload filter.
         try {
-            MessagingClient.validateMessagePayloadFilter(messageFilter);
+            validateMessagePayloadFilter(messageFilter);
         } catch (OperationNotSupportedException | IllegalArgumentException e) {
             return (Either.left(e));
         }
@@ -132,12 +135,9 @@ public class Mqtt5MessagingClient implements MessagingClient {
             while (mqtt5Publish==null) {
                 try {
                     Optional<Mqtt5Publish> received = publishes.receive(timeoutSec, TimeUnit.MILLISECONDS);
-                    received.ifPresent(publish ->
-                            LOG.debug("Received topic={} message={} client={}", publish.getTopic(),
-                                    new String(publish.getPayloadAsBytes(), StandardCharsets.UTF_8),
-                                    syncClient.hashCode()));
+                    received.ifPresent(this::logReceivedMessage);
 
-                    if (!received.isPresent()) {
+                    if (received.isEmpty()) {
                         return Either.left(new TimeoutException("Timeout received while waiting for message on topic=" + topic));
                     }
 
@@ -198,10 +198,7 @@ public class Mqtt5MessagingClient implements MessagingClient {
                         LOG.info("Subscription to topic {} successful.", topic);
                         asyncClient.publishes(ALL,
                                 publish -> {
-                                    LOG.debug("Received topic={} message={} client={}", publish.getTopic(),
-                                            new String(publish.getPayloadAsBytes(), StandardCharsets.UTF_8),
-                                            syncClient.hashCode());
-
+                                    logReceivedMessage(publish);
                                     Optional.of(publish)
                                             .filter(p -> MqttTopic.of(topic).equals(p.getTopic()))
                                             .filter(p -> isMessagePayloadFilterMatch(publish, messageFilter))
@@ -242,52 +239,102 @@ public class Mqtt5MessagingClient implements MessagingClient {
 
     private boolean isMessagePayloadFilterMatch(Mqtt5Publish publish, MessageFilter messageFilter) {
         String payload = new String(publish.getPayloadAsBytes(), StandardCharsets.UTF_8);
-        return MessagingClient.isMessagePayloadFilterMatch(payload, messageFilter);
+        return isMessagePayloadFilterMatch(payload, messageFilter);
     }
 
     private Mqtt5Client createClient() {
 
+        // HiveMqtt5MessagingClientFactory ensures the at least one broker is configured.
+        MessageBrokerListElement messageBroker
+            = interfaceDescription.getMessageBrokerList().getMessageBrokerListElement().get(0);
+
         Mqtt5ClientBuilder clientBuilder = MqttClient.builder()
-                .serverHost(host)
-                .serverPort(port)
+                .serverHost(messageBroker.getHost())
+                .serverPort(Integer.parseInt(messageBroker.getPort()))
                 .useMqttVersion5();
 
-        if (properties!=null) {
+        if (interfaceDescription.getClientId() != null) {
+            clientBuilder = clientBuilder.identifier(interfaceDescription.getClientId());
+        }
 
-            if (properties.containsKey(MqttClientProperties.CLIENT_ID)) {
-                clientBuilder = clientBuilder.identifier(properties.get(MqttClientProperties.CLIENT_ID));
-            }
-            if (properties.containsKey(MqttClientProperties.USE_SSL)
-                    && Boolean.parseBoolean(properties.get(MqttClientProperties.USE_SSL))) { // SSL/TLS
 
-                if (properties.containsKey(MqttClientProperties.SSL_VERIFY_CERTIFICATE)
-                    && Boolean.parseBoolean(properties.get(MqttClientProperties.SSL_VERIFY_CERTIFICATE))) {
+        if (messageBroker.isTls() && messageBroker.isTlsVerifyCertificate()) {
+            // enable certificate verification with default trust manager
+            clientBuilder = clientBuilder.sslWithDefaultConfig();
+            LOG.debug("SSL default config");
+        } else if (messageBroker.isTls()) {
+            // remove trust manager, no verification
+            clientBuilder = clientBuilder
+                    .sslConfig()
+                    .hostnameVerifier(NonValidatingHostnameVerifier.getInstance())
+                    .trustManagerFactory(NonValidatingTrustManagerFactory.getInstance())
+                    .applySslConfig();
+            LOG.debug("SSL config without certificate validation");
+        }
 
-                    // enable certificate verification with default trust manager
-                    clientBuilder = clientBuilder.sslWithDefaultConfig();
-                    LOG.debug("SSL default config");
-                } else {
-                    // remove trust manager, no verification
-                    clientBuilder = clientBuilder
-                                .sslConfig()
-                                .hostnameVerifier(NonValidatingHostnameVerifier.getInstance())
-                                .trustManagerFactory(NonValidatingTrustManagerFactory.getInstance())
-                                .applySslConfig();
-                    LOG.debug("SSL config without certificate validation");
-                }
-            }
-            if (properties.containsKey(MqttClientProperties.BASIC_AUTH_USERNAME)
-                    && properties.containsKey(MqttClientProperties.BASIC_AUTH_PASSWORD)
-                    && StringUtil.isNotEmpty(properties.get(MqttClientProperties.BASIC_AUTH_USERNAME))
-            ) { // Basic auth - when user name is not empty
-                clientBuilder = clientBuilder.simpleAuth()
-                        .username(properties.get(MqttClientProperties.BASIC_AUTH_USERNAME))
-                        .password(properties.get(MqttClientProperties.BASIC_AUTH_PASSWORD)
-                                .getBytes(StandardCharsets.UTF_8))
-                        .applySimpleAuth();
+        MessageBrokerAuthentication messageBrokerAuthentication = interfaceDescription.getMessageBrokerAuthentication();
+        if (messageBrokerAuthentication.getBasicAuthentication() != null) {
+            MessageBrokerAuthenticationBasic basicAuth = messageBrokerAuthentication.getBasicAuthentication();
+            clientBuilder.simpleAuth()
+                    .username(basicAuth.getUsername())
+                    .password(basicAuth.getPassword().getBytes(StandardCharsets.UTF_8))
+                    .applySimpleAuth();
+        }
+
+        return clientBuilder.build();
+    }
+
+    /**
+     * Checks if a message payload filter is present and returns true if no filter is present
+     * or the message matches the filter criteria.
+     *
+     * @param payload The received message payload
+     * @param messageFilter Payload filter for messages to be processed.
+     * @return {@code true} if the message payload matches the filter.
+     */
+    static boolean isMessagePayloadFilterMatch(String payload, MessageFilter messageFilter) {
+
+        if (messageFilter == null) {
+            return true;    // always match
+        }
+        if (payload == null) {
+            return false;    // no match
+        }
+
+        String regex = ".";
+        if (messageFilter.getJmespathFilter() != null) {
+            try {
+                JMESPathFilterType filter = messageFilter.getJmespathFilter();
+                regex = filter.getMatchesRegex();
+                payload = JsonHelper.parseJsonResponse(filter.getQuery(), payload).getString();
+            } catch (GenDriverException e) {
+                return false; // no match
             }
         }
-        return clientBuilder.build();
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(payload);
+        return matcher.find();
+    }
+
+    static void validateMessagePayloadFilter(MessageFilter messageFilter) throws OperationNotSupportedException {
+
+        if (messageFilter == null) {
+            return; // null means no-filter, that's fine
+        }
+        if (messageFilter.getRegexFilter() != null) {
+            throw new OperationNotSupportedException("Regex message filter not supported yet.");
+        }
+        if (messageFilter.getXpapathFilter() != null) {
+            throw new OperationNotSupportedException("Xpath message filter not supported yet.");
+        }
+    }
+
+    private void logReceivedMessage(Mqtt5Publish publish) {
+        LOG.debug(MESSAGE_LOG_TEMPLATE,
+                publish.getTopic(),
+                new String(publish.getPayloadAsBytes(), StandardCharsets.UTF_8),
+                syncClient.hashCode());
     }
 
     @Override

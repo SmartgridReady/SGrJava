@@ -1,10 +1,12 @@
 package com.smartgridready.communicator.messaging.client;
 
+import com.smartgridready.driver.api.messaging.Message;
+import com.smartgridready.driver.api.messaging.MessagingClient;
 import com.smartgridready.ns.v0.JMESPathFilterType;
 import com.smartgridready.ns.v0.MessageFilter;
+import com.smartgridready.ns.v0.MessagingInterfaceDescription;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.XPathFilterType;
-import com.smartgridready.communicator.messaging.api.Message;
 import io.vavr.control.Either;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Disabled;
@@ -14,18 +16,17 @@ import org.slf4j.LoggerFactory;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Mqtt5MessagingClientTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Mqtt5MessagingClient.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HiveMqtt5MessagingClient.class);
 
     private static final String TEST_TOPIC = "sensors/temperature";
 
@@ -46,7 +47,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendReceiveSync() throws Exception {
 
-        try (MessagingClient client = new Mqtt5MessagingClient(BROKER_HOST, BROKER_PORT, createClientProperties())) {
+        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
             // Set up a thread with a blocking receiver for the message.
             Either<Throwable, Message> result = client.readSync(
@@ -63,7 +64,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendReceiveSyncWithTopicFilter() throws Exception{
 
-       try (MessagingClient client = new Mqtt5MessagingClient(BROKER_HOST, BROKER_PORT, createClientProperties())) {
+       try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
            CompletableFuture<Either<Throwable, Message>> asyncMsgSender1 = CompletableFuture.supplyAsync(() ->
                    client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC, null, 2000));
@@ -85,7 +86,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendReceiveSyncWithMessageFilter() throws Exception {
 
-        try (MessagingClient client = new Mqtt5MessagingClient(BROKER_HOST, BROKER_PORT, createClientProperties())) {
+        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
             MessageFilter messageFilter1 = createMessageFilter("1");
             MessageFilter messageFilter2 = createMessageFilter("2");
@@ -124,18 +125,18 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendAndReceiveSyncTimeout() throws Exception {
 
-        try (MessagingClient client = new Mqtt5MessagingClient(BROKER_HOST, BROKER_PORT, createClientProperties())) {
+        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
             Either<Throwable, Message> future = client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC_2, null, 1000);
             // no message sent to topic
-            assertTrue(future.getLeft() instanceof TimeoutException);
+            assertInstanceOf(TimeoutException.class, future.getLeft());
         }
     }
 
     @Test
     void sendAndReceiveSyncUnsupportedFilter() throws Exception {
 
-        try (MessagingClient client = new Mqtt5MessagingClient(BROKER_HOST, BROKER_PORT, createClientProperties())) {
+        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
             MessageFilter messageFilter = V0Factory.eINSTANCE.createMessageFilter();
             XPathFilterType xPathFilter = V0Factory.eINSTANCE.createXPathFilterType();
             messageFilter.setXpapathFilter(xPathFilter);
@@ -147,14 +148,14 @@ class Mqtt5MessagingClientTest {
 
             client.sendSync(TEST_TOPIC, Message.of("Hello"));
 
-            assertTrue(future.getLeft() instanceof OperationNotSupportedException);
+            assertInstanceOf(OperationNotSupportedException.class, future.getLeft());
         }
     }
 
     @Test
     void sendReceiveAsynch() throws Exception {
 
-        try (Mqtt5MessagingClient client = new Mqtt5MessagingClient(BROKER_HOST, BROKER_PORT, createClientProperties())) {
+        try (HiveMqtt5MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
             CompletableFuture<Either<Throwable, Message>> future = new CompletableFuture<>();
             client.subscribe(TEST_TOPIC, null, future::complete);
@@ -174,7 +175,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendReceiveAsynchWithMessageFilter() throws Exception {
 
-        try (MessagingClient client = new Mqtt5MessagingClient(BROKER_HOST, BROKER_PORT, createClientProperties())) {
+        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
             MessageFilter messageFilter1 = createMessageFilter("1");
             MessageFilter messageFilter2 = createMessageFilter("2");
@@ -217,13 +218,27 @@ class Mqtt5MessagingClientTest {
         }
     }
 
-    private Map<MqttClientProperties, String> createClientProperties() {
-        Map<MqttClientProperties, String> properties = new HashMap<>();
-        properties.put(MqttClientProperties.USE_SSL, String.valueOf(BROKER_TLS));
-        properties.put(MqttClientProperties.SSL_VERIFY_CERTIFICATE, String.valueOf(BROKER_TLS_VERIFY));
-        properties.put(MqttClientProperties.BASIC_AUTH_USERNAME, BROKER_USER);
-        properties.put(MqttClientProperties.BASIC_AUTH_PASSWORD, BROKER_PASSWORD);
-        return properties;
+    private MessagingInterfaceDescription createMessagingInterfaceDescription() {
+
+        var interfaceDesc = V0Factory.eINSTANCE.createMessagingInterfaceDescription();
+
+        var messageBrokerList = V0Factory.eINSTANCE.createMessageBrokerList();
+        var messageBrokerListElem = V0Factory.eINSTANCE.createMessageBrokerListElement();
+        messageBrokerListElem.setTls(BROKER_TLS);
+        messageBrokerListElem.setHost(BROKER_HOST);
+        messageBrokerListElem.setPort(String.valueOf(BROKER_PORT));
+        messageBrokerListElem.setTlsVerifyCertificate(BROKER_TLS_VERIFY);
+        messageBrokerList.getMessageBrokerListElement().add(messageBrokerListElem);
+        interfaceDesc.setMessageBrokerList(messageBrokerList);
+
+        var messageBrokerAuthentication = V0Factory.eINSTANCE.createMessageBrokerAuthentication();
+        var messageBrokerAuthenticationBasic = V0Factory.eINSTANCE.createMessageBrokerAuthenticationBasic();
+        messageBrokerAuthenticationBasic.setUsername(BROKER_USER);
+        messageBrokerAuthenticationBasic.setPassword(BROKER_PASSWORD);
+        messageBrokerAuthentication.setBasicAuthentication(messageBrokerAuthenticationBasic);
+        interfaceDesc.setMessageBrokerAuthentication(messageBrokerAuthentication);
+
+        return interfaceDesc;
     }
 
     private MessageFilter createMessageFilter(String matchesRegex) {

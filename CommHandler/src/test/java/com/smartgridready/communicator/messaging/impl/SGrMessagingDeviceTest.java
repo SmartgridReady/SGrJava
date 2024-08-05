@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.messaging.impl;
 
+import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClientFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
@@ -228,11 +229,11 @@ class SGrMessagingDeviceTest {
                 LOG.info("Received ChargingCurrent: {}", result.get());
                 resultQueue.put(result.get());
             } else {
-                LOG.error("Receiving error: " + result.getLeft());
+                LOG.error("Receiving error: {}", result.getLeft().getMessage());
                 resultQueue.put(StringValue.of(result.getLeft().getMessage()));
             }
         } catch (Exception e) {
-            LOG.error("Queuing error: " + e);
+            LOG.error("Queuing error: {}", e.getMessage());
         }
     }
 
@@ -253,7 +254,7 @@ class SGrMessagingDeviceTest {
                 deviceDescFile != null ? deviceDescFile.getPath() : null,
                 properties);
 
-        return new SGrMessagingDevice(deviceDesc);
+        return new SGrMessagingDevice(deviceDesc, new HiveMqtt5MessagingClientFactory());
     }
 
 }

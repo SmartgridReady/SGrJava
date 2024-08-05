@@ -5,6 +5,8 @@ import java.util.Properties;
 import java.io.InputStream;
 import java.nio.file.Path;
 
+import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClientFactory;
+import com.smartgridready.driver.api.messaging.MessagingClientFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.InterfaceList;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
@@ -32,6 +34,8 @@ public class SGrDeviceBuilder {
 
     private GenHttpRequestFactory httpClientFactory;
     private ModbusGatewayFactory modbusGatewayFactory;
+    private MessagingClientFactory messagingClientFactory;
+
     private ModbusGatewayRegistry modbusGatewayRegistry;
 
     public SGrDeviceBuilder() {
@@ -42,6 +46,7 @@ public class SGrDeviceBuilder {
         // default implementations
         this.httpClientFactory = new ApacheHttpRequestFactory();
         this.modbusGatewayFactory = new SGrModbusGatewayFactory();
+        this.messagingClientFactory = new HiveMqtt5MessagingClientFactory();
     }
 
     /**
@@ -95,6 +100,16 @@ public class SGrDeviceBuilder {
     }
 
     /**
+     * Sets the messaging client factory to be used
+     * @param messagingClientFactory the messaging client factory to be used
+     */
+    public SGrDeviceBuilder useMessagingClientFactory(MessagingClientFactory messagingClientFactory) {
+        this.messagingClientFactory = messagingClientFactory;
+        return this;
+    }
+
+
+    /**
      * Sets the shared Modbus gateway registry.
      * @param modbusGatewayRegistry an instance of a Modbus gateway registry
      * @return the same instance of the builder object
@@ -117,8 +132,8 @@ public class SGrDeviceBuilder {
     /**
      * Builds the SGr device using the previously set builder parameters.
      * @return an SGr device object
-     * @throws GenDriverException 
-     * @throws RestApiAuthenticationException
+     * @throws GenDriverException on generic error
+     * @throws RestApiAuthenticationException on authentication error
      */
     public GenDeviceApi build() throws GenDriverException, RestApiAuthenticationException {
         if (eidSource == null) {
@@ -155,7 +170,7 @@ public class SGrDeviceBuilder {
                 return new SGrRestApiDevice(deviceFrame, httpClientFactory);
 
             case MESSAGING:
-                return new SGrMessagingDevice(deviceFrame);
+                return new SGrMessagingDevice(deviceFrame, messagingClientFactory);
 
             default:
                 throw new GenDriverException(String.format("Unsupported interface type %s", interfaceType));

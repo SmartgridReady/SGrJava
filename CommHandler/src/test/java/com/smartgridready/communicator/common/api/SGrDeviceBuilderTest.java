@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.common.api;
 
+import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClientFactory;
 import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
@@ -194,6 +195,7 @@ public class SGrDeviceBuilderTest {
         GenDeviceApi device = new SGrDeviceBuilder()
                 .properties(properties)
                 .eid(loadResourceAsStream("SGr_XX_HiveMQ_MQTT_Cloud.xml"))
+                .useMessagingClientFactory(new HiveMqtt5MessagingClientFactory())
                 .build();
 
         assertInstanceOf(SGrMessagingDevice.class, device);
@@ -206,6 +208,7 @@ public class SGrDeviceBuilderTest {
         return classLoader.getResourceAsStream(resourceName);
     }
 
+    @SuppressWarnings("ConstantConditions")
     public static String loadResourceAsString(String resourceName) throws Exception {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try (InputStream inputStream = classLoader.getResourceAsStream(resourceName);
@@ -214,6 +217,7 @@ public class SGrDeviceBuilderTest {
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     public static Path loadResourceAsPath(String resourceName) throws  Exception {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         var resource = classLoader.getResource(resourceName);
