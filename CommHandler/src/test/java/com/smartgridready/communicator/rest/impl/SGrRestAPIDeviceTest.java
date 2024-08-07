@@ -127,9 +127,7 @@ class SGrRestAPIDeviceTest {
 		when(httpClientFactory.create()).thenReturn(httpClient);
 		when(httpClient.execute()).thenReturn(
 				GenHttpResponse.of(CLEMAP_AUTH_RESP),	// authentication response on connect()
-				GenHttpResponse.of(CLEMAP_AUTH_RESP),	// authentication webservice call getting cached token, however token is expired.
 				GenHttpResponse.of("", 401, "Needs token renewal."), // webservice coll to query datapoint
-				GenHttpResponse.of(CLEMAP_AUTH_RESP),   // response to token renewasl
 				GenHttpResponse.of(CLEMAP_METER_RESP)); // response of read datapoint result
 		
 		// when
@@ -183,8 +181,8 @@ class SGrRestAPIDeviceTest {
 	@ValueSource(strings = {"ContactW", "ContactRW", "IORegister"})
 	void testSetValWithWriteServiceCallV2(String dataPointName) throws Exception {
 
-		try (MockedStatic<Request> httpClient =  Mockito.mockStatic(Request.class)) {
-			httpClient.when(() -> Request.post(anyString())).thenReturn(httpClientRequest);
+		try (MockedStatic<Request> httpClientLocal =  Mockito.mockStatic(Request.class)) {
+			httpClientLocal.when(() -> Request.post(anyString())).thenReturn(httpClientRequest);
 			when(httpClientRequest.execute()).thenReturn(httpResponse);
 			when(httpResponse.returnResponse()).thenReturn(classicHttpResponse);
 			when(classicHttpResponse.getCode()).thenReturn(SC_OK);
@@ -198,20 +196,18 @@ class SGrRestAPIDeviceTest {
 
 			assertDoesNotThrow(() -> device.setVal("GPIO", dataPointName, StringValue.of("on")));
 
-			verify(httpClientRequest, times(4)).addHeader(stringCaptor1.capture(), stringCaptor2.capture());
+			verify(httpClientRequest, times(3)).addHeader(stringCaptor1.capture(), stringCaptor2.capture());
 			var headerKeys = stringCaptor1.getAllValues();
 			assertEquals("Accept", headerKeys.get(0));
-			assertEquals("Accept", headerKeys.get(1));
-			assertEquals("Authorization", headerKeys.get(2));
-			assertEquals("Accept", headerKeys.get(3));
+			assertEquals("Authorization", headerKeys.get(1));
+			assertEquals("Accept", headerKeys.get(2));
 
 			var headerValues = stringCaptor2.getAllValues();
 			assertEquals("application/json", headerValues.get(0));
-			assertEquals("application/json", headerValues.get(1));
-			assertEquals("Bearer null", headerValues.get(2));
-			assertEquals("application/json", headerValues.get(3));
+			assertEquals("Bearer null", headerValues.get(1));
+			assertEquals("application/json", headerValues.get(2));
 
-			verify(httpClientRequest, times(3)).body(httpEntityCaptor.capture());
+			verify(httpClientRequest, times(2)).body(httpEntityCaptor.capture());
 
 			String expected = "";
 			switch (dataPointName) {

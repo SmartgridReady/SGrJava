@@ -202,12 +202,14 @@ public abstract class SGrDeviceBase<
     }
 
     @Override
-    public List<DataPoint> getDataPoints(String functionalProfileName) throws GenDriverException {
+    public List<DataPoint
+            > getDataPoints(String functionalProfileName) throws GenDriverException {
 
         var functionalProfile = findProfile(functionalProfileName)
                 .orElseThrow(() -> new GenDriverException("Functional profile with name='" + functionalProfileName + "' not found"));
 
-        List<DataPoint> result = new ArrayList<>();
+        List<DataPoint
+                > result = new ArrayList<>();
 
         var dataPoints = FunctionalProfileWithDatapoints.of(functionalProfile).getDataPoints();
         if (dataPoints != null) {
@@ -231,14 +233,15 @@ public abstract class SGrDeviceBase<
                                 .collect(Collectors.toList()));
 
         return new DataPoint(
-                dataPoint.getDataPointName(),
+                dataPointName,
+                functionalProfileName,
                 SGrGDPTypeToNameMapper.mapToDataTypeDto(dataPoint.getDataType()).stream().findFirst().orElse(new DataType("UNKNOWN", List.of())),
                 dataPoint.getUnit() != null ? dataPoint.getUnit() : null,
                 dataPoint.getDataDirection() != null ? dataPoint.getDataDirection() : null,
                 dataPoint.isSetMinimumValue() ? dataPoint.getMinimumValue() : null,
                 dataPoint.isSetMaximumValue() ? dataPoint.getMaximumValue() : null,
                 dataPoint.isSetArrayLength() ? dataPoint.getArrayLength() : null,
-                genericAttributes.orElse(List.of())
-        );
+                genericAttributes.orElse(List.of()),
+                this );
     }
 }

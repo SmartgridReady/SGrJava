@@ -634,7 +634,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 				// TODO: add discrete data type management
 			}
 		} else {
-			mbRegBufRes.put(mbRegBuf.array());
+			mbRegBufRes.put(Arrays.copyOfRange(mbRegBuf.array(), 0, mbsize));
 		}
 	}
 

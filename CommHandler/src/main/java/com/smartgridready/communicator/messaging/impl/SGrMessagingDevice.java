@@ -20,7 +20,7 @@ import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.JsonHelper;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
 import com.smartgridready.driver.api.common.GenDriverException;
-import com.smartgridready.communicator.messaging.api.GenMessagingApi;
+import com.smartgridready.communicator.messaging.api.GenDeviceApi4Messaging;
 import io.vavr.control.Either;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,11 +35,13 @@ import java.util.function.Consumer;
 public class SGrMessagingDevice extends SGrDeviceBase<
         DeviceFrame,
         MessagingFunctionalProfile,
-        MessagingDataPoint> implements GenMessagingApi {
+        MessagingDataPoint> implements GenDeviceApi4Messaging {
 
     private static final Logger LOG = LoggerFactory.getLogger(SGrMessagingDevice.class);
 
     private static final long SYNC_READ_TIMEOUT_MSEC = 60000;
+
+    private static final String NOT_CONNECTED = "not connected";
 
     private final MessagingInterfaceDescription interfaceDescription;
 
@@ -116,7 +118,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
 
     private Value getValueFromDevice(long timeoutMs, MessagingDataPoint dataPoint, String outMessageTopic, String outMessageTemplate, String inMessageTopic, MessageFilter messageFilter) throws GenDriverException {
         if (messagingClient == null) {
-            throw new GenDriverException("Not connected");
+            throw new GenDriverException(NOT_CONNECTED);
         }
 
         Either<Throwable, Message> result = messagingClient.readSync(
@@ -157,7 +159,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     public void setVal(String profileName, String dataPointName, Value value)
             throws GenDriverException {
         if (messagingClient == null) {
-            throw new GenDriverException("Not connected");
+            throw new GenDriverException(NOT_CONNECTED);
         }
 
         MessagingDataPoint dataPoint = findDatapoint(profileName, dataPointName);
@@ -182,7 +184,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     @Override
     public void subscribe(String profileName, String dataPointName, Consumer<Either<Throwable, Value>> callbackFunction) throws GenDriverException {
         if (messagingClient == null) {
-            throw new GenDriverException("Not connected");
+            throw new GenDriverException(NOT_CONNECTED);
         }
 
         MessagingDataPoint dataPoint = findDatapoint(profileName, dataPointName);
@@ -246,7 +248,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     @Override
     public void unsubscribe(String profileName, String dataPointName) throws GenDriverException {
         if (messagingClient == null) {
-            throw new GenDriverException("Not connected");
+            throw new GenDriverException(NOT_CONNECTED);
         }
 
         MessagingDataPoint dataPoint = findDatapoint(profileName, dataPointName);

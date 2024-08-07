@@ -37,24 +37,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.Base64.Decoder;
 import java.util.Optional;
 
 public class BearerTokenAuthenticator implements Authenticator {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(BearerTokenAuthenticator.class);
-	
-	public static final int TOKEN_EXPIRY_THRESHOLD_MS = 60000; // one minute
-	
+
 	private String bearerToken;
 	
 	@Override
 	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory)
 			throws IOException, RestApiServiceCallException {
 		
-		if (bearerToken == null || isBearerTokenExpired()) {
+		if (bearerToken == null) {
 			authenticate(deviceDescription, httpRequestFactory);
 		}
 		return "Bearer " + bearerToken;
@@ -136,34 +131,5 @@ public class BearerTokenAuthenticator implements Authenticator {
 		
 		LOG.error("Unable to extract bearer token from http response.");
 		return null;
-	}
-	
-	private boolean isBearerTokenExpired() {
-		
-		try {
-			String[] tokenParts = bearerToken.split("\\.");
-			if (tokenParts.length >= 2) {
-				
-				Decoder decoder = Base64.getDecoder();
-				String jsonBody = new String(decoder.decode(tokenParts[1]), StandardCharsets.UTF_8);
-				
-				JmesPath<JsonNode> path = new JacksonRuntime();
-				Expression<JsonNode> expression = path.compile("exp");
-				
-				ObjectMapper mapper = new ObjectMapper();
-				JsonNode jsonNode;
-				jsonNode = mapper.readTree(jsonBody);
-				JsonNode res = expression.search(jsonNode);
-				long expiryTimestamp = res.asLong(0);			
-				long currentTimestamp = System.currentTimeMillis() / 1000L;
-				return (expiryTimestamp + TOKEN_EXPIRY_THRESHOLD_MS < currentTimestamp);
-			}
-		} catch (Exception e) {
-			LOG.warn("Unable to extract expiration time from JWT token", e);
-			return true;			
-		}
-		// Token invalid, treat as expired
-		LOG.warn("Missing JWT token parts. Should at least have a HEADER and PAYLOAD part.");
-		return true;
 	}
 }

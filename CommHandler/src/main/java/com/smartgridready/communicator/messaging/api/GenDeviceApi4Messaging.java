@@ -8,7 +8,7 @@ import io.vavr.control.Either;
 import java.io.Closeable;
 import java.util.function.Consumer;
 
-public interface GenMessagingApi extends GenDeviceApi, Closeable {
+public interface GenDeviceApi4Messaging extends GenDeviceApi, Closeable {
 
     /**
      * Gets a value from the device by reading

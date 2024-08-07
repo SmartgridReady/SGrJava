@@ -13,7 +13,11 @@ public class FunctionalProfile {
     private final List<GenericAttribute> genericAttributes;
     private final List<DataPoint> dataPoints;
 
-    public FunctionalProfile(String name, String profileType, FunctionalProfileCategory category, List<GenericAttribute> genericAttributes, List<DataPoint> dataPoints) {
+    public FunctionalProfile(String name,
+                             String profileType,
+                             FunctionalProfileCategory category,
+                             List<GenericAttribute> genericAttributes,
+                             List<DataPoint> dataPoints) {
         this.name = name;
         this.profileType = profileType;
         this.category = category;

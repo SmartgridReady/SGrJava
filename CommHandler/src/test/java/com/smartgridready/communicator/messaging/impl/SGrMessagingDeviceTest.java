@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class SGrMessagingDeviceTest {
 
@@ -44,7 +45,14 @@ class SGrMessagingDeviceTest {
 
             msgDevice.connect();
 
+            // use device to read
             Value safeCurrent = msgDevice.getVal(FUNCIONAL_PROFILE, "SafeCurrent");
+            LOG.info("Safe current read: {}", safeCurrent.getString());
+            assertEquals("12 Amperes", safeCurrent.getString());
+
+            // use data point to read
+            var msgDataPoint = msgDevice.getDataPoint(FUNCIONAL_PROFILE, "SafeCurrent");
+            safeCurrent = msgDataPoint.getVal();
             LOG.info("Safe current read: {}", safeCurrent.getString());
             assertEquals("12 Amperes", safeCurrent.getString());
 
@@ -55,6 +63,38 @@ class SGrMessagingDeviceTest {
     @Test
     void setValSynch() throws Exception {
 
+        // Perform the setVal() test using the device API
+        doSetValTest( (messagingDevice, value, messageReceivedCallback) -> {
+                    try {
+                        messagingDevice.subscribe(FUNCIONAL_PROFILE, "MaxReceiveTimeSec", messageReceivedCallback::complete);
+                        messagingDevice.setVal(FUNCIONAL_PROFILE, "MaxReceiveTimeSec", value);
+                    } catch (Exception e) {
+                        fail("setValSynch() test using the device API failed: " + e.getMessage());
+                    }
+                });
+
+        // Perform the setVal() test using the data point API
+        doSetValTest( (messagingDevice, value, messageReceivedCallback) -> {
+            try {
+                var dataPoint = messagingDevice.getDataPoint(FUNCIONAL_PROFILE, "MaxReceiveTimeSec");
+                dataPoint.subscribe(messageReceivedCallback::complete);
+                dataPoint.setVal(value);
+            } catch (Exception e) {
+                fail("setValSynch() test using the data point API failed: " + e.getMessage());
+            }
+        });
+
+
+    }
+
+    private interface SetValOperation {
+        void apply(SGrMessagingDevice messagingDevice,
+                   StringValue value,
+                   CompletableFuture<Either<Throwable, Value>> messageReceivedCallback);
+    }
+
+    private void doSetValTest(SetValOperation setValOperation) throws Exception {
+
         try (SGrMessagingDevice msgDevice = createMessagingDevice()) {
 
             msgDevice.connect();
@@ -64,11 +104,11 @@ class SGrMessagingDeviceTest {
 
             // Prepare a subscription to receive the message published by setVal()
             final String expected = "500ms";
-            msgDevice.subscribe(FUNCIONAL_PROFILE, "MaxReceiveTimeSec", future::complete);
 
-            msgDevice.setVal(FUNCIONAL_PROFILE, "MaxReceiveTimeSec", StringValue.of(expected));
+            // Prepare and perform the setVal operation
+            setValOperation.apply(msgDevice, StringValue.of(expected), future);
 
-            // Wait for the setVal confirmation
+            // Wait for the setVal confirmation (echo from broker)
             Awaitility.await().until(() -> {
                 Either<Throwable, Value> result = future.get();
                 assertTrue(result.isRight());
@@ -80,8 +120,39 @@ class SGrMessagingDeviceTest {
         }
     }
 
+
     @Test
     void subscribe() throws Exception {
+
+        // Test with device
+        doSubscribeTest((msgDevice, dataPointName, collectedValues) -> {
+            try {
+                msgDevice.subscribe(FUNCIONAL_PROFILE, dataPointName,
+                        msgReceiveResult -> collectedValues.add(
+                                msgReceiveResult.getOrElseGet(t -> StringValue.of(t.getMessage())).getString()));
+            } catch (Exception e) {
+                fail("subscribe() test using the device failed. " + e.getMessage());
+            }
+        });
+
+        // Test with data point
+        doSubscribeTest((msgDevice, dataPointName, collectedValues) -> {
+            try {
+                var dataPoint = msgDevice.getDataPoint(FUNCIONAL_PROFILE, dataPointName);
+                dataPoint.subscribe(
+                        msgReceiveResult -> collectedValues.add(
+                                msgReceiveResult.getOrElseGet(t -> StringValue.of(t.getMessage())).getString()));
+            } catch (Exception e) {
+                fail("subscribe() test using the data point failed. " + e.getMessage());
+            }
+        });
+    }
+
+    private interface SubscribeOperation {
+        void apply(SGrMessagingDevice messagingDevice, String dataPointName, List<String> collectedValues);
+    }
+
+    private void doSubscribeTest(SubscribeOperation subscribeOperation) throws Exception {
 
         try (SGrMessagingDevice msgDevice = createMessagingDevice()) {
 
@@ -90,19 +161,14 @@ class SGrMessagingDeviceTest {
             List<String> safeCurrents = new ArrayList<>();
             List<String> maxReceiveTimes = new ArrayList<>();
 
-            msgDevice.subscribe(FUNCIONAL_PROFILE, "SafeCurrent",
-                    msgReceiveResult -> safeCurrents.add(
-                            msgReceiveResult.getOrElseGet(t -> StringValue.of(t.getMessage())).getString()));
-
-            msgDevice.subscribe(FUNCIONAL_PROFILE, "MaxReceiveTimeSec",
-                    msgReceiveResult -> maxReceiveTimes.add(
-                            msgReceiveResult.getOrElseGet(t -> StringValue.of(t.getMessage())).getString()));
+            subscribeOperation.apply(msgDevice, "SafeCurrent", safeCurrents);
+            subscribeOperation.apply(msgDevice, "MaxReceiveTimeSec", maxReceiveTimes);
 
             CompletableFuture<Void> futureSafeCurrent = CompletableFuture.runAsync(() -> {
                 for (int i = 0; i < 20; i++) {
                     try {
                         msgDevice.setVal(FUNCIONAL_PROFILE, "SafeCurrent",
-                                StringValue.of("{ \"stationId\": 1, \"value\": \"SafeCurrent" + i + "\" }"));
+                               StringValue.of("{ \"stationId\": 1, \"value\": \"SafeCurrent" + i + "\" }"));
                     } catch (Exception e) {
                         LOG.error("setVal() Safe current failed", e);
                     }
@@ -122,7 +188,7 @@ class SGrMessagingDeviceTest {
             futureSafeCurrent.join();
             futureReceiveTimes.join();
 
-            Awaitility.await().until(() -> safeCurrents.size()==20 && maxReceiveTimes.size()==20);
+            Awaitility.await().until(() -> safeCurrents.size() == 20 && maxReceiveTimes.size() == 20);
             System.out.println(safeCurrents);
             System.out.println(maxReceiveTimes);
 
@@ -130,8 +196,35 @@ class SGrMessagingDeviceTest {
         }
     }
 
+
     @Test
     void unsubscribe() throws Exception {
+
+        // Test with device API
+        doUnsubscribeTest(msgDevice -> {
+            try {
+                msgDevice.unsubscribe(FUNCIONAL_PROFILE, CHARGING_CURRENT_MAX);
+            } catch (Exception e) {
+                fail("unsubscribe() test using device failed. " + e.getMessage());
+            }
+        });
+
+        // Test with datapoint API
+        doUnsubscribeTest(msgDevice -> {
+            try {
+                var dataPoint = msgDevice.getDataPoint(FUNCIONAL_PROFILE, CHARGING_CURRENT_MAX);
+                dataPoint.unsubscribe();
+            } catch (Exception e) {
+                fail("unsubscribe() test using data point failed. " + e.getMessage());
+            }
+        });
+    }
+
+    private interface UnsubscribeOperation {
+        void apply(SGrMessagingDevice msgDevice);
+    }
+
+    private void doUnsubscribeTest(UnsubscribeOperation unsubscribeOperation) throws Exception {
 
         try (SGrMessagingDevice msgDevice = createMessagingDevice()) {
 
@@ -159,7 +252,7 @@ class SGrMessagingDeviceTest {
             assertEquals("128.7",msgDevice.getVal(FUNCIONAL_PROFILE, CHARGING_CURRENT_MAX).getString());
 
             // Unsubscribe max val
-            msgDevice.unsubscribe(FUNCIONAL_PROFILE, CHARGING_CURRENT_MAX);
+            unsubscribeOperation.apply(msgDevice);
 
             // Min value remains in cache and works
             assertEquals("54.2", msgDevice.getVal(FUNCIONAL_PROFILE, CHARGING_CURRENT_MIN).getString());
@@ -175,6 +268,7 @@ class SGrMessagingDeviceTest {
             msgDevice.disconnect();
         }
     }
+
 
     @Test
     void getValFromCache() throws Exception {

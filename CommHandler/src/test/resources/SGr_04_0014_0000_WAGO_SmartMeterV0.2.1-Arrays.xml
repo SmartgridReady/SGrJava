@@ -115,7 +115,7 @@
         <dataPointListElement>
           <dataPoint>
             <dataPointName>Voltage-L1-L2-L3</dataPointName>
-            <dataDirection>R</dataDirection>
+            <dataDirection>RW</dataDirection>
             <dataType>
               <float64 />
             </dataType>
