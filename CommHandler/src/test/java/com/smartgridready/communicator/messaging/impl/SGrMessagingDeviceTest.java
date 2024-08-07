@@ -269,6 +269,26 @@ class SGrMessagingDeviceTest {
         }
     }
 
+    @Test
+    void readAllValuesFromDevice() throws Exception {
+
+        try (SGrMessagingDevice msgDevice = createMessagingDevice()) {
+
+            msgDevice.connect();
+
+            var readValues = msgDevice.getDeviceInfo().readData();
+            readValues.forEach( dataPointValue ->
+                    LOG.info("Read dataPoint: {}", dataPointValue)
+            );
+            assertEquals(4, readValues.size());
+            assertEquals("profile: EVSE_Station1, dataPoint: SafeCurrent, value: 12 Amperes", readValues.get(0).toString());
+            assertEquals("profile: EVSE_Station1, dataPoint: MaxReceiveTimeSec, value: read", readValues.get(1).toString());
+            assertEquals("profile: EVSE_Station1, dataPoint: ChargingCurrentMin, value: No value available for functionalProfile=EVSE_Station1, dataPoint=ChargingCurrentMin. Try calling subscribe()", readValues.get(2).toString());
+            assertEquals("profile: EVSE_Station1, dataPoint: ChargingCurrentMax, value: No value available for functionalProfile=EVSE_Station1, dataPoint=ChargingCurrentMax. Try calling subscribe()", readValues.get(3).toString());
+            msgDevice.disconnect();
+        }
+    }
+
 
     @Test
     void getValFromCache() throws Exception {

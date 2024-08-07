@@ -1,7 +1,10 @@
 package com.smartgridready.communicator.common.api.dto;
 
+import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.ns.v0.FunctionalProfileCategory;
+import io.vavr.control.Try;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FunctionalProfile {
@@ -44,4 +47,18 @@ public class FunctionalProfile {
     public List<DataPoint> getDataPoints() {
         return dataPoints;
     }
+
+    public List<DataPointValue> readData() {
+
+        final List<DataPointValue> valueRecords = new ArrayList<>();
+
+        dataPoints.forEach(dataPoint ->
+                valueRecords.add(DataPointValue.of(
+                        name,
+                        dataPoint.getName(),
+                        Try.of(dataPoint::getVal).getOrElseGet(e -> StringValue.of(e.getMessage())))));
+
+        return valueRecords;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.smartgridready.communicator.common.api.dto;
 
 import com.smartgridready.ns.v0.DeviceCategory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeviceInfo {
@@ -89,5 +90,11 @@ public class DeviceInfo {
 
     public List<FunctionalProfile> getFunctionalProfiles() {
         return functionalProfiles;
+    }
+
+    public List<DataPointValue> readData() {
+        List<DataPointValue> dataPointValues = new ArrayList<>();
+        functionalProfiles.forEach(functionalProfile -> dataPointValues.addAll(functionalProfile.readData()));
+        return dataPointValues;
     }
 }
