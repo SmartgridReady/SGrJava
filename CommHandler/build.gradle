@@ -28,19 +28,23 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
-def integrationTest = sourceSets.create('integrationTest')
-
-configurations[integrationTest.implementationConfigurationName].extendsFrom(configurations.testImplementation)
-configurations[integrationTest.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly)
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
 
 sourceSets {
-        main.java.srcDirs = ['src/main/java']
-        main.resources.srcDirs = ['src/main/resources']
-        test.java.srcDirs = ['src/test/java']
-        test.resources.srcDirs = ['src/test/resources']
+    main.java.srcDirs = ['src/main/java']
+    main.resources.srcDirs = ['src/main/resources']
+    test.java.srcDirs = ['src/test/java']
+    test.resources.srcDirs = ['src/test/resources']
 
-        integrationTest.java.srcDirs = ['src/test/java']
-        integrationTest.resources.srcDirs = ['src/test/resources']
+    integrationTest {
+        java.srcDir 'src/test/java'
+        resources.srcDir 'src/test/resources'
+        compileClasspath += sourceSets.main.output + configurations.testRuntimeClasspath
+        runtimeClasspath += output + compileClasspath
+    }
 }
 
 java {
@@ -152,8 +156,8 @@ def integrationTestTask = tasks.register('integrationTest', Test) {
     group = 'verification'
     useJUnitPlatform()
 
-    testClassesDirs = integrationTest.output.classesDirs
-    classpath = configurations[integrationTest.runtimeClasspathConfigurationName] + integrationTest.output
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
 
     setTestNameIncludePatterns(['com.smartgridready.communicator.modbus.integrationtest.*'])
 
