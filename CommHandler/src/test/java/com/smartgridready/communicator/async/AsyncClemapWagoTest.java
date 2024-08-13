@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AsyncClemapWagoTest {
     public static final Logger LOG = LoggerFactory.getLogger(AsyncClemapWagoTest.class);
 
-    private static final String XML_BASE_DIR = "../../../SGrSpecifications/XMLInstances/ExtInterfaces/";
+    private static final String XML_BASE_DIR = "../../SGrSpecifications/XMLInstances/ExtInterfaces";
 
     private static SGrModbusDevice wagoDevice;
 
@@ -154,7 +154,7 @@ public class AsyncClemapWagoTest {
         props.put("sensor_id", "63343431ecf2cf013a1e5a9f");
 
         DeviceFrame deviceDesc = new DeviceDescriptionLoader()
-                .load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
+                .load(XML_BASE_DIR, "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml", props);
 
         SGrRestApiDevice clemapDevice = new SGrRestApiDevice(deviceDesc, new ApacheHttpRequestFactory());
         clemapDevice.authenticate();

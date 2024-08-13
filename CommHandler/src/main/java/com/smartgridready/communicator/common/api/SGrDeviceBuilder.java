@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Path;
 
 import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClientFactory;
-import com.smartgridready.driver.api.messaging.MessagingClientFactory;
+import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.InterfaceList;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
@@ -34,7 +34,7 @@ public class SGrDeviceBuilder {
 
     private GenHttpRequestFactory httpClientFactory;
     private ModbusGatewayFactory modbusGatewayFactory;
-    private MessagingClientFactory messagingClientFactory;
+    private GenMessagingClientFactory messagingClientFactory;
 
     private ModbusGatewayRegistry modbusGatewayRegistry;
 
@@ -103,7 +103,7 @@ public class SGrDeviceBuilder {
      * Sets the messaging client factory to be used
      * @param messagingClientFactory the messaging client factory to be used
      */
-    public SGrDeviceBuilder useMessagingClientFactory(MessagingClientFactory messagingClientFactory) {
+    public SGrDeviceBuilder useMessagingClientFactory(GenMessagingClientFactory messagingClientFactory) {
         this.messagingClientFactory = messagingClientFactory;
         return this;
     }

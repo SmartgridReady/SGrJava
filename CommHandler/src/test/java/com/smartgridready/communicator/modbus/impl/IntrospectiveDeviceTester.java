@@ -21,7 +21,7 @@ public class IntrospectiveDeviceTester {
 
     private static final Logger LOG = LoggerFactory.getLogger(GetValArrayTester.class);
 
-    private static final String XML_BASE_DIR="../../../SGrSpecifications/XMLInstances/ExtInterfaces/";
+    private static final String XML_BASE_DIR="../../SGrSpecifications/XMLInstances/ExtInterfaces/";
 
     private static final class ProtocolRecord {
         String fpName;
@@ -90,29 +90,29 @@ public class IntrospectiveDeviceTester {
         }
         catch ( Exception e )
         {
-            LOG.error( "Error loading device description. " + e);
+            LOG.error( "Error loading device description.", e);
         }
     }
 
     private static ProtocolRecord checkDataPoint(Tuple3<String,String, Properties> dataPoint, SGrDeviceBase<?, ?, ?> device) {
 
-        ProtocolRecord record = new ProtocolRecord();
-        record.readVal = "-";
-        record.exception = "";
-        record.fpName = dataPoint._1;
-        record.dpName = dataPoint._2;
+        ProtocolRecord protocolRecord = new ProtocolRecord();
+        protocolRecord.readVal = "-";
+        protocolRecord.exception = "";
+        protocolRecord.fpName = dataPoint._1;
+        protocolRecord.dpName = dataPoint._2;
 
         try {
             if (dataPoint._3 != null) {
                 SGrRestApiDevice restApiDevice = (SGrRestApiDevice) device;
-                record.readVal = restApiDevice.getVal(dataPoint._1, dataPoint._2, dataPoint._3).getString();
+                protocolRecord.readVal = restApiDevice.getVal(dataPoint._1, dataPoint._2, dataPoint._3).getString();
             } else {
-                record.readVal = device.getVal(dataPoint._1, dataPoint._2).getString();
+                protocolRecord.readVal = device.getVal(dataPoint._1, dataPoint._2).getString();
             }
         } catch (Exception e) {
-            record.exception = e.getMessage();
+            protocolRecord.exception = e.getMessage();
         }
-        return record;
+        return protocolRecord;
     }
 
     private static Tuple3<DeviceFrame, SGrDeviceBase<?, ?, ?>, Properties> createWagoDevice() throws Exception {

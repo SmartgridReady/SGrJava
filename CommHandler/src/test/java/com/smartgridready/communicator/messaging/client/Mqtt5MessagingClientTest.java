@@ -1,7 +1,7 @@
 package com.smartgridready.communicator.messaging.client;
 
 import com.smartgridready.driver.api.messaging.Message;
-import com.smartgridready.driver.api.messaging.MessagingClient;
+import com.smartgridready.driver.api.messaging.GenMessagingClient;
 import com.smartgridready.ns.v0.JMESPathFilterType;
 import com.smartgridready.ns.v0.MessageFilter;
 import com.smartgridready.ns.v0.MessagingInterfaceDescription;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class Mqtt5MessagingClientTest {
+class Mqtt5GenMessagingClientTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(HiveMqtt5MessagingClient.class);
 
@@ -47,7 +47,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendReceiveSync() throws Exception {
 
-        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
             // Set up a thread with a blocking receiver for the message.
             Either<Throwable, Message> result = client.readSync(
@@ -64,7 +64,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendReceiveSyncWithTopicFilter() throws Exception{
 
-       try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+       try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
            CompletableFuture<Either<Throwable, Message>> asyncMsgSender1 = CompletableFuture.supplyAsync(() ->
                    client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC, null, 2000));
@@ -86,7 +86,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendReceiveSyncWithMessageFilter() throws Exception {
 
-        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
             MessageFilter messageFilter1 = createMessageFilter("1");
             MessageFilter messageFilter2 = createMessageFilter("2");
@@ -125,7 +125,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendAndReceiveSyncTimeout() throws Exception {
 
-        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
             Either<Throwable, Message> future = client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC_2, null, 1000);
             // no message sent to topic
@@ -136,7 +136,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendAndReceiveSyncUnsupportedFilter() throws Exception {
 
-        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
             MessageFilter messageFilter = V0Factory.eINSTANCE.createMessageFilter();
             XPathFilterType xPathFilter = V0Factory.eINSTANCE.createXPathFilterType();
             messageFilter.setXpapathFilter(xPathFilter);
@@ -175,7 +175,7 @@ class Mqtt5MessagingClientTest {
     @Test
     void sendReceiveAsynchWithMessageFilter() throws Exception {
 
-        try (MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
 
             MessageFilter messageFilter1 = createMessageFilter("1");
             MessageFilter messageFilter2 = createMessageFilter("2");
