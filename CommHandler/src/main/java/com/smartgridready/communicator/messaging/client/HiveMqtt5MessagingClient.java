@@ -91,7 +91,7 @@ public class HiveMqtt5MessagingClient implements GenMessagingClient {
             Message readCmdMessage,
             String inMessageTopic,
             MessageFilter messageFilter,
-            long timeoutSec) {
+            long timeoutMs) {
 
         // Validate the message payload filter.
         try {
@@ -107,7 +107,7 @@ public class HiveMqtt5MessagingClient implements GenMessagingClient {
         }
         // Prepare future for receiving the response message.
         CompletableFuture<Either<Throwable, Message>> readFuture = CompletableFuture.supplyAsync(
-                () -> receiveResponseMessage(inMessageTopic, messageFilter, timeoutSec, syncClient));
+                () -> receiveResponseMessage(inMessageTopic, messageFilter, timeoutMs, syncClient));
 
         // Now send the read command message
         sendSync(readCmdMessageTopic, readCmdMessage, syncClient);
@@ -174,7 +174,7 @@ public class HiveMqtt5MessagingClient implements GenMessagingClient {
                 .send()
                 .thenApply( result -> {
                     if (result.getError().isPresent()) {
-                        LOG.error("Send message '{}' asysnc failed. {}", message.getPayload(), result.getError().get());
+                        LOG.error("Send message '{}' async failed. {}", message.getPayload(), result.getError().get());
                         return Either.left(result.getError().get());
                     }
                     LOG.debug("Send message '{}' OK", message.getPayload());
@@ -330,10 +330,12 @@ public class HiveMqtt5MessagingClient implements GenMessagingClient {
     }
 
     private void logReceivedMessage(Mqtt5Publish publish) {
-        LOG.debug(MESSAGE_LOG_TEMPLATE,
-                publish.getTopic(),
-                new String(publish.getPayloadAsBytes(), StandardCharsets.UTF_8),
-                syncClient.hashCode());
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(MESSAGE_LOG_TEMPLATE,
+                    publish.getTopic(),
+                    new String(publish.getPayloadAsBytes(), StandardCharsets.UTF_8),
+                    syncClient.hashCode());
+        }
     }
 
     @Override
