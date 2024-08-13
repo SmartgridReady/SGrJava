@@ -1,10 +1,10 @@
 package com.smartgridready.communicator.messaging.client;
 
-import com.smartgridready.driver.api.messaging.MessagingClientFactory;
+import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
 import com.smartgridready.ns.v0.MessagingInterfaceDescription;
 import com.smartgridready.ns.v0.MessagingPlatformType;
 
-public class HiveMqtt5MessagingClientFactory implements MessagingClientFactory {
+public class HiveMqtt5MessagingClientFactory implements GenMessagingClientFactory {
 
     public HiveMqtt5MessagingClient create(MessagingInterfaceDescription interfaceDescription) {
 

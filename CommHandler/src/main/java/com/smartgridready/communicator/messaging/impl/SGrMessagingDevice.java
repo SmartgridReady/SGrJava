@@ -1,8 +1,8 @@
 package com.smartgridready.communicator.messaging.impl;
 
 import com.smartgridready.driver.api.messaging.Message;
-import com.smartgridready.driver.api.messaging.MessagingClient;
-import com.smartgridready.driver.api.messaging.MessagingClientFactory;
+import com.smartgridready.driver.api.messaging.GenMessagingClient;
+import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.InMessage;
 import com.smartgridready.ns.v0.InterfaceList;
@@ -45,14 +45,14 @@ public class SGrMessagingDevice extends SGrDeviceBase<
 
     private final MessagingInterfaceDescription interfaceDescription;
 
-    private final MessagingClientFactory messagingClientFactory;
+    private final GenMessagingClientFactory messagingClientFactory;
 
-    private MessagingClient messagingClient;
+    private GenMessagingClient messagingClient;
 
     private final Map<MessageCacheKey, MessageCacheRecord> messageCache = new HashMap<>();
 
     public SGrMessagingDevice(DeviceFrame deviceDescription,
-                              MessagingClientFactory messagingClientFactory) throws GenDriverException {
+                              GenMessagingClientFactory messagingClientFactory) throws GenDriverException {
         super(deviceDescription);
 
         interfaceDescription = Optional.ofNullable(deviceDescription.getInterfaceList())

@@ -13,8 +13,8 @@ import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5PublishResult;
 import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
 import com.hivemq.client.mqtt.mqtt5.message.unsubscribe.unsuback.Mqtt5UnsubAck;
 import com.smartgridready.communicator.common.helper.JsonHelper;
+import com.smartgridready.driver.api.messaging.GenMessagingClient;
 import com.smartgridready.driver.api.messaging.Message;
-import com.smartgridready.driver.api.messaging.MessagingClient;
 import com.smartgridready.ns.v0.JMESPathFilterType;
 import com.smartgridready.ns.v0.MessageBrokerAuthentication;
 import com.smartgridready.ns.v0.MessageBrokerAuthenticationBasic;
@@ -42,7 +42,7 @@ import java.util.regex.Pattern;
 
 import static com.hivemq.client.mqtt.MqttGlobalPublishFilter.ALL;
 
-public class HiveMqtt5MessagingClient implements MessagingClient {
+public class HiveMqtt5MessagingClient implements GenMessagingClient {
 
     private static final Logger LOG = LoggerFactory.getLogger(HiveMqtt5MessagingClient.class);
     private static final String MESSAGE_LOG_TEMPLATE ="Received topic={} message={} client={}";
@@ -53,8 +53,7 @@ public class HiveMqtt5MessagingClient implements MessagingClient {
 
     private final Mqtt5AsyncClient asyncClient;
 
-    public HiveMqtt5MessagingClient(MessagingInterfaceDescription messagingInterfaceDesc
-                                      /*Map<MqttClientProperties, String> properties */) {
+    public HiveMqtt5MessagingClient(MessagingInterfaceDescription messagingInterfaceDesc) {
         this.interfaceDescription = messagingInterfaceDesc;
 
         syncClient = createClient().toBlocking();
