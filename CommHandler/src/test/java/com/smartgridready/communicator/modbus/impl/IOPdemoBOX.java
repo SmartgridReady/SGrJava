@@ -96,7 +96,7 @@ public class IOPdemoBOX {
 				else
 				{	LOG.info("make sure  the switch in the testbox is set to EXT.");
 					LOG.info(" -init ABB M23 Meter as IOP demonstrator @:" + dtf.format(LocalDateTime.now())+ " ");
-					initIOPMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml",(byte)1);
+					initIOPMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_V0.2.xml",(byte)1);
 				}
 			}	
 			if (devOMCCIWallboxTestIsOn) {
