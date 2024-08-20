@@ -31,34 +31,34 @@ public abstract class Value  {
 
     public int[] toModbusRegister(ModbusDataType modbusDataType) {
 
-        if (modbusDataType.getFloat64()!=null) {
+        if (modbusDataType.getFloat64() != null) {
             return ConversionHelper.doubleToRegisters(getFloat64());
         }
-        if (modbusDataType.getFloat32()!=null) {
+        if (modbusDataType.getFloat32() != null) {
             return ConversionHelper.floatToRegisters(getFloat32());
         }
-        if (modbusDataType.getInt64()!=null) {
+        if (modbusDataType.getInt64() != null) {
             return ConversionHelper.longToRegisters(getInt64());
         }
-        if (modbusDataType.getInt64U()!=null) {
+        if (modbusDataType.getInt64U() != null) {
             return ConversionHelper.unsignedLongToRegister(getInt64U());
         }
-        if (modbusDataType.getInt32()!=null) {
+        if (modbusDataType.getInt32() != null) {
             return ConversionHelper.intToRegisters(getInt32());
         }
-        if (modbusDataType.getInt32U()!=null) {
+        if (modbusDataType.getInt32U() != null) {
             return ConversionHelper.uintToRegisters(getInt32U());
         }
-        if (modbusDataType.getInt16()!=null) {
+        if (modbusDataType.getInt16() != null) {
             return ConversionHelper.shortToRegister(getInt16());
         }
-        if (modbusDataType.getInt16U()!=null) {
+        if (modbusDataType.getInt16U() != null) {
             return ConversionHelper.shortToRegister((short) getInt16U());
         }
-        if (modbusDataType.getInt8()!=null) {
+        if (modbusDataType.getInt8() != null) {
             return ConversionHelper.shortToRegister(getInt8());
         }
-        if (modbusDataType.getInt8U()!=null) {
+        if (modbusDataType.getInt8U() != null) {
             return ConversionHelper.shortToRegister(getInt8U());
         }
         if (modbusDataType.getString() != null) {
@@ -244,13 +244,13 @@ public abstract class Value  {
 
     private static short mapBooleanToShort(ModbusBoolean modbusBoolean, boolean value) {
 
-        if (modbusBoolean.isSetFalseValue()) {
+        if (modbusBoolean.getFalseValue() != null) {
             // mapping of false value is defined
-            return value ? 0 : (short)modbusBoolean.getFalseValue();
+            return value ? 0 : modbusBoolean.getFalseValue().shortValue();
         }
-        if (modbusBoolean.isSetTrueValue()) {
+        if (modbusBoolean.getTrueValue() != null) {
             // mapping of true value is defined
-            return value ? (short)modbusBoolean.getTrueValue() : 0;
+            return value ? modbusBoolean.getTrueValue().shortValue() : 0;
         }
         // no mapping defined
         return value ? (short)1 : (short)0;
@@ -258,13 +258,13 @@ public abstract class Value  {
 
     private static boolean mapShortToBoolean(ModbusBoolean modbusBoolean, short value) {
 
-        if (modbusBoolean.isSetFalseValue()) {
+        if (modbusBoolean.getFalseValue() != null) {
             // check if mapped value for false matches the value received from modbus
-            return value != modbusBoolean.getFalseValue();
+            return value != modbusBoolean.getFalseValue().shortValue();
         }
-        if (modbusBoolean.isSetTrueValue() && value == modbusBoolean.getTrueValue()) {
+        if ((modbusBoolean.getTrueValue() != null) && (value == modbusBoolean.getTrueValue().shortValue())) {
             // check mapped value for true matches the value received from modbus
-            return value == modbusBoolean.getTrueValue();
+            return value == modbusBoolean.getTrueValue().shortValue();
         }
         // no mapping defined
         return value != 0;

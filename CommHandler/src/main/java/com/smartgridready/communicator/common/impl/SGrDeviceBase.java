@@ -84,11 +84,11 @@ public abstract class SGrDeviceBase<
 
         DataPointDescription dp = dataPoint.getDataPoint();
 
-        if (dp.isSetMaximumValue()) {
+        if (dp.getMaximumValue() != null) {
             checkOutOfRange(values, dp.getMaximumValue(), Comparator.MAX);
         }
 
-        if (dp.isSetMinimumValue()) {
+        if (dp.getMinimumValue() != null) {
             checkOutOfRange(values, dp.getMinimumValue(), Comparator.MIN);
         }
     }
@@ -238,9 +238,9 @@ public abstract class SGrDeviceBase<
                 SGrGDPTypeToNameMapper.mapToDataTypeDto(dataPoint.getDataType()).stream().findFirst().orElse(new DataType("UNKNOWN", List.of())),
                 dataPoint.getUnit() != null ? dataPoint.getUnit() : null,
                 dataPoint.getDataDirection() != null ? dataPoint.getDataDirection() : null,
-                dataPoint.isSetMinimumValue() ? dataPoint.getMinimumValue() : null,
-                dataPoint.isSetMaximumValue() ? dataPoint.getMaximumValue() : null,
-                dataPoint.isSetArrayLength() ? dataPoint.getArrayLength() : null,
+                dataPoint.getMinimumValue() != null ? dataPoint.getMinimumValue() : null,
+                dataPoint.getMaximumValue() != null ? dataPoint.getMaximumValue() : null,
+                dataPoint.getArrayLength() != null ? dataPoint.getArrayLength() : null,
                 genericAttributes.orElse(List.of()),
                 this );
     }

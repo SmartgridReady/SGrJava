@@ -17,8 +17,6 @@ import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.V0Package;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import java.math.BigInteger;
 import java.util.*;

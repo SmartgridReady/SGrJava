@@ -25,7 +25,7 @@ public class EnumValue extends Value {
         if (enumRecord.getOrdinal() != null) {
             // validate ordinal
             EnumEntryProductRecord enumEntry = enumMapProduct.getEnumEntry().stream()
-                    .filter(rec -> rec.getOrdinal() == enumRecord.getOrdinal())
+                    .filter(rec -> rec.getOrdinal().longValue() == enumRecord.getOrdinal().longValue())
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException(
                             String.format("Invalid ordinal=%d provided for enum.", enumRecord.getOrdinal())));
@@ -33,7 +33,7 @@ public class EnumValue extends Value {
             return Int64Value.of(enumEntry.getOrdinal());
         }
 
-        if (enumRecord.getLiteral()!=null) {
+        if (enumRecord.getLiteral() != null) {
             // validate against enumMap and convert
             EnumEntryProductRecord enumEntry = enumMapProduct.getEnumEntry().stream()
                     .filter(rec -> rec.getLiteral().equals(enumRecord.getLiteral()))

@@ -1,19 +1,19 @@
 package com.smartgridready.communicator.common.impl;
 
+import java.util.List;
+
 import com.smartgridready.ns.v0.ContactFunctionalProfile;
 import com.smartgridready.ns.v0.DataPointBase;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
 import com.smartgridready.ns.v0.GenericFunctionalProfile;
-import com.smartgridready.ns.v0.GenericFunctionalProfileList;
 import com.smartgridready.ns.v0.MessagingFunctionalProfile;
 import com.smartgridready.ns.v0.ModbusFunctionalProfile;
 import com.smartgridready.ns.v0.RestApiFunctionalProfile;
 import com.smartgridready.ns.v0.V0Factory;
-import org.eclipse.emf.common.util.EList;
 
 class FunctionalProfileWithDatapoints {
 
-    private final EList<? extends DataPointBase> dataPoints;
+    private final List<? extends DataPointBase> dataPoints;
 
     private FunctionalProfileWithDatapoints(FunctionalProfileBase functionalProfile) {
 
@@ -29,7 +29,7 @@ class FunctionalProfileWithDatapoints {
         else if (functionalProfile instanceof ContactFunctionalProfile) {
             dataPoints = ((ContactFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
         }
-        else if (functionalProfile instanceof GenericFunctionalProfileList) {
+        else if (functionalProfile instanceof GenericFunctionalProfile) {
             dataPoints = ((GenericFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
         }
         else {
@@ -42,7 +42,7 @@ class FunctionalProfileWithDatapoints {
     }
 
     @SuppressWarnings("unchecked")
-    public EList<DataPointBase> getDataPoints() {
-        return (EList<DataPointBase>) dataPoints;
+    public List<DataPointBase> getDataPoints() {
+        return (List<DataPointBase>) dataPoints;
     }
 }

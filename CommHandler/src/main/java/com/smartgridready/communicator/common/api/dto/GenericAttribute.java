@@ -8,7 +8,6 @@ import com.smartgridready.ns.v0.Units;
 import com.smartgridready.communicator.common.api.values.Value;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.eclipse.emf.common.util.EList;
 import com.smartgridready.utils.SGrGDPTypeToNameMapper;
 
 import java.util.ArrayList;
@@ -67,7 +66,7 @@ public class GenericAttribute {
                 genAttribute.getName(),
                 genAttribute.getValue(),
                 genAttribute.getDataType(),
-                genAttribute.isSetUnit() ? genAttribute.getUnit() : null,
+                genAttribute.getUnit(),
                 children
         );
     }
@@ -77,7 +76,7 @@ public class GenericAttribute {
                 genAttributeChild.getName(),
                 genAttributeChild.getValue(),
                 genAttributeChild.getDataType(),
-                genAttributeChild.isSetUnit() ? genAttributeChild.getUnit() : null,
+                genAttributeChild.getUnit(),
                 null);
     }
 
@@ -98,12 +97,12 @@ public class GenericAttribute {
                         .append(insertTabs).append("name: ").append(name)
                         .append(value!=null ?    " | value: " + value.getString():"")
                         .append(dataType!=null ? " | type : " + dataType:"")
-                        .append(unit!=null ?     " | unit : " + unit.getName():"");
+                        .append(unit!=null ?     " | unit : " + unit.name():"");
 
         return sb.toString();
     }
 
-    public static List<GenericAttribute> mapGenericAttributes(EList<GenericAttributeProductEnd> genericAttributeProducts) {
+    public static List<GenericAttribute> mapGenericAttributes(List<GenericAttributeProductEnd> genericAttributeProducts) {
         ArrayList<GenericAttribute> genericAttributes = new ArrayList<>();
         genericAttributeProducts.forEach(genericAttributeProduct ->
                 genericAttributes.add(GenericAttribute.of(genericAttributeProduct)));

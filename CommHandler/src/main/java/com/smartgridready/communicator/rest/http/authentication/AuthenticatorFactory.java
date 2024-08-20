@@ -47,6 +47,6 @@ public class AuthenticatorFactory {
 				throw new RestApiAuthenticationException("Authenticator creation failed.", e);
 			}
 		}
-		throw new RestApiAuthenticationException("Authentication method " +  authMethodType.getName() + " not supported yet.");		
+		throw new RestApiAuthenticationException("Authentication method " +  authMethodType.name() + " not supported yet.");		
 	}	
 }

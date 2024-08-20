@@ -3,8 +3,6 @@ package com.smartgridready.communicator.common.helper;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.V0Package;
-import com.smartgridready.ns.v0.impl.DataTypeProductImpl;
-import com.smartgridready.ns.v0.impl.ModbusDataTypeImpl;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.communicator.common.api.values.Float64Value;
 import com.smartgridready.communicator.common.api.values.Int16UValue;

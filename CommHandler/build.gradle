@@ -69,8 +69,9 @@ configurations {
 }
 
 dependencies {
-    implementation group: 'com.smartgridready', name: 'sgr-specification', version: '1.1.0-SNAPSHOT'
-    //implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.2'
+    implementation group: 'com.smartgridready', name: 'sgr-specification', version: '1.1.0-JAXB-SNAPSHOT'
+    implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.2'
+    implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '4.0.5'
 
     implementation group: 'com.smartgridready', name: 'sgr-driver-api', version: '1.1.0-SNAPSHOT'
     implementation group: 'com.smartgridready', name: 'easymodbus', version: '1.1.0-SNAPSHOT'

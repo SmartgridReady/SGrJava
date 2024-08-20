@@ -25,6 +25,7 @@ repositories {
     mavenCentral()
 }
 
+def xsdPath = "../../SGrSpecifications/SchemaDatabase/SGr"
 def os = System.getProperty('os.name').toLowerCase()
 
 apply plugin: 'java'
@@ -36,14 +37,16 @@ java {
 }
 
 xjc {
-    xsdDir.set(layout.projectDirectory.dir("../../SGrSpecifications/SchemaDatabase/SGr"))
+    xsdDir.set(layout.projectDirectory.dir(xsdPath))
+    bindingFiles.setFrom(layout.projectDirectory.dir("src/main/xjb").asFileTree.matching { include("*.xjb") })
     useJakarta = true
     addCompilationDependencies = true
     generateEpisode = true
 }
 
-dependencies {
-    implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.2'
+processResources {
+    from xsdPath
+    exclude '.gitkeep'
 }
 
 publishing {

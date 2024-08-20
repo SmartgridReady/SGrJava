@@ -25,8 +25,6 @@ import com.smartgridready.ns.v0.ModbusRtu;
 import com.smartgridready.ns.v0.RegisterType;
 import com.smartgridready.ns.v0.TimeSyncBlockNotification;
 import com.smartgridready.ns.v0.V0Factory;
-import com.smartgridready.ns.v0.impl.DataTypeProductImpl;
-import com.smartgridready.ns.v0.impl.ModbusDataTypeImpl;
 import com.smartgridready.communicator.common.api.values.BitmapValue;
 import com.smartgridready.communicator.common.api.values.BooleanValue;
 import com.smartgridready.communicator.common.api.values.EnumValue;
@@ -48,7 +46,6 @@ import com.smartgridready.driver.api.modbus.GenDriverSocketException;
 import com.smartgridready.communicator.modbus.helper.CacheRecord;
 import com.smartgridready.communicator.modbus.helper.ModbusReaderResponse;
 import io.vavr.Tuple2;
-import org.eclipse.emf.common.util.EList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -510,8 +507,8 @@ class SetGetValConversionTest {
         testParams.add(new Tuple2<>(BitOrder.CHANGE_BIT_ORDER, false));
         testParams.add(new Tuple2<>(BitOrder.CHANGE_WORD_ORDER, true));
         testParams.add(new Tuple2<>(BitOrder.CHANGE_WORD_ORDER, false));
-        testParams.add(new Tuple2<>(BitOrder.CHANGE_DWORD_ORDER, true));
-        testParams.add(new Tuple2<>(BitOrder.CHANGE_DWORD_ORDER, false));
+        testParams.add(new Tuple2<>(BitOrder.CHANGE_D_WORD_ORDER, true));
+        testParams.add(new Tuple2<>(BitOrder.CHANGE_D_WORD_ORDER, false));
         return  testParams.stream();
     }
 
@@ -953,9 +950,9 @@ class SetGetValConversionTest {
         return genDpDesc;
     }
 
-    private static DataTypeProductImpl basicDP(int v0PackageType) {
+    private static DataTypeProduct basicDP(int v0PackageType) {
 
-        DataTypeProductImpl dp = (DataTypeProductImpl) V0Factory.eINSTANCE.createDataTypeProduct();
+        DataTypeProduct dp = V0Factory.eINSTANCE.createDataTypeProduct();
         Object dataPointType = V0Factory.eINSTANCE.createEmptyType(); // numeric values are empty types
         if (v0PackageType == DATA_TYPE_PRODUCT__ENUM) {
             dataPointType = V0Factory.eINSTANCE.createEnumMapProduct();
@@ -964,6 +961,8 @@ class SetGetValConversionTest {
             dataPointType = V0Factory.eINSTANCE.createBitmapProduct();
         }
         dp.eSet(v0PackageType, dataPointType);
+
+        dp.
         return dp;
     }
 

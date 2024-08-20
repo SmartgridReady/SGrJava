@@ -148,13 +148,13 @@ public class TestDevice {
 
                             DataPointDescription dp = dataPoint.getDataPoint();
                             dpDesc.dataPoint = dp.getDataPointName();
-                            dpDesc.isReadable = dp.getDataDirection().getLiteral().contains("R");
-                            dpDesc.isWritable = dp.getDataDirection().getLiteral().contains("W");
+                            dpDesc.isReadable = dp.getDataDirection().value().contains("R");
+                            dpDesc.isWritable = dp.getDataDirection().value().contains("W");
                             dpDesc.genericType = dp.getDataType();
-                            dpDesc.units = dp.getUnit().getName();
-                            dpDesc.minVal = dp.isSetMinimumValue() ? String.valueOf(dp.getMinimumValue()) : "n.a";
-                            dpDesc.maxVal = dp.isSetMaximumValue() ? String.valueOf(dp.getMaximumValue()) : "n.a";
-                            dpDesc.conversionFactor = dp.isSetUnitConversionMultiplicator() ? String.valueOf(dp.getUnitConversionMultiplicator()) : "n.a";
+                            dpDesc.units = dp.getUnit().name();
+                            dpDesc.minVal = dp.getMinimumValue() != null ? String.valueOf(dp.getMinimumValue()) : "n.a";
+                            dpDesc.maxVal = dp.getMaximumValue() != null ? String.valueOf(dp.getMaximumValue()) : "n.a";
+                            dpDesc.conversionFactor = dp.getUnitConversionMultiplicator() != null ? String.valueOf(dp.getUnitConversionMultiplicator()) : "n.a";
 
                             ModbusDataPointConfiguration modbusDp = dataPoint.getModbusDataPointConfiguration();
                             dpDesc.modbusRegisterType = modbusDp.getRegisterType();

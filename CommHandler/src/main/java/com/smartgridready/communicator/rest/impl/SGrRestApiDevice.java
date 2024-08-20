@@ -196,9 +196,9 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 		if (restApiServiceCall.getResponseQuery() != null) {
 			ResponseQuery responseQuery = restApiServiceCall.getResponseQuery();
-			if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
+			if (responseQuery.getQueryType() != null && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
 				return JsonHelper.parseJsonResponse(responseQuery.getQuery(), response);
-			} else if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
+			} else if (responseQuery.getQueryType() != null && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
 				return JsonHelper.mapJsonResponse(responseQuery.getJmesPathMappings(), response);
 			}
 		}
@@ -272,7 +272,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 	private Value applyUnitConversion(RestApiDataPoint dataPoint, Value value, DoubleBinaryOperator conversionFunction) {
 
-		if (dataPoint.getDataPoint().isSetUnitConversionMultiplicator()
+		if (dataPoint.getDataPoint().getUnitConversionMultiplicator() != null
 				&& isNumeric(value)
 				&& dataPoint.getDataPoint().getUnitConversionMultiplicator() != 0.0) {
 			return Float64Value.of(conversionFunction.applyAsDouble(value.getFloat64(), dataPoint.getDataPoint().getUnitConversionMultiplicator()));

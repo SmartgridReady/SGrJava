@@ -145,12 +145,12 @@ public class SGrMessagingDevice extends SGrDeviceBase<
 
             if (queryOpt.isPresent()) {
                 ResponseQuery responseQuery = queryOpt.get();
-                if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_EXPRESSION==responseQuery.getQueryType()) {
+                if (responseQuery.getQueryType() != null && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
                     return JsonHelper.parseJsonResponse(responseQuery.getQuery(), response);
-                } else if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_MAPPING==responseQuery.getQueryType()) {
+                } else if (responseQuery.getQueryType() != null && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
                     return JsonHelper.mapJsonResponse(responseQuery.getJmesPathMappings(), response);
-                } else if (responseQuery.isSetQueryType()) {
-                    throw new GenDriverException("Response query type " + responseQuery.getQueryType().getName() + " not supported yet");
+                } else if (responseQuery.getQueryType() != null) {
+                    throw new GenDriverException("Response query type " + responseQuery.getQueryType().name() + " not supported yet");
                 }
             }
             return StringValue.of(response);
@@ -234,7 +234,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
                         value = JsonHelper.mapJsonResponse(queryOpt.get().getJmesPathMappings(), response);
                         break;
                     default:
-                        throw new GenDriverException("Response query type " + queryOpt.get().getQueryType().getName() + " not supported yet");
+                        throw new GenDriverException("Response query type " + queryOpt.get().getQueryType().name() + " not supported yet");
                 }
             } else {
                 value = StringValue.of(response);

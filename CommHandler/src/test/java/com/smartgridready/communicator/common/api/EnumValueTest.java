@@ -7,10 +7,10 @@ import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.communicator.common.api.values.Int32Value;
 import com.smartgridready.communicator.common.api.values.Int64Value;
 import com.smartgridready.communicator.common.api.values.Value;
-import org.eclipse.emf.common.util.EList;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -121,7 +121,7 @@ class EnumValueTest {
 
     private EnumMapProduct createEnumMap(byte[] hexMask) {
         EnumMapProduct retVal = V0Factory.eINSTANCE.createEnumMapProduct();
-        EList<EnumEntryProductRecord> enumEntries = retVal.getEnumEntry();
+        List<EnumEntryProductRecord> enumEntries = retVal.getEnumEntry();
         enumEntries.add(createEnumRecord("ENUM_1", 1));
         enumEntries.add(createEnumRecord("ENUM_2", 2));
         enumEntries.add(createEnumRecord("ENUM_255", 255));

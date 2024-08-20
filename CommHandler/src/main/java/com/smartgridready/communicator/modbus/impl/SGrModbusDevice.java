@@ -197,7 +197,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 			Optional<ModbusDataPoint> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
 			if (dataPoint.isPresent()) {
 				
-				if (!dataPoint.get().getDataPoint().isSetArrayLength()) {
+				if (dataPoint.get().getDataPoint().getArrayLength() == null) {
 					throw new GenDriverException(String.format("getValArrByGDPType(): Datapoint %s-%s is not an array.", sProfileName, sDataPointName ));
 				}
 									
@@ -247,7 +247,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 						modbusInterfaceDesc.isFirstRegisterAddressIsOne(),
 						blockNotificationType.getSize());
 				
-				if (blockNotificationType.isSetTimeToLiveMs()) {
+				if (blockNotificationType.getTimeToLiveMs() != 0) {
 					myTimeSyncBlockReadCache.put(blockNotificationType, new CacheRecord<>(mbResponse, Instant.now()));
 				}
 			} else {
@@ -353,7 +353,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 									   BitOrder bitOrder) throws GenDriverException {
 
 		Value retVal;
-		int l6dev;
+		ModbusLayer6Deviation l6dev;
 
 		if (bitOrder!=BitOrder.BIG_ENDIAN) {
 			mbregresp = convertEndians(bitOrder, mbregresp, size);
@@ -362,15 +362,15 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		if (aDataPoint.getModbusAttributes()!=null) {   // there are Modbus attributes available
 
 			// TODO unit-test this code
-			if (!aDataPoint.getModbusAttributes().isSetSunssf()
-					&& (aDataPoint.getModbusAttributes().getScalingFactor()!=null)) {
+			if ((aDataPoint.getModbusAttributes().getSunssf() == null)
+					&& (aDataPoint.getModbusAttributes().getScalingFactor() != null)) {
 				ScalingFactor attrScaling = aDataPoint.getModbusAttributes().getScalingFactor();
 				mul = attrScaling.getMultiplicator();
 				pwof10 = attrScaling.getPowerof10();
 			}
 
-			if (aDataPoint.getModbusAttributes().isSetLayer6Deviation()) {   // do we have Layer 6 deviations ?
-				l6dev = aDataPoint.getModbusAttributes().getLayer6Deviation().getValue();
+			if (aDataPoint.getModbusAttributes().getLayer6Deviation() != null) {   // do we have Layer 6 deviations ?
+				l6dev = aDataPoint.getModbusAttributes().getLayer6Deviation();
 				mbregresp = manageLayer6deviation(l6dev, mbregresp, size);
 			}
 		}
@@ -403,7 +403,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		return retVal;
 	}
 
-	private int[] manageLayer6deviation(int mBlayer6Scheme, int[] mbregresp, int size) throws GenDriverException {
+	private int[] manageLayer6deviation(ModbusLayer6Deviation mBlayer6Scheme, int[] mbregresp, int size) throws GenDriverException {
 		
 		int[] mbregconv = new int[10];
 		long lv;
@@ -411,7 +411,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		mbregconv[0] = 0;
 
 		switch (mBlayer6Scheme) {
-			case ModbusLayer6Deviation._2REG_BASE1000_H2L_VALUE:
+			case VALUE_2:	// H2L
 				if (size==2) {
 					lv = ((long) mbregresp[0]) * 1000;
 					lv = lv + mbregresp[1];
@@ -420,7 +420,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 					mbregresp = mbregconv;
 				}
 				break;
-			case ModbusLayer6Deviation._2REG_BASE1000_L2H_VALUE:
+			case VALUE_1:	// L2H
 				if (size==2) {
 					lv = ((long) mbregresp[1]) * 1000;
 					lv = lv + mbregresp[0];
@@ -445,7 +445,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 					return EndiannessConversionHelper.changeByteOrder(mbregresp, size);
 				case CHANGE_WORD_ORDER:
 					return EndiannessConversionHelper.changeWordOrder(mbregresp, size);
-				case CHANGE_DWORD_ORDER:
+				case CHANGE_D_WORD_ORDER:
 					return EndiannessConversionHelper.changeDWordOrder(mbregresp, size);
 				default:
 					throw new GenDriverException("Unsupported ByteOrder value. Unable to convert endianness.");
@@ -483,7 +483,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		boolean bDiscreteCMDs = false;
 		boolean isSetAccessProt = false;
 		int mul = 1;
-		int l6dev = -1;
+		ModbusLayer6Deviation l6dev;
 		int powof10 = 0;
 
 		ModbusInterfaceDescription modbusInterfaceDesc = getModbusInterfaceDescription();
@@ -495,18 +495,18 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		// Value range check
 		checkOutOfRange(sgrValues, aDataPoint);
 
-		if (aDataPoint.getModbusAttributes()!=null) { // there are Modbus attributes available
-			if (!aDataPoint.getModbusAttributes().isSetSunssf()
-					&& (aDataPoint.getModbusAttributes().getScalingFactor()!=null)) {
+		if (aDataPoint.getModbusAttributes() != null) { // there are Modbus attributes available
+			if ((aDataPoint.getModbusAttributes().getSunssf() == null)
+					&& (aDataPoint.getModbusAttributes().getScalingFactor() != null)) {
 				ScalingFactor attrScaling = aDataPoint.getModbusAttributes().getScalingFactor();
 				mul = attrScaling.getMultiplicator();
 				powof10 = attrScaling.getPowerof10();
 			}
-			if (aDataPoint.getModbusAttributes().isSetLayer6Deviation()) {
+			if (aDataPoint.getModbusAttributes().getLayer6Deviation() != null) {
 				// for future implementations
-				l6dev = aDataPoint.getModbusAttributes().getLayer6Deviation().getValue();
+				l6dev = aDataPoint.getModbusAttributes().getLayer6Deviation();
 			}
-			if (aDataPoint.getModbusAttributes().getAccessProtection()!=null) {
+			if (aDataPoint.getModbusAttributes().getAccessProtection() != null) {
 				isSetAccessProt = true; // for future use
 			}
 		}
@@ -684,7 +684,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	}
 
 	private float getUnitConversionFactor(ModbusDataPoint aDataPoint) {
-		if (aDataPoint.getDataPoint().isSetUnitConversionMultiplicator()) {
+		if (aDataPoint.getDataPoint().getUnitConversionMultiplicator() != null) {
 			return aDataPoint.getDataPoint().getUnitConversionMultiplicator();
 		}
 		return 1.0f;

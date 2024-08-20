@@ -5,11 +5,11 @@ import com.smartgridready.ns.v0.BitmapProduct;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.values.BitmapValue;
 import com.smartgridready.communicator.common.api.values.Value;
-import org.eclipse.emf.common.util.EList;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -117,7 +117,7 @@ class BitmapValueTest {
 
         BitmapProduct bitmap = V0Factory.eINSTANCE.createBitmapProduct();
 
-        EList<BitmapEntryProduct> bitmapEntries = bitmap.getBitmapEntry();
+        List<BitmapEntryProduct> bitmapEntries = bitmap.getBitmapEntry();
         bitmapEntries.add(createBitmapEntry("BIT_0", new byte[]{1}));
         bitmapEntries.add(createBitmapEntry("BIT_1", new byte[]{2}));
         bitmapEntries.add(createBitmapEntry("BIT_2", new byte[]{4}));

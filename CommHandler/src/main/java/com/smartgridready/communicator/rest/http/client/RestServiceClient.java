@@ -37,9 +37,6 @@ import org.apache.hc.core5.net.URIBuilder;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import com.smartgridready.ns.v0.HeaderEntry;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-
 public class RestServiceClient {
 
 	private final String baseUri;
@@ -200,6 +197,6 @@ public class RestServiceClient {
 
 	private static com.smartgridready.driver.api.http.HttpMethod mapHttpMethod(HttpMethod httpMethod) throws IOException {
 		return Optional.ofNullable(HTTP_METHOD_MAP.get(httpMethod))
-				.orElseThrow(() -> new IOException("Unsupported HTTP method: " + httpMethod.getName()));
+				.orElseThrow(() -> new IOException("Unsupported HTTP method: " + httpMethod.name()));
 	}
 }

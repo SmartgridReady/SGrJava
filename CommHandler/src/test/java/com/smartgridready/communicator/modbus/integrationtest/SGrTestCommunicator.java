@@ -13,7 +13,6 @@ import com.smartgridready.communicator.common.impl.SGrDeviceBase;
 import com.smartgridready.driver.api.common.GenDriverException;
 import io.vavr.Tuple2;
 import io.vavr.Tuple3;
-import org.eclipse.emf.common.util.EList;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -25,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
@@ -313,7 +313,7 @@ public class SGrTestCommunicator extends JFrame {
 
         TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
 
-        EList<BitmapEntryProduct> bitmapEntries = dpDescriptor.genericType.getBitmap().getBitmapEntry();
+        List<BitmapEntryProduct> bitmapEntries = dpDescriptor.genericType.getBitmap().getBitmapEntry();
         Optional<BitmapValue> currentBitmap = getCurrentBitmap(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
 
         Map<String, JCheckBox> checkBoxMap = new HashMap<>();
@@ -387,7 +387,7 @@ public class SGrTestCommunicator extends JFrame {
 
         TestDevice.DataPointDescriptor dpDescriptor = (TestDevice.DataPointDescriptor) selectedNode.getUserObject();
 
-        EList<EnumEntryProductRecord> enumEntries = dpDescriptor.genericType.getEnum().getEnumEntry();
+        List<EnumEntryProductRecord> enumEntries = dpDescriptor.genericType.getEnum().getEnumEntry();
         Optional<EnumValue> currentEnum = getCurrentEnum(dpDescriptor.functionalProfile, dpDescriptor.dataPoint);
 
         JLabel selectedEnum = new JLabel("Current enum value");
