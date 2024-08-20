@@ -1,0 +1,37 @@
+name: Build and Publish SGrSpecification Release
+
+on:
+  repository_dispatch:
+    types: [ new-tag-created ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to checkout and build'
+        required: true
+
+jobs:
+  build-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout SGrJava
+        uses: actions/checkout@v4
+        with:
+          repository: SmartGridready/SGrJava.git
+          ref: ${{github.ref}}
+          fetch-tags: true
+          fetch-depth: 0
+          path: SGrJava
+
+      - name: Checkout SGrSpecifications
+        uses: actions/checkout@v4
+        with:
+          repository: SmartGridready/SGrSpecifications.git
+          ref: ${{inputs.tag}}
+          path: SGrSpecifications
+
+      - name: Build and Publish SGrJava SGrSpecification
+        working-directory: SGrJava/SGrSpecification
+        run: |
+          chmod +x ./gradlew
+          ./gradlew clean build publishMavenJavaPublicationToNexusRepository -Pnexus.username=smartgrid -Pnexus.password=${{ secrets.NEXUS_PASSWORD }} --no-daemon

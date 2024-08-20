@@ -5,8 +5,3 @@
 
 # Ignore Gradle build output directory
 build
-
-# Ignore generated sources
-/src
-/model/SGrSpecification.genmodel
-/model/v0.ecore

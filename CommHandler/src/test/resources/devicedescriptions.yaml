@@ -3,6 +3,7 @@ descriptions:
 -   file: EI4_UniDirFlexFeedIn_3632Lv2.xml
 -   file: EI4_UniDirFlexLoad_3631Lv2.xml
 -   file: FullEi4Modbus_0_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml
+-   file: SGr_00_0016_dddd_ABB_B23_V0.2.xml
 -   file: SGr_02_0003_0055_eCarupPICO_4061_v1.0.0.xml
 -   file: SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml
 -   file: SGr_02_0034_0053_Lehmann_SCC_v1.0.0.xml
