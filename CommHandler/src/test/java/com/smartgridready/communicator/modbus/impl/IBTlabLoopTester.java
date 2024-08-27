@@ -107,7 +107,7 @@ public class IBTlabLoopTester {
 			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface
 			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
 			if (devABBMeterTestIsOn)  {
-				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
+				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_V0.2.xml");
 			}
 			if (devVGT_SGCPTestIsOn)   {
 				LOG.info(" -init devVGT_SGCPTest @:" + dtf.format(LocalDateTime.now())+ " ");initVGT_SGCP (XML_BASE_DIR,"SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml");
@@ -121,7 +121,7 @@ public class IBTlabLoopTester {
 
 			// TestBox
 			if (devTB_ABBMeterTestIsOn)  {
-				LOG.info(" -init TestBox: devTB_ABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initTB_ABBMeter(XML_BASE_DIR, "SGr_04_0016_xxxx_ABBMeterV0.2.1.xml");
+				LOG.info(" -init TestBox: devTB_ABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initTB_ABBMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_V0.2.xml");
 			}
 			if (devWagoMeterTestIsOn) {
 				LOG.info(" -init TestBox: devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ " ");
