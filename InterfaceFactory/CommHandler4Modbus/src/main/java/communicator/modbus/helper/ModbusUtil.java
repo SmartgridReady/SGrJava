@@ -40,7 +40,7 @@ public class ModbusUtil {
         com.smartgridready.ns.v0.Parity.ODD.getLiteral(), Parity.ODD
     );
 
-    public static boolean isRtuOverSerial(ModbusInterfaceDescription interfaceDescription) {
+    public static boolean isSerial(ModbusInterfaceDescription interfaceDescription) {
         ModbusRtu rtu = interfaceDescription.getModbusRtu();
         return (
             (rtu != null) &&
@@ -48,7 +48,7 @@ public class ModbusUtil {
         );
     }
 
-    public static boolean isRtuOverTcp(ModbusInterfaceDescription interfaceDescription) {
+    public static boolean isTcp(ModbusInterfaceDescription interfaceDescription) {
         ModbusTcp tcp = interfaceDescription.getModbusTcp();
         return (
             (tcp != null) &&
@@ -56,37 +56,40 @@ public class ModbusUtil {
         );
     }
 
-    public static Short getModbusSlaveId(ModbusInterfaceDescription interfaceDescription) {
+    public static short getModbusSlaveId(ModbusInterfaceDescription interfaceDescription) {
         // distinguish between Serial and TCP
-        boolean isSerial = isRtuOverSerial(interfaceDescription);
-        boolean isTcp = isRtuOverTcp(interfaceDescription);
-        if (isSerial && !isTcp) {
+        short slaveId = DEFAULT_SLAVE_ID;
+        boolean isSerial = isSerial(interfaceDescription);
+        boolean isTcp = isTcp(interfaceDescription);
+        if (isSerial) {
             ModbusRtu serial = interfaceDescription.getModbusRtu();
-            return isNonEmptyString(serial.getSlaveAddr()) ? Short.valueOf(serial.getSlaveAddr()) : DEFAULT_SLAVE_ID;
-        } else if (isTcp && !isSerial) {
+            if (isNonEmptyString(serial.getSlaveAddr())) slaveId = Short.valueOf(serial.getSlaveAddr());
+        }
+        if (isTcp) {
             ModbusTcp tcp = interfaceDescription.getModbusTcp();
-            return isNonEmptyString(tcp.getSlaveId()) ? Short.valueOf(tcp.getSlaveId()) : DEFAULT_SLAVE_ID;
+            if (isNonEmptyString(tcp.getSlaveId())) slaveId = Short.valueOf(tcp.getSlaveId());
         }
 
-        return DEFAULT_SLAVE_ID;
+        return slaveId;
     }
 
     public static String getModbusGatewayIdentifier(ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
         // distinguish between Serial and TCP
-        boolean isSerial = isRtuOverSerial(interfaceDescription);
-        boolean isTcp = isRtuOverTcp(interfaceDescription);
-        if (isSerial && !isTcp) {
+        boolean isSerial = isSerial(interfaceDescription);
+        boolean isTcp = isTcp(interfaceDescription);
+        if (isSerial) {
             ModbusRtu rtu = interfaceDescription.getModbusRtu();
             String portName = rtu.getPortName();
             return String.format("serial:%s", portName);
-        } else if (isTcp && !isSerial) {
+        }
+        if (isTcp) {
             ModbusTcp tcp = interfaceDescription.getModbusTcp();
             String address = tcp.getAddress();
             int port = isNonEmptyString(tcp.getPort()) ? Integer.valueOf(tcp.getPort()) : DEFAULT_MODBUS_TCP_PORT;
             return String.format("tcp:%s:%d", address, port);
         }
 
-        // cannot be both or none
+        // cannot be none
         throw new GenDriverException("Could not get Modbus gateway identifier");
     }
 
