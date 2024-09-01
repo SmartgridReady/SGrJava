@@ -121,12 +121,22 @@ public class GenericAttribute {
 
         GenericAttribute that = (GenericAttribute) o;
 
-        return new EqualsBuilder()
+        if (! new EqualsBuilder()
                 .append(name, that.name)
                 .append(value, that.value)
                 .append(dataType, that.dataType)
                 .append(unit, that.unit)
-                .isEquals() && EqualsBuilder.reflectionEquals(children, that.children);
+                .isEquals()) {
+        	return false;
+        }
+        
+        for (int i = 0; i < children.size(); i++) {
+        	if (! EqualsBuilder.reflectionEquals(children.get(i), that.children.get(i))) {
+        		return false;
+        	}
+        }
+        
+        return children.size() == that.children.size();
     }
 
     @Override

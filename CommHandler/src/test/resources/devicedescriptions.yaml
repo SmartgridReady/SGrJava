@@ -3,6 +3,7 @@ descriptions:
 -   file: EI4_UniDirFlexFeedIn_3632Lv2.xml
 -   file: EI4_UniDirFlexLoad_3631Lv2.xml
 -   file: FullEi4Modbus_0_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml
+-   file: SGr_00_0016_dddd_ABB_B23_ModbusRTU_V0.3.xml
 -   file: SGr_02_0003_0055_eCarupPICO_4061_v1.0.0.xml
 -   file: SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml
 -   file: SGr_02_0034_0053_Lehmann_SCC_v1.0.0.xml
@@ -12,7 +13,6 @@ descriptions:
 -   file: SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml
 -   file: SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml
 -   file: SGr_04_0015_xxxx_StiebelEltron_HeatPumpV0.2.1.xml
--   file: SGr_04_0016_xxxx_ABBMeterV0.2.1.xml
 -   file: SGr_04_0017_xxxx_HOVAL_HeatPumpV0.2.1.xml
 -   file: SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml
 -   file: SGr_04_0020_xxxx_Heliotherm_HeatPumpV0.2.1.xml

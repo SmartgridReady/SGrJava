@@ -57,7 +57,7 @@ task model2Java(type: Exec) {
     workingDir '../'
 
     if (os.contains('win')) {
-        commandLine 'cmd', '/K', 'model2Java.bat', project.findProperty('xsd2java.eclipse.home'), project.findProperty('xsd2java.xsd.resource')
+        commandLine 'cmd', '/K', 'model2Java.bat', 'C:\\Users\\gerns\\eclipse\\jee-2024-06\\eclipse', 'c:/SGr/SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd'
     } else {
         commandLine './model2Java.sh'
     }
