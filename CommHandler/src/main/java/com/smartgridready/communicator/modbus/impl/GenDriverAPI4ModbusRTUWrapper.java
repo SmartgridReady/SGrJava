@@ -18,10 +18,7 @@ class GenDriverAPI4ModbusRTUWrapper extends GenDriverAPI4ModbusRTU implements Ge
     private final DataBits dataBits;
     private final StopBits stopBits;
 
-    private final String tcpAddress;
-    private final int tcpPort;
-
-    public GenDriverAPI4ModbusRTUWrapper(String serialPort, int baudRate, Parity parity, DataBits dataBits, StopBits stopBits, String tcpAddress, int tcpPort) {
+    public GenDriverAPI4ModbusRTUWrapper(String serialPort, int baudRate, Parity parity, DataBits dataBits, StopBits stopBits) {
         super();
         isConnected = false;
         this.serialPort = serialPort;
@@ -29,17 +26,11 @@ class GenDriverAPI4ModbusRTUWrapper extends GenDriverAPI4ModbusRTU implements Ge
         this.parity = parity;
         this.dataBits = dataBits;
         this.stopBits = stopBits;
-        this.tcpAddress = tcpAddress;
-        this.tcpPort = tcpPort;
     }
 
     @Override
     public boolean connect() throws GenDriverException {
-        if (StringUtil.isNotEmpty(tcpAddress)) {
-            // use RTU over TCP/IP gateway
-            this.initDevice(tcpAddress, tcpPort);
-            isConnected = true;
-        } else if (StringUtil.isNotEmpty(serialPort)) {
+        if (StringUtil.isNotEmpty(serialPort)) {
             // use serial RTU gateway
             isConnected = this.initTrspService(serialPort, baudrate, parity, dataBits, stopBits);
         } else {
