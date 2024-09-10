@@ -24,5 +24,7 @@ import com.smartgridready.ns.v0.RestApiServiceCall;
 
 public interface RestServiceClientFactory {
 	public RestServiceClient create(String baseUri, RestApiServiceCall serviceCall);
+	public RestServiceClient create(String baseUri, RestApiServiceCall serviceCall, boolean verifyCertificate);
 	public RestServiceClient create(String baseUri, RestApiServiceCall serviceCall, Properties substitutions);
+	public RestServiceClient create(String baseUri, RestApiServiceCall serviceCall, Properties substitutions, boolean verifyCertificate);
 }

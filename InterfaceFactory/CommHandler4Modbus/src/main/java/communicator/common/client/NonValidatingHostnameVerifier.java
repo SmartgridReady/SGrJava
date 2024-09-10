@@ -1,4 +1,4 @@
-package communicator.messaging.client;
+package communicator.common.client;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
@@ -6,7 +6,7 @@ import javax.net.ssl.SSLSession;
 /**
  * A dummy implementation of a host name verifier.
  */
-class NonValidatingHostnameVerifier implements HostnameVerifier {
+public class NonValidatingHostnameVerifier implements HostnameVerifier {
 
     private static final HostnameVerifier instance = new NonValidatingHostnameVerifier();
 

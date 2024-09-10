@@ -28,8 +28,19 @@ public class ApacheRestServiceClientFactory implements RestServiceClientFactory 
 	public RestServiceClient create(String baseUri, RestApiServiceCall restServiceCall) {
 		return new ApacheRestServiceClient(baseUri, restServiceCall);
 	}
+
+	@Override
+	public RestServiceClient create(String baseUri, RestApiServiceCall restServiceCall, boolean verifyCertificate) {
+		return new ApacheRestServiceClient(baseUri, restServiceCall, verifyCertificate);
+	}
 	
+	@Override
 	public RestServiceClient create(String baseUri, RestApiServiceCall restServiceCall, Properties substitutions) {
 		return new ApacheRestServiceClient(baseUri, restServiceCall, substitutions);
+	}
+
+	@Override
+	public RestServiceClient create(String baseUri, RestApiServiceCall restServiceCall, Properties substitutions, boolean verifyCertificate) {
+		return new ApacheRestServiceClient(baseUri, restServiceCall, substitutions, verifyCertificate);
 	}
 }

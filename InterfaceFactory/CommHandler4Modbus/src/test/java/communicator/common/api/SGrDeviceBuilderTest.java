@@ -60,7 +60,7 @@ public class SGrDeviceBuilderTest {
         responseQery.setQuery("status");
         restServiceCall.setResponseQuery(responseQery);
 
-        when(restServiceClientFactory.create(any(), any())).thenReturn(restServiceClient);
+        when(restServiceClientFactory.create(any(), any(), anyBoolean())).thenReturn(restServiceClient);
         when(restServiceClient.callService()).thenReturn(Either.right("{ \"status\" : 0 }"));
         when(restServiceClient.getRestServiceCall()).thenReturn(restServiceCall);
 

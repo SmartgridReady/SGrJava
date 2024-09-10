@@ -118,8 +118,8 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithBearerAuthentication() throws Exception {
 
 		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create(any(String.class), any(RestApiServiceCall.class), anyBoolean())).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create(any(String.class), any(RestApiServiceCall.class), any(Properties.class), anyBoolean())).thenReturn(restServiceClientReq);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
@@ -140,8 +140,8 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithTokenRenewal() throws Exception {
 		
 		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create(any(String.class), any(RestApiServiceCall.class), anyBoolean())).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create(any(String.class), any(RestApiServiceCall.class), any(Properties.class), anyBoolean())).thenReturn(restServiceClientReq);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
 				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
@@ -166,8 +166,8 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithReadServiceCallV2(String dataPointName) throws Exception {
 
 		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create(any(String.class), any(RestApiServiceCall.class), anyBoolean())).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create(any(String.class), any(RestApiServiceCall.class), any(Properties.class), anyBoolean())).thenReturn(restServiceClientReq);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
 		when(restServiceClientAuth.callService()).thenReturn(Either.right(CLEMAP_AUTH_RESP));
@@ -187,8 +187,8 @@ class SGrRestAPIDeviceTest {
 	void testSetVal() throws Exception {
 		
 		// given					
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), any(Properties.class))).thenReturn(restServiceClientReq);
+		when(restServiceClientFactory.create(any(String.class), any(RestApiServiceCall.class), anyBoolean())).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create(any(String.class), any(RestApiServiceCall.class), any(Properties.class), anyBoolean())).thenReturn(restServiceClientReq);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
 				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
@@ -208,7 +208,7 @@ class SGrRestAPIDeviceTest {
 
 		try (MockedStatic<Request> httpClient =  Mockito.mockStatic(Request.class)) {
 			httpClient.when(() -> Request.post(anyString())).thenReturn(httpClientRequest);
-			when(httpClientRequest.execute()).thenReturn(response);
+			when(httpClientRequest.execute(any())).thenReturn(response);
 			when(response.returnResponse()).thenReturn(httpResponse);
 			when(httpResponse.getCode()).thenReturn(SC_OK);
 			when((httpResponse).getEntity()).thenReturn(httpEntity);
@@ -262,7 +262,7 @@ class SGrRestAPIDeviceTest {
 	void testSetValOutOfRange(String value, String expectedResponse) throws Exception {
 
 		// given
-		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class))).thenReturn(restServiceClientAuth);
+		when(restServiceClientFactory.create( any(String.class), any(RestApiServiceCall.class), anyBoolean())).thenReturn(restServiceClientAuth);
 
 		when(restServiceClientAuth.getRestServiceCall()).thenReturn(
 				deviceFrame.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription().getRestApiBearer().getRestApiServiceCall());
@@ -297,8 +297,8 @@ class SGrRestAPIDeviceTest {
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 
-		Mockito.lenient().when(restServiceClientFactory.create(any(), any())).thenReturn(restServiceClient);
-		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), any())).thenReturn(restServiceClient);
+		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), anyBoolean())).thenReturn(restServiceClient);
+		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), any(), anyBoolean())).thenReturn(restServiceClient);
 		Mockito.lenient().when(restServiceClient.callService()).thenReturn(Either.right("{}"));
 		Mockito.lenient().when(restServiceClient.getRestServiceCall()).thenReturn(restServiceCall);
 
@@ -325,8 +325,8 @@ class SGrRestAPIDeviceTest {
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, restServiceClientFactory);
 
-		Mockito.lenient().when(restServiceClientFactory.create(any(), any())).thenReturn(restServiceClient);
-		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), any())).thenReturn(restServiceClient);
+		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), anyBoolean())).thenReturn(restServiceClient);
+		Mockito.lenient().when(restServiceClientFactory.create(any(), any(), any(), anyBoolean())).thenReturn(restServiceClient);
 		Mockito.lenient().when(restServiceClient.callService()).thenReturn(Either.right("{}"));
 		Mockito.lenient().when(restServiceClient.getRestServiceCall()).thenReturn(restServiceCall);
 
@@ -336,7 +336,7 @@ class SGrRestAPIDeviceTest {
 
 		restApiDevice.setVal("ActivePowerAC", "ActivePowerACtot", Float32Value.of(0.099f));
 
-		verify(restServiceClientFactory).create(any(), any(), propertiesCaptor.capture());
+		verify(restServiceClientFactory).create(any(), any(), propertiesCaptor.capture(), anyBoolean());
 		assertEquals(99,
 				Math.round(
 						Float.parseFloat(String.valueOf(propertiesCaptor.getValue().get("value")))));

@@ -33,16 +33,18 @@ import java.util.Properties;
 
 public abstract class RestServiceClient {
 	
-	private final String baseUri;	
+	private final String baseUri;
+	private final boolean verifyCertificate;
 	
 	private final RestApiServiceCall restServiceCall;
 	
-	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall) {
-		this(baseUri, serviceCall, new Properties());
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, boolean verifyCertificate) {
+		this(baseUri, serviceCall, new Properties(), verifyCertificate);
 	}
 	
-	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, Properties substitutions) {
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, Properties substitutions, boolean verifyCertificate) {
 		this.baseUri = replacePropertyPlaceholders(baseUri, substitutions);
+		this.verifyCertificate = verifyCertificate;
 		this.restServiceCall = cloneRestServiceCallWithSubstitutions(serviceCall, substitutions);
 	}
 
@@ -62,6 +64,10 @@ public abstract class RestServiceClient {
 	
 	public String getBaseUri(Properties substitutions) {
 		return replacePropertyPlaceholders(baseUri, substitutions);
+	}
+
+	public boolean isVerifyCertificate() {
+		return verifyCertificate;
 	}
 	
 	public RestApiServiceCall getRestServiceCall() {

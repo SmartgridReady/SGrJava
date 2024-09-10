@@ -78,8 +78,9 @@ public class BearerTokenAuthenticator implements Authenticator {
 				deviceDescription.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription();
 
 		String host = ifDescription.getRestApiUri();
+		boolean verifyCertificate = ifDescription.isSetRestApiVerifyCertificate() ? ifDescription.isRestApiVerifyCertificate() : true;
 		
-		RestServiceClient restServiceClient = restServiceClientFactory.create(host, ifDescription.getRestApiBearer().getRestApiServiceCall());
+		RestServiceClient restServiceClient = restServiceClientFactory.create(host, ifDescription.getRestApiBearer().getRestApiServiceCall(), verifyCertificate);
 		requestBearerToken(restServiceClient);
 	}
 	

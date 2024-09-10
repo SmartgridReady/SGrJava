@@ -14,6 +14,7 @@ import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
 import com.hivemq.client.mqtt.mqtt5.message.unsubscribe.unsuback.Mqtt5UnsubAck;
 import com.smartgridready.ns.v0.MessageFilter;
 
+import communicator.common.client.NonValidatingHostnameVerifier;
 import communicator.common.runtime.GenDriverException;
 import communicator.messaging.api.Message;
 import io.vavr.control.Either;

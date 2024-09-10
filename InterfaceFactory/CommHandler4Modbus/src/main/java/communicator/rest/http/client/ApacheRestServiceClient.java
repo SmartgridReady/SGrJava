@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -29,9 +32,17 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.function.Function;
 
+import javax.net.ssl.SSLContext;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.client5.http.fluent.Request;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
+import org.apache.hc.client5.http.io.HttpClientConnectionManager;
+import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
+import org.apache.hc.client5.http.ssl.TrustAllStrategy;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpHeaders;
@@ -41,8 +52,15 @@ import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.apache.hc.core5.net.URIBuilder;
+import org.apache.hc.core5.ssl.SSLContexts;
+import org.apache.hc.core5.ssl.SSLInitializationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.smartgridready.ns.v0.RestApiServiceCall;
+
+import communicator.common.client.NonValidatingHostnameVerifier;
+
 import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.HttpMethod;
 
@@ -50,6 +68,8 @@ import io.vavr.control.Either;
 
 
 public class ApacheRestServiceClient extends RestServiceClient {
+
+	private static final Logger LOG = LoggerFactory.getLogger(ApacheRestServiceClient.class);
 	
 	private static final EnumMap<HttpMethod, Function<String, Request>> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
 	private static final Map<String, Function31<Request, String, ContentType, Request>> BODY_ENCODE_MAP = new HashMap<>();
@@ -66,11 +86,19 @@ public class ApacheRestServiceClient extends RestServiceClient {
 	}	
 
 	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall) {
-		super(baseUri, restServiceCall);
+		super(baseUri, restServiceCall, true);
+	}
+
+	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall, boolean verifyCertificate) {
+		super(baseUri, restServiceCall, verifyCertificate);
 	}
 	
 	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall, Properties substitutions) {
-		super(baseUri, restServiceCall, substitutions);
+		super(baseUri, restServiceCall, substitutions, true);
+	}
+
+	protected ApacheRestServiceClient(String baseUri, RestApiServiceCall restServiceCall, Properties substitutions, boolean verifyCertificate) {
+		super(baseUri, restServiceCall, substitutions, verifyCertificate);
 	}
 
 	@Override
@@ -112,18 +140,20 @@ public class ApacheRestServiceClient extends RestServiceClient {
 			bodyEncodeFunct.apply(httpReq, content, requestContentType);
 		}
 		
-		HttpResponse httpResp = httpReq.execute().returnResponse();
-		if ((httpResp.getCode() >= HttpStatus.SC_OK) && (httpResp.getCode() < HttpStatus.SC_CLIENT_ERROR)) {
-			try (InputStream is = ((ClassicHttpResponse)httpResp).getEntity().getContent()) {
-				
-				String contentTypeStr = ((ClassicHttpResponse)httpResp).getEntity().getContentType();
-				ContentType contentType = (contentTypeStr != null) ? ContentType.parse(contentTypeStr) : ContentType.DEFAULT_TEXT;
-				
-				String content = IOUtils.toString(is, contentType.getCharset());
-				return Either.right(content);
+		try (CloseableHttpClient httpClient = buildHttpClient()) {
+			HttpResponse httpResp = httpReq.execute(httpClient).returnResponse();
+			if ((httpResp.getCode() >= HttpStatus.SC_OK) && (httpResp.getCode() < HttpStatus.SC_CLIENT_ERROR)) {
+				try (InputStream is = ((ClassicHttpResponse)httpResp).getEntity().getContent()) {
+					
+					String contentTypeStr = ((ClassicHttpResponse)httpResp).getEntity().getContentType();
+					ContentType contentType = (contentTypeStr != null) ? ContentType.parse(contentTypeStr) : ContentType.DEFAULT_TEXT;
+					
+					String content = IOUtils.toString(is, contentType.getCharset());
+					return Either.right(content);
+				}
 			}
+			return Either.left(httpResp);
 		}
-		return Either.left(httpResp);
 	}
 
 	private URI buildUri(RestApiServiceCall serviceCall) throws URISyntaxException {
@@ -153,6 +183,38 @@ public class ApacheRestServiceClient extends RestServiceClient {
 
 		uri = uriBuilder.build();
 		return uri;
+	}
+
+
+	private CloseableHttpClient buildHttpClient() {
+
+		try {
+			final SSLContext sslContext = isVerifyCertificate()
+				? SSLContexts.createSystemDefault()
+				: SSLContexts.custom()
+			        .loadTrustMaterial(TrustAllStrategy.INSTANCE)
+			        .build();
+
+			final SSLConnectionSocketFactory sslFactory = isVerifyCertificate()
+				? new SSLConnectionSocketFactory(sslContext)
+				: new SSLConnectionSocketFactory(sslContext, NonValidatingHostnameVerifier.getInstance());
+	
+			final HttpClientConnectionManager cm = PoolingHttpClientConnectionManagerBuilder
+				.create()
+				.setSSLSocketFactory(sslFactory)
+				.build();
+			
+			return HttpClients
+				.custom()
+				.useSystemProperties()
+				.setConnectionManager(cm)
+				.build();
+		} catch (SSLInitializationException | KeyManagementException | NoSuchAlgorithmException | KeyStoreException e) {
+			LOG.error("SSL initialization error", e);
+		}
+
+		// fallback
+		return HttpClients.createSystem();
 	}
 
 
