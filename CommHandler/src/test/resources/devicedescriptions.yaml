@@ -17,7 +17,7 @@ descriptions:
 -   file: SGr_00_0016_dddd_ABB_B23_ModbusTCP_V0.3.xml
 -   file: SGr_04_0017_xxxx_HOVAL_HeatPumpV0.2.1.xml
 -   file: SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml
--   file: SGr_04_0020_xxxx_Heliotherm_HeatPumpV0.2.1.xml
+#-   file: SGr_04_0020_xxxx_Heliotherm_HeatPumpV0.2.1.xml
 -   file: SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml
 -   file: SGr_04_0033_0000_CTA_HeatPumpV0.2.1.xml
 -   file: SGr_04_mmmm_dddd_CLEMAPEnergyMonitorEIV0.2.1.xml
@@ -26,5 +26,5 @@ descriptions:
 -   file: SGr_05_mmmm_dddd_Dynamic_Tariffs_Swisspower_V0.0.1.xml
 -   file: SGr_05_mmmm_dddd_Dynamic_Tariffs_GroupeE_V0.0.1.xml
 -   file: SontexSupercal5V0.2.1.xml
--   file: abb_terra_01.xml
+ #-   file: abb_terra_01.xml
 -   file: mvpEi4Modbus_0000_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml
