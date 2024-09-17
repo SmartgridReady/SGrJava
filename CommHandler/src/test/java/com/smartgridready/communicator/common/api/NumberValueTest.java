@@ -1,8 +1,8 @@
 package com.smartgridready.communicator.common.api;
 
 import com.smartgridready.ns.v0.DataTypeProduct;
+import com.smartgridready.ns.v0.EmptyType;
 import com.smartgridready.ns.v0.ModbusDataType;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.communicator.common.api.values.Float64Value;
 import com.smartgridready.communicator.common.api.values.Int16UValue;
@@ -35,38 +35,38 @@ class NumberValueTest {
     private static final Logger LOG = LoggerFactory.getLogger(NumberValueTest.class);
 
 
-    private static final DataTypeProduct genTypeFloat32 = V0Factory.eINSTANCE.createDataTypeProduct();
-    static { genTypeFloat32.setFloat32(V0Factory.eINSTANCE.createEmptyType());}
+    private static final DataTypeProduct genTypeFloat32 = new DataTypeProduct();
+    static { genTypeFloat32.setFloat32(new EmptyType());}
 
-    private static final ModbusDataType modbusTypeFloat64 = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeFloat64.setFloat64(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeFloat64 = new ModbusDataType();
+    static { modbusTypeFloat64.setFloat64(new EmptyType()); }
 
-    private static final ModbusDataType modbusTypeFloat32 = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeFloat32.setFloat32(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeFloat32 = new ModbusDataType();
+    static { modbusTypeFloat32.setFloat32(new EmptyType()); }
 
-    private static final ModbusDataType modbusTypeInt64 = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeInt64.setInt64(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeInt64 = new ModbusDataType();
+    static { modbusTypeInt64.setInt64(new EmptyType()); }
 
-    private static final ModbusDataType modbusTypeInt64U = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeInt64U.setInt64U(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeInt64U = new ModbusDataType();
+    static { modbusTypeInt64U.setInt64U(new EmptyType()); }
 
-    private static final ModbusDataType modbusTypeInt32 = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeInt32.setInt32(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeInt32 = new ModbusDataType();
+    static { modbusTypeInt32.setInt32(new EmptyType()); }
 
-    private static final ModbusDataType modbusTypeInt32U = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeInt32U.setInt32U(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeInt32U = new ModbusDataType();
+    static { modbusTypeInt32U.setInt32U(new EmptyType()); }
 
-    private static final ModbusDataType modbusTypeInt16 = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeInt16.setInt16(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeInt16 = new ModbusDataType();
+    static { modbusTypeInt16.setInt16(new EmptyType()); }
 
-    private static final ModbusDataType modbusTypeInt16U = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeInt16U.setInt16U(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeInt16U = new ModbusDataType();
+    static { modbusTypeInt16U.setInt16U(new EmptyType()); }
 
-    private static final ModbusDataType modbusTypeInt8 = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeInt8.setInt8(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeInt8 = new ModbusDataType();
+    static { modbusTypeInt8.setInt8(new EmptyType()); }
 
-    private static final ModbusDataType modbusTypeInt8U = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusTypeInt8U.setInt8U(V0Factory.eINSTANCE.createEmptyType()); }
+    private static final ModbusDataType modbusTypeInt8U = new ModbusDataType();
+    static { modbusTypeInt8U.setInt8U(new EmptyType()); }
 
     public static final Map<Value, String> VALUE_TYPES = new HashMap<>();
     static {

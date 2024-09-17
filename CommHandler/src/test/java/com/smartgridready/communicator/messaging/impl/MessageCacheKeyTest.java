@@ -1,7 +1,6 @@
 package com.smartgridready.communicator.messaging.impl;
 
 import com.smartgridready.ns.v0.MessageFilter;
-import com.smartgridready.ns.v0.V0Factory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,8 +23,8 @@ class MessageCacheKeyTest {
     @Test
     void equalsAndHasTopicAndFilter() {
 
-        MessageFilter filter1 = V0Factory.eINSTANCE.createMessageFilter();
-        MessageFilter filter2 = V0Factory.eINSTANCE.createMessageFilter();
+        MessageFilter filter1 = new MessageFilter();
+        MessageFilter filter2 = new MessageFilter();
 
         MessageCacheKey key1 = MessageCacheKey.of("test-topic", filter1);
         MessageCacheKey key2 = MessageCacheKey.of("test-topic", filter1);

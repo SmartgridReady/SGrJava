@@ -13,8 +13,8 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.EmptyType;
 import com.smartgridready.ns.v0.FunctionalProfileCategory;
 import com.smartgridready.ns.v0.Language;
+import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.Units;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.dto.ConfigurationValue;
 import com.smartgridready.communicator.common.api.dto.DataPoint;
 import com.smartgridready.communicator.common.api.dto.FunctionalProfile;
@@ -225,8 +225,8 @@ class SGrDeviceBaseTest {
         final float voltage = 230.2f;
         final float unitConversionFactor = 1.36f;
 
-        var modbusDataType = V0Factory.eINSTANCE.createModbusDataType();
-        modbusDataType.setFloat32(V0Factory.eINSTANCE.createEmptyType());
+        var modbusDataType = new ModbusDataType();
+        modbusDataType.setFloat32(new EmptyType());
 
         var modbusValue = Float32Value.of(voltage).toModbusRegister(modbusDataType);
 
@@ -292,8 +292,8 @@ class SGrDeviceBaseTest {
 
         final float voltage = 230.2f;
 
-        var modbusDataType = V0Factory.eINSTANCE.createModbusDataType();
-        modbusDataType.setFloat32(V0Factory.eINSTANCE.createEmptyType());
+        var modbusDataType = new ModbusDataType();
+        modbusDataType.setFloat32(new EmptyType());
 
         var modbusValue = Float32Value.of(voltage).toModbusRegister(modbusDataType);
         var modbusValues = new int[3*modbusValue.length];

@@ -38,8 +38,6 @@ import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
 import com.smartgridready.communicator.modbus.helper.GenDriverAPI4ModbusRTUMock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-// SmartGridready definitions
-import com.smartgridready.ns.v0.V0Factory;
 
 //proprietary definitions
 
@@ -208,7 +206,7 @@ public class HeatPumpTester {
 			long lVal=0;
 			boolean bVal1=false,bVal2=false,bVal3=false;
 			String  sVal1="0.0", sVal2="0.0", sVal3="0.0", sVal4 ="0.0";
-			DataTypeProduct gdtValue = V0Factory.eINSTANCE.createDataTypeProduct();
+			DataTypeProduct gdtValue = new DataTypeProduct();
 				
 			try {			
 				 LOG.info(String.format("HeatPump HovalTCP"));
@@ -217,7 +215,7 @@ public class HeatPumpTester {
 				if (runtimeCnt == 2)
 				{
                   // Testing Setters
-				  DataTypeProduct  hpCmd = V0Factory.eINSTANCE.createDataTypeProduct();
+				  DataTypeProduct  hpCmd = new DataTypeProduct();
 
 				  float fValStpt = (float) 0.0 ;	
 				  Value hpval = Float64Value.of(fValStpt);
@@ -465,7 +463,7 @@ public class HeatPumpTester {
 				if (runtimeCnt == 2)
 				{
 					/*
-					DataTypeProduct  hpval = V0Factory.eINSTANCE.createDataTypeProduct();
+					DataTypeProduct  hpval = new DataTypeProduct();
 				   LOG.info(String.format("######################  setting new values ######################"));
 				   // testing setters: one setting for a test run only recommended
 				   // read the device manual carefully before testing any setpoint
@@ -643,8 +641,8 @@ public class HeatPumpTester {
 				
 				//Setters
 				float fValStpt=(float)  runtimeCnt *  (float) 0.1;
-				DataTypeProduct gdtValue=V0Factory.eINSTANCE.createDataTypeProduct();
-				DataTypeProduct  modeCmd = V0Factory.eINSTANCE.createDataTypeProduct();
+				DataTypeProduct gdtValue= new DataTypeProduct();
+				DataTypeProduct  modeCmd = new DataTypeProduct();
 				
 					try {	
 						// if RTU is used, set address here
@@ -656,7 +654,7 @@ public class HeatPumpTester {
 
 						if (runtimeCnt == 2)
 						{
-							DataTypeProduct  hpval = V0Factory.eINSTANCE.createDataTypeProduct();
+							DataTypeProduct  hpval = new DataTypeProduct();
 								
 						  LOG.info(String.format("######################  setting new values ######################"));
 						  // testing setters: one setting for a test run only recommended
@@ -866,7 +864,7 @@ public class HeatPumpTester {
 
 				if (runtimeCnt==2) {
 					/*
-					DataTypeProduct hpval = V0Factory.eINSTANCE.createDataTypeProduct();
+					DataTypeProduct hpval = new DataTypeProduct();
 
 					LOG.info(String.format("######################  setting new values ######################"));
 					// testing setters: one setting for a test run only recommended

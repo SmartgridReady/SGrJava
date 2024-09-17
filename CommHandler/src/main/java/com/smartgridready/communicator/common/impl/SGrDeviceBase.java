@@ -9,7 +9,6 @@ import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
 import com.smartgridready.ns.v0.Language;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.GenericAttributeListProduct;
 
 import com.smartgridready.communicator.common.api.GenDeviceApi;
@@ -149,7 +148,7 @@ public abstract class SGrDeviceBase<
     public List<ConfigurationValue> getDeviceConfigurationInfo() {
         return Optional.ofNullable(device.getConfigurationList())
                 .map(ConfigurationList::getConfigurationListElement).orElseGet(()
-                        -> V0Factory.eINSTANCE.createConfigurationList().getConfigurationListElement())
+                        -> new ConfigurationList().getConfigurationListElement())
                 .stream()
                 .map(this::mapToConfigurationValue).collect(Collectors.toList());
     }

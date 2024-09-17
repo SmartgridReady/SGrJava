@@ -26,7 +26,6 @@ import com.smartgridready.ns.v0.ModbusInterfaceSelection;
 import com.smartgridready.ns.v0.ModbusRtu;
 import com.smartgridready.ns.v0.RegisterType;
 import com.smartgridready.ns.v0.TimeSyncBlockNotification;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.values.BitmapValue;
 import com.smartgridready.communicator.common.api.values.BooleanValue;
 import com.smartgridready.communicator.common.api.values.EnumValue;
@@ -446,14 +445,14 @@ class SetGetValConversionTest {
                 .getDataPointList().getDataPointListElement().get(0);
 
 
-        ModbusBoolean modbusBoolean = V0Factory.eINSTANCE.createModbusBoolean();
+        ModbusBoolean modbusBoolean = new ModbusBoolean();
         if (mapping.mappingDefinedForFalse) {
             modbusBoolean.setFalseValue(mapping.mappingVal);
         } else {
             modbusBoolean.setTrueValue(mapping.mappingVal);
         }
 
-        ModbusDataType modbusDataTypeBoolean = V0Factory.eINSTANCE.createModbusDataType();
+        ModbusDataType modbusDataTypeBoolean = new ModbusDataType();
         modbusDataTypeBoolean.setBoolean(modbusBoolean);
         modbusDataPoint.getModbusDataPointConfiguration().setModbusDataType(modbusDataTypeBoolean);
 
@@ -517,7 +516,7 @@ class SetGetValConversionTest {
     @Test
     void testEnumConversion() throws Exception {
 
-        DataTypeProduct dataTypeProduct = V0Factory.eINSTANCE.createDataTypeProduct();
+        DataTypeProduct dataTypeProduct = new DataTypeProduct();
         dataTypeProduct.setEnum(createEnumMap(new byte[]{(byte)0xFF}));
 
         DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DataType.ENUM, DataType.INT32);
@@ -551,7 +550,7 @@ class SetGetValConversionTest {
 
         int[] expectedModbusValue = new int[]{0x00000004, 0x0000010B};
 
-        DataTypeProduct dataTypeProduct = V0Factory.eINSTANCE.createDataTypeProduct();
+        DataTypeProduct dataTypeProduct = new DataTypeProduct();
         dataTypeProduct.setBitmap(createBitmap());
 
         DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DataType.BITMAP, DataType.INT32U);
@@ -598,7 +597,7 @@ class SetGetValConversionTest {
     @Test
     void testBitmapModification() throws Exception {
 
-        DataTypeProduct dataTypeProduct = V0Factory.eINSTANCE.createDataTypeProduct();
+        DataTypeProduct dataTypeProduct = new DataTypeProduct();
         dataTypeProduct.setBitmap(createBitmap());
 
         DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DataType.BITMAP, DataType.INT32U);
@@ -823,24 +822,24 @@ class SetGetValConversionTest {
                                                     DataType genericType,
                                                     DataType modbusType) {
 
-        DeviceFrame deviceFrame = V0Factory.eINSTANCE.createDeviceFrame();
+        DeviceFrame deviceFrame = new DeviceFrame();
         deviceFrame.setDeviceName(createDeviceName(conversionFct, genericType, modbusType));
 
-        InterfaceList interfaceList = V0Factory.eINSTANCE.createInterfaceList();
+        InterfaceList interfaceList = new InterfaceList();
         deviceFrame.setInterfaceList(interfaceList);
 
-        ModbusInterface modbusInterface = V0Factory.eINSTANCE.createModbusInterface();
+        ModbusInterface modbusInterface = new ModbusInterface();
         interfaceList.setModbusInterface(modbusInterface);
         deviceFrame.getInterfaceList().setModbusInterface(modbusInterface);
 
         modbusInterface.setModbusInterfaceDescription(modbDevDesc(firstRegOne, conversionFct));
 
-        ModbusFunctionalProfile functionalProfile = V0Factory.eINSTANCE.createModbusFunctionalProfile();
+        ModbusFunctionalProfile functionalProfile = new ModbusFunctionalProfile();
 
-        ModbusDataPointList dataPointList = V0Factory.eINSTANCE.createModbusDataPointList();
+        ModbusDataPointList dataPointList = new ModbusDataPointList();
         functionalProfile.setDataPointList(dataPointList);
 
-        FunctionalProfileDescription profileDescription = V0Factory.eINSTANCE.createFunctionalProfileDescription();
+        FunctionalProfileDescription profileDescription = new FunctionalProfileDescription();
         profileDescription.setFunctionalProfileName("ActivePowerAC");
         functionalProfile.setFunctionalProfile(profileDescription);
 
@@ -853,7 +852,7 @@ class SetGetValConversionTest {
             deviceFrame.getInterfaceList().getModbusInterface().getTimeSyncBlockNotification().add(timeSyncBlock());
         }
 
-        ModbusFunctionalProfileList profileList = V0Factory.eINSTANCE.createModbusFunctionalProfileList();
+        ModbusFunctionalProfileList profileList = new ModbusFunctionalProfileList();
         profileList.getFunctionalProfileListElement().add(functionalProfile);
         deviceFrame.getInterfaceList().getModbusInterface().setFunctionalProfileList(profileList);
         return deviceFrame;
@@ -863,9 +862,9 @@ class SetGetValConversionTest {
     private static ModbusInterfaceDescription modbDevDesc(boolean firstRegisterOne,
             BitOrder modbusConversionScheme) {
 
-        ModbusInterfaceDescription mbDesc = V0Factory.eINSTANCE.createModbusInterfaceDescription();
+        ModbusInterfaceDescription mbDesc = new ModbusInterfaceDescription();
 
-        ModbusRtu mbRtu = V0Factory.eINSTANCE.createModbusRtu();
+        ModbusRtu mbRtu = new ModbusRtu();
         mbRtu.setSlaveAddr(String.valueOf(1));
         mbRtu.setPortName("COM123");    // required or interface is not recognized as serial RTU
 
@@ -880,7 +879,7 @@ class SetGetValConversionTest {
 
     private static ModbusDataPoint modbDp(DataType genericType, DataType modbusType, String dpName, int arrLen) {
 
-        ModbusDataPoint modbDp = V0Factory.eINSTANCE.createModbusDataPoint();
+        ModbusDataPoint modbDp = new ModbusDataPoint();
         modbDp.setDataPoint(genDpDesc(genericType, dpName, arrLen));
         modbDp.setModbusDataPointConfiguration(dpModbDesc(modbusType));
         return modbDp;
@@ -894,7 +893,7 @@ class SetGetValConversionTest {
 
     private static ModbusDataPointConfiguration dpModbDesc(DataType modbusType) {
 
-        ModbusDataPointConfiguration modbDpDesc = V0Factory.eINSTANCE.createModbusDataPointConfiguration();
+        ModbusDataPointConfiguration modbDpDesc = new ModbusDataPointConfiguration();
         modbDpDesc.setAddress(BigInteger.valueOf(2000));
         modbDpDesc.setRegisterType(RegisterType.HOLD_REGISTER);
         modbDpDesc.setBitRank((short) 0);
@@ -906,7 +905,7 @@ class SetGetValConversionTest {
 
     private static DataPointDescription genDpDesc(DataType genType, String dpName, int arrLen) {
 
-        DataPointDescription genDpDesc = V0Factory.eINSTANCE.createDataPointDescription();
+        DataPointDescription genDpDesc = new DataPointDescription();
         genDpDesc.setDataPointName(dpName);
         genDpDesc.setDataType(basicDP(genType));
         genDpDesc.setDataDirection(DataDirectionProduct.RW);
@@ -942,7 +941,7 @@ class SetGetValConversionTest {
 
     private static TimeSyncBlockNotification timeSyncBlock() {
 
-        TimeSyncBlockNotification tsBlock = V0Factory.eINSTANCE.createTimeSyncBlockNotification();
+        TimeSyncBlockNotification tsBlock = new TimeSyncBlockNotification();
         tsBlock.setFirstAddress(BigInteger.valueOf(TIME_SYNC_BLOCK_ADDRESS));
         tsBlock.setBlockCacheIdentification("ActivePowerAC-BLOCK");
         tsBlock.setRegisterType(RegisterType.HOLD_REGISTER);
@@ -1025,7 +1024,7 @@ class SetGetValConversionTest {
     }
 
     private EnumEntryProductRecord createEnumRecord(String literal, int ordinal) {
-        EnumEntryProductRecord enumRecord = V0Factory.eINSTANCE.createEnumEntryProductRecord();
+        EnumEntryProductRecord enumRecord = new EnumEntryProductRecord();
         enumRecord.setLiteral(literal);
         enumRecord.setOrdinal(ordinal);
         enumRecord.setDescription("Description of " + literal);
@@ -1055,7 +1054,7 @@ class SetGetValConversionTest {
     }
 
     private static BitmapEntryProduct createBitmapEntry(String name, byte[] hexMask) {
-        BitmapEntryProduct entry = V0Factory.eINSTANCE.createBitmapEntryProduct();
+        BitmapEntryProduct entry = new BitmapEntryProduct();
         entry.setLiteral(name);
         entry.setHexMask(hexMask);
         entry.setDescription("Description of " + name);

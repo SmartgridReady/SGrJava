@@ -2,7 +2,6 @@ package com.smartgridready.communicator.common.api;
 
 import com.smartgridready.ns.v0.BitmapEntryProduct;
 import com.smartgridready.ns.v0.BitmapProduct;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.values.BitmapValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import org.junit.jupiter.api.Test;
@@ -115,7 +114,7 @@ class BitmapValueTest {
 
     private static BitmapProduct createBitmap() {
 
-        BitmapProduct bitmap = V0Factory.eINSTANCE.createBitmapProduct();
+        BitmapProduct bitmap = new BitmapProduct();
 
         List<BitmapEntryProduct> bitmapEntries = bitmap.getBitmapEntry();
         bitmapEntries.add(createBitmapEntry("BIT_0", new byte[]{1}));
@@ -136,7 +135,7 @@ class BitmapValueTest {
     }
 
     private static BitmapEntryProduct createBitmapEntry(String name, byte[] hexMask) {
-        BitmapEntryProduct entry = V0Factory.eINSTANCE.createBitmapEntryProduct();
+        BitmapEntryProduct entry = new BitmapEntryProduct();
         entry.setLiteral(name);
         entry.setHexMask(hexMask);
         entry.setDescription("Description of " + name);

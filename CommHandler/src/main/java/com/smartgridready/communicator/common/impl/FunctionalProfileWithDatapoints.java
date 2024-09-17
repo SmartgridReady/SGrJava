@@ -5,11 +5,11 @@ import java.util.List;
 import com.smartgridready.ns.v0.ContactFunctionalProfile;
 import com.smartgridready.ns.v0.DataPointBase;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
+import com.smartgridready.ns.v0.GenericDataPointList;
 import com.smartgridready.ns.v0.GenericFunctionalProfile;
 import com.smartgridready.ns.v0.MessagingFunctionalProfile;
 import com.smartgridready.ns.v0.ModbusFunctionalProfile;
 import com.smartgridready.ns.v0.RestApiFunctionalProfile;
-import com.smartgridready.ns.v0.V0Factory;
 
 class FunctionalProfileWithDatapoints {
 
@@ -33,7 +33,7 @@ class FunctionalProfileWithDatapoints {
             dataPoints = ((GenericFunctionalProfile)functionalProfile).getDataPointList().getDataPointListElement();
         }
         else {
-            dataPoints = V0Factory.eINSTANCE.createGenericDataPointList().getDataPointListElement();
+            dataPoints = new GenericDataPointList().getDataPointListElement();
         }
     }
 

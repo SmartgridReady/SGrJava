@@ -2,7 +2,6 @@ package com.smartgridready.communicator.common.api;
 
 import com.smartgridready.ns.v0.EnumEntryProductRecord;
 import com.smartgridready.ns.v0.EnumMapProduct;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.communicator.common.api.values.Int32Value;
 import com.smartgridready.communicator.common.api.values.Int64Value;
@@ -120,7 +119,7 @@ class EnumValueTest {
     }
 
     private EnumMapProduct createEnumMap(byte[] hexMask) {
-        EnumMapProduct retVal = V0Factory.eINSTANCE.createEnumMapProduct();
+        EnumMapProduct retVal = new EnumMapProduct();
         List<EnumEntryProductRecord> enumEntries = retVal.getEnumEntry();
         enumEntries.add(createEnumRecord("ENUM_1", 1));
         enumEntries.add(createEnumRecord("ENUM_2", 2));
@@ -131,7 +130,7 @@ class EnumValueTest {
     }
 
     private EnumEntryProductRecord createEnumRecord(String literal, int ordinal) {
-        EnumEntryProductRecord enumRecord = V0Factory.eINSTANCE.createEnumEntryProductRecord();
+        EnumEntryProductRecord enumRecord = new EnumEntryProductRecord();
         enumRecord.setLiteral(literal);
         enumRecord.setOrdinal(ordinal);
         enumRecord.setDescription("Description of " + literal);

@@ -1,7 +1,7 @@
 package com.smartgridready.communicator.common.api;
 
+import com.smartgridready.ns.v0.ModbusBoolean;
 import com.smartgridready.ns.v0.ModbusDataType;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.values.BooleanValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import org.junit.jupiter.api.Test;
@@ -22,10 +22,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 @TestInstance(PER_CLASS) // Needed to have a non static @MethodSource
-public class BooleanValueTest {
+class BooleanValueTest {
 
-    private static final ModbusDataType modbusDataTypeBoolean = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusDataTypeBoolean.setBoolean(V0Factory.eINSTANCE.createModbusBoolean());}
+    private static final ModbusDataType modbusDataTypeBoolean = new ModbusDataType();
+    static { modbusDataTypeBoolean.setBoolean(new ModbusBoolean());}
 
     private Value value;
 
@@ -85,33 +85,33 @@ public class BooleanValueTest {
     @Test
     void fromModbusConversion() {
 
-        Value value = Value.fromDiscreteInput(modbusDataTypeBoolean, new boolean[]{true} );
-        assertTrue(value.getBoolean());
+        Value val = Value.fromDiscreteInput(modbusDataTypeBoolean, new boolean[]{true} );
+        assertTrue(val.getBoolean());
 
-        value = Value.fromDiscreteInput(modbusDataTypeBoolean, new boolean[]{false} );
-        assertFalse(value.getBoolean());
+        val = Value.fromDiscreteInput(modbusDataTypeBoolean, new boolean[]{false} );
+        assertFalse(val.getBoolean());
 
-        value = Value.fromModbusRegister(modbusDataTypeBoolean, new int[]{0x1});
-        assertTrue(value.getBoolean());
+        val = Value.fromModbusRegister(modbusDataTypeBoolean, new int[]{0x1});
+        assertTrue(val.getBoolean());
 
-        value = Value.fromModbusRegister(modbusDataTypeBoolean, new int[]{0x0});
-        assertFalse(value.getBoolean());
+        val = Value.fromModbusRegister(modbusDataTypeBoolean, new int[]{0x0});
+        assertFalse(val.getBoolean());
 
     }
 
     @Test
     void toModbusConversion() {
 
-        Value value = BooleanValue.of(true);
-        assertArrayEquals(new byte[]{(byte)0x01}, value.toModbusDiscreteVal(modbusDataTypeBoolean));
+        Value val = BooleanValue.of(true);
+        assertArrayEquals(new byte[]{(byte)0x01}, val.toModbusDiscreteVal(modbusDataTypeBoolean));
 
-        value = BooleanValue.of(false);
-        assertArrayEquals(new byte[]{(byte)0x00}, value.toModbusDiscreteVal(modbusDataTypeBoolean));
+        val = BooleanValue.of(false);
+        assertArrayEquals(new byte[]{(byte)0x00}, val.toModbusDiscreteVal(modbusDataTypeBoolean));
 
-        value = BooleanValue.of(true);
-        assertArrayEquals(new int[]{1}, value.toModbusRegister(modbusDataTypeBoolean));
+        val = BooleanValue.of(true);
+        assertArrayEquals(new int[]{1}, val.toModbusRegister(modbusDataTypeBoolean));
 
-        value = BooleanValue.of(false);
-        assertArrayEquals(new int[]{0}, value.toModbusRegister(modbusDataTypeBoolean));
+        val = BooleanValue.of(false);
+        assertArrayEquals(new int[]{0}, val.toModbusRegister(modbusDataTypeBoolean));
     }
 }

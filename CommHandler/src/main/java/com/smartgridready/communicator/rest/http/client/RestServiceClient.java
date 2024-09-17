@@ -31,7 +31,6 @@ import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.ns.v0.HeaderList;
 import com.smartgridready.ns.v0.HttpMethod;
 import com.smartgridready.ns.v0.ParameterList;
-import com.smartgridready.ns.v0.V0Factory;
 import org.apache.hc.core5.net.URIBuilder;
 
 import com.smartgridready.ns.v0.RestApiServiceCall;
@@ -65,7 +64,7 @@ public class RestServiceClient {
 
 	public void addHeader(String key, String value) {
 
-		HeaderEntry headerEntry = V0Factory.eINSTANCE.createHeaderEntry();
+		HeaderEntry headerEntry = new HeaderEntry();
 		headerEntry.setHeaderName(key);
 		headerEntry.setValue(value);
 		restServiceCall.getRequestHeader().getHeader().add(headerEntry);
@@ -107,7 +106,7 @@ public class RestServiceClient {
 		if (headers != null) {
 			headers.getHeader().forEach(header -> header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions)));
 		} else {
-			restServiceCall.setRequestHeader(V0Factory.eINSTANCE.createHeaderList());
+			restServiceCall.setRequestHeader(new HeaderList());
 		}
 
 		return restServiceCall;
