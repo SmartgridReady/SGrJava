@@ -4,7 +4,6 @@ import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.EnumMapProduct;
 import com.smartgridready.ns.v0.ModbusBoolean;
 import com.smartgridready.ns.v0.ModbusDataType;
-import com.smartgridready.communicator.common.helper.DataTypeHelper;
 import com.smartgridready.communicator.modbus.helper.ConversionHelper;
 
 import java.math.BigInteger;
@@ -71,7 +70,7 @@ public abstract class Value  {
 
         throw new IllegalArgumentException(
                 String.format("Conversion to modbus register for type %s not supported.",
-                        DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+                        DataType.getModbusDataTypeName(modbusDataType)));
     }
 
     public byte[] toModbusDiscreteVal(ModbusDataType modbusDataType) {
@@ -80,7 +79,7 @@ public abstract class Value  {
         }
         throw new IllegalArgumentException(
                 String.format("Conversion to modbus discrete value for type %s not supported.",
-                        DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+                        DataType.getModbusDataTypeName(modbusDataType)));
     }
 
 
@@ -126,7 +125,7 @@ public abstract class Value  {
         }
 
         throw new IllegalArgumentException(String.format("Modbus register type %s to Value.class conversion from register not supported.",
-                DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+                DataType.getModbusDataTypeName(modbusDataType)));
     }
 
     public static Value fromString(DataTypeProduct dataType, String value) {
@@ -170,7 +169,7 @@ public abstract class Value  {
         }
 
         throw new IllegalArgumentException(String.format("Generic type %s conversion from String to Value.class conversion from register not supported.",
-                DataTypeHelper.getGenDataTypeName(dataType)));
+                DataType.getGenDataTypeName(dataType)));
 
     }
 
@@ -185,7 +184,7 @@ public abstract class Value  {
         }
 
         throw new IllegalArgumentException(String.format("Modbus type %s to Value.class conversion from discrete input not supported.",
-                DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+                DataType.getModbusDataTypeName(modbusDataType)));
     }
 
     static void checkInt8(long value) {

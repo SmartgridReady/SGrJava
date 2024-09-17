@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.common.api.dto;
 
+import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.GenericAttributeListProductEnd;
 import com.smartgridready.ns.v0.GenericAttributeProduct;
@@ -8,11 +9,9 @@ import com.smartgridready.ns.v0.Units;
 import com.smartgridready.communicator.common.api.values.Value;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import com.smartgridready.utils.SGrGDPTypeToNameMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,7 +30,7 @@ public class GenericAttribute {
             List<GenericAttribute> children) {
         this.name = name;
         this.value = (dataType != null && value != null) ? Value.fromString(dataType, value) : null;
-        this.dataType = SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(dataType).stream().filter(Objects::nonNull).findFirst().orElse("UNDEFINED");
+        this.dataType = DataType.getGenDataTypeName(dataType);
         this.unit = unit;
         this.children = children;
     }
@@ -92,14 +91,11 @@ public class GenericAttribute {
     }
 
     private String toString(String insertTabs) {
-        StringBuilder sb = new StringBuilder();
-                sb.append("\n")
-                        .append(insertTabs).append("name: ").append(name)
-                        .append(value!=null ?    " | value: " + value.getString():"")
-                        .append(dataType!=null ? " | type : " + dataType:"")
-                        .append(unit!=null ?     " | unit : " + unit.name():"");
-
-        return sb.toString();
+        return "\n" + insertTabs +
+                        ("name: ") + name +
+                        (value!=null ?    " | value: " + value.getString() : "") +
+                        (dataType!=null ? " | type : " + dataType:"") +
+                        (unit!=null ?     " | unit : " + unit.name():"");
     }
 
     public static List<GenericAttribute> mapGenericAttributes(List<GenericAttributeProductEnd> genericAttributeProducts) {

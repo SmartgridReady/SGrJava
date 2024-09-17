@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 
 import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 
@@ -46,15 +47,20 @@ public class XmlResourceLoader<T> {
     private T unmarshal(String xmlContent) throws JAXBException, SAXException {
         // Get JAXBContext
         JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        
+
         // Create Unmarshaller
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        
+
         // Setup schema validator
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema tSchema = sf.newSchema(getClass().getClassLoader().getResource("SGrIncluder.xsd"));
         jaxbUnmarshaller.setSchema(tSchema);
 
-        return (T) jaxbUnmarshaller.unmarshal(new StringReader(xmlContent));
+        var result = jaxbUnmarshaller.unmarshal(new StringReader(xmlContent));
+        if (result instanceof JAXBElement) {
+            var jaxbElement = (JAXBElement)result;
+            return (T) jaxbElement.getValue();
+        }
+        return (T) result;
     }
 }

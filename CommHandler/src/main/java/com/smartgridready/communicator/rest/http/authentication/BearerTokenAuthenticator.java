@@ -47,7 +47,7 @@ public class BearerTokenAuthenticator implements Authenticator {
 	
 	@Override
 	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory)
-			throws IOException, RestApiServiceCallException {
+			throws IOException, RestApiServiceCallException{
 		
 		if (bearerToken == null) {
 			authenticate(deviceDescription, httpRequestFactory);

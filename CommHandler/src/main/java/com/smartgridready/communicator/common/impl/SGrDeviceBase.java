@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.common.impl;
 
+import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.ns.v0.ConfigurationList;
 import com.smartgridready.ns.v0.ConfigurationListElement;
 import com.smartgridready.ns.v0.DataDirectionProduct;
@@ -14,14 +15,12 @@ import com.smartgridready.ns.v0.GenericAttributeListProduct;
 import com.smartgridready.communicator.common.api.GenDeviceApi;
 import com.smartgridready.communicator.common.api.dto.ConfigurationValue;
 import com.smartgridready.communicator.common.api.dto.DataPoint;
-import com.smartgridready.communicator.common.api.dto.DataType;
 import com.smartgridready.communicator.common.api.dto.DeviceInfo;
 import com.smartgridready.communicator.common.api.dto.FunctionalProfile;
 import com.smartgridready.communicator.common.api.dto.GenericAttribute;
 import com.smartgridready.communicator.common.api.dto.OperationEnvironment;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.driver.api.common.GenDriverException;
-import com.smartgridready.utils.SGrGDPTypeToNameMapper;
 
 import java.util.*;
 import java.util.function.BiPredicate;
@@ -162,9 +161,8 @@ public abstract class SGrDeviceBase<
 
         return new ConfigurationValue(
                 configurationListElement.getName(),
-                SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(configurationListElement.getDataType()).stream().filter(Objects::nonNull).findFirst().orElse("UNDEFINED"),
+                DataType.getGenDataTypeName(configurationListElement.getDataType()),
                 descriptions);
-
     }
 
     @Override
@@ -235,7 +233,7 @@ public abstract class SGrDeviceBase<
         return new DataPoint(
                 dataPointName,
                 functionalProfileName,
-                SGrGDPTypeToNameMapper.mapToDataTypeDto(dataPoint.getDataType()).stream().findFirst().orElse(new DataType("UNKNOWN", List.of())),
+                DataType.toDataType(dataPoint.getDataType()).orElse(DataType.UNKNOWN),
                 dataPoint.getUnit() != null ? dataPoint.getUnit() : null,
                 dataPoint.getDataDirection() != null ? dataPoint.getDataDirection() : null,
                 dataPoint.getMinimumValue() != null ? dataPoint.getMinimumValue() : null,

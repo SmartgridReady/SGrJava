@@ -20,7 +20,7 @@ package com.smartgridready.communicator.rest.http.client;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
@@ -44,7 +44,7 @@ public class RestServiceClient {
 	private final RestApiServiceCall restServiceCall;
 	private final GenHttpRequestFactory httpRequestFactory;
 
-	private static final Map<HttpMethod, com.smartgridready.driver.api.http.HttpMethod> HTTP_METHOD_MAP = new HashMap<>();
+	private static final Map<HttpMethod, com.smartgridready.driver.api.http.HttpMethod> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
 	static {
 		HTTP_METHOD_MAP.put(HttpMethod.GET, com.smartgridready.driver.api.http.HttpMethod.GET);
 		HTTP_METHOD_MAP.put(HttpMethod.POST, com.smartgridready.driver.api.http.HttpMethod.POST);
@@ -85,34 +85,32 @@ public class RestServiceClient {
 
 	private RestApiServiceCall cloneRestServiceCallWithSubstitutions(RestApiServiceCall restServiceCall, Properties substitutions) {
 
-		// Handle substitutions, do this on a clone, do not modify the EI loaded from XML. Substitutions can
-		// appear within the request path, request body or even the response query.
-		RestApiServiceCall clone = EcoreUtil.copy(restServiceCall);
-		clone.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
-		clone.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));
+		// Substitutions can appear within the request path, request body or even the response query.
+		restServiceCall.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
+		restServiceCall.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));
 
-		if (clone.getResponseQuery() != null) {
-			clone.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
+		if (restServiceCall.getResponseQuery() != null) {
+			restServiceCall.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
 		}
 
-		ParameterList queryParams = clone.getRequestQuery();
+		ParameterList queryParams = restServiceCall.getRequestQuery();
 		if (queryParams != null) {
 			queryParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
 		}
 
-		ParameterList formParams = clone.getRequestForm();
+		ParameterList formParams = restServiceCall.getRequestForm();
 		if (formParams != null) {
 			formParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
 		}
 
-		HeaderList headers = clone.getRequestHeader();
+		HeaderList headers = restServiceCall.getRequestHeader();
 		if (headers != null) {
 			headers.getHeader().forEach(header -> header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions)));
 		} else {
-			clone.setRequestHeader(V0Factory.eINSTANCE.createHeaderList());
+			restServiceCall.setRequestHeader(V0Factory.eINSTANCE.createHeaderList());
 		}
 
-		return clone;
+		return restServiceCall;
 	}
 
 	public GenHttpResponse callService() throws IOException {

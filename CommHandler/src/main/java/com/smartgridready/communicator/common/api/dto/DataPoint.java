@@ -1,6 +1,7 @@
 package com.smartgridready.communicator.common.api.dto;
 
 import com.smartgridready.communicator.common.api.GenDeviceApi;
+import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.messaging.api.GenDeviceApi4Messaging;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;

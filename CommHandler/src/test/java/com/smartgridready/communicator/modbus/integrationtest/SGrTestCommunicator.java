@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.modbus.integrationtest;
 
+import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.ns.v0.BitmapEntryProduct;
 import com.smartgridready.ns.v0.EnumEntryProductRecord;
 import com.smartgridready.ns.v0.RegisterType;
@@ -8,7 +9,6 @@ import com.smartgridready.communicator.common.api.values.BooleanValue;
 import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
-import com.smartgridready.communicator.common.helper.DataTypeHelper;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
 import com.smartgridready.driver.api.common.GenDriverException;
 import io.vavr.Tuple2;
@@ -169,7 +169,7 @@ public class SGrTestCommunicator extends JFrame {
             JLabel dpTypeLabel = new JLabel("Register type:");
             JLabel dpType = new JLabel(dpDescriptor.modbusRegisterType.name());
             JLabel genericTypeLabel = new JLabel("Generic type:");
-            JLabel genericType = new JLabel(DataTypeHelper.getGenDataTypeName(dpDescriptor.genericType));
+            JLabel genericType = new JLabel(DataType.getGenDataTypeName(dpDescriptor.genericType));
             JLabel unitLabel = new JLabel("Unit");
             JLabel unit = new JLabel(dpDescriptor.units);
             JLabel minValLabel = new JLabel("MinValue");
@@ -180,7 +180,7 @@ public class SGrTestCommunicator extends JFrame {
             JLabel unitConversionFactor = new JLabel(dpDescriptor.conversionFactor);
 
             JLabel modubusTypeLabel = new JLabel("Modbus type;");
-            JLabel modbusType = new JLabel(DataTypeHelper.getModbusDataTypeName(dpDescriptor.modbusType));
+            JLabel modbusType = new JLabel(DataType.getModbusDataTypeName(dpDescriptor.modbusType));
             JLabel modbusAddressLabel = new JLabel(
                     (dpDescriptor.modbusRegisterType == RegisterType.COIL || dpDescriptor.modbusRegisterType == RegisterType.DISCRETE_INPUT) ?
                     "Modbus bit address:" : "Modbus register address:");

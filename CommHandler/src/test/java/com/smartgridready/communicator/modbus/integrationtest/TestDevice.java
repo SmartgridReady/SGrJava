@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.modbus.integrationtest;
 
+import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.DeviceFrame;
@@ -7,7 +8,6 @@ import com.smartgridready.ns.v0.ModbusDataPointConfiguration;
 import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.ModbusInterface;
 import com.smartgridready.ns.v0.RegisterType;
-import com.smartgridready.communicator.common.helper.DataTypeHelper;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
@@ -58,8 +58,8 @@ public class TestDevice {
                     + (isReadable ? "R" : "") + " "
                     + (isWritable ? "W" : "") + " "
                     + modbusRegisterType.name()
-                    + " GenType=" + DataTypeHelper.getGenDataTypeName(genericType)
-                    + " ModbusType=" + DataTypeHelper.getModbusDataTypeName(modbusType)
+                    + " GenType=" + DataType.getGenDataTypeName(genericType)
+                    + " ModbusType=" + DataType.getModbusDataTypeName(modbusType)
                     + " ModbusAddress=" + modbusAddress
                     + " ModbusRegisterType=" + modbusRegisterType
                     + " ModbusNoOfRegisters=" + modbusNbOfRegisters

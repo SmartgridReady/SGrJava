@@ -1,18 +1,20 @@
 package com.smartgridready.communicator.common.impl;
 
+import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.driver.api.http.GenHttpRequestFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.driver.api.http.HttpMethod;
 import com.smartgridready.ns.v0.DataDirectionProduct;
+import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.DeviceCategory;
 import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.EmptyType;
 import com.smartgridready.ns.v0.FunctionalProfileCategory;
 import com.smartgridready.ns.v0.Language;
 import com.smartgridready.ns.v0.Units;
 import com.smartgridready.ns.v0.V0Factory;
-import com.smartgridready.ns.v0.V0Package;
 import com.smartgridready.communicator.common.api.dto.ConfigurationValue;
 import com.smartgridready.communicator.common.api.dto.DataPoint;
 import com.smartgridready.communicator.common.api.dto.FunctionalProfile;
@@ -39,12 +41,15 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Stream;
 
+import static com.smartgridready.communicator.common.api.values.DataType.UNKNOWN;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -54,6 +59,8 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(value = MockitoExtension.class)
 class SGrDeviceBaseTest {
+
+    private static final Logger LOG = LoggerFactory.getLogger(SGrDeviceBase.class);
 
     private static final Value INTEGER_VALUE_20482048 = Int64Value.of(20482048L);
     private static final Value DOUBLE_VALUE_4096_00009999 = Float64Value.of(4096.00009999d);
@@ -144,19 +151,19 @@ class SGrDeviceBaseTest {
         expectedAttributes.add(createGenericAttributeProduct(
                 "SpecialQualityRequirement",
                 "METAS",
-                V0Package.DATA_TYPE_PRODUCT__STRING,
+                DataType.STRING,
                 Units.NONE,
                 new ArrayList<>()));
 
         expectedAttributes.add(createGenericAttributeProduct(
                 "Curtailment",
                 "40.5f",
-                V0Package.DATA_TYPE_PRODUCT__FLOAT32,
+                DataType.FLOAT32,
                 Units.PERCENT,
                 new ArrayList<>()));
 
-        var assistsAttr = createGenericAttributeProduct("assists", "TNO", V0Package.DATA_TYPE_PRODUCT__STRING, Units.NONE, null);
-        var obligedToAttr = createGenericAttributeProduct("obligedTo", "SHALL", V0Package.DATA_TYPE_PRODUCT__STRING, Units.NONE, null);
+        var assistsAttr = createGenericAttributeProduct("assists", "TNO", DataType.STRING, Units.NONE, null);
+        var obligedToAttr = createGenericAttributeProduct("obligedTo", "SHALL", DataType.STRING, Units.NONE, null);
         List<GenericAttribute> children = new ArrayList<>();
         children.add(assistsAttr);
         children.add(obligedToAttr);
@@ -164,12 +171,16 @@ class SGrDeviceBaseTest {
         expectedAttributes.add(createGenericAttributeProduct(
                 "FlexDirManagement",
                 null,
-                -1,
+                UNKNOWN,
                 null,
                 children));
 
         List<GenericAttribute> deviceGenericAttributes = deviceInfo.getGenericAttributes();
         assertArrayEquals(expectedAttributes.toArray(), deviceGenericAttributes.toArray());
+
+        for (var attribute : deviceGenericAttributes) {
+            LOG.info(attribute.toString());
+        }
 
         checkFunctionalProfiles(deviceInfo.getFunctionalProfiles());
 
@@ -252,7 +263,7 @@ class SGrDeviceBaseTest {
         expected.add(EnumValue.of("ENUM_10", 2L, "Register bits 10"));
         expected.add(EnumValue.of("ENUM_11", 3L, "Register bits 11"));
 
-        assertEquals("ENUM", dataPoint.getDataType().getTypeName());
+        assertEquals("ENUM", dataPoint.getDataType().name());
         assertArrayEquals(expected.toArray(), dataPoint.getDataType().getRange().toArray());
     }
 
@@ -272,7 +283,7 @@ class SGrDeviceBaseTest {
         expected.add(StringValue.of("Sensor_7"));
         expected.add(StringValue.of("Sensor_8"));
 
-        assertEquals("BITMAP", dataPoint.getDataType().getTypeName());
+        assertEquals("BITMAP", dataPoint.getDataType().name());
         assertIterableEquals(expected, dataPoint.getDataType().getRange());
     }
 
@@ -442,7 +453,7 @@ class SGrDeviceBaseTest {
         expectedRange.add(Float64Value.of(Double.MAX_VALUE));
 
         assertEquals("VoltageL1", dataPoint.getName());
-        assertEquals("FLOAT64", dataPoint.getDataType().getTypeName());
+        assertEquals("FLOAT64", dataPoint.getDataType().name());
         assertIterableEquals(expectedRange, dataPoint.getDataType().getRange());
 
         assertEquals(0.005, dataPoint.getMinimumValue());
@@ -450,7 +461,7 @@ class SGrDeviceBaseTest {
         assertEquals(DataDirectionProduct.RW, dataPoint.getPermissions());
         assertEquals(1, dataPoint.getArrayLen());
 
-        var expectedGenAttr =  createGenericAttributeProduct("PrecisionPercent", "2.2", V0Package.DATA_TYPE_PRODUCT__FLOAT32, Units.PERCENT, new ArrayList<>());
+        var expectedGenAttr =  createGenericAttributeProduct("PrecisionPercent", "2.2", DataType.FLOAT32, Units.PERCENT, new ArrayList<>());
         var resultGenAttr = dataPoint.getGenericAttributes();
         assertTrue(resultGenAttr.stream().findFirst().isPresent());
         assertEquals(expectedGenAttr, resultGenAttr.stream().findFirst().get());
@@ -492,19 +503,16 @@ class SGrDeviceBaseTest {
     }
 
     private GenericAttribute createGenericAttributeProduct(
-            String name, String value, int dataTypeConst, Units unit, List<GenericAttribute> children) {
+            String name, String value, DataType dataType, Units unit, List<GenericAttribute> children) {
 
-        var dataType = V0Factory.eINSTANCE.createDataTypeProduct();
-        if (dataTypeConst >= 0) {
-            dataType.eSet(dataType.eClass().getEStructuralFeature(dataTypeConst), V0Factory.eINSTANCE.createEmptyType());
-        } else {
-            dataType = null;
+        var dataTypeProduct = new DataTypeProduct();
+        if (UNKNOWN != dataType) {
+            dataType.getSetGenValMethod().accept(dataTypeProduct, new EmptyType());
         }
-
         return new GenericAttribute(
                 name,
                 value,
-                dataType,
+                dataTypeProduct,
                 unit,
                 children);
     }

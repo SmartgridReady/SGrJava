@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.modbus.impl;
 
+import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.ns.v0.BitOrder;
 import com.smartgridready.ns.v0.BitmapEntryProduct;
 import com.smartgridready.ns.v0.BitmapProduct;
@@ -7,6 +8,7 @@ import com.smartgridready.ns.v0.DataDirectionProduct;
 import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.DeviceFrame;
+import com.smartgridready.ns.v0.EmptyType;
 import com.smartgridready.ns.v0.EnumEntryProductRecord;
 import com.smartgridready.ns.v0.EnumMapProduct;
 import com.smartgridready.ns.v0.FunctionalProfileDescription;
@@ -61,7 +63,6 @@ import org.mockito.internal.util.collections.Sets;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.smartgridready.utils.SGrGDPTypeToNameMapper;
 
 import java.lang.reflect.Field;
 import java.math.BigInteger;
@@ -79,33 +80,6 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__BITMAP;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__BOOLEAN;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__ENUM;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__FLOAT32;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__FLOAT64;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT16;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT16_U;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT32;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT32_U;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT64;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT64_U;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT8;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__INT8_U;
-import static com.smartgridready.ns.v0.V0Package.DATA_TYPE_PRODUCT__STRING;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__BOOLEAN;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__ENUM;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__FLOAT32;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__FLOAT64;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__INT16;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__INT16_U;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__INT32;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__INT32_U;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__INT64;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__INT64_U;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__INT8;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__INT8_U;
-import static com.smartgridready.ns.v0.V0Package.MODBUS_DATA_TYPE__STRING;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -181,7 +155,7 @@ class SetGetValConversionTest {
         }
     }
 
-    private static final Map<Integer, Map<Integer, Map<BitOrder, Fixture<int[]>>>>
+    private static final Map<DataType, Map<DataType, Map<BitOrder, Fixture<int[]>>>>
             FIXT_TREE= new HashMap<>();
 
     static final class ValueProvider {
@@ -198,89 +172,89 @@ class SetGetValConversionTest {
 
     static final EnumSet<BitOrder> ENUM_CONVERSION_FCTS;
 
-    static final Map<Integer, ValueProvider> MODBUS_NUMBER_FORMATS = new HashMap<>();
+    static final Map<DataType, ValueProvider> MODBUS_NUMBER_FORMATS = new HashMap<>();
 
-    static final Map<Integer, ValueProvider> GEN_NUMBER_FORMATS = new HashMap<>();
+    static final Map<DataType, ValueProvider> GEN_NUMBER_FORMATS = new HashMap<>();
 
 
     static {
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__INT8,
+                DataType.INT8,
                 ValueProvider.of(() -> Int8Value.of((byte)(RANDOM.nextInt(2)==1 ? RANDOM.nextInt(127):-RANDOM.nextInt(127)))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__INT16,
+                DataType.INT16,
                 ValueProvider.of(() -> Int16Value.of((short) RANDOM.nextInt(Short.MAX_VALUE))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__INT32,
+                DataType.INT32,
                 ValueProvider.of(() -> Int32Value.of(RANDOM.nextInt(2)==1 ? RANDOM.nextInt(Integer.MAX_VALUE):-RANDOM.nextInt(Integer.MAX_VALUE))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__INT64,
+                DataType.INT64,
                 ValueProvider.of(() -> Int64Value.of(RANDOM.nextInt(2)==1 ? RANDOM.nextLong():-RANDOM.nextLong())));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__INT8_U,
+                DataType.INT8U,
                 ValueProvider.of(() -> Int8Value.of((byte)RANDOM.nextInt(127))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__INT16_U,
+                DataType.INT16U,
                 ValueProvider.of(() -> Int16UValue.of(RANDOM.nextInt(2*Short.MAX_VALUE))));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__INT32_U,
+                DataType.INT32U,
                 ValueProvider.of(() -> Int32UValue.of(RANDOM.nextInt())));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__INT64_U,
+                DataType.INT64U,
                 ValueProvider.of(() -> Int64Value.of(RANDOM.nextLong())));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__FLOAT32,
+                DataType.FLOAT32,
                 ValueProvider.of(() -> Float32Value.of(100*RANDOM.nextFloat())));
 
         GEN_NUMBER_FORMATS.put(
-                DATA_TYPE_PRODUCT__FLOAT64,
+                DataType.FLOAT64,
                 ValueProvider.of(() -> Float64Value.of(100*RANDOM.nextDouble())));
 
         //=========================================================
 
         MODBUS_NUMBER_FORMATS.put(
-                MODBUS_DATA_TYPE__INT8,
+                DataType.INT8,
                 ValueProvider.of(() -> Int8Value.of((byte)(RANDOM.nextInt(2)==1 ? RANDOM.nextInt(127):-RANDOM.nextInt(127)))));
 
         MODBUS_NUMBER_FORMATS.put(
-                MODBUS_DATA_TYPE__INT16,
+                DataType.INT16,
                 ValueProvider.of(() -> Int16Value.of((short)RANDOM.nextInt(Short.MAX_VALUE))));
 
         MODBUS_NUMBER_FORMATS.put(
-                MODBUS_DATA_TYPE__INT32,
+                DataType.INT32,
                 ValueProvider.of(() -> Int32Value.of(RANDOM.nextInt(2)==1 ? RANDOM.nextInt(Integer.MAX_VALUE):-RANDOM.nextInt(Integer.MAX_VALUE))));
 
         MODBUS_NUMBER_FORMATS.put(
-                MODBUS_DATA_TYPE__INT64,
+                DataType.INT64,
                 ValueProvider.of(
                         () -> Int64Value.of(RANDOM.nextInt(2)==1 ? RANDOM.nextLong():-RANDOM.nextLong())));
 
         MODBUS_NUMBER_FORMATS.put(
-                MODBUS_DATA_TYPE__INT16_U,
+                DataType.INT16U,
                 ValueProvider.of(() -> Int16UValue.of(RANDOM.nextInt(2*Short.MAX_VALUE))));
 
         MODBUS_NUMBER_FORMATS.put(
-                MODBUS_DATA_TYPE__INT32_U,
+                DataType.INT32U,
                 ValueProvider.of(() -> Int32UValue.of(RANDOM.nextInt())));
 
         MODBUS_NUMBER_FORMATS.put(
-                MODBUS_DATA_TYPE__INT64_U,
+                DataType.INT64U,
                 ValueProvider.of(() -> Int64UValue.of(BigInteger.valueOf(RANDOM.nextLong()))));
 
         MODBUS_NUMBER_FORMATS.put(
-                MODBUS_DATA_TYPE__FLOAT32,
+                DataType.FLOAT32,
                 ValueProvider.of(() -> Float32Value.of(100*RANDOM.nextFloat())));
 
         MODBUS_NUMBER_FORMATS.put(
-                MODBUS_DATA_TYPE__FLOAT64,
+                DataType.FLOAT64,
                 ValueProvider.of(() -> Float64Value.of(100*RANDOM.nextDouble())));
 
         ENUM_CONVERSION_FCTS = EnumSet.allOf(BitOrder.class);
@@ -295,14 +269,14 @@ class SetGetValConversionTest {
         GEN_NUMBER_FORMATS.forEach((key, genValueProvider) -> FIXT_TREE.put(key, createModbus(key)));
     }
 
-    static Map<Integer, Map<BitOrder, Fixture<int[]>>> createModbus(int genType) {
-        Map<Integer, Map<BitOrder, Fixture<int[]>>> modbusTypesMap =
+    static Map<DataType, Map<BitOrder, Fixture<int[]>>> createModbus(DataType genType) {
+        Map<DataType, Map<BitOrder, Fixture<int[]>>> modbusTypesMap =
             new HashMap<>();
         MODBUS_NUMBER_FORMATS.forEach((key, value) -> modbusTypesMap.put(key, createFixtures(genType, key)));
         return modbusTypesMap;
     }
 
-    private static Map<BitOrder, Fixture<int[]>> createFixtures(int genType, int modbusType) {
+    private static Map<BitOrder, Fixture<int[]>> createFixtures(DataType genType, DataType modbusType) {
 
         Map<BitOrder, Fixture<int[]>> fixtureMap = new HashMap<>();
 
@@ -312,7 +286,7 @@ class SetGetValConversionTest {
         return fixtureMap;
     }
 
-    private static Fixture<int[]> createFixture(int genType, int modbusType, BitOrder convType) {
+    private static Fixture<int[]> createFixture(DataType genType, DataType modbusType, BitOrder convType) {
 
         Value usedVal = createTestNumber(genType, modbusType);
 
@@ -320,29 +294,29 @@ class SetGetValConversionTest {
                     deviceFrame(true, convType, genType, modbusType));
     }
 
-    private static Value createTestNumber(int genType, int modbusType) {
+    private static Value createTestNumber(DataType genType, DataType modbusType) {
 
-        final Set<Integer> genFloatTypes = Sets.newSet(
-                DATA_TYPE_PRODUCT__FLOAT32,
-                DATA_TYPE_PRODUCT__FLOAT64
+        final Set<DataType> genFloatTypes = Sets.newSet(
+                DataType.FLOAT32,
+                DataType.FLOAT64
         );
 
-        final Set<Integer> genUnsignedTypes = Sets.newSet(
-                DATA_TYPE_PRODUCT__INT8_U,
-                DATA_TYPE_PRODUCT__INT16_U,
-                DATA_TYPE_PRODUCT__INT32_U,
-                DATA_TYPE_PRODUCT__INT64_U
+        final Set<DataType> genUnsignedTypes = Sets.newSet(
+                DataType.INT8U,
+                DataType.INT16U,
+                DataType.INT32U,
+                DataType.INT64U
         );
 
-        final Set<Integer> modbusFloatTypes = Sets.newSet(
-                MODBUS_DATA_TYPE__FLOAT32,
-                MODBUS_DATA_TYPE__FLOAT64);
+        final Set<DataType> modbusFloatTypes = Sets.newSet(
+                DataType.FLOAT32,
+                DataType.FLOAT64);
 
-        final Set<Integer> modbusUnsignedTypes = Sets.newSet(
-                MODBUS_DATA_TYPE__INT8_U,
-                MODBUS_DATA_TYPE__INT16_U,
-                MODBUS_DATA_TYPE__INT32_U,
-                MODBUS_DATA_TYPE__INT64_U
+        final Set<DataType> modbusUnsignedTypes = Sets.newSet(
+                DataType.INT8U,
+                DataType.INT16U,
+                DataType.INT32U,
+                DataType.INT64U
         );
 
 
@@ -391,7 +365,7 @@ class SetGetValConversionTest {
 
         Fixture<int[]> fixture =
                 new Fixture<>(Int8Value.of((byte)18), Int8Value.of((byte)18), new int[]{ 0, 18},
-                        deviceFrame(true, BitOrder.CHANGE_BYTE_ORDER, DATA_TYPE_PRODUCT__INT8, MODBUS_DATA_TYPE__INT8));
+                        deviceFrame(true, BitOrder.CHANGE_BYTE_ORDER, DataType.INT8, DataType.INT8));
 
         doTestWriteAndReadBack(fixture);
     }
@@ -401,7 +375,7 @@ class SetGetValConversionTest {
 
         Fixture<int[]> fixture =
                 new Fixture<>(StringValue.of("Hello@SGr"), StringValue.of("Hello@SGr"), new int[]{0x4865, 0x6C6C, 0x6F40,0x5347, 0x7200},
-                        deviceFrame(true, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__STRING, MODBUS_DATA_TYPE__STRING));
+                        deviceFrame(true, BitOrder.BIG_ENDIAN, DataType.STRING, DataType.STRING));
 
         doTestWriteAndReadBack(fixture);
     }
@@ -412,7 +386,7 @@ class SetGetValConversionTest {
     void testBooleanRegisterConversion(boolean bVal)  throws Exception {
         Fixture<int[]> fixture =
                 new Fixture<>(BooleanValue.of(bVal), BooleanValue.of(bVal), bVal ? new int[]{0x1} : new int[]{0x0},
-                        deviceFrame(true, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
+                        deviceFrame(true, BitOrder.BIG_ENDIAN, DataType.BOOLEAN, DataType.BOOLEAN));
 
         doTestWriteAndReadBack(fixture);
     }
@@ -461,7 +435,7 @@ class SetGetValConversionTest {
                         BooleanValue.of(mapping.writeVal),
                         BooleanValue.of(mapping.expectedReadVal),
                         mapping.expectedModbusVal,
-                        deviceFrame(true, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
+                        deviceFrame(true, BitOrder.BIG_ENDIAN, DataType.BOOLEAN, DataType.BOOLEAN));
 
         // Add a boolean mapping to the modbus datapoint.
         ModbusDataPoint modbusDataPoint = fixture.getDeviceFrame()
@@ -484,16 +458,6 @@ class SetGetValConversionTest {
         modbusDataPoint.getModbusDataPointConfiguration().setModbusDataType(modbusDataTypeBoolean);
 
         // Test
-        doTestWriteAndReadBack(fixture);
-    }
-
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    void testBooleanDiscreteValConversion(boolean bVal)  throws Exception {
-        Fixture<int[]> fixture =
-                new Fixture<>(BooleanValue.of(bVal), BooleanValue.of(bVal), bVal ? new int[]{0x1} : new int[]{0x0},
-                        deviceFrame(true, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BOOLEAN, MODBUS_DATA_TYPE__BOOLEAN));
-
         doTestWriteAndReadBack(fixture);
     }
 
@@ -520,8 +484,8 @@ class SetGetValConversionTest {
         DeviceFrame deviceFrame = deviceFrame(
                 false,
                 testParam._1(),
-                DATA_TYPE_PRODUCT__BOOLEAN,
-                MODBUS_DATA_TYPE__BOOLEAN);
+                DataType.BOOLEAN,
+                DataType.BOOLEAN);
 
         deviceFrame.getInterfaceList().getModbusInterface().getFunctionalProfileList().getFunctionalProfileListElement().get(0)
                 .getDataPointList().getDataPointListElement().get(0)
@@ -556,7 +520,7 @@ class SetGetValConversionTest {
         DataTypeProduct dataTypeProduct = V0Factory.eINSTANCE.createDataTypeProduct();
         dataTypeProduct.setEnum(createEnumMap(new byte[]{(byte)0xFF}));
 
-        DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__ENUM, MODBUS_DATA_TYPE__INT32);
+        DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DataType.ENUM, DataType.INT32);
         deviceFrame.getInterfaceList().getModbusInterface().getFunctionalProfileList()
                 .getFunctionalProfileListElement().get(0)
                 .getDataPointList().getDataPointListElement().get(0)
@@ -590,7 +554,7 @@ class SetGetValConversionTest {
         DataTypeProduct dataTypeProduct = V0Factory.eINSTANCE.createDataTypeProduct();
         dataTypeProduct.setBitmap(createBitmap());
 
-        DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BITMAP, MODBUS_DATA_TYPE__INT32_U);
+        DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DataType.BITMAP, DataType.INT32U);
         deviceFrame.getInterfaceList().getModbusInterface().getFunctionalProfileList()
                 .getFunctionalProfileListElement().get(0)
                 .getDataPointList().getDataPointListElement().get(0)
@@ -637,7 +601,7 @@ class SetGetValConversionTest {
         DataTypeProduct dataTypeProduct = V0Factory.eINSTANCE.createDataTypeProduct();
         dataTypeProduct.setBitmap(createBitmap());
 
-        DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DATA_TYPE_PRODUCT__BITMAP, MODBUS_DATA_TYPE__INT32_U);
+        DeviceFrame deviceFrame = deviceFrame(false, BitOrder.BIG_ENDIAN, DataType.BITMAP, DataType.INT32U);
         deviceFrame.getInterfaceList().getModbusInterface().getFunctionalProfileList()
                 .getFunctionalProfileListElement().get(0)
                 .getDataPointList().getDataPointListElement().get(0)
@@ -711,7 +675,7 @@ class SetGetValConversionTest {
     void testSetValGetValArray() throws Exception {
 
         DeviceFrame deviceFrame =
-                        deviceFrame(false, BitOrder.CHANGE_BYTE_ORDER, DATA_TYPE_PRODUCT__FLOAT32, MODBUS_DATA_TYPE__FLOAT32);
+                        deviceFrame(false, BitOrder.CHANGE_BYTE_ORDER, DataType.FLOAT32, DataType.FLOAT32);
 
         Value[] expectedValues = new Value[]{Float32Value.of(219.923f),Float32Value.of(220.000f), Float32Value.of(220.128f)};
         int[] expectedModbusValues = new int[]{23363, 19180, 23619, 0, 23619, -15072};
@@ -729,7 +693,7 @@ class SetGetValConversionTest {
         if (!intArrayCaptor.getAllValues().isEmpty()) {
             int[] modbusreg = intArrayCaptor.getValue();
             assertEquals(getModbusBufferSize(
-                    MODBUS_DATA_TYPE__FLOAT32) * expectedValues.length, modbusreg.length,
+                    DataType.FLOAT32) * expectedValues.length, modbusreg.length,
                     "Invalid length of values written to the modbus registers.");
 
             modbusreg = adjustSign(modbusreg);
@@ -749,7 +713,7 @@ class SetGetValConversionTest {
     void testSetValGetValBlocktransfer() throws Exception {
 
         DeviceFrame deviceFrame =
-                deviceFrame(false, BitOrder.CHANGE_BYTE_ORDER, DATA_TYPE_PRODUCT__FLOAT32, MODBUS_DATA_TYPE__FLOAT32);
+                deviceFrame(false, BitOrder.CHANGE_BYTE_ORDER, DataType.FLOAT32, DataType.FLOAT32);
 
         Value expectedValue = Float32Value.of(220.220f);
         int[] expectedModbusValues = new int[]{23619, 21048, 23619, 21048, 23619, 21048};
@@ -766,12 +730,12 @@ class SetGetValConversionTest {
 
         if (!intArrayCaptor.getAllValues().isEmpty()) {
             int[] modbusreg = intArrayCaptor.getValue();
-            assertEquals(getModbusBufferSize(MODBUS_DATA_TYPE__FLOAT32), modbusreg.length,
+            assertEquals(getModbusBufferSize(DataType.FLOAT32), modbusreg.length,
                     "Invalid length of values written to the modbus registers.");
 
             IntBuffer intBuf = IntBuffer.allocate(TIME_SYNC_BLOCK_SIZE);
 
-            for (int i=0; i<TIME_SYNC_BLOCK_SIZE/getModbusBufferSize(MODBUS_DATA_TYPE__FLOAT32); i++) {
+            for (int i=0; i<TIME_SYNC_BLOCK_SIZE/getModbusBufferSize(DataType.FLOAT32); i++) {
                 intBuf.put(modbusreg);
             }
 
@@ -856,8 +820,8 @@ class SetGetValConversionTest {
 
     private static DeviceFrame deviceFrame(boolean firstRegOne,
                                                     BitOrder conversionFct,
-                                                    int genericType,
-                                                    int modbusType) {
+                                                    DataType genericType,
+                                                    DataType modbusType) {
 
         DeviceFrame deviceFrame = V0Factory.eINSTANCE.createDeviceFrame();
         deviceFrame.setDeviceName(createDeviceName(conversionFct, genericType, modbusType));
@@ -882,7 +846,7 @@ class SetGetValConversionTest {
 
         functionalProfile.getDataPointList().getDataPointListElement().add(modbDp(genericType, modbusType, "ActivePowerACL1", 1));
 
-        if ((genericType != DATA_TYPE_PRODUCT__ENUM) && (genericType != DATA_TYPE_PRODUCT__BITMAP)) {
+        if ((genericType != DataType.ENUM) && (genericType != DataType.BITMAP)) {
             // This does not work with enums. The genericValue and modbusValue of the previous datapoint will be set to <null>
             functionalProfile.getDataPointList().getDataPointListElement().add(modbDp(genericType, modbusType, "ActivePowerAC-ARRAY", 3));
             functionalProfile.getDataPointList().getDataPointListElement().add(blockDp(genericType, modbusType));
@@ -914,7 +878,7 @@ class SetGetValConversionTest {
         return mbDesc;
     }
 
-    private static ModbusDataPoint modbDp(int genericType, int modbusType, String dpName, int arrLen) {
+    private static ModbusDataPoint modbDp(DataType genericType, DataType modbusType, String dpName, int arrLen) {
 
         ModbusDataPoint modbDp = V0Factory.eINSTANCE.createModbusDataPoint();
         modbDp.setDataPoint(genDpDesc(genericType, dpName, arrLen));
@@ -922,13 +886,13 @@ class SetGetValConversionTest {
         return modbDp;
     }
 
-    private static ModbusDataPoint blockDp(int genericType, int modbusType) {
+    private static ModbusDataPoint blockDp(DataType genericType, DataType modbusType) {
         ModbusDataPoint blockDp = modbDp(genericType, modbusType, "ActivePowerAC-BLOCK", 1);
         blockDp.setBlockCacheIdentification("ActivePowerAC-BLOCK");
         return blockDp;
     }
 
-    private static ModbusDataPointConfiguration dpModbDesc(int modbusType) {
+    private static ModbusDataPointConfiguration dpModbDesc(DataType modbusType) {
 
         ModbusDataPointConfiguration modbDpDesc = V0Factory.eINSTANCE.createModbusDataPointConfiguration();
         modbDpDesc.setAddress(BigInteger.valueOf(2000));
@@ -940,7 +904,7 @@ class SetGetValConversionTest {
         return modbDpDesc;
     }
 
-    private static DataPointDescription genDpDesc(int genType, String dpName, int arrLen) {
+    private static DataPointDescription genDpDesc(DataType genType, String dpName, int arrLen) {
 
         DataPointDescription genDpDesc = V0Factory.eINSTANCE.createDataPointDescription();
         genDpDesc.setDataPointName(dpName);
@@ -950,29 +914,27 @@ class SetGetValConversionTest {
         return genDpDesc;
     }
 
-    private static DataTypeProduct basicDP(int v0PackageType) {
+    private static DataTypeProduct basicDP(DataType v0PackageType) {
 
-        DataTypeProduct dp = V0Factory.eINSTANCE.createDataTypeProduct();
-        Object dataPointType = V0Factory.eINSTANCE.createEmptyType(); // numeric values are empty types
-        if (v0PackageType == DATA_TYPE_PRODUCT__ENUM) {
-            dataPointType = V0Factory.eINSTANCE.createEnumMapProduct();
-        }
-        if (v0PackageType == DATA_TYPE_PRODUCT__BITMAP) {
-            dataPointType = V0Factory.eINSTANCE.createBitmapProduct();
-        }
-        dp.eSet(v0PackageType, dataPointType);
+        DataTypeProduct dp = new DataTypeProduct();
 
-        dp.
+        if(v0PackageType == DataType.ENUM) {
+            dp.setEnum(new EnumMapProduct());
+        } else if (v0PackageType == DataType.BITMAP) {
+            dp.setBitmap(new BitmapProduct());
+        } else {
+            v0PackageType.getSetGenValMethod().accept(dp, new EmptyType());
+        }
         return dp;
     }
 
-    private static ModbusDataTypeImpl modbusDP(int v0PackageType) {
+    private static ModbusDataType modbusDP(DataType v0PackageType) {
 
-        ModbusDataTypeImpl dp = (ModbusDataTypeImpl) V0Factory.eINSTANCE.createModbusDataType();
-        if (v0PackageType == MODBUS_DATA_TYPE__BOOLEAN) {
-            dp.eSet(v0PackageType, V0Factory.eINSTANCE.createModbusBoolean());
+        ModbusDataType dp = new ModbusDataType();
+        if (v0PackageType == DataType.BOOLEAN) {
+            dp.setBoolean(new ModbusBoolean());
         } else {
-            dp.eSet(v0PackageType, V0Factory.eINSTANCE.createEmptyType());
+            v0PackageType.getSetModbusValMethod().accept(dp, new EmptyType());
         }
         return dp;
     }
@@ -989,30 +951,30 @@ class SetGetValConversionTest {
         return tsBlock;
     }
 
-    private static int getModbusBufferSize(int modbusType) {
+    private static int getModbusBufferSize(DataType modbusType) {
 
-        if (modbusType == MODBUS_DATA_TYPE__FLOAT64
-                || modbusType == MODBUS_DATA_TYPE__INT64_U
-                || modbusType == MODBUS_DATA_TYPE__INT64)
+        if (modbusType == DataType.FLOAT64
+                || modbusType == DataType.INT64U
+                || modbusType == DataType.INT64)
         {
             return 4;
-        } else if (   modbusType == MODBUS_DATA_TYPE__INT8
-                   || modbusType == MODBUS_DATA_TYPE__INT8_U
-                   || modbusType == MODBUS_DATA_TYPE__INT16
-                   || modbusType == MODBUS_DATA_TYPE__INT16_U
-                   || modbusType == MODBUS_DATA_TYPE__BOOLEAN
-                   || modbusType == MODBUS_DATA_TYPE__ENUM) {
+        } else if (   modbusType == DataType.INT8
+                   || modbusType == DataType.INT8U
+                   || modbusType == DataType.INT16
+                   || modbusType == DataType.INT16U
+                   || modbusType == DataType.BOOLEAN
+                   || modbusType == DataType.ENUM) {
             return 1;
-        } else if ( modbusType == MODBUS_DATA_TYPE__STRING) {
+        } else if ( modbusType == DataType.STRING) {
             return 5;
         }
         return 2;
     }
 
-    private static String createDeviceName(BitOrder bitOrder, int genType, int modbusType) {
-        return SGrGDPTypeToNameMapper.getGenericName(genType) + " - "
-                + SGrGDPTypeToNameMapper.getModbusName(modbusType) + " - "
-                + bitOrder.getName();
+    private static String createDeviceName(BitOrder bitOrder, DataType genType, DataType modbusType) {
+        return genType.name() + " - "
+                + modbusType.name() + " - "
+                + bitOrder.name();
     }
 
     private static int[] adjustSign(int[] registers) {
@@ -1052,8 +1014,8 @@ class SetGetValConversionTest {
     }
 
     private EnumMapProduct createEnumMap(byte[] hexMask) {
-        EnumMapProduct retVal = V0Factory.eINSTANCE.createEnumMapProduct();
-        EList<EnumEntryProductRecord> enumEntries = retVal.getEnumEntry();
+        EnumMapProduct retVal = new EnumMapProduct();
+        List<EnumEntryProductRecord> enumEntries = retVal.getEnumEntry();
         enumEntries.add(createEnumRecord("DHW_ON", 1));
         enumEntries.add(createEnumRecord("DHW_OFF", 2));
         enumEntries.add(createEnumRecord("DHW_PUSH", 255));
@@ -1072,9 +1034,9 @@ class SetGetValConversionTest {
 
     private static BitmapProduct createBitmap() {
 
-        BitmapProduct bitmap = V0Factory.eINSTANCE.createBitmapProduct();
+        BitmapProduct bitmap = new BitmapProduct();
 
-        EList<BitmapEntryProduct> bitmapEntries = bitmap.getBitmapEntry();
+        List<BitmapEntryProduct> bitmapEntries = bitmap.getBitmapEntry();
         bitmapEntries.add(createBitmapEntry("BIT_0", new byte[]{1}));
         bitmapEntries.add(createBitmapEntry("BIT_1", new byte[]{2}));
         bitmapEntries.add(createBitmapEntry("BIT_2", new byte[]{4}));
