@@ -58,9 +58,10 @@ public class XmlResourceLoader<T> {
 
         var result = jaxbUnmarshaller.unmarshal(new StringReader(xmlContent));
         if (result instanceof JAXBElement) {
-            var jaxbElement = (JAXBElement)result;
+            var jaxbElement = (JAXBElement<T>)result;
             return (T) jaxbElement.getValue();
         }
-        return (T) result;
+
+        throw new JAXBException("Could not unmarshal, result is not a JAXB element");
     }
 }

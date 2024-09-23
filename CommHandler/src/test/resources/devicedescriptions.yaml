@@ -27,14 +27,15 @@ descriptions:
     parameters:
       - name: tcp_address
         value: '0.0.0.0'
-#  - file: SGr_00_0016_dddd_ABB_B23_ModbusRTU_V0.3.xml
-#    parameters:
-#      - name: serial_port
-#        value: COM3
-#  - file: SGr_00_0016_dddd_ABB_B23_ModbusTCP_V0.3.xml
-#    parameters:
-#      - name: tcp_address
-#        value: '0.0.0.0'
+  - file: SGr_00_0016_dddd_ABB_B23_V0.2.xml
+  - file: SGr_00_0016_dddd_ABB_B23_ModbusRTU_V0.3.xml
+    parameters:
+      - name: serial_port
+        value: COM3
+  - file: SGr_00_0016_dddd_ABB_B23_ModbusTCP_V0.3.xml
+    parameters:
+      - name: tcp_address
+        value: '0.0.0.0'
   - file: SGr_04_0017_xxxx_HOVAL_HeatPumpV0.2.1.xml
     parameters:
       - name: address
@@ -48,15 +49,33 @@ descriptions:
       - name: address
         value: '0.0.0.0'
   - file: SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml
+    parameters:
+      - name: tcp_address
+        value: '0.0.0.0'
   - file: SGr_04_0033_0000_CTA_HeatPumpV0.2.1.xml
+    parameters:
+      - name: address
+        value: '0.0.0.0'
   - file: SGr_04_mmmm_dddd_CLEMAPEnergyMonitorEIV0.2.1.xml
-  -  file: SGr_04_mmmm_dddd_WallboxAsymV0.2.1.xml
+  - file: SGr_04_mmmm_dddd_WallboxAsymV0.2.1.xml
+    parameters:
+      - name: tcp_address
+        value: '0.0.0.0'
   - file: SGr_04_mmmm_dddd_WallboxV0.2.1.xml
+    parameters:
+      - name: tcp_address
+        value: '0.0.0.0'
   - file: SGr_05_mmmm_dddd_Dynamic_Tariffs_Swisspower_V0.0.1.xml
   - file: SGr_05_mmmm_dddd_Dynamic_Tariffs_GroupeE_V0.0.1.xml
   - file: SontexSupercal5V0.2.1.xml
+    parameters:
+      - name: port_name
+        value: COM3
   - file: abb_terra_01.xml
     parameters:
       - name: tcp_address
         value: '0.0.0.0'
   - file: mvpEi4Modbus_0000_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml
+    parameters:
+      - name: tcp_address
+        value: '0.0.0.0'
