@@ -1,12 +1,60 @@
 package utils;
 
 import java.util.Collection;
+import java.util.Properties;
 
 public class TestConfiguration {
+
+	public static class NameValuePair {
+		private String name;
+		private String value;
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getValue() {
+			return value;
+		}
+
+		public void setValue(String value) {
+			this.value = value;
+		}
+	}
 	
 	public static class Description {
-		public String file;
-		public String type;
+		private String file;
+		private Collection<NameValuePair> parameters;
+
+		public String getFile() {
+			return file;
+		}
+
+		public void setFile(String file) {
+			this.file = file;
+		}
+
+		public Collection<NameValuePair> getParameters() {
+			return parameters;
+		}
+
+		public void setParameters(Collection<NameValuePair> parameters) {
+			this.parameters = parameters;
+		}
+
+		public Properties getParametersAsProperties() {
+			final Properties props = new Properties();
+			if (parameters != null) {
+				parameters.forEach(p -> {
+					props.put(p.getName(), p.getValue());
+				});
+			}
+			return props;
+		}
 	}
 
 	private String deviceDescFolder;

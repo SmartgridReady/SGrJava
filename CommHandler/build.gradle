@@ -14,8 +14,10 @@ plugins {
 def versionDetails = versionDetails()
 
 def versionSuffix =
-        (versionDetails.commitDistance > 0
-                || ! versionDetails.isCleanTag) ? "-SNAPSHOT" : ""
+        (versionDetails.commitDistance == 0
+                && versionDetails.isCleanTag
+                && (versionDetails.branchName == 'master'
+                      || versionDetails.branchName ==~ /^v[0-9]+.[0-9]+.x$/)) ? '' : '-JAXB-SNAPSHOT'
 
 version = versionDetails.lastTag + versionSuffix
 
