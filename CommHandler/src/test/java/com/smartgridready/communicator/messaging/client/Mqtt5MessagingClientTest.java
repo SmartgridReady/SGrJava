@@ -10,6 +10,7 @@ import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.XPathFilterType;
 import io.vavr.control.Either;
 import org.awaitility.Awaitility;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,7 +83,7 @@ class Mqtt5GenMessagingClientTest {
        }
     }
 
-    // @Disabled("This test has timing issues and is not reliable yet")
+    @Disabled("This test has timing issues and is not reliable yet")
     @Test
     void sendReceiveSyncWithMessageFilter() throws Exception {
 
