@@ -85,6 +85,9 @@ dependencies {
 
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.10'
 
+    implementation "org.mapstruct:mapstruct:1.6.0"
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.6.0"
+
     testImplementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.19.0'
     testImplementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.19.0'
     testImplementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j2-impl', version: '2.19.0'
@@ -164,3 +167,8 @@ def integrationTestTask = tasks.register('integrationTest', Test) {
     shouldRunAfter(tasks.named('build'))
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs = [
+            '-Amapstruct.suppressGeneratorTimestamp=true'
+    ]
+}

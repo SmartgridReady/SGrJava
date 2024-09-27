@@ -1,6 +1,8 @@
 package com.smartgridready.communicator.messaging.impl;
 
-import com.smartgridready.driver.api.messaging.Message;
+import com.smartgridready.communicator.messaging.mapper.MessageFilterMapper;
+import com.smartgridready.communicator.messaging.mapper.MessagingInterfaceDescMapper;
+import com.smartgridready.driver.api.messaging.model.Message;
 import com.smartgridready.driver.api.messaging.GenMessagingClient;
 import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
@@ -102,6 +104,8 @@ public class SGrMessagingDevice extends SGrDeviceBase<
                 .map(MessagingDataPointConfiguration::getInMessage)
                 .map(InMessage::getFilter).orElse(null);
 
+
+
         if (outReadCmdTopicOpt.isPresent()) {
             // Read value from device
             OutMessage outMessage = outReadCmdTopicOpt.get();
@@ -125,7 +129,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
                 outMessageTopic,
                 Message.of(outMessageTemplate),
                 inMessageTopic,
-                messageFilter,
+                MessageFilterMapper.INSTANCE.mapToDriverApi(messageFilter),
                 timeoutMs
         );
 
@@ -198,7 +202,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
                 .map(MessagingDataPointConfiguration::getInMessage)
                 .map(InMessage::getFilter).orElse(null);
 
-        messagingClient.subscribe(inMessageTopic, messageFilter, msgReceiveResult ->
+        messagingClient.subscribe(inMessageTopic, MessageFilterMapper.INSTANCE.mapToDriverApi(messageFilter), msgReceiveResult ->
                 transformIncomingMessage(dataPoint, inMessageTopic,  messageFilter, msgReceiveResult, callbackFunction));
     }
 
@@ -279,7 +283,8 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     @Override
 	public synchronized void connect() throws GenDriverException {
         if (messagingClient == null) {
-            messagingClient = messagingClientFactory.create(interfaceDescription);
+            messagingClient = messagingClientFactory.create(
+                    MessagingInterfaceDescMapper.INSTANCE.mapToDriverApi(interfaceDescription));
         }
 	}
 

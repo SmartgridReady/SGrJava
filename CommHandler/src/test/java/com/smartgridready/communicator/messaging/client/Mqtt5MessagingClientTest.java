@@ -1,15 +1,15 @@
 package com.smartgridready.communicator.messaging.client;
 
-import com.smartgridready.driver.api.messaging.Message;
+import com.smartgridready.communicator.messaging.mapper.MessageFilterMapper;
+import com.smartgridready.communicator.messaging.mapper.MessagingInterfaceDescMapper;
+import com.smartgridready.driver.api.messaging.model.Message;
 import com.smartgridready.driver.api.messaging.GenMessagingClient;
 import com.smartgridready.ns.v0.JMESPathFilterType;
 import com.smartgridready.ns.v0.MessageFilter;
-import com.smartgridready.ns.v0.MessagingInterfaceDescription;
 import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.XPathFilterType;
 import io.vavr.control.Either;
 import org.awaitility.Awaitility;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,7 +82,7 @@ class Mqtt5GenMessagingClientTest {
        }
     }
 
-    @Disabled("This test has timing issues and is not reliable yet")
+    // @Disabled("This test has timing issues and is not reliable yet")
     @Test
     void sendReceiveSyncWithMessageFilter() throws Exception {
 
@@ -97,7 +97,7 @@ class Mqtt5GenMessagingClientTest {
                             TEST_TOPIC,
                             Message.of("{ \"sensorId\": 1, \"value\": \"50K\" }"),
                             TEST_TOPIC,
-                            messageFilter1,
+                            MessageFilterMapper.INSTANCE.mapToDriverApi(messageFilter1),
                             1000));
 
             CompletableFuture<Either<Throwable, Message>> futureFilter2 = CompletableFuture.supplyAsync(() ->
@@ -105,7 +105,7 @@ class Mqtt5GenMessagingClientTest {
                             TEST_TOPIC,
                             Message.of("{ \"sensorId\": 2, \"value\": \"100K\" }"),
                             TEST_TOPIC,
-                            messageFilter2,
+                            MessageFilterMapper.INSTANCE.mapToDriverApi( messageFilter2),
                             2000));
 
             // futureFilter1 should receive sensorId=1 message only
@@ -144,7 +144,7 @@ class Mqtt5GenMessagingClientTest {
             Either<Throwable, Message> future = client.readSync(
                     TEST_TOPIC, Message.of("Hello"),
                     TEST_TOPIC,
-                    messageFilter, 1);
+                    MessageFilterMapper.INSTANCE.mapToDriverApi(messageFilter), 1);
 
             client.sendSync(TEST_TOPIC, Message.of("Hello"));
 
@@ -183,11 +183,11 @@ class Mqtt5GenMessagingClientTest {
             List<String> sensor1Results = new ArrayList<>();
             List<String> sensor2Results = new ArrayList<>();
 
-            client.subscribe(TEST_TOPIC, messageFilter1, (resp ->
+            client.subscribe(TEST_TOPIC, MessageFilterMapper.INSTANCE.mapToDriverApi(messageFilter1), (resp ->
                     sensor1Results.add(
                             resp.getOrElseGet(t -> Message.of(t.getMessage())).getPayload())));
 
-            client.subscribe(TEST_TOPIC, messageFilter2, (resp ->
+            client.subscribe(TEST_TOPIC, MessageFilterMapper.INSTANCE.mapToDriverApi(messageFilter2), (resp ->
                     sensor2Results.add(
                             resp.getOrElseGet(t -> Message.of(t.getMessage())).getPayload())));
 
@@ -218,7 +218,7 @@ class Mqtt5GenMessagingClientTest {
         }
     }
 
-    private MessagingInterfaceDescription createMessagingInterfaceDescription() {
+    private com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription createMessagingInterfaceDescription() {
 
         var interfaceDesc = V0Factory.eINSTANCE.createMessagingInterfaceDescription();
 
@@ -238,7 +238,7 @@ class Mqtt5GenMessagingClientTest {
         messageBrokerAuthentication.setBasicAuthentication(messageBrokerAuthenticationBasic);
         interfaceDesc.setMessageBrokerAuthentication(messageBrokerAuthentication);
 
-        return interfaceDesc;
+        return MessagingInterfaceDescMapper.INSTANCE.mapToDriverApi(interfaceDesc);
     }
 
     private MessageFilter createMessageFilter(String matchesRegex) {

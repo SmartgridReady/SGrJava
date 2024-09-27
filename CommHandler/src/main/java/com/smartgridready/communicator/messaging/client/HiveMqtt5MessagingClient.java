@@ -14,15 +14,14 @@ import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
 import com.hivemq.client.mqtt.mqtt5.message.unsubscribe.unsuback.Mqtt5UnsubAck;
 import com.smartgridready.communicator.common.helper.JsonHelper;
 import com.smartgridready.driver.api.messaging.GenMessagingClient;
-import com.smartgridready.driver.api.messaging.Message;
-import com.smartgridready.ns.v0.JMESPathFilterType;
-import com.smartgridready.ns.v0.MessageBrokerAuthentication;
-import com.smartgridready.ns.v0.MessageBrokerAuthenticationBasic;
-import com.smartgridready.ns.v0.MessageBrokerListElement;
-import com.smartgridready.ns.v0.MessageFilter;
+import com.smartgridready.driver.api.messaging.model.Message;
+import com.smartgridready.driver.api.messaging.model.filter.MessageFilter;
+import com.smartgridready.driver.api.messaging.model.authentication.MessageBrokerAuthentication;
+import com.smartgridready.driver.api.messaging.model.authentication.MessageBrokerAuthenticationBasic;
+import com.smartgridready.driver.api.messaging.model.MessageBroker;
 
 import com.smartgridready.driver.api.common.GenDriverException;
-import com.smartgridready.ns.v0.MessagingInterfaceDescription;
+import com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription;
 import io.vavr.control.Either;
 
 import org.slf4j.Logger;
@@ -244,8 +243,8 @@ public class HiveMqtt5MessagingClient implements GenMessagingClient {
     private Mqtt5Client createClient() {
 
         // HiveMqtt5MessagingClientFactory ensures the at least one broker is configured.
-        MessageBrokerListElement messageBroker
-            = interfaceDescription.getMessageBrokerList().getMessageBrokerListElement().get(0);
+        MessageBroker messageBroker
+            = interfaceDescription.getMessageBrokerList().get(0);
 
         Mqtt5ClientBuilder clientBuilder = MqttClient.builder()
                 .serverHost(messageBroker.getHost())
@@ -303,7 +302,7 @@ public class HiveMqtt5MessagingClient implements GenMessagingClient {
         String regex = ".";
         if (messageFilter.getJmespathFilter() != null) {
             try {
-                JMESPathFilterType filter = messageFilter.getJmespathFilter();
+                var filter = messageFilter.getJmespathFilter();
                 regex = filter.getMatchesRegex();
                 payload = JsonHelper.parseJsonResponse(filter.getQuery(), payload).getString();
             } catch (GenDriverException e) {
