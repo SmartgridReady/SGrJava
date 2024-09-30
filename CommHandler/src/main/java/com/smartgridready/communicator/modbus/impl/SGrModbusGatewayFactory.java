@@ -24,7 +24,7 @@ public class SGrModbusGatewayFactory implements ModbusGatewayFactory {
         GenDriverAPI4ModbusConnectable transport;
         switch (modbusType) {
             case RTU:
-                transport = createRTUTransport(interfaceDescription.getModbusRtu(), interfaceDescription.getModbusTcp());
+                transport = createRTUTransport(interfaceDescription.getModbusRtu());
                 break;
  
             case TCP:
@@ -39,17 +39,14 @@ public class SGrModbusGatewayFactory implements ModbusGatewayFactory {
         return new ModbusGateway(identifier, interfaceDescription, transport);
     }
 
-    private GenDriverAPI4ModbusConnectable createRTUTransport(ModbusRtu rtu, ModbusTcp tcp) {
+    private GenDriverAPI4ModbusConnectable createRTUTransport(ModbusRtu rtu) {
         String serialPort = rtu.getPortName();
         int baudrate = ModbusUtil.getSerialBaudrate(rtu.getBaudRateSelected());
         Parity parity = ModbusUtil.getSerialParity(rtu.getParitySelected());
         DataBits dataBits = ModbusUtil.getSerialDataBits(rtu.getByteLenSelected());
         StopBits stopBits = ModbusUtil.getSerialStopBits(rtu.getStopBitLenSelected());
 
-        String tcpAddress = tcp.getAddress();
-        int tcpPort = ModbusUtil.isNonEmptyString(tcp.getPort()) ? Integer.valueOf(tcp.getPort()) : ModbusUtil.DEFAULT_MODBUS_TCP_PORT;
-
-        return new GenDriverAPI4ModbusRTUWrapper(serialPort, baudrate, parity, dataBits, stopBits, tcpAddress, tcpPort);
+        return new GenDriverAPI4ModbusRTUWrapper(serialPort, baudrate, parity, dataBits, stopBits);
     }
 
     private GenDriverAPI4ModbusConnectable createTCPTransport(ModbusTcp tcp) {
