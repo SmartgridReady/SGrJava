@@ -114,7 +114,7 @@ class MessagingInterfaceDescMapperTest {
         messageBrokerAuthentication.setClientCertificateAuthentication(messageBrokerAuthenticationClientCert);
         messagingInterfaceDescription.setMessageBrokerAuthentication(messageBrokerAuthentication);
 
-        messagingInterfaceDescription.setPlatform(MessagingPlatformType.MQTT5);
+        messagingInterfaceDescription.setPlatform(MessagingPlatformType.MQTT_5);
         messagingInterfaceDescription.setClientId("9999");
 
         return messagingInterfaceDescription;

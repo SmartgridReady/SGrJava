@@ -10,6 +10,7 @@ import com.smartgridready.ns.v0.MessageBrokerAuthenticationBasic;
 import com.smartgridready.ns.v0.MessageBrokerList;
 import com.smartgridready.ns.v0.MessageBrokerListElement;
 import com.smartgridready.ns.v0.MessageFilter;
+import com.smartgridready.ns.v0.MessagingInterfaceDescription;
 import com.smartgridready.ns.v0.XPathFilterType;
 import io.vavr.control.Either;
 import org.awaitility.Awaitility;
