@@ -16,7 +16,7 @@ def versionDetails = versionDetails()
 
 def versionSuffix =
         (versionDetails.commitDistance > 0
-                || ! versionDetails.isCleanTag) ? "-JAXB-SNAPSHOT" : ""
+                || ! versionDetails.isCleanTag) ? "-SNAPSHOT" : ""
 
 version = versionDetails.lastTag + versionSuffix
 
