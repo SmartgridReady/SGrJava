@@ -1,7 +1,14 @@
+/.gradle/
 /bin/
+/build/
 
-# Ignore Gradle project-specific cache directory
-.gradle
+# Eclipse
+.classpath
+.project
+.settings/
 
-# Ignore Gradle build output directory
-build
+# IntelliJ
+.idea
+
+# VS Code
+.vscode
