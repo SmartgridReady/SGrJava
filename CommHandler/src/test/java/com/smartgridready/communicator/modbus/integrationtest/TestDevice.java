@@ -91,8 +91,8 @@ public class TestDevice {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         deviceDescriptor = loader.load("", deviceDescriptionUrl.getPath());
 
-        GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP();
-        driver.initDevice(testsystemIp, Integer.parseInt(testsystemPort));
+        GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP(testsystemIp, Integer.parseInt(testsystemPort));
+        driver.connect();
         driver.setUnitIdentifier((short) 1);
 
         testSystem = new SGrModbusDevice(deviceDescriptor, driver);
@@ -108,15 +108,15 @@ public class TestDevice {
 
         ModbusInterface modbusInterface = deviceDescriptor.getInterfaceList().getModbusInterface();
         if (modbusInterface != null && modbusInterface.getModbusInterfaceDescription().getModbusTcp() != null) {
-            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP();
             Tuple2<String, Integer> connParams = getIpConnParams.apply("Enter IP Address and Port");
-            driver.initDevice(connParams._1, connParams._2 );
+            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP(connParams._1, connParams._2);
+            driver.connect();
             testSystem = new SGrModbusDevice(deviceDescriptor,driver );
         }
         if (modbusInterface != null && modbusInterface.getModbusInterfaceDescription().getModbusRtu() != null) {
-            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusRTU();
             Tuple3<String, Integer, Integer> connParams = getComPortConnParams.apply("Enter COMx port, baud rate and modbus identifier.");
-            driver.initTrspService(connParams._1, connParams._2);
+            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusRTU(connParams._1, connParams._2);
+            driver.connect();
             driver.setUnitIdentifier(connParams._3.shortValue());
             testSystem = new SGrModbusDevice(deviceDescriptor, driver);
         }

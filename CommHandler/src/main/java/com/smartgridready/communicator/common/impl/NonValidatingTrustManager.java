@@ -1,6 +1,4 @@
-package com.smartgridready.communicator.messaging.client;
-
-import java.security.cert.CertificateException;
+package com.smartgridready.communicator.common.impl;
 
 import javax.net.ssl.X509TrustManager;
 

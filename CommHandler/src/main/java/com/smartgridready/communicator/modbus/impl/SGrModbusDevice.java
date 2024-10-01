@@ -47,7 +47,6 @@ import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.modbus.GenDriverModbusException;
 import com.smartgridready.driver.api.modbus.GenDriverSocketException;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
-import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusConnectable;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
@@ -87,7 +86,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	private final ModbusGatewayRegistry drvRegistry;
 
 	private ModbusGateway drv4ModbusGateway;
-	private GenDriverAPI4ModbusConnectable drv4Modbus;
+	private GenDriverAPI4Modbus drv4Modbus;
 
 	private final DeviceFrame myDeviceDescription;
 
@@ -132,7 +131,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		myDeviceDescription = aDeviceDescription;
 		drvRegistry = null;
 		drv4ModbusGateway = null;
-		drv4Modbus = new GenDriverAPI4ModbusLegacyWrapper(aTransport);
+		drv4Modbus = aTransport;
 	}
 
 	@Override

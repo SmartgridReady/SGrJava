@@ -33,7 +33,7 @@ import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
 import com.smartgridready.driver.api.modbus.Parity;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
-import com.smartgridready.communicator.modbus.helper.GenDriverAPI4ModbusRTUMock;
+
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusTCP;
 import org.slf4j.Logger;
@@ -102,10 +102,10 @@ public class IBTlabLoopTester {
 			//DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
-			mbRTU = (mockModbusDriver == null ? new GenDriverAPI4ModbusRTU() : mockModbusDriver);
+			//mbRTU = (mockModbusDriver == null ? new GenDriverAPI4ModbusRTU("COM5", 9600, Parity.NONE)) : mockModbusDriver);   // for Office RTU Interface
+			mbRTU = (mockModbusDriver == null ? new GenDriverAPI4ModbusRTU("COM9", 9600, Parity.NONE) : mockModbusDriver);	// for mobile RTU Interface
 
-			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface
-			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
+			mbRTU.connect();	
 			if (devABBMeterTestIsOn)  {
 				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_V0.2.xml");
 			}
@@ -633,11 +633,11 @@ public class IBTlabLoopTester {
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
 					GenDriverAPI4Modbus mbVGT_SGCP = mockModbusDriver;
 					if (mbVGT_SGCP == null) {
-						mbVGT_SGCP = new GenDriverAPI4ModbusTCP();
+						mbVGT_SGCP = new GenDriverAPI4ModbusTCP("192.168.1.50",502);
 					}
 					devVGT_SGCP = new SGrModbusDevice(tstDesc, mbVGT_SGCP);	
 
-					mbVGT_SGCP.initDevice("192.168.1.50",502);
+					mbVGT_SGCP.connect();
 					
 				}
 				
@@ -689,9 +689,9 @@ public class IBTlabLoopTester {
 						DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 						
 						// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
-						GenDriverAPI4Modbus mbWbGaro = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP() : mockModbusDriver);
+						GenDriverAPI4Modbus mbWbGaro = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP("192.168.1.182",502) : mockModbusDriver);
 						devGaroWallbox = new SGrModbusDevice(tstDesc, mbWbGaro);
-						mbWbGaro.initDevice("192.168.1.182",502);	
+						mbWbGaro.connect();	
 						
 					}
 					
@@ -794,9 +794,9 @@ public class IBTlabLoopTester {
 							DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
-							GenDriverAPI4Modbus mbWbOMCCI = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP() : mockModbusDriver);
+							GenDriverAPI4Modbus mbWbOMCCI = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP("192.168.1.183", 502) : mockModbusDriver);
 							devOMCCIWallbox = new SGrModbusDevice(tstDesc, mbWbOMCCI);							
-							mbWbOMCCI.initDevice("192.168.1.183",502);	
+							mbWbOMCCI.connect();	
 							
 						}
 						
@@ -893,9 +893,9 @@ public class IBTlabLoopTester {
 							DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 							
 							// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
-							GenDriverAPI4Modbus mbPVFroniusSymo = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP() : mockModbusDriver);
+							GenDriverAPI4Modbus mbPVFroniusSymo = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP("192.168.1.181", 502) : mockModbusDriver);
 							devFroniusSymo = new SGrModbusDevice(tstDesc, mbPVFroniusSymo);
-						    mbPVFroniusSymo.initDevice("192.168.1.181",502);
+						    mbPVFroniusSymo.connect();
 						}
 						
 						catch ( Exception e )

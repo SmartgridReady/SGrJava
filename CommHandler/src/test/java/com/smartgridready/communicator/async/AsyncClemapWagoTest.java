@@ -139,8 +139,8 @@ public class AsyncClemapWagoTest {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame deviceDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
-        wagoDriver = new GenDriverAPI4ModbusRTU();
-        wagoDriver.initTrspService("COM3", 19200);
+        wagoDriver = new GenDriverAPI4ModbusRTU("COM3", 19200);
+        wagoDriver.connect();
         wagoDriver.setUnitIdentifier((byte)1);
         return new SGrModbusDevice(deviceDesc, wagoDriver);
     }

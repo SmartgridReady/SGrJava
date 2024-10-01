@@ -8,7 +8,7 @@ import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
-import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
@@ -46,7 +46,7 @@ public class SGrDeviceBuilderTest {
     ModbusGateway modbusGateway;
 
     @Mock
-    GenDriverAPI4ModbusConnectable modbusDriver;
+    GenDriverAPI4Modbus modbusDriver;
 
     @Mock
     ApacheHttpRequestFactory restServiceClientFactory;

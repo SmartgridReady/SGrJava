@@ -79,9 +79,9 @@ public class IOPdemoBOX {
 			//DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		  
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
-			mbRTU = new GenDriverAPI4ModbusRTU();
-			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface		
-			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
+			//mbRTU = new GenDriverAPI4ModbusRTU("COM5", 9600, Parity.NONE);	// for mobile RTU Interface
+			mbRTU = new GenDriverAPI4ModbusRTU("COM9", 9600, Parity.NONE);   // for Office RTU Interface
+			mbRTU.connect();
  
 			int IOPDeviceSelection = 2;
 
@@ -296,9 +296,9 @@ public class IOPdemoBOX {
 					DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 					
 					// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
-					GenDriverAPI4ModbusTCP mbWbOMCCI= new GenDriverAPI4ModbusTCP();
+					GenDriverAPI4ModbusTCP mbWbOMCCI= new GenDriverAPI4ModbusTCP("192.168.1.183",502);
 					devOMCCIWallbox = new SGrModbusDevice(tstDesc, mbWbOMCCI);							
-					mbWbOMCCI.initDevice("192.168.1.183",502);	
+					mbWbOMCCI.connect();	
 					
 				}
 				

@@ -1,4 +1,4 @@
-package com.smartgridready.communicator.messaging.client;
+package com.smartgridready.communicator.common.impl;
 
 import java.security.KeyStore;
 
@@ -10,7 +10,7 @@ import javax.net.ssl.TrustManagerFactorySpi;
 /**
  * A trust manager factory which provides a trust manager that ignores certificate validity.
  */
-class NonValidatingTrustManagerFactory extends TrustManagerFactory {
+public class NonValidatingTrustManagerFactory extends TrustManagerFactory {
 
     private static final TrustManager[] trustManagers = new TrustManager[] { new NonValidatingTrustManager() };
     private static final TrustManagerFactory instance = new NonValidatingTrustManagerFactory();

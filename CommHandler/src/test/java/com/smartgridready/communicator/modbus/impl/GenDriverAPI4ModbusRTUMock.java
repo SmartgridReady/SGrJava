@@ -17,13 +17,10 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.smartgridready.communicator.modbus.helper;
+package com.smartgridready.communicator.modbus.impl;
 
-import com.smartgridready.driver.api.modbus.DataBits;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
 import com.smartgridready.driver.api.common.GenDriverException;
-import com.smartgridready.driver.api.modbus.Parity;
-import com.smartgridready.driver.api.modbus.StopBits;
 
 import java.nio.IntBuffer;
 
@@ -49,36 +46,6 @@ public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 	public int[] ReadHoldingRegisters(int startingAddress, int quantity) {
 		return prepareReturnValue(quantity);
 	}
-
-	@Override
-	public boolean initTrspService(String comPort) throws GenDriverException {
-		return connect();
-	}
-
-	@Override
-	public boolean initTrspService(String comPort, int baudRate) throws GenDriverException {
-		return connect();
-	}
-
-	@Override
-	public boolean initTrspService(String comPort, int baudRate, Parity parity) throws GenDriverException {
-		return connect();
-	}
-
-	@Override
-	public boolean initTrspService(String comPort, int baudRate, Parity parity, DataBits dataBits) throws GenDriverException {
-		return connect();
-	}
-
-	@Override
-	public boolean initTrspService(String comPort, int baudRate, Parity parity, DataBits dataBits, StopBits stopBits) throws GenDriverException {
-		return connect();
-	}
-
-	@Override
-	public void initDevice(String ipAddress, int port) throws GenDriverException {
-		connect();
-   	}
 
 	@Override
 	public void disconnect() {
@@ -116,7 +83,8 @@ public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 		// implementation not required yet
 	}
 
-	private boolean connect() throws GenDriverException {
+	@Override
+	public boolean connect() throws GenDriverException {
 		if (isConnected) {
 			throw new GenDriverException("Do not connect twice");
 		}
@@ -141,6 +109,12 @@ public class GenDriverAPI4ModbusRTUMock implements GenDriverAPI4Modbus {
 			}
 			return buffer.array();
 		}
+	}
+
+
+	@Override
+	public boolean isConnected() {
+		return isConnected;
 	}
 }
 

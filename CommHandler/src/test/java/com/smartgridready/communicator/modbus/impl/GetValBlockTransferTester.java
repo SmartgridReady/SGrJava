@@ -27,8 +27,8 @@ public class GetValBlockTransferTester {
 			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 			DeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ? deviceDesc.getPath() : null);
 			
-			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
-			mbRTU.initTrspService("COM3", 19200);
+			GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU("COM3", 19200);
+			mbRTU.connect();
 
 			GenDeviceApi4Modbus devWagoMeter = new SGrModbusDevice(tstMeter, mbRTU );
 			
