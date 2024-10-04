@@ -17,7 +17,7 @@ import javax.xml.XMLConstants;
 
 public class XmlResourceLoader<T> {
 
-    private Class<T> clazz;
+    private final Class<T> clazz;
 
     public XmlResourceLoader(Class<T> clazz) {
         this.clazz = clazz;
@@ -25,15 +25,11 @@ public class XmlResourceLoader<T> {
 
     public T load(String resourcePath, String xmlContent, boolean validate) throws IOException {
 
-        T result = null;
-
+        T result;
 		try {
-			result = unmarshal(xmlContent);
+			result = unmarshal(xmlContent, validate);
 		} catch (Exception e) {
-			// ignore value errors unless validation enabled
-            if (validate) {
-                throw new IOException(e);
-            }
+            throw new IOException(e.getCause() != null ? e.getCause() : e);
 		}
 
         if (result == null) {
@@ -44,7 +40,7 @@ public class XmlResourceLoader<T> {
     }
 
     @SuppressWarnings("unchecked")
-    private T unmarshal(String xmlContent) throws JAXBException, SAXException {
+    private T unmarshal(String xmlContent, boolean validate) throws JAXBException, SAXException {
         // Get JAXBContext
         JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
 
@@ -52,14 +48,16 @@ public class XmlResourceLoader<T> {
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
         // Setup schema validator
-        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema tSchema = sf.newSchema(getClass().getClassLoader().getResource("SGrIncluder.xsd"));
-        jaxbUnmarshaller.setSchema(tSchema);
+        if (validate) {
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema tSchema = sf.newSchema(getClass().getClassLoader().getResource("SGrIncluder.xsd"));
+            jaxbUnmarshaller.setSchema(tSchema);
+        }
 
         var result = jaxbUnmarshaller.unmarshal(new StringReader(xmlContent));
         if (result instanceof JAXBElement) {
             var jaxbElement = (JAXBElement<T>)result;
-            return (T) jaxbElement.getValue();
+            return jaxbElement.getValue();
         }
 
         throw new JAXBException("Could not unmarshal, result is not a JAXB element");
