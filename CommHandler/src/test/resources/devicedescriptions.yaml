@@ -1,0 +1,29 @@
+deviceDescFolder: ..\..\SGrSpecifications\XMLInstances\ExtInterfaces\
+descriptions:
+-   file: EI4_UniDirFlexFeedIn_3632Lv2.xml
+-   file: EI4_UniDirFlexLoad_3631Lv2.xml
+-   file: FullEi4Modbus_0_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml
+-   file: SGr_02_0003_0055_eCarupPICO_4061_v1.0.0.xml
+-   file: SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml
+-   file: SGr_02_0034_0053_Lehmann_SCC_v1.0.0.xml
+-   file: SGr_02_4893879785_8288144069_SwiSBox_SubMeterElectricity_V1.0.0.xml
+-   file: SGr_02_mmmm_8288089799_Smart-me_SubMeterElectricity_V1.1.0.xml
+-   file: SGr_02_mmmm_dddd_MEO_EI_Propilot_V1.0.0.xml
+-   file: SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml
+-   file: SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml
+-   file: SGr_04_0015_xxxx_StiebelEltron_HeatPumpV0.2.1.xml
+-   file: SGr_00_0016_dddd_ABB_B23_ModbusRTU_V0.3.xml
+-   file: SGr_00_0016_dddd_ABB_B23_ModbusTCP_V0.3.xml
+-   file: SGr_04_0017_xxxx_HOVAL_HeatPumpV0.2.1.xml
+-   file: SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml
+-   file: SGr_04_0020_xxxx_Heliotherm_HeatPumpV0.2.1.xml
+-   file: SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml
+-   file: SGr_04_0033_0000_CTA_HeatPumpV0.2.1.xml
+-   file: SGr_04_mmmm_dddd_CLEMAPEnergyMonitorEIV0.2.1.xml
+-   file: SGr_04_mmmm_dddd_WallboxAsymV0.2.1.xml
+-   file: SGr_04_mmmm_dddd_WallboxV0.2.1.xml
+-   file: SGr_05_mmmm_dddd_Dynamic_Tariffs_Swisspower_V0.0.1.xml
+-   file: SGr_05_mmmm_dddd_Dynamic_Tariffs_GroupeE_V0.0.1.xml
+-   file: SontexSupercal5V0.2.1.xml
+-   file: abb_terra_01.xml
+-   file: mvpEi4Modbus_0000_0036_0030_4_0.1_SGCP_BiDirFlexMgmt.xml

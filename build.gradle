@@ -10,7 +10,18 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java'
     id 'maven-publish'
+    id 'com.palantir.git-version' version '3.1.0'
 }
+
+def versionDetails = versionDetails()
+
+def versionSuffix =
+        (versionDetails.commitDistance == 0
+                && versionDetails.isCleanTag
+                && (versionDetails.branchName == 'master'
+                      || versionDetails.branchName ==~ /^v[0-9]+.[0-9]+.x$/)) ? '' : '-SNAPSHOT'
+
+version = versionDetails.lastTag + versionSuffix
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -24,18 +35,8 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
-tasks.register('publish2MavenLocal') {
-    group '!_smartgridready_publishing_!'
-    description 'Publish to the local Maven repository for development'
-
-    dependsOn ':InterfaceFactory:CommHandler4Modbus:publishToMavenLocal'
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
 }
-
-
-tasks.register('publish2GitHub') {
-    group '!_smartgridready_publishing_!'
-    description 'Publish public release to the GitHub repository'
-
-    dependsOn ':InterfaceFactory:Commhandler4Modbus:InterfaceFactory:CommHandler4Modbus:publishAllPublicationsToGithubRepository'
-}
-
