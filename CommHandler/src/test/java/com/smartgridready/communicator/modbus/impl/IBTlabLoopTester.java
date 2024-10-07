@@ -85,8 +85,8 @@ public class IBTlabLoopTester {
 	// TestBox
 	private static boolean  devWagoMeterTestIsOn = true; 
 	private static boolean  devOMCCIWallboxTestIsOn = true; 
-	// !! Schalter in Box umlegen f�r Test !!
-	private static boolean  devTB_ABBMeterTestIsOn = true;
+	// !! Schalter in Box umlegen fuer Test !!
+	private static boolean  devTB_ABBMeterTestIsOn = false;
 
 	// Set the mockModbusDriver to new GenDriverAPI4ModbusRTUMock() to mock the real devices.
 	// private static GenDriverAPI4Modbus  mockModbusDriver = new GenDriverAPI4ModbusRTUMock();
@@ -104,8 +104,8 @@ public class IBTlabLoopTester {
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
 			mbRTU = (mockModbusDriver == null ? new GenDriverAPI4ModbusRTU() : mockModbusDriver);
 
-			//mbRTU.initTrspService("COM5", 9600, Parity.NONE);	// for mobile RTU Interface
-			mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface	
+			mbRTU.initTrspService("COM4", 9600, Parity.NONE);	// for mobile RTU Interface
+			//mbRTU.initTrspService("COM9", 9600, Parity.NONE);   // for Office RTU Interface
 			if (devABBMeterTestIsOn)  {
 				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_V0.2.xml");
 			}
