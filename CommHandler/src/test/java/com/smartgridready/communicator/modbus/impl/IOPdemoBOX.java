@@ -86,6 +86,7 @@ public class IOPdemoBOX {
 			//DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
+
 			mbRTU = new GenDriverAPI4ModbusRTU("COM4", 9600, Parity.NONE);	// for mobile RTU Interface
 			//mbRTU = new GenDriverAPI4ModbusRTU("COM9", 9600, Parity.NONE);   // for Office RTU Interface
 			mbRTU.connect();
@@ -95,6 +96,7 @@ public class IOPdemoBOX {
 				LOG.info(" -init " + eidMeter + " as IOP demonstrator @: " + dtf.format(LocalDateTime.now())+ " ");
 				initIOPMeter(XML_BASE_DIR, eidMeter,rtuMeterAddr);
 			}
+
 			if (devOMCCIWallboxTestIsOn) {
 				//TODO: complete and use OMCCI EI.xml
 				LOG.info(" -init devOMCCIWallbox as Modbus/TCP demonstrator @:" + dtf.format(LocalDateTime.now())+ " ");

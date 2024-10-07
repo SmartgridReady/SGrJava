@@ -85,6 +85,7 @@ public class IBTlabLoopTester {
 	// TestBox
 	private static boolean  devWagoMeterTestIsOn = true;
 	private static boolean  devOMCCIWallboxTestIsOn = true;
+
 	// !! Schalter in Box umlegen fuer Test !!
 	private static boolean  devTB_ABBMeterTestIsOn = false;
 
