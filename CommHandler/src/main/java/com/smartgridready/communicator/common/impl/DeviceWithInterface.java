@@ -3,9 +3,9 @@ package com.smartgridready.communicator.common.impl;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
 import com.smartgridready.communicator.common.api.dto.InterfaceType;
-import com.smartgridready.ns.v0.ModbusFunctionalProfileList;
 
 import java.util.List;
+import java.util.Collections;
 
 class DeviceWithInterface {
 
@@ -37,7 +37,7 @@ class DeviceWithInterface {
         }
         else {
             interfaceType = InterfaceType.UNKNOWN;
-            functionalProfiles = new ModbusFunctionalProfileList().getFunctionalProfileListElement();
+            functionalProfiles = Collections.emptyList();
         }
     }
 

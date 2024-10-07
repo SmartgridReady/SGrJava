@@ -199,8 +199,7 @@ public abstract class SGrDeviceBase<
     }
 
     @Override
-    public List<DataPoint
-            > getDataPoints(String functionalProfileName) throws GenDriverException {
+    public List<DataPoint> getDataPoints(String functionalProfileName) throws GenDriverException {
 
         var functionalProfile = findProfile(functionalProfileName)
                 .orElseThrow(() -> new GenDriverException("Functional profile with name='" + functionalProfileName + "' not found"));
