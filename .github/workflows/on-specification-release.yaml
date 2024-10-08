@@ -1,3 +1,10 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
+
 name: Build and Publish Specification Release
 
 on:
@@ -30,8 +37,14 @@ jobs:
           ref: ${{inputs.tag}}
           path: SGrSpecifications
 
-      - name: Build and Publish SGrJava Specification
+      - name: Build SGrJava Specification
         working-directory: SGrJava/Specification
         run: |
           chmod +x ./gradlew
-          ./gradlew clean build publishMavenJavaPublicationToNexusRepository -Pnexus.username=smartgrid -Pnexus.password=${{ secrets.NEXUS_PASSWORD }} -Pversion="${{inputs.tag}}" --no-daemon
+          ./gradlew clean build -Pversion="${{inputs.tag}}" --no-daemon
+
+      - name: Publish SGrJava Specification
+        working-directory: SGrJava/Specification
+        run: |
+          chmod +x ./gradlew
+          ./gradlew publishMavenJavaPublicationToNexusRepository -Pnexus.username=smartgrid -Pnexus.password=${{ secrets.NEXUS_PASSWORD }} -Pversion="${{inputs.tag}}" --no-daemon
