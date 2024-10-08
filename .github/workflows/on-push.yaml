@@ -1,56 +1,38 @@
-name: CI
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
+
+name: Build and Publish CommHandler
+
 on:
+  workflow_dispatch:
   push:
-    branches: [ '**' ]
+    paths: [ 'CommHandler/**' ]
 
 jobs:
-  allocate-volume-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create testvol
-        run: docker volume create testvol
-
   build-job:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/smartgridready/eclipse-ide:latest
-      volumes:
-        - testvol:/host/projectdir
-      options: --cpus 1
     steps:
-      - name: List host dir
-        run: ls -la /host
-
-      - name: Clean projects
-        run: |
-          rm -Rf /host/projectdir/SGrJava
-          rm -Rf /host/projectdir/SGrSpecifications
-
       - name: Checkout SGrJava
-        run: |
-          git clone https://github.com/SmartGridready/SGrJava.git /host/projectdir/SGrJava
-          cd /host/projectdir/SGrJava
-          # checkout the branch that has been pushed
-          git checkout ${GITHUB_REF#refs/heads/}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{github.ref}}
+          fetch-tags: true
+          fetch-depth: 0
 
-      - name: Checkout SGrSpecifications
+      - name: Build SGrJava CommHandler
+        working-directory: CommHandler
         run: |
-          git clone https://github.com/SmartGridready/SGrSpecifications.git /host/projectdir/SGrSpecifications
-          cd /host/projectdir/SGrSpecifications
-          git checkout 'master'
+          chmod +x ./gradlew
+          ./gradlew clean build --no-daemon
 
-      - name: Set Permissions
+      - name: Publish SGrJava CommHandler
+        # publish after committing to master or creating tag commhandler-{version}
+        if: success() && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/commhandler-'))
+        working-directory: CommHandler
         run: |
-          chmod 777 /host/projectdir/SGrJava/gradlew
-          chmod 777 /host/projectdir/SGrJava/model2Java.sh
-
-      - name: Set Display for eclipse
-        run: |
-          Xvfb :99 -screen 0 1024x768x16 &
-          export DISPLAY=:99
-
-
-      - name: Run Gradle
-        run: |
-          cd /host/projectdir/SGrJava
-          ./gradlew build publishMavenJavaPublicationToNexusRepository -Pnexus.username=smartgrid -Pnexus.password=${{ secrets.NEXUS_PASSWORD }}
+          chmod +x ./gradlew
+          ./gradlew publishMavenJavaPublicationToNexusRepository -Pnexus.username=smartgrid -Pnexus.password=${{ secrets.NEXUS_PASSWORD }} --no-daemon

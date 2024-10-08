@@ -1,7 +1,7 @@
 package com.smartgridready.communicator.common.api;
 
+import com.smartgridready.ns.v0.EmptyType;
 import com.smartgridready.ns.v0.ModbusDataType;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import org.junit.jupiter.api.Test;
@@ -17,14 +17,14 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 @TestInstance(PER_CLASS) // Needed to have a non static @MethodSource
 class StringValueTest {
 
-    private static final ModbusDataType modbusDataTypeString = V0Factory.eINSTANCE.createModbusDataType();
-    static { modbusDataTypeString.setString(V0Factory.eINSTANCE.createEmptyType());
+    private static final ModbusDataType modbusDataTypeString = new ModbusDataType();
+    static { modbusDataTypeString.setString(new EmptyType());
     }
 
     final static class Fixture {
@@ -49,12 +49,12 @@ class StringValueTest {
 
         final int[] modbusVal = new int[]{0x4865, 0x6C6C, 0x6F40,0x5347, 0x7200};
 
-        StringValue value = StringValue.of("Hello@SGr");
-        int[] modbusRes = value.toModbusRegister(modbusDataTypeString);
+        StringValue val = StringValue.of("Hello@SGr");
+        int[] modbusRes = val.toModbusRegister(modbusDataTypeString);
         assertArrayEquals(modbusVal, modbusRes);
 
         Value resVal = Value.fromModbusRegister(modbusDataTypeString, modbusRes);
-        assertTrue(resVal instanceof StringValue);
+        assertInstanceOf(StringValue.class, resVal);
         assertEquals("Hello@SGr", resVal.getString());
     }
 

@@ -24,20 +24,20 @@ public class ModbusUtil {
     public static final short DEFAULT_SLAVE_ID = 0xff;
     
     private static final Map<String, DataBits> dataBitMap = Map.of(
-        com.smartgridready.ns.v0.ByteLength._7.getLiteral(), DataBits.SEVEN,
-        com.smartgridready.ns.v0.ByteLength._8.getLiteral(), DataBits.EIGHT
+        com.smartgridready.ns.v0.ByteLength.VALUE_1.value(), DataBits.SEVEN,
+        com.smartgridready.ns.v0.ByteLength.VALUE_2.value(), DataBits.EIGHT
     );
     
     private static final Map<String, StopBits> stopBitMap = Map.of(
-        com.smartgridready.ns.v0.StopBitLength._1.getLiteral(), StopBits.ONE,
-        com.smartgridready.ns.v0.StopBitLength._15.getLiteral(), StopBits.ONE_AND_HALF,
-        com.smartgridready.ns.v0.StopBitLength._2.getLiteral(), StopBits.TWO
+        com.smartgridready.ns.v0.StopBitLength.VALUE_1.value(), StopBits.ONE,
+        com.smartgridready.ns.v0.StopBitLength.VALUE_2.value(), StopBits.ONE_AND_HALF,
+        com.smartgridready.ns.v0.StopBitLength.VALUE_3.value(), StopBits.TWO
     );
 
     private static final Map<String, Parity> parityMap = Map.of(
-        com.smartgridready.ns.v0.Parity.NONE.getLiteral(), Parity.NONE,
-        com.smartgridready.ns.v0.Parity.EVEN.getLiteral(), Parity.EVEN,
-        com.smartgridready.ns.v0.Parity.ODD.getLiteral(), Parity.ODD
+        com.smartgridready.ns.v0.Parity.NONE.value(), Parity.NONE,
+        com.smartgridready.ns.v0.Parity.EVEN.value(), Parity.EVEN,
+        com.smartgridready.ns.v0.Parity.ODD.value(), Parity.ODD
     );
 
     public static boolean isSerial(ModbusInterfaceDescription interfaceDescription) {
@@ -162,7 +162,7 @@ public class ModbusUtil {
     public static ModbusType getModbusType(ModbusInterfaceDescription interfaceDescription) {
         String modbusType = interfaceDescription
                 .getModbusInterfaceSelection()
-                .getName();
+                .name();
 
         switch (modbusType) {
             case "TCPIP":

@@ -2,15 +2,14 @@ package com.smartgridready.communicator.common.api;
 
 import com.smartgridready.ns.v0.EnumEntryProductRecord;
 import com.smartgridready.ns.v0.EnumMapProduct;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.communicator.common.api.values.Int32Value;
 import com.smartgridready.communicator.common.api.values.Int64Value;
 import com.smartgridready.communicator.common.api.values.Value;
-import org.eclipse.emf.common.util.EList;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -120,8 +119,8 @@ class EnumValueTest {
     }
 
     private EnumMapProduct createEnumMap(byte[] hexMask) {
-        EnumMapProduct retVal = V0Factory.eINSTANCE.createEnumMapProduct();
-        EList<EnumEntryProductRecord> enumEntries = retVal.getEnumEntry();
+        EnumMapProduct retVal = new EnumMapProduct();
+        List<EnumEntryProductRecord> enumEntries = retVal.getEnumEntry();
         enumEntries.add(createEnumRecord("ENUM_1", 1));
         enumEntries.add(createEnumRecord("ENUM_2", 2));
         enumEntries.add(createEnumRecord("ENUM_255", 255));
@@ -131,7 +130,7 @@ class EnumValueTest {
     }
 
     private EnumEntryProductRecord createEnumRecord(String literal, int ordinal) {
-        EnumEntryProductRecord enumRecord = V0Factory.eINSTANCE.createEnumEntryProductRecord();
+        EnumEntryProductRecord enumRecord = new EnumEntryProductRecord();
         enumRecord.setLiteral(literal);
         enumRecord.setOrdinal(ordinal);
         enumRecord.setDescription("Description of " + literal);

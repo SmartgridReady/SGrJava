@@ -18,9 +18,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.smartgridready.communicator.rest.http.client;
 
+import java.util.List;
+
 import com.smartgridready.ns.v0.HeaderEntry;
 import com.smartgridready.ns.v0.RestApiServiceCall;
-import org.eclipse.emf.common.util.EList;
 
 public class RestServiceClientUtils {
 	
@@ -31,7 +32,7 @@ public class RestServiceClientUtils {
 		StringBuilder sb = new StringBuilder();
 
 		if (restServiceCall != null) {
-			sb.append(String.format("%nRequest method: %s%n", restServiceCall.getRequestMethod() != null ? restServiceCall.getRequestMethod().getName() : "n.a"));
+			sb.append(String.format("%nRequest method: %s%n", restServiceCall.getRequestMethod() != null ? restServiceCall.getRequestMethod().name() : "n.a"));
 			sb.append(String.format("Request path:   %s%n", restServiceCall.getRequestPath()));
 			sb.append(String.format("Headers: %s%n", restServiceCall.getRequestHeader() != null ? printHeaders( restServiceCall.getRequestHeader().getHeader()) : "n.a"));
 			sb.append(String.format("Request body:   %s%n", restServiceCall.getRequestBody()));
@@ -39,7 +40,7 @@ public class RestServiceClientUtils {
 		return sb.toString();		
 	}
 	
-	private static String printHeaders(EList<HeaderEntry> headers) {
+	private static String printHeaders(List<HeaderEntry> headers) {
 		StringBuilder sb = new StringBuilder();
 		headers.forEach( headerEntry -> sb.append(String.format("\t%s : %s%n", headerEntry.getHeaderName(), headerEntry.getValue())));
 		return sb.toString();

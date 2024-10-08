@@ -4,7 +4,6 @@ import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.EnumMapProduct;
 import com.smartgridready.ns.v0.ModbusBoolean;
 import com.smartgridready.ns.v0.ModbusDataType;
-import com.smartgridready.communicator.common.helper.DataTypeHelper;
 import com.smartgridready.communicator.modbus.helper.ConversionHelper;
 
 import java.math.BigInteger;
@@ -31,34 +30,34 @@ public abstract class Value  {
 
     public int[] toModbusRegister(ModbusDataType modbusDataType) {
 
-        if (modbusDataType.getFloat64()!=null) {
+        if (modbusDataType.getFloat64() != null) {
             return ConversionHelper.doubleToRegisters(getFloat64());
         }
-        if (modbusDataType.getFloat32()!=null) {
+        if (modbusDataType.getFloat32() != null) {
             return ConversionHelper.floatToRegisters(getFloat32());
         }
-        if (modbusDataType.getInt64()!=null) {
+        if (modbusDataType.getInt64() != null) {
             return ConversionHelper.longToRegisters(getInt64());
         }
-        if (modbusDataType.getInt64U()!=null) {
+        if (modbusDataType.getInt64U() != null) {
             return ConversionHelper.unsignedLongToRegister(getInt64U());
         }
-        if (modbusDataType.getInt32()!=null) {
+        if (modbusDataType.getInt32() != null) {
             return ConversionHelper.intToRegisters(getInt32());
         }
-        if (modbusDataType.getInt32U()!=null) {
+        if (modbusDataType.getInt32U() != null) {
             return ConversionHelper.uintToRegisters(getInt32U());
         }
-        if (modbusDataType.getInt16()!=null) {
+        if (modbusDataType.getInt16() != null) {
             return ConversionHelper.shortToRegister(getInt16());
         }
-        if (modbusDataType.getInt16U()!=null) {
+        if (modbusDataType.getInt16U() != null) {
             return ConversionHelper.shortToRegister((short) getInt16U());
         }
-        if (modbusDataType.getInt8()!=null) {
+        if (modbusDataType.getInt8() != null) {
             return ConversionHelper.shortToRegister(getInt8());
         }
-        if (modbusDataType.getInt8U()!=null) {
+        if (modbusDataType.getInt8U() != null) {
             return ConversionHelper.shortToRegister(getInt8U());
         }
         if (modbusDataType.getString() != null) {
@@ -71,7 +70,7 @@ public abstract class Value  {
 
         throw new IllegalArgumentException(
                 String.format("Conversion to modbus register for type %s not supported.",
-                        DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+                        DataType.getModbusDataTypeName(modbusDataType)));
     }
 
     public byte[] toModbusDiscreteVal(ModbusDataType modbusDataType) {
@@ -80,7 +79,7 @@ public abstract class Value  {
         }
         throw new IllegalArgumentException(
                 String.format("Conversion to modbus discrete value for type %s not supported.",
-                        DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+                        DataType.getModbusDataTypeName(modbusDataType)));
     }
 
 
@@ -126,7 +125,7 @@ public abstract class Value  {
         }
 
         throw new IllegalArgumentException(String.format("Modbus register type %s to Value.class conversion from register not supported.",
-                DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+                DataType.getModbusDataTypeName(modbusDataType)));
     }
 
     public static Value fromString(DataTypeProduct dataType, String value) {
@@ -170,7 +169,7 @@ public abstract class Value  {
         }
 
         throw new IllegalArgumentException(String.format("Generic type %s conversion from String to Value.class conversion from register not supported.",
-                DataTypeHelper.getGenDataTypeName(dataType)));
+                DataType.getGenDataTypeName(dataType)));
 
     }
 
@@ -185,7 +184,7 @@ public abstract class Value  {
         }
 
         throw new IllegalArgumentException(String.format("Modbus type %s to Value.class conversion from discrete input not supported.",
-                DataTypeHelper.getModbusDataTypeName(modbusDataType)));
+                DataType.getModbusDataTypeName(modbusDataType)));
     }
 
     static void checkInt8(long value) {
@@ -244,13 +243,13 @@ public abstract class Value  {
 
     private static short mapBooleanToShort(ModbusBoolean modbusBoolean, boolean value) {
 
-        if (modbusBoolean.isSetFalseValue()) {
+        if (modbusBoolean.getFalseValue() != null) {
             // mapping of false value is defined
-            return value ? 0 : (short)modbusBoolean.getFalseValue();
+            return value ? 0 : modbusBoolean.getFalseValue().shortValue();
         }
-        if (modbusBoolean.isSetTrueValue()) {
+        if (modbusBoolean.getTrueValue() != null) {
             // mapping of true value is defined
-            return value ? (short)modbusBoolean.getTrueValue() : 0;
+            return value ? modbusBoolean.getTrueValue().shortValue() : 0;
         }
         // no mapping defined
         return value ? (short)1 : (short)0;
@@ -258,13 +257,13 @@ public abstract class Value  {
 
     private static boolean mapShortToBoolean(ModbusBoolean modbusBoolean, short value) {
 
-        if (modbusBoolean.isSetFalseValue()) {
+        if (modbusBoolean.getFalseValue() != null) {
             // check if mapped value for false matches the value received from modbus
-            return value != modbusBoolean.getFalseValue();
+            return value != modbusBoolean.getFalseValue().shortValue();
         }
-        if (modbusBoolean.isSetTrueValue() && value == modbusBoolean.getTrueValue()) {
+        if ((modbusBoolean.getTrueValue() != null) && (value == modbusBoolean.getTrueValue().shortValue())) {
             // check mapped value for true matches the value received from modbus
-            return value == modbusBoolean.getTrueValue();
+            return value == modbusBoolean.getTrueValue().shortValue();
         }
         // no mapping defined
         return value != 0;

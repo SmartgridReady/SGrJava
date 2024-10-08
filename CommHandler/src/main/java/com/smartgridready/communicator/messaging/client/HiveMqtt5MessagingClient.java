@@ -13,6 +13,8 @@ import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5PublishResult;
 import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
 import com.hivemq.client.mqtt.mqtt5.message.unsubscribe.unsuback.Mqtt5UnsubAck;
 import com.smartgridready.communicator.common.helper.JsonHelper;
+import com.smartgridready.communicator.common.impl.NonValidatingHostnameVerifier;
+import com.smartgridready.communicator.common.impl.NonValidatingTrustManagerFactory;
 import com.smartgridready.driver.api.messaging.GenMessagingClient;
 import com.smartgridready.driver.api.messaging.model.Message;
 import com.smartgridready.driver.api.messaging.model.filter.MessageFilter;

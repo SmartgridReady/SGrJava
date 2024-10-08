@@ -1,0 +1,50 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
+
+name: Build and Publish Specification Release
+
+on:
+  repository_dispatch:
+    types: [ new-tag-created ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to checkout and build'
+        required: true
+
+jobs:
+  build-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout SGrJava
+        uses: actions/checkout@v4
+        with:
+          repository: SmartGridready/SGrJava.git
+          ref: ${{github.ref}}
+          fetch-tags: true
+          fetch-depth: 0
+          path: SGrJava
+
+      - name: Checkout SGrSpecifications
+        uses: actions/checkout@v4
+        with:
+          repository: SmartGridready/SGrSpecifications.git
+          ref: ${{inputs.tag}}
+          path: SGrSpecifications
+
+      - name: Build SGrJava Specification
+        working-directory: SGrJava/Specification
+        run: |
+          chmod +x ./gradlew
+          ./gradlew clean build -Pversion="${{inputs.tag}}" --no-daemon
+
+      - name: Publish SGrJava Specification
+        working-directory: SGrJava/Specification
+        run: |
+          chmod +x ./gradlew
+          ./gradlew publishMavenJavaPublicationToNexusRepository -Pnexus.username=smartgrid -Pnexus.password=${{ secrets.NEXUS_PASSWORD }} -Pversion="${{inputs.tag}}" --no-daemon

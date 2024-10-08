@@ -4,15 +4,16 @@ import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClient
 import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
+import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
-import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
+import com.smartgridready.ns.v0.RestApiServiceCall;
 import org.apache.hc.core5.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,7 +46,7 @@ public class SGrDeviceBuilderTest {
     ModbusGateway modbusGateway;
 
     @Mock
-    GenDriverAPI4ModbusConnectable modbusDriver;
+    GenDriverAPI4Modbus modbusDriver;
 
     @Mock
     ApacheHttpRequestFactory restServiceClientFactory;
@@ -56,8 +57,8 @@ public class SGrDeviceBuilderTest {
     @Test
     void buildRestApiDevice() throws Exception {
 
-        var restServiceCall = V0Factory.eINSTANCE.createRestApiServiceCall();
-        var responseQery = V0Factory.eINSTANCE.createResponseQuery();
+        var restServiceCall = new RestApiServiceCall();
+        var responseQery = new ResponseQuery();
         responseQery.setQueryType(ResponseQueryType.JMES_PATH_EXPRESSION);
         responseQery.setQuery("status");
         restServiceCall.setResponseQuery(responseQery);

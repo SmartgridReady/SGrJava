@@ -35,11 +35,9 @@ import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.communicator.common.api.values.Float64Value;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
-import com.smartgridready.communicator.modbus.helper.GenDriverAPI4ModbusRTUMock;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-// SmartGridready definitions
-import com.smartgridready.ns.v0.V0Factory;
 
 //proprietary definitions
 
@@ -107,8 +105,8 @@ public class HeatPumpTester {
 			if (devRTU_IOPIsOn)
 			{
 			  // Modbus RTU uses a single driver  (tailored to easymodbus)
-			  mbRTU=new GenDriverAPI4ModbusRTU();
-			  mbRTU.initTrspService("COM9");			
+			  mbRTU=new GenDriverAPI4ModbusRTU("COM9");
+			  mbRTU.connect();			
 			}
 			
 			if (devStiebelISGIsOn) initStiebelISG(XML_BASE_DIR, "SGr_04_0015_xxxx_StiebelEltron_HeatPumpV0.2.1.xml");			
@@ -183,12 +181,12 @@ public class HeatPumpTester {
 				// // replace device specific for TCP  (easymodus uses Driver instance per device)
 				GenDriverAPI4Modbus mbHovalTCP = mockModbusDriver;
 				if (mockModbusDriver == null) {
-					mbHovalTCP = new GenDriverAPI4ModbusTCP();
+					mbHovalTCP = new GenDriverAPI4ModbusTCP("192.168.0.35", 502);
+					//mbHovalTCP = new GenDriverAPI4ModbusTCP("192.168.1.55", 502);
 				}
 				devHovalTCP=new SGrModbusDevice(tstDesc, mbHovalTCP);							
 				//setting Hoval Lab 
-				mbHovalTCP.initDevice("192.168.0.35",502);						
-				//mbHovalTCP.initDevice("192.168.1.55",502);
+				mbHovalTCP.connect();
 			}
 			
 			catch ( Exception e )
@@ -208,7 +206,7 @@ public class HeatPumpTester {
 			long lVal=0;
 			boolean bVal1=false,bVal2=false,bVal3=false;
 			String  sVal1="0.0", sVal2="0.0", sVal3="0.0", sVal4 ="0.0";
-			DataTypeProduct gdtValue = V0Factory.eINSTANCE.createDataTypeProduct();
+			DataTypeProduct gdtValue = new DataTypeProduct();
 				
 			try {			
 				 LOG.info(String.format("HeatPump HovalTCP"));
@@ -217,7 +215,7 @@ public class HeatPumpTester {
 				if (runtimeCnt == 2)
 				{
                   // Testing Setters
-				  DataTypeProduct  hpCmd = V0Factory.eINSTANCE.createDataTypeProduct();
+				  DataTypeProduct  hpCmd = new DataTypeProduct();
 
 				  float fValStpt = (float) 0.0 ;	
 				  Value hpval = Float64Value.of(fValStpt);
@@ -430,10 +428,10 @@ public class HeatPumpTester {
 				  // replace device specific for TCP  (easymodus uses Driver instance per device)
 				  GenDriverAPI4Modbus mbStiebelISG = mockModbusDriver;
 				  if (mockModbusDriver == null) {
-					  mbStiebelISG = new GenDriverAPI4ModbusTCP();
+					  mbStiebelISG = new GenDriverAPI4ModbusTCP("192.168.1.55", 502);
 				  }
 				  devStiebelISG=new SGrModbusDevice(tmpDesc, mbStiebelISG);							
-				  mbStiebelISG.initDevice("192.168.1.55",502);
+				  mbStiebelISG.connect();
 			   }
 			
 			  catch ( Exception e )
@@ -465,7 +463,7 @@ public class HeatPumpTester {
 				if (runtimeCnt == 2)
 				{
 					/*
-					DataTypeProduct  hpval = V0Factory.eINSTANCE.createDataTypeProduct();
+					DataTypeProduct  hpval = new DataTypeProduct();
 				   LOG.info(String.format("######################  setting new values ######################"));
 				   // testing setters: one setting for a test run only recommended
 				   // read the device manual carefully before testing any setpoint
@@ -616,10 +614,10 @@ public class HeatPumpTester {
 					// // replace device specific for TCP  (easymodus uses Driver instance per device)
 					GenDriverAPI4Modbus mbCTAoptiHeat = mockModbusDriver;
 					if (mockModbusDriver == null) {
-						mbCTAoptiHeat = new GenDriverAPI4ModbusTCP();
+						mbCTAoptiHeat = new GenDriverAPI4ModbusTCP("192.168.1.55",502);
 					}
 					devCTAoptiHeat=new SGrModbusDevice(tstDesc, mbCTAoptiHeat);							
-					//mbCTAoptiHeat.initDevice("192.168.1.55",502);
+					//mbCTAoptiHeat.connect();
 					
 					// set back remote control enabler
 					devCTAoptiHeat.setVal("DeviceInformation","ctaRemoteHCTempSetptEnable",BooleanValue.of(false) );  
@@ -643,8 +641,8 @@ public class HeatPumpTester {
 				
 				//Setters
 				float fValStpt=(float)  runtimeCnt *  (float) 0.1;
-				DataTypeProduct gdtValue=V0Factory.eINSTANCE.createDataTypeProduct();
-				DataTypeProduct  modeCmd = V0Factory.eINSTANCE.createDataTypeProduct();
+				DataTypeProduct gdtValue= new DataTypeProduct();
+				DataTypeProduct  modeCmd = new DataTypeProduct();
 				
 					try {	
 						// if RTU is used, set address here
@@ -656,7 +654,7 @@ public class HeatPumpTester {
 
 						if (runtimeCnt == 2)
 						{
-							DataTypeProduct  hpval = V0Factory.eINSTANCE.createDataTypeProduct();
+							DataTypeProduct  hpval = new DataTypeProduct();
 								
 						  LOG.info(String.format("######################  setting new values ######################"));
 						  // testing setters: one setting for a test run only recommended
@@ -866,7 +864,7 @@ public class HeatPumpTester {
 
 				if (runtimeCnt==2) {
 					/*
-					DataTypeProduct hpval = V0Factory.eINSTANCE.createDataTypeProduct();
+					DataTypeProduct hpval = new DataTypeProduct();
 
 					LOG.info(String.format("######################  setting new values ######################"));
 					// testing setters: one setting for a test run only recommended

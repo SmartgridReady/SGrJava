@@ -37,7 +37,7 @@ public class DeviceDescriptionLoader {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DeviceDescriptionLoader.class);
 
-	private final XmlResourceLoader<DeviceFrame> resourceLoader = new XmlResourceLoader<>();
+	private final XmlResourceLoader<DeviceFrame> resourceLoader = new XmlResourceLoader<>(DeviceFrame.class);
 
 	/**
 	 * Load an external device description from an EI-XML input stream.

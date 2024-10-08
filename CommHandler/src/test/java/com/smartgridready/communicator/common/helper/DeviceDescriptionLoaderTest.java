@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class DeviceDescriptionLoaderTest {
 
@@ -38,9 +39,10 @@ class DeviceDescriptionLoaderTest {
 		Collection<TestConfiguration.Description> files = config.getDescriptions();
 		
 		files.forEach(desc -> assertDoesNotThrow(() -> {
-			LOG.info("Loading file: " + desc.file);
+			LOG.info("Loading file: " + desc.getFile());
 			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
-			DeviceFrame deviceDesc = loader.load(folder, desc.file);
+			DeviceFrame deviceDesc = loader.load(folder, desc.getFile(), desc.getParametersAsProperties());
+			assertNotNull(deviceDesc);
 			LOG.info("Loaded device" + deviceDesc.getDeviceName() + " - " + deviceDesc.getManufacturerName() + "\n");
 		}));
 	}
@@ -56,10 +58,11 @@ class DeviceDescriptionLoaderTest {
 		Collection<TestConfiguration.Description> files = config.getDescriptions();
 		
 		files.forEach(desc -> assertDoesNotThrow(() -> {
-			LOG.info("Loading file: " + desc.file);
+			LOG.info("Loading file: " + desc.getFile());
 			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
-			InputStream is = FileUtils.openInputStream(new File(folder + File.separator + desc.file));
-			DeviceFrame deviceDesc = loader.load(desc.file, is);
+			InputStream is = FileUtils.openInputStream(new File(folder + File.separator + desc.getFile()));
+			DeviceFrame deviceDesc = loader.load(desc.getFile(), is, desc.getParametersAsProperties());
+			assertNotNull(deviceDesc);
 			LOG.info("Loaded device" + deviceDesc.getDeviceName() + " - " + deviceDesc.getManufacturerName() + "\n");
 		}));
 	}
@@ -75,10 +78,11 @@ class DeviceDescriptionLoaderTest {
 		Collection<TestConfiguration.Description> files = config.getDescriptions();
 		
 		files.forEach(desc -> assertDoesNotThrow(() -> {
-			LOG.info("Loading file: " + desc.file);
+			LOG.info("Loading file: " + desc.getFile());
 			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
-			String xml = FileUtils.readFileToString(new File(folder + File.separator + desc.file), StandardCharsets.UTF_8);
-			DeviceFrame deviceDesc = loader.load(xml);
+			String xml = FileUtils.readFileToString(new File(folder + File.separator + desc.getFile()), StandardCharsets.UTF_8);
+			DeviceFrame deviceDesc = loader.load(xml, desc.getParametersAsProperties());
+			assertNotNull(deviceDesc);
 			LOG.info("Loaded device" + deviceDesc.getDeviceName() + " - " + deviceDesc.getManufacturerName() + "\n");
 		}));
 	}

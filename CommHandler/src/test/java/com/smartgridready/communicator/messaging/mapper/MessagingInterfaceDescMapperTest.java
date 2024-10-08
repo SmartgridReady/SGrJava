@@ -3,7 +3,8 @@ package com.smartgridready.communicator.messaging.mapper;
 import com.smartgridready.ns.v0.MessageFilter;
 import com.smartgridready.ns.v0.MessagingInterfaceDescription;
 import com.smartgridready.ns.v0.MessagingPlatformType;
-import com.smartgridready.ns.v0.V0Factory;
+import com.smartgridready.ns.v0.ObjectFactory;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,6 +28,8 @@ class MessagingInterfaceDescMapperTest {
     private static final String PLAINTEXT_REGEX = "plainregex";
     private static final String XPATH_REGEX = "xpathregex";
     private static final String XPATH_QUERY = "xpathquery";
+
+    private static final ObjectFactory objectFactory = new ObjectFactory();
 
     @Test
     void messageFilterMapper() {
@@ -66,18 +69,18 @@ class MessagingInterfaceDescMapperTest {
 
     private MessageFilter createMessageFilter() {
 
-        var messageFilter = V0Factory.eINSTANCE.createMessageFilter();
+        var messageFilter = objectFactory.createMessageFilter();
 
-        var jmesPathFilter = V0Factory.eINSTANCE.createJMESPathFilterType();
+        var jmesPathFilter = objectFactory.createJMESPathFilterType();
         jmesPathFilter.setMatchesRegex(JMES_REGEX_EXPR);
         jmesPathFilter.setQuery(JMES_QUERY);
         messageFilter.setJmespathFilter(jmesPathFilter);
 
-        var plaintextFilter = V0Factory.eINSTANCE.createPlaintextFilterType();
+        var plaintextFilter = objectFactory.createPlaintextFilterType();
         plaintextFilter.setMatchesRegex(PLAINTEXT_REGEX);
         messageFilter.setPlaintextFilter(plaintextFilter);
 
-        var xpathFilter = V0Factory.eINSTANCE.createXPathFilterType();
+        var xpathFilter = objectFactory.createXPathFilterType();
         xpathFilter.setMatchesRegex(XPATH_REGEX);
         xpathFilter.setQuery(XPATH_QUERY);
         messageFilter.setXpapathFilter(xpathFilter);
@@ -87,34 +90,34 @@ class MessagingInterfaceDescMapperTest {
 
     private MessagingInterfaceDescription createMessagingInterfaceDescription() {
 
-        var messagingInterfaceDescription = V0Factory.eINSTANCE.createMessagingInterfaceDescription();
+        var messagingInterfaceDescription = objectFactory.createMessagingInterfaceDescription();
 
-        var messageBrokerListElement = V0Factory.eINSTANCE.createMessageBrokerListElement();
+        var messageBrokerListElement = objectFactory.createMessageBrokerListElement();
         messageBrokerListElement.setTls(true);
         messageBrokerListElement.setTlsVerifyCertificate(true);
         messageBrokerListElement.setPort("8080");
         messageBrokerListElement.setHost("localhost");
 
-        var messageBrokerList = V0Factory.eINSTANCE.createMessageBrokerList();
+        var messageBrokerList = objectFactory.createMessageBrokerList();
         messageBrokerList.getMessageBrokerListElement().add(messageBrokerListElement);
         messagingInterfaceDescription.setMessageBrokerList(messageBrokerList);
 
-        var messageBrokerAuthenticationBasic = V0Factory.eINSTANCE.createMessageBrokerAuthenticationBasic();
+        var messageBrokerAuthenticationBasic = objectFactory.createMessageBrokerAuthenticationBasic();
         messageBrokerAuthenticationBasic.setUsername("joe");
         messageBrokerAuthenticationBasic.setPassword("1234");
 
-        var messageBrokerAuthenticationClientCert = V0Factory.eINSTANCE.createMessageBrokerAuthenticationClientCertificate();
+        var messageBrokerAuthenticationClientCert = objectFactory.createMessageBrokerAuthenticationClientCertificate();
         messageBrokerAuthenticationClientCert.setKeystorePath(KEY_STORE_PATH);
         messageBrokerAuthenticationClientCert.setKeystorePassword(KEY_STORE_PW);
         messageBrokerAuthenticationClientCert.setTruststorePath(TRUST_STORE_PATH);
         messageBrokerAuthenticationClientCert.setTruststorePassword(TRUST_STORE_PW);
 
-        var messageBrokerAuthentication = V0Factory.eINSTANCE.createMessageBrokerAuthentication();
+        var messageBrokerAuthentication = objectFactory.createMessageBrokerAuthentication();
         messageBrokerAuthentication.setBasicAuthentication(messageBrokerAuthenticationBasic);
         messageBrokerAuthentication.setClientCertificateAuthentication(messageBrokerAuthenticationClientCert);
         messagingInterfaceDescription.setMessageBrokerAuthentication(messageBrokerAuthentication);
 
-        messagingInterfaceDescription.setPlatform(MessagingPlatformType.MQTT5);
+        messagingInterfaceDescription.setPlatform(MessagingPlatformType.MQTT_5);
         messagingInterfaceDescription.setClientId("9999");
 
         return messagingInterfaceDescription;

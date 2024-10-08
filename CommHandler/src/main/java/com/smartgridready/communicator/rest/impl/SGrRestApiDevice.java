@@ -47,6 +47,7 @@ import com.smartgridready.communicator.rest.http.authentication.Authenticator;
 import com.smartgridready.communicator.rest.http.authentication.AuthenticatorFactory;
 import com.smartgridready.driver.api.http.GenHttpRequestFactory;
 import com.smartgridready.communicator.rest.http.client.RestServiceClientUtils;
+import jakarta.xml.bind.JAXBElement;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.HttpStatus;
 import org.slf4j.Logger;
@@ -196,9 +197,9 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 		if (restApiServiceCall.getResponseQuery() != null) {
 			ResponseQuery responseQuery = restApiServiceCall.getResponseQuery();
-			if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
+			if (responseQuery.getQueryType() != null && ResponseQueryType.JMES_PATH_EXPRESSION == responseQuery.getQueryType()) {
 				return JsonHelper.parseJsonResponse(responseQuery.getQuery(), response);
-			} else if (responseQuery.isSetQueryType() && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
+			} else if (responseQuery.getQueryType() != null && ResponseQueryType.JMES_PATH_MAPPING == responseQuery.getQueryType()) {
 				return JsonHelper.mapJsonResponse(responseQuery.getJmesPathMappings(), response);
 			}
 		}
@@ -214,24 +215,27 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	private RestApiServiceCall evaluateRestApiServiceCall(RestApiDataPointConfiguration dataPointConfiguration, RwpDirections rwpDirections)
 		throws GenDriverException {
 
-		if (dataPointConfiguration.getRestApiServiceCall() != null) {
-			return dataPointConfiguration.getRestApiServiceCall();
-		}
+		for(JAXBElement<?> element : dataPointConfiguration.getContent()) {
 
-		if (dataPointConfiguration.getRestApiReadServiceCall() != null && RwpDirections.READ == rwpDirections) {
-			return dataPointConfiguration.getRestApiReadServiceCall();
-		}
+			if ("restApiServiceCall".equals(element.getName().getLocalPart())) {
+				return (RestApiServiceCall) element.getValue();
+			}
 
-		if (dataPointConfiguration.getRestApiReadServiceCall1() != null && RwpDirections.READ == rwpDirections) {
-			return dataPointConfiguration.getRestApiReadServiceCall1();
-		}
+			if (element.getName().getLocalPart().equals("restApiReadServiceCall") && RwpDirections.READ == rwpDirections) {
+				return (RestApiServiceCall) element.getValue();
+			}
 
-		if (dataPointConfiguration.getRestApiWriteServiceCall() != null && RwpDirections.WRITE == rwpDirections) {
-			return dataPointConfiguration.getRestApiWriteServiceCall();
-		}
+			if(element.getName().getLocalPart().equals("restApiReadServiceCall1") && RwpDirections.READ == rwpDirections) {
+				return (RestApiServiceCall) element.getValue();
+			}
 
-		if (dataPointConfiguration.getRestApiWriteServiceCall1() != null && RwpDirections.WRITE == rwpDirections) {
-			return dataPointConfiguration.getRestApiWriteServiceCall1();
+			if (element.getName().getLocalPart().equals("restApiWriteServiceCall") && RwpDirections.WRITE == rwpDirections) {
+				return (RestApiServiceCall) element.getValue();
+			}
+
+			if (element.getName().getLocalPart().equals("restApiWriteServiceCall1") && RwpDirections.WRITE == rwpDirections) {
+				return (RestApiServiceCall) element.getValue();
+			}
 		}
 		throw new GenDriverException(
 				"No suitable service call found for " + rwpDirections.name() + " operation. Check the EI-XML of your device");
@@ -272,7 +276,7 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 	private Value applyUnitConversion(RestApiDataPoint dataPoint, Value value, DoubleBinaryOperator conversionFunction) {
 
-		if (dataPoint.getDataPoint().isSetUnitConversionMultiplicator()
+		if (dataPoint.getDataPoint().getUnitConversionMultiplicator() != null
 				&& isNumeric(value)
 				&& dataPoint.getDataPoint().getUnitConversionMultiplicator() != 0.0) {
 			return Float64Value.of(conversionFunction.applyAsDouble(value.getFloat64(), dataPoint.getDataPoint().getUnitConversionMultiplicator()));

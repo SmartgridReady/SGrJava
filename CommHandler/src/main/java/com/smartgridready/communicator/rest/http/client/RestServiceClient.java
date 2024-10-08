@@ -20,7 +20,7 @@ package com.smartgridready.communicator.rest.http.client;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
@@ -31,14 +31,10 @@ import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.ns.v0.HeaderList;
 import com.smartgridready.ns.v0.HttpMethod;
 import com.smartgridready.ns.v0.ParameterList;
-import com.smartgridready.ns.v0.V0Factory;
 import org.apache.hc.core5.net.URIBuilder;
 
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import com.smartgridready.ns.v0.HeaderEntry;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 
 public class RestServiceClient {
 
@@ -47,7 +43,7 @@ public class RestServiceClient {
 	private final RestApiServiceCall restServiceCall;
 	private final GenHttpRequestFactory httpRequestFactory;
 
-	private static final Map<HttpMethod, com.smartgridready.driver.api.http.HttpMethod> HTTP_METHOD_MAP = new HashMap<>();
+	private static final Map<HttpMethod, com.smartgridready.driver.api.http.HttpMethod> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
 	static {
 		HTTP_METHOD_MAP.put(HttpMethod.GET, com.smartgridready.driver.api.http.HttpMethod.GET);
 		HTTP_METHOD_MAP.put(HttpMethod.POST, com.smartgridready.driver.api.http.HttpMethod.POST);
@@ -68,7 +64,7 @@ public class RestServiceClient {
 
 	public void addHeader(String key, String value) {
 
-		HeaderEntry headerEntry = V0Factory.eINSTANCE.createHeaderEntry();
+		HeaderEntry headerEntry = new HeaderEntry();
 		headerEntry.setHeaderName(key);
 		headerEntry.setValue(value);
 		restServiceCall.getRequestHeader().getHeader().add(headerEntry);
@@ -88,34 +84,32 @@ public class RestServiceClient {
 
 	private RestApiServiceCall cloneRestServiceCallWithSubstitutions(RestApiServiceCall restServiceCall, Properties substitutions) {
 
-		// Handle substitutions, do this on a clone, do not modify the EI loaded from XML. Substitutions can
-		// appear within the request path, request body or even the response query.
-		RestApiServiceCall clone = EcoreUtil.copy(restServiceCall);
-		clone.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
-		clone.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));
+		// Substitutions can appear within the request path, request body or even the response query.
+		restServiceCall.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
+		restServiceCall.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));
 
-		if (clone.getResponseQuery() != null) {
-			clone.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
+		if (restServiceCall.getResponseQuery() != null) {
+			restServiceCall.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
 		}
 
-		ParameterList queryParams = clone.getRequestQuery();
+		ParameterList queryParams = restServiceCall.getRequestQuery();
 		if (queryParams != null) {
 			queryParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
 		}
 
-		ParameterList formParams = clone.getRequestForm();
+		ParameterList formParams = restServiceCall.getRequestForm();
 		if (formParams != null) {
 			formParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
 		}
 
-		HeaderList headers = clone.getRequestHeader();
+		HeaderList headers = restServiceCall.getRequestHeader();
 		if (headers != null) {
 			headers.getHeader().forEach(header -> header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions)));
 		} else {
-			clone.setRequestHeader(V0Factory.eINSTANCE.createHeaderList());
+			restServiceCall.setRequestHeader(new HeaderList());
 		}
 
-		return clone;
+		return restServiceCall;
 	}
 
 	public GenHttpResponse callService() throws IOException {
@@ -200,6 +194,6 @@ public class RestServiceClient {
 
 	private static com.smartgridready.driver.api.http.HttpMethod mapHttpMethod(HttpMethod httpMethod) throws IOException {
 		return Optional.ofNullable(HTTP_METHOD_MAP.get(httpMethod))
-				.orElseThrow(() -> new IOException("Unsupported HTTP method: " + httpMethod.getName()));
+				.orElseThrow(() -> new IOException("Unsupported HTTP method: " + httpMethod.name()));
 	}
 }

@@ -6,7 +6,6 @@ import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.RestApiServiceCall;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.communicator.common.api.values.Float64Value;
 import com.smartgridready.communicator.common.api.values.Int32UValue;
@@ -270,7 +269,7 @@ class SGrRestAPIDeviceTest {
 
 		Mockito.lenient().when(httpClient.execute()).thenReturn(GenHttpResponse.of("{}"));
 
-		ResponseQuery query = V0Factory.eINSTANCE.createResponseQuery();
+		ResponseQuery query = new ResponseQuery();
 		query.setQuery("token");
 		Mockito.lenient().when(restServiceCall.getResponseQuery()).thenReturn(query);
 

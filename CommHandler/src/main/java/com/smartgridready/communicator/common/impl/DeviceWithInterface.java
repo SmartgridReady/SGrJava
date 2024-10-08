@@ -2,10 +2,10 @@ package com.smartgridready.communicator.common.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.communicator.common.api.dto.InterfaceType;
 
 import java.util.List;
+import java.util.Collections;
 
 class DeviceWithInterface {
 
@@ -37,7 +37,7 @@ class DeviceWithInterface {
         }
         else {
             interfaceType = InterfaceType.UNKNOWN;
-            functionalProfiles = V0Factory.eINSTANCE.createModbusFunctionalProfileList().getFunctionalProfileListElement();
+            functionalProfiles = Collections.emptyList();
         }
     }
 

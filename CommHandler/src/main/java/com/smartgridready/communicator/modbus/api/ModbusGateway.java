@@ -1,15 +1,15 @@
 package com.smartgridready.communicator.modbus.api;
 
-import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusConnectable;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
 public class ModbusGateway {
 
     private final String identifier;
     private final ModbusInterfaceDescription interfaceDescription;
-    private final GenDriverAPI4ModbusConnectable transport;
+    private final GenDriverAPI4Modbus transport;
 
-    public ModbusGateway(String identifier, ModbusInterfaceDescription interfaceDescription, GenDriverAPI4ModbusConnectable transport) {
+    public ModbusGateway(String identifier, ModbusInterfaceDescription interfaceDescription, GenDriverAPI4Modbus transport) {
         this.identifier = identifier;
         this.interfaceDescription = interfaceDescription;
         this.transport = transport;
@@ -19,7 +19,7 @@ public class ModbusGateway {
         return interfaceDescription;
     }
 
-    public GenDriverAPI4ModbusConnectable getTransport() {
+    public GenDriverAPI4Modbus getTransport() {
         return transport;
     }
 

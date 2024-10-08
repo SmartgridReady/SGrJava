@@ -11,12 +11,12 @@ import com.smartgridready.driver.api.common.GenDriverException;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
-import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -55,7 +55,7 @@ public class JsonHelper {
         Map<String, String> mapFrom = new HashMap<>();
         Map<String, String> mapTo = new HashMap<>();
         Map<String, String> names = new HashMap<>();
-        EList<JMESPathMappingRecord> mappingRecords = jmesPathMapping.getMapping();
+        List<JMESPathMappingRecord> mappingRecords = jmesPathMapping.getMapping();
         for (int i = 0; i < mappingRecords.size(); i++) {
             mapFrom.put(String.valueOf(i), mappingRecords.get(i).getFrom());
             if (mappingRecords.get(i).getFrom().startsWith("$")) {

@@ -5,8 +5,12 @@ import com.smartgridready.communicator.messaging.mapper.MessagingInterfaceDescMa
 import com.smartgridready.driver.api.messaging.model.Message;
 import com.smartgridready.driver.api.messaging.GenMessagingClient;
 import com.smartgridready.ns.v0.JMESPathFilterType;
+import com.smartgridready.ns.v0.MessageBrokerAuthentication;
+import com.smartgridready.ns.v0.MessageBrokerAuthenticationBasic;
+import com.smartgridready.ns.v0.MessageBrokerList;
+import com.smartgridready.ns.v0.MessageBrokerListElement;
 import com.smartgridready.ns.v0.MessageFilter;
-import com.smartgridready.ns.v0.V0Factory;
+import com.smartgridready.ns.v0.MessagingInterfaceDescription;
 import com.smartgridready.ns.v0.XPathFilterType;
 import io.vavr.control.Either;
 import org.awaitility.Awaitility;
@@ -138,8 +142,8 @@ class Mqtt5GenMessagingClientTest {
     void sendAndReceiveSyncUnsupportedFilter() throws Exception {
 
         try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
-            MessageFilter messageFilter = V0Factory.eINSTANCE.createMessageFilter();
-            XPathFilterType xPathFilter = V0Factory.eINSTANCE.createXPathFilterType();
+            MessageFilter messageFilter = new MessageFilter();
+            XPathFilterType xPathFilter = new XPathFilterType();
             messageFilter.setXpapathFilter(xPathFilter);
 
             Either<Throwable, Message> future = client.readSync(
@@ -221,10 +225,10 @@ class Mqtt5GenMessagingClientTest {
 
     private com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription createMessagingInterfaceDescription() {
 
-        var interfaceDesc = V0Factory.eINSTANCE.createMessagingInterfaceDescription();
+        var interfaceDesc = new MessagingInterfaceDescription();
 
-        var messageBrokerList = V0Factory.eINSTANCE.createMessageBrokerList();
-        var messageBrokerListElem = V0Factory.eINSTANCE.createMessageBrokerListElement();
+        var messageBrokerList = new MessageBrokerList();
+        var messageBrokerListElem = new MessageBrokerListElement();
         messageBrokerListElem.setTls(BROKER_TLS);
         messageBrokerListElem.setHost(BROKER_HOST);
         messageBrokerListElem.setPort(String.valueOf(BROKER_PORT));
@@ -232,8 +236,8 @@ class Mqtt5GenMessagingClientTest {
         messageBrokerList.getMessageBrokerListElement().add(messageBrokerListElem);
         interfaceDesc.setMessageBrokerList(messageBrokerList);
 
-        var messageBrokerAuthentication = V0Factory.eINSTANCE.createMessageBrokerAuthentication();
-        var messageBrokerAuthenticationBasic = V0Factory.eINSTANCE.createMessageBrokerAuthenticationBasic();
+        var messageBrokerAuthentication = new MessageBrokerAuthentication();
+        var messageBrokerAuthenticationBasic = new MessageBrokerAuthenticationBasic();
         messageBrokerAuthenticationBasic.setUsername(BROKER_USER);
         messageBrokerAuthenticationBasic.setPassword(BROKER_PASSWORD);
         messageBrokerAuthentication.setBasicAuthentication(messageBrokerAuthenticationBasic);
@@ -244,8 +248,8 @@ class Mqtt5GenMessagingClientTest {
 
     private MessageFilter createMessageFilter(String matchesRegex) {
 
-        MessageFilter messageFilter = V0Factory.eINSTANCE.createMessageFilter();
-        JMESPathFilterType jmesPathFilter = V0Factory.eINSTANCE.createJMESPathFilterType();
+        MessageFilter messageFilter = new MessageFilter();
+        JMESPathFilterType jmesPathFilter = new JMESPathFilterType();
         jmesPathFilter.setQuery("sensorId");
         jmesPathFilter.setMatchesRegex(matchesRegex);
         messageFilter.setJmespathFilter(jmesPathFilter);

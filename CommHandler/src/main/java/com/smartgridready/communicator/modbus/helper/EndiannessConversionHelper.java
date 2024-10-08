@@ -16,8 +16,8 @@ public class EndiannessConversionHelper {
         int[] mbregconv = new int[256];
         int c;
         if ((size % 4) > 0) {
-            LOG.info("CHANGE_DWORD_ORDER: Input Array length does not match");
-            //rem/cb: check is DWORD change needed in case of (size % 4) > 0
+            LOG.info("CHANGE_D_WORD_ORDER: Input Array length does not match");
+            //rem/cb: check is D_WORD change needed in case of (size % 4) > 0
             mbregconv = mbregresp;
         } else {   //rem/cb:  check array of WORDS: is DWORD change needed in case of size > 4
             for (c = 0; c < size; c = c + 4) {

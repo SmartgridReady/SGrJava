@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.modbus.integrationtest;
 
+import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.DeviceFrame;
@@ -7,7 +8,6 @@ import com.smartgridready.ns.v0.ModbusDataPointConfiguration;
 import com.smartgridready.ns.v0.ModbusDataType;
 import com.smartgridready.ns.v0.ModbusInterface;
 import com.smartgridready.ns.v0.RegisterType;
-import com.smartgridready.communicator.common.helper.DataTypeHelper;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
@@ -58,8 +58,8 @@ public class TestDevice {
                     + (isReadable ? "R" : "") + " "
                     + (isWritable ? "W" : "") + " "
                     + modbusRegisterType.name()
-                    + " GenType=" + DataTypeHelper.getGenDataTypeName(genericType)
-                    + " ModbusType=" + DataTypeHelper.getModbusDataTypeName(modbusType)
+                    + " GenType=" + DataType.getGenDataTypeName(genericType)
+                    + " ModbusType=" + DataType.getModbusDataTypeName(modbusType)
                     + " ModbusAddress=" + modbusAddress
                     + " ModbusRegisterType=" + modbusRegisterType
                     + " ModbusNoOfRegisters=" + modbusNbOfRegisters
@@ -91,8 +91,8 @@ public class TestDevice {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         deviceDescriptor = loader.load("", deviceDescriptionUrl.getPath());
 
-        GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP();
-        driver.initDevice(testsystemIp, Integer.parseInt(testsystemPort));
+        GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP(testsystemIp, Integer.parseInt(testsystemPort));
+        driver.connect();
         driver.setUnitIdentifier((short) 1);
 
         testSystem = new SGrModbusDevice(deviceDescriptor, driver);
@@ -108,15 +108,15 @@ public class TestDevice {
 
         ModbusInterface modbusInterface = deviceDescriptor.getInterfaceList().getModbusInterface();
         if (modbusInterface != null && modbusInterface.getModbusInterfaceDescription().getModbusTcp() != null) {
-            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP();
             Tuple2<String, Integer> connParams = getIpConnParams.apply("Enter IP Address and Port");
-            driver.initDevice(connParams._1, connParams._2 );
+            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusTCP(connParams._1, connParams._2);
+            driver.connect();
             testSystem = new SGrModbusDevice(deviceDescriptor,driver );
         }
         if (modbusInterface != null && modbusInterface.getModbusInterfaceDescription().getModbusRtu() != null) {
-            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusRTU();
             Tuple3<String, Integer, Integer> connParams = getComPortConnParams.apply("Enter COMx port, baud rate and modbus identifier.");
-            driver.initTrspService(connParams._1, connParams._2);
+            GenDriverAPI4Modbus driver = new GenDriverAPI4ModbusRTU(connParams._1, connParams._2);
+            driver.connect();
             driver.setUnitIdentifier(connParams._3.shortValue());
             testSystem = new SGrModbusDevice(deviceDescriptor, driver);
         }
@@ -148,13 +148,13 @@ public class TestDevice {
 
                             DataPointDescription dp = dataPoint.getDataPoint();
                             dpDesc.dataPoint = dp.getDataPointName();
-                            dpDesc.isReadable = dp.getDataDirection().getLiteral().contains("R");
-                            dpDesc.isWritable = dp.getDataDirection().getLiteral().contains("W");
+                            dpDesc.isReadable = dp.getDataDirection().value().contains("R");
+                            dpDesc.isWritable = dp.getDataDirection().value().contains("W");
                             dpDesc.genericType = dp.getDataType();
-                            dpDesc.units = dp.getUnit().getName();
-                            dpDesc.minVal = dp.isSetMinimumValue() ? String.valueOf(dp.getMinimumValue()) : "n.a";
-                            dpDesc.maxVal = dp.isSetMaximumValue() ? String.valueOf(dp.getMaximumValue()) : "n.a";
-                            dpDesc.conversionFactor = dp.isSetUnitConversionMultiplicator() ? String.valueOf(dp.getUnitConversionMultiplicator()) : "n.a";
+                            dpDesc.units = dp.getUnit().name();
+                            dpDesc.minVal = dp.getMinimumValue() != null ? String.valueOf(dp.getMinimumValue()) : "n.a";
+                            dpDesc.maxVal = dp.getMaximumValue() != null ? String.valueOf(dp.getMaximumValue()) : "n.a";
+                            dpDesc.conversionFactor = dp.getUnitConversionMultiplicator() != null ? String.valueOf(dp.getUnitConversionMultiplicator()) : "n.a";
 
                             ModbusDataPointConfiguration modbusDp = dataPoint.getModbusDataPointConfiguration();
                             dpDesc.modbusRegisterType = modbusDp.getRegisterType();

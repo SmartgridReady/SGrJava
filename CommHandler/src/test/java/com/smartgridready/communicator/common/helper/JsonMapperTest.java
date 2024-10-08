@@ -3,6 +3,7 @@ package com.smartgridready.communicator.common.helper;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.JMESPathMapping;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
+import com.smartgridready.ns.v0.RestApiServiceCall;
 import io.vavr.Tuple3;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -51,14 +52,20 @@ class JsonMapperTest extends JsonMapperTestBase {
 
     private JMESPathMapping getJmesPathMapping(DeviceFrame deviceFrame) {
 
-        return deviceFrame
+        var restApiConfigurationContent = deviceFrame
                 .getInterfaceList()
                 .getRestApiInterface()
                 .getFunctionalProfileList()
                 .getFunctionalProfileListElement().get(0)
                 .getDataPointList().getDataPointListElement().get(0)
-                .getRestApiDataPointConfiguration().getRestApiServiceCall()
-                .getResponseQuery().getJmesPathMappings();
+                .getRestApiDataPointConfiguration().getContent();
+
+        for (var jaxbelement : restApiConfigurationContent) {
+            if (jaxbelement.getValue() instanceof RestApiServiceCall) {
+                return ((RestApiServiceCall)jaxbelement.getValue()).getResponseQuery().getJmesPathMappings();
+            }
+        }
+        throw new IllegalArgumentException("Device Frame does not contain RestApiServiceCall");
     }
 
 }

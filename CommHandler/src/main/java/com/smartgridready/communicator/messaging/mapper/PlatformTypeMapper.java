@@ -14,7 +14,7 @@ public class PlatformTypeMapper {
             new EnumMap<>(MessagingPlatformType.class);
 
     static {
-        MAPPING.put(MessagingPlatformType.MQTT5, com.smartgridready.driver.api.messaging.model.MessagingPlatformType.MQTT5);
+        MAPPING.put(MessagingPlatformType.MQTT_5, com.smartgridready.driver.api.messaging.model.MessagingPlatformType.MQTT5);
         MAPPING.put(MessagingPlatformType.KAFKA, com.smartgridready.driver.api.messaging.model.MessagingPlatformType.KAFKA);
     }
 

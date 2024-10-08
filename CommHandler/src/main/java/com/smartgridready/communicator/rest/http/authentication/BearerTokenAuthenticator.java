@@ -47,7 +47,7 @@ public class BearerTokenAuthenticator implements Authenticator {
 	
 	@Override
 	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory)
-			throws IOException, RestApiServiceCallException {
+			throws IOException, RestApiServiceCallException{
 		
 		if (bearerToken == null) {
 			authenticate(deviceDescription, httpRequestFactory);
@@ -106,7 +106,7 @@ public class BearerTokenAuthenticator implements Authenticator {
 	private String handleResponse(String result, RestApiServiceCall restApiServiceCall) throws IOException {
 
 		Optional<String> queryOpt = Optional.ofNullable(restApiServiceCall.getResponseQuery())
-				.filter(responseQuery -> responseQuery.isSetQueryType()
+				.filter(responseQuery -> responseQuery.getQueryType() != null
 						&& responseQuery.getQueryType() == ResponseQueryType.JMES_PATH_EXPRESSION)
 				.map(ResponseQuery::getQuery);
 

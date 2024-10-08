@@ -120,8 +120,8 @@ public class IntrospectiveDeviceTester {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
-        GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU();
-        mbRTU.initTrspService("COM3", 19200);
+        GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU("COM3", 19200);
+        mbRTU.connect();
         return new Tuple3<>(devDesc, new SGrModbusDevice(devDesc, mbRTU), null);
     }
 

@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.common.impl;
 
+import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.ns.v0.ConfigurationList;
 import com.smartgridready.ns.v0.ConfigurationListElement;
 import com.smartgridready.ns.v0.DataDirectionProduct;
@@ -8,20 +9,17 @@ import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
 import com.smartgridready.ns.v0.Language;
-import com.smartgridready.ns.v0.V0Factory;
 import com.smartgridready.ns.v0.GenericAttributeListProduct;
 
 import com.smartgridready.communicator.common.api.GenDeviceApi;
 import com.smartgridready.communicator.common.api.dto.ConfigurationValue;
 import com.smartgridready.communicator.common.api.dto.DataPoint;
-import com.smartgridready.communicator.common.api.dto.DataType;
 import com.smartgridready.communicator.common.api.dto.DeviceInfo;
 import com.smartgridready.communicator.common.api.dto.FunctionalProfile;
 import com.smartgridready.communicator.common.api.dto.GenericAttribute;
 import com.smartgridready.communicator.common.api.dto.OperationEnvironment;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.driver.api.common.GenDriverException;
-import com.smartgridready.utils.SGrGDPTypeToNameMapper;
 
 import java.util.*;
 import java.util.function.BiPredicate;
@@ -84,11 +82,11 @@ public abstract class SGrDeviceBase<
 
         DataPointDescription dp = dataPoint.getDataPoint();
 
-        if (dp.isSetMaximumValue()) {
+        if (dp.getMaximumValue() != null) {
             checkOutOfRange(values, dp.getMaximumValue(), Comparator.MAX);
         }
 
-        if (dp.isSetMinimumValue()) {
+        if (dp.getMinimumValue() != null) {
             checkOutOfRange(values, dp.getMinimumValue(), Comparator.MIN);
         }
     }
@@ -150,7 +148,7 @@ public abstract class SGrDeviceBase<
     public List<ConfigurationValue> getDeviceConfigurationInfo() {
         return Optional.ofNullable(device.getConfigurationList())
                 .map(ConfigurationList::getConfigurationListElement).orElseGet(()
-                        -> V0Factory.eINSTANCE.createConfigurationList().getConfigurationListElement())
+                        -> new ConfigurationList().getConfigurationListElement())
                 .stream()
                 .map(this::mapToConfigurationValue).collect(Collectors.toList());
     }
@@ -162,9 +160,8 @@ public abstract class SGrDeviceBase<
 
         return new ConfigurationValue(
                 configurationListElement.getName(),
-                SGrGDPTypeToNameMapper.getGenericNamesOfValuesSet(configurationListElement.getDataType()).stream().filter(Objects::nonNull).findFirst().orElse("UNDEFINED"),
+                DataType.getGenDataTypeName(configurationListElement.getDataType()),
                 descriptions);
-
     }
 
     @Override
@@ -202,8 +199,7 @@ public abstract class SGrDeviceBase<
     }
 
     @Override
-    public List<DataPoint
-            > getDataPoints(String functionalProfileName) throws GenDriverException {
+    public List<DataPoint> getDataPoints(String functionalProfileName) throws GenDriverException {
 
         var functionalProfile = findProfile(functionalProfileName)
                 .orElseThrow(() -> new GenDriverException("Functional profile with name='" + functionalProfileName + "' not found"));
@@ -235,12 +231,12 @@ public abstract class SGrDeviceBase<
         return new DataPoint(
                 dataPointName,
                 functionalProfileName,
-                SGrGDPTypeToNameMapper.mapToDataTypeDto(dataPoint.getDataType()).stream().findFirst().orElse(new DataType("UNKNOWN", List.of())),
+                DataType.toDataType(dataPoint.getDataType()).orElse(DataType.UNKNOWN),
                 dataPoint.getUnit() != null ? dataPoint.getUnit() : null,
                 dataPoint.getDataDirection() != null ? dataPoint.getDataDirection() : null,
-                dataPoint.isSetMinimumValue() ? dataPoint.getMinimumValue() : null,
-                dataPoint.isSetMaximumValue() ? dataPoint.getMaximumValue() : null,
-                dataPoint.isSetArrayLength() ? dataPoint.getArrayLength() : null,
+                dataPoint.getMinimumValue() != null ? dataPoint.getMinimumValue() : null,
+                dataPoint.getMaximumValue() != null ? dataPoint.getMaximumValue() : null,
+                dataPoint.getArrayLength() != null ? dataPoint.getArrayLength() : null,
                 genericAttributes.orElse(List.of()),
                 this );
     }
