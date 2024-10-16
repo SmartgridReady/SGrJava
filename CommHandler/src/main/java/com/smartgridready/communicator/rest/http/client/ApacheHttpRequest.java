@@ -18,12 +18,13 @@ import org.apache.hc.core5.http.message.BasicNameValuePair;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ApacheHttpRequest implements GenHttpRequest {
 
@@ -64,11 +65,13 @@ public class ApacheHttpRequest implements GenHttpRequest {
         ContentType requestContentType = prepareHttpHeaders(httpReq);
 
         if (!formParams.isEmpty()) {
-            final List<NameValuePair> nameValuePairList = new ArrayList<>();
-            formParams.forEach((key, value) -> nameValuePairList.add(new BasicNameValuePair(key, value)));
-            httpReq.body(new UrlEncodedFormEntity(nameValuePairList));
+            final List<NameValuePair> nameValuePairList = formParams
+                .entrySet()
+                .stream()
+                .map(e -> new BasicNameValuePair(e.getKey(), e.getValue()))
+                .collect(Collectors.toList());
+            httpReq.body(new UrlEncodedFormEntity(nameValuePairList, StandardCharsets.UTF_8));
         } else if (body != null) {
-
             Function31<Request, String, ContentType, Request> bodyEncodeFunct = BODY_ENCODE_MAP.get(requestContentType.getMimeType());
             if (bodyEncodeFunct == null) {
                 throw new IOException(String.format("Cannot encode request body of content type '%s'", requestContentType.getMimeType()));

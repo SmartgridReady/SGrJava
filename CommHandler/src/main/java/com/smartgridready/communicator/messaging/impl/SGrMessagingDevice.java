@@ -180,7 +180,7 @@ public class SGrMessagingDevice extends SGrDeviceBase<
                 .orElseThrow(() -> new IllegalArgumentException("W and RW data-points need an outMessageTemplate to send the read command within EI-XML"));
 
         // noinspection RegExpRedundantEscape
-        outMessageTemplate = outMessageTemplate.replace("[[value]]", value.getString());
+        outMessageTemplate = outMessageTemplate.replace("{{value}}", value.getString());
 
         messagingClient.sendSync(outMessageTopic, Message.of(outMessageTemplate));
     }

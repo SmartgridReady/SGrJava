@@ -63,11 +63,12 @@ public class RestServiceClient {
 	}
 
 	public void addHeader(String key, String value) {
-
-		HeaderEntry headerEntry = new HeaderEntry();
-		headerEntry.setHeaderName(key);
-		headerEntry.setValue(value);
-		restServiceCall.getRequestHeader().getHeader().add(headerEntry);
+		if (value != null) {
+			HeaderEntry headerEntry = new HeaderEntry();
+			headerEntry.setHeaderName(key);
+			headerEntry.setValue(value);
+			restServiceCall.getRequestHeader().getHeader().add(headerEntry);
+		}
 	}
 
 	public String getBaseUri() {
