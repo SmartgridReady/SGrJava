@@ -168,9 +168,11 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	}	
 
 	private String handleServiceCall(RestServiceClient serviceClient, boolean tryTokenRenewal) throws IOException, RestApiServiceCallException, RestApiResponseParseException {
-		
-		serviceClient.addHeader(HttpHeaders.AUTHORIZATION,
-				httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, httpRequestFactory));
+
+		if (httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, httpRequestFactory) != null) {
+			serviceClient.addHeader(HttpHeaders.AUTHORIZATION,
+					httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, httpRequestFactory));
+		}
 
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Calling REST service: {} - {}", 

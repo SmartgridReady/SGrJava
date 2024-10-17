@@ -3,6 +3,8 @@ package com.smartgridready.communicator.common.helper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.smartgridready.ns.v0.JMESPathMapping;
 import com.smartgridready.ns.v0.JMESPathMappingRecord;
 import com.smartgridready.communicator.common.api.values.StringValue;
@@ -43,6 +45,15 @@ public class JsonHelper {
         try {
             JsonNode jsonNode = mapper.readTree(jsonResp);
             JsonNode res = expression.search(jsonNode);
+
+            // complex nodes: return the result as JSON string
+            if (res instanceof ObjectNode) {
+                return StringValue.of(res.toString());
+            }
+            if (res instanceof ArrayNode) {
+                return StringValue.of(res.toString());
+            }
+
             return StringValue.of(res.asText());
         } catch (IOException e) {
             throw new GenDriverException("Failed to parse JSON response", e);
