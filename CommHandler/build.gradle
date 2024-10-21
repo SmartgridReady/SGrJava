@@ -17,9 +17,15 @@ repositories {
 
     maven {
         url "https://nexus.library.smartgridready.ch/repository/maven-releases/"
+        mavenContent {
+            releasesOnly()
+        }
     }
     maven {
         url "https://nexus.library.smartgridready.ch/repository/maven-snapshots/"
+        mavenContent {
+            snapshotsOnly()
+        }
     }
 }
 
@@ -51,20 +57,27 @@ test {
     useJUnitPlatform() // needed to run JUnit 5 test with gradle
 }
 
-// allow snapshot dependencies when explicitly requested, use release versions by default
+// use release versions by default (no suffix)
 // spec. release date
 def sgr_spec_suffix = '_2024-10-08'
 def sgr_driver_suffix = ''
-def sgr_modbus_suffix = ''
+def easymodbus_suffix = ''
 
-if (project.hasProperty("sgr-spec-dev")) {
-    sgr_spec_suffix = '-SNAPSHOT'
-}
-if (project.hasProperty("sgr-driver-dev")) {
-    sgr_driver_suffix = '-SNAPSHOT'
-}
-if (project.hasProperty("sgr-modbus-dev")) {
-    sgr_modbus_suffix = '-SNAPSHOT'
+// use snapshots by setting property on commandline, e.g. -Psnapshots=sgr-specification,sgr-driver-api
+if (project.hasProperty("snapshots")) {
+    def snapList = project.getProperty("snapshots").split(',')
+    if (snapList.contains("sgr-specification")) {
+        println "using snapshots of sgr-specification"
+        sgr_spec_suffix = '-SNAPSHOT'
+    }
+    if (snapList.contains("sgr-driver-api")) {
+        println "using snapshots of sgr-driver-api"
+        sgr_driver_suffix = '-SNAPSHOT'
+    }
+    if (snapList.contains("easymodbus")) {
+        println "using snapshots of easymodbus"
+        easymodbus_suffix = '-SNAPSHOT'
+    }
 }
 
 
@@ -73,7 +86,7 @@ dependencies {
     implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '4.0.5'
 
     api group: 'com.smartgridready', name: 'sgr-driver-api', version: "2.0.0${sgr_driver_suffix}"
-    implementation group: 'com.smartgridready', name: 'easymodbus', version: "2.0.0${sgr_modbus_suffix}"
+    implementation group: 'com.smartgridready', name: 'easymodbus', version: "2.0.0${easymodbus_suffix}"
     implementation group: 'org.apache.httpcomponents.client5', name: 'httpclient5', version: '5.1.3'
     implementation group: 'org.apache.httpcomponents.client5', name: 'httpclient5-fluent', version: '5.1.3'
     implementation group: 'com.hivemq', name: 'hivemq-mqtt-client', version: '1.3.3'
