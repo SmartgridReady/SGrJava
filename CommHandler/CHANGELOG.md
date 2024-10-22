@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - REST: Form parameters are encoded with UTF-8.
 - Messaging: Outbound messages correctly replace `{{value}}` placeholder.
 
+### Changed
+
+- uses `java-library` plugin in build
+- added build parameter to use snapshots of SGr dependencies.
+- set libraries as `api` dependencies, when they are exposed in interfaces.
+
 
 ## [2.0.0] - 2024-10-08
 
