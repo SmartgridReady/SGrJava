@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- CI build of driver API
+
+
+## [2.0.1] - 2024-10-24
+
+### Fixed
+
 - REST: Calls do not add headers with no value.
 - REST: Form parameters are encoded with UTF-8.
 - Messaging: Outbound messages correctly replace `{{value}}` placeholder.
