@@ -62,34 +62,4 @@ public interface GenDeviceApi4Modbus extends GenDeviceApi {
      */
     void setVal(String profileName, String dataPointName, Value value)
             throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
-
-
-    /**
-     * Read an array of numeric or string values from the modbus device. The values are converted to their
-     * generic datapoint representation as defined within the external interface XML (see {@link Value}).
-     *
-     * @param profileName The name of the functional profile.
-     * @param dataPointName The name of the datapoint.
-     * @return The values in their {@link Value} representation.
-     * @throws GenDriverException If a general exception occurred.
-     * @throws GenDriverSocketException In case of communication errors with the modbus device.
-     * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
-     */
-    Value[] getValArr(String profileName, String dataPointName)
-            throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
-
-    /**
-     * Write an array of value to the modbus device. The values are converted from generic Value
-     * representation to the modbus format as defined within the external interface XML for the given
-     * datapoint.
-     *
-     * @param profileName The name of the functional profile.
-     * @param dataPointName The name of the datapoint.
-     * @param values The values in their {@link Value} representation.
-     * @throws GenDriverException If a general exception occurred.
-     * @throws GenDriverSocketException In case of communication errors with the modbus device.
-     * @throws GenDriverModbusException If the modbus command could not be interpreted/executed on the device.
-     */
-    void setValArr(String profileName, String dataPointName, Value[] values)
-            throws GenDriverException, GenDriverSocketException, GenDriverModbusException;
 }

@@ -28,6 +28,8 @@ public abstract class Value  {
     public abstract void absValue();
     public abstract void roundToInt();
 
+    public abstract Value[] asArray();
+
     public int[] toModbusRegister(ModbusDataType modbusDataType) {
 
         if (modbusDataType.getFloat64() != null) {

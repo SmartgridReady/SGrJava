@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.common.impl;
 
+import com.smartgridready.communicator.common.api.values.ArrayValue;
 import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.driver.api.http.GenHttpRequest;
@@ -311,13 +312,13 @@ class SGrDeviceBaseTest {
         assertEquals(3, dataPoint.getArrayLen());
 
         // Check read value
-        var values = dataPoint.getValArray();
+        var values = dataPoint.getVal().asArray();
         for (int i=0; i<3; i++) {
             assertEquals(String.format("%.4f", voltage), String.format("%.4f", values[i].getFloat32()));
         }
 
         // Check write value
-        dataPoint.setValArray(values);
+        dataPoint.setVal(ArrayValue.of(values));
 
         verify(genDriverAPI4Modbus).WriteMultipleRegisters(intCaptor1.capture(), intCaptor2.capture());
         assertEquals(20482, intCaptor1.getValue());   // Address

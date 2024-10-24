@@ -13,6 +13,11 @@ public class Int16UValue extends NumberValue<Integer> {
     }
 
     @Override
+    public Int16UValue[] asArray() {
+        return new Int16UValue[]{this};
+    }
+
+    @Override
     public void absValue() {
         value = Math.abs(value);
     }

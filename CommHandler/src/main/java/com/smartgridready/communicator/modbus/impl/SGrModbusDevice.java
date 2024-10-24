@@ -21,6 +21,7 @@ check for "EI-Modbus" and "Generic" directories in our Namespace http://www.smar
 */
 package com.smartgridready.communicator.modbus.impl;
 
+import com.smartgridready.communicator.common.api.values.ArrayValue;
 import com.smartgridready.ns.v0.BitOrder;
 import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.ns.v0.DeviceFrame;
@@ -175,38 +176,20 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	}
 
 	// Read a single value
-	private Value getVal(
-			ModbusDataPoint aDataPoint) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+	private Value getVal(ModbusDataPoint aDataPoint)
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		
 		if (aDataPoint.getBlockCacheIdentification() != null) {
 			return getBlockVal(aDataPoint);
 		}
 
-		// Use array length and use first element.
-		return getValArr(aDataPoint, 1)[0];
-	}
-
-	@Override
-	public Value[] getValArr(String sProfileName, String sDataPointName)
-			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
-
-		Optional<ModbusFunctionalProfile> profile = findProfile(sProfileName);
-		
-		if (profile.isPresent()) {
-			Optional<ModbusDataPoint> dataPoint = findDataPointForProfile(profile.get(), sDataPointName);
-			if (dataPoint.isPresent()) {
-				
-				if (dataPoint.get().getDataPoint().getArrayLength() == null) {
-					throw new GenDriverException(String.format("getValArrByGDPType(): Datapoint %s-%s is not an array.", sProfileName, sDataPointName ));
-				}
-									
-				int arrLen = dataPoint.get().getDataPoint().getArrayLength();
-				return getValArr(dataPoint.get(), arrLen);
-			}
+		if (aDataPoint.getDataPoint().getArrayLength() != null) {
+			int arrLen = aDataPoint.getDataPoint().getArrayLength();
+			return ArrayValue.of(getValArr(aDataPoint, arrLen));
+		} else {
+			return getValArr(aDataPoint, 1)[0];
 		}
-		return new Value[] {};
-	}			
-	
+	}
 	
 	private Value getBlockVal(ModbusDataPoint aDataPoint)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
@@ -461,14 +444,12 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 
 		ModbusDataPoint dataPoint = findDatapoint(sProfileName, sDataPointName);
-		setValArr(dataPoint, new Value[]{value});
-	}
 
-	@Override
-	public void setValArr(String profileName, String dataPointName, Value[] values)
-			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
-		ModbusDataPoint dataPoint = findDatapoint(profileName, dataPointName);
-		setValArr(dataPoint, values);
+		if (value instanceof ArrayValue) {
+			validateArrayLenght(dataPoint, value);
+		}
+
+		setValArr(dataPoint, value.asArray());
 	}
 
 	private void setValArr(
@@ -692,6 +673,19 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	private void checkConnection() throws GenDriverModbusException {
 		if ((drvRegistry != null) && (drv4ModbusGateway == null)) {
 			throw new GenDriverModbusException("Modbus transport not connected");
+		}
+	}
+
+	private void validateArrayLenght(ModbusDataPoint dataPoint, Value value) throws GenDriverException {
+		if (dataPoint.getDataPoint().getArrayLength() == null) {
+			throw new GenDriverException("Cannot write array to modbus. Modbus data point is not defined as array");
+		}
+
+		int modbusArrayLen = dataPoint.getDataPoint().getArrayLength();
+		if (dataPoint.getDataPoint().getArrayLength() < value.asArray().length) {
+			throw new GenDriverException("Cannot write array value to modbus. " +
+					"Modbus array length=" + modbusArrayLen +
+					", value array length=" + value.asArray().length);
 		}
 	}
 }

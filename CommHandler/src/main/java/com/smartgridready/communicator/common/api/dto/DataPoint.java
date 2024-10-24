@@ -4,7 +4,6 @@ import com.smartgridready.communicator.common.api.GenDeviceApi;
 import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.messaging.api.GenDeviceApi4Messaging;
-import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
 import com.smartgridready.communicator.rest.api.GenDeviceApi4Rest;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.communicator.rest.exception.RestApiResponseParseException;
@@ -144,38 +143,6 @@ public class DataPoint {
      */
     public void setVal(Value value) throws GenDriverException, RestApiResponseParseException, GenDriverModbusException, RestApiServiceCallException, GenDriverSocketException, IOException {
         genDeviceApi.setVal(functionalProfileName, name, value);
-    }
-
-    /**
-     * Reads an array of values from the datapoint.
-     * This operation is supported for modbus devices only.
-     * @return The value array returned from the device.
-     * @throws GenDriverException On a generic error
-     * @throws GenDriverModbusException If the modbus command could not be processed
-     * @throws GenDriverSocketException It the COM port socket unexpectedly closed
-     */
-    public Value[] getValArray() throws GenDriverException, GenDriverModbusException, GenDriverSocketException {
-        if (genDeviceApi instanceof GenDeviceApi4Modbus) {
-            return ((GenDeviceApi4Modbus) genDeviceApi).getValArr(functionalProfileName, name);
-        } else {
-            throw new UnsupportedOperationException("Method getValArray() is supported for modbus devices only.");
-        }
-    }
-
-    /**
-     * Writes an array of values to the data point.
-     * This method is supported for modbus devices only.
-     * @param values The array of values.
-     * @throws GenDriverException On a generic error
-     * @throws GenDriverModbusException If the modbus command could not be processed
-     * @throws GenDriverSocketException It the COM port socket unexpectedly closed
-     */
-    public void setValArray(Value[] values) throws GenDriverException, GenDriverModbusException, GenDriverSocketException {
-        if (genDeviceApi instanceof GenDeviceApi4Modbus) {
-            ((GenDeviceApi4Modbus)genDeviceApi).setValArr(getFunctionalProfileName(), getName(), values);
-        } else {
-            throw new UnsupportedOperationException("Method setValArray() is supported for modbus devices only.");
-        }
     }
 
     /**

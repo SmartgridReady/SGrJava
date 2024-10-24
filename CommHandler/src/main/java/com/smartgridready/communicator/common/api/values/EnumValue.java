@@ -18,6 +18,11 @@ public class EnumValue extends Value {
         this.enumRecord = enumRecord;
     }
 
+    @Override
+    public EnumValue[] asArray() {
+        return new EnumValue[]{this};
+    }
+
 
     @Override
     public Int64Value enumToOrdinalValue(EnumMapProduct enumMapProduct) {

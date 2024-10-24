@@ -90,6 +90,11 @@ public class Int64UValue extends Value {
         throw new UnsupportedOperationException("Cannot convert from int64U value to a bitmap value.");
     }
 
+    @Override
+    public Int64UValue[] asArray() {
+        return new Int64UValue[]{this};
+    }
+
     public NumberValue<Double> scaleDown(int mul, int powOf10) {
         if (mul != 1 || powOf10 !=0) {
             BigInteger val = value.divide(BigInteger.valueOf(mul));

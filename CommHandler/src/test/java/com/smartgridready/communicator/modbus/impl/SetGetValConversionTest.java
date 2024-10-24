@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.modbus.impl;
 
+import com.smartgridready.communicator.common.api.values.ArrayValue;
 import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.ns.v0.BitOrder;
 import com.smartgridready.ns.v0.BitmapEntryProduct;
@@ -686,7 +687,10 @@ class SetGetValConversionTest {
                 deviceFrame,                              // model
                 genDriverAPI4Modbus);                     // mock
 
-        modbusDevice.setValArr("ActivePowerAC", "ActivePowerAC-ARRAY", expectedValues);
+
+        var values = ArrayValue.of(expectedValues);
+
+        modbusDevice.setVal("ActivePowerAC", "ActivePowerAC-ARRAY", values);
         verify(genDriverAPI4Modbus, atLeast(1)).WriteMultipleRegisters(anyInt(), intArrayCaptor.capture());
 
         if (!intArrayCaptor.getAllValues().isEmpty()) {
@@ -701,7 +705,7 @@ class SetGetValConversionTest {
             when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt())).thenReturn(modbusreg);
         }
 
-        Value[] res = modbusDevice.getValArr("ActivePowerAC", "ActivePowerAC-ARRAY");
+        Value[] res = modbusDevice.getVal("ActivePowerAC", "ActivePowerAC-ARRAY").asArray();
         LOG.info("Modbus read values: {}", Arrays.toString(res));
         assertArrayEquals(
                 Arrays.stream(expectedValues).map(Value::toString).toArray(),
@@ -803,6 +807,9 @@ class SetGetValConversionTest {
 
         Value resVal = modbusDevice.getVal("ActivePowerAC", "ActivePowerACL1");
         LOG.info("Modbus read value: {}", resVal);
+
+        // check whether single value is available as array too:
+        assertEquals(resVal, resVal.asArray()[0]);
 
         // We need to normalize the String values to compare, since the values can be mixed int/float typed.
         if (resVal instanceof StringValue || resVal instanceof BooleanValue) {
@@ -909,7 +916,9 @@ class SetGetValConversionTest {
         genDpDesc.setDataPointName(dpName);
         genDpDesc.setDataType(basicDP(genType));
         genDpDesc.setDataDirection(DataDirectionProduct.RW);
-        genDpDesc.setArrayLength(arrLen);
+        if (arrLen > 1) {
+            genDpDesc.setArrayLength(arrLen);
+        }
         return genDpDesc;
     }
 

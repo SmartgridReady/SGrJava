@@ -35,7 +35,7 @@ public class GetValArrayTester {
 				// set device address of devWagoMeter
 					
 				mbRTU.setUnitIdentifier((byte) 1);
-				Value[] voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
+				Value[] voltages = devWagoMeter.getVal("VoltageAC", "Voltage-L1-L2-L3").asArray();
 				
 				// Voltages as GDP type
 				LOG.info("WAGO Meter Voltages AC run 1: L1: {}V - L2 {}V - L3: {}V", 
@@ -44,14 +44,14 @@ public class GetValArrayTester {
 						voltages[2].getFloat32());
 				
 				
-				voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
+				voltages = devWagoMeter.getVal("VoltageAC", "Voltage-L1-L2-L3").asArray();
 				LOG.info("WAGO Meter Voltages AC run 2: L1: {}V - L2 {}V - L3: {}V", 
 						voltages[0].getFloat32(),
 						voltages[1].getFloat32(),
 						voltages[2].getFloat32());
 
 				Thread.sleep(1000);
-				voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
+				voltages = devWagoMeter.getVal("VoltageAC", "Voltage-L1-L2-L3").asArray();
 				LOG.info("WAGO Meter Voltages AC run 3: L1: {}V - L2 {}V - L3: {}V", 
 						voltages[0].getFloat32(),
 						voltages[1].getFloat32(),
@@ -59,7 +59,7 @@ public class GetValArrayTester {
 				
 				
 				// Voltages as String
-				voltages = devWagoMeter.getValArr("VoltageAC", "Voltage-L1-L2-L3");
+				voltages = devWagoMeter.getVal("VoltageAC", "Voltage-L1-L2-L3").asArray();
 				LOG.info("WAGO Meter Voltages AC run 4; L1: {}V - L2 {}V - L3: {}V",
 						voltages[0], voltages[1], voltages[2]);
 				
