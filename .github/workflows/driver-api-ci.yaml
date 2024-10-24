@@ -12,7 +12,7 @@ on:
   push:
     paths:
       - '.github/workflows/driver-api-ci.yaml'
-      - 'CommHandler/**'
+      - 'GenDriverAPI/**'
 
 jobs:
   build-job:
@@ -31,13 +31,13 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Build GenDriverAPI
+      - name: Build SGrJava GenDriverAPI
         working-directory: GenDriverAPI
         run: |
           chmod +x ./gradlew
           ./gradlew clean build --no-daemon
 
-      - name: Publish GenDriverAPI
+      - name: Publish SGrJava GenDriverAPI
         # publish after committing to master or creating tag driver-api-{version}
         if: success() && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/driver-api-'))
         working-directory: GenDriverAPI
