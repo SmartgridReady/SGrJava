@@ -11,6 +11,11 @@ public class Float64Value extends NumberValue<Double> {
     }
 
     @Override
+    public Float64Value[] asArray() {
+        return new Float64Value[]{this};
+    }
+
+    @Override
     public void absValue() {
         value = Math.abs(value);
     }

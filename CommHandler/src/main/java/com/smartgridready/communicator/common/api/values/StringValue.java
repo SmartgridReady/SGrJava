@@ -124,6 +124,11 @@ public class StringValue extends Value {
     }
 
     @Override
+    public StringValue[] asArray() {
+        return new StringValue[]{this};
+    }
+
+    @Override
     public void absValue() {
         double dVal = toDouble();
         value = String.valueOf(Math.abs(dVal));

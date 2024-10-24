@@ -12,6 +12,11 @@ public class Int8Value extends NumberValue<Byte> {
     }
 
     @Override
+    public Int8Value[] asArray() {
+        return new Int8Value[]{this};
+    }
+
+    @Override
     public void absValue() {
         value = (byte)Math.abs(value);
     }

@@ -190,6 +190,11 @@ public class BitmapValue extends Value {
     }
 
     @Override
+    public BitmapValue[] asArray() {
+        return new BitmapValue[]{this};
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this==o) return true;
 

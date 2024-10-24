@@ -6,7 +6,6 @@ public class Float32Value extends NumberValue<Float> {
         this.value = value;
     }
 
-
     @Override
     protected void setValue(double value) {
         checkFloat32(value);
@@ -27,5 +26,8 @@ public class Float32Value extends NumberValue<Float> {
         return new Float32Value(value);
     }
 
-
+    @Override
+    public Float32Value[] asArray() {
+        return new Float32Value[]{this};
+    }
 }

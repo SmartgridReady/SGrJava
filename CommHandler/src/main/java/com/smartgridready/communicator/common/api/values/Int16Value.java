@@ -13,6 +13,11 @@ public class Int16Value extends NumberValue<Short> {
     }
 
     @Override
+    public Int16Value[] asArray() {
+        return new Int16Value[]{this};
+    }
+
+    @Override
     public void absValue() {
         value = (short)Math.abs(value);
     }

@@ -12,6 +12,11 @@ public class Int64Value extends NumberValue<Long> {
     }
 
     @Override
+    public Int64Value[] asArray() {
+        return new Int64Value[]{this};
+    }
+
+    @Override
     public void absValue() {
         value = Math.abs(value);
     }

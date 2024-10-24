@@ -99,6 +99,11 @@ public class BooleanValue extends Value {
     }
 
     @Override
+    public BooleanValue[] asArray() {
+        return new BooleanValue[]{this};
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this==o) return true;
 

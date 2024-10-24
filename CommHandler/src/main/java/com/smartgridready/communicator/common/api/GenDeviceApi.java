@@ -48,7 +48,6 @@ public interface GenDeviceApi {
             GenDriverException, GenDriverSocketException, GenDriverModbusException,
             RestApiServiceCallException, RestApiResponseParseException, IOException;
 
-
     DeviceInfo getDeviceInfo() throws GenDriverException;
 
     List<ConfigurationValue> getDeviceConfigurationInfo();
