@@ -1,11 +1,13 @@
 package com.smartgridready.communicator.messaging.impl;
 
-import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClientFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
+import com.smartgridready.communicator.common.helper.DriverFactoryLoader;
 import com.smartgridready.driver.api.common.GenDriverException;
+import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
+
 import io.vavr.control.Either;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
@@ -368,7 +370,8 @@ class SGrMessagingDeviceTest {
                 deviceDescFile != null ? deviceDescFile.getPath() : null,
                 properties);
 
-        return new SGrMessagingDevice(deviceDesc, new HiveMqtt5MessagingClientFactory());
+        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        return new SGrMessagingDevice(deviceDesc, factory);
     }
 
 }

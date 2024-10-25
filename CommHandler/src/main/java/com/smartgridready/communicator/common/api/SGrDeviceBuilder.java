@@ -6,7 +6,6 @@ import java.util.Properties;
 import java.io.InputStream;
 import java.nio.file.Path;
 
-import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClientFactory;
 import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.InterfaceList;
@@ -51,7 +50,11 @@ public class SGrDeviceBuilder {
             // cannot use HTTP
         }
         this.modbusGatewayFactory = new SGrModbusGatewayFactory();
-        this.messagingClientFactory = new HiveMqtt5MessagingClientFactory();
+        try {
+            this.messagingClientFactory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        } catch (NoSuchElementException e) {
+            // cannot use MQTT
+        }
     }
 
     /**

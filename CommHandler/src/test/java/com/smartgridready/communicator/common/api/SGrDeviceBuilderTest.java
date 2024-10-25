@@ -1,6 +1,5 @@
 package com.smartgridready.communicator.common.api;
 
-import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClientFactory;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
@@ -208,7 +207,6 @@ public class SGrDeviceBuilderTest {
         GenDeviceApi device = new SGrDeviceBuilder()
                 .properties(properties)
                 .eid(loadResourceAsStream("SGr_XX_HiveMQ_MQTT_Cloud.xml"))
-                .useMessagingClientFactory(new HiveMqtt5MessagingClientFactory())
                 .build();
 
         assertInstanceOf(SGrMessagingDevice.class, device);

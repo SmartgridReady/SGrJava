@@ -1,9 +1,11 @@
 package com.smartgridready.communicator.messaging.client;
 
+import com.smartgridready.communicator.common.helper.DriverFactoryLoader;
 import com.smartgridready.communicator.messaging.mapper.MessageFilterMapper;
 import com.smartgridready.communicator.messaging.mapper.MessagingInterfaceDescMapper;
 import com.smartgridready.driver.api.messaging.model.Message;
 import com.smartgridready.driver.api.messaging.GenMessagingClient;
+import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
 import com.smartgridready.ns.v0.JMESPathFilterType;
 import com.smartgridready.ns.v0.MessageBrokerAuthentication;
 import com.smartgridready.ns.v0.MessageBrokerAuthenticationBasic;
@@ -11,6 +13,7 @@ import com.smartgridready.ns.v0.MessageBrokerList;
 import com.smartgridready.ns.v0.MessageBrokerListElement;
 import com.smartgridready.ns.v0.MessageFilter;
 import com.smartgridready.ns.v0.MessagingInterfaceDescription;
+import com.smartgridready.ns.v0.MessagingPlatformType;
 import com.smartgridready.ns.v0.XPathFilterType;
 import io.vavr.control.Either;
 import org.awaitility.Awaitility;
@@ -31,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Mqtt5GenMessagingClientTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(HiveMqtt5MessagingClient.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Mqtt5GenMessagingClientTest.class);
 
     private static final String TEST_TOPIC = "sensors/temperature";
 
@@ -52,7 +55,8 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendReceiveSync() throws Exception {
 
-        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
 
             // Set up a thread with a blocking receiver for the message.
             Either<Throwable, Message> result = client.readSync(
@@ -69,29 +73,31 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendReceiveSyncWithTopicFilter() throws Exception{
 
-       try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
 
-           CompletableFuture<Either<Throwable, Message>> asyncMsgSender1 = CompletableFuture.supplyAsync(() ->
-                   client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC, null, 2000));
+            CompletableFuture<Either<Throwable, Message>> asyncMsgSender1 = CompletableFuture.supplyAsync(() ->
+                    client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC, null, 2000));
 
-           CompletableFuture<Either<Throwable, Message>> asyncMsgSender2 = CompletableFuture.supplyAsync(() ->
-                   client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC_2, null, 2000));
+            CompletableFuture<Either<Throwable, Message>> asyncMsgSender2 = CompletableFuture.supplyAsync(() ->
+                    client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC_2, null, 2000));
 
-           // check futureTopic2 first. Should not receive message from topic one
-           Either<Throwable, Message> resultTopic2 = asyncMsgSender2.join();
-           assertTrue(resultTopic2.isLeft());
+            // check futureTopic2 first. Should not receive message from topic one
+            Either<Throwable, Message> resultTopic2 = asyncMsgSender2.join();
+            assertTrue(resultTopic2.isLeft());
 
-           Either<Throwable, Message> resultTopic1 = asyncMsgSender1.join();
-           assertTrue(resultTopic1.isRight());
-           assertEquals("50K", resultTopic1.get().getPayload());
-       }
+            Either<Throwable, Message> resultTopic1 = asyncMsgSender1.join();
+            assertTrue(resultTopic1.isRight());
+            assertEquals("50K", resultTopic1.get().getPayload());
+        }
     }
 
     @Disabled("This test has timing issues and is not reliable yet")
     @Test
     void sendReceiveSyncWithMessageFilter() throws Exception {
 
-        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
 
             MessageFilter messageFilter1 = createMessageFilter("1");
             MessageFilter messageFilter2 = createMessageFilter("2");
@@ -130,7 +136,8 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendAndReceiveSyncTimeout() throws Exception {
 
-        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
 
             Either<Throwable, Message> future = client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC_2, null, 1000);
             // no message sent to topic
@@ -141,7 +148,8 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendAndReceiveSyncUnsupportedFilter() throws Exception {
 
-        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
             MessageFilter messageFilter = new MessageFilter();
             XPathFilterType xPathFilter = new XPathFilterType();
             messageFilter.setXpapathFilter(xPathFilter);
@@ -160,7 +168,8 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendReceiveAsynch() throws Exception {
 
-        try (HiveMqtt5MessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
 
             CompletableFuture<Either<Throwable, Message>> future = new CompletableFuture<>();
             client.subscribe(TEST_TOPIC, null, future::complete);
@@ -180,7 +189,8 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendReceiveAsynchWithMessageFilter() throws Exception {
 
-        try (GenMessagingClient client = new HiveMqtt5MessagingClient(createMessagingInterfaceDescription())) {
+        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
 
             MessageFilter messageFilter1 = createMessageFilter("1");
             MessageFilter messageFilter2 = createMessageFilter("2");
@@ -226,6 +236,7 @@ class Mqtt5GenMessagingClientTest {
     private com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription createMessagingInterfaceDescription() {
 
         var interfaceDesc = new MessagingInterfaceDescription();
+        interfaceDesc.setPlatform(MessagingPlatformType.MQTT_5);
 
         var messageBrokerList = new MessageBrokerList();
         var messageBrokerListElem = new MessageBrokerListElement();
