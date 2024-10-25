@@ -48,7 +48,7 @@ public class FunctionalProfile {
         return dataPoints;
     }
 
-    public List<DataPointValue> readData() {
+    public List<DataPointValue> getValues() {
 
         final List<DataPointValue> valueRecords = new ArrayList<>();
 
@@ -61,4 +61,8 @@ public class FunctionalProfile {
         return valueRecords;
     }
 
+    @Deprecated
+    public List<DataPointValue> readData() {
+        return getValues();
+    }
 }

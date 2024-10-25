@@ -299,6 +299,11 @@ public class SGrMessagingDevice extends SGrDeviceBase<
         }
 	}
 
+    @Override
+    public boolean canSubscribe() {
+        return true;
+    }
+
     private MessagingInterface getMessagingInterface() {
         return Optional.ofNullable(device.getInterfaceList().getMessagingInterface()).orElseThrow(() -> new IllegalArgumentException("No messaging interface defined in EI-XML"));
     }
