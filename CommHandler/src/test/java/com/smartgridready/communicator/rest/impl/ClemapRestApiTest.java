@@ -3,11 +3,13 @@ package com.smartgridready.communicator.rest.impl;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
+import com.smartgridready.communicator.common.helper.DriverFactoryLoader;
 import com.smartgridready.communicator.rest.api.GenDeviceApi4Rest;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.communicator.rest.exception.RestApiResponseParseException;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
-import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -50,7 +52,8 @@ class ClemapRestApiTest {
 		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml", props);
  
 		try {
-			GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheHttpRequestFactory());
+			GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+			GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, factory);
 			clemapMonitor.connect();
 			LOG.info("ACtot: {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACtot"));
 			LOG.info("ACL1 : {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL1"));
@@ -75,9 +78,9 @@ class ClemapRestApiTest {
 		props.put("baseUri", "https://b1.cloud.clemap.com:3032");
 
 		DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
-		
 		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
-		SGrRestApiDevice clemapConfigurator =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheHttpRequestFactory());
+		GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+		SGrRestApiDevice clemapConfigurator =  new SGrRestApiDevice(clemapDeviceDesc, factory);
 		
 		try {
 			clemapConfigurator.connect();

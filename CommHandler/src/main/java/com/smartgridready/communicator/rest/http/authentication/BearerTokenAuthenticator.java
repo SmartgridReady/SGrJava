@@ -28,7 +28,7 @@ import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.ns.v0.RestApiInterfaceDescription;
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import com.smartgridready.communicator.rest.exception.RestApiServiceCallException;
-import com.smartgridready.driver.api.http.GenHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.communicator.rest.http.client.RestServiceClientUtils;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.JmesPath;
@@ -46,11 +46,11 @@ public class BearerTokenAuthenticator implements Authenticator {
 	private String bearerToken;
 	
 	@Override
-	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory)
+	public String getAuthorizationHeaderValue(DeviceFrame deviceDescription, GenHttpClientFactory httpClientFactory)
 			throws IOException, RestApiServiceCallException{
 		
 		if (bearerToken == null) {
-			authenticate(deviceDescription, httpRequestFactory);
+			authenticate(deviceDescription, httpClientFactory);
 		}
 		return "Bearer " + bearerToken;
 	}	
@@ -61,19 +61,19 @@ public class BearerTokenAuthenticator implements Authenticator {
 	}
 	
 	@Override
-	public void renewToken(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory) throws IOException, RestApiServiceCallException {
+	public void renewToken(DeviceFrame deviceDescription, GenHttpClientFactory httpClientFactory) throws IOException, RestApiServiceCallException {
 		bearerToken = null;
-		authenticate(deviceDescription, httpRequestFactory);
+		authenticate(deviceDescription, httpClientFactory);
 	}
 	
-	private void authenticate(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory) throws IOException, RestApiServiceCallException {
+	private void authenticate(DeviceFrame deviceDescription, GenHttpClientFactory httpClientFactory) throws IOException, RestApiServiceCallException {
 		
 		RestApiInterfaceDescription ifDescription =
 				deviceDescription.getInterfaceList().getRestApiInterface().getRestApiInterfaceDescription();
 
 		String host = ifDescription.getRestApiUri();
 
-		RestServiceClient restServiceClient = RestServiceClient.of(host, ifDescription.getRestApiBearer().getRestApiServiceCall(), httpRequestFactory);
+		RestServiceClient restServiceClient = RestServiceClient.of(host, ifDescription.getRestApiBearer().getRestApiServiceCall(), httpClientFactory);
 
 		requestBearerToken(restServiceClient);
 	}

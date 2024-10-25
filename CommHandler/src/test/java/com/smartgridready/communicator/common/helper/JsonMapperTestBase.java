@@ -3,8 +3,9 @@ package com.smartgridready.communicator.common.helper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
-import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
+
 import io.vavr.Tuple3;
 import org.apache.commons.io.IOUtils;
 
@@ -38,7 +39,8 @@ public class JsonMapperTestBase {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
 
-        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheHttpRequestFactory());
+        GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
         return new Tuple3<>(devDesc, restApiDevice, null);
     }
 

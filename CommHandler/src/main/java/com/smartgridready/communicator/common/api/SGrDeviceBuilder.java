@@ -1,5 +1,6 @@
 package com.smartgridready.communicator.common.api;
 
+import java.util.NoSuchElementException;
 import java.util.Properties;
 
 import java.io.InputStream;
@@ -13,6 +14,7 @@ import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
 import com.smartgridready.communicator.common.api.dto.InterfaceType;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
+import com.smartgridready.communicator.common.helper.DriverFactoryLoader;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
@@ -20,8 +22,7 @@ import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.impl.SGrModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
-import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
-import com.smartgridready.driver.api.http.GenHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
 
 /**
@@ -32,7 +33,7 @@ public class SGrDeviceBuilder {
     private EidSource eidSource;
     private Properties properties;
 
-    private GenHttpRequestFactory httpClientFactory;
+    private GenHttpClientFactory httpClientFactory;
     private ModbusGatewayFactory modbusGatewayFactory;
     private GenMessagingClientFactory messagingClientFactory;
 
@@ -44,7 +45,11 @@ public class SGrDeviceBuilder {
         this.modbusGatewayRegistry = null;
 
         // default implementations
-        this.httpClientFactory = new ApacheHttpRequestFactory();
+        try {
+            this.httpClientFactory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+        } catch (NoSuchElementException e) {
+            // cannot use HTTP
+        }
         this.modbusGatewayFactory = new SGrModbusGatewayFactory();
         this.messagingClientFactory = new HiveMqtt5MessagingClientFactory();
     }
@@ -84,7 +89,7 @@ public class SGrDeviceBuilder {
      * @param httpClientFactory an instance of a REST API service client factory
      * @return the same instance of the builder object
      */
-    public SGrDeviceBuilder useRestServiceClientFactory(GenHttpRequestFactory httpClientFactory) {
+    public SGrDeviceBuilder useRestServiceClientFactory(GenHttpClientFactory httpClientFactory) {
         this.httpClientFactory = httpClientFactory;
         return this;
     }
@@ -170,6 +175,9 @@ public class SGrDeviceBuilder {
                 return new SGrRestApiDevice(deviceFrame, httpClientFactory);
 
             case MESSAGING:
+                if (messagingClientFactory == null) {
+                    throw new GenDriverException("No messaging client factory defined");
+                }
                 return new SGrMessagingDevice(deviceFrame, messagingClientFactory);
 
             default:

@@ -4,8 +4,9 @@ import com.smartgridready.communicator.common.api.values.ArrayValue;
 import com.smartgridready.communicator.common.api.values.DataType;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.driver.api.http.GenHttpRequest;
-import com.smartgridready.driver.api.http.GenHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
+import com.smartgridready.driver.api.http.GenUriBuilder;
 import com.smartgridready.driver.api.http.HttpMethod;
 import com.smartgridready.ns.v0.DataDirectionProduct;
 import com.smartgridready.ns.v0.DataTypeProduct;
@@ -82,6 +83,8 @@ class SGrDeviceBaseTest {
             + "        ]\r\n"
             + "    }\r\n"
             + "}";
+    
+    private static final URI TEST_URI = URI.create("");
 
     private static final Value STRING_VALUE_1000 = StringValue.of("1000");
 
@@ -97,7 +100,10 @@ class SGrDeviceBaseTest {
     private GenHttpRequest httpRequest;
 
     @Mock
-    private GenHttpRequestFactory httpRequestFactory;
+    private GenUriBuilder uriBuilder;
+
+    @Mock
+    private GenHttpClientFactory httpClientFactory;
 
     private final ArgumentCaptor<Integer> intCaptor1 = ArgumentCaptor.forClass(Integer.class);
     private final ArgumentCaptor<int[]> intCaptor2 = ArgumentCaptor.forClass(int[].class);
@@ -328,7 +334,12 @@ class SGrDeviceBaseTest {
     @Test
     void readFromRestApiDataPoint() throws Exception {
 
-        when(httpRequestFactory.create()).thenReturn(httpRequest);
+        when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+        when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
 
         var device = createSGrRestApiDevice("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
         var dataPoint = device.getDataPoint("ActivePowerAC", "ActivePowerACtot");
@@ -348,7 +359,12 @@ class SGrDeviceBaseTest {
     @Test
     void writeToRestApiDataPoint() throws Exception {
 
-        when(httpRequestFactory.create()).thenReturn(httpRequest);
+        when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+        when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
 
         var device = createSGrRestApiDevice("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
         var dataPoint = device.getDataPoint("ActivePowerAC", "ActivePowerACtot");
@@ -499,7 +515,7 @@ class SGrDeviceBaseTest {
 
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
-        return new SGrRestApiDevice(devDesc, httpRequestFactory);
+        return new SGrRestApiDevice(devDesc, httpClientFactory);
 
     }
 

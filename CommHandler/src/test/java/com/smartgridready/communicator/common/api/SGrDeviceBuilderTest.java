@@ -3,8 +3,10 @@ package com.smartgridready.communicator.common.api;
 import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClientFactory;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.http.GenHttpRequest;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
-import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenUriBuilder;
+import com.smartgridready.driver.api.http.HttpStatus;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
@@ -15,7 +17,6 @@ import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
 import com.smartgridready.ns.v0.RestApiServiceCall;
-import org.apache.hc.core5.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -50,10 +51,13 @@ public class SGrDeviceBuilderTest {
     GenDriverAPI4Modbus modbusDriver;
 
     @Mock
-    ApacheHttpRequestFactory restServiceClientFactory;
+    GenHttpClientFactory restServiceClientFactory;
 
     @Mock
-    GenHttpRequest httpClient;
+    GenHttpRequest httpRequest;
+
+    @Mock
+    GenUriBuilder uriBuilder;
 
     @Test
     void buildRestApiDevice() throws Exception {
@@ -64,8 +68,9 @@ public class SGrDeviceBuilderTest {
         responseQery.setQuery("status");
         restServiceCall.setResponseQuery(responseQery);
 
-        when(restServiceClientFactory.create()).thenReturn(httpClient);
-        when(httpClient.execute()).thenReturn(GenHttpResponse.of("{ \"token\" : \"dummyToken\" }", HttpStatus.SC_OK, ""));
+        when(restServiceClientFactory.createHttpRequest()).thenReturn(httpRequest);
+        when(restServiceClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        when(httpRequest.execute()).thenReturn(GenHttpResponse.of("{ \"token\" : \"dummyToken\" }", HttpStatus.OK, ""));
 
         Properties properties = new Properties();
         properties.put("sensor_id", "123456");
@@ -79,7 +84,7 @@ public class SGrDeviceBuilderTest {
         assertInstanceOf(SGrRestApiDevice.class, device);
 
         device.connect();
-        verify(httpClient).execute();
+        verify(httpRequest).execute();
     }
 
     @Test

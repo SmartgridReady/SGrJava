@@ -1,7 +1,7 @@
 package com.smartgridready.communicator.rest.impl;
 
 import com.smartgridready.communicator.common.api.SGrDeviceBuilder;
-import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
+
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,6 @@ class TariffProvidersTest {
         properties.put("metering_code", "CH1018601234500000000000000011642");
 
         var device = new SGrDeviceBuilder()
-                .useRestServiceClientFactory(new ApacheHttpRequestFactory())
                 .eid(Path.of(XML_BASE_DIR + "SGr_05_mmmm_dddd_Dynamic_Tariffs_Swisspower_V0.0.1.xml"))
                 .properties(properties)
                 .build();
@@ -50,7 +49,6 @@ class TariffProvidersTest {
         properties.put("end_timestamp", "2024-01-02T00:00:00+02:00");
 
         var device = new SGrDeviceBuilder()
-                .useRestServiceClientFactory(new ApacheHttpRequestFactory())
                 .eid(Path.of(XML_BASE_DIR + "SGr_05_mmmm_dddd_Dynamic_Tariffs_GroupeE_V0.0.1.xml"))
                 .properties(properties)
                 .build();

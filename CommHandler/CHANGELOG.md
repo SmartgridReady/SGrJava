@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - CI build of driver API
 
+### Changed
+
+- decoupled REST driver from CommHandler, removed Apache dependencies.
+
 
 ## [2.0.1] - 2024-10-24
 
