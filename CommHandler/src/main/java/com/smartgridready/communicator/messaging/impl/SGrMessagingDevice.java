@@ -33,6 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import java.util.Properties;
 
 public class SGrMessagingDevice extends SGrDeviceBase<
         DeviceFrame,
@@ -83,6 +84,12 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     @Override
     public Value getVal(String profileName, String dataPointName) throws GenDriverException {
         return getVal(profileName, dataPointName, SYNC_READ_TIMEOUT_MSEC);
+    }
+
+    @Override
+    public Value getVal(String profileName, String dataPointName, Properties parameters) throws GenDriverException {
+        // parameters not supported, just return getVal()
+        return getVal(profileName, dataPointName);
     }
 
     @Override
@@ -298,6 +305,11 @@ public class SGrMessagingDevice extends SGrDeviceBase<
             messagingClient = null;
         }
 	}
+
+    @Override
+    public boolean isConnected() {
+        return (messagingClient != null);
+    }
 
     @Override
     public boolean canSubscribe() {
