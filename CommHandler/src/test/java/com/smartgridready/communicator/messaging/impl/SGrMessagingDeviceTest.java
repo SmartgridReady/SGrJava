@@ -7,6 +7,7 @@ import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.communicator.common.helper.DriverFactoryLoader;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
+import com.smartgridready.driver.api.messaging.model.MessagingPlatformType;
 
 import io.vavr.control.Either;
 import org.awaitility.Awaitility;
@@ -370,7 +371,7 @@ class SGrMessagingDeviceTest {
                 deviceDescFile != null ? deviceDescFile.getPath() : null,
                 properties);
 
-        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
+        GenMessagingClientFactory factory = DriverFactoryLoader.getMessagingDriver(MessagingPlatformType.MQTT5);
         return new SGrMessagingDevice(deviceDesc, factory);
     }
 

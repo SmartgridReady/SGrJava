@@ -55,8 +55,9 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendReceiveSync() throws Exception {
 
-        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
-        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
+        com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription ifDesc = createMessagingInterfaceDescription();
+        GenMessagingClientFactory factory = DriverFactoryLoader.getMessagingDriver(ifDesc.getMessagingPlatformType());
+        try (GenMessagingClient client = factory.create(ifDesc)) {
 
             // Set up a thread with a blocking receiver for the message.
             Either<Throwable, Message> result = client.readSync(
@@ -73,8 +74,9 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendReceiveSyncWithTopicFilter() throws Exception{
 
-        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
-        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
+        com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription ifDesc = createMessagingInterfaceDescription();
+        GenMessagingClientFactory factory = DriverFactoryLoader.getMessagingDriver(ifDesc.getMessagingPlatformType());
+        try (GenMessagingClient client = factory.create(ifDesc)) {
 
             CompletableFuture<Either<Throwable, Message>> asyncMsgSender1 = CompletableFuture.supplyAsync(() ->
                     client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC, null, 2000));
@@ -96,8 +98,9 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendReceiveSyncWithMessageFilter() throws Exception {
 
-        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
-        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
+        com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription ifDesc = createMessagingInterfaceDescription();
+        GenMessagingClientFactory factory = DriverFactoryLoader.getMessagingDriver(ifDesc.getMessagingPlatformType());
+        try (GenMessagingClient client = factory.create(ifDesc)) {
 
             MessageFilter messageFilter1 = createMessageFilter("1");
             MessageFilter messageFilter2 = createMessageFilter("2");
@@ -136,8 +139,9 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendAndReceiveSyncTimeout() throws Exception {
 
-        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
-        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
+        com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription ifDesc = createMessagingInterfaceDescription();
+        GenMessagingClientFactory factory = DriverFactoryLoader.getMessagingDriver(ifDesc.getMessagingPlatformType());
+        try (GenMessagingClient client = factory.create(ifDesc)) {
 
             Either<Throwable, Message> future = client.readSync(TEST_TOPIC, Message.of("50K"), TEST_TOPIC_2, null, 1000);
             // no message sent to topic
@@ -148,8 +152,9 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendAndReceiveSyncUnsupportedFilter() throws Exception {
 
-        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
-        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
+        com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription ifDesc = createMessagingInterfaceDescription();
+        GenMessagingClientFactory factory = DriverFactoryLoader.getMessagingDriver(ifDesc.getMessagingPlatformType());
+        try (GenMessagingClient client = factory.create(ifDesc)) {
             MessageFilter messageFilter = new MessageFilter();
             XPathFilterType xPathFilter = new XPathFilterType();
             messageFilter.setXpapathFilter(xPathFilter);
@@ -168,8 +173,9 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendReceiveAsynch() throws Exception {
 
-        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
-        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
+        com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription ifDesc = createMessagingInterfaceDescription();
+        GenMessagingClientFactory factory = DriverFactoryLoader.getMessagingDriver(ifDesc.getMessagingPlatformType());
+        try (GenMessagingClient client = factory.create(ifDesc)) {
 
             CompletableFuture<Either<Throwable, Message>> future = new CompletableFuture<>();
             client.subscribe(TEST_TOPIC, null, future::complete);
@@ -189,8 +195,9 @@ class Mqtt5GenMessagingClientTest {
     @Test
     void sendReceiveAsynchWithMessageFilter() throws Exception {
 
-        GenMessagingClientFactory factory = DriverFactoryLoader.getImplementation(GenMessagingClientFactory.class);
-        try (GenMessagingClient client = factory.create(createMessagingInterfaceDescription())) {
+        com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription ifDesc = createMessagingInterfaceDescription();
+        GenMessagingClientFactory factory = DriverFactoryLoader.getMessagingDriver(ifDesc.getMessagingPlatformType());
+        try (GenMessagingClient client = factory.create(ifDesc)) {
 
             MessageFilter messageFilter1 = createMessageFilter("1");
             MessageFilter messageFilter2 = createMessageFilter("2");

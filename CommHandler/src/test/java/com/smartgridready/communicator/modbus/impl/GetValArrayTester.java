@@ -30,7 +30,7 @@ public class GetValArrayTester {
 			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 			DeviceFrame tstMeter = loader.load( XML_BASE_DIR, deviceDesc != null ?deviceDesc.getPath() : null);
 			
-			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getImplementation(GenDriverAPI4ModbusFactory.class);
+			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
 			GenDriverAPI4Modbus mbRTU = factory.createRtuTransport("COM3", 19200);
 			mbRTU.connect();	
 			

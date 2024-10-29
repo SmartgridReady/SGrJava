@@ -11,7 +11,7 @@ import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
-import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
@@ -41,10 +41,10 @@ public class SGrDeviceBuilderTest {
     ModbusGatewayRegistry modbusGatewayRegistry;
 
     @Mock
-    ModbusGatewayFactory modbusGatewayFactory;
+    ModbusGateway modbusGateway;
 
     @Mock
-    ModbusGateway modbusGateway;
+    GenDriverAPI4ModbusFactory modbusClientFactory;
 
     @Mock
     GenDriverAPI4Modbus modbusDriver;
@@ -92,12 +92,11 @@ public class SGrDeviceBuilderTest {
         Properties properties = new Properties();
         properties.put("ipaddress", "127.0.0.1");
 
-        when(modbusGatewayFactory.create(any())).thenReturn(modbusGateway);
-        when(modbusGateway.getTransport()).thenReturn(modbusDriver);
+        when(modbusClientFactory.createTcpTransport(anyString(), anyInt())).thenReturn(modbusDriver);
         when(modbusDriver.connect()).thenReturn(true);
 
         GenDeviceApi device = new SGrDeviceBuilder()
-                .useModbusGatewayFactory(modbusGatewayFactory)
+                .useModbusClientFactory(modbusClientFactory)
                 .properties(properties)
                 .eid(loadResourceAsString("SGr_04_0014_0000_WAGO_Testsystem_V1.0.xml"))
                 .build();
@@ -145,12 +144,11 @@ public class SGrDeviceBuilderTest {
         Properties properties = new Properties();
         properties.put("portName", "COM3");
 
-        when(modbusGatewayFactory.create(any())).thenReturn(modbusGateway);
-        when(modbusGateway.getTransport()).thenReturn(modbusDriver);
+        when(modbusClientFactory.createRtuTransport(anyString(), anyInt(), any(), any(), any())).thenReturn(modbusDriver);
         when(modbusDriver.connect()).thenReturn(false); // report connection failure
 
         GenDeviceApi device = new SGrDeviceBuilder()
-                .useModbusGatewayFactory(modbusGatewayFactory)
+                .useModbusClientFactory(modbusClientFactory)
                 .properties(properties)
                 .eid(loadResourceAsPath("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml"))
                 .build();

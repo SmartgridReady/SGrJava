@@ -3,6 +3,8 @@ package com.smartgridready.communicator.messaging.impl;
 import com.smartgridready.communicator.messaging.mapper.MessageFilterMapper;
 import com.smartgridready.communicator.messaging.mapper.MessagingInterfaceDescMapper;
 import com.smartgridready.driver.api.messaging.model.Message;
+import com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription;
+import com.smartgridready.driver.api.messaging.model.MessagingPlatformType;
 import com.smartgridready.driver.api.messaging.GenMessagingClient;
 import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
@@ -13,7 +15,6 @@ import com.smartgridready.ns.v0.MessagingDataPoint;
 import com.smartgridready.ns.v0.MessagingDataPointConfiguration;
 import com.smartgridready.ns.v0.MessagingFunctionalProfile;
 import com.smartgridready.ns.v0.MessagingInterface;
-import com.smartgridready.ns.v0.MessagingInterfaceDescription;
 import com.smartgridready.ns.v0.OutMessage;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
@@ -55,15 +56,38 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     private final Map<MessageCacheKey, MessageCacheRecord> messageCache = new HashMap<>();
 
     public SGrMessagingDevice(DeviceFrame deviceDescription,
+                              Map<MessagingPlatformType, GenMessagingClientFactory> messagingClientFactories) throws GenDriverException {
+        super(deviceDescription);
+
+        interfaceDescription = Optional.ofNullable(deviceDescription.getInterfaceList())
+            .map(InterfaceList::getMessagingInterface)
+            .map(MessagingInterface::getMessagingInterfaceDescription)
+            .map(ifd -> MessagingInterfaceDescMapper.INSTANCE.mapToDriverApi(ifd))
+            .orElseThrow(() -> new GenDriverException("Missing messaging interface description in EI-XML"));
+
+        this.messagingClientFactory = messagingClientFactories.get(interfaceDescription.getMessagingPlatformType());
+        messagingClient = null;
+    }
+
+    public SGrMessagingDevice(DeviceFrame deviceDescription,
                               GenMessagingClientFactory messagingClientFactory) throws GenDriverException {
         super(deviceDescription);
 
         interfaceDescription = Optional.ofNullable(deviceDescription.getInterfaceList())
             .map(InterfaceList::getMessagingInterface)
             .map(MessagingInterface::getMessagingInterfaceDescription)
+            .map(ifd -> MessagingInterfaceDescMapper.INSTANCE.mapToDriverApi(ifd))
             .orElseThrow(() -> new GenDriverException("Missing messaging interface description in EI-XML"));
 
-        this.messagingClientFactory = messagingClientFactory;
+        if (
+            (messagingClientFactory != null) &&
+            messagingClientFactory.getSupportedPlatforms().contains(interfaceDescription.getMessagingPlatformType())
+        ) {
+            this.messagingClientFactory = messagingClientFactory;
+        } else {
+            this.messagingClientFactory = null;
+        }
+
         messagingClient = null;
     }
 
@@ -290,8 +314,11 @@ public class SGrMessagingDevice extends SGrDeviceBase<
     @Override
 	public synchronized void connect() throws GenDriverException {
         if (messagingClient == null) {
-            messagingClient = messagingClientFactory.create(
-                    MessagingInterfaceDescMapper.INSTANCE.mapToDriverApi(interfaceDescription));
+            if (messagingClientFactory != null) {
+                messagingClient = messagingClientFactory.create(interfaceDescription);
+            } else {
+                throw new GenDriverException(String.format("No implementation of platform %s found", interfaceDescription.getMessagingPlatformType()));
+            }
         }
 	}
 

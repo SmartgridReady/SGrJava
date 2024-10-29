@@ -89,7 +89,7 @@ public class IOPdemoBOX {
 			//DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 
 			// Modbus RTU uses a single driver  (tailored to easymodbus)
-			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getImplementation(GenDriverAPI4ModbusFactory.class);
+			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
 			mbRTU = factory.createRtuTransport("COM4", 9600, Parity.NONE);	// for mobile RTU Interface
 			//mbRTU = factory.createRtuTransport("COM9", 9600, Parity.NONE);   // for Office RTU Interface
 			mbRTU.connect();
@@ -298,7 +298,7 @@ public class IOPdemoBOX {
 			DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 
 			// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
-			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getImplementation(GenDriverAPI4ModbusFactory.class);
+			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
 			GenDriverAPI4Modbus mbWbOMCCI= factory.createTcpTransport("192.168.1.183",502);
 			devOMCCIWallbox = new SGrModbusDevice(tstDesc, mbWbOMCCI);
 			mbWbOMCCI.connect();

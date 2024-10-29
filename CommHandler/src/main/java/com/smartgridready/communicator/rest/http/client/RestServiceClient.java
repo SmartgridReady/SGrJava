@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
+import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.driver.api.http.GenHttpRequest;
@@ -114,6 +115,10 @@ public class RestServiceClient {
 	}
 
 	public GenHttpResponse callService() throws IOException {
+
+		if (httpClientFactory == null) {
+			throw new IOException("No implementation for HTTP client found");
+		}
 
 		RestApiServiceCall serviceCall = getRestServiceCall();
 		GenHttpRequest httpRequest = httpClientFactory.createHttpRequest();

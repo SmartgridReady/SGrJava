@@ -52,7 +52,7 @@ class ClemapRestApiTest {
 		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml", props);
  
 		try {
-			GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+			GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
 			GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, factory);
 			clemapMonitor.connect();
 			LOG.info("ACtot: {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACtot"));
@@ -79,7 +79,7 @@ class ClemapRestApiTest {
 
 		DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 		DeviceFrame clemapDeviceDesc = loader.load(XML_BASE_DIR, "SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml", props);
-		GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+		GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
 		SGrRestApiDevice clemapConfigurator =  new SGrRestApiDevice(clemapDeviceDesc, factory);
 		
 		try {

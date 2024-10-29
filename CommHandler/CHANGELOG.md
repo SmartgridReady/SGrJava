@@ -13,7 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- decoupled REST driver from CommHandler, removed Apache dependencies.
+- decoupled REST driver from CommHandler, removed Apache dependencies except for testing.
+- decoupled messaging driver from CommHandler, removed HiveMQ dependencies except for testing.
+- supports separate messaging drivers per platform
+- decoupled Modbus driver from CommHandler, removed EasyModbus dependencies except for testing.
 
 
 ## [2.0.1] - 2024-10-24

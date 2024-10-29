@@ -147,7 +147,7 @@ public class AsyncClemapWagoTest {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame deviceDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
-        GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getImplementation(GenDriverAPI4ModbusFactory.class);
+        GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
         wagoDriver = factory.createRtuTransport("COM3", 19200);
         wagoDriver.connect();
         wagoDriver.setUnitIdentifier((byte)1);
@@ -165,7 +165,7 @@ public class AsyncClemapWagoTest {
         DeviceFrame deviceDesc = new DeviceDescriptionLoader()
                 .load(XML_BASE_DIR, "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml", props);
 
-        GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
         SGrRestApiDevice clemapDevice = new SGrRestApiDevice(deviceDesc, factory);
         return clemapDevice;
     }

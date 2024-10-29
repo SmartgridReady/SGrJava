@@ -22,7 +22,7 @@ class ModbusGatewayRegistryTest {
 
     @BeforeEach
     void setUp() {
-        modbusGatewayRegistry = new SGrModbusGatewayRegistry(new MockModbusGatewayFactory());
+        modbusGatewayRegistry = new SGrModbusGatewayRegistry(new MockModbusDriverFactory());
     }
 
     @Test

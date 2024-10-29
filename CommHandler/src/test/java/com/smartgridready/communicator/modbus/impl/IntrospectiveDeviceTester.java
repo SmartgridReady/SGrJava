@@ -124,7 +124,7 @@ public class IntrospectiveDeviceTester {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
-        GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getImplementation(GenDriverAPI4ModbusFactory.class);
+        GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
         GenDriverAPI4Modbus mbRTU = factory.createRtuTransport("COM3", 19200);
         mbRTU.connect();
         return new Tuple3<>(devDesc, new SGrModbusDevice(devDesc, mbRTU), null);
@@ -142,7 +142,7 @@ public class IntrospectiveDeviceTester {
                 "SGr_02_mmmm_8288089799_Smart-me_SubMeterElectricity_V1.0.0.xml",
                 properties);
 
-        GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
         return new Tuple3<>(devDesc, restApiDevice, null);
     }
@@ -160,7 +160,7 @@ public class IntrospectiveDeviceTester {
                 "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml",
                 properties);
 
-        GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
         return new Tuple3<>(devDesc, restApiDevice, null);
     }
@@ -173,7 +173,7 @@ public class IntrospectiveDeviceTester {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
 
-        GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
 
         Properties parameters = new Properties();
@@ -192,7 +192,7 @@ public class IntrospectiveDeviceTester {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
 
-        GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
 
         Properties parameters = new Properties();

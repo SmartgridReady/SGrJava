@@ -39,7 +39,7 @@ public class JsonMapperTestBase {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
 
-        GenHttpClientFactory factory = DriverFactoryLoader.getImplementation(GenHttpClientFactory.class);
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
         SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
         return new Tuple3<>(devDesc, restApiDevice, null);
     }

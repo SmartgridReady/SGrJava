@@ -11,6 +11,7 @@ import java.util.HashMap;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
 import com.smartgridready.driver.api.common.GenDriverException;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
@@ -24,14 +25,10 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
     private final Map<String, ModbusGateway> gateways;
     private final Map<ModbusGateway, Integer> gatewayRefCount;
 
-    public SGrModbusGatewayRegistry(ModbusGatewayFactory modbusGatewayFactory) {
-        this.modbusGatewayFactory = modbusGatewayFactory;
+    public SGrModbusGatewayRegistry(GenDriverAPI4ModbusFactory driverFactory) {
+        this.modbusGatewayFactory = new SGrModbusGatewayFactory(driverFactory);
         gateways = new HashMap<>();
         gatewayRefCount = new HashMap<>();
-    }
-
-    public SGrModbusGatewayRegistry() {
-        this(new SGrModbusGatewayFactory());
     }
 
     @Override

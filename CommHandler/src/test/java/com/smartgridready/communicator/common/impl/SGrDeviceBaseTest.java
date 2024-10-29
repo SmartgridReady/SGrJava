@@ -31,6 +31,7 @@ import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase.Comparator;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
@@ -94,6 +95,9 @@ class SGrDeviceBaseTest {
     }
 
     @Mock
+    private GenDriverAPI4ModbusFactory modbusClientFactory;
+
+    @Mock
     private GenDriverAPI4Modbus genDriverAPI4Modbus;
 
     @Mock
@@ -129,7 +133,7 @@ class SGrDeviceBaseTest {
 
     @ParameterizedTest
     @MethodSource("checkRangeArguments")
-    void checkRange(Value[] values, Comparator comparator, double limit, Expect expect) {
+    void checkRange(Value[] values, Comparator comparator, double limit, Expect expect) throws Exception {
 
         SGrModbusDevice device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
 
@@ -141,7 +145,7 @@ class SGrDeviceBaseTest {
     }
 
     @Test
-    void getDeviceInfo() throws GenDriverException {
+    void getDeviceInfo() throws Exception {
 
         var device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
         var deviceInfo = device.getDeviceInfo();
@@ -195,7 +199,7 @@ class SGrDeviceBaseTest {
 
 
     @Test
-    void getDeviceInfoDeviceData() throws GenDriverException {
+    void getDeviceInfoDeviceData() throws Exception {
 
         var device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
         var deviceInfo = device.getDeviceInfo();
@@ -237,6 +241,7 @@ class SGrDeviceBaseTest {
 
         var modbusValue = Float32Value.of(voltage).toModbusRegister(modbusDataType);
 
+        when(modbusClientFactory.createRtuTransport(anyString(), anyInt(), any(), any(), any())).thenReturn(genDriverAPI4Modbus);
         when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt()))
                 .thenReturn(modbusValue);
 
@@ -308,6 +313,7 @@ class SGrDeviceBaseTest {
         System.arraycopy(modbusValue, 0, modbusValues, modbusValue.length, modbusValue.length);
         System.arraycopy(modbusValue, 0, modbusValues, 2*modbusValue.length,modbusValue.length);
 
+        when(modbusClientFactory.createRtuTransport(anyString(), anyInt(), any(), any(), any())).thenReturn(genDriverAPI4Modbus);
         when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt()))
                 .thenReturn(modbusValues);
 
@@ -496,7 +502,7 @@ class SGrDeviceBaseTest {
     }
 
     @SuppressWarnings("SameParameterValue")
-    private SGrModbusDevice createSGrModbusDevice(String deviceDescriptionXml) {
+    private SGrModbusDevice createSGrModbusDevice(String deviceDescriptionXml) throws Exception {
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL devDescUrl = classloader.getResource(deviceDescriptionXml);
@@ -504,7 +510,7 @@ class SGrDeviceBaseTest {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 
-        return new SGrModbusDevice(devDesc, genDriverAPI4Modbus);
+        return new SGrModbusDevice(devDesc, modbusClientFactory);
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -515,8 +521,8 @@ class SGrDeviceBaseTest {
 
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
-        return new SGrRestApiDevice(devDesc, httpClientFactory);
 
+        return new SGrRestApiDevice(devDesc, httpClientFactory);
     }
 
     private GenericAttribute createGenericAttributeProduct(

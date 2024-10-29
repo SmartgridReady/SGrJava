@@ -106,7 +106,7 @@ public class HeatPumpTester {
 			if (devRTU_IOPIsOn)
 			{
 			  // Modbus RTU uses a single driver  (tailored to easymodbus)
-			  GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getImplementation(GenDriverAPI4ModbusFactory.class);
+			  GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
 			  mbRTU=factory.createRtuTransport("COM9");
 			  mbRTU.connect();			
 			}
@@ -183,7 +183,7 @@ public class HeatPumpTester {
 				// // replace device specific for TCP  (easymodus uses Driver instance per device)
 				GenDriverAPI4Modbus mbHovalTCP = mockModbusDriver;
 				if (mockModbusDriver == null) {
-					GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getImplementation(GenDriverAPI4ModbusFactory.class);
+					GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
 					mbHovalTCP = factory.createTcpTransport("192.168.0.35", 502);
 					//mbHovalTCP = factory.createTcpTransport("192.168.1.55", 502);
 				}
@@ -431,7 +431,7 @@ public class HeatPumpTester {
 				  // replace device specific for TCP  (easymodus uses Driver instance per device)
 				  GenDriverAPI4Modbus mbStiebelISG = mockModbusDriver;
 				  if (mockModbusDriver == null) {
-					  GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getImplementation(GenDriverAPI4ModbusFactory.class);
+					  GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
 					  mbStiebelISG = factory.createTcpTransport("192.168.1.55", 502);
 				  }
 				  devStiebelISG=new SGrModbusDevice(tmpDesc, mbStiebelISG);							
@@ -618,7 +618,7 @@ public class HeatPumpTester {
 					// // replace device specific for TCP  (easymodus uses Driver instance per device)
 					GenDriverAPI4Modbus mbCTAoptiHeat = mockModbusDriver;
 					if (mockModbusDriver == null) {
-						GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getImplementation(GenDriverAPI4ModbusFactory.class);
+						GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
 						mbCTAoptiHeat = factory.createTcpTransport("192.168.1.55",502);
 					}
 					devCTAoptiHeat=new SGrModbusDevice(tstDesc, mbCTAoptiHeat);							
