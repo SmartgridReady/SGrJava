@@ -68,11 +68,14 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 	private final DeviceFrame deviceDescription;
 	private final Authenticator httpAuthenticator;
 	private final GenHttpRequestFactory httpRequestFactory;
+
+	private boolean isConnected;
 	
 	public SGrRestApiDevice(DeviceFrame deviceDescription, GenHttpRequestFactory httpRequestFactory) throws RestApiAuthenticationException {
 		super(deviceDescription);
 		this.deviceDescription = deviceDescription;
 		this.httpRequestFactory = httpRequestFactory;
+		this.isConnected = false;
 
 		RestApiAuthenticationMethod authMethod = getRestApiInterfaceDescription().getRestApiAuthenticationMethod();
 		this.httpAuthenticator = AuthenticatorFactory.getAuthenticator(authMethod);
@@ -89,14 +92,20 @@ public class SGrRestApiDevice extends SGrDeviceBase<
 
 	@Override
 	public void disconnect() throws GenDriverException {
-        // nothing
+        this.isConnected = false;
+	}
+
+	@Override
+	public boolean isConnected() {
+		return isConnected;
 	}
 	
 	@Override
 	public void authenticate() throws RestApiAuthenticationException, IOException, RestApiServiceCallException, RestApiResponseParseException {
 		httpAuthenticator.getAuthorizationHeaderValue(deviceDescription, httpRequestFactory);
+		this.isConnected = true;
 	}
-		
+
 	@Override
 	public Value getVal(String profileName, String dataPointName)
 			throws IOException, RestApiServiceCallException, RestApiResponseParseException, GenDriverException {

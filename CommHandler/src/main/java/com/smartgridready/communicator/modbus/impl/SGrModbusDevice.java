@@ -71,6 +71,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 
 import static com.smartgridready.communicator.common.impl.SGrDeviceBase.RwpDirections.READ;
 
@@ -162,6 +163,13 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	}
 
 	@Override
+	public boolean isConnected() {
+		return (drvRegistry != null)
+			? (drv4ModbusGateway != null)
+			: drv4Modbus.isConnected();
+	}
+
+	@Override
 	public Value getVal(String sProfileName, String sDataPointName)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		Optional<ModbusFunctionalProfile> profile = findProfile(sProfileName);
@@ -174,6 +182,13 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		}
 		throw new GenDriverException(String.format("Functional profile '%s' / datapoint '%s' not found.", sProfileName, sDataPointName));
 	}
+
+	@Override
+    public Value getVal(String sProfileName, String sDataPointName, Properties parameters)
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+        // parameters not supported, just return getVal()
+        return getVal(sProfileName, sDataPointName);
+    }
 
 	// Read a single value
 	private Value getVal(ModbusDataPoint aDataPoint)

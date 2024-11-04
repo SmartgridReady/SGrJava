@@ -51,7 +51,7 @@ class ClemapRestApiTest {
  
 		try {
 			GenDeviceApi4Rest clemapMonitor =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheHttpRequestFactory());
-			clemapMonitor.authenticate();
+			clemapMonitor.connect();
 			LOG.info("ACtot: {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACtot"));
 			LOG.info("ACL1 : {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL1"));
 			LOG.info("ACL2 : {}", clemapMonitor.getVal("ActivePowerAC", "ActivePowerACL2"));
@@ -80,9 +80,9 @@ class ClemapRestApiTest {
 		SGrRestApiDevice clemapConfigurator =  new SGrRestApiDevice(clemapDeviceDesc, new ApacheHttpRequestFactory());
 		
 		try {
-			clemapConfigurator.authenticate();
+			clemapConfigurator.connect();
 			clemapConfigurator.setVal("Configuration", "CreateMeterGroup", StringValue.of(METER_GROUP_CONFIG_JSON));
-		} catch (RestApiAuthenticationException | RestApiServiceCallException | RestApiResponseParseException | IOException e) {
+		} catch (RestApiServiceCallException | RestApiResponseParseException | IOException e) {
 			LOG.info("Error: {}", e.getMessage());
 			throw e;
 		}
