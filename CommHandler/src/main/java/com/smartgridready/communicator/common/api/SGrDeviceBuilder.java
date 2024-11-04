@@ -12,7 +12,6 @@ import com.smartgridready.driver.api.messaging.model.MessagingPlatformType;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.InterfaceList;
-import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
 import com.smartgridready.communicator.common.api.dto.InterfaceType;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
@@ -21,6 +20,7 @@ import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
+import com.smartgridready.communicator.modbus.impl.SGrModbusGatewayRegistry;
 import com.smartgridready.communicator.rest.exception.RestApiAuthenticationException;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
@@ -33,7 +33,8 @@ public class SGrDeviceBuilder {
     private EidSource eidSource;
     private Properties properties;
 
-    private ModbusGatewayRegistry modbusGatewayRegistry;
+    private boolean useSharedModbusRtu;
+    private ModbusGatewayRegistry sharedModbusGatewayRegistry;
     private GenDriverAPI4ModbusFactory modbusClientFactory;
     private GenHttpClientFactory httpClientFactory;
     private Map<MessagingPlatformType, GenMessagingClientFactory> messagingClientFactories;
@@ -41,7 +42,8 @@ public class SGrDeviceBuilder {
     public SGrDeviceBuilder() {
         this.eidSource = null;
         this.properties = null;
-        this.modbusGatewayRegistry = null;
+        this.sharedModbusGatewayRegistry = null;
+        this.useSharedModbusRtu = false;
 
         // default implementations
         this.modbusClientFactory = DriverFactoryLoader.getModbusDriver();
@@ -115,12 +117,23 @@ public class SGrDeviceBuilder {
     }
 
     /**
-     * Sets the shared Modbus gateway registry.
-     * @param modbusGatewayRegistry an instance of a Modbus gateway registry
+     * Use shared instances of RTU driver.
+     * @param useSharedModbusRtu true if shared, false otherwise
      * @return the same instance of the builder object
      */
-    public SGrDeviceBuilder useSharedModbusGatewayRegistry(ModbusGatewayRegistry modbusGatewayRegistry) {
-        this.modbusGatewayRegistry = modbusGatewayRegistry;
+    public SGrDeviceBuilder useSharedModbusRtu(boolean useSharedModbusRtu) {
+        this.useSharedModbusRtu = useSharedModbusRtu;
+        return this;
+    }
+
+    /**
+     * Sets a custom shared Modbus gateway registry.
+     * Uses a singleton instance by default.
+     * @param sharedModbusGatewayRegistry the custom registry
+     * @return the same instance of the builder object
+     */
+    public SGrDeviceBuilder useSharedModbusGatewayRegistry(ModbusGatewayRegistry sharedModbusGatewayRegistry) {
+        this.sharedModbusGatewayRegistry = sharedModbusGatewayRegistry;
         return this;
     }
 
@@ -155,18 +168,17 @@ public class SGrDeviceBuilder {
         InterfaceType interfaceType = getInterfaceType(deviceFrame.getInterfaceList());
         switch (interfaceType) {
             case MODBUS:
-                ModbusInterfaceDescription interfaceDescription = deviceFrame.getInterfaceList().getModbusInterface().getModbusInterfaceDescription();
-                if (interfaceDescription == null) {
-                    throw new GenDriverException("No Modbus interface description defined");
+                if (modbusClientFactory == null) {
+                    throw new GenDriverException("No Modbus client factory defined");
                 }
-                if (modbusGatewayRegistry != null) {
-                    // use shared modbus gateway registry
-                    return new SGrModbusDevice(deviceFrame, modbusGatewayRegistry);
-                } else if (modbusClientFactory != null) {
+                if (useSharedModbusRtu) {
+                    return new SGrModbusDevice(deviceFrame, modbusClientFactory,
+                        (sharedModbusGatewayRegistry != null) ? sharedModbusGatewayRegistry : SGrModbusGatewayRegistry.defaultInstance());
+                } else {
                     // use modbus factory directly
                     return new SGrModbusDevice(deviceFrame, modbusClientFactory);
                 }
-                throw new GenDriverException("No Modbus gateway registry or factory defined");
+                
 
             case RESTAPI:
                 if (httpClientFactory == null) {

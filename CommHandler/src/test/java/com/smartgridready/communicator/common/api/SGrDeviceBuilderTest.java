@@ -1,11 +1,14 @@
 package com.smartgridready.communicator.common.api;
 
-import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.driver.api.http.GenUriBuilder;
 import com.smartgridready.driver.api.http.HttpStatus;
+import com.smartgridready.driver.api.messaging.GenMessagingClient;
+import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
+import com.smartgridready.driver.api.messaging.model.MessagingPlatformType;
+import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
@@ -16,6 +19,7 @@ import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
 import com.smartgridready.ns.v0.RestApiServiceCall;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -58,6 +62,12 @@ public class SGrDeviceBuilderTest {
     @Mock
     GenUriBuilder uriBuilder;
 
+    @Mock
+    GenMessagingClientFactory messagingClientFactory;
+
+    @Mock
+    GenMessagingClient messagingClient;
+
     @Test
     void buildRestApiDevice() throws Exception {
 
@@ -93,7 +103,6 @@ public class SGrDeviceBuilderTest {
         properties.put("ipaddress", "127.0.0.1");
 
         when(modbusClientFactory.createTcpTransport(anyString(), anyInt())).thenReturn(modbusDriver);
-        when(modbusDriver.connect()).thenReturn(true);
 
         GenDeviceApi device = new SGrDeviceBuilder()
                 .useModbusClientFactory(modbusClientFactory)
@@ -103,11 +112,16 @@ public class SGrDeviceBuilderTest {
 
         assertInstanceOf(GenDeviceApi4Modbus.class, device);
 
+        when(modbusDriver.isConnected()).thenReturn(false);
+        when(modbusDriver.connect()).thenReturn(true);
         device.connect();
-        verify(modbusDriver).connect();
 
+        when(modbusDriver.isConnected()).thenReturn(true);
         device.disconnect();
-        verify(modbusDriver).disconnect();
+
+        verify(modbusDriver, times(2)).isConnected();
+        verify(modbusDriver, times(1)).connect();     
+        verify(modbusDriver, times(1)).disconnect();
     }
 
     @Test
@@ -116,12 +130,11 @@ public class SGrDeviceBuilderTest {
         Properties properties = new Properties();
         properties.put("ipaddress", "127.0.0.1");
 
-        when(modbusGatewayRegistry.attachGateway(any())).thenReturn(modbusGateway);
-        when(modbusGateway.getIdentifier()).thenReturn("tcp:127.0.0.1:502");
-        when(modbusGateway.getTransport()).thenReturn(modbusDriver);
-        when(modbusDriver.connect()).thenReturn(true);
+        when(modbusClientFactory.createTcpTransport(anyString(), anyInt())).thenReturn(modbusDriver);
 
         GenDeviceApi device = new SGrDeviceBuilder()
+                .useModbusClientFactory(modbusClientFactory)
+                .useSharedModbusRtu(true)
                 .useSharedModbusGatewayRegistry(modbusGatewayRegistry)
                 .properties(properties)
                 .eid(loadResourceAsString("SGr_04_0014_0000_WAGO_Testsystem_V1.0.xml"))
@@ -129,13 +142,18 @@ public class SGrDeviceBuilderTest {
 
         assertInstanceOf(GenDeviceApi4Modbus.class, device);
 
-        verify(modbusGatewayRegistry).attachGateway(any());
+        verify(modbusGatewayRegistry, times(0)).attachGateway(any(), any(), anyString());
 
+        when(modbusDriver.isConnected()).thenReturn(false);
+        when(modbusDriver.connect()).thenReturn(true);
         device.connect();
-        verify(modbusDriver).connect();
 
+        when(modbusDriver.isConnected()).thenReturn(true);
         device.disconnect();
-        verify(modbusGatewayRegistry).detachGateway(any(String.class));
+
+        verify(modbusDriver, times(2)).isConnected();
+        verify(modbusDriver, times(1)).connect();     
+        verify(modbusDriver, times(1)).disconnect();
     }
 
     @Test
@@ -145,7 +163,6 @@ public class SGrDeviceBuilderTest {
         properties.put("portName", "COM3");
 
         when(modbusClientFactory.createRtuTransport(anyString(), anyInt(), any(), any(), any())).thenReturn(modbusDriver);
-        when(modbusDriver.connect()).thenReturn(false); // report connection failure
 
         GenDeviceApi device = new SGrDeviceBuilder()
                 .useModbusClientFactory(modbusClientFactory)
@@ -155,13 +172,16 @@ public class SGrDeviceBuilderTest {
 
         assertInstanceOf(GenDeviceApi4Modbus.class, device);
 
-        //
-        var exception = assertThrows(GenDriverException.class, device::connect);
-        verify(modbusDriver).connect();
-        assertEquals("Connect to modbus device on port COM3 failed.", exception.getMessage());
+        when(modbusDriver.isConnected()).thenReturn(false);
+        when(modbusDriver.connect()).thenReturn(true);
+        device.connect();
 
+        when(modbusDriver.isConnected()).thenReturn(true);
         device.disconnect();
-        verify(modbusDriver).disconnect();
+
+        verify(modbusDriver, times(2)).isConnected();
+        verify(modbusDriver, times(1)).connect();     
+        verify(modbusDriver, times(1)).disconnect();
     }
 
     @Test
@@ -170,12 +190,11 @@ public class SGrDeviceBuilderTest {
         Properties properties = new Properties();
         properties.put("portName", "COM3");
 
-        when(modbusGatewayRegistry.attachGateway(any())).thenReturn(modbusGateway);
-        when(modbusGateway.getIdentifier()).thenReturn("rtu:COM3");
-        when(modbusGateway.getTransport()).thenReturn(modbusDriver);
-        when(modbusDriver.connect()).thenReturn(true);
+        when(modbusGatewayRegistry.attachGateway(any(), any(), anyString())).thenReturn(modbusGateway);
 
         GenDeviceApi device = new SGrDeviceBuilder()
+                .useModbusClientFactory(modbusClientFactory)
+                .useSharedModbusRtu(true)
                 .useSharedModbusGatewayRegistry(modbusGatewayRegistry)
                 .properties(properties)
                 .eid(loadResourceAsPath("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml"))
@@ -183,13 +202,13 @@ public class SGrDeviceBuilderTest {
 
         assertInstanceOf(GenDeviceApi4Modbus.class, device);
 
-        verify(modbusGatewayRegistry).attachGateway(any());
-
         device.connect();
-        verify(modbusDriver).connect();
-
         device.disconnect();
-        verify(modbusGatewayRegistry).detachGateway(any(String.class));
+
+        verify(modbusGateway, times(1)).connect(anyString());
+        verify(modbusGateway, times(1)).disconnect(anyString());
+        verify(modbusGatewayRegistry, times(1)).attachGateway(any(), any(), anyString());
+        verify(modbusGatewayRegistry, times(0)).detachGateway(any(ModbusInterfaceDescription.class), anyString());
     }
 
     @SuppressWarnings("resource") // we are just checking the instance.
@@ -202,7 +221,10 @@ public class SGrDeviceBuilderTest {
         properties.put("username", "smartgrid");
         properties.put("password", "1SmartGrid!");
 
+        when(messagingClientFactory.create(any())).thenReturn(messagingClient);
+
         GenDeviceApi device = new SGrDeviceBuilder()
+                .useMessagingClientFactory(messagingClientFactory, MessagingPlatformType.MQTT5)
                 .properties(properties)
                 .eid(loadResourceAsStream("SGr_XX_HiveMQ_MQTT_Cloud.xml"))
                 .build();
