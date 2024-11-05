@@ -163,17 +163,15 @@ public class ModbusUtil {
     public static ModbusType getModbusType(ModbusInterfaceDescription interfaceDescription) {
         ModbusInterfaceSelection modbusType = interfaceDescription.getModbusInterfaceSelection();
 
+        // does not support ASCII
         switch (modbusType) {
             case TCPIP:
-            case TCPIP_ASCII:
                 return ModbusType.TCP;
 
             case RTU:
-            case RTU_ASCII:
                 return ModbusType.RTU;
 
             case UDPIP:
-            case UDPIP_ASCII:
                 return ModbusType.UDP;
 
             default:

@@ -42,4 +42,14 @@ public class MockModbusDriverFactory implements GenDriverAPI4ModbusFactory {
     public GenDriverAPI4Modbus createTcpTransport(String arg0, int arg1) {
         return new GenDriverAPI4ModbusRTUMock();
     }
+
+    @Override
+    public GenDriverAPI4Modbus createUdpTransport(String arg0) {
+        return new GenDriverAPI4ModbusRTUMock();
+    }
+
+    @Override
+    public GenDriverAPI4Modbus createUdpTransport(String arg0, int arg1) {
+        return new GenDriverAPI4ModbusRTUMock();
+    }
 }

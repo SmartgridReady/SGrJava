@@ -15,4 +15,8 @@ public interface GenDriverAPI4ModbusFactory {
     public GenDriverAPI4Modbus createTcpTransport(String ipAddress);
 
     public GenDriverAPI4Modbus createTcpTransport(String ipAddress, int port);
+
+    public GenDriverAPI4Modbus createUdpTransport(String ipAddress);
+
+    public GenDriverAPI4Modbus createUdpTransport(String ipAddress, int port);
 }

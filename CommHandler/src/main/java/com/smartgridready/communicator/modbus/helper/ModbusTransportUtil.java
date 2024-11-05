@@ -25,6 +25,9 @@ public class ModbusTransportUtil {
  
             case TCP:
                 return createTcpTransport(interfaceDescription.getModbusTcp(), factory);
+			
+			case UDP:
+                return createUdpTransport(interfaceDescription.getModbusTcp(), factory);
 
             default:
                 throw new GenDriverException(String.format("Unsupported Modbus type %s", modbusType));
@@ -54,5 +57,16 @@ public class ModbusTransportUtil {
         int tcpPort = ModbusUtil.isNonEmptyString(tcp.getPort()) ? Integer.valueOf(tcp.getPort()) : ModbusUtil.DEFAULT_MODBUS_TCP_PORT;
 
 		return factory.createTcpTransport(tcpAddress, tcpPort);
+	}
+
+	private static GenDriverAPI4Modbus createUdpTransport(ModbusTcp udp, GenDriverAPI4ModbusFactory factory) throws GenDriverException {
+		if (udp == null) {
+			throw new GenDriverException("No Modbus UDP configuration found");
+		}
+
+		String udpAddress = udp.getAddress();
+        int udpPort = ModbusUtil.isNonEmptyString(udp.getPort()) ? Integer.valueOf(udp.getPort()) : ModbusUtil.DEFAULT_MODBUS_TCP_PORT;
+
+		return factory.createUdpTransport(udpAddress, udpPort);
 	}
 }
