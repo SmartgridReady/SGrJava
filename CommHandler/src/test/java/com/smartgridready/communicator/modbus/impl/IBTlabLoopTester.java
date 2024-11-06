@@ -44,7 +44,7 @@ import java.time.format.DateTimeFormatter;
 
 public class IBTlabLoopTester {
 
-	private static final String XML_BASE_DIR = "../../../SGrSpecifications/XMLInstances/ExtInterfaces/";
+	private static final String XML_BASE_DIR = "C://SGr/QuellCode/SGrSpecifications/XMLInstances/ExtInterfaces/";
 	private static final Logger LOG = LoggerFactory.getLogger(IBTlabLoopTester.class);
 
 	// we need static definitions for performance reason
@@ -637,7 +637,17 @@ public class IBTlabLoopTester {
 				mbVGT_SGCP = new GenDriverAPI4ModbusTCP("192.168.1.50",502);
 			}
 			devVGT_SGCP = new SGrModbusDevice(tstDesc, mbVGT_SGCP);
+/*
+Properties properties = new Properties();
+properties.put("tcp_address", "127.0.0.1");
+properties.put("tcp_port", "502");
 
+
+GenDeviceApi device = new SGrDeviceBuilder()
+                .properties(properties)
+                .eid(Paths.get("eids/SGr_04_0014_0000_WAGO_Testsystem_V1.0.xml"))
+                .build();
+ */
 			mbVGT_SGCP.connect();
 
 		}
