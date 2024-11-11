@@ -1,6 +1,7 @@
 package com.smartgridready.communicator.common.api;
 
 import com.smartgridready.communicator.messaging.client.HiveMqtt5MessagingClientFactory;
+import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
@@ -89,6 +90,7 @@ public class SGrDeviceBuilderTest {
 
         when(modbusGatewayFactory.create(any())).thenReturn(modbusGateway);
         when(modbusGateway.getTransport()).thenReturn(modbusDriver);
+        when(modbusDriver.connect()).thenReturn(true);
 
         GenDeviceApi device = new SGrDeviceBuilder()
                 .useModbusGatewayFactory(modbusGatewayFactory)
@@ -114,6 +116,7 @@ public class SGrDeviceBuilderTest {
         when(modbusGatewayRegistry.attachGateway(any())).thenReturn(modbusGateway);
         when(modbusGateway.getIdentifier()).thenReturn("tcp:127.0.0.1:502");
         when(modbusGateway.getTransport()).thenReturn(modbusDriver);
+        when(modbusDriver.connect()).thenReturn(true);
 
         GenDeviceApi device = new SGrDeviceBuilder()
                 .useSharedModbusGatewayRegistry(modbusGatewayRegistry)
@@ -140,6 +143,7 @@ public class SGrDeviceBuilderTest {
 
         when(modbusGatewayFactory.create(any())).thenReturn(modbusGateway);
         when(modbusGateway.getTransport()).thenReturn(modbusDriver);
+        when(modbusDriver.connect()).thenReturn(false); // report connection failure
 
         GenDeviceApi device = new SGrDeviceBuilder()
                 .useModbusGatewayFactory(modbusGatewayFactory)
@@ -149,8 +153,10 @@ public class SGrDeviceBuilderTest {
 
         assertInstanceOf(GenDeviceApi4Modbus.class, device);
 
-        device.connect();
+        //
+        var exception = assertThrows(GenDriverException.class, device::connect);
         verify(modbusDriver).connect();
+        assertEquals("Connect to modbus device on port COM3 failed.", exception.getMessage());
 
         device.disconnect();
         verify(modbusDriver).disconnect();
@@ -165,6 +171,7 @@ public class SGrDeviceBuilderTest {
         when(modbusGatewayRegistry.attachGateway(any())).thenReturn(modbusGateway);
         when(modbusGateway.getIdentifier()).thenReturn("rtu:COM3");
         when(modbusGateway.getTransport()).thenReturn(modbusDriver);
+        when(modbusDriver.connect()).thenReturn(true);
 
         GenDeviceApi device = new SGrDeviceBuilder()
                 .useSharedModbusGatewayRegistry(modbusGatewayRegistry)

@@ -71,6 +71,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 
 import static com.smartgridready.communicator.common.impl.SGrDeviceBase.RwpDirections.READ;
 
@@ -141,10 +142,10 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 			drv4ModbusGateway = drvRegistry.attachGateway(getModbusInterfaceDescription());
 			drv4Modbus = drv4ModbusGateway.getTransport();
 			if (!drv4Modbus.isConnected()) {
-				drv4Modbus.connect();
+				connectDriver(getModbusInterfaceDescription());
 			}
 		} else if (!drv4Modbus.isConnected()) {
-			drv4Modbus.connect();
+			connectDriver(getModbusInterfaceDescription());
 		}
 	}
 
@@ -162,6 +163,13 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	}
 
 	@Override
+	public boolean isConnected() {
+		return (drvRegistry != null)
+			? (drv4ModbusGateway != null)
+			: drv4Modbus.isConnected();
+	}
+
+	@Override
 	public Value getVal(String sProfileName, String sDataPointName)
 			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		Optional<ModbusFunctionalProfile> profile = findProfile(sProfileName);
@@ -174,6 +182,13 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		}
 		throw new GenDriverException(String.format("Functional profile '%s' / datapoint '%s' not found.", sProfileName, sDataPointName));
 	}
+
+	@Override
+    public Value getVal(String sProfileName, String sDataPointName, Properties parameters)
+			throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
+        // parameters not supported, just return getVal()
+        return getVal(sProfileName, sDataPointName);
+    }
 
 	// Read a single value
 	private Value getVal(ModbusDataPoint aDataPoint)
@@ -412,7 +427,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 				}
 				break;
 			default:
-				throw new GenDriverException(String.format("Unhandled layer6deviation: conversionScheme=%d", mBlayer6Scheme));
+				throw new GenDriverException(String.format("Unhandled layer6deviation: conversionScheme=%s", mBlayer6Scheme.name()));
 		}
 		return mbregresp;
 	}
@@ -686,6 +701,20 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 			throw new GenDriverException("Cannot write array value to modbus. " +
 					"Modbus array length=" + modbusArrayLen +
 					", value array length=" + value.asArray().length);
+		}
+	}
+
+	private void connectDriver(ModbusInterfaceDescription modbusInterfaceDescription) throws GenDriverException {
+
+		if (!drv4Modbus.connect()) {
+			var msg = "Connect to modbus device failed";
+			if (modbusInterfaceDescription.getModbusRtu() != null) {
+				msg = String.format("Connect to modbus device on port %s failed.", modbusInterfaceDescription.getModbusRtu().getPortName());
+			} else if (modbusInterfaceDescription.getModbusTcp() != null) {
+				msg = String.format("Connect to modbus device on ip address=%s failed.", modbusInterfaceDescription.getModbusTcp().getAddress());
+			}
+			LOG.error(msg);
+			throw new GenDriverException(msg);
 		}
 	}
 }

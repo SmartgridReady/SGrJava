@@ -92,9 +92,14 @@ public class DeviceInfo {
         return functionalProfiles;
     }
 
-    public List<DataPointValue> readData() {
+    public List<DataPointValue> getValues() {
         List<DataPointValue> dataPointValues = new ArrayList<>();
-        functionalProfiles.forEach(functionalProfile -> dataPointValues.addAll(functionalProfile.readData()));
+        functionalProfiles.forEach(functionalProfile -> dataPointValues.addAll(functionalProfile.getValues()));
         return dataPointValues;
+    }
+
+    @Deprecated
+    public List<DataPointValue> readData() {
+        return getValues();
     }
 }

@@ -276,7 +276,7 @@ class SGrMessagingDeviceTest {
 
             msgDevice.connect();
 
-            var readValues = msgDevice.getDeviceInfo().readData();
+            var readValues = msgDevice.getDeviceInfo().getValues();
             readValues.forEach( dataPointValue ->
                     LOG.info("Read dataPoint: {}", dataPointValue)
             );

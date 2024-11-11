@@ -152,7 +152,7 @@ class SGrRestAPIDeviceTest {
 
 		// when
 		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
-		device.authenticate();
+		device.connect();
 		Value res = device.getVal("GPIO", dataPointName);
 
 		// then
@@ -191,7 +191,7 @@ class SGrRestAPIDeviceTest {
 
 			// when
 			SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, new ApacheHttpRequestFactory());
-			device.authenticate();
+			device.connect();
 
 			assertDoesNotThrow(() -> device.setVal("GPIO", dataPointName, StringValue.of("on")));
 

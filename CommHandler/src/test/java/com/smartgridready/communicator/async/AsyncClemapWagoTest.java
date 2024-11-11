@@ -11,6 +11,8 @@ import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
 import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
+
 import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.internal.schedulers.IoScheduler;
@@ -37,17 +39,19 @@ public class AsyncClemapWagoTest {
 
     private static SGrRestApiDevice clemapDevice;
 
-    private static GenDriverAPI4ModbusRTU wagoDriver;
-
     @BeforeAll
     public static void createDevices() throws Exception {
         wagoDevice = createWagoDevice();
+        wagoDevice.connect();
+
         clemapDevice = createClemapDevice();
+        clemapDevice.connect();
     }
 
     @AfterAll
     public static void closeDevices() throws Exception {
-        wagoDriver.disconnect();
+        wagoDevice.disconnect();
+        clemapDevice.disconnect();
     }
 
     @Test
@@ -139,8 +143,7 @@ public class AsyncClemapWagoTest {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame deviceDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
-        wagoDriver = new GenDriverAPI4ModbusRTU("COM3", 19200);
-        wagoDriver.connect();
+        GenDriverAPI4Modbus wagoDriver = new GenDriverAPI4ModbusRTU("COM3", 19200);
         wagoDriver.setUnitIdentifier((byte)1);
         return new SGrModbusDevice(deviceDesc, wagoDriver);
     }
@@ -157,7 +160,6 @@ public class AsyncClemapWagoTest {
                 .load(XML_BASE_DIR, "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml", props);
 
         SGrRestApiDevice clemapDevice = new SGrRestApiDevice(deviceDesc, new ApacheHttpRequestFactory());
-        clemapDevice.authenticate();
         return clemapDevice;
     }
 }

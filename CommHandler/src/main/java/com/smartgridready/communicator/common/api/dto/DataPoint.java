@@ -18,6 +18,7 @@ import io.vavr.control.Either;
 import java.io.IOException;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.Properties;
 
 public class DataPoint {
 
@@ -132,6 +133,21 @@ public class DataPoint {
     }
 
     /**
+     * Read the value from this datapoint, with request-specific parameters
+     * @param parameters Key value pairs with request parameters 
+     * @return The value read.
+     * @throws GenDriverException On a generic error
+     * @throws RestApiResponseParseException If the web service response could not be parsed
+     * @throws GenDriverModbusException If the modbus command could not be processed
+     * @throws RestApiServiceCallException If web service call failed
+     * @throws GenDriverSocketException If the COM port socket unexpectedly closed
+     * @throws IOException On generic IO operation errors
+     */
+    public Value getVal(Properties parameters) throws GenDriverException, RestApiResponseParseException, GenDriverModbusException, RestApiServiceCallException, GenDriverSocketException, IOException {
+        return genDeviceApi.getVal(functionalProfileName, name, parameters);
+    }
+
+    /**
      * Write a value to the data point
      * @param value The value
      * @throws GenDriverException On a generic error
@@ -147,11 +163,13 @@ public class DataPoint {
 
     /**
      * Does the authentication to access the web service if needed.
+     * Note: can be removed, as this is already covered by connect()
      * @throws RestApiResponseParseException  If the authentication response could not be parsed
      * @throws RestApiAuthenticationException If the authentication could not be performed
      * @throws RestApiServiceCallException If the REST API service call failed
      * @throws IOException If an IO operation error occurred
      */
+    @Deprecated(since = "2.1.0", forRemoval = true)
     public void authenticate() throws RestApiResponseParseException, RestApiAuthenticationException, RestApiServiceCallException, IOException {
         if (genDeviceApi instanceof GenDeviceApi4Rest) {
             ((GenDeviceApi4Rest)genDeviceApi).authenticate();
@@ -183,8 +201,8 @@ public class DataPoint {
      * @throws GenDriverException if an error occurs
      */
     public void subscribe(Consumer<Either<Throwable, Value>> callbackFunction) throws GenDriverException {
-        if (genDeviceApi instanceof GenDeviceApi4Messaging) {
-            ((GenDeviceApi4Messaging) genDeviceApi).subscribe(functionalProfileName, name, callbackFunction);
+        if (genDeviceApi.canSubscribe()) {
+            genDeviceApi.subscribe(functionalProfileName, name, callbackFunction);
         } else {
             throw new UnsupportedOperationException("Method subscribe() is supported for messaging devices only.");
         }
@@ -196,10 +214,14 @@ public class DataPoint {
      * @throws GenDriverException if an error occurs
      */
     public void unsubscribe() throws GenDriverException {
-        if (genDeviceApi instanceof GenDeviceApi4Messaging) {
-            ((GenDeviceApi4Messaging)genDeviceApi).unsubscribe(functionalProfileName, name);
+        if (genDeviceApi.canSubscribe()) {
+            genDeviceApi.unsubscribe(functionalProfileName, name);
         } else {
             throw new UnsupportedOperationException("Method unsubscribe() is supported for messaging devices only.");
         }
+    }
+
+    public boolean canSubscribe() {
+        return genDeviceApi.canSubscribe();
     }
 }

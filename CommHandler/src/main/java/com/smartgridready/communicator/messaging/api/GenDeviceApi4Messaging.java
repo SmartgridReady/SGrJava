@@ -3,10 +3,8 @@ package com.smartgridready.communicator.messaging.api;
 import com.smartgridready.communicator.common.api.GenDeviceApi;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.driver.api.common.GenDriverException;
-import io.vavr.control.Either;
 
 import java.io.Closeable;
-import java.util.function.Consumer;
 
 public interface GenDeviceApi4Messaging extends GenDeviceApi, Closeable {
 
@@ -20,23 +18,4 @@ public interface GenDeviceApi4Messaging extends GenDeviceApi, Closeable {
      * @throws GenDriverException if an error occurs
      */
     Value getVal(String profileName, String dataPointName, long timeoutMs) throws GenDriverException;
-
-    /**
-     * Subscribes to messages that are related to the given datapoint
-     *
-     * @param profileName The functional profile name
-     * @param dataPointName The data point name
-     * @param callbackFunction A callback function that provides the received value
-     * @throws GenDriverException if an error occurs
-     */
-    void subscribe(String profileName, String dataPointName, Consumer<Either<Throwable, Value>> callbackFunction) throws GenDriverException;
-
-    /**
-     * Unsubscribes from messages that are related to a given datapoint
-     *
-     * @param profileName The functional profile name
-     * @param dataPointName The datapoint name
-     * @throws GenDriverException if an error occurs
-     */
-    void unsubscribe(String profileName, String dataPointName) throws GenDriverException;
 }

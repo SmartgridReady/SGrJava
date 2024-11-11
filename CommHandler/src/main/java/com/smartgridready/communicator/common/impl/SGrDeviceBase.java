@@ -9,11 +9,15 @@ import com.smartgridready.ns.v0.DataPointDescription;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.FunctionalProfileBase;
 import com.smartgridready.ns.v0.Language;
+
+import io.vavr.control.Either;
+
 import com.smartgridready.ns.v0.GenericAttributeListProduct;
 
 import com.smartgridready.communicator.common.api.GenDeviceApi;
 import com.smartgridready.communicator.common.api.dto.ConfigurationValue;
 import com.smartgridready.communicator.common.api.dto.DataPoint;
+import com.smartgridready.communicator.common.api.dto.DataPointValue;
 import com.smartgridready.communicator.common.api.dto.DeviceInfo;
 import com.smartgridready.communicator.common.api.dto.FunctionalProfile;
 import com.smartgridready.communicator.common.api.dto.GenericAttribute;
@@ -25,6 +29,8 @@ import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.function.Consumer;
+
 
 public abstract class SGrDeviceBase<
         D extends DeviceFrame,
@@ -239,5 +245,27 @@ public abstract class SGrDeviceBase<
                 dataPoint.getArrayLength() != null ? dataPoint.getArrayLength() : null,
                 genericAttributes.orElse(List.of()),
                 this );
+    }
+
+    @Override
+    public List<DataPointValue> getValues() throws GenDriverException {
+        List<DataPointValue> dataPointValues = new ArrayList<>();
+        getFunctionalProfiles().forEach(functionalProfile -> dataPointValues.addAll(functionalProfile.getValues()));
+        return dataPointValues;
+    }
+
+    @Override
+    public boolean canSubscribe() {
+        return false;
+    }
+
+    @Override
+    public void subscribe(String profileName, String dataPointName, Consumer<Either<Throwable, Value>> callbackFunction) throws GenDriverException {
+        throw new GenDriverException("Subscribe not allowed");
+    }
+
+    @Override
+    public void unsubscribe(String profileName, String dataPointName) throws GenDriverException {
+        throw new GenDriverException("Unsubscribe not allowed");
     }
 }

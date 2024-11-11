@@ -334,7 +334,7 @@ class SGrDeviceBaseTest {
         var dataPoint = device.getDataPoint("ActivePowerAC", "ActivePowerACtot");
 
         when(httpRequest.execute()).thenReturn(GenHttpResponse.of(CLEMAP_AUTH_RESP));
-        dataPoint.authenticate();
+        device.connect();
         verify(httpRequest).setUri(any(URI.class));
         verify(httpRequest).setHttpMethod(HttpMethod.POST);
         verify(httpRequest).setBody(anyString());
@@ -354,7 +354,7 @@ class SGrDeviceBaseTest {
         var dataPoint = device.getDataPoint("ActivePowerAC", "ActivePowerACtot");
 
         when(httpRequest.execute()).thenReturn(GenHttpResponse.of(CLEMAP_AUTH_RESP));
-        dataPoint.authenticate();
+        device.connect();
         verify(httpRequest).execute();
 
         Mockito.reset(httpRequest);
