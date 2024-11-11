@@ -16,6 +16,7 @@ import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.rest.api.GenDeviceApi4Rest;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -61,8 +62,11 @@ class SGrRestAPIDeviceTest {
 	@Mock
 	RestApiServiceCall restServiceCall;
 
-	ArgumentCaptor<String> stringCaptor1 = ArgumentCaptor.forClass(String.class);
-	ArgumentCaptor<String> stringCaptor2 = ArgumentCaptor.forClass(String.class);
+	ArgumentCaptor<String> headerNameCaptor = ArgumentCaptor.forClass(String.class);
+	ArgumentCaptor<String> headerValueCaptor = ArgumentCaptor.forClass(String.class);
+	ArgumentCaptor<String> paramNameCaptor = ArgumentCaptor.forClass(String.class);
+	ArgumentCaptor<String> paramValueCaptor = ArgumentCaptor.forClass(String.class);
+	ArgumentCaptor<String> httpBodyCaptor = ArgumentCaptor.forClass(String.class);
 	
 	static DeviceFrame deviceFrame;
 			
@@ -101,7 +105,10 @@ class SGrRestAPIDeviceTest {
         Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
         Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
         when(uriBuilder.build()).thenReturn(TEST_URI);
-		when(httpRequest.execute()).thenReturn(GenHttpResponse.of(CLEMAP_AUTH_RESP), GenHttpResponse.of(CLEMAP_METER_RESP));
+		when(httpRequest.execute()).thenReturn(
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of(CLEMAP_METER_RESP)
+		);
 
 		// when
 		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
@@ -149,8 +156,9 @@ class SGrRestAPIDeviceTest {
         Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
         when(uriBuilder.build()).thenReturn(TEST_URI);
 		when(httpRequest.execute()).thenReturn(
-				GenHttpResponse.of(CLEMAP_AUTH_RESP),
-				GenHttpResponse.of("{ \"value\" : \"on\" }"));
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of("{ \"value\" : \"on\" }")
+		);
 
 		// when
 		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
@@ -159,6 +167,101 @@ class SGrRestAPIDeviceTest {
 
 		// then
 		assertEquals("on", res.getString());
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"ContactW", "ContactRW", "IORegister"})
+	void testSetValWithWriteServiceCallV2(String dataPointName) throws Exception {
+
+		// given
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+		Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+		when(uriBuilder.build()).thenReturn(TEST_URI);
+		when(httpRequest.execute()).thenReturn(
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of("")
+		);
+
+		// when
+		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
+		device.connect();
+
+		assertDoesNotThrow(() -> device.setVal("GPIO", dataPointName, StringValue.of("on")));
+
+		verify(httpRequest, times(5)).addHeader(headerNameCaptor.capture(), headerValueCaptor.capture());
+		var headerKeys = headerNameCaptor.getAllValues();
+		assertEquals("Accept", headerKeys.get(0));
+		assertEquals("Content-Type", headerKeys.get(1));
+		assertEquals("Accept", headerKeys.get(2));
+		assertEquals("Content-Type", headerKeys.get(3));
+		assertEquals("Authorization", headerKeys.get(4));
+
+		var headerValues = headerValueCaptor.getAllValues();
+		assertEquals("application/json", headerValues.get(0));
+		assertEquals("application/json", headerValues.get(1));
+		assertEquals("application/json", headerValues.get(2));
+		switch (dataPointName) {
+			case "ContactW":
+			case "ContactRW":
+				assertEquals("application/json", headerValues.get(3));
+				break;
+			case "IORegister":
+				assertEquals("application/x-www-form-urlencoded", headerValues.get(3));
+				break;
+			default:
+				fail("Unhandled dataPoint: " + dataPointName);
+		}
+		assertTrue(headerValues.get(4).startsWith("Bearer "));
+
+		switch (dataPointName) {
+			case "ContactW":
+			case "ContactRW":
+				verify(httpRequest, times(2)).setBody(httpBodyCaptor.capture());
+				break;
+			case "IORegister":
+				verify(httpRequest, times(1)).addFormParam(paramNameCaptor.capture(), paramValueCaptor.capture());
+				break;
+			default:
+				fail("Unhandled dataPoint: " + dataPointName);
+		}
+		
+		// verify request body
+		String expectedBody = null;
+		switch (dataPointName) {
+			case "ContactW":
+				expectedBody = "{ \"pin\" : 1, \"value\" : \"on\" }"; // Json body
+				break;
+			case "ContactRW":
+				expectedBody = "{ \"pin\" : 2, \"value\" : \"on\" }"; // Json body
+				break;
+			case "IORegister":
+				// form parameters, not body
+				break;
+			default:
+				fail("Unhandled dataPoint: " + dataPointName);
+		}
+		if (expectedBody != null) {
+			assertEquals(expectedBody, httpBodyCaptor.getValue());
+		}
+
+		// verify form parameters
+		switch (dataPointName) {
+			case "ContactW":
+			case "ContactRW":
+				// body, not form parameters
+				break;
+			case "IORegister":
+				var paramKeys = paramNameCaptor.getAllValues();
+				assertEquals("pins=1..7", paramKeys.get(0));
+				var paramValues = paramValueCaptor.getAllValues();
+				assertEquals("124", paramValues.get(0));
+				break;
+			default:
+				fail("Unhandled dataPoint: " + dataPointName);
+		}
 	}
 
 	@Test
@@ -172,9 +275,10 @@ class SGrRestAPIDeviceTest {
         Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
         when(uriBuilder.build()).thenReturn(TEST_URI);
 		when(httpRequest.execute()).thenReturn(
-				GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response on connect.
-				GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response when trying to get cached token, however token is expired
-				GenHttpResponse.of("OK"));
+			GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response on connect.
+			GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response when trying to get cached token, however token is expired
+			GenHttpResponse.of("OK")
+		);
 		
 		// when
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
@@ -265,16 +369,17 @@ class SGrRestAPIDeviceTest {
         Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
         when(uriBuilder.build()).thenReturn(TEST_URI);
 		Mockito.lenient().when(httpRequest.execute()).thenReturn(
-				GenHttpResponse.of(CLEMAP_AUTH_RESP),
-				GenHttpResponse.of(CLEMAP_METER_RESP));
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of(CLEMAP_METER_RESP)
+		);
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 
 		restApiDevice.setVal("ActivePowerAC", "ActivePowerACtot", Float32Value.of(0.099f));
-		verify(httpRequest, times(2)).setBody(stringCaptor1.capture());
+		verify(httpRequest, times(2)).setBody(httpBodyCaptor.capture());
 
 		var objectMapper = new ObjectMapper();
-		var jsonBody = objectMapper.readTree(stringCaptor1.getValue());
+		var jsonBody = objectMapper.readTree(httpBodyCaptor.getValue());
 		var convertedValue = Math.round(jsonBody.get("value").asDouble());
 		assertEquals(99, convertedValue );
 
@@ -290,8 +395,9 @@ class SGrRestAPIDeviceTest {
         Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
         when(uriBuilder.build()).thenReturn(TEST_URI);
 		Mockito.lenient().when(httpRequest.execute()).thenReturn(
-				GenHttpResponse.of(CLEMAP_AUTH_RESP),
-				GenHttpResponse.of(CLEMAP_METER_RESP));
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of(CLEMAP_METER_RESP)
+		);
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		var result = restApiDevice.getVal("ActivePowerAC", "ActivePowerACtot");

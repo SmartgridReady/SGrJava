@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
-import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.driver.api.http.GenHttpRequest;
