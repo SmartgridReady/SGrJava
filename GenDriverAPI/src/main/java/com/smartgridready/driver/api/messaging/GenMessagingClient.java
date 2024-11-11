@@ -1,9 +1,7 @@
 package com.smartgridready.driver.api.messaging;
 
-
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.messaging.model.Message;
-import com.smartgridready.driver.api.messaging.model.filter.MessageFilter;
 import io.vavr.control.Either;
 
 import java.io.Closeable;
@@ -31,14 +29,14 @@ public interface GenMessagingClient extends Closeable {
      * @param readCmdMessageTopic The topic to issue a read command that triggers a response message
      * @param readCmdMessage The read command message that triggers the response message
      * @param inMessageTopic The topic that receives the response message
-     * @param messageFilter An optional filter that filters messages received on the {@code inMessageTopic}
+     * @param messageFilterHandler An optional filter that filters messages received on the {@code inMessageTopic}
      * @return Either the message received or a Throwable if an error occurred.
      */
     Either<Throwable, Message> readSync(
             String readCmdMessageTopic,
             Message readCmdMessage,
             String inMessageTopic,
-            MessageFilter messageFilter,
+            MessageFilterHandler messageFilterHandler,
             long timeoutMs);
 
     /**
@@ -58,10 +56,10 @@ public interface GenMessagingClient extends Closeable {
      * Subscribes to a topic for receiving a stream of messages.
      *
      * @param topic The topic to subscribe to
-     * @param messageFilter An optional filter to filter messages received on the {@code topic}
+     * @param messageFilterHandler An optional filter to filter messages received on the {@code topic}
      * @param callback The callback method that handles the incoming messages.
      */
-    void subscribe(String topic, MessageFilter messageFilter, Consumer<Either<Throwable, Message>> callback) throws GenDriverException;
+    void subscribe(String topic, MessageFilterHandler messageFilterHandler, Consumer<Either<Throwable, Message>> callback) throws GenDriverException;
 
     /**
      * @param topic The topic to unsubscribe from

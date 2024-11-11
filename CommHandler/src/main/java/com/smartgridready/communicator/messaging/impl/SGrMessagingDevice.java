@@ -7,6 +7,7 @@ import com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescripti
 import com.smartgridready.driver.api.messaging.model.MessagingPlatformType;
 import com.smartgridready.driver.api.messaging.GenMessagingClient;
 import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
+import com.smartgridready.driver.api.messaging.MessageFilterHandler;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.InMessage;
 import com.smartgridready.ns.v0.InterfaceList;
@@ -34,6 +35,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+
 import java.util.Properties;
 
 public class SGrMessagingDevice extends SGrDeviceBase<
@@ -156,11 +158,13 @@ public class SGrMessagingDevice extends SGrDeviceBase<
             throw new GenDriverException(NOT_CONNECTED);
         }
 
+        MessageFilterHandler messageFilterHandler = new MessageFilterHandlerImpl(messageFilter);
+
         Either<Throwable, Message> result = messagingClient.readSync(
                 outMessageTopic,
                 Message.of(outMessageTemplate),
                 inMessageTopic,
-                MessageFilterMapper.INSTANCE.mapToDriverApi(messageFilter),
+                messageFilterHandler,
                 timeoutMs
         );
 
@@ -232,9 +236,11 @@ public class SGrMessagingDevice extends SGrDeviceBase<
         MessageFilter messageFilter = Optional.ofNullable(dataPoint.getMessagingDataPointConfiguration())
                 .map(MessagingDataPointConfiguration::getInMessage)
                 .map(InMessage::getFilter).orElse(null);
+        
+        MessageFilterHandler messageFilterHandler = new MessageFilterHandlerImpl(messageFilter);
 
-        messagingClient.subscribe(inMessageTopic, MessageFilterMapper.INSTANCE.mapToDriverApi(messageFilter), msgReceiveResult ->
-                transformIncomingMessage(dataPoint, inMessageTopic,  messageFilter, msgReceiveResult, callbackFunction));
+        messagingClient.subscribe(inMessageTopic, messageFilterHandler, msgReceiveResult ->
+                transformIncomingMessage(dataPoint, inMessageTopic, messageFilter, msgReceiveResult, callbackFunction));
     }
 
     private void transformIncomingMessage(
