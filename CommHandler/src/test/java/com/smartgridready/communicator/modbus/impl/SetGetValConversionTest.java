@@ -980,8 +980,8 @@ class SetGetValConversionTest {
     }
 
     private static String createDeviceName(BitOrder bitOrder, DataType genType, DataType modbusType) {
-        return genType.name() + " - "
-                + modbusType.name() + " - "
+        return genType.getName() + " - "
+                + modbusType.getName() + " - "
                 + bitOrder.name();
     }
 

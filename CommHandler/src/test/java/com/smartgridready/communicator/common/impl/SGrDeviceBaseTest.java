@@ -50,6 +50,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Stream;
 
+import static com.smartgridready.communicator.common.api.values.DataType.ENUM;
 import static com.smartgridready.communicator.common.api.values.DataType.UNKNOWN;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -264,8 +265,40 @@ class SGrDeviceBaseTest {
         expected.add(EnumValue.of("ENUM_10", 2L, "Register bits 10"));
         expected.add(EnumValue.of("ENUM_11", 3L, "Register bits 11"));
 
-        assertEquals("ENUM", dataPoint.getDataType().name());
+        assertEquals("ENUM", dataPoint.getDataType().getName());
         assertArrayEquals(expected.toArray(), dataPoint.getDataType().getRange().toArray());
+    }
+
+    @Test
+    void getEnumDataPoints() throws Exception {
+
+        // Fixtures
+        var hpOpModeCmdEnums = new String[]{
+                "STI_WP_EMERG_OP", "STI_WP_READY", "STI_WP_PROG_OP",
+                "STI_WP_COMFORT_OP", "STI_WP_ECO_OP", "STI_WP_DOM_WATER_OP"};
+
+        var sgReadyStateAndOpModeCmds = new String[] {"HP_LOCKED", "HP_NORMAL", "HP_INTENSIFIED", "HP_FORCED" };
+
+        var expectedDatapointEnumsMap = new HashMap<String, String[]>();
+        expectedDatapointEnumsMap.put("HPOpModeCmd", hpOpModeCmdEnums);
+        expectedDatapointEnumsMap.put("SGReadyOpModeCmd", sgReadyStateAndOpModeCmds);
+        expectedDatapointEnumsMap.put("SGReadyState", sgReadyStateAndOpModeCmds);
+
+        var device = createSGrModbusDevice("SGr_04_0015_xxxx_StiebelEltron_HeatPump_V1.0.0.xml");
+
+        var enumResults = new HashMap<String, String[]>();
+        device.getFunctionalProfiles().forEach(
+                fp -> fp.getDataPoints().forEach(
+                    dp -> {
+                        DataType dt = dp.getDataType();
+                        if (dt.isOfType(ENUM) && dt.getRange() != null) {
+                            enumResults.put(dp.getName(), dt.getRange().stream().map(Value::getString).toArray(String[]::new));
+                        }
+                    }));
+
+        assertArrayEquals(expectedDatapointEnumsMap.get("HPOpModeCmd"), enumResults.get("HPOpModeCmd"));
+        assertArrayEquals(expectedDatapointEnumsMap.get("SGReadyOpModeCmd"), enumResults.get("SGReadyOpModeCmd"));
+        assertArrayEquals(expectedDatapointEnumsMap.get("SGReadyState"), enumResults.get("SGReadyState"));
     }
 
     @Test
@@ -284,7 +317,7 @@ class SGrDeviceBaseTest {
         expected.add(StringValue.of("Sensor_7"));
         expected.add(StringValue.of("Sensor_8"));
 
-        assertEquals("BITMAP", dataPoint.getDataType().name());
+        assertEquals("BITMAP", dataPoint.getDataType().getName());
         assertIterableEquals(expected, dataPoint.getDataType().getRange());
     }
 
@@ -454,7 +487,7 @@ class SGrDeviceBaseTest {
         expectedRange.add(Float64Value.of(Double.MAX_VALUE));
 
         assertEquals("VoltageL1", dataPoint.getName());
-        assertEquals("FLOAT64", dataPoint.getDataType().name());
+        assertEquals("FLOAT64", dataPoint.getDataType().getName());
         assertIterableEquals(expectedRange, dataPoint.getDataType().getRange());
 
         assertEquals(0.005, dataPoint.getMinimumValue());
