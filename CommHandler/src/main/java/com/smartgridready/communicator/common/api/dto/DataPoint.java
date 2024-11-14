@@ -1,7 +1,7 @@
 package com.smartgridready.communicator.common.api.dto;
 
 import com.smartgridready.communicator.common.api.GenDeviceApi;
-import com.smartgridready.communicator.common.api.values.DataType;
+import com.smartgridready.communicator.common.api.values.DataTypeInfo;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.messaging.api.GenDeviceApi4Messaging;
 import com.smartgridready.communicator.rest.api.GenDeviceApi4Rest;
@@ -24,7 +24,7 @@ public class DataPoint {
 
     private final String name;
     private final String functionalProfileName;
-    private final DataType dataType;
+    private final DataTypeInfo dataType;
     private final Units unit;
     private final DataDirectionProduct permissions;
     private final Double minimumValue;
@@ -37,7 +37,7 @@ public class DataPoint {
     @SuppressWarnings("java:S107")
     public DataPoint(String name,
                      String functionalProfileName,
-                     DataType dataType,
+                     DataTypeInfo dataType,
                      Units unit,
                      DataDirectionProduct permissions,
                      Double minimumValue,
@@ -72,7 +72,7 @@ public class DataPoint {
     /**
      * @return The data type name and range
      */
-    public DataType getDataType() {
+    public DataTypeInfo getDataType() {
         return dataType;
     }
 
@@ -168,6 +168,7 @@ public class DataPoint {
      * @throws RestApiAuthenticationException If the authentication could not be performed
      * @throws RestApiServiceCallException If the REST API service call failed
      * @throws IOException If an IO operation error occurred
+     * @deprecated Since version 2.1.0.
      */
     @Deprecated(since = "2.1.0", forRemoval = true)
     public void authenticate() throws RestApiResponseParseException, RestApiAuthenticationException, RestApiServiceCallException, IOException {

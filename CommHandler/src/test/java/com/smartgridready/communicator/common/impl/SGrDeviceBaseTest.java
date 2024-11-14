@@ -2,6 +2,7 @@ package com.smartgridready.communicator.common.impl;
 
 import com.smartgridready.communicator.common.api.values.ArrayValue;
 import com.smartgridready.communicator.common.api.values.DataType;
+import com.smartgridready.communicator.common.api.values.DataTypeInfo;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.driver.api.http.GenHttpRequestFactory;
@@ -265,7 +266,7 @@ class SGrDeviceBaseTest {
         expected.add(EnumValue.of("ENUM_10", 2L, "Register bits 10"));
         expected.add(EnumValue.of("ENUM_11", 3L, "Register bits 11"));
 
-        assertEquals("ENUM", dataPoint.getDataType().getName());
+        assertEquals("ENUM", dataPoint.getDataType().getTypeName());
         assertArrayEquals(expected.toArray(), dataPoint.getDataType().getRange().toArray());
     }
 
@@ -290,8 +291,8 @@ class SGrDeviceBaseTest {
         device.getFunctionalProfiles().forEach(
                 fp -> fp.getDataPoints().forEach(
                     dp -> {
-                        DataType dt = dp.getDataType();
-                        if (dt.isOfType(ENUM) && dt.getRange() != null) {
+                        DataTypeInfo dt = dp.getDataType();
+                        if (dt.getType() == ENUM && dt.getRange() != null) {
                             enumResults.put(dp.getName(), dt.getRange().stream().map(Value::getString).toArray(String[]::new));
                         }
                     }));
@@ -317,7 +318,7 @@ class SGrDeviceBaseTest {
         expected.add(StringValue.of("Sensor_7"));
         expected.add(StringValue.of("Sensor_8"));
 
-        assertEquals("BITMAP", dataPoint.getDataType().getName());
+        assertEquals("BITMAP", dataPoint.getDataType().getTypeName());
         assertIterableEquals(expected, dataPoint.getDataType().getRange());
     }
 
@@ -487,7 +488,7 @@ class SGrDeviceBaseTest {
         expectedRange.add(Float64Value.of(Double.MAX_VALUE));
 
         assertEquals("VoltageL1", dataPoint.getName());
-        assertEquals("FLOAT64", dataPoint.getDataType().getName());
+        assertEquals("FLOAT64", dataPoint.getDataType().getTypeName());
         assertIterableEquals(expectedRange, dataPoint.getDataType().getRange());
 
         assertEquals(0.005, dataPoint.getMinimumValue());
@@ -540,8 +541,8 @@ class SGrDeviceBaseTest {
             String name, String value, DataType dataType, Units unit, List<GenericAttribute> children) {
 
         var dataTypeProduct = new DataTypeProduct();
-        if (UNKNOWN != dataType) {
-            dataType.getSetGenValMethod().accept(dataTypeProduct, new EmptyType());
+        if (UNKNOWN != dataType && DataType.getDataTypeInfo(dataType).isPresent()) {
+            DataType.getDataTypeInfo(dataType).get().getSetGenValMethod().accept(dataTypeProduct, new EmptyType());
         }
         return new GenericAttribute(
                 name,
