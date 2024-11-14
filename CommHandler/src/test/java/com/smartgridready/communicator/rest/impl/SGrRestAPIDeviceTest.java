@@ -36,6 +36,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -137,6 +138,35 @@ class SGrRestAPIDeviceTest {
 		// then		
 		assertEquals("0.0075", String.format("%.4f", res.getFloat32()));
 		
+	}
+
+	@Test
+	void testGetValSuccessWithParameters() throws Exception {
+
+		// given
+		when(httpClientFactory.create()).thenReturn(httpClient);
+
+		when(httpClient.execute()).thenReturn(
+				GenHttpResponse.of(CLEMAP_AUTH_RESP),
+				GenHttpResponse.of("{ \"value\" : \"on\" }"));
+
+		// when
+		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
+		device.connect();
+
+		var parameters = new Properties();
+		parameters.put("sensor_id", "1234");
+		var res = device.getVal("GPIO", "ContactRW", parameters);
+		assertEquals("on", res.getString());
+
+		verify(httpClient).setUri(URI.create("https://clemap.io/authentication"));
+		verify(httpClient).setUri(URI.create("https://clemap.io/digitaltwins?sensor_id=1234&pin=2"));
+
+		// modify the parameters
+		parameters.put("sensor_id", "5678");
+		device.getVal("GPIO", "ContactRW", parameters);
+		verify(httpClient).setUri(URI.create("https://clemap.io/digitaltwins?sensor_id=5678&pin=2"));
+
 	}
 
 	@ParameterizedTest
