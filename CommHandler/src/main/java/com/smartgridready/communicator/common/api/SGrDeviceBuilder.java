@@ -16,7 +16,10 @@ import com.smartgridready.ns.v0.InterfaceList;
 import com.smartgridready.communicator.common.api.dto.InterfaceType;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.communicator.common.helper.DriverFactoryLoader;
+import com.smartgridready.communicator.contacts.impl.SGrContactsDevice;
+import com.smartgridready.communicator.generic.impl.SGrGenericDevice;
 import com.smartgridready.driver.api.common.GenDriverException;
+import com.smartgridready.driver.api.contacts.GenDriverAPI4ContactsFactory;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
@@ -38,6 +41,7 @@ public class SGrDeviceBuilder {
     private GenDriverAPI4ModbusFactory modbusClientFactory;
     private GenHttpClientFactory httpClientFactory;
     private Map<MessagingPlatformType, GenMessagingClientFactory> messagingClientFactories;
+    private GenDriverAPI4ContactsFactory contactsDriverFactory;
 
     public SGrDeviceBuilder() {
         this.eidSource = null;
@@ -49,11 +53,13 @@ public class SGrDeviceBuilder {
         this.modbusClientFactory = DriverFactoryLoader.getModbusDriver();
 
         this.httpClientFactory = DriverFactoryLoader.getRestApiDriver();
-        
+
         this.messagingClientFactories = new LinkedHashMap<>();
         DriverFactoryLoader.getAllMessagingDrivers().forEach(m ->
             m.getSupportedPlatforms().forEach(p -> messagingClientFactories.putIfAbsent(p, m))
         );
+
+        this.contactsDriverFactory = DriverFactoryLoader.getContactsDriver();
     }
 
     /**
@@ -113,6 +119,16 @@ public class SGrDeviceBuilder {
      */
     public SGrDeviceBuilder useMessagingClientFactory(GenMessagingClientFactory messagingClientFactory, MessagingPlatformType platform) {
         this.messagingClientFactories.put(platform, messagingClientFactory);
+        return this;
+    }
+
+    /**
+     * Sets the contacts driver factory.
+     * @param contactsDriverFactory an instance of a contacts driver factory
+     * @return the same instance of the builder object
+     */
+    public SGrDeviceBuilder useContactsDriverFactory(GenDriverAPI4ContactsFactory contactsDriverFactory) {
+        this.contactsDriverFactory = contactsDriverFactory;
         return this;
     }
 
@@ -178,7 +194,6 @@ public class SGrDeviceBuilder {
                     // use modbus factory directly
                     return new SGrModbusDevice(deviceFrame, modbusClientFactory);
                 }
-                
 
             case RESTAPI:
                 if (httpClientFactory == null) {
@@ -191,6 +206,15 @@ public class SGrDeviceBuilder {
                     throw new GenDriverException("No messaging client factory defined");
                 }
                 return new SGrMessagingDevice(deviceFrame, messagingClientFactories);
+
+            case CONTACT:
+                if (contactsDriverFactory == null) {
+                    throw new GenDriverException("No contacts driver factory defined");
+                }
+                return new SGrContactsDevice(deviceFrame, contactsDriverFactory);
+
+            case GENERIC:
+                return new SGrGenericDevice(deviceFrame);
 
             default:
                 throw new GenDriverException(String.format("Unsupported interface type %s", interfaceType));

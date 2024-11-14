@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ServiceLoader;
 
+import com.smartgridready.driver.api.contacts.GenDriverAPI4ContactsFactory;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.messaging.GenMessagingClientFactory;
 import com.smartgridready.driver.api.messaging.model.MessagingPlatformType;
@@ -24,6 +25,10 @@ public class DriverFactoryLoader {
         return getImplementations(GenMessagingClientFactory.class);
     }
 
+    public static List<GenDriverAPI4ContactsFactory> getAllContactsDrivers() {
+        return getImplementations(GenDriverAPI4ContactsFactory.class);
+    }
+
     public static GenDriverAPI4ModbusFactory getModbusDriver() {
         return getAllModbusDrivers().stream().findFirst().orElse(null);
     }
@@ -38,6 +43,10 @@ public class DriverFactoryLoader {
             .filter(f -> f.getSupportedPlatforms().contains(platform))
             .findFirst()
             .orElse(null);
+    }
+
+    public static GenDriverAPI4ContactsFactory getContactsDriver() {
+        return getAllContactsDrivers().stream().findFirst().orElse(null);
     }
 
     private static <T> List<T> getImplementations(Class<T> clazz) {

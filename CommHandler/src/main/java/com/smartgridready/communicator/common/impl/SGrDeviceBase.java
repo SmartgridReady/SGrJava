@@ -40,8 +40,9 @@ public abstract class SGrDeviceBase<
     protected final D device;
 
     public enum RwpDirections {
-        READ(Stream.of(DataDirectionProduct.R, DataDirectionProduct.RW, DataDirectionProduct.RWP).collect(Collectors.toSet())),
-        WRITE(Stream.of(DataDirectionProduct.W, DataDirectionProduct.RW, DataDirectionProduct.RWP).collect(Collectors.toSet()));
+        READ(Stream.of(DataDirectionProduct.R, DataDirectionProduct.RW, DataDirectionProduct.RWP, DataDirectionProduct.C).collect(Collectors.toSet())),
+        WRITE(Stream.of(DataDirectionProduct.W, DataDirectionProduct.RW, DataDirectionProduct.RWP).collect(Collectors.toSet())),
+        CONST(Collections.singleton(DataDirectionProduct.C));
 
         private final Set<DataDirectionProduct> opAllowedTypes;
         RwpDirections(Set<DataDirectionProduct> opAllowedTypes) {

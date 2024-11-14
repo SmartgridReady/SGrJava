@@ -1,6 +1,8 @@
 package com.smartgridready.communicator.common.api;
 
 import com.smartgridready.driver.api.http.GenHttpRequest;
+import com.smartgridready.driver.api.contacts.GenDriverAPI4Contacts;
+import com.smartgridready.driver.api.contacts.GenDriverAPI4ContactsFactory;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.driver.api.http.GenUriBuilder;
@@ -11,6 +13,8 @@ import com.smartgridready.driver.api.messaging.model.MessagingPlatformType;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.ResponseQueryType;
+import com.smartgridready.communicator.contacts.impl.SGrContactsDevice;
+import com.smartgridready.communicator.generic.impl.SGrGenericDevice;
 import com.smartgridready.communicator.messaging.impl.SGrMessagingDevice;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
@@ -67,6 +71,12 @@ public class SGrDeviceBuilderTest {
 
     @Mock
     GenMessagingClient messagingClient;
+
+    @Mock
+    GenDriverAPI4ContactsFactory contactsDriverFactory;
+
+    @Mock
+    GenDriverAPI4Contacts contactsDriver;
 
     @Test
     void buildRestApiDevice() throws Exception {
@@ -230,6 +240,33 @@ public class SGrDeviceBuilderTest {
                 .build();
 
         assertInstanceOf(SGrMessagingDevice.class, device);
+        assertDoesNotThrow(device::connect);
+    }
+
+    @SuppressWarnings("resource") // we are just checking the instance.
+    @Test
+    void buildContactsDevice() throws Exception {
+
+        when(contactsDriverFactory.create(anyInt(), anyLong())).thenReturn(contactsDriver);
+
+        GenDeviceApi device = new SGrDeviceBuilder()
+                .useContactsDriverFactory(contactsDriverFactory)
+                .eid(loadResourceAsStream("test_eid_contacts_V0.1.xml"))
+                .build();
+
+        assertInstanceOf(SGrContactsDevice.class, device);
+        assertDoesNotThrow(device::connect);
+    }
+
+    @SuppressWarnings("resource") // we are just checking the instance.
+    @Test
+    void buildGenericDevice() throws Exception {
+
+        GenDeviceApi device = new SGrDeviceBuilder()
+                .eid(loadResourceAsStream("test_eid_generic_V0.1.xml"))
+                .build();
+
+        assertInstanceOf(SGrGenericDevice.class, device);
         assertDoesNotThrow(device::connect);
     }
 
