@@ -1,6 +1,5 @@
 package com.smartgridready.communicator.messaging.impl;
 
-import com.smartgridready.communicator.messaging.mapper.MessageFilterMapper;
 import com.smartgridready.communicator.messaging.mapper.MessagingInterfaceDescMapper;
 import com.smartgridready.driver.api.messaging.model.Message;
 import com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription;

@@ -9,47 +9,47 @@ import com.smartgridready.driver.api.modbus.StopBits;
 public class MockModbusDriverFactory implements GenDriverAPI4ModbusFactory {
 
     @Override
-    public GenDriverAPI4Modbus createRtuTransport(String arg0) {
+    public GenDriverAPI4Modbus createRtuTransport(String portName) {
         return new GenDriverAPI4ModbusRTUMock();
     }
 
     @Override
-    public GenDriverAPI4Modbus createRtuTransport(String arg0, int arg1) {
+    public GenDriverAPI4Modbus createRtuTransport(String portName, int baudRate) {
         return new GenDriverAPI4ModbusRTUMock();
     }
 
     @Override
-    public GenDriverAPI4Modbus createRtuTransport(String arg0, int arg1, Parity arg2) {
+    public GenDriverAPI4Modbus createRtuTransport(String portName, int baudRate, Parity parity) {
         return new GenDriverAPI4ModbusRTUMock();
     }
 
     @Override
-    public GenDriverAPI4Modbus createRtuTransport(String arg0, int arg1, Parity arg2, DataBits arg3) {
+    public GenDriverAPI4Modbus createRtuTransport(String portName, int baudRate, Parity parity, DataBits dataBits) {
         return new GenDriverAPI4ModbusRTUMock();
     }
 
     @Override
-    public GenDriverAPI4Modbus createRtuTransport(String arg0, int arg1, Parity arg2, DataBits arg3, StopBits arg4) {
+    public GenDriverAPI4Modbus createRtuTransport(String portName, int baudRate, Parity parity, DataBits dataBits, StopBits stopBits) {
         return new GenDriverAPI4ModbusRTUMock();
     }
 
     @Override
-    public GenDriverAPI4Modbus createTcpTransport(String arg0) {
+    public GenDriverAPI4Modbus createTcpTransport(String ipAddress) {
         return new GenDriverAPI4ModbusRTUMock();
     }
 
     @Override
-    public GenDriverAPI4Modbus createTcpTransport(String arg0, int arg1) {
+    public GenDriverAPI4Modbus createTcpTransport(String ipAddress, int port) {
         return new GenDriverAPI4ModbusRTUMock();
     }
 
     @Override
-    public GenDriverAPI4Modbus createUdpTransport(String arg0) {
+    public GenDriverAPI4Modbus createUdpTransport(String ipAddress) {
         return new GenDriverAPI4ModbusRTUMock();
     }
 
     @Override
-    public GenDriverAPI4Modbus createUdpTransport(String arg0, int arg1) {
+    public GenDriverAPI4Modbus createUdpTransport(String ipAddress, int port) {
         return new GenDriverAPI4ModbusRTUMock();
     }
 }
