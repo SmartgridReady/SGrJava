@@ -122,7 +122,7 @@ class SGrRestAPIDeviceTest {
 	@Test
 	void testGetValSuccessWithTokenRenewal() throws Exception {
 		
-		// given					
+		// given
 		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
 		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
         Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
@@ -142,6 +142,45 @@ class SGrRestAPIDeviceTest {
 		// then		
 		assertEquals("0.0075", String.format("%.4f", res.getFloat32()));
 		
+	}
+
+	@Test
+	void testGetValSuccessWithParameters() throws Exception {
+
+		// given
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(URI.create("https://clemap.io/authentication"));
+		when(httpRequest.execute()).thenReturn(
+				GenHttpResponse.of(CLEMAP_AUTH_RESP),
+				GenHttpResponse.of("{ \"value\" : \"on\" }"));
+
+		// when
+		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
+		device.connect();
+
+		when(uriBuilder.build()).thenReturn(
+			URI.create("https://clemap.io/authentication"),
+			URI.create("https://clemap.io/digitaltwins?sensor_id=1234&pin=2")
+		);
+
+		var parameters = new Properties();
+		parameters.put("sensor_id", "1234");
+		var res = device.getVal("GPIO", "ContactRW", parameters);
+		assertEquals("on", res.getString());
+
+		when(uriBuilder.build()).thenReturn(
+			URI.create("https://clemap.io/authentication"),
+			URI.create("https://clemap.io/digitaltwins?sensor_id=5678&pin=2")
+		);
+
+		// modify the parameters
+		parameters.put("sensor_id", "5678");
+		res = device.getVal("GPIO", "ContactRW", parameters);
+		assertEquals("on", res.getString());
 	}
 
 	@ParameterizedTest

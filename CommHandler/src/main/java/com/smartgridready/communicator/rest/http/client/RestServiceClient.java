@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.driver.api.http.GenHttpRequest;
@@ -37,6 +38,8 @@ import com.smartgridready.ns.v0.RestApiServiceCall;
 import com.smartgridready.ns.v0.HeaderEntry;
 
 public class RestServiceClient {
+
+	private static final ObjectMapper objectMapper = new ObjectMapper();
 
 	private final String baseUri;
 
@@ -52,11 +55,11 @@ public class RestServiceClient {
 		HTTP_METHOD_MAP.put(HttpMethod.DELETE, com.smartgridready.driver.api.http.HttpMethod.DELETE);
 	}
 
-	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory) {
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory) throws IOException {
 		this(baseUri, serviceCall, httpClientFactory, new Properties());
 	}
 
-	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory, Properties substitutions) {
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory, Properties substitutions) throws IOException {
 		this.baseUri = replacePropertyPlaceholders(baseUri, substitutions);
 		this.restServiceCall = cloneRestServiceCallWithSubstitutions(serviceCall, substitutions);
 		this.httpClientFactory = httpClientFactory;
@@ -83,34 +86,36 @@ public class RestServiceClient {
 		return restServiceCall;
 	}
 
-	private RestApiServiceCall cloneRestServiceCallWithSubstitutions(RestApiServiceCall restServiceCall, Properties substitutions) {
+	private RestApiServiceCall cloneRestServiceCallWithSubstitutions(RestApiServiceCall restServiceCall, Properties substitutions) throws IOException {
+
+		var serviceCall = cloneRestApiServiceCall(restServiceCall);
 
 		// Substitutions can appear within the request path, request body or even the response query.
-		restServiceCall.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
-		restServiceCall.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));
+		serviceCall.setRequestPath(replacePropertyPlaceholders(serviceCall.getRequestPath(), substitutions));
+		serviceCall.setRequestBody(replacePropertyPlaceholders(serviceCall.getRequestBody(), substitutions));
 
-		if (restServiceCall.getResponseQuery() != null) {
-			restServiceCall.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
+		if (serviceCall.getResponseQuery() != null) {
+			serviceCall.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
 		}
 
-		ParameterList queryParams = restServiceCall.getRequestQuery();
+		ParameterList queryParams = serviceCall.getRequestQuery();
 		if (queryParams != null) {
 			queryParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
 		}
 
-		ParameterList formParams = restServiceCall.getRequestForm();
+		ParameterList formParams = serviceCall.getRequestForm();
 		if (formParams != null) {
 			formParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
 		}
 
-		HeaderList headers = restServiceCall.getRequestHeader();
+		HeaderList headers = serviceCall.getRequestHeader();
 		if (headers != null) {
 			headers.getHeader().forEach(header -> header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions)));
 		} else {
-			restServiceCall.setRequestHeader(new HeaderList());
+			serviceCall.setRequestHeader(new HeaderList());
 		}
 
-		return restServiceCall;
+		return serviceCall;
 	}
 
 	public GenHttpResponse callService() throws IOException {
@@ -187,16 +192,21 @@ public class RestServiceClient {
 		return convertedTemplate;
 	}
 
-	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory) {
+	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory) throws IOException {
 		return new RestServiceClient(baseUri, serviceCall, httpClientFactory);
 	}
 
-	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory, Properties substitutions) {
+	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory, Properties substitutions) throws IOException {
 		return new RestServiceClient(baseUri, serviceCall, httpClientFactory, substitutions);
 	}
 
 	private static com.smartgridready.driver.api.http.HttpMethod mapHttpMethod(HttpMethod httpMethod) throws IOException {
 		return Optional.ofNullable(HTTP_METHOD_MAP.get(httpMethod))
 				.orElseThrow(() -> new IOException("Unsupported HTTP method: " + httpMethod.name()));
+	}
+
+	private static RestApiServiceCall cloneRestApiServiceCall(RestApiServiceCall restApiServiceCall) throws IOException {
+		var clone = objectMapper.writeValueAsString(restApiServiceCall);
+		return objectMapper.readValue(clone, RestApiServiceCall.class);
 	}
 }
