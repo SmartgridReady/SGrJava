@@ -4,9 +4,9 @@ import java.net.URL;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
@@ -23,6 +23,8 @@ import com.smartgridready.ns.v0.DeviceFrame;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(value = MockitoExtension.class)
@@ -31,6 +33,15 @@ public class SGrContactsDeviceTest {
     private static final Logger LOG = LoggerFactory.getLogger(SGrContactsDeviceTest.class);
 
     private static final String VALUE_0 = "LD_NORMAL";
+    private static final String VALUE_1 = "LD_REDUCED";
+    private static final String VALUE_2 = "LD_LOCKED";
+    private static final String VALUE_3 = "LD_MAX";
+
+    // LSB-first (value = 01)
+    private static final boolean[] RESP_1 = new boolean[] { true, false };
+    private static final boolean[] RESP_2 = new boolean[] { false, true };
+
+    private final ArgumentCaptor<boolean[]> boolCaptor1 = ArgumentCaptor.forClass(boolean[].class);
 
     @Mock
     GenDriverAPI4ContactsFactory contactsDriverFactory;
@@ -45,13 +56,12 @@ public class SGrContactsDeviceTest {
 		deviceFrame = createSGrContactsDeviceFrame();
 	}
 
-    // TODO enable when we have at least a usable driver interface
-    @Disabled
     @Test
     void testGetValSuccess() throws Exception {
 
         // given
 		when(contactsDriverFactory.create(anyInt(), anyLong())).thenReturn(contactsDriver);
+        when(contactsDriver.readContacts(anyString(), anyString())).thenReturn(RESP_1);
 
         // when
 		GenDeviceApi device = new SGrContactsDevice(deviceFrame, contactsDriverFactory);
@@ -60,11 +70,9 @@ public class SGrContactsDeviceTest {
 		Value res = device.getVal("SGCPFlexLoad", "SGCP_FeedInOutStateLv2");
 		
 		// then		
-		assertEquals(VALUE_0, res.getEnum().getLiteral());
+		assertEquals(VALUE_1, res.getEnum().getLiteral());
     }
 
-    // TODO enable when we have at least a usable driver interface
-    @Disabled
     @Test
     void testSetValSuccess() throws Exception {
 
@@ -76,7 +84,11 @@ public class SGrContactsDeviceTest {
         device.connect();
 
         // then
-        assertDoesNotThrow(() -> device.setVal("SGCPFlexLoad", "SGCP_FeedInOutStateLv2", EnumValue.of(VALUE_0)));
+        assertDoesNotThrow(() -> device.setVal("SGCPFlexLoad", "SGCP_FeedInOutStateLv2", EnumValue.of(VALUE_2, 2L, "Locked")));
+
+        verify(contactsDriver).writeContacts(anyString(), anyString(), boolCaptor1.capture());
+
+        assertArrayEquals(RESP_2, boolCaptor1.getValue());
     }
 
     private static DeviceFrame createSGrContactsDeviceFrame() {

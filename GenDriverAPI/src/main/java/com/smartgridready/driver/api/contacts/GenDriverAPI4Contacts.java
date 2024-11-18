@@ -10,5 +10,7 @@ public interface GenDriverAPI4Contacts {
 
     boolean isConnected();
 
-    // TODO add actual read and write methods
+    boolean[] readContacts(String functionalProfileName, String dataPointName) throws GenDriverException;
+
+    void writeContacts(String functionalProfileName, String dataPointName, boolean[] values) throws GenDriverException;
 }
