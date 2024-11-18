@@ -1,6 +1,7 @@
 package com.smartgridready.communicator.common.impl;
 
 import com.smartgridready.communicator.common.api.values.DataType;
+import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.ns.v0.ConfigurationList;
 import com.smartgridready.ns.v0.ConfigurationListElement;
 import com.smartgridready.ns.v0.DataDirectionProduct;
@@ -167,8 +168,11 @@ public abstract class SGrDeviceBase<
         var descriptions = new EnumMap<Language, String>(Language.class);
         configurationListElement.getConfigurationDescription().forEach(description -> descriptions.put(description.getLanguage(), description.getTextElement()));
 
+        // handle special case of enum
         Value v = (configurationListElement.getDefaultValue() != null)
-            ? Value.fromString(configurationListElement.getDataType(), configurationListElement.getDefaultValue())
+            ? (configurationListElement.getDataType().getEnum() != null)
+                ? EnumValue.of(configurationListElement.getDefaultValue())
+                : Value.fromString(configurationListElement.getDataType(), configurationListElement.getDefaultValue())
             : null;
 
         return new ConfigurationValue(

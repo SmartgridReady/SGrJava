@@ -1,7 +1,7 @@
 package com.smartgridready.communicator.common.api.dto;
 
 import com.smartgridready.communicator.common.api.values.DataType;
-import com.smartgridready.ns.v0.DataTypeProduct;
+import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.ns.v0.GenericAttributeListProductEnd;
 import com.smartgridready.ns.v0.GenericAttributeProduct;
 import com.smartgridready.ns.v0.GenericAttributeProductEnd;
@@ -62,7 +62,12 @@ public class GenericAttribute {
                 .map(GenericAttribute::mapGenericAttributes).orElse(new ArrayList<>());
 
         DataType dt = DataType.toDataType(genAttribute.getDataType()).orElse(DataType.UNKNOWN);
-        Value v = (genAttribute.getValue() != null) ? Value.fromString(genAttribute.getDataType(), genAttribute.getValue()) : null;
+        // handle special case of enum
+        Value v = (genAttribute.getValue() != null)
+            ? (genAttribute.getDataType().getEnum() != null)
+                ? EnumValue.of(genAttribute.getValue())
+                : Value.fromString(genAttribute.getDataType(), genAttribute.getValue())
+            : null;
 
         return new GenericAttribute(
                 genAttribute.getName(),
