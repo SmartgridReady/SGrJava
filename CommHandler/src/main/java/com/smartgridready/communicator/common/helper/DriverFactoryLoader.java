@@ -1,9 +1,13 @@
 package com.smartgridready.communicator.common.helper;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ServiceLoader;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.smartgridready.driver.api.contacts.GenDriverAPI4ContactsFactory;
 import com.smartgridready.driver.api.http.GenHttpClientFactory;
@@ -12,6 +16,8 @@ import com.smartgridready.driver.api.messaging.model.MessagingPlatformType;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
 
 public class DriverFactoryLoader {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DriverFactoryLoader.class);
 
     public static List<GenDriverAPI4ModbusFactory> getAllModbusDrivers() {
         return getImplementations(GenDriverAPI4ModbusFactory.class);
@@ -50,15 +56,21 @@ public class DriverFactoryLoader {
     }
 
     private static <T> List<T> getImplementations(Class<T> clazz) {
-        ServiceLoader<T> services = ServiceLoader.load(clazz);
+        try {
+            ServiceLoader<T> services = ServiceLoader.load(clazz);
 
-        List<T> implementations = new LinkedList<>();
-        Iterator<T> iter = services.iterator();
-        while (iter.hasNext()) {
-           implementations.add(iter.next());
+            List<T> implementations = new LinkedList<>();
+            Iterator<T> iter = services.iterator();
+            while (iter.hasNext()) {
+                implementations.add(iter.next());
+            }
+
+            return implementations;
+        } catch (Exception e) {
+            LOG.warn("Could not load implementations of '%s': %s", clazz.getName(), e.getMessage());
         }
 
-        return implementations;
+        return Collections.emptyList();
     }
 
     private DriverFactoryLoader() {}

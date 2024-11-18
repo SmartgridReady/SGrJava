@@ -24,8 +24,8 @@ public class SGrGenericDevice extends SGrDeviceBase<
     @Override
     public Value getVal(String profileName, String dataPointName) throws GenDriverException {
         DataPointBase dataPoint = findDatapoint(profileName, dataPointName);
-        // only constants supported
-        checkReadWritePermission(dataPoint, RwpDirections.CONST);
+        // only constants supported in concrete case
+        checkReadWritePermission(dataPoint, RwpDirections.READ);
         return StringValue.of(dataPoint.getDataPoint().getValue());
     }
 

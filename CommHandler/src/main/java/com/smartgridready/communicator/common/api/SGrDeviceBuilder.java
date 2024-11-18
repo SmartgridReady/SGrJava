@@ -43,6 +43,9 @@ public class SGrDeviceBuilder {
     private Map<MessagingPlatformType, GenMessagingClientFactory> messagingClientFactories;
     private GenDriverAPI4ContactsFactory contactsDriverFactory;
 
+    /**
+     * Construct new instance with defaults.
+     */
     public SGrDeviceBuilder() {
         this.eidSource = null;
         this.properties = null;
@@ -103,7 +106,8 @@ public class SGrDeviceBuilder {
     }
 
     /**
-     * Sets the Modbus client factory.
+     * Sets the Modbus client factory explicitly.
+     * If not set explicitly, the Java ServiceLoader mechanism tries to find an implementation.
      * @param modbusClientFactory an instance of a Modbus client factory
      * @return the same instance of the builder object
      */
@@ -113,7 +117,8 @@ public class SGrDeviceBuilder {
     }
 
     /**
-     * Sets the messaging client factory to be used
+     * Sets the messaging client factory to be used explicitly.
+     * If not set explicitly, the Java ServiceLoader mechanism tries to find an implementation.
      * @param messagingClientFactory the messaging client factory to be used
      * @param platform the messaging platform type
      */
@@ -123,7 +128,8 @@ public class SGrDeviceBuilder {
     }
 
     /**
-     * Sets the contacts driver factory.
+     * Sets the contacts driver factory explicitly.
+     * If not set explicitly, the Java ServiceLoader mechanism tries to find an implementation.
      * @param contactsDriverFactory an instance of a contacts driver factory
      * @return the same instance of the builder object
      */
@@ -133,7 +139,8 @@ public class SGrDeviceBuilder {
     }
 
     /**
-     * Use shared instances of RTU driver.
+     * Enable or disable shared instances of Modbus RTU driver.
+     * Is false by default, if not set.
      * @param useSharedModbusRtu true if shared, false otherwise
      * @return the same instance of the builder object
      */
@@ -143,8 +150,9 @@ public class SGrDeviceBuilder {
     }
 
     /**
-     * Sets a custom shared Modbus gateway registry.
-     * Uses a singleton instance by default.
+     * Sets a custom shared Modbus RTU driver registry.
+     * Uses a singleton instance by default, if not set.
+     * Also depends on useSharedModbusRtu().
      * @param sharedModbusGatewayRegistry the custom registry
      * @return the same instance of the builder object
      */
@@ -154,7 +162,7 @@ public class SGrDeviceBuilder {
     }
 
     /**
-     * Sets the EID properties.
+     * Sets the EID configuration parameters.
      * @param properties the properties
      * @return the same instance of the builder object
      */
@@ -178,7 +186,7 @@ public class SGrDeviceBuilder {
         
         DeviceFrame deviceFrame = eidSource.load(loader, properties);
         if (deviceFrame == null) {
-            throw new GenDriverException("EID could not be loaded");
+            throw new GenDriverException("Device description could not be loaded from EID");
         }
 
         InterfaceType interfaceType = getInterfaceType(deviceFrame.getInterfaceList());
