@@ -25,6 +25,8 @@ import com.smartgridready.communicator.common.api.dto.OperationEnvironment;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.driver.api.common.GenDriverException;
 
+import static com.smartgridready.communicator.common.api.values.DataType.UNKNOWN;
+
 import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
@@ -165,9 +167,14 @@ public abstract class SGrDeviceBase<
         var descriptions = new EnumMap<Language, String>(Language.class);
         configurationListElement.getConfigurationDescription().forEach(description -> descriptions.put(description.getLanguage(), description.getTextElement()));
 
+        Value v = (configurationListElement.getDefaultValue() != null)
+            ? Value.fromString(configurationListElement.getDataType(), configurationListElement.getDefaultValue())
+            : null;
+
         return new ConfigurationValue(
                 configurationListElement.getName(),
-                DataType.getGenDataTypeName(configurationListElement.getDataType()),
+                v,
+                DataType.toDataType(configurationListElement.getDataType()).orElse(UNKNOWN),
                 descriptions);
     }
 

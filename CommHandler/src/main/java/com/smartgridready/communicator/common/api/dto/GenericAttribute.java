@@ -18,19 +18,19 @@ import java.util.stream.Collectors;
 public class GenericAttribute {
     private final String name;
     private final Value value;
-    private final String dataType;
+    private final DataType dataType;
     private final Units unit;
     private final List<GenericAttribute> children;
 
     public GenericAttribute(
             String name,
-            String value,
-            DataTypeProduct dataType,
+            Value value,
+            DataType dataType,
             Units unit,
             List<GenericAttribute> children) {
         this.name = name;
-        this.value = (dataType != null && value != null) ? Value.fromString(dataType, value) : null;
-        this.dataType = DataType.getGenDataTypeName(dataType);
+        this.value = value;
+        this.dataType = dataType;
         this.unit = unit;
         this.children = children;
     }
@@ -43,7 +43,7 @@ public class GenericAttribute {
         return value;
     }
 
-    public String getDataType() {
+    public DataType getDataType() {
         return dataType;
     }
 
@@ -61,20 +61,27 @@ public class GenericAttribute {
                 .map(GenericAttributeListProductEnd::getGenericAttributeListElement)
                 .map(GenericAttribute::mapGenericAttributes).orElse(new ArrayList<>());
 
+        DataType dt = DataType.toDataType(genAttribute.getDataType()).orElse(DataType.UNKNOWN);
+        Value v = (genAttribute.getValue() != null) ? Value.fromString(genAttribute.getDataType(), genAttribute.getValue()) : null;
+
         return new GenericAttribute(
                 genAttribute.getName(),
-                genAttribute.getValue(),
-                genAttribute.getDataType(),
+                v,
+                dt,
                 genAttribute.getUnit(),
                 children
         );
     }
 
     public static GenericAttribute of(GenericAttributeProductEnd genAttributeChild) {
+
+        DataType dt = DataType.toDataType(genAttributeChild.getDataType()).orElse(DataType.UNKNOWN);
+        Value v = (genAttributeChild.getValue() != null) ? Value.fromString(genAttributeChild.getDataType(), genAttributeChild.getValue()) : null;
+
         return new GenericAttribute(
                 genAttributeChild.getName(),
-                genAttributeChild.getValue(),
-                genAttributeChild.getDataType(),
+                v,
+                dt,
                 genAttributeChild.getUnit(),
                 null);
     }

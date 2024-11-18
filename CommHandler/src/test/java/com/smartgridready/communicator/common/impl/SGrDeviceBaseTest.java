@@ -433,7 +433,7 @@ class SGrDeviceBaseTest {
 
        var genAttr = genericAttributes.stream().findFirst().orElseGet(() -> fail("Functional Profile's GenericAttribute is missing"));
        assertEquals("LoadReduction", genAttr.getName());
-       assertEquals("FLOAT32", genAttr.getDataType());
+       assertEquals(DataType.FLOAT32, genAttr.getDataType());
        assertEquals(Units.PERCENT, genAttr.getUnit());
        assertEquals(20.5, genAttr.getValue().getFloat32());
     }
@@ -476,7 +476,7 @@ class SGrDeviceBaseTest {
         expectedRange.add(Float64Value.of(Double.MAX_VALUE));
 
         assertEquals("VoltageL1", dataPoint.getName());
-        assertEquals("FLOAT64", dataPoint.getDataType().name());
+        assertEquals(DataType.FLOAT64, dataPoint.getDataType());
         assertIterableEquals(expectedRange, dataPoint.getDataType().getRange());
 
         assertEquals(0.005, dataPoint.getMinimumValue());
@@ -484,7 +484,7 @@ class SGrDeviceBaseTest {
         assertEquals(DataDirectionProduct.RW, dataPoint.getPermissions());
         assertEquals(1, dataPoint.getArrayLen());
 
-        var expectedGenAttr =  createGenericAttributeProduct("PrecisionPercent", "2.2", DataType.FLOAT32, Units.PERCENT, new ArrayList<>());
+        var expectedGenAttr = createGenericAttributeProduct("PrecisionPercent", "2.2", DataType.FLOAT32, Units.PERCENT, new ArrayList<>());
         var resultGenAttr = dataPoint.getGenericAttributes();
         assertTrue(resultGenAttr.stream().findFirst().isPresent());
         assertEquals(expectedGenAttr, resultGenAttr.stream().findFirst().get());
@@ -495,7 +495,7 @@ class SGrDeviceBaseTest {
         var configRecord = configurationValues.stream().findFirst();
         assertTrue(configRecord.isPresent());
         assertEquals("baseUri", configRecord.get().getName());
-        assertEquals("STRING", configRecord.get().getDataType());
+        assertEquals(DataType.STRING, configRecord.get().getDataType());
 
         assertEquals("The base URI to connect to the service", configRecord.get().getDescriptions().get(Language.EN));
         assertEquals("Die Basis-URI des service", configRecord.get().getDescriptions().get(Language.DE));
@@ -532,10 +532,13 @@ class SGrDeviceBaseTest {
         if (UNKNOWN != dataType) {
             dataType.getSetGenValMethod().accept(dataTypeProduct, new EmptyType());
         }
+
+        Value v = (value != null) ? Value.fromString(dataTypeProduct, value) : null;
+
         return new GenericAttribute(
                 name,
-                value,
-                dataTypeProduct,
+                v,
+                dataType,
                 unit,
                 children);
     }
