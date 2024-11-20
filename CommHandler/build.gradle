@@ -166,6 +166,9 @@ def integrationTestTask = tasks.register('integrationTest', Test) {
 
 
 publishing {
+    java {
+        withSourcesJar()
+    }
 
     repositories {
         maven {
