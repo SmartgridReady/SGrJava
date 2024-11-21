@@ -26,8 +26,6 @@ import com.smartgridready.communicator.common.api.dto.OperationEnvironment;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.driver.api.common.GenDriverException;
 
-import static com.smartgridready.communicator.common.api.values.DataType.UNKNOWN;
-
 import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
@@ -178,7 +176,7 @@ public abstract class SGrDeviceBase<
         return new ConfigurationValue(
                 configurationListElement.getName(),
                 v,
-                DataType.toDataType(configurationListElement.getDataType()).orElse(UNKNOWN),
+                DataType.getDataTypeInfo(configurationListElement.getDataType()).orElse(null),
                 descriptions);
     }
 
@@ -249,7 +247,7 @@ public abstract class SGrDeviceBase<
         return new DataPoint(
                 dataPointName,
                 functionalProfileName,
-                DataType.toDataType(dataPoint.getDataType()).orElse(DataType.UNKNOWN),
+                DataType.getDataTypeInfo(dataPoint.getDataType()).orElse(null),
                 dataPoint.getUnit() != null ? dataPoint.getUnit() : null,
                 dataPoint.getDataDirection() != null ? dataPoint.getDataDirection() : null,
                 dataPoint.getMinimumValue() != null ? dataPoint.getMinimumValue() : null,

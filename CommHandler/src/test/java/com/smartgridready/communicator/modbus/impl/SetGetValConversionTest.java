@@ -930,8 +930,8 @@ class SetGetValConversionTest {
             dp.setEnum(new EnumMapProduct());
         } else if (v0PackageType == DataType.BITMAP) {
             dp.setBitmap(new BitmapProduct());
-        } else {
-            v0PackageType.getSetGenValMethod().accept(dp, new EmptyType());
+        } else if (DataType.getDataTypeInfo(v0PackageType).isPresent()) {
+            DataType.getDataTypeInfo(v0PackageType).get().getSetGenValMethod().accept(dp, new EmptyType());
         }
         return dp;
     }
@@ -941,8 +941,8 @@ class SetGetValConversionTest {
         ModbusDataType dp = new ModbusDataType();
         if (v0PackageType == DataType.BOOLEAN) {
             dp.setBoolean(new ModbusBoolean());
-        } else {
-            v0PackageType.getSetModbusValMethod().accept(dp, new EmptyType());
+        } else if (DataType.getDataTypeInfo(v0PackageType).isPresent()){
+            DataType.getDataTypeInfo(v0PackageType).get().getSetModbusValMethod().accept(dp, new EmptyType());
         }
         return dp;
     }

@@ -1,6 +1,6 @@
 package com.smartgridready.communicator.common.api.dto;
 
-import com.smartgridready.communicator.common.api.values.DataType;
+import com.smartgridready.communicator.common.api.values.DataTypeInfo;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.ns.v0.Language;
 
@@ -10,11 +10,11 @@ public class ConfigurationValue {
 
     private final String name;
     private final Value defaultValue;
-    private final DataType dataType;
+    private final DataTypeInfo dataType;
 
     private final Map<Language, String> descriptions;
 
-    public ConfigurationValue(String name, Value defaultValue, DataType dataType, Map<Language, String> descriptions) {
+    public ConfigurationValue(String name, Value defaultValue, DataTypeInfo dataType, Map<Language, String> descriptions) {
         this.name = name;
         this.defaultValue = defaultValue;
         this.dataType = dataType;
@@ -29,7 +29,7 @@ public class ConfigurationValue {
         return defaultValue;
     }
 
-    public DataType getDataType() {
+    public DataTypeInfo getDataType() {
         return dataType;
     }
 

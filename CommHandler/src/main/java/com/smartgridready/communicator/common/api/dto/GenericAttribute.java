@@ -1,6 +1,7 @@
 package com.smartgridready.communicator.common.api.dto;
 
 import com.smartgridready.communicator.common.api.values.DataType;
+import com.smartgridready.communicator.common.api.values.DataTypeInfo;
 import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.ns.v0.GenericAttributeListProductEnd;
 import com.smartgridready.ns.v0.GenericAttributeProduct;
@@ -18,14 +19,14 @@ import java.util.stream.Collectors;
 public class GenericAttribute {
     private final String name;
     private final Value value;
-    private final DataType dataType;
+    private final DataTypeInfo dataType;
     private final Units unit;
     private final List<GenericAttribute> children;
 
     public GenericAttribute(
             String name,
             Value value,
-            DataType dataType,
+            DataTypeInfo dataType,
             Units unit,
             List<GenericAttribute> children) {
         this.name = name;
@@ -43,7 +44,7 @@ public class GenericAttribute {
         return value;
     }
 
-    public DataType getDataType() {
+    public DataTypeInfo getDataType() {
         return dataType;
     }
 
@@ -51,6 +52,7 @@ public class GenericAttribute {
         return unit;
     }
 
+    @SuppressWarnings("unused")
     public List<GenericAttribute> getChildren() {
         return children;
     }
@@ -61,7 +63,7 @@ public class GenericAttribute {
                 .map(GenericAttributeListProductEnd::getGenericAttributeListElement)
                 .map(GenericAttribute::mapGenericAttributes).orElse(new ArrayList<>());
 
-        DataType dt = DataType.toDataType(genAttribute.getDataType()).orElse(DataType.UNKNOWN);
+        DataTypeInfo dt = DataType.getDataTypeInfo(genAttribute.getDataType()).orElse(null);
         // handle special case of enum
         Value v = (genAttribute.getValue() != null)
             ? (genAttribute.getDataType().getEnum() != null)
@@ -80,7 +82,7 @@ public class GenericAttribute {
 
     public static GenericAttribute of(GenericAttributeProductEnd genAttributeChild) {
 
-        DataType dt = DataType.toDataType(genAttributeChild.getDataType()).orElse(DataType.UNKNOWN);
+        DataTypeInfo dt = DataType.getDataTypeInfo(genAttributeChild.getDataType()).orElse(null);
         Value v = (genAttributeChild.getValue() != null) ? Value.fromString(genAttributeChild.getDataType(), genAttributeChild.getValue()) : null;
 
         return new GenericAttribute(
