@@ -237,7 +237,7 @@ public abstract class SGrDeviceBase<
         return new DataPoint(
                 dataPointName,
                 functionalProfileName,
-                DataType.toDataType(dataPoint.getDataType()).orElse(DataType.UNKNOWN),
+                DataType.getDataTypeInfo(dataPoint.getDataType()).orElse(null),
                 dataPoint.getUnit() != null ? dataPoint.getUnit() : null,
                 dataPoint.getDataDirection() != null ? dataPoint.getDataDirection() : null,
                 dataPoint.getMinimumValue() != null ? dataPoint.getMinimumValue() : null,

@@ -51,6 +51,7 @@ public class GenericAttribute {
         return unit;
     }
 
+    @SuppressWarnings("unused")
     public List<GenericAttribute> getChildren() {
         return children;
     }
