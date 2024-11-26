@@ -97,8 +97,8 @@ dependencies {
 
     api group: 'com.smartgridready', name: 'sgr-driver-api', version: "2.1.0${sgr_driver_suffix}"
     testRuntimeOnly group: 'com.smartgridready', name: 'easymodbus', version: "2.1.0${easymodbus_suffix}"
-    testRuntimeOnly group: 'com.smartgridready', name: 'sgr-driver-apachehttp', version: "1.0.0${apachehttp_suffix}"
-    testRuntimeOnly group: 'com.smartgridready', name: 'sgr-driver-hivemq', version: "1.0.0${hivemq_suffix}"
+    testRuntimeOnly group: 'com.smartgridready', name: 'sgr-driver-apachehttp', version: "2.0.0${apachehttp_suffix}"
+    testRuntimeOnly group: 'com.smartgridready', name: 'sgr-driver-hivemq', version: "2.0.0${hivemq_suffix}"
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.16.0'
     implementation group: 'io.burt', name: 'jmespath-core', version: '0.5.1'
