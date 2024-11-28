@@ -30,7 +30,7 @@ repositories {
 }
 
 sourceSets {
-     main.java.srcDirs = ['src/main/java']
+    main.java.srcDirs = ['src/main/java']
 }
 
 java {
@@ -43,6 +43,10 @@ dependencies {
 }
 
 publishing {
+    java {
+        withSourcesJar()
+    }
+
     repositories {
         maven {
             name = "Nexus"

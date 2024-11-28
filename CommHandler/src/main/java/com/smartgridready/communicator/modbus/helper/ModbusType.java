@@ -3,5 +3,6 @@ package com.smartgridready.communicator.modbus.helper;
 public enum ModbusType {
     UNKNOWN,
     RTU,
-    TCP
+    TCP,
+    UDP
 }

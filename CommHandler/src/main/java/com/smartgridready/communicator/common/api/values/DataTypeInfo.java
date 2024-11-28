@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class DataTypeInfo {
 
     private final DataType type;
@@ -61,5 +64,27 @@ public class DataTypeInfo {
 
     public List<Value> getRange() {
         return range;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this==o) return true;
+
+        if (o==null || getClass()!=o.getClass()) return false;
+
+        DataTypeInfo that = (DataTypeInfo) o;
+
+        return new EqualsBuilder()
+            .append(type, that.type)
+            .append(range, that.range)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(type)
+            .append(range)
+            .toHashCode();
     }
 }

@@ -3,6 +3,7 @@ package com.smartgridready.communicator.rest.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartgridready.driver.api.http.GenHttpRequest;
 import com.smartgridready.driver.api.http.GenHttpResponse;
+import com.smartgridready.driver.api.http.GenUriBuilder;
 import com.smartgridready.ns.v0.DeviceFrame;
 import com.smartgridready.ns.v0.ResponseQuery;
 import com.smartgridready.ns.v0.RestApiServiceCall;
@@ -14,12 +15,8 @@ import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.rest.api.GenDeviceApi4Rest;
-import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
-import com.smartgridready.driver.api.http.GenHttpRequestFactory;
-import org.apache.hc.client5.http.fluent.Content;
-import org.apache.hc.client5.http.fluent.Request;
-import org.apache.hc.client5.http.fluent.Response;
-import org.apache.hc.core5.http.*;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +27,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
@@ -38,14 +34,12 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Stream;
 
-import static org.apache.hc.core5.http.HttpStatus.SC_OK;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(value = MockitoExtension.class)
@@ -54,29 +48,25 @@ class SGrRestAPIDeviceTest {
 	private static final Logger LOG = LoggerFactory.getLogger(SGrRestAPIDeviceTest.class);
 
 	@Mock
-	GenHttpRequestFactory httpClientFactory;
+	GenHttpClientFactory httpClientFactory;
 
 	@Mock
-	GenHttpRequest httpClient;
+	GenHttpRequest httpRequest;
+
+	@Mock
+	GenHttpResponse httpResponse;
+
+	@Mock
+	GenUriBuilder uriBuilder;
 	
 	@Mock
 	RestApiServiceCall restServiceCall;
 
-	@Mock
- 	Request httpClientRequest;
-
-	@Mock
-	Response httpResponse;
-
-	@Mock
- 	ClassicHttpResponse classicHttpResponse;
-
-	@Mock
-	HttpEntity httpEntity;
-
-	ArgumentCaptor<String> stringCaptor1 = ArgumentCaptor.forClass(String.class);
-	ArgumentCaptor<String> stringCaptor2 = ArgumentCaptor.forClass(String.class);
-	ArgumentCaptor<HttpEntity> httpEntityCaptor = ArgumentCaptor.forClass(HttpEntity.class);
+	ArgumentCaptor<String> headerNameCaptor = ArgumentCaptor.forClass(String.class);
+	ArgumentCaptor<String> headerValueCaptor = ArgumentCaptor.forClass(String.class);
+	ArgumentCaptor<String> paramNameCaptor = ArgumentCaptor.forClass(String.class);
+	ArgumentCaptor<String> paramValueCaptor = ArgumentCaptor.forClass(String.class);
+	ArgumentCaptor<String> httpBodyCaptor = ArgumentCaptor.forClass(String.class);
 	
 	static DeviceFrame deviceFrame;
 			
@@ -97,6 +87,7 @@ class SGrRestAPIDeviceTest {
 	
 	private static final String CLEMAP_METER_RESP = "[{\"sensor_id\":\"63343431ecf2cf013a1e5a9f\",\"opm\":{\"value\":1,\"last_updt\":\"2022-11-07T15:19:54.560Z\"},\"ten_sec\":{\"p_l1\":1.5,\"p_l2\":2,\"p_l3\":4.0,\"q_l1\":2.3,\"q_l2\":0,\"q_l3\":4,\"last_upd\":\"2022-11-07T15:21:50.000Z\"},\"one_min\":{\"p_l1\":0.003,\"p_l2\":0,\"p_l3\":0,\"q_l1\":-0.002,\"q_l2\":0,\"q_l3\":0,\"avg_energy_l1\":0,\"avg_energy_l2\":0,\"avg_energy_l3\":0,\"v_l1\":227.869,\"v_l2\":0,\"v_l3\":0,\"i_l1\":0.001,\"i_l2\":0,\"i_l3\":0,\"s_l1\":0.173,\"s_l2\":0,\"s_l3\":0,\"pf_l1\":0.085,\"pf_l2\":1,\"pf_l3\":1,\"last_update\":\"2022-11-07T15:19:47.579Z\"}}]";
 
+	private static final URI TEST_URI = URI.create("");
 	
 	@BeforeAll
 	static void initDeviceFrame() {
@@ -108,8 +99,16 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithBearerAuthentication() throws Exception {
 
 		// given
-		when(httpClientFactory.create()).thenReturn(httpClient);
-		when(httpClient.execute()).thenReturn(GenHttpResponse.of(CLEMAP_AUTH_RESP), GenHttpResponse.of(CLEMAP_METER_RESP));
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
+		when(httpRequest.execute()).thenReturn(
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of(CLEMAP_METER_RESP)
+		);
 
 		// when
 		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
@@ -123,9 +122,14 @@ class SGrRestAPIDeviceTest {
 	@Test
 	void testGetValSuccessWithTokenRenewal() throws Exception {
 		
-		// given					
-		when(httpClientFactory.create()).thenReturn(httpClient);
-		when(httpClient.execute()).thenReturn(
+		// given
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
+		when(httpRequest.execute()).thenReturn(
 				GenHttpResponse.of(CLEMAP_AUTH_RESP),	// authentication response on connect()
 				GenHttpResponse.of("", 401, "Needs token renewal."), // webservice coll to query datapoint
 				GenHttpResponse.of(CLEMAP_METER_RESP)); // response of read datapoint result
@@ -144,9 +148,13 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithParameters() throws Exception {
 
 		// given
-		when(httpClientFactory.create()).thenReturn(httpClient);
-
-		when(httpClient.execute()).thenReturn(
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(URI.create("https://clemap.io/authentication"));
+		when(httpRequest.execute()).thenReturn(
 				GenHttpResponse.of(CLEMAP_AUTH_RESP),
 				GenHttpResponse.of("{ \"value\" : \"on\" }"));
 
@@ -154,19 +162,25 @@ class SGrRestAPIDeviceTest {
 		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		device.connect();
 
+		when(uriBuilder.build()).thenReturn(
+			URI.create("https://clemap.io/authentication"),
+			URI.create("https://clemap.io/digitaltwins?sensor_id=1234&pin=2")
+		);
+
 		var parameters = new Properties();
 		parameters.put("sensor_id", "1234");
 		var res = device.getVal("GPIO", "ContactRW", parameters);
 		assertEquals("on", res.getString());
 
-		verify(httpClient).setUri(URI.create("https://clemap.io/authentication"));
-		verify(httpClient).setUri(URI.create("https://clemap.io/digitaltwins?sensor_id=1234&pin=2"));
+		when(uriBuilder.build()).thenReturn(
+			URI.create("https://clemap.io/authentication"),
+			URI.create("https://clemap.io/digitaltwins?sensor_id=5678&pin=2")
+		);
 
 		// modify the parameters
 		parameters.put("sensor_id", "5678");
-		device.getVal("GPIO", "ContactRW", parameters);
-		verify(httpClient).setUri(URI.create("https://clemap.io/digitaltwins?sensor_id=5678&pin=2"));
-
+		res = device.getVal("GPIO", "ContactRW", parameters);
+		assertEquals("on", res.getString());
 	}
 
 	@ParameterizedTest
@@ -174,11 +188,16 @@ class SGrRestAPIDeviceTest {
 	void testGetValSuccessWithReadServiceCallV2(String dataPointName) throws Exception {
 
 		// given
-		when(httpClientFactory.create()).thenReturn(httpClient);
-
-		when(httpClient.execute()).thenReturn(
-				GenHttpResponse.of(CLEMAP_AUTH_RESP),
-				GenHttpResponse.of("{ \"value\" : \"on\" }"));
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
+		when(httpRequest.execute()).thenReturn(
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of("{ \"value\" : \"on\" }")
+		);
 
 		// when
 		GenDeviceApi4Rest device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
@@ -189,71 +208,122 @@ class SGrRestAPIDeviceTest {
 		assertEquals("on", res.getString());
 	}
 
+	@ParameterizedTest
+	@ValueSource(strings = {"ContactW", "ContactRW", "IORegister"})
+	void testSetValWithWriteServiceCallV2(String dataPointName) throws Exception {
+
+		// given
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+		Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+		when(uriBuilder.build()).thenReturn(TEST_URI);
+		when(httpRequest.execute()).thenReturn(
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of("")
+		);
+
+		// when
+		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
+		device.connect();
+
+		assertDoesNotThrow(() -> device.setVal("GPIO", dataPointName, StringValue.of("on")));
+
+		verify(httpRequest, times(5)).addHeader(headerNameCaptor.capture(), headerValueCaptor.capture());
+		var headerKeys = headerNameCaptor.getAllValues();
+		assertEquals("Accept", headerKeys.get(0));
+		assertEquals("Content-Type", headerKeys.get(1));
+		assertEquals("Accept", headerKeys.get(2));
+		assertEquals("Content-Type", headerKeys.get(3));
+		assertEquals("Authorization", headerKeys.get(4));
+
+		var headerValues = headerValueCaptor.getAllValues();
+		assertEquals("application/json", headerValues.get(0));
+		assertEquals("application/json", headerValues.get(1));
+		assertEquals("application/json", headerValues.get(2));
+		switch (dataPointName) {
+			case "ContactW":
+			case "ContactRW":
+				assertEquals("application/json", headerValues.get(3));
+				break;
+			case "IORegister":
+				assertEquals("application/x-www-form-urlencoded", headerValues.get(3));
+				break;
+			default:
+				fail("Unhandled dataPoint: " + dataPointName);
+		}
+		assertTrue(headerValues.get(4).startsWith("Bearer "));
+
+		switch (dataPointName) {
+			case "ContactW":
+			case "ContactRW":
+				verify(httpRequest, times(2)).setBody(httpBodyCaptor.capture());
+				break;
+			case "IORegister":
+				verify(httpRequest, times(1)).addFormParam(paramNameCaptor.capture(), paramValueCaptor.capture());
+				break;
+			default:
+				fail("Unhandled dataPoint: " + dataPointName);
+		}
+		
+		// verify request body
+		String expectedBody = null;
+		switch (dataPointName) {
+			case "ContactW":
+				expectedBody = "{ \"pin\" : 1, \"value\" : \"on\" }"; // Json body
+				break;
+			case "ContactRW":
+				expectedBody = "{ \"pin\" : 2, \"value\" : \"on\" }"; // Json body
+				break;
+			case "IORegister":
+				// form parameters, not body
+				break;
+			default:
+				fail("Unhandled dataPoint: " + dataPointName);
+		}
+		if (expectedBody != null) {
+			assertEquals(expectedBody, httpBodyCaptor.getValue());
+		}
+
+		// verify form parameters
+		switch (dataPointName) {
+			case "ContactW":
+			case "ContactRW":
+				// body, not form parameters
+				break;
+			case "IORegister":
+				var paramKeys = paramNameCaptor.getAllValues();
+				assertEquals("pins=1..7", paramKeys.get(0));
+				var paramValues = paramValueCaptor.getAllValues();
+				assertEquals("124", paramValues.get(0));
+				break;
+			default:
+				fail("Unhandled dataPoint: " + dataPointName);
+		}
+	}
+
 	@Test
 	void testSetVal() throws Exception {
 		
 		//given
-		when(httpClientFactory.create()).thenReturn(httpClient);
-		when(httpClient.execute()).thenReturn(
-				GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response on connect.
-				GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response when trying to get cached token, however token is expired
-				GenHttpResponse.of("OK"));
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
+		when(httpRequest.execute()).thenReturn(
+			GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response on connect.
+			GenHttpResponse.of(CLEMAP_AUTH_RESP), // auth-response when trying to get cached token, however token is expired
+			GenHttpResponse.of("OK")
+		);
 		
 		// when
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		device.connect();
 
 		assertDoesNotThrow(() -> device.setVal("ActivePowerAC", "ActivePowerACtot", Int32UValue.of(100)));
-	}
-
-	@ParameterizedTest
-	@ValueSource(strings = {"ContactW", "ContactRW", "IORegister"})
-	void testSetValWithWriteServiceCallV2(String dataPointName) throws Exception {
-
-		try (MockedStatic<Request> httpClientLocal =  Mockito.mockStatic(Request.class)) {
-			httpClientLocal.when(() -> Request.post(anyString())).thenReturn(httpClientRequest);
-			when(httpClientRequest.execute()).thenReturn(httpResponse);
-			when(httpResponse.returnResponse()).thenReturn(classicHttpResponse);
-			when(classicHttpResponse.getCode()).thenReturn(SC_OK);
-			when((classicHttpResponse).getEntity()).thenReturn(httpEntity);
-			when(httpEntity.getContent())
-					.thenReturn(new Content("".getBytes(StandardCharsets.UTF_8), ContentType.TEXT_PLAIN).asStream());
-
-			// when
-			SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, new ApacheHttpRequestFactory());
-			device.connect();
-
-			assertDoesNotThrow(() -> device.setVal("GPIO", dataPointName, StringValue.of("on")));
-
-			verify(httpClientRequest, times(3)).addHeader(stringCaptor1.capture(), stringCaptor2.capture());
-			var headerKeys = stringCaptor1.getAllValues();
-			assertEquals("Accept", headerKeys.get(0));
-			assertEquals("Authorization", headerKeys.get(1));
-			assertEquals("Accept", headerKeys.get(2));
-
-			var headerValues = stringCaptor2.getAllValues();
-			assertEquals("application/json", headerValues.get(0));
-			assertEquals("Bearer null", headerValues.get(1));
-			assertEquals("application/json", headerValues.get(2));
-
-			verify(httpClientRequest, times(2)).body(httpEntityCaptor.capture());
-
-			String expected = "";
-			switch (dataPointName) {
-				case "ContactW":
-					expected = "{ \"pin\" : 1, \"value\" : \"on\" }"; // Json body
-					break;
-				case "ContactRW":
-					expected = "{ \"pin\" : 2, \"value\" : \"on\" }"; // Json body
-					break;
-				case "IORegister":
-					expected = "pins%3D1..7=124";  // Form data with URL encoding
-					break;
-				default:
-					fail("Unhandled dataPoint: " + dataPointName);
-			}
-			assertArrayEquals(expected.getBytes(StandardCharsets.UTF_8), httpEntityCaptor.getValue().getContent().readAllBytes());
-		}
 	}
 
 
@@ -263,8 +333,13 @@ class SGrRestAPIDeviceTest {
 			"101, Values [101] out of range. MAX value=100.0"})
 	void testSetValOutOfRange(String value, String expectedResponse) throws Exception {
 
-		when(httpClientFactory.create()).thenReturn(httpClient);
-		when(httpClient.execute()).thenReturn(GenHttpResponse.of(CLEMAP_AUTH_RESP));
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
+		when(httpRequest.execute()).thenReturn(GenHttpResponse.of(CLEMAP_AUTH_RESP));
 
 		SGrRestApiDevice device = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		device.connect();
@@ -293,11 +368,16 @@ class SGrRestAPIDeviceTest {
 
 		LOG.info("Testing writePermissionCheckRest: {}", testName);
 
-		Mockito.lenient().when(httpClientFactory.create()).thenReturn(httpClient);
+		Mockito.lenient().when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		Mockito.lenient().when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.build()).thenReturn(TEST_URI);
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 
-		Mockito.lenient().when(httpClient.execute()).thenReturn(GenHttpResponse.of("{}"));
+		Mockito.lenient().when(httpRequest.execute()).thenReturn(GenHttpResponse.of("{}"));
 
 		ResponseQuery query = new ResponseQuery();
 		query.setQuery("token");
@@ -321,18 +401,24 @@ class SGrRestAPIDeviceTest {
 	void unitConversionWrite() throws Exception {
 
 		// Write conversion
-		when(httpClientFactory.create()).thenReturn(httpClient);
-		Mockito.lenient().when(httpClient.execute()).thenReturn(
-				GenHttpResponse.of(CLEMAP_AUTH_RESP),
-				GenHttpResponse.of(CLEMAP_METER_RESP));
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
+		Mockito.lenient().when(httpRequest.execute()).thenReturn(
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of(CLEMAP_METER_RESP)
+		);
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 
 		restApiDevice.setVal("ActivePowerAC", "ActivePowerACtot", Float32Value.of(0.099f));
-		verify(httpClient, times(2)).setBody(stringCaptor1.capture());
+		verify(httpRequest, times(2)).setBody(httpBodyCaptor.capture());
 
 		var objectMapper = new ObjectMapper();
-		var jsonBody = objectMapper.readTree(stringCaptor1.getValue());
+		var jsonBody = objectMapper.readTree(httpBodyCaptor.getValue());
 		var convertedValue = Math.round(jsonBody.get("value").asDouble());
 		assertEquals(99, convertedValue );
 
@@ -341,10 +427,16 @@ class SGrRestAPIDeviceTest {
 	@Test
 	void unitConversionRead() throws Exception {
 
-		when(httpClientFactory.create()).thenReturn(httpClient);
-		Mockito.lenient().when(httpClient.execute()).thenReturn(
-				GenHttpResponse.of(CLEMAP_AUTH_RESP),
-				GenHttpResponse.of(CLEMAP_METER_RESP));
+		when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+		when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
+		Mockito.lenient().when(httpRequest.execute()).thenReturn(
+			GenHttpResponse.of(CLEMAP_AUTH_RESP),
+			GenHttpResponse.of(CLEMAP_METER_RESP)
+		);
 
 		SGrRestApiDevice restApiDevice = new SGrRestApiDevice(deviceFrame, httpClientFactory);
 		var result = restApiDevice.getVal("ActivePowerAC", "ActivePowerACtot");

@@ -1,6 +1,7 @@
 package com.smartgridready.communicator.common.impl;
 
 import com.smartgridready.communicator.common.api.values.DataType;
+import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.ns.v0.ConfigurationList;
 import com.smartgridready.ns.v0.ConfigurationListElement;
 import com.smartgridready.ns.v0.DataDirectionProduct;
@@ -40,8 +41,9 @@ public abstract class SGrDeviceBase<
     protected final D device;
 
     public enum RwpDirections {
-        READ(Stream.of(DataDirectionProduct.R, DataDirectionProduct.RW, DataDirectionProduct.RWP).collect(Collectors.toSet())),
-        WRITE(Stream.of(DataDirectionProduct.W, DataDirectionProduct.RW, DataDirectionProduct.RWP).collect(Collectors.toSet()));
+        READ(Stream.of(DataDirectionProduct.R, DataDirectionProduct.RW, DataDirectionProduct.RWP, DataDirectionProduct.C).collect(Collectors.toSet())),
+        WRITE(Stream.of(DataDirectionProduct.W, DataDirectionProduct.RW, DataDirectionProduct.RWP).collect(Collectors.toSet())),
+        CONST(Collections.singleton(DataDirectionProduct.C));
 
         private final Set<DataDirectionProduct> opAllowedTypes;
         RwpDirections(Set<DataDirectionProduct> opAllowedTypes) {
@@ -164,9 +166,17 @@ public abstract class SGrDeviceBase<
         var descriptions = new EnumMap<Language, String>(Language.class);
         configurationListElement.getConfigurationDescription().forEach(description -> descriptions.put(description.getLanguage(), description.getTextElement()));
 
+        // handle special case of enum
+        Value v = (configurationListElement.getDefaultValue() != null)
+            ? (configurationListElement.getDataType().getEnum() != null)
+                ? EnumValue.of(configurationListElement.getDefaultValue())
+                : Value.fromString(configurationListElement.getDataType(), configurationListElement.getDefaultValue())
+            : null;
+
         return new ConfigurationValue(
                 configurationListElement.getName(),
-                DataType.getGenDataTypeName(configurationListElement.getDataType()),
+                v,
+                DataType.getDataTypeInfo(configurationListElement.getDataType()).orElse(null),
                 descriptions);
     }
 

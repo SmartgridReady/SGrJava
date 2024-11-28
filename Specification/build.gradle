@@ -6,7 +6,7 @@
  */
 
 plugins {
-    id 'java'
+    id 'java-library'
     id 'maven-publish'
     id 'com.github.bjornvester.xjc' version '1.8.2'
 }
@@ -19,9 +19,6 @@ repositories {
 
 def xsdPath = "../../SGrSpecifications/SchemaDatabase/SGr"
 def os = System.getProperty('os.name').toLowerCase()
-
-apply plugin: 'java-library'
-apply plugin: 'maven-publish'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -38,7 +35,7 @@ xjc {
 
 processResources {
     from xsdPath
-    exclude '.gitkeep'
+    exclude '.gitkeep', 'ressources'
 }
 
 dependencies {
@@ -47,6 +44,13 @@ dependencies {
 }
 
 publishing {
+    java {
+        withSourcesJar()
+    }
+
+    sourcesJar {
+        exclude '.gitkeep'
+    }
 
     repositories {
         maven {

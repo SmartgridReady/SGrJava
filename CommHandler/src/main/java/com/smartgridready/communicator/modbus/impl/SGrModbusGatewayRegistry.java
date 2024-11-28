@@ -2,40 +2,56 @@ package com.smartgridready.communicator.modbus.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
+import jakarta.annotation.PreDestroy;
+
 import com.smartgridready.driver.api.common.GenDriverException;
-import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
+import com.smartgridready.communicator.modbus.helper.ModbusTransportUtil;
 import com.smartgridready.communicator.modbus.helper.ModbusUtil;
 
 public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
 
     private static final Logger LOG = LoggerFactory.getLogger(SGrModbusGatewayRegistry.class);
 
-    private final ModbusGatewayFactory modbusGatewayFactory;
-    private final Map<String, ModbusGateway> gateways;
-    private final Map<ModbusGateway, Integer> gatewayRefCount;
+    private static ModbusGatewayRegistry defaultInstance;
 
-    public SGrModbusGatewayRegistry(ModbusGatewayFactory modbusGatewayFactory) {
-        this.modbusGatewayFactory = modbusGatewayFactory;
-        gateways = new HashMap<>();
-        gatewayRefCount = new HashMap<>();
-    }
+    private final Map<String, ModbusGateway> gateways;
+    private final Map<ModbusGateway, Set<String>> gatewayAttachedKeys;
 
     public SGrModbusGatewayRegistry() {
-        this(new EasyModbusGatewayFactory());
+        gateways = new HashMap<>();
+        gatewayAttachedKeys = new HashMap<>();
+    }
+
+    @PreDestroy
+    private void onDestroy() {
+        detachAllGateways();
+    }
+
+    public static synchronized ModbusGatewayRegistry defaultInstance() {
+        if (defaultInstance == null) defaultInstance = new SGrModbusGatewayRegistry();
+        return defaultInstance;
     }
 
     @Override
-    public synchronized ModbusGateway attachGateway(ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
+    public synchronized ModbusGateway attachGateway(
+        ModbusInterfaceDescription interfaceDescription,
+        GenDriverAPI4ModbusFactory driverFactory,
+        String key
+    ) throws GenDriverException {
 
         String gatewayIdentifier = ModbusUtil.getModbusGatewayIdentifier(interfaceDescription);
 
@@ -45,75 +61,61 @@ public class SGrModbusGatewayRegistry implements ModbusGatewayRegistry {
             if (!ModbusUtil.interfaceParametersMatch(interfaceDescription, gatewayInstance.getInterfaceDescription())) {
                 throw new GenDriverException("Interface parameters do not match");
             }
-
-            // use existing gateway
-            Integer refCount = gatewayRefCount.getOrDefault(gatewayInstance, Integer.valueOf(0));
-            refCount = refCount.intValue() + 1;
-            gatewayRefCount.put(gatewayInstance, refCount);
-
-            LOG.info("Attached Modbus gateway '{}', refcount={}", gatewayIdentifier, refCount);
         } else {
             // create and register new gateway
-            gatewayInstance = modbusGatewayFactory.create(interfaceDescription);
+            String identifier = ModbusUtil.getModbusGatewayIdentifier(interfaceDescription);
+            GenDriverAPI4Modbus transport = ModbusTransportUtil.createTransport(interfaceDescription, driverFactory);
+            gatewayInstance = new ModbusGateway(identifier, interfaceDescription, transport, true);
             gateways.put(gatewayIdentifier, gatewayInstance);
-            gatewayRefCount.put(gatewayInstance, Integer.valueOf(1));
-
-            LOG.info("Registered Modbus gateway '{}'", gatewayIdentifier);
         }
+
+        // use existing gateway
+        Set<String> attachedKeys = gatewayAttachedKeys.getOrDefault(gatewayInstance, new HashSet<>());
+        attachedKeys.add(key);
+        gatewayAttachedKeys.put(gatewayInstance, attachedKeys);
+
+        LOG.info("Attached Modbus gateway '{}', refcount={}", gatewayIdentifier, attachedKeys.size());
 
         return gatewayInstance;
     }
 
     @Override
-    public void detachGateway(String identifier) throws GenDriverException {
-        detachGatewayInternal(identifier);
+    public void detachGateway(String identifier, String key) throws GenDriverException {
+        detachGatewayInternal(identifier, key);
     }
 
     @Override
-    public void detachGateway(ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
-        detachGatewayInternal(ModbusUtil.getModbusGatewayIdentifier(interfaceDescription));
+    public void detachGateway(ModbusInterfaceDescription interfaceDescription, String key) throws GenDriverException {
+        detachGatewayInternal(ModbusUtil.getModbusGatewayIdentifier(interfaceDescription), key);
     }
 
-    private synchronized void detachGatewayInternal(String identifier) {
+    private synchronized void detachGatewayInternal(String identifier, String key) {
         ModbusGateway gatewayInstance = gateways.get(identifier);
         if (gatewayInstance != null) {
-            Integer refCount = gatewayRefCount.get(gatewayInstance);
-            if (refCount != null) {
-                refCount = refCount.intValue() - 1;
-                gatewayRefCount.put(gatewayInstance, refCount);
-                if (refCount <= 0) {
-                    // disconnect gateway and remove from registry
-                    try {
-                        gatewayInstance.getTransport().disconnect();
-                    } catch (GenDriverException e) {
-                        LOG.error("Error disconnecting Modbus gateway: {}", e.getMessage());
-                    }
-                    
-                    gatewayRefCount.remove(gatewayInstance);
+            Set<String> attachedKeys = gatewayAttachedKeys.get(gatewayInstance);
+            if (attachedKeys != null) {
+                attachedKeys.remove(key);
+                if (attachedKeys.isEmpty()) {
                     gateways.remove(identifier);
-
-                    LOG.info("Removed Modbus gateway '{}'", identifier);
-                } else {
-                    LOG.info("Detached Modbus gateway '{}', refcount={}", identifier, refCount);
+                    gatewayInstance.disconnectAll();
                 }
             } else {
                 gateways.remove(identifier);
-
+                gatewayAttachedKeys.remove(gatewayInstance);
                 LOG.info("Removed Modbus gateway '{}'", identifier);
             }
+        } else {
+            LOG.info("Modbus gateway '{}' not registered", identifier);
         }
     }
 
     @Override
     public synchronized void detachAllGateways() {
         for (ModbusGateway gw: gateways.values()) {
-            try {
-                gw.getTransport().disconnect();
-            } catch (Exception e) {}
+            gw.disconnectAll();
         }
 
         gateways.clear();
-        gatewayRefCount.clear();
         
         LOG.info("Removed all Modbus gateways");
     }

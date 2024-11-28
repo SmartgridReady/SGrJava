@@ -32,20 +32,6 @@ class MessagingInterfaceDescMapperTest {
     private static final ObjectFactory objectFactory = new ObjectFactory();
 
     @Test
-    void messageFilterMapper() {
-
-        var messageFilter = createMessageFilter();
-
-        var result = MessageFilterMapper.INSTANCE.mapToDriverApi(messageFilter);
-
-        assertEquals(JMES_QUERY, result.getJmespathFilter().getQuery());
-        assertEquals(JMES_REGEX_EXPR, result.getJmespathFilter().getMatchesRegex());
-        assertEquals(PLAINTEXT_REGEX, result.getPlaintextFilter().getMatchesRegex());
-        assertEquals(XPATH_REGEX, result.getXpapathFilter().getMatchesRegex());
-        assertEquals(XPATH_QUERY, result.getXpapathFilter().getQuery());
-    }
-
-    @Test
     void messagInterfaceDescMapper() {
 
         var interfaceDescription = createMessagingInterfaceDescription();

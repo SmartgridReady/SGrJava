@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
+import com.smartgridready.ns.v0.ModbusInterfaceSelection;
 import com.smartgridready.ns.v0.ModbusRtu;
 import com.smartgridready.ns.v0.ModbusTcp;
 
@@ -160,16 +161,18 @@ public class ModbusUtil {
     }
 
     public static ModbusType getModbusType(ModbusInterfaceDescription interfaceDescription) {
-        String modbusType = interfaceDescription
-                .getModbusInterfaceSelection()
-                .name();
+        ModbusInterfaceSelection modbusType = interfaceDescription.getModbusInterfaceSelection();
 
+        // does not support ASCII
         switch (modbusType) {
-            case "TCPIP":
+            case TCPIP:
                 return ModbusType.TCP;
 
-            case "RTU":
+            case RTU:
                 return ModbusType.RTU;
+
+            case UDPIP:
+                return ModbusType.UDP;
 
             default:
                 return ModbusType.UNKNOWN;

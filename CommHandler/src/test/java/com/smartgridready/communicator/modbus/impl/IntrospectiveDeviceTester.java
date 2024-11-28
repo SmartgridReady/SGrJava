@@ -1,11 +1,15 @@
 package com.smartgridready.communicator.modbus.impl;
 
 import com.smartgridready.ns.v0.DeviceFrame;
+
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
+import com.smartgridready.communicator.common.helper.DriverFactoryLoader;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
-import com.smartgridready.communicator.rest.http.client.ApacheHttpRequestFactory;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
-import de.re.easymodbus.adapter.GenDriverAPI4ModbusRTU;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
+
 import io.vavr.Tuple3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,7 +124,8 @@ public class IntrospectiveDeviceTester {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load( XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 
-        GenDriverAPI4ModbusRTU mbRTU = new GenDriverAPI4ModbusRTU("COM3", 19200);
+        GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
+        GenDriverAPI4Modbus mbRTU = factory.createRtuTransport("COM3", 19200);
         mbRTU.connect();
         return new Tuple3<>(devDesc, new SGrModbusDevice(devDesc, mbRTU), null);
     }
@@ -137,7 +142,8 @@ public class IntrospectiveDeviceTester {
                 "SGr_02_mmmm_8288089799_Smart-me_SubMeterElectricity_V1.0.0.xml",
                 properties);
 
-        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheHttpRequestFactory());
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
+        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
         return new Tuple3<>(devDesc, restApiDevice, null);
     }
 
@@ -154,7 +160,8 @@ public class IntrospectiveDeviceTester {
                 "SGr_02_0018_CLEMAP_EIcloudEnergyMonitor_V1.0.0.xml",
                 properties);
 
-        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheHttpRequestFactory());
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
+        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
         return new Tuple3<>(devDesc, restApiDevice, null);
     }
 
@@ -166,7 +173,8 @@ public class IntrospectiveDeviceTester {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
 
-        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheHttpRequestFactory());
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
+        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
 
         Properties parameters = new Properties();
         parameters.put("point", "CH1018601234500000000000000011642");
@@ -184,7 +192,8 @@ public class IntrospectiveDeviceTester {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", deviceDescUrl != null ? deviceDescUrl.getPath() : null);
 
-        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, new ApacheHttpRequestFactory());
+        GenHttpClientFactory factory = DriverFactoryLoader.getRestApiDriver();
+        SGrRestApiDevice restApiDevice = new SGrRestApiDevice(devDesc, factory);
 
         Properties parameters = new Properties();
         parameters.put("start_timestamp", "2023-09-06T00:00:00+02:00");

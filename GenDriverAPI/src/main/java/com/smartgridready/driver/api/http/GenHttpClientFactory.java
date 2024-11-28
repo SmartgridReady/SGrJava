@@ -16,14 +16,14 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.smartgridready.communicator.rest.http.client;
 
-import com.smartgridready.driver.api.http.GenHttpRequest;
-import com.smartgridready.driver.api.http.GenHttpRequestFactory;
+package com.smartgridready.driver.api.http;
 
-public class ApacheHttpRequestFactory implements GenHttpRequestFactory {
-	@Override
-	public GenHttpRequest create() {
-		return new ApacheHttpRequest();
-	}
+import java.net.URISyntaxException;
+
+public interface GenHttpClientFactory {
+
+	GenHttpRequest createHttpRequest();
+
+	GenUriBuilder createUriBuilder(String baseUri) throws URISyntaxException;
 }
