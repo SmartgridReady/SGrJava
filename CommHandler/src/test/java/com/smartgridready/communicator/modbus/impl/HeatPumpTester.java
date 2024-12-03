@@ -26,11 +26,17 @@ package com.smartgridready.communicator.modbus.impl;
 
 import com.smartgridready.communicator.common.api.GenDeviceApi;
 import com.smartgridready.communicator.common.api.SGrDeviceBuilder;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import com.smartgridready.ns.v0.DataTypeProduct;
 import com.smartgridready.communicator.common.api.values.BooleanValue;
 import com.smartgridready.communicator.common.api.values.EnumRecord;
+import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.communicator.common.api.values.Float64Value;
 import com.smartgridready.communicator.common.api.values.Value;
-import com.smartgridready.ns.v0.DataTypeProduct;
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -237,7 +243,7 @@ public class HeatPumpTester {
 			}
 
 			// testing getter
-			setMockIntegerType(true);
+			// used by unknown programmer setMockIntegerType(true);
 			EnumRecord opModeVal = devHovalTCP.getVal("HeatPumpBase", "hovHPOpModeCmd").getEnum();
 			EnumRecord opStateVal = devHovalTCP.getVal("HeatPumpBase", "hovHPOpState").getEnum();
 			bVal1 = devHovalTCP.getVal("HeatPumpBase", "ErrorNrSGr").getBoolean();
@@ -255,7 +261,7 @@ public class HeatPumpTester {
 			LOG.info(String.format("    SupplyWaterTempStpt=" + fVal2 + " �C,  SupplyWaterTempStptFb=" + fVal3 + "�C, SupplyWaterTemp=" + fVal4 + "�C,  ReturnSupplyWaterTemp=" + fVal5 + " �C "));
 			LOG.info(" ");
 
-			setMockIntegerType(true);
+			// used by unknown programmer setMockIntegerType(true);
 			EnumRecord hovHotWOpMode = devHovalTCP.getVal("DomHotWaterCtrl", "hovDomHotWOpModeCmd").getEnum();
 			EnumRecord hovHotWOpState = devHovalTCP.getVal("DomHotWaterCtrl", "hovDomHotWState").getEnum();
 			fVal1 = devHovalTCP.getVal("DomHotWaterCtrl", "DomHotWTempStptOffs").getFloat32();
@@ -368,13 +374,13 @@ public class HeatPumpTester {
 				prop.put("tcp_port", "502");
 				prop.put("SlaveID", "0");
 
-				StiebelISG = new SGrDeviceBuilder()
+				devStiebelISG = new SGrDeviceBuilder()
 						.useModbusGatewayFactory(new EasyModbusGatewayFactory())
 						.properties(prop)
 						.eid(Path.of(aBaseDir, aDescriptionFile))
 						.build();
 
-				devVStiebelISG.connect();
+				devStiebelISG.connect();
 
 			} catch (Exception e) {
 				devStiebelISGIsOn = false;
@@ -448,7 +454,7 @@ public class HeatPumpTester {
 			}
 
 			// testing
-			setMockIntegerType(true);
+			// used by unknown programmer setMockIntegerType(true);
 			EnumRecord oEnumList = devStiebelISG.getVal("HeatPumpBase", "HPOpModeCmd").getEnum();
 			bitmapVal1 = devStiebelISG.getVal("HeatPumpBase", "HPOpState");
 			bitmapVal2 = devStiebelISG.getVal("HeatPumpBase", "stiHPOpState");
@@ -650,7 +656,7 @@ public class HeatPumpTester {
 
 
 			// testing getters
-			setMockIntegerType(true);
+			// used by unknown programmer setMockIntegerType(true);
 			iVal1 = (int) devCTAoptiHeat.getVal("DeviceInformation", "ctaRemoteCtrlTimeSec").getInt16U();
 			boolean bRem = true;
 			if (iVal1 == 0) bRem = false;
@@ -660,7 +666,7 @@ public class HeatPumpTester {
 			EnumRecord oEnumListGet = devCTAoptiHeat.getVal("HeatPumpBase", "ctaHPOpState").getEnum();
 			iVal3 = (int) devCTAoptiHeat.getVal("HeatPumpBase", "ErrorNrSGr").getInt16();
 
-			setMockIntegerType(false);
+			// used by unknown programmer setMockIntegerType(false);
 			fVal1 = devCTAoptiHeat.getVal("HeatPumpBase", "OutsideAirTemp").getFloat32();
 			fVal2 = devCTAoptiHeat.getVal("HeatPumpBase", "SupplyWaterTemp").getFloat32();
 			fVal3 = devCTAoptiHeat.getVal("HeatPumpBase", "ReturnSupplyWaterTemp").getFloat32();
@@ -720,7 +726,7 @@ public class HeatPumpTester {
 			fVal1 = devCTAoptiHeat.getVal("EnergyMonitor", "RuntimeHeating").getFloat32();
 			fVal2 = devCTAoptiHeat.getVal("EnergyMonitor", "RuntimeCooling").getFloat32();
 
-			setMockIntegerType(true);
+			// used by unknown programmer setMockIntegerType(true);
 			long lVal = devCTAoptiHeat.getVal("EnergyMonitor", "NrOfStartupsCompressor").getInt32U();
 			LOG.info(String.format("                 RuntimeHeating=" + fVal1 + " h, RuntimeCooling=" + fVal2 + " h, NrOfStartupsCompressor=" + lVal + " times"));
 
