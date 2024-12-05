@@ -41,7 +41,7 @@ import java.util.Properties;
 public class IBTlabLoopTester {
 
 	//private static final String XML_BASE_DIR = "C://SGr/QuellCode/SGrSpecifications/XMLInstances/ExtInterfaces/";
-	private static final String XML_BASE_DIR = "../../SGrSpecifications/XMLInstances/ExtInterfaces/";
+	private static final String XML_BASE_DIR = "../SGrSpecifications/XMLInstances/ExtInterfaces/";
 	private static final Logger LOG = LoggerFactory.getLogger(IBTlabLoopTester.class);
 
 	// we need static definitions for performance reason
@@ -78,7 +78,7 @@ public class IBTlabLoopTester {
 	private static boolean  devABBMeterTestIsOn = true;
 	private static boolean  devVGT_SGCPTestIsOn = true;
 	private static boolean  devFroniusSymoTestIsOn = false;
-	private static boolean  devGaroWallboxTestIsOn = true;
+	private static boolean  devGaroWallboxTestIsOn = false;
 	// TestBox
 	private static boolean  devWagoMeterTestIsOn = false;
 	private static boolean  devOMCCIWallboxTestIsOn = true;
