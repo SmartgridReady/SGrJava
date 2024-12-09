@@ -5,6 +5,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class EnumRecord {
 
+    public static final String UNDEFINED_LITERAL = "UNDEFINED";
+    public static final long UNDEFINED_ORDINAL = 0;
+
     private final String literal;
     private final Long ordinal;
     private final String description;
@@ -29,20 +32,23 @@ public class EnumRecord {
 
     @Override
     public String toString() {
-        return (literal!=null ? literal:"undef")
-                + ":" + (ordinal!=null ? ordinal.toString():"undef")
-                + " | " + (description!=null ? description:"");
+        return ((literal != null) ? literal : UNDEFINED_LITERAL)
+                + ":" + ((ordinal != null) ? String.valueOf(ordinal) : String.valueOf(UNDEFINED_ORDINAL))
+                + " | " + ((description != null) ? description : "");
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this==o) return true;
+        if (this == o) return true;
 
-        if (o==null || getClass()!=o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         EnumRecord that = (EnumRecord) o;
 
-        return new EqualsBuilder().append(literal, that.literal).append(ordinal, that.ordinal).isEquals();
+        return new EqualsBuilder()
+            .append(literal, that.literal)
+            .append(ordinal, that.ordinal)
+            .isEquals();
     }
 
     @Override
