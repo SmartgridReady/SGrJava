@@ -35,7 +35,7 @@ public class EnumValue extends Value {
                     .orElseThrow(() -> new IllegalArgumentException(
                             String.format("Invalid ordinal=%d provided for enum.", enumRecord.getOrdinal())));
 
-            return Int64Value.of(enumEntry.getOrdinal());
+            return Int64Value.of(enumEntry.getOrdinal().longValue());
         }
 
         if (enumRecord.getLiteral() != null) {
@@ -46,7 +46,7 @@ public class EnumValue extends Value {
                     .orElseThrow(() -> new IllegalArgumentException(
                             String.format("Invalid literal=%s provided for enum.", enumRecord.getLiteral())));
 
-            return Int64Value.of(enumEntry.getOrdinal());
+            return Int64Value.of((enumEntry.getOrdinal() != null) ? enumEntry.getOrdinal().longValue() : EnumRecord.UNDEFINED_ORDINAL);
         }
         throw new IllegalArgumentException( String.format("Invalid literal=%s provided for enum.", enumRecord.getLiteral()));
     }
@@ -72,12 +72,13 @@ public class EnumValue extends Value {
         ordinalValue &= ByteBuffer.wrap(hexMask).getLong();
 
         for (EnumEntryProductRecord rec : enumMapProduct.getEnumEntry()) {
-            if (rec.getOrdinal() == ordinalValue) {
-                return EnumValue.of(rec.getLiteral(), (long) rec.getOrdinal(), rec.getDescription());
+            long ordVal = (rec.getOrdinal() != null) ? rec.getOrdinal().longValue() : EnumRecord.UNDEFINED_ORDINAL;
+            if (ordVal == ordinalValue) {
+                return EnumValue.of(rec.getLiteral(), ordVal, rec.getDescription());
             }
         }
 
-        return EnumValue.of("UNDEFINED", 0L, String.format("Invalid enumeration ordinal=%d returned from modbus.", ordinalValue));
+        return EnumValue.of(EnumRecord.UNDEFINED_LITERAL, EnumRecord.UNDEFINED_ORDINAL, String.format("Invalid enumeration ordinal=%d returned from modbus.", ordinalValue));
     }
 
     @Override
@@ -86,7 +87,7 @@ public class EnumValue extends Value {
             checkInt8(enumRecord.getOrdinal());
             return enumRecord.getOrdinal().byteValue();
         }
-        return (byte)-1;
+        return (byte)EnumRecord.UNDEFINED_ORDINAL;
     }
 
     @Override
@@ -95,7 +96,7 @@ public class EnumValue extends Value {
             checkInt8U(enumRecord.getOrdinal());
             return enumRecord.getOrdinal().shortValue();
         }
-        return (short)0;
+        return (short)EnumRecord.UNDEFINED_ORDINAL;
     }
 
     @Override
@@ -104,7 +105,7 @@ public class EnumValue extends Value {
             checkInt16(enumRecord.getOrdinal());
             return enumRecord.getOrdinal().shortValue();
         }
-        return (byte)-1;
+        return (byte)EnumRecord.UNDEFINED_ORDINAL;
     }
 
     @Override
@@ -113,49 +114,49 @@ public class EnumValue extends Value {
             checkInt16U(enumRecord.getOrdinal());
             return enumRecord.getOrdinal().intValue();
         }
-        return (byte)0;
+        return (byte)EnumRecord.UNDEFINED_ORDINAL;
     }
 
     @Override
     public int getInt32() {
         if (enumRecord.getOrdinal() != null) {
-            checkInt32(enumRecord.getOrdinal());
+            checkInt32(enumRecord.getOrdinal().longValue());
             return enumRecord.getOrdinal().intValue();
         }
-        return (byte)-1;
+        return (byte)EnumRecord.UNDEFINED_ORDINAL;
     }
 
     @Override
     public long getInt32U() {
         if (enumRecord.getOrdinal() != null) {
-            checkInt32U(enumRecord.getOrdinal());
-            return enumRecord.getOrdinal();
+            checkInt32U(enumRecord.getOrdinal().longValue());
+            return enumRecord.getOrdinal().longValue();
         }
-        return (byte)0;
+        return (byte)EnumRecord.UNDEFINED_ORDINAL;
     }
 
     @Override
     public long getInt64() {
         if (enumRecord.getOrdinal() != null) {
-            return enumRecord.getOrdinal();
+            return enumRecord.getOrdinal().longValue();
         }
-        return (byte)0;
+        return (byte)EnumRecord.UNDEFINED_ORDINAL;
     }
 
     @Override
     public BigInteger getInt64U() {
         if (enumRecord.getOrdinal() != null) {
-            return BigInteger.valueOf(enumRecord.getOrdinal());
+            return BigInteger.valueOf(enumRecord.getOrdinal().longValue());
         }
-        return null;
+        return BigInteger.valueOf(EnumRecord.UNDEFINED_ORDINAL);
     }
 
     @Override
     public float getFloat32() {
         if (enumRecord.getOrdinal() != null) {
-            return enumRecord.getOrdinal();
+            return enumRecord.getOrdinal().longValue();
         }
-        return -1;
+        return EnumRecord.UNDEFINED_ORDINAL;
     }
 
     @Override

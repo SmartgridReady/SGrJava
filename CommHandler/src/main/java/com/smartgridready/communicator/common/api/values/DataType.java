@@ -95,7 +95,7 @@ public enum DataType {
                         .forEach(entry -> definedValues.add(
                                 EnumValue.of(
                                         entry.getLiteral(),
-                                        (long) entry.getOrdinal(),
+                                        (entry.getOrdinal() != null) ? entry.getOrdinal().longValue() : null,
                                         entry.getDescription()))));
         return definedValues;
     }
