@@ -6,6 +6,7 @@ import java.util.Collections;
 import com.smartgridready.ns.v0.ModbusInterfaceDescription;
 
 import com.smartgridready.driver.api.common.GenDriverException;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
 
@@ -22,18 +23,18 @@ public class ModbusGatewayRegistryMock implements ModbusGatewayRegistry {
     }
 
     @Override
-    public ModbusGateway attachGateway(ModbusInterfaceDescription interfaceDescription)
+    public ModbusGateway attachGateway(ModbusInterfaceDescription interfaceDescription, GenDriverAPI4ModbusFactory driverFactory, String key)
             throws GenDriverException {
         return mock;
     }
 
     @Override
-    public void detachGateway(ModbusInterfaceDescription interfaceDescription) throws GenDriverException {
+    public void detachGateway(ModbusInterfaceDescription interfaceDescription, String key) throws GenDriverException {
         // nothing
     }
 
     @Override
-    public void detachGateway(String identifier) throws GenDriverException {
+    public void detachGateway(String identifier, String key) throws GenDriverException {
         // nothing
     }
 

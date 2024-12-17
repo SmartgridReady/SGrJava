@@ -1,6 +1,9 @@
 package com.smartgridready.driver.api.messaging;
 
+import java.util.Set;
+
 import com.smartgridready.driver.api.messaging.model.MessagingInterfaceDescription;
+import com.smartgridready.driver.api.messaging.model.MessagingPlatformType;
 
 /**
  * Interface to be used to create smartgridready messaging clients.
@@ -15,4 +18,10 @@ public interface GenMessagingClientFactory {
      * @return A new messaging client instance.
      */
     GenMessagingClient create(MessagingInterfaceDescription interfaceDescription);
+
+    /**
+     * Gets the messaging platforms supported by the implementation.
+     * @return a set of platform types
+     */
+    Set<MessagingPlatformType> getSupportedPlatforms();
 }

@@ -44,11 +44,11 @@ import com.smartgridready.communicator.common.api.values.StringValue;
 import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.driver.api.modbus.GenDriverModbusException;
 import com.smartgridready.driver.api.modbus.GenDriverSocketException;
 import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
-import com.smartgridready.communicator.modbus.api.ModbusGatewayFactory;
 import com.smartgridready.communicator.modbus.api.ModbusGatewayRegistry;
 import com.smartgridready.communicator.modbus.api.ModbusGateway;
 import com.smartgridready.communicator.modbus.helper.CacheRecord;
@@ -56,6 +56,8 @@ import com.smartgridready.communicator.modbus.helper.ConversionHelper;
 import com.smartgridready.communicator.modbus.helper.EndiannessConversionHelper;
 import com.smartgridready.communicator.modbus.helper.ModbusReader;
 import com.smartgridready.communicator.modbus.helper.ModbusReaderResponse;
+import com.smartgridready.communicator.modbus.helper.ModbusTransportUtil;
+import com.smartgridready.communicator.modbus.helper.ModbusType;
 import com.smartgridready.communicator.modbus.helper.ModbusUtil;
 
 import org.slf4j.Logger;
@@ -72,6 +74,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.UUID;
+
+import jakarta.annotation.PreDestroy;
 
 import static com.smartgridready.communicator.common.impl.SGrDeviceBase.RwpDirections.READ;
 
@@ -85,10 +90,9 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	
 	private static final Logger LOG = LoggerFactory.getLogger(SGrModbusDevice.class);
 
+	private final String devObjKey;
 	private final ModbusGatewayRegistry drvRegistry;
-
-	private ModbusGateway drv4ModbusGateway;
-	private GenDriverAPI4Modbus drv4Modbus;
+	private final ModbusGateway drv4ModbusGateway;
 
 	private final DeviceFrame myDeviceDescription;
 
@@ -97,29 +101,47 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 	/**
 	 * Construct with pre-defined shared Modbus gateway registry.
 	 * @param aDeviceDescription the EID description
+	 * @param aDriverFactory the Modbus gateway factory
 	 * @param aGatewayRegistry the shared Modbus gateway registry
 	 * @throws GenDriverException when gateway cannot be created
 	 */
-	public SGrModbusDevice(DeviceFrame aDeviceDescription, ModbusGatewayRegistry aGatewayRegistry) throws GenDriverException {
+	public SGrModbusDevice(
+		DeviceFrame aDeviceDescription,
+		GenDriverAPI4ModbusFactory aDriverFactory,
+		ModbusGatewayRegistry aGatewayRegistry
+	) throws GenDriverException {
 		super(aDeviceDescription);
 		myDeviceDescription = aDeviceDescription;
-		drvRegistry = aGatewayRegistry;
-		drv4ModbusGateway = drvRegistry.attachGateway(getModbusInterfaceDescription());
-		drv4Modbus = drv4ModbusGateway.getTransport();
+		devObjKey = UUID.randomUUID().toString();
+
+		if (
+			(aGatewayRegistry != null) &&
+			(ModbusUtil.getModbusType(getModbusInterfaceDescription()) == ModbusType.RTU)
+		) {
+			// only use shared registry with RTU transports
+			drvRegistry = aGatewayRegistry;
+			drv4ModbusGateway = drvRegistry.attachGateway(getModbusInterfaceDescription(), aDriverFactory, devObjKey);
+		} else {
+			drvRegistry = null;
+			drv4ModbusGateway = new ModbusGateway(
+				ModbusUtil.getModbusGatewayIdentifier(getModbusInterfaceDescription()),
+				getModbusInterfaceDescription(),
+				ModbusTransportUtil.createTransport(getModbusInterfaceDescription(), aDriverFactory)
+			);
+		}
 	}
 
 	/**
 	 * Construct with custom Modbus gateway factory.
 	 * @param aDeviceDescription the EID description
-	 * @param aGatewayFactory the Modbus gateway factory
+	 * @param aDriverFactory the Modbus gateway factory
 	 * @throws GenDriverException when gateway cannot be created
 	 */
-	public SGrModbusDevice(DeviceFrame aDeviceDescription, ModbusGatewayFactory aGatewayFactory) throws GenDriverException {
-		super(aDeviceDescription);
-		myDeviceDescription = aDeviceDescription;
-		drvRegistry = null;
-		drv4ModbusGateway = null;
-		drv4Modbus = aGatewayFactory.create(getModbusInterfaceDescription()).getTransport();
+	public SGrModbusDevice(
+		DeviceFrame aDeviceDescription,
+		GenDriverAPI4ModbusFactory aDriverFactory
+	) throws GenDriverException {
+		this(aDeviceDescription, aDriverFactory, null);
 	}
 
 	/**
@@ -132,41 +154,41 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		super(aDeviceDescription);
 		myDeviceDescription = aDeviceDescription;
 		drvRegistry = null;
-		drv4ModbusGateway = null;
-		drv4Modbus = aTransport;
+		devObjKey = UUID.randomUUID().toString();
+		drv4ModbusGateway = new ModbusGateway(
+			"",
+			getModbusInterfaceDescription(),
+			aTransport
+		);
+	}
+
+	@PreDestroy
+	private void onDestroy() {
+		try {
+			// remove shared transport if object is destroyed before disconnect() was called
+			if (drvRegistry != null) {
+				drvRegistry.detachGateway(
+					getModbusInterfaceDescription(),
+					devObjKey
+				);
+			}
+			disconnect();
+		} catch (GenDriverException e) {}
 	}
 
 	@Override
 	public void connect() throws GenDriverException {
-		if ((drvRegistry != null) && (drv4ModbusGateway == null)) {
-			drv4ModbusGateway = drvRegistry.attachGateway(getModbusInterfaceDescription());
-			drv4Modbus = drv4ModbusGateway.getTransport();
-			if (!drv4Modbus.isConnected()) {
-				connectDriver(getModbusInterfaceDescription());
-			}
-		} else if (!drv4Modbus.isConnected()) {
-			connectDriver(getModbusInterfaceDescription());
-		}
+		drv4ModbusGateway.connect(devObjKey);
 	}
 
 	@Override
 	public void disconnect() throws GenDriverException {
-		if (drvRegistry != null) {
-			if (drv4ModbusGateway != null) {
-				// only detach, do not disconnect transport
-				drvRegistry.detachGateway(drv4ModbusGateway.getIdentifier());
-				drv4ModbusGateway = null;
-			}
-		} else {
-			drv4Modbus.disconnect();
-		}
+		drv4ModbusGateway.disconnect(devObjKey);
 	}
 
 	@Override
 	public boolean isConnected() {
-		return (drvRegistry != null)
-			? (drv4ModbusGateway != null)
-			: drv4Modbus.isConnected();
+		return drv4ModbusGateway.isConnected(devObjKey);
 	}
 
 	@Override
@@ -237,7 +259,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 				checkConnection();
 
 				mbResponse = ModbusReader.read(
-						drv4Modbus,
+						drv4ModbusGateway.getTransport(),
 						unitIdentifier,
 						blockNotificationType.getRegisterType(),
 						blockAddress.intValue(),
@@ -290,7 +312,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		checkConnection();
 
 		ModbusReaderResponse mbResponse = ModbusReader.read(
-				drv4Modbus,
+				drv4ModbusGateway.getTransport(),
 				unitIdentifier,
 				mbRegRef.getRegisterType(),
 				mbRegRef.getAddress().intValue(),
@@ -461,7 +483,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		ModbusDataPoint dataPoint = findDatapoint(sProfileName, sDataPointName);
 
 		if (value instanceof ArrayValue) {
-			validateArrayLenght(dataPoint, value);
+			validateArrayLength(dataPoint, value);
 		}
 
 		setValArr(dataPoint, value.asArray());
@@ -550,6 +572,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 
 	private void writeToModbus(short unitIdentifier, int[] mbregsnd, boolean[] mbbitsnd, boolean bRegisterCMDs, boolean bDiscreteCMDs, BigInteger regad, int mbsize) throws GenDriverException, GenDriverSocketException, GenDriverModbusException {
 		// shared Modbus driver instances require exclusive access
+		GenDriverAPI4Modbus drv4Modbus = drv4ModbusGateway.getTransport();
 		if (bRegisterCMDs) {
 			if (mbsize > 1) {
 				synchronized (drv4Modbus) {
@@ -691,7 +714,7 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 		}
 	}
 
-	private void validateArrayLenght(ModbusDataPoint dataPoint, Value value) throws GenDriverException {
+	private void validateArrayLength(ModbusDataPoint dataPoint, Value value) throws GenDriverException {
 		if (dataPoint.getDataPoint().getArrayLength() == null) {
 			throw new GenDriverException("Cannot write array to modbus. Modbus data point is not defined as array");
 		}
@@ -701,20 +724,6 @@ public class SGrModbusDevice extends SGrDeviceBase<DeviceFrame, ModbusFunctional
 			throw new GenDriverException("Cannot write array value to modbus. " +
 					"Modbus array length=" + modbusArrayLen +
 					", value array length=" + value.asArray().length);
-		}
-	}
-
-	private void connectDriver(ModbusInterfaceDescription modbusInterfaceDescription) throws GenDriverException {
-
-		if (!drv4Modbus.connect()) {
-			var msg = "Connect to modbus device failed";
-			if (modbusInterfaceDescription.getModbusRtu() != null) {
-				msg = String.format("Connect to modbus device on port %s failed.", modbusInterfaceDescription.getModbusRtu().getPortName());
-			} else if (modbusInterfaceDescription.getModbusTcp() != null) {
-				msg = String.format("Connect to modbus device on ip address=%s failed.", modbusInterfaceDescription.getModbusTcp().getAddress());
-			}
-			LOG.error(msg);
-			throw new GenDriverException(msg);
 		}
 	}
 }

@@ -25,23 +25,26 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
-import com.smartgridready.driver.api.http.GenHttpRequestFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
 import com.smartgridready.driver.api.http.GenHttpRequest;
+import com.smartgridready.driver.api.http.GenUriBuilder;
 import com.smartgridready.ns.v0.HeaderList;
 import com.smartgridready.ns.v0.HttpMethod;
 import com.smartgridready.ns.v0.ParameterList;
-import org.apache.hc.core5.net.URIBuilder;
 
 import com.smartgridready.ns.v0.RestApiServiceCall;
 import com.smartgridready.ns.v0.HeaderEntry;
 
 public class RestServiceClient {
 
+	private static final ObjectMapper objectMapper = new ObjectMapper();
+
 	private final String baseUri;
 
 	private final RestApiServiceCall restServiceCall;
-	private final GenHttpRequestFactory httpRequestFactory;
+	private final GenHttpClientFactory httpClientFactory;
 
 	private static final Map<HttpMethod, com.smartgridready.driver.api.http.HttpMethod> HTTP_METHOD_MAP = new EnumMap<>(HttpMethod.class);
 	static {
@@ -52,14 +55,14 @@ public class RestServiceClient {
 		HTTP_METHOD_MAP.put(HttpMethod.DELETE, com.smartgridready.driver.api.http.HttpMethod.DELETE);
 	}
 
-	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpRequestFactory httpRequestFactory) {
-		this(baseUri, serviceCall, httpRequestFactory, new Properties());
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory) throws IOException {
+		this(baseUri, serviceCall, httpClientFactory, new Properties());
 	}
 
-	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpRequestFactory httpRequestFactory, Properties substitutions) {
+	protected RestServiceClient(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory, Properties substitutions) throws IOException {
 		this.baseUri = replacePropertyPlaceholders(baseUri, substitutions);
 		this.restServiceCall = cloneRestServiceCallWithSubstitutions(serviceCall, substitutions);
-		this.httpRequestFactory = httpRequestFactory;
+		this.httpClientFactory = httpClientFactory;
 	}
 
 	public void addHeader(String key, String value) {
@@ -83,40 +86,46 @@ public class RestServiceClient {
 		return restServiceCall;
 	}
 
-	private RestApiServiceCall cloneRestServiceCallWithSubstitutions(RestApiServiceCall restServiceCall, Properties substitutions) {
+	private RestApiServiceCall cloneRestServiceCallWithSubstitutions(RestApiServiceCall restServiceCall, Properties substitutions) throws IOException {
+
+		var serviceCall = cloneRestApiServiceCall(restServiceCall);
 
 		// Substitutions can appear within the request path, request body or even the response query.
-		restServiceCall.setRequestPath(replacePropertyPlaceholders(restServiceCall.getRequestPath(), substitutions));
-		restServiceCall.setRequestBody(replacePropertyPlaceholders(restServiceCall.getRequestBody(), substitutions));
+		serviceCall.setRequestPath(replacePropertyPlaceholders(serviceCall.getRequestPath(), substitutions));
+		serviceCall.setRequestBody(replacePropertyPlaceholders(serviceCall.getRequestBody(), substitutions));
 
-		if (restServiceCall.getResponseQuery() != null) {
-			restServiceCall.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
+		if (serviceCall.getResponseQuery() != null) {
+			serviceCall.getResponseQuery().setQuery(replacePropertyPlaceholders(restServiceCall.getResponseQuery().getQuery(), substitutions));
 		}
 
-		ParameterList queryParams = restServiceCall.getRequestQuery();
+		ParameterList queryParams = serviceCall.getRequestQuery();
 		if (queryParams != null) {
 			queryParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
 		}
 
-		ParameterList formParams = restServiceCall.getRequestForm();
+		ParameterList formParams = serviceCall.getRequestForm();
 		if (formParams != null) {
 			formParams.getParameter().forEach(param -> param.setValue(replacePropertyPlaceholders(param.getValue(), substitutions)));
 		}
 
-		HeaderList headers = restServiceCall.getRequestHeader();
+		HeaderList headers = serviceCall.getRequestHeader();
 		if (headers != null) {
 			headers.getHeader().forEach(header -> header.setValue(replacePropertyPlaceholders(header.getValue(), substitutions)));
 		} else {
-			restServiceCall.setRequestHeader(new HeaderList());
+			serviceCall.setRequestHeader(new HeaderList());
 		}
 
-		return restServiceCall;
+		return serviceCall;
 	}
 
 	public GenHttpResponse callService() throws IOException {
 
+		if (httpClientFactory == null) {
+			throw new IOException("No implementation for HTTP client found");
+		}
+
 		RestApiServiceCall serviceCall = getRestServiceCall();
-		GenHttpRequest httpRequest = httpRequestFactory.create();
+		GenHttpRequest httpRequest = httpClientFactory.createHttpRequest();
 
 		httpRequest.setHttpMethod(mapHttpMethod(serviceCall.getRequestMethod()));
 		try {
@@ -145,8 +154,7 @@ public class RestServiceClient {
 	}
 
 	private URI buildUri(RestApiServiceCall serviceCall) throws URISyntaxException {
-		URI uri;
-		final URIBuilder uriBuilder = new URIBuilder(getBaseUri());
+		final GenUriBuilder uriBuilder = httpClientFactory.createUriBuilder(getBaseUri());
 
 		// add request path
 		if (serviceCall.getRequestPath() != null) {
@@ -155,22 +163,21 @@ public class RestServiceClient {
 				// split path and query (old style)
 				String path = serviceCall.getRequestPath().substring(0, startQueryPos);
 				String query = serviceCall.getRequestPath().substring(startQueryPos + 1);
-				uriBuilder.appendPath(path);
-				uriBuilder.setCustomQuery(query);
+				uriBuilder.addPath(path);
+				uriBuilder.setQueryString(query);
 			} else {
 				// just set path (new style)
-				uriBuilder.appendPath(serviceCall.getRequestPath());
+				uriBuilder.addPath(serviceCall.getRequestPath());
 			}
 		}
 
 		// add query parameters
 		if (serviceCall.getRequestQuery() != null) {
 			serviceCall.getRequestQuery().getParameter().forEach(p ->
-				uriBuilder.addParameter(p.getName(), p.getValue()));
+				uriBuilder.addQueryParameter(p.getName(), p.getValue()));
 		}
 
-		uri = uriBuilder.build();
-		return uri;
+		return uriBuilder.build();
 	}
 
 	private static String replacePropertyPlaceholders(String template, Properties properties) {
@@ -185,16 +192,21 @@ public class RestServiceClient {
 		return convertedTemplate;
 	}
 
-	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpRequestFactory httpRequestFactory) {
-		return new RestServiceClient(baseUri, serviceCall, httpRequestFactory);
+	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory) throws IOException {
+		return new RestServiceClient(baseUri, serviceCall, httpClientFactory);
 	}
 
-	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpRequestFactory httpRequestFactory, Properties substitutions) {
-		return new RestServiceClient(baseUri, serviceCall, httpRequestFactory, substitutions);
+	public static RestServiceClient of(String baseUri, RestApiServiceCall serviceCall, GenHttpClientFactory httpClientFactory, Properties substitutions) throws IOException {
+		return new RestServiceClient(baseUri, serviceCall, httpClientFactory, substitutions);
 	}
 
 	private static com.smartgridready.driver.api.http.HttpMethod mapHttpMethod(HttpMethod httpMethod) throws IOException {
 		return Optional.ofNullable(HTTP_METHOD_MAP.get(httpMethod))
 				.orElseThrow(() -> new IOException("Unsupported HTTP method: " + httpMethod.name()));
+	}
+
+	private static RestApiServiceCall cloneRestApiServiceCall(RestApiServiceCall restApiServiceCall) throws IOException {
+		var clone = objectMapper.writeValueAsString(restApiServiceCall);
+		return objectMapper.readValue(clone, RestApiServiceCall.class);
 	}
 }

@@ -45,7 +45,7 @@
   <interfaceList>
     <modbusInterface>
       <modbusInterfaceDescription>
-        <modbusInterfaceSelection>RTU</modbusInterfaceSelection>
+        <modbusInterfaceSelection>TCPIP</modbusInterfaceSelection>
         <modbusTcp>
           <port>502</port>
           <address>{{ipaddress}}</address>

@@ -2,9 +2,6 @@ package com.smartgridready.driver.api.http;
 
 public class GenHttpResponse {
 
-    private final static int SC_OK = 200;
-    private static final int SC_CLIENT_ERROR = 400;
-
     final private String response;
     final private int responseCode;
     final private String reason;
@@ -28,11 +25,11 @@ public class GenHttpResponse {
     }
 
     public boolean isOk() {
-        return (responseCode >= SC_OK) && (responseCode < SC_CLIENT_ERROR);
+        return (responseCode >= HttpStatus.OK) && (responseCode < HttpStatus.BAD_REQUEST);
     }
 
     public static GenHttpResponse of(String response) {
-        return new GenHttpResponse(response, SC_OK, "");
+        return new GenHttpResponse(response, HttpStatus.OK, "");
     }
 
     public static GenHttpResponse of(String response, int responseCode, String reason) {

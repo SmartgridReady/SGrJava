@@ -2,6 +2,7 @@ package com.smartgridready.communicator.common.api;
 
 import com.smartgridready.ns.v0.EnumEntryProductRecord;
 import com.smartgridready.ns.v0.EnumMapProduct;
+import com.smartgridready.communicator.common.api.values.EnumRecord;
 import com.smartgridready.communicator.common.api.values.EnumValue;
 import com.smartgridready.communicator.common.api.values.Int32Value;
 import com.smartgridready.communicator.common.api.values.Int64Value;
@@ -86,8 +87,8 @@ class EnumValueTest {
         // Invalid enum values returned from modbus
         Value testVal = Int64Value.of(32);
         Value resVal  = EnumValue.of(testVal.getInt64(), enumMap);
-        assertEquals("UNDEFINED", resVal.getEnum().getLiteral());
-        assertEquals(0,   resVal.getEnum().getOrdinal());
+        assertEquals(EnumRecord.UNDEFINED_LITERAL, resVal.getEnum().getLiteral());
+        assertEquals(EnumRecord.UNDEFINED_ORDINAL, resVal.getEnum().getOrdinal());
         assertEquals("Invalid enumeration ordinal=32 returned from modbus.",  resVal.getEnum().getDescription());
     }
 
@@ -113,7 +114,7 @@ class EnumValueTest {
         EnumMapProduct enumMap = createEnumMap(new byte[]{0x01, (byte)0xFF});
         Value testVal = Int32Value.of(0xFFFF);
         Value resVal = EnumValue.of(testVal.getInt64(), enumMap);
-        assertEquals("UNDEFINED", resVal.getString());
+        assertEquals(EnumRecord.UNDEFINED_LITERAL, resVal.getString());
         assertEquals("Invalid enumeration ordinal=511 returned from modbus.", resVal.getEnum().getDescription());
 
     }

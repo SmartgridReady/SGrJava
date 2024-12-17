@@ -2,10 +2,12 @@ package com.smartgridready.communicator.common.impl;
 
 import com.smartgridready.communicator.common.api.values.ArrayValue;
 import com.smartgridready.communicator.common.api.values.DataType;
+import com.smartgridready.communicator.common.api.values.DataTypeInfo;
 import com.smartgridready.communicator.common.api.values.Float32Value;
 import com.smartgridready.driver.api.http.GenHttpRequest;
-import com.smartgridready.driver.api.http.GenHttpRequestFactory;
+import com.smartgridready.driver.api.http.GenHttpClientFactory;
 import com.smartgridready.driver.api.http.GenHttpResponse;
+import com.smartgridready.driver.api.http.GenUriBuilder;
 import com.smartgridready.driver.api.http.HttpMethod;
 import com.smartgridready.ns.v0.DataDirectionProduct;
 import com.smartgridready.ns.v0.DataTypeProduct;
@@ -30,6 +32,7 @@ import com.smartgridready.communicator.common.api.values.Value;
 import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
 import com.smartgridready.communicator.common.impl.SGrDeviceBase.Comparator;
 import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
 import com.smartgridready.driver.api.common.GenDriverException;
 import com.smartgridready.communicator.modbus.impl.SGrModbusDevice;
 import com.smartgridready.communicator.rest.impl.SGrRestApiDevice;
@@ -50,6 +53,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Stream;
 
+import static com.smartgridready.communicator.common.api.values.DataType.ENUM;
 import static com.smartgridready.communicator.common.api.values.DataType.UNKNOWN;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -82,6 +86,8 @@ class SGrDeviceBaseTest {
             + "        ]\r\n"
             + "    }\r\n"
             + "}";
+    
+    private static final URI TEST_URI = URI.create("");
 
     private static final Value STRING_VALUE_1000 = StringValue.of("1000");
 
@@ -91,13 +97,19 @@ class SGrDeviceBaseTest {
     }
 
     @Mock
+    private GenDriverAPI4ModbusFactory modbusClientFactory;
+
+    @Mock
     private GenDriverAPI4Modbus genDriverAPI4Modbus;
 
     @Mock
     private GenHttpRequest httpRequest;
 
     @Mock
-    private GenHttpRequestFactory httpRequestFactory;
+    private GenUriBuilder uriBuilder;
+
+    @Mock
+    private GenHttpClientFactory httpClientFactory;
 
     private final ArgumentCaptor<Integer> intCaptor1 = ArgumentCaptor.forClass(Integer.class);
     private final ArgumentCaptor<int[]> intCaptor2 = ArgumentCaptor.forClass(int[].class);
@@ -123,7 +135,7 @@ class SGrDeviceBaseTest {
 
     @ParameterizedTest
     @MethodSource("checkRangeArguments")
-    void checkRange(Value[] values, Comparator comparator, double limit, Expect expect) {
+    void checkRange(Value[] values, Comparator comparator, double limit, Expect expect) throws Exception {
 
         SGrModbusDevice device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
 
@@ -135,7 +147,7 @@ class SGrDeviceBaseTest {
     }
 
     @Test
-    void getDeviceInfo() throws GenDriverException {
+    void getDeviceInfo() throws Exception {
 
         var device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
         var deviceInfo = device.getDeviceInfo();
@@ -172,7 +184,7 @@ class SGrDeviceBaseTest {
         expectedAttributes.add(createGenericAttributeProduct(
                 "FlexDirManagement",
                 null,
-                UNKNOWN,
+                null,
                 null,
                 children));
 
@@ -189,7 +201,7 @@ class SGrDeviceBaseTest {
 
 
     @Test
-    void getDeviceInfoDeviceData() throws GenDriverException {
+    void getDeviceInfoDeviceData() throws Exception {
 
         var device = createSGrModbusDevice("SGr_04_0014_0000_WAGO_SmartMeterV0.2.1-GenericAttributes.xml");
         var deviceInfo = device.getDeviceInfo();
@@ -231,6 +243,7 @@ class SGrDeviceBaseTest {
 
         var modbusValue = Float32Value.of(voltage).toModbusRegister(modbusDataType);
 
+        when(modbusClientFactory.createRtuTransport(anyString(), anyInt(), any(), any(), any())).thenReturn(genDriverAPI4Modbus);
         when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt()))
                 .thenReturn(modbusValue);
 
@@ -264,8 +277,40 @@ class SGrDeviceBaseTest {
         expected.add(EnumValue.of("ENUM_10", 2L, "Register bits 10"));
         expected.add(EnumValue.of("ENUM_11", 3L, "Register bits 11"));
 
-        assertEquals("ENUM", dataPoint.getDataType().name());
+        assertEquals(DataType.ENUM, dataPoint.getDataType().getType());
         assertArrayEquals(expected.toArray(), dataPoint.getDataType().getRange().toArray());
+    }
+
+    @Test
+    void getEnumDataPoints() throws Exception {
+
+        // Fixtures
+        var hpOpModeCmdEnums = new String[]{
+                "STI_WP_EMERG_OP", "STI_WP_READY", "STI_WP_PROG_OP",
+                "STI_WP_COMFORT_OP", "STI_WP_ECO_OP", "STI_WP_DOM_WATER_OP"};
+
+        var sgReadyStateAndOpModeCmds = new String[] {"HP_LOCKED", "HP_NORMAL", "HP_INTENSIFIED", "HP_FORCED" };
+
+        var expectedDatapointEnumsMap = new HashMap<String, String[]>();
+        expectedDatapointEnumsMap.put("HPOpModeCmd", hpOpModeCmdEnums);
+        expectedDatapointEnumsMap.put("SGReadyOpModeCmd", sgReadyStateAndOpModeCmds);
+        expectedDatapointEnumsMap.put("SGReadyState", sgReadyStateAndOpModeCmds);
+
+        var device = createSGrModbusDevice("SGr_04_0015_xxxx_StiebelEltron_HeatPump_V1.0.0.xml");
+
+        var enumResults = new HashMap<String, String[]>();
+        device.getFunctionalProfiles().forEach(
+                fp -> fp.getDataPoints().forEach(
+                    dp -> {
+                        DataTypeInfo dt = dp.getDataType();
+                        if (dt.getType() == ENUM && dt.getRange() != null) {
+                            enumResults.put(dp.getName(), dt.getRange().stream().map(Value::getString).toArray(String[]::new));
+                        }
+                    }));
+
+        assertArrayEquals(expectedDatapointEnumsMap.get("HPOpModeCmd"), enumResults.get("HPOpModeCmd"));
+        assertArrayEquals(expectedDatapointEnumsMap.get("SGReadyOpModeCmd"), enumResults.get("SGReadyOpModeCmd"));
+        assertArrayEquals(expectedDatapointEnumsMap.get("SGReadyState"), enumResults.get("SGReadyState"));
     }
 
     @Test
@@ -284,7 +329,7 @@ class SGrDeviceBaseTest {
         expected.add(StringValue.of("Sensor_7"));
         expected.add(StringValue.of("Sensor_8"));
 
-        assertEquals("BITMAP", dataPoint.getDataType().name());
+        assertEquals(DataType.BITMAP, dataPoint.getDataType().getType());
         assertIterableEquals(expected, dataPoint.getDataType().getRange());
     }
 
@@ -302,6 +347,7 @@ class SGrDeviceBaseTest {
         System.arraycopy(modbusValue, 0, modbusValues, modbusValue.length, modbusValue.length);
         System.arraycopy(modbusValue, 0, modbusValues, 2*modbusValue.length,modbusValue.length);
 
+        when(modbusClientFactory.createRtuTransport(anyString(), anyInt(), any(), any(), any())).thenReturn(genDriverAPI4Modbus);
         when(genDriverAPI4Modbus.ReadHoldingRegisters(anyInt(), anyInt()))
                 .thenReturn(modbusValues);
 
@@ -328,7 +374,12 @@ class SGrDeviceBaseTest {
     @Test
     void readFromRestApiDataPoint() throws Exception {
 
-        when(httpRequestFactory.create()).thenReturn(httpRequest);
+        when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+        when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
 
         var device = createSGrRestApiDevice("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
         var dataPoint = device.getDataPoint("ActivePowerAC", "ActivePowerACtot");
@@ -348,7 +399,12 @@ class SGrDeviceBaseTest {
     @Test
     void writeToRestApiDataPoint() throws Exception {
 
-        when(httpRequestFactory.create()).thenReturn(httpRequest);
+        when(httpClientFactory.createHttpRequest()).thenReturn(httpRequest);
+        when(httpClientFactory.createUriBuilder(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addPath(any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.addQueryParameter(any(), any())).thenReturn(uriBuilder);
+        Mockito.lenient().when(uriBuilder.setQueryString(any())).thenReturn(uriBuilder);
+        when(uriBuilder.build()).thenReturn(TEST_URI);
 
         var device = createSGrRestApiDevice("SGr_04_0018_CLEMAP_EIcloudEnergyMonitorV0.2.1.xml");
         var dataPoint = device.getDataPoint("ActivePowerAC", "ActivePowerACtot");
@@ -411,7 +467,7 @@ class SGrDeviceBaseTest {
 
        var genAttr = genericAttributes.stream().findFirst().orElseGet(() -> fail("Functional Profile's GenericAttribute is missing"));
        assertEquals("LoadReduction", genAttr.getName());
-       assertEquals("FLOAT32", genAttr.getDataType());
+       assertEquals(DataType.FLOAT32, genAttr.getDataType().getType());
        assertEquals(Units.PERCENT, genAttr.getUnit());
        assertEquals(20.5, genAttr.getValue().getFloat32());
     }
@@ -454,7 +510,7 @@ class SGrDeviceBaseTest {
         expectedRange.add(Float64Value.of(Double.MAX_VALUE));
 
         assertEquals("VoltageL1", dataPoint.getName());
-        assertEquals("FLOAT64", dataPoint.getDataType().name());
+        assertEquals(DataType.FLOAT64, dataPoint.getDataType().getType());
         assertIterableEquals(expectedRange, dataPoint.getDataType().getRange());
 
         assertEquals(0.005, dataPoint.getMinimumValue());
@@ -462,7 +518,7 @@ class SGrDeviceBaseTest {
         assertEquals(DataDirectionProduct.RW, dataPoint.getPermissions());
         assertEquals(1, dataPoint.getArrayLen());
 
-        var expectedGenAttr =  createGenericAttributeProduct("PrecisionPercent", "2.2", DataType.FLOAT32, Units.PERCENT, new ArrayList<>());
+        var expectedGenAttr = createGenericAttributeProduct("PrecisionPercent", "2.2", DataType.FLOAT32, Units.PERCENT, new ArrayList<>());
         var resultGenAttr = dataPoint.getGenericAttributes();
         assertTrue(resultGenAttr.stream().findFirst().isPresent());
         assertEquals(expectedGenAttr, resultGenAttr.stream().findFirst().get());
@@ -473,14 +529,14 @@ class SGrDeviceBaseTest {
         var configRecord = configurationValues.stream().findFirst();
         assertTrue(configRecord.isPresent());
         assertEquals("baseUri", configRecord.get().getName());
-        assertEquals("STRING", configRecord.get().getDataType());
+        assertEquals(DataType.STRING, configRecord.get().getDataType().getType());
 
         assertEquals("The base URI to connect to the service", configRecord.get().getDescriptions().get(Language.EN));
         assertEquals("Die Basis-URI des service", configRecord.get().getDescriptions().get(Language.DE));
     }
 
     @SuppressWarnings("SameParameterValue")
-    private SGrModbusDevice createSGrModbusDevice(String deviceDescriptionXml) {
+    private SGrModbusDevice createSGrModbusDevice(String deviceDescriptionXml) throws Exception {
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL devDescUrl = classloader.getResource(deviceDescriptionXml);
@@ -488,7 +544,7 @@ class SGrDeviceBaseTest {
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
 
-        return new SGrModbusDevice(devDesc, genDriverAPI4Modbus);
+        return new SGrModbusDevice(devDesc, modbusClientFactory);
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -499,21 +555,25 @@ class SGrDeviceBaseTest {
 
         DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
         DeviceFrame devDesc = loader.load("", Optional.ofNullable(devDescUrl).map(URL::getPath).orElse(""));
-        return new SGrRestApiDevice(devDesc, httpRequestFactory);
 
+        return new SGrRestApiDevice(devDesc, httpClientFactory);
     }
 
     private GenericAttribute createGenericAttributeProduct(
             String name, String value, DataType dataType, Units unit, List<GenericAttribute> children) {
 
+        var dataTypeInfo = DataType.getDataTypeInfo(dataType).orElse(null);
         var dataTypeProduct = new DataTypeProduct();
-        if (UNKNOWN != dataType) {
-            dataType.getSetGenValMethod().accept(dataTypeProduct, new EmptyType());
+        if (dataTypeInfo != null && UNKNOWN != dataTypeInfo.getType()) {
+            dataTypeInfo.getSetGenValMethod().accept(dataTypeProduct, new EmptyType());
         }
+
+        Value v = (value != null) ? Value.fromString(dataTypeProduct, value) : null;
+
         return new GenericAttribute(
                 name,
-                value,
-                dataTypeProduct,
+                v,
+                dataTypeInfo,
                 unit,
                 children);
     }

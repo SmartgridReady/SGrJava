@@ -17,48 +17,52 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 author: IBT/cb
-The purpose of this class is to offer a test environment with all existing devices at the IBT lab in order to allow communication tests under long term
+The purpose of this class is to offer a test environment with all existing decives at the IBT lab in order to allow communication tests under long term  
 and significant traffic load conditions    
 
  */
 
 package com.smartgridready.communicator.modbus.impl;
 
-import com.smartgridready.communicator.common.api.GenDeviceApi;
-import com.smartgridready.communicator.common.api.SGrDeviceBuilder;
+import com.smartgridready.ns.v0.DeviceFrame;
+
 import com.smartgridready.communicator.common.api.values.BooleanValue;
 import com.smartgridready.communicator.common.api.values.EnumRecord;
 import com.smartgridready.communicator.common.api.values.Float64Value;
 import com.smartgridready.communicator.common.api.values.Value;
+import com.smartgridready.communicator.common.helper.DeviceDescriptionLoader;
+import com.smartgridready.communicator.common.helper.DriverFactoryLoader;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4Modbus;
+import com.smartgridready.driver.api.modbus.GenDriverAPI4ModbusFactory;
+import com.smartgridready.driver.api.modbus.Parity;
+import com.smartgridready.communicator.modbus.api.GenDeviceApi4Modbus;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Properties;
 
 public class IBTlabLoopTester {
 
-	//private static final String XML_BASE_DIR = "C://SGr/QuellCode/SGrSpecifications/XMLInstances/ExtInterfaces/";
-	private static final String XML_BASE_DIR = "../SGrSpecifications/XMLInstances/ExtInterfaces/";
+	private static final String XML_BASE_DIR = "../../../SGrSpecifications/XMLInstances/ExtInterfaces/";
 	private static final Logger LOG = LoggerFactory.getLogger(IBTlabLoopTester.class);
 
 	// we need static definitions for performance reason
 	//------------------------------------------------------
 
 	// Modbus RTU devices
-	private static GenDeviceApi devWagoMeter = null;
-	private static GenDeviceApi devABBMeter = null;
-	private static GenDeviceApi devTB_ABBMeter = null;
-	// we need a single driver instance for RTU and separate these by device address
-	//private static GenDeviceApi mbRTU = null;
+	private static GenDeviceApi4Modbus devWagoMeter = null;
+	private static GenDeviceApi4Modbus devABBMeter = null;
+	private static GenDeviceApi4Modbus devTB_ABBMeter = null;
+	// we need a single driver instance for RTU and separate these by device addres
+	private static GenDriverAPI4Modbus mbRTU = null;
 
 	// Modbus TCP devices
-	private static GenDeviceApi devVGT_SGCP = null;
-	private static GenDeviceApi devGaroWallbox = null;
-	private static GenDeviceApi devOMCCIWallbox = null;
-	private static GenDeviceApi devFroniusSymo = null;
+	private static GenDeviceApi4Modbus devVGT_SGCP = null;
+	private static GenDeviceApi4Modbus devGaroWallbox = null;
+	private static GenDeviceApi4Modbus devOMCCIWallbox = null;
+	private static GenDeviceApi4Modbus devFroniusSymo = null;
 
 	// test loop parameters
 	private static int runtimeCnt = 0;
@@ -78,9 +82,9 @@ public class IBTlabLoopTester {
 	private static boolean  devABBMeterTestIsOn = true;
 	private static boolean  devVGT_SGCPTestIsOn = true;
 	private static boolean  devFroniusSymoTestIsOn = false;
-	private static boolean  devGaroWallboxTestIsOn = false;
+	private static boolean  devGaroWallboxTestIsOn = true;
 	// TestBox
-	private static boolean  devWagoMeterTestIsOn = false;
+	private static boolean  devWagoMeterTestIsOn = true;
 	private static boolean  devOMCCIWallboxTestIsOn = true;
 
 	// !! Schalter in Box umlegen fuer Test !!
@@ -88,7 +92,7 @@ public class IBTlabLoopTester {
 
 	// Set the mockModbusDriver to new GenDriverAPI4ModbusRTUMock() to mock the real devices.
 	// private static GenDriverAPI4Modbus  mockModbusDriver = new GenDriverAPI4ModbusRTUMock();
-	//private static GenDriverAPI mockModbusDriver = null;
+	private static GenDriverAPI4Modbus mockModbusDriver = null;
 
 	@SuppressWarnings("java:S2925")
 	public static void main( String argv[] ) {
@@ -97,9 +101,16 @@ public class IBTlabLoopTester {
 
 		try {
 
+			//DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
 
+			// Modbus RTU uses a single driver  (tailored to easymodbus)
+			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
+			mbRTU = (mockModbusDriver == null ? factory.createRtuTransport("COM4", 9600, Parity.NONE) : mockModbusDriver);   // for Office RTU Interface
+			//mbRTU = (mockModbusDriver == null ? factory.createRtuTransport("COM9", 9600, Parity.NONE) : mockModbusDriver);   // for Office RTU Interface
+
+			mbRTU.connect();
 			if (devABBMeterTestIsOn)  {
-				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_ModbusRTU_V0.3.xml");
+				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_V0.2.xml");
 			}
 			if (devVGT_SGCPTestIsOn)   {
 				LOG.info(" -init devVGT_SGCPTest @:" + dtf.format(LocalDateTime.now())+ " ");initVGT_SGCP (XML_BASE_DIR,"SGr_04_0019_0059_VGT_SPSDeviceforHomeAutomation_v0.2.1.xml");
@@ -113,15 +124,15 @@ public class IBTlabLoopTester {
 
 			// TestBox
 			if (devTB_ABBMeterTestIsOn)  {
-				LOG.info(" -init TestBox: devTB_ABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initTB_ABBMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_ModbusRTU_V0.3.xml");
+				LOG.info(" -init TestBox: devTB_ABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initTB_ABBMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_V0.2.xml");
 			}
 			if (devWagoMeterTestIsOn) {
 				LOG.info(" -init TestBox: devWagoMeterTest @: " + dtf.format(LocalDateTime.now())+ " ");
-				initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.3.xml");
+				initWagoMeter(XML_BASE_DIR, "SGr_04_0014_0000_WAGO_SmartMeterV0.2.1.xml");
 			}
 			if (devOMCCIWallboxTestIsOn) {
 				//TODO: complete and use OMCCI EI.xml
-				LOG.info(" -init devOMCCIWallboxest @:" + dtf.format(LocalDateTime.now())+ " "); initOMCCIWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
+				LOG.info(" -init devOMCCIWallboxTest @:" + dtf.format(LocalDateTime.now())+ " "); initOMCCIWallbox(XML_BASE_DIR, "SGr_04_0005_xxxx_GARO_WallboxV0.2.1.xml");
 			}
 
 
@@ -178,21 +189,13 @@ public class IBTlabLoopTester {
 	static void initWagoMeter(String aBaseDir, String aDescriptionFile ) {
 
 		try {
-			var properties = new Properties();
-			properties.put("slave_id", "7");
-			properties.put("serial_port", "COM4");
-			properties.put("serial_baudrate", "9600");
-			properties.put("serial_databits", "8");
-			properties.put("serial_parity", "NONE");
-			properties.put("serial_stopbits","1");
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
+			DeviceFrame tstMeter = loader.load(aBaseDir,aDescriptionFile);
 
-			devWagoMeter = (GenDeviceApi) new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
-					.eid(Path.of(aBaseDir, aDescriptionFile))
-					.properties(properties)
-					.build();
 
-			devWagoMeter.connect();
+			devWagoMeter =  new SGrModbusDevice(tstMeter, mbRTU );
+
+
 		}
 
 		catch ( Exception e )
@@ -207,24 +210,24 @@ public class IBTlabLoopTester {
 		String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
 
 		try {
-		//	mbRTU.setUnitIdentifier((byte) 7);
+			mbRTU.setUnitIdentifier((byte) 7);
 			LOG.info("\n@:Testing TestBox: WAGO Meter");
 			Thread.sleep(25);
-			fVal1 = devWagoMeter.getVal("VoltageAC", "VoltageACL1_N").getFloat64();
+			fVal1 = devWagoMeter.getVal("VoltageAC", "VoltageL1").getFloat64();
 			Thread.sleep(10);
-			fVal2 = devWagoMeter.getVal("VoltageAC", "VoltageACL2_N").getFloat64();
+			fVal2 = devWagoMeter.getVal("VoltageAC", "VoltageL2").getFloat64();
 			Thread.sleep(10);
-			fVal3 = devWagoMeter.getVal("VoltageAC", "VoltageACL3_N").getFloat64();
+			fVal3 = devWagoMeter.getVal("VoltageAC", "VoltageL3").getFloat64();
 			Thread.sleep(10);
 			fVal4 = devWagoMeter.getVal("Frequency", "Frequency").getFloat64();
 			LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
 					+ fVal3 + ",  " + fVal4 + "  ");
 			Thread.sleep(10);
-			fVal1 = devWagoMeter.getVal("VoltageAC", "VoltageACL1_L2").getFloat64();
+			fVal1 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L2").getFloat64();
 			Thread.sleep(10);
-			fVal2 = devWagoMeter.getVal("VoltageAC", "VoltageACL1_L3").getFloat64();
+			fVal2 = devWagoMeter.getVal("VoltageAC", "VoltageACL1-L3").getFloat64();
 			Thread.sleep(10);
-			fVal3 = devWagoMeter.getVal("VoltageAC", "VoltageACL2_L3").getFloat64();
+			fVal3 = devWagoMeter.getVal("VoltageAC", "VoltageACL2-L3").getFloat64();
 			LOG.info(String.format("  VoltageAC L12/13/23 [V]:           %.2f,  %.2f, %.2f", fVal1,  fVal2 , fVal3 ));
 			Thread.sleep(10);
 			fVal1 = devWagoMeter.getVal("CurrentAC", "CurrentACL1").getFloat64();
@@ -285,29 +288,29 @@ public class IBTlabLoopTester {
 			LOG.info("  ApparentPowerAC [kva]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
 					+ ",  " + sVal4 + "  ");
 			Thread.sleep(10);
-			sVal1 = devWagoMeter.getVal("ActiveEnergyBalanceAC", "ActiveImportAC").getString();
+			sVal1 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC").getString();
 			Thread.sleep(10);
-			sVal2 = devWagoMeter.getVal("ActiveEnergyBalanceAC", "ActiveExportAC").getString();
+			sVal2 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC").getString();
 			Thread.sleep(10);
-			sVal3 = devWagoMeter.getVal("ActiveEnergyBalanceAC", "ActiveNetAC").getString();
-			LOG.info("  ActiveEnergyBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
+			sVal3 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC").getString();
+			LOG.info("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
 
 			Thread.sleep(10);
-			sVal1 = devWagoMeter.getVal("ReactiveEnergyBalanceAC", "ReactiveImportAC").getString();
+			sVal1 = devWagoMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC").getString();
 			Thread.sleep(10);
-			sVal2 = devWagoMeter.getVal("ReactiveEnergyBalanceAC", "ReactiveExportAC").getString();
+			sVal2 = devWagoMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC").getString();
 			Thread.sleep(10);
-			sVal3 = devWagoMeter.getVal("ReactiveEnergyBalanceAC", "ReactiveNetAC").getString();
-			LOG.info("  ReactiveEnergyBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
+			sVal3 = devWagoMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC").getString();
+			LOG.info("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
 
 			Thread.sleep(10);
-			sVal1 = devWagoMeter.getVal("PowerQuadrant", "PowerQuadrantACtot").getString();
+			sVal1 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACtot").getString();
 			Thread.sleep(10);
-			sVal2 = devWagoMeter.getVal("PowerQuadrant", "PowerQuadrantACL1").getString();
+			sVal2 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACL1").getString();
 			Thread.sleep(10);
-			sVal3 = devWagoMeter.getVal("PowerQuadrant", "PowerQuadrantACL2").getString();
+			sVal3 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACL2").getString();
 			Thread.sleep(10);
-			sVal4 = devWagoMeter.getVal("PowerQuadrant", "PowerQuadrantACL3").getString();
+			sVal4 = devWagoMeter.getVal("PowerQuadrant", "PwrQuadACL3").getString();
 			LOG.info("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
 					+ ",  " + sVal4 + "  ");
 
@@ -338,21 +341,9 @@ public class IBTlabLoopTester {
 	static void initABBMeter(String aBaseDir, String aDescriptionFile ) {
 
 		try {
-			var properties = new Properties();
-			properties.put("slave_id", "11");
-			properties.put("serial_port", "COM4");
-			properties.put("serial_baudrate", "9600");
-			properties.put("serial_databits", "8");
-			properties.put("serial_parity", "EVEN");
-			properties.put("serial_stopbits","1");
-
-			devABBMeter = (GenDeviceApi) new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
-					.eid(Path.of(aBaseDir, aDescriptionFile))
-					.properties(properties)
-					.build();
-
-			devABBMeter.connect();
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
+			DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
+			devABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 
 		}
 
@@ -368,23 +359,24 @@ public class IBTlabLoopTester {
 		String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
 
 		try {
+			mbRTU.setUnitIdentifier((byte) 11);
 			LOG.info("\n@:Testing ABBMeter: ");
 			Thread.sleep(25);
-			fVal1 = devABBMeter.getVal("VoltageAC", "VoltageACL1_N").getFloat64();
+			fVal1 = devABBMeter.getVal("VoltageAC", "VoltageL1").getFloat64();
 			Thread.sleep(10);
-			fVal2 = devABBMeter.getVal("VoltageAC", "VoltageACL2_N").getFloat64();
+			fVal2 = devABBMeter.getVal("VoltageAC", "VoltageL2").getFloat64();
 			Thread.sleep(10);
-			fVal3 = devABBMeter.getVal("VoltageAC", "VoltageACL3_N").getFloat64();
+			fVal3 = devABBMeter.getVal("VoltageAC", "VoltageL3").getFloat64();
 			Thread.sleep(10);
 			fVal4 = devABBMeter.getVal("Frequency", "Frequency").getFloat64();
 			LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
 					+ fVal3 + ",  " + fVal4 + "  ");
 			Thread.sleep(10);
-			fVal1 = devABBMeter.getVal("VoltageAC", "VoltageACL1_L2").getFloat64();
+			fVal1 = devABBMeter.getVal("VoltageAC", "VoltageACL1-L2").getFloat64();
 			Thread.sleep(10);
-			fVal2 = devABBMeter.getVal("VoltageAC", "VoltageACL1_L3").getFloat64();
+			fVal2 = devABBMeter.getVal("VoltageAC", "VoltageACL1-L3").getFloat64();
 			Thread.sleep(10);
-			fVal3 = devABBMeter.getVal("VoltageAC", "VoltageACL2_L3").getFloat64();
+			fVal3 = devABBMeter.getVal("VoltageAC", "VoltageACL2-L3").getFloat64();
 			LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
 					+ fVal3 + "  ");
 			Thread.sleep(10);
@@ -449,29 +441,29 @@ public class IBTlabLoopTester {
 			LOG.info("  ApparentPowerAC [va]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
 					+ ",  " + sVal4 + "  ");
 			Thread.sleep(10);
-			sVal1 = devABBMeter.getVal("ActiveEnergyBalanceAC", "ActiveImportAC").getString();
+			sVal1 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC").getString();
 			Thread.sleep(10);
-			sVal2 = devABBMeter.getVal("ActiveEnergyBalanceAC", "ActiveExportAC").getString();
+			sVal2 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC").getString();
 			Thread.sleep(10);
-			sVal3 = devABBMeter.getVal("ActiveEnergyBalanceAC", "ActiveNetAC").getString();
-			LOG.info("  ActiveEnergyBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
+			sVal3 = devABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC").getString();
+			LOG.info("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
 
 			Thread.sleep(10);
-			sVal1 = devABBMeter.getVal("ReactiveEnergyBalanceAC", "ReactiveImportAC").getString();
+			sVal1 = devABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC").getString();
 			Thread.sleep(10);
-			sVal2 = devABBMeter.getVal("ReactiveEnergyBalanceAC", "ReactiveExportAC").getString();
+			sVal2 = devABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC").getString();
 			Thread.sleep(10);
-			sVal3 = devABBMeter.getVal("ReactiveEnergyBalanceAC", "ReactiveNetAC").getString();
-			LOG.info("  ReactiveEnergyBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
+			sVal3 = devABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC").getString();
+			LOG.info("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
 
 			Thread.sleep(10);
-			sVal1 = devABBMeter.getVal("PowerQuadrant", "PowerQuadrantACtot").getString();
+			sVal1 = devABBMeter.getVal("PowerQuadrant", "PwrQuadACtot").getString();
 			Thread.sleep(10);
-			sVal2 = devABBMeter.getVal("PowerQuadrant", "PowerQuadrantACL1").getString();
+			sVal2 = devABBMeter.getVal("PowerQuadrant", "PwrQuadACL1").getString();
 			Thread.sleep(10);
-			sVal3 = devABBMeter.getVal("PowerQuadrant", "PowerQuadrantACL2").getString();
+			sVal3 = devABBMeter.getVal("PowerQuadrant", "PwrQuadACL2").getString();
 			Thread.sleep(10);
-			sVal4 = devABBMeter.getVal("PowerQuadrant", "PowerQuadrantACL3").getString();
+			sVal4 = devABBMeter.getVal("PowerQuadrant", "PwrQuadACL3").getString();
 			LOG.info("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
 					+ ",  " + sVal4 + "  ");
 
@@ -491,22 +483,9 @@ public class IBTlabLoopTester {
 	static void initTB_ABBMeter(String aBaseDir, String aDescriptionFile ) {
 
 		try {
-
-			var properties = new Properties();
-			properties.put("slave_id", "1");
-			properties.put("serial_port", "COM4");
-			properties.put("serial_baudrate", "9600");
-			properties.put("serial_databits", "8");
-			properties.put("serial_parity", "EVEN");
-			properties.put("serial_stopbits","1");
-
-			devTB_ABBMeter = (GenDeviceApi) new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
-					.eid(Path.of(aBaseDir, aDescriptionFile))
-					.properties(properties)
-					.build();
-
-			devTB_ABBMeter.connect();
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
+			DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
+			devTB_ABBMeter =  new SGrModbusDevice(tstDesc, mbRTU );
 
 		}
 
@@ -522,24 +501,26 @@ public class IBTlabLoopTester {
 		String  sVal1 = "0.0", sVal2 = "0.0", sVal3 = "0.0", sVal4 ="0.0";
 
 		try {
+			mbRTU.setUnitIdentifier((byte) 1 );
+
 
 			LOG.info("\n@:Testing TestBox: ABBMeter: ");
 			Thread.sleep(50);
-			fVal1 = devTB_ABBMeter.getVal("VoltageAC", "VoltageACL1_N").getFloat64();
+			fVal1 = devTB_ABBMeter.getVal("VoltageAC", "VoltageL1").getFloat64();
 			Thread.sleep(10);
-			fVal2 = devTB_ABBMeter.getVal("VoltageAC", "VoltageACL2_N").getFloat64();
+			fVal2 = devTB_ABBMeter.getVal("VoltageAC", "VoltageL2").getFloat64();
 			Thread.sleep(10);
-			fVal3 = devTB_ABBMeter.getVal("VoltageAC", "VoltageACL3_N").getFloat64();
+			fVal3 = devTB_ABBMeter.getVal("VoltageAC", "VoltageL3").getFloat64();
 			Thread.sleep(10);
 			fVal4 = devTB_ABBMeter.getVal("Frequency", "Frequency").getFloat64();
 			LOG.info("  VoltageAC L1,2,3/Frequency [V,Hz]: " + fVal1 + ",  " + fVal2 + ",  "
 					+ fVal3 + ",  " + fVal4 + "  ");
 			Thread.sleep(10);
-			fVal1 = devTB_ABBMeter.getVal("VoltageAC", "VoltageACL1_L2").getFloat64();
+			fVal1 = devTB_ABBMeter.getVal("VoltageAC", "VoltageACL1-L2").getFloat64();
 			Thread.sleep(10);
-			fVal2 = devTB_ABBMeter.getVal("VoltageAC", "VoltageACL1_L3").getFloat64();
+			fVal2 = devTB_ABBMeter.getVal("VoltageAC", "VoltageACL1-L3").getFloat64();
 			Thread.sleep(10);
-			fVal3 = devTB_ABBMeter.getVal("VoltageAC", "VoltageACL2_L3").getFloat64();
+			fVal3 = devTB_ABBMeter.getVal("VoltageAC", "VoltageACL2-L3").getFloat64();
 			LOG.info("  VoltageAC L12/13/23 [V]:           " + fVal1 + ",  " + fVal2 + ",  "
 					+ fVal3 + "  ");
 			Thread.sleep(10);
@@ -604,29 +585,29 @@ public class IBTlabLoopTester {
 			LOG.info("  ApparentPowerAC [va]:        " + sVal1 + ", " + sVal2 + ",  " + sVal3
 					+ ",  " + sVal4 + "  ");
 			Thread.sleep(10);
-			sVal1 = devTB_ABBMeter.getVal("ActiveEnergyBalanceAC", "ActiveImportAC").getString();
+			sVal1 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC").getString();
 			Thread.sleep(10);
-			sVal2 = devTB_ABBMeter.getVal("ActiveEnergyBalanceAC", "ActiveExportAC").getString();
+			sVal2 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveExportAC").getString();
 			Thread.sleep(10);
-			sVal3 = devTB_ABBMeter.getVal("ActiveEnergyBalanceAC", "ActiveNetAC").getString();
-			LOG.info("  ActiveEnergyBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
+			sVal3 = devTB_ABBMeter.getVal("ActiveEnerBalanceAC", "ActiveNetAC").getString();
+			LOG.info("  ActiveEnerBalanceAC [KWh]:    " + sVal1 + ", " + sVal2 + ",  " + sVal3 + "  ");
 
 			Thread.sleep(10);
-			sVal1 = devTB_ABBMeter.getVal("ReactiveEnergyBalanceAC", "ReactiveImportAC").getString();
+			sVal1 = devTB_ABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveImportAC").getString();
 			Thread.sleep(10);
-			sVal2 = devTB_ABBMeter.getVal("ReactiveEnergyBalanceAC", "ReactiveExportAC").getString();
+			sVal2 = devTB_ABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveExportAC").getString();
 			Thread.sleep(10);
-			sVal3 = devTB_ABBMeter.getVal("ReactiveEnergyBalanceAC", "ReactiveNetAC").getString();
-			LOG.info("  ReactiveEnergyBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
+			sVal3 = devTB_ABBMeter.getVal("ReactiveEnerBalanceAC", "ReactiveNetAC").getString();
+			LOG.info("  ReactiveEnerBalanceAC [kvarh]:" + sVal1 + ", " + sVal2 + ",  " + sVal3  + "  ");
 
 			Thread.sleep(10);
-			sVal1 = devTB_ABBMeter.getVal("PowerQuadrant", "PowerQuadrantACtot").getString();
+			sVal1 = devTB_ABBMeter.getVal("PowerQuadrant", "PwrQuadACtot").getString();
 			Thread.sleep(10);
-			sVal2 = devTB_ABBMeter.getVal("PowerQuadrant", "PowerQuadrantACL1").getString();
+			sVal2 = devTB_ABBMeter.getVal("PowerQuadrant", "PwrQuadACL1").getString();
 			Thread.sleep(10);
-			sVal3 = devTB_ABBMeter.getVal("PowerQuadrant", "PowerQuadrantACL2").getString();
+			sVal3 = devTB_ABBMeter.getVal("PowerQuadrant", "PwrQuadACL2").getString();
 			Thread.sleep(10);
-			sVal4 = devTB_ABBMeter.getVal("PowerQuadrant", "PowerQuadrantACL3").getString();
+			sVal4 = devTB_ABBMeter.getVal("PowerQuadrant", "PwrQuadACL3").getString();
 			LOG.info("  PowerQuadrant  tot/L1/L3/L3 :        " + sVal1 + ", " + sVal2 + ", " + sVal3
 					+ ",  " + sVal4 + "  ");
 
@@ -649,25 +630,24 @@ public class IBTlabLoopTester {
 	static void initVGT_SGCP(String aBaseDir, String aDescriptionFile ) {
 
 		try {
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
+			DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 
-			Properties prop = new Properties();
-			prop.put("tcp_address", "192.168.1.50");
-			prop.put("tcp_port", "502");
-			prop.put("SlaveID","0");
+			// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
+			GenDriverAPI4Modbus mbVGT_SGCP = mockModbusDriver;
+			if (mbVGT_SGCP == null) {
+				GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
+				mbVGT_SGCP = factory.createTcpTransport("192.168.1.50",502);
+			}
+			devVGT_SGCP = new SGrModbusDevice(tstDesc, mbVGT_SGCP);
 
-			devVGT_SGCP = new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
-					.properties(prop)
-					.eid(Path.of(aBaseDir, aDescriptionFile))
-					.build();
-
-			devVGT_SGCP.connect();
+			mbVGT_SGCP.connect();
 
 		}
 
 		catch ( Exception e )
 		{
-			LOG.info( "Error loading device description devVGT_SGCP: " + e);
+			LOG.info( "Error loading device description mbVGT_SGCP: " + e);
 		}
 	}
 
@@ -709,19 +689,15 @@ public class IBTlabLoopTester {
 	static void initGaroWallbox(String aBaseDir, String aDescriptionFile ) {
 
 		try {
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
+			DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 
-			Properties prop = new Properties();
-			prop.put("tcp_address", "192.168.1.182");
-			prop.put("tcp_port", "502");
+			// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
+			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
+			GenDriverAPI4Modbus mbWbGaro = (mockModbusDriver == null ? factory.createTcpTransport("192.168.1.182",502) : mockModbusDriver);
+			devGaroWallbox = new SGrModbusDevice(tstDesc, mbWbGaro);
+			mbWbGaro.connect();
 
-
-			 devGaroWallbox = new SGrDeviceBuilder()
-				.useModbusGatewayFactory(new EasyModbusGatewayFactory())
-                .properties(prop)
-				.eid(Path.of(aBaseDir, aDescriptionFile))
-                .build();
-
-			devGaroWallbox.connect();
 		}
 
 		catch ( Exception e )
@@ -754,11 +730,11 @@ public class IBTlabLoopTester {
 			fVal3 = devGaroWallbox.getVal("CurrentAC", "CurrentACL3").getFloat64();
 			Thread.sleep(200);
 
-			//programmer unknown setMockIntegerType(true);
+			setMockIntegerType(true);
 			EnumRecord oEnumList = devGaroWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 			Thread.sleep(200);
 			LOG.info("  EV-StatusCode:                    " + oEnumList.getLiteral() + "  ");
-			//programmer unknown setMockIntegerType(false);
+			setMockIntegerType(false);
 
 			oEnumList = devGaroWallbox.getVal("EVSEState", "ocppState").getEnum();
 			Thread.sleep(200);
@@ -784,11 +760,11 @@ public class IBTlabLoopTester {
 			// TODO was is isSmartEV15118, however in EI-XML isSmartEV15188 is defined only.
 			Boolean evState = devGaroWallbox.getVal("EVState", "isSmartEV15188").getBoolean();
 			Thread.sleep(200);
-			//programmer unknown setMockIntegerType(true);
+			setMockIntegerType(true);
 			String evccid = devGaroWallbox.getVal("EVState", "EVCCID").getString();
 			Thread.sleep(200);
 			LOG.info("  EVState  support (ISO/IEC 15118): " + evState + ",    EVCCID = " + evccid + "  ");
-			//programmer unknown setMockIntegerType(false);
+			setMockIntegerType(false);
 
 			fVal1 = devGaroWallbox.getVal("Curtailment", "SafeCurrent").getFloat64();
 			Thread.sleep(200);
@@ -817,19 +793,16 @@ public class IBTlabLoopTester {
 	// OMCCI Wallbox Test
 	// -----------------------------------------------------------------------------------------------------------------------------
 	static void initOMCCIWallbox(String aBaseDir, String aDescriptionFile ) {
-		//TODO IBT/cb: complete and use full OMCCI EI.xml
+		//TODO: complete and use full OMCCI EI.xml
 		try {
-			Properties prop = new Properties();
-			prop.put("tcp_address", "192.168.1.183");
-			prop.put("tcp_port", "502");
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
+			DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 
-			 devOMCCIWallbox = new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
-					.properties(prop)
-					.eid(Path.of(aBaseDir, aDescriptionFile))
-					.build();
-
-			devOMCCIWallbox.connect();
+			// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
+			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
+			GenDriverAPI4Modbus mbWbOMCCI = (mockModbusDriver == null ? factory.createTcpTransport("192.168.1.183", 502) : mockModbusDriver);
+			devOMCCIWallbox = new SGrModbusDevice(tstDesc, mbWbOMCCI);
+			mbWbOMCCI.connect();
 
 		}
 
@@ -863,14 +836,14 @@ public class IBTlabLoopTester {
 			fVal3 = devOMCCIWallbox.getVal("CurrentAC", "CurrentACL3").getFloat32();
 			Thread.sleep(200);
 
-			//programmer unknown setMockIntegerType(true);
+			setMockIntegerType(true);
 			EnumRecord evseState = devOMCCIWallbox.getVal("EVSEState", "EV-StatusCode").getEnum();
 			Thread.sleep(200);
 			LOG.info("  EV-StatusCode:                    " + evseState.getLiteral() + "  ");
 			EnumRecord sgrOCPPState = devOMCCIWallbox.getVal("EVSEState", "ocppState").getEnum();
 			Thread.sleep(200);
 			LOG.info("  OCPP-StatusCode:                  " + sgrOCPPState.getLiteral() + "  ");
-			//programmer unknown (false);
+			setMockIntegerType(false);
 			LOG.info("  CurrentAC[A]                      I[L1]= " + fVal1 + ",  I[L2] = "  + fVal2 + ",  I[L3] = "  + fVal3 + "  ");
 
 			fVal1 = devOMCCIWallbox.getVal("ActivePowerAC", "ActivePowerACL1").getFloat32();
@@ -922,17 +895,14 @@ public class IBTlabLoopTester {
 	static void initFroniusSymo(String aBaseDir, String aDescriptionFile ) {
 
 		try {
-			Properties prop = new Properties();
-			prop.put("tcp_address", "192.168.1.181");
-			prop.put("tcp_port", "502");
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
+			DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 
-			 devFroniusSymo = new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
-					.properties(prop)
-					.eid(Path.of(aBaseDir, aDescriptionFile))
-					.build();
-
-			devFroniusSymo.connect();
+			// Modbus TCP uses a driver instance per device (Sockets, tailored to easymodbus)
+			GenDriverAPI4ModbusFactory factory = DriverFactoryLoader.getModbusDriver();
+			GenDriverAPI4Modbus mbPVFroniusSymo = (mockModbusDriver == null ? factory.createTcpTransport("192.168.1.181", 502) : mockModbusDriver);
+			devFroniusSymo = new SGrModbusDevice(tstDesc, mbPVFroniusSymo);
+			mbPVFroniusSymo.connect();
 		}
 
 		catch ( Exception e )
@@ -1026,20 +996,17 @@ public class IBTlabLoopTester {
 	static void initEmptyDevFrame(String aBaseDir, String aDescriptionFile ) {
 
 		try {
+			DeviceDescriptionLoader loader = new DeviceDescriptionLoader();
+			DeviceFrame tstDesc = loader.load(aBaseDir, aDescriptionFile);
 
-			Properties prop = new Properties();
-			prop.put("tcp_address", "192.168.1.123");
-			prop.put("tcp_port", "502");
+			// replace device specific for RTU
+			//add devXXXX =  new SGrModbusDevice(tstDesc, mbRTU );
 
-			/*
-			 devXXXX = new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
-					.properties(prop)
-					.eid(Path.of(aBaseDir, aDescriptionFile))
-					.build();
+			// // replace device specific for TCP  (easymodus uses Driver instance per device)
+			// GenDriverAPI4Modbus mbXXXXX = (mockModbusDriver == null ? new GenDriverAPI4ModbusTCP() : mockModbusDriver);
+			// devXXXXX = new SGrModbusDevice(tstDesc, mbWmbXXXXX);
+			// mbXXXXX.initDevice("192.168.1.182",502);
 
-			devXXXX.connect();
-			*/
 		}
 
 		catch ( Exception e )
@@ -1061,28 +1028,26 @@ public class IBTlabLoopTester {
 			Thread.sleep(25);
 
 			// Add test getters and setters for binary interface
-			//fVal1 = devXXXX.getValByGDPType("FpName", "DpName").getFloat64();
+			//fVal1 = devWagoMeter.getValByGDPType("FpName", "DpName").getFloat64();
 			//Thread.sleep(10);
 
 
 			// Add test getters and setters for String interfaces
-			//sVal1 = devXXXX.getVal("ActiveEnergyBalanceAC", "ActiveImportAC");
+			//sVal1 = devWagoMeter.getVal("ActiveEnerBalanceAC", "ActiveImportAC");
 			//Thread.sleep(10);
 
 		}
 		catch ( Exception e)
 		{
-			// LOG.info( "Error reading value from device: "+ devFdevXXXXSymo.getClass().getName() + e);
-			// e.printStackTrace();
+			LOG.info( "Error reading value from device: "+ devFroniusSymo.getClass().getName() + e);
+			e.printStackTrace();
 			// add Exception counter here
 		}
 	}
 
-	/*  used by unknown programmer
 	private static void setMockIntegerType(boolean isInteger) {
 		if (mockModbusDriver instanceof GenDriverAPI4ModbusRTUMock) {
 			((GenDriverAPI4ModbusRTUMock)mockModbusDriver).setIsIntegerType(isInteger);
 		}
 	}
-	*/
 }
