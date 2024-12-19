@@ -59,7 +59,7 @@ test {
 
 // use release versions by default (no suffix)
 // spec. release date
-def sgr_spec_suffix = '_2024-10-08'
+def sgr_spec_suffix = '_2024-12-19'
 def sgr_driver_suffix = ''
 def easymodbus_suffix = ''
 def apachehttp_suffix = ''
