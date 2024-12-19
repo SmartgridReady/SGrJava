@@ -1,6 +1,5 @@
 package com.smartgridready.communicator.messaging.mapper;
 
-import com.smartgridready.ns.v0.MessageFilter;
 import com.smartgridready.ns.v0.MessagingInterfaceDescription;
 import com.smartgridready.ns.v0.MessagingPlatformType;
 import com.smartgridready.ns.v0.ObjectFactory;
@@ -22,12 +21,6 @@ class MessagingInterfaceDescMapperTest {
     private static final String KEY_STORE_PW = "keystorepw";
     private static final String  TRUST_STORE_PATH = "trustpath";
     private static final String  TRUST_STORE_PW = "truststorepw";
-
-    private static final String JMES_REGEX_EXPR = "regexexpr";
-    private static final String JMES_QUERY = "jmesquery";
-    private static final String PLAINTEXT_REGEX = "plainregex";
-    private static final String XPATH_REGEX = "xpathregex";
-    private static final String XPATH_QUERY = "xpathquery";
 
     private static final ObjectFactory objectFactory = new ObjectFactory();
 
@@ -53,34 +46,13 @@ class MessagingInterfaceDescMapperTest {
         assertEquals(TRUST_STORE_PW, messageBrokerAuth.getClientCertificateAuthentication().getTruststorePassword());
     }
 
-    private MessageFilter createMessageFilter() {
-
-        var messageFilter = objectFactory.createMessageFilter();
-
-        var jmesPathFilter = objectFactory.createJMESPathFilterType();
-        jmesPathFilter.setMatchesRegex(JMES_REGEX_EXPR);
-        jmesPathFilter.setQuery(JMES_QUERY);
-        messageFilter.setJmespathFilter(jmesPathFilter);
-
-        var plaintextFilter = objectFactory.createPlaintextFilterType();
-        plaintextFilter.setMatchesRegex(PLAINTEXT_REGEX);
-        messageFilter.setPlaintextFilter(plaintextFilter);
-
-        var xpathFilter = objectFactory.createXPathFilterType();
-        xpathFilter.setMatchesRegex(XPATH_REGEX);
-        xpathFilter.setQuery(XPATH_QUERY);
-        messageFilter.setXpapathFilter(xpathFilter);
-
-        return messageFilter;
-    }
-
     private MessagingInterfaceDescription createMessagingInterfaceDescription() {
 
         var messagingInterfaceDescription = objectFactory.createMessagingInterfaceDescription();
 
         var messageBrokerListElement = objectFactory.createMessageBrokerListElement();
-        messageBrokerListElement.setTls(true);
-        messageBrokerListElement.setTlsVerifyCertificate(true);
+        messageBrokerListElement.setTls("true");
+        messageBrokerListElement.setTlsVerifyCertificate("true");
         messageBrokerListElement.setPort("8080");
         messageBrokerListElement.setHost("localhost");
 
