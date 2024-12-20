@@ -96,19 +96,34 @@ public class HeatPumpTester {
 		try {
 
 			LOG.info(String.format("\n\n\n"));
-			LOG.info(String.format("****************************************  SESSION STARTS ***********************************"));
-			LOG.info("*  Time=" + dtf.format(LocalDateTime.now()) + "                                                           *");
-			LOG.info(String.format("********************************************************************************************"));
+			LOG.info("*************************  TEST INITIALISATION ***************************************");
+			LOG.info("*  Time=" + dtf.format(LocalDateTime.now()) + "                                      *");
+			LOG.info("**************************************************************************************");
 
 
 
 
-			if (devStiebelISGIsOn) initStiebelISG(XML_BASE_DIR, "SGr_04_0015_xxxx_StiebelEltron_HeatPump_V1.0.0.xml");
-			if (devCTAoptiHeatIsOn) initCTAoptiHeat(XML_BASE_DIR, "SGr_04_0033_0000_CTA_HeatPump_V1.0.0.xml");
-			if (devHovalTCPIsOn) initHovalTCP(XML_BASE_DIR, "SGr_04_0017_xxxx_HOVAL_HeatPump_V1.0.0.xml");
-			if (devHelioTCPIsOn) initHelioTCP(XML_BASE_DIR, "SGr_04_0020_xxxx_Heliotherm_HeatPumpV0.2.1.xml");
+			if (devStiebelISGIsOn) {
+				LOG.info(" -init devStiebelISG @:" + dtf.format(LocalDateTime.now()) + " ");
+				initStiebelISG(XML_BASE_DIR, "SGr_04_0015_xxxx_StiebelEltron_HeatPump_V1.0.0.xml");
+			}
+			if (devCTAoptiHeatIsOn) {
+				LOG.info(" -init devCTAoptiHeat @:" + dtf.format(LocalDateTime.now()) + " ");
+				initCTAoptiHeat(XML_BASE_DIR, "SGr_04_0033_0000_CTA_HeatPump_V1.0.0.xml");
+			}
+			if (devHovalTCPIsOn) {
+				LOG.info(" -init devHovalTCP @:" + dtf.format(LocalDateTime.now()) + " ");
+				initHovalTCP(XML_BASE_DIR, "SGr_04_0017_xxxx_HOVAL_HeatPump_V1.0.0.xml");
+			}
+			if (devHelioTCPIsOn) {
+				LOG.info(" -init devHelioTCP @:" + dtf.format(LocalDateTime.now()) + " ")
+				;
+				initHelioTCP(XML_BASE_DIR, "SGr_04_0020_xxxx_Heliotherm_HeatPumpV0.2.1.xml");
+			}
 
-			// **************************   Start device Testing   **********************************						
+
+
+			LOG.info("############################   Start device Testing   ####################################");
 
 			try {
 
@@ -819,7 +834,7 @@ public class HeatPumpTester {
 		try {
 
 			Properties prop = new Properties();
-			prop.put("tcp_address", "192.168.1.50");
+			prop.put("tcp_address", "138.131.190.29");
 			prop.put("tcp_port", "502");
 			prop.put("SlaveID", "0");
 
@@ -840,6 +855,7 @@ public class HeatPumpTester {
 
 	static void tstHelioTCP() {
 
+		double dfVal1 =  0.0;
 		float fVal1 = (float) 0.0, fVal2 = (float) 0.0, fVal3 = (float) 0.0, fVal4 = (float) 0.0, fVal5 = (float) 0.0;
 		//float dVal1 = 0.0, dVal2 = 0.0;
 		int iVal1 = 0, iVal2 = 0, iVal3 = 0, iVal4 = 0;
@@ -865,22 +881,22 @@ public class HeatPumpTester {
 
 				// -------------------------------  SGR LEVEL 2 SETPOINTS	------------------------
 				// control HeatPumpBase by HPOpModeCmd enum
-				// TODO:  check enumerations
-				devHelioTCP.setVal("HeatPumpBase", "HPOpModeCmd", EnumValue.of("HP_AUTOMATIC"));
-				LOG.info("  Setting  HeatPumpBase:HPOpModeCmd=HP_AUTOMATIC");
+	/*			// TODO:  check enumerations
+				devHelioTCP.setVal("HeatPumpBase", "HPOpModeCmd", EnumValue.of("HEL_HP_AUTOMATIC"));
+				LOG.info("  Setting  HeatPumpBase:HPOpModeCmd=HEL_HP_AUTOMATIC");
 
 				// control HeatCoolCtrl_1 by enum HeatCoolCtrlOpModeCmd
-				devHelioTCP.setVal("HeatCoolCtrl_1", "HeatCoolCtrlOpModeCmd", EnumValue.of("HC_CONSTANT"));
-				LOG.info("  Setting  HeatCoolCtrl_1:HeatCoolCtrlOpModeCmd=HC_CONSTANT");
+				devHelioTCP.setVal("HeatCoolCtrl_1", "HeatCoolCtrlOpModeCmd", EnumValue.of("HEL_HC_CONSTANT"));
+				LOG.info("  Setting  HeatCoolCtrl_1:HeatCoolCtrlOpModeCmd=HEL_HC_CONSTANT");
 
 				// control HeatCoolCtrl_2 by enum HeatCoolCtrlOpModeCmd
-				devHelioTCP.setVal("HeatCoolCtrl_2", "HeatCoolCtrlOpModeCmd", EnumValue.of("HC_CONSTANT"));
-				LOG.info("  Setting  HeatCoolCtrl_2:HeatCoolCtrlOpModeCmd=HC_CONSTANT");
+				devHelioTCP.setVal("HeatCoolCtrl_2", "HeatCoolCtrlOpModeCmd", EnumValue.of("HEL_HC_CONSTANT"));
+				LOG.info("  Setting  HeatCoolCtrl_2:HeatCoolCtrlOpModeCmd=HEL_HC_CONSTANT");
 
 
 				// control DomHotWaterCtrl by  DomHotWaterOpModeCmd
-				devHelioTCP.setVal("DomHotWaterCtrl", "DomHotWaterOpModeCmd", EnumValue.of("DHW_ECO_OP"));
-				LOG.info("  Setting  DomHotWaterCtrl:DomHotWOpModeCmd=DHW_ECO_OP");
+				devHelioTCP.setVal("DomHotWaterCtrl", "DomHotWaterOpModeCmd", EnumValue.of("HEL_DHW_ECO_OP"));
+				LOG.info("  Setting  DomHotWaterCtrl:DomHotWOpModeCmd=HEL_DHW_ECO_OP");
 
 				// control ReadyStates_bwp by enum SGReadyStateLv2Type
 				devHelioTCP.setVal("SG-ReadyStates", "SGReadySrcSelect", EnumValue.of("SRC_src_CONTACTS"));
@@ -901,27 +917,27 @@ public class HeatPumpTester {
 				devHelioTCP.setVal("PowerCtrl", "SpeedCtrlSetpointEnable", BooleanValue.of(bVal1));
 				LOG.info(String.format("  Setting PowerCtrl: SpeedCtrlSetpointEnable=" + bVal1 ));
 
-
+*/
 				// HeatCoolCtrl_1 Setpoints
-				fValStpt =  (float) 21.0f;
+				fValStpt =  (float) 21.21f;
 				devHelioTCP.setVal("HeatCoolCtrl_1", "SupplyWaterTempSetpoint", Float64Value.of(fValStpt ));
 				bVal1 = false;  // must be true to enable SpeedCtrlSetpoint
 				devHelioTCP.setVal("HeatCoolCtrl_1", "SupplyWaterTempSetpointEnable", BooleanValue.of(bVal1));
-				LOG.info(String.format("  Setting HeatCoolCtrl_1: SupplyWaterTempSetpointEnable=" + bVal1 + "SupplyWaterTempSetpoint=" + fValStpt + "°C"));
-
+				LOG.info(String.format("  Setting HeatCoolCtrl_1: SupplyWaterTempSetpointEnable=" + bVal1 + " , SupplyWaterTempSetpoint=" + fValStpt + "°C"));
+/*
 			   // HeatCoolCtrl_2 Setpoints
 				fValStpt =  (float) 22.0f;
 				devHelioTCP.setVal("HeatCoolCtrl_2", "SupplyWaterTempSetpoint", Float64Value.of(fValStpt ));
 				bVal1 = false;  // must be true to enable SpeedCtrlSetpoint
 				devHelioTCP.setVal("HeatCoolCtrl_2", "SupplyWaterTempSetpointEnable", BooleanValue.of(bVal1));
-				LOG.info(String.format("  Setting HeatCoolCtrl_2: SupplyWaterTempSetpointEnable=" + bVal1 + "SupplyWaterTempSetpoint=" + fValStpt + "°C"));
+				LOG.info(String.format("  Setting HeatCoolCtrl_2: SupplyWaterTempSetpointEnable=" + bVal1 + " , SupplyWaterTempSetpoint=" + fValStpt + "°C"));
 
 				// DomHotWaterCtrl  DomHotWaterTempSetpointOffset
 				fValStpt =  (float) 44.1f;
 				devHelioTCP.setVal("DomHotWaterCtrl", "DomHotWaterTempSetpoint", Float64Value.of(fValStpt));
 				bVal1 = false;  // must be true to enable SpeedCtrlSetpoint
 				devHelioTCP.setVal("DomHotWaterCtrl", "DomHotWaterTempSetpointEnable", BooleanValue.of(bVal1));
-				LOG.info(String.format("  Setting DomHotWaterCtrl: DomHotWaterTempSetpointEnable=" + bVal1 + "DomHotWaterTempSetpoint=" + fValStpt + "°C"));
+				LOG.info(String.format("  Setting DomHotWaterCtrl: DomHotWaterTempSetpointEnable=" + bVal1 + ", DomHotWaterTempSetpoint=" + fValStpt + "°C"));
 
 
 				// BufferStorageCtrl Offset-Setpoint
@@ -929,7 +945,7 @@ public class HeatPumpTester {
 				devHelioTCP.setVal("BufferStorageCtrl", "HeatBufferTempSetpoint", Float64Value.of(fValStpt));
 				bVal1 = false;
 				devHelioTCP.setVal("BufferStorageCtrl", "HeatBufferTempSetpointEnable", BooleanValue.of(bVal1));
-				LOG.info(String.format("  Setting BufferStorageCtrl: HeatBufferTempSetpointEnable=" + bVal1 + "HeatBufferTempSetpoint=" + fValStpt + "°C"));
+				LOG.info(String.format("  Setting BufferStorageCtrl: HeatBufferTempSetpointEnable=" + bVal1 + ", HeatBufferTempSetpoint=" + fValStpt + "°C"));
 
 
 				//RoomTempCtrl_Z1
@@ -942,11 +958,8 @@ public class HeatPumpTester {
 				devHelioTCP.setVal("RoomTempCtrl_Z2", "RoomZoneTempSetpoint", Float64Value.of(fValStpt));
 				LOG.info(String.format("  Setting RoomTempCtrl_Z2: RoomZoneTempSetpoint=" + fValStpt + "°C"));
 
-				//RoomTempCtrl_Z3
-				fValStpt =  (float) 23.0f;
-				devHelioTCP.setVal("RoomTempCtrl_Z3", "RoomZoneTempSetpoint", Float64Value.of(fValStpt));
-				LOG.info(String.format("  Setting RoomTempCtrl_Z3: RoomZoneTempSetpoint=" + fValStpt + "°C"));
-
+;
+*/
 			}
 
 			// testing getter
@@ -971,38 +984,34 @@ public class HeatPumpTester {
 			fVal1 = devHelioTCP.getVal("PowerCtrl", "SpeedCtrlStpt").getFloat32();
 			fVal2 = devHelioTCP.getVal("PowerCtrl", "ActSpeed").getFloat32();
 			fVal3 = devHelioTCP.getVal("PowerCtrl", "ActPowerACtot").getFloat32();
-			fVal4 = devHelioTCP.getVal("PowerCtrl", "SpeedCtrlSetpoint").getFloat32();
-			bVal1 = devHelioTCP.getVal("PowerCtrl", "SpeedCtrlSetpointEnable").getBoolean();
+			fVal4 = devHelioTCP.getVal("PowerCtrl", "PowerCtrlSetpoint").getFloat32();
+			bVal1 = devHelioTCP.getVal("PowerCtrl", "PowerCtrlSetpointEnable").getBoolean();
 			LOG.info(String.format("  PowerCtrl: PowerCtrlStp =" + fVal1 + " %% , ActSpeed=" + fVal2 + " %% , ActPowerACtot=" + fVal3 + " kW"));
 			LOG.info(String.format("             SpeedCtrlSetpoint =" + fVal4 + " kW , SpeedCtrlSetpointEnable =" + bVal1 ));
 			LOG.info(" ");
 
             // HeatCoolCtrl_1
 			EnumRecord oEnumList= devHelioTCP.getVal("HeatCoolCtrl_1", "HeatCoolCtrlOpModeCmd").getEnum();
-			EnumRecord oEnumList1 = devHelioTCP.getVal("HeatCoolCtrl_1", "HeatCoolCtrlOpState").getEnum();
 			bVal1 = devHelioTCP.getVal("HeatCoolCtrl_1", "SupplyWaterTempSetpointEnable").getBoolean();
 			fVal1 = devHelioTCP.getVal("HeatCoolCtrl_1", "SupplyWaterTempSetpoint").getFloat32();
 			fVal2 = devHelioTCP.getVal("HeatCoolCtrl_1", "SupplyWaterTemp").getFloat32();
 			fVal3 = devHelioTCP.getVal("HeatCoolCtrl_1", "ReturnSupplyWaterTemp").getFloat32();
             for (String s : Arrays.asList(String.format(
                     "  HeatCoolCtrl_1:  HeatCoolCtrlOpModeCmd=" + oEnumList.getLiteral() + "/" + oEnumList.getOrdinal()
-                            + " ,  HeatCoolCtrlOpState: " +  oEnumList1.getLiteral() + "/" + oEnumList1.getOrdinal()
-                            + "SupplyWaterTempSetpointEnable =" + bVal1
-                            + " SupplyWaterTempSetpoint=" + fVal1 + " °C,  SupplyWaterTemp=" + fVal2
+                            + ", SupplyWaterTempSetpointEnable =" + bVal1
+                            + ", SupplyWaterTempSetpoint=" + fVal1 + " °C,  SupplyWaterTemp=" + fVal2
                             + " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C "), " ")) {
                 LOG.info(s);
             }
 
             // HeatCoolCtrl_2
 			oEnumList= devHelioTCP.getVal("HeatCoolCtrl_2", "HeatCoolCtrlOpModeCmd").getEnum();
-			oEnumList1 = devHelioTCP.getVal("HeatCoolCtrl_2", "HeatCoolCtrlOpState").getEnum();
 			bVal1 = devHelioTCP.getVal("HeatCoolCtrl_2", "SupplyWaterTempSetpointEnable").getBoolean();
 			fVal1 = devHelioTCP.getVal("HeatCoolCtrl_2", "SupplyWaterTempSetpoint").getFloat32();
 			fVal2 = devHelioTCP.getVal("HeatCoolCtrl_2", "SupplyWaterTemp").getFloat32();
 			fVal3 = devHelioTCP.getVal("HeatCoolCtrl_2", "ReturnSupplyWaterTemp").getFloat32();
 			LOG.info(String.format(
 					"  HeatCoolCtrl_2:  HeatCoolCtrlOpModeCmd=" + oEnumList.getLiteral() + "/" + oEnumList.getOrdinal()
-							+ " ,  HeatCoolCtrlOpState: " + oEnumList1.getLiteral() + "/" + oEnumList1.getOrdinal()
 							+ " , SupplyWaterTempSetpointEnable =" + bVal1
 							+ " , SupplyWaterTempSetpoint=" + fVal1 + " °C,  SupplyWaterTemp=" + fVal2
 							+ " °C,  ReturnSupplyWaterTemp=" + fVal3 + " °C "));
@@ -1023,20 +1032,16 @@ public class HeatPumpTester {
 			fVal1 = devHelioTCP.getVal("BufferStorageCtrl", "HeatBufferTempSetpoint").getFloat32();
 			fVal2 = devHelioTCP.getVal("BufferStorageCtrl", "HeatBufferTempSetpointFb").getFloat32();
 			fVal3 = devHelioTCP.getVal("BufferStorageCtrl", "ActHeatBufferTemp").getFloat32();
-			LOG.info(String.format("  BufferStorageCtrl: HeatBufferTempSetpointEnable=" + bVal1 + "HeatBufferTempSetpoint=" + fVal1 + "°C , HeatBufferTempSetpointFb=" + fVal2 + "°C , ActHeatBufferTemp=" + fVal3 + "°C"));
+			LOG.info(String.format("  BufferStorageCtrl: HeatBufferTempSetpointEnable=" + bVal1 + ", HeatBufferTempSetpoint=" + fVal1 + "°C , HeatBufferTempSetpointFb=" + fVal2 + "°C , ActHeatBufferTemp=" + fVal3 + "°C"));
 
             // RoomTempCtrl_Z1
-			fVal1 = devHelioTCP.getVal("RoomTempCtrl_Z1", "RoomZoneTempSetpoint").getFloat32();
-			LOG.info(String.format("  Setting RoomTempCtrl_Z1: RoomZoneTempSetpoint=" + fVal1 + "°C"));
+			dfVal1 = devHelioTCP.getVal("RoomTempCtrl_Z1", "RoomZoneTempSetpoint").getFloat64();
+			LOG.info(String.format("  Setting RoomTempCtrl_Z1: RoomZoneTempSetpoint=" + dfVal1 + "°C"));
 
 			//RoomTempCtrl_Z2
-			fVal1 = devHelioTCP.getVal("RoomTempCtrl_Z2", "RoomZoneTempSetpoint").getFloat32();
-			LOG.info(String.format("  Setting RoomTempCtrl_Z2: RoomZoneTempSetpoint=" + fVal1 + "°C"));
-
-			//RoomTempCtrl_Z3
-			fVal1 = devHelioTCP.getVal("RoomTempCtrl_Z3", "RoomZoneTempSetpoint").getFloat32();
-			LOG.info(String.format("  Setting RoomTempCtrl_Z3: RoomZoneTempSetpoint=" + fVal1 + "°C"));
-
+			dfVal1 = devHelioTCP.getVal("RoomTempCtrl_Z2", "RoomZoneTempSetpoint").getFloat64();
+			LOG.info(String.format("  Setting RoomTempCtrl_Z2: RoomZoneTempSetpoint=" + dfVal1 + "°C"));
+			LOG.info(" ");
 
             // EnergyMonitor
 			fVal1 = devHelioTCP.getVal("EnergyMonitor", "ActiveEnergyACtot").getFloat32();
@@ -1044,14 +1049,14 @@ public class HeatPumpTester {
 			fVal3 = devHelioTCP.getVal("EnergyMonitor", "ThermalEnergyDomHotWater").getFloat32();
 			fVal4 = devHelioTCP.getVal("EnergyMonitor", "ThermalEnergyTot").getFloat32();
 			fVal5 = devHelioTCP.getVal("EnergyMonitor", "ThermalEnergyHeat").getFloat32();
-			LOG.info(String.format("  EnergyMonitor: ActiveEnergyACtot=" + fVal1 + " kWh, ActiveEnergyACheat=" + fVal2 + " kWh, ThermalEnergyDomHotWater=" + fVal3 + " kWh, ThermalEnergyTot=" + fVal4 + " kWh, ThermalEnergyHeat=" + fVal5 + " kWh"));
+			LOG.info(String.format("  EnergyMonitor: ActiveEnergyACtot=" + fVal1 + " kWh, ActiveEnergyACheat=" + fVal2 + " kWh, ThermalEnergyDomHotWater=" + fVal3 + " kWh, ThermalEnergyTot=" + fVal4 + " kWh"));
 
 
 			fVal1 = devHelioTCP.getVal("EnergyMonitor", "ActivePowerACtot").getFloat32();
 			fVal2 = devHelioTCP.getVal("EnergyMonitor", "ThermalPower").getFloat32();
 			fVal3 = devHelioTCP.getVal("EnergyMonitor", "RuntimeHeating").getFloat32();
 			fVal4 = devHelioTCP.getVal("EnergyMonitor", "RuntimeDomHotWater").getFloat32();
-			LOG.info(String.format("                 ActivePowerACtot=" + fVal1 + " kWh, ThermalPower=" + fVal2 + " kW, RuntimeHeating=" + fVal3 + " kWh, RuntimeDomHotWater=" + fVal4 + " h"));
+			LOG.info(String.format("                 ThermalEnergyHeat=" + fVal5 + " kWh, ActivePowerACtot=" + fVal1 + " kWh, ThermalPower=" + fVal2 + " kW, RuntimeHeating=" + fVal3 + " kWh, RuntimeDomHotWater=" + fVal4 + " h"));
 			LOG.info(" ");
 
 		} catch (Exception  e) {

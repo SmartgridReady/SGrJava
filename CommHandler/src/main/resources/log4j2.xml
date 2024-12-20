@@ -7,16 +7,16 @@
     <Console name="ConsoleThreadTstmp">
         <PatternLayout pattern="[%.4t] %d{mm:ss.SSS} %-5level %c{1.} - %msg%n"/>
     </Console>
+    <File name="File" fileName="HelioTest.log">
+      <PatternLayout pattern=" %-5level %c{1.} - %msg%n"/>
+    </File>
   </Appenders>
   <Loggers>
-    <Root level="debug">
+    <Root level="info">
     <!--  setzt tiefsten level fuer output -->
       <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
     </Root>
-    <Logger name="communicator.async" level="info" additivity="false">
-        <AppenderRef ref="ConsoleThreadTstmp" />
-    </Logger>
-    
   </Loggers>
 </Configuration>
 <!--  levels:  
@@ -28,5 +28,17 @@
       "error", 
       "fatal", and "all"
       
-       https://logging.apache.org/log4j/2.x/manual/configuration.html Configuring Log4j 2      
+       https://logging.apache.org/log4j/2.x/manual/configuration.html Configuring Log4j 2
+
+      Log to file:
+    <File name="File" fileName="IBTLabTest.log">
+      <PatternLayout pattern=" %-5level %c{1.} - %msg%n"/>
+    </File>
+
+  <Loggers>
+    <Root level="info">
+       <AppenderRef ref="Console"/>
+       <AppenderRef ref="File"/>
+    </Root>
+   </Loggers>
 -->

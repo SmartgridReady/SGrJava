@@ -78,14 +78,15 @@ public class IBTlabLoopTester {
 	private static boolean  devABBMeterTestIsOn = true;
 	private static boolean  devVGT_SGCPTestIsOn = true;
 	private static boolean  devFroniusSymoTestIsOn = false;
-	private static boolean  devGaroWallboxTestIsOn = false;
+	private static boolean  devGaroWallboxTestIsOn = true;
 	// TestBox
-	private static boolean  devWagoMeterTestIsOn = false;
+	private static boolean  devWagoMeterTestIsOn = true;
 	private static boolean  devOMCCIWallboxTestIsOn = true;
 
 	// !! Schalter in Box umlegen fuer Test !!
-	private static boolean  devTB_ABBMeterTestIsOn = false;
+	private static boolean  devTB_ABBMeterTestIsOn = true;
 
+	private static SGrModbusGatewayRegistry  modbusPort1Registery = new SGrModbusGatewayRegistry();
 	// Set the mockModbusDriver to new GenDriverAPI4ModbusRTUMock() to mock the real devices.
 	// private static GenDriverAPI4Modbus  mockModbusDriver = new GenDriverAPI4ModbusRTUMock();
 	//private static GenDriverAPI mockModbusDriver = null;
@@ -97,6 +98,10 @@ public class IBTlabLoopTester {
 
 		try {
 
+			LOG.info(String.format("\n\n\n"));
+			LOG.info("*************************  TEST INITIALISATION ***************************************");
+			LOG.info("*  Time=" + dtf.format(LocalDateTime.now()) + "                                      *");
+			LOG.info("**************************************************************************************");
 
 			if (devABBMeterTestIsOn)  {
 				LOG.info(" -init devABBMeterTest @:" + dtf.format(LocalDateTime.now())+ " ");initABBMeter(XML_BASE_DIR, "SGr_00_0016_dddd_ABB_B23_ModbusRTU_V0.3.xml");
@@ -127,7 +132,7 @@ public class IBTlabLoopTester {
 
 
 
-			// **************************   Start device Testing   **********************************
+			LOG.info("############################   Start device Testing   ####################################");
 
 			try {
 
@@ -180,14 +185,14 @@ public class IBTlabLoopTester {
 		try {
 			var properties = new Properties();
 			properties.put("slave_id", "7");
-			properties.put("serial_port", "COM4");
+			properties.put("serial_port", "COM3");
 			properties.put("serial_baudrate", "9600");
 			properties.put("serial_databits", "8");
 			properties.put("serial_parity", "NONE");
 			properties.put("serial_stopbits","1");
 
 			devWagoMeter = (GenDeviceApi) new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
+					.useSharedModbusGatewayRegistry(modbusPort1Registery)
 					.eid(Path.of(aBaseDir, aDescriptionFile))
 					.properties(properties)
 					.build();
@@ -340,14 +345,14 @@ public class IBTlabLoopTester {
 		try {
 			var properties = new Properties();
 			properties.put("slave_id", "11");
-			properties.put("serial_port", "COM4");
+			properties.put("serial_port", "COM3");
 			properties.put("serial_baudrate", "9600");
 			properties.put("serial_databits", "8");
-			properties.put("serial_parity", "EVEN");
+			properties.put("serial_parity", "NONE");
 			properties.put("serial_stopbits","1");
 
 			devABBMeter = (GenDeviceApi) new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
+					.useSharedModbusGatewayRegistry(modbusPort1Registery)
 					.eid(Path.of(aBaseDir, aDescriptionFile))
 					.properties(properties)
 					.build();
@@ -486,7 +491,7 @@ public class IBTlabLoopTester {
 
 
 	// -----------------------------------------------------------------------------------------------------------------------------
-	// Device ABBMeter Testing
+	// Device ABBMeter Testing, location Testbox Bender controller
 	// -----------------------------------------------------------------------------------------------------------------------------
 	static void initTB_ABBMeter(String aBaseDir, String aDescriptionFile ) {
 
@@ -494,14 +499,14 @@ public class IBTlabLoopTester {
 
 			var properties = new Properties();
 			properties.put("slave_id", "1");
-			properties.put("serial_port", "COM4");
+			properties.put("serial_port", "COM3");
 			properties.put("serial_baudrate", "9600");
 			properties.put("serial_databits", "8");
-			properties.put("serial_parity", "EVEN");
+			properties.put("serial_parity", "NONE");
 			properties.put("serial_stopbits","1");
 
 			devTB_ABBMeter = (GenDeviceApi) new SGrDeviceBuilder()
-					.useModbusGatewayFactory(new EasyModbusGatewayFactory())
+					.useSharedModbusGatewayRegistry(modbusPort1Registery)
 					.eid(Path.of(aBaseDir, aDescriptionFile))
 					.properties(properties)
 					.build();
