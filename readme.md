@@ -4,8 +4,7 @@
 [Summary](#summary)<br>
 [Description](#description)<br>
 [Build and publish for development](#build-and-publish-for-development)<br>
-[Build and publish a release](#build-and-publish-a-release)<br>
-[Generate SGrSpecification classes](#manually-creating-the-sgrspecification-classes-after-xml-schema-updates-deprecated)<br>
+
 
 ## Summary
 SGrJava is home for the SmartgridReady core components, the communication handler implementations.
@@ -16,114 +15,47 @@ Current list of interfaces supported by the communication handler:
 
 A communication handler maps the SmartgridReady generic interface to a device/product specific interface. The interface mapping is defined within an external interface description in XML. (see https://github.com/SmartgridReady/SGrSpecifications/tree/master/XMLInstances/ExtInterfaces)
 
-The external interface description XML describes for every functionalprofile-datapoint tuple the properties needed to read/write date from/to the datapoint.
+The external interface description XML (EI-XML) describes for every functionalprofile-datapoint tuple the properties needed to read/write date from/to the datapoint.
 
 ## Description
 
-SGrJava conists of two subprojects:
-- CommHandler
-- ExternalInterfaceDescription
-
-### Commhandler
-Commhandler4Modbus is the realization of the commmunication-handler for modbus RTU and TCP. It depends in SGrSpecification, that provides the classes needed to load XML device descriptions. The basic implementation class is ```SGrDevice```, that implements all the generic interface methods to access an SGr compliant device.
-
-
-### ExternalInterfaceDescription
-ExternalInterfaceDescription provides the Java-XML binding of XML device descriptions. The classes can be generated from an XML-Schema that provides the model for the device descriptions. Eclipse EMF (Eclipse Modeling Framework) tools are then used to generate the generate Java classes. For details see [Generate SGrSpecification classes](#manually-creating-the-sgrspecification-classes-after-xml-schema-updates-deprecated).
+The SGrJava repository contains of three projects:
+- **CommHandler:** Code that interprets the EI-XML and adapts the communication interface to the device communication.
+- **SGrSpecification:** Provides JAXB generated classes based on the XML schema definitions within the SGrSpecifications GitHub repository.
+- **GenDriverAPI:** API used to integrate different device drivers for Modbus, REST and MQTT. 
 
 
 ## Build and publish for development
 
 ### Prerequisites
-- Java JDK version >= 1.8
-- <b>SGrGenDriverAPI</b> and <b>EasyModbus</b> must be published to the local maven directory. See readme.md of https://github.com/SmartgridReady/SGrJavaDrivers. Chapter https://github.com/SmartgridReady/SGrJavaDrivers#build-and-publish-for-development.
-- Have a local clone of the SGrSpecifications project to get the XML-Schema resources from. See https://github.com/SmartgridReady/SGrSpecifications
-- Current Eclipse installation with EMF features installed (EMF features shipped with standard Eclipse). Additionally you need to install the eclipse <b>XSD - XML Schema Definition SDK</b> Eclipse plugin to import XSD files and convert them to an ecore model. (see https://projects.eclipse.org/projects/modeling.mdt.xsd/reviews/restructuring-and-termination-review)
+1. Java JDK version >= 1.11
 
-Rem: You can use a different IDE such as IntelliJ, however Eclipse must be additionally installed to allow
-automatic code-generation using Eclipse EMF.
 
-### Configure gradle.propertiesS
-The project relies on automatic code generation using Eclipse EMF and Gradle. Gradle needs to know the location
-your Eclipse installation and the root XSD-file of the SGrSpecification. Edit your ```gradle.properties``` file and add the new entries as follows. By default, the ```gradle.properties``` file can be found on:
-- Windows: ```C:\Users\<username>\.gradle```
-- Unix: ```USER_HOME\.gradle```
+2. **To build SGrSpecification if required:** Clone the SGrSpecifications repository (https://github.com/SmartGridready/SGrSpecifications/) in  parallel to the SGrJava repository. This is required that the `SGrSpecification` project finds the XML-Schema files needed to generate the JAXB classes.
+```
+Required folder structure:
 
-New entries to add:
-```
-xsd2java.eclipse.home=<<path to your Eclipse installation where exlipse.exe resides>>
-xsd2java.xsd.resource=<<your SGrSpecifications root folder>>/SchemaDatabase/SGr/SGrIncluder.xsd
-```
-Example:
-```
-xsd2java.eclipse.home=c:/java/eclipse-2020-12
-xsd2java.xsd.resource=c:/dev/SGrSpecifications/SchemaDatabase/SGr/SGrIncluder.xsd
+sgr-projects-root
+ |_SGrJava
+ |_SGrSpecifications
 ```
 
 ### Run the gradle build and publish to the local maven repository
-- Change to the local ```{project-root}/SGrJava``` directory.
-- To build the project run:
+
+Each project can be built separately:
+
+- To build the project run in the project root of the respective project (CommHandler, SGrSpecification, GenDriverAPI):
     ```
-    bash>gradle clean build
+    bash>./gradle clean build
     ```
+
 - To publish to the local Maven repository run:
     ```
     bash>gradle publishToMavenLocal
     ```
+The dependencies and therefore the build order for the projects are:
+1. GenDriverAPI (optional, by default  the GenDriverAPI release version from the official SGr Maven repository is used when building the CommHandler)
+2. SGrSpecification (optional, by default the SGrSpecification release version from the official SGr Maven repository is used when building the CommHandler)
+3. CommHandler
 
-When using an IDE (Intellij/Eclipse) you can also use the IDE's Gradle integration to run 'publishToMavenLocal'. The steps above will compile, build the library jar and publish the library to the local maven repository.
-
-## Build and publish a release
-- Obtain a Github access token for your Github account. This has to be done once before you can  publish to GitHub. See [Obtaining a GitHub token for publishing](https://github.com/SmartgridReady/SGrJavaDrivers#obtaining-a-github-token-for-publishing)
-
-- Change to the local ```{project-root}/SGrJava``` directory.
-- Check that the ```build.gradle``` file has the correct version number for the ```sgr-driver-api.jar``` file:
-    ```
-    publishing {
-        publications {
-            api(MavenPublication) {
-                groupId = 'ch.smartgridready'
-                artifactId = 'commhandler4modbus'
-                version = '<correct-version>'
-
-                from components.java        
-            }
-        }
-    }
-    ```
-    <b>Rem:</b> GitHub will not accept publishing a version that already exists within the repository. If you want to override published version you must delete the existing package of the library first.
-
-- Run the command:
-    ```
-    bash>gradle publishAllPublicationsToGitHubRepository
-    ```
-
-## Manually creating the SGrSpecification classes after XML-Schema updates (deprecated)
-The code for the SGrSpecification classes is now automatically generated by the Gradle build as soon as the XML-Schema changes.<br>
-Additionally you can generate the classes manually from the Eclipse IDE if needed. This section describes how to generate
-the classes manually from the Eclipse menu:
-
-- Delete the content of ```<project-root>/SGrSpecification/src``` (it contains 3 package folders: com.smargridready.ns.V<i>n</i>.*)
-
-- Delete the files:
-    ```
-    - <project-root>/SGrSpecification/model/SGrSpecification.genmodel
-    - <project-root>/SGrSpecification/model/V<i>n</i>.model
-    ```
-- In the Project Explorer select the folder ```<project-root>/SGrSpecification/model``` and press the right mous button.
-- In the right-click context-menu select [File][New][Other...]
-- From the provided Wizards select 'EMF-Generator-Model' (type it in the search box)
-- Press [Next]
-- Under 'Enter or select the parent folder' it should read ```<project-root>/SGrSpecification/model```
-- In the 'File name:' textbox type 'SGrSpecification.genmodel'
-- Press [Next]
-- In the Dialog 'Select Model Importer' choose 'XML-Schema'
-- In the Dialog 'XML Schema Import' choose 'Browse File System' or 'Brows Workspace' if you have your SGrXMLSpecification folders in the Eclipse workspace.
-- Browse to ```<sgr-specifications-root>/SchemaDatabase/SGr``` and select ```SGrIncluder.xsd```
-- Press [OK]
-- Press [Next]
-- Within the Dialog 'Package Selection' press [Finsh]. The ```'SGrSpecification.genmodel'``` will be generated now.
-- In the source code editor window select the tab [SGrSpecification.genmodel] (it should have appeared automatically after generating the genmodel file)
-- Right click on the 'EmfEI4Modbus' element in the source code editor window.
-- Select 'Generate Model Code' in the context-menu. Now the model classes will be generated to ```<project-root>/SGrSpecification/src```.
 
