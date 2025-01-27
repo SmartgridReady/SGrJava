@@ -46,7 +46,7 @@ descriptions:
         value: '0.0.0.0'
   - file: SGr_04_0020_xxxx_Heliotherm_HeatPumpV0.2.1.xml
     parameters:
-      - name: address
+      - name: tcp_address
         value: '0.0.0.0'
   - file: SGr_04_0021_xxxx_FroniusSymoV0.2.1.xml
     parameters:
